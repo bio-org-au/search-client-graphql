@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'search/index'
+
+  get 'search/apni'
+
+  get 'search/apc'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
   # See how all your routes lay out with "rake routes".
