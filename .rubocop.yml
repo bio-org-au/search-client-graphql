@@ -1,0 +1,17 @@
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - "bin/spring"
+Style/TrailingCommaInLiteral:
+  Enabled: false
+Style/TrailingCommaInArguments:
+  Enabled: false
+StringLiterals:
+  EnforcedStyle: double_quotes
+  Enabled: true
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# Gives warning: || Warning: unrecognized cop Rails found in /Users/gregc/Dropbox/anbg/rails/ned/.rubocop.yml
+# Rails:
+#   Enabled: true
