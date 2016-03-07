@@ -1,0 +1,2 @@
+class FaunaController < ApplicationController
+end

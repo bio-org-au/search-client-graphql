@@ -1,5 +1,9 @@
   <nav class="bd-links" id="docsNavbarContent">
       <div class="bd-toc-item active">
+        <%= link_to "Biodiversity Australia",
+                    welcome_path,
+                    class: "bd-toc-link",
+                    title: "Biodiversity Australia" %>
         <%= link_to "Vascular Plants",
                     plants_path,
                     class: "bd-toc-link",
@@ -14,10 +18,22 @@
                     title: "Vascular Plant Taxonomy - Accepted by the Australian Plant Census" %>
         <ul class="nav bd-sidenav">
             <li class="">
-              <%= link_to "Search APC".html_safe,
-                          "#",
+              <%= link_to "APC Search",
+                          plant_taxonomy_accepted_search_path,
                           class: "",
-                          title: "Vascular Plant Taxonomy - Accepted by the Australian Plant Census" %>
+                          title: "Australian Plant Census Names search" %>
+            </li>
+            <li class="">
+              <%= link_to "APC Names within a Taxon",
+                          plant_taxonomy_accepted_within_path,
+                          class: "",
+                          title: "Australian Plant Census Names within a Taxon" %>
+            </li>
+            <li class="">
+              <%= link_to "APC Checklist",
+                          plant_taxonomy_accepted_checklist_path,
+                          class: "",
+                          title: "Australian Plant Census Name Checklist" %>
             </li>
         </ul>
       </div>

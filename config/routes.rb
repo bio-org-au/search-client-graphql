@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
   get 'welcome/index'
 
-  match "/plant/names/advanced_search", as: "plant_names_advanced_search", to: "plants/names/advanced_search#index", via: :get
+  match "/plant/names/checklist", as: "plant_names_checklist", to: "plants/names/checklist#index", via: :get
+  match "/plant/names/within", as: "plant_names_within", to: "plants/names/within#index", via: :get
+  match "/plant/names/advanced", as: "plant_names_advanced", to: "plants/names/advanced#index", via: :get
   match "/plant/names/search", as: "plant_names_search", to: "plants/names/search#index", via: :get
+  match "/plant/taxonomy/other", as: "plant_taxonomy_other", to: "plants/taxonomy/other#index", via: :get
+  match "/plant/taxonomy/accepted/checklist", as: "plant_taxonomy_accepted_checklist", to: "plants/taxonomy/accepted/checklist#index", via: :get
+  match "/plant/taxonomy/accepted/within", as: "plant_taxonomy_accepted_within", to: "plants/taxonomy/accepted/within#index", via: :get
+  match "/plant/taxonomy/accepted/search", as: "plant_taxonomy_accepted_search", to: "plants/taxonomy/accepted/search#index", via: :get
   match "/plant/taxonomy/accepted", as: "plant_taxonomy_accepted", to: "plants/taxonomy/accepted#index", via: :get
   match "/plant/taxonomy", as: "plant_taxonomy", to: "plants/taxonomy#index", via: :get
   match "/plant/names", as: "plant_names", to: "plants/names#index", via: :get
@@ -11,6 +17,7 @@ Rails.application.routes.draw do
   match "/fungi", as: "fungi", to: "fungi#index", via: :get
   match "/lichens", as: "lichens", to: "lichens#index", via: :get
   match "/algae", as: "algae", to: "algae#index", via: :get
+  match "/fauna", as: "fauna", to: "fauna#index", via: :get
 
   match "/apni/about", as: "about_apni", to: 'apni#about', via: :get
   match "/apni/index", as: "apni_index", to: 'apni#index', via: :get
@@ -33,7 +40,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
+  root 'welcome#index', as: "welcome", via: :get
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
