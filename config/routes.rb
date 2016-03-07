@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   get 'welcome/index'
 
+  match "/plant/names/advanced_search", as: "plant_names_advanced_search", to: "plants/names/advanced_search#index", via: :get
+  match "/plant/names/search", as: "plant_names_search", to: "plants/names/search#index", via: :get
+  match "/plant/taxonomy/accepted", as: "plant_taxonomy_accepted", to: "plants/taxonomy/accepted#index", via: :get
+  match "/plant/taxonomy", as: "plant_taxonomy", to: "plants/taxonomy#index", via: :get
   match "/plant/names", as: "plant_names", to: "plants/names#index", via: :get
   match "/plants", as: "plants", to: "plants#index", via: :get
   match "/mosses", as: "mosses", to: "mosses#index", via: :get

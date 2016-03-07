@@ -4,7 +4,7 @@
                     plants_path,
                     class: "bd-toc-link",
                     title: "Vascular Plants" %>
-        <%= link_to "Names &mdash; APNI".html_safe,
+        <%= link_to "Names",
                     plant_names_path,
                     class: "bd-toc-link",
                     title: "Vascular Plant Names" %>
@@ -13,19 +13,25 @@
             <%= link_to "APNI Search",
                         plant_names_search_path,
                         class: "",
-                        title: "Vascular Plant Names Simple Search" %>
+                        title: "APNI Simple Search" %>
+          </li>
+          <li class="active bd-sidenav-active">
             <%= link_to "APNI Advanced Search",
-                        plant_names_advanced_search_path,
-                        class: "",
-                        title: "Vascular Plant Names Advanced Search" %>
-            <%= link_to "Name Check",
                         "#",
                         class: "",
-                        title: "Vascular Plant Names Name Check Search" %>
-            <%= link_to "SPARQL",
+                        title: "APNI Advanced Search" %>
+          </li>
+          <li class="">
+            <%= link_to "APNI Name Check",
                         "#",
                         class: "",
-                        title: "Vascular Plant Names SPARQL Search" %>
+                        title: "APNI Name Check Search" %>
+          </li>
+          <li class="">
+            <%= link_to "APNI SPARQL",
+                        "#",
+                        class: "",
+                        title: "APNI SPARQL Search" %>
           </li>
         </ul>
       </div>

@@ -1,6 +1,6 @@
 // scss-lint:disable ImportantRule
 
-.bd-pageheader {
+.boa-pageheader {
   padding: 2rem ($grid-gutter-width / 2);
   margin-bottom: 1.5rem;
   color: $bd-purple-light;
@@ -21,6 +21,10 @@
     margin-bottom: 0;
     font-size: 1.25rem;
     font-weight: 300;
+  }
+
+  p a {
+    color: $bd-purple-light;
   }
 
   @include media-breakpoint-up(sm) {

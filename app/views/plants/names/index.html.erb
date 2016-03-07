@@ -2,29 +2,21 @@
   Vascular Plant Names
 <% end %>
 <% content_for :page_banner do %>
-  <h1>Vascular Plant Names</h1>
+  <h1>Vascular Plants</h1>
+  <p class="lead">&nbsp;</p>
 <% end %>
 <% content_for :sidebar do %>
-  <%= render "apni/sidebar" %>
+  <%= render "sidebar" %>
 <% end %>
 
-<%= form_tag(apni_search_path, method: "get") do %>
-  <div class="form-group row">
-    <%= label_tag(:q,
-                  "Search for:",
-                  class:"sr-only col-sm-2 form-control-label") %>
-  <div class="col-sm-10">
-    <%= text_field_tag(:q,
-                       '',
-                       class: "form-control",
-                       value: "#{params[:q]}",
-                       placeholder: "Search terms") %>
-    </div>
-  <%= submit_tag("Search", class: "btn btn-search") %>
-  </div>
-<% end %>
+<h2>Names &mdash; APNI</h2>
+<p>The 
+<%= link_to("Australian Plant Name Index (APNI)",
+            apni_path,
+            title: "APNI Search Page") %>
+is a tool for the
+botanical community that deals with plant names and their usage in the
+scientific literature, whether as a current name or synonym.</p>
 
-<% if @search.present? %>
-  <%= "#{@search.parsed.search_type} for '#{params[:q]}' returned
-  #{pluralize(@search.ran.results.size, 'record')}" %>
-<% end %>
+<p>APNI does not recommend any particular taxonomy or nomenclature.</p>
+
