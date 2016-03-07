@@ -1,0 +1,2 @@
+class FungiController < ApplicationController
+end

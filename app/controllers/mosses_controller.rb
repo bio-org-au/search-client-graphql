@@ -1,0 +1,2 @@
+class MossesController < ApplicationController
+end

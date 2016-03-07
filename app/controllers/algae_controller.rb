@@ -1,0 +1,2 @@
+class AlgaeController < ApplicationController
+end

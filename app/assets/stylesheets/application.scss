@@ -1,16 +1,55 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
+ * This is a manifest file that'll be compiled into application.css, which will
+ * include all the files listed below.
  *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets,
+ * vendor/assets/stylesheets, or any plugin's vendor/assets/stylesheets
+ * directory can be referenced here using a relative path.
  *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * You're free to add application-wide styles to this file and they'll appear
+ * at the bottom of the compiled file so the styles you add here take
+ * precedence over styles defined in any styles defined in the other
+ * CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
  */
 // Custom bootstrap variables must be set or import before bootstrap itself.
+// Local docs variables
+
 @import "bootstrap";
-@import "search";
+
+$bd-purple:         #563d7c;
+$bd-purple:         #808000;
+$bd-purple:         #8f98c3;
+$bd-purple:         #7C84AB;
+$bd-purple:         #63698A;
+$bd-purple-bright:  lighten(saturate($bd-purple, 5%), 15%);
+$bd-purple-light:   #cdbfe3;
+$bd-graphite:       #2a2730;
+$bd-graphite-light: lighten($bd-graphite, 40%);
+$bd-yellow:         #ffe484;
+$bd-danger:         #d9534f;
+$bd-warning:        #f0ad4e;
+$bd-info:           #5bc0de;
+
+@import "booticon";
+@import "nav";
+@import "masthead";
+@import "featurettes";
+@import "content";
+@import "page-header";
+@import "skiplink";
+@import "sidebar";
+@import "footer";
+@import "sticky-footer";
+@import "component-examples";
+@import "responsive-tests";
+@import "buttons";
+@import "callouts";
+@import "examples";
+@import "team";
+@import "browser-bugs";
+@import "brand";
+@import "clipboard-js";
+@import "debug";
+

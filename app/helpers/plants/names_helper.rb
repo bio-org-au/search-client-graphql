@@ -1,0 +1,2 @@
+module Plants::NamesHelper
+end

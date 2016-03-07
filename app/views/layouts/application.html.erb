@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>APNI/APC Search</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <title><%= yield :page_title %></title>
+
+  <%= stylesheet_link_tag 'application',
+                          media: 'all',
+                          'data-turbolinks-track' => true %>
+
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
@@ -15,8 +19,6 @@
     </a>
 
 <header class="navbar navbar-light navbar-static-top bd-navbar" role="banner">
-  
-
   <div class="clearfix">
     <button class="navbar-toggler pull-xs-right hidden-sm-up" type="button" data-toggle="collapse" data-target="#bd-main-nav">
       &#9776;
@@ -26,175 +28,44 @@
     </a>
   </div>
   <div class="collapse navbar-toggleable-xs" id="bd-main-nav">
-    <nav class="nav navbar-nav">
-      <a class="nav-item nav-link " href="/" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Bootstrap');">APNI/APC</a>
-      <a class="nav-item nav-link " href="/examples/" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Examples');">APNI</a>
-      <a class="nav-item nav-link" href="http://themes.getbootstrap.com" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Themes');">APC</a>
-      <a class="nav-item nav-link active" href="/getting-started/introduction/" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Docs');">Documentation</a>
-      <a class="nav-item nav-link" href="http://blog.getbootstrap.com" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Blog');">Links</a>
-    </nav>
+    <%= render 'layouts/nav_links' %>
   </div>
 </header>
 
 
-    <div class="bd-pageheader">
-      <div class="container">
-        
-  <h1>Search APNI/APC</h1>
-  <p class="lead">
-    Options for structuring your pages with Bootstrap, including global styles, required scaffolding, grid system, and more.
-  </p>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="row">
-        <%= render partial: 'layouts/sidebar' %>
-
-<div class="col-md-9 col-md-pull-3 bd-content">
-  <%= yield %>
-  <h1 class="bd-title" id="content">Overview</h1>
-    <p>Bootstrap includes several components and options for laying out your project, including wrapping containers, a powerful grid system, a flexible media object, and responsive utility classes.</p>
-  <h2 id="containers">Containers</h2>
-
-<p>Containers are the most basic layout element in Bootstrap and are <strong>required when using our grid system</strong>. Choose from a responsive, fixed-width container (meaning its <code class="highlighter-rouge">max-width</code> changes at each breakpoint) or fluid-width (meaning it’s <code class="highlighter-rouge">100%</code> wide all the time).</p>
-
-<p>While containers <em>can</em> be nested, most layouts do not require a nested container.</p>
-
-<div class="bd-example">
-  <div class="bd-example-container">
-    <div class="bd-example-container-header"></div>
-    <div class="bd-example-container-sidebar"></div>
-    <div class="bd-example-container-body"></div>
+<div class="bd-pageheader">
+  <div class="container">
+    <%= yield :page_banner %>
   </div>
 </div>
 
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
-  <span class="c">&lt;!-- Content here --&gt;</span>
-<span class="nt">&lt;/div&gt;</span></code></pre></figure>
-
-<p>Use <code class="highlighter-rouge">.container-fluid</code> for a full width container, spanning the entire width of the viewport.</p>
-
-<div class="bd-example">
-  <div class="bd-example-container bd-example-container-fluid">
-    <div class="bd-example-container-header"></div>
-    <div class="bd-example-container-sidebar"></div>
-    <div class="bd-example-container-body"></div>
-  </div>
-</div>
-
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container-fluid"</span><span class="nt">&gt;</span>
-  ...
-<span class="nt">&lt;/div&gt;</span></code></pre></figure>
-
-<h2 id="responsive-breakpoints">Responsive breakpoints</h2>
-
-<p>Since Bootstrap is developed to be mobile first, we use a handful of <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Media_queries">media queries</a> to create sensible breakpoints for our layouts and interfaces. These breakpoints are mostly based on minimum viewport widths and allow us to scale up elements as the viewport changes.</p>
-
-<p>Bootstrap primarily uses the following media query ranges—or breakpoints—in our source Sass files for our layout, grid system, and components.</p>
-
-<figure class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="c1">// Extra small devices (portrait phones, less than 34em)
-// No media query since this is the default in Bootstrap
-</span>
-<span class="c1">// Small devices (landscape phones, 34em and up)
-</span><span class="k">@media</span> <span class="p">(</span><span class="n">min-width</span><span class="o">:</span> <span class="m">34em</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-
-<span class="c1">// Medium devices (tablets, 48em and up)
-</span><span class="k">@media</span> <span class="p">(</span><span class="n">min-width</span><span class="o">:</span> <span class="m">48em</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-
-<span class="c1">// Large devices (desktops, 62em and up)
-</span><span class="k">@media</span> <span class="p">(</span><span class="n">min-width</span><span class="o">:</span> <span class="m">62em</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-
-<span class="c1">// Extra large devices (large desktops, 75em and up)
-</span><span class="k">@media</span> <span class="p">(</span><span class="n">min-width</span><span class="o">:</span> <span class="m">75em</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span></code></pre></figure>
-
-<p>Since we write our source CSS in Sass, all our media queries are available via Sass mixins:</p>
-
-<figure class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="k">@include</span> <span class="nd">media-breakpoint-up</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-<span class="k">@include</span> <span class="nd">media-breakpoint-up</span><span class="p">(</span><span class="n">sm</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-<span class="k">@include</span> <span class="nd">media-breakpoint-up</span><span class="p">(</span><span class="n">md</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-<span class="k">@include</span> <span class="nd">media-breakpoint-up</span><span class="p">(</span><span class="n">lg</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-<span class="k">@include</span> <span class="nd">media-breakpoint-up</span><span class="p">(</span><span class="n">xl</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-
-<span class="c1">// Example usage:
-</span><span class="k">@include</span> <span class="nd">media-breakpoint-up</span><span class="p">(</span><span class="n">sm</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nc">.some-class</span> <span class="p">{</span>
-    <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span></code></pre></figure>
-
-<p>We occasionally use media queries that go in the other direction (the given screen size <em>or smaller</em>):</p>
-
-<figure class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="c1">// Extra small devices (portrait phones, less than 34em)
-</span><span class="k">@media</span> <span class="p">(</span><span class="n">max-width</span><span class="o">:</span> <span class="m">33</span><span class="mi">.9em</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-
-<span class="c1">// Small devices (landscape phones, less than 48em)
-</span><span class="k">@media</span> <span class="p">(</span><span class="n">max-width</span><span class="o">:</span> <span class="m">47</span><span class="mi">.9em</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-
-<span class="c1">// Medium devices (tablets, less than 62em)
-</span><span class="k">@media</span> <span class="p">(</span><span class="n">max-width</span><span class="o">:</span> <span class="m">61</span><span class="mi">.9em</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-
-<span class="c1">// Large devices (desktops, less than 75em)
-</span><span class="k">@media</span> <span class="p">(</span><span class="n">max-width</span><span class="o">:</span> <span class="m">74</span><span class="mi">.9em</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-
-<span class="c1">// Extra large devices (large desktops)
-</span><span class="o">//</span> <span class="nt">No</span> <span class="nt">media</span> <span class="nt">query</span> <span class="nt">since</span> <span class="nt">the</span> <span class="nt">extra-large</span> <span class="nt">breakpoint</span> <span class="nt">has</span> <span class="nt">no</span> <span class="nt">upper</span> <span class="nt">bound</span> <span class="nt">on</span> <span class="nt">its</span> <span class="nt">width</span></code></pre></figure>
-
-<p>Once again, these media queries are also available via Sass mixins:</p>
-
-<figure class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="k">@include</span> <span class="nd">media-breakpoint-down</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-<span class="k">@include</span> <span class="nd">media-breakpoint-down</span><span class="p">(</span><span class="n">sm</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-<span class="k">@include</span> <span class="nd">media-breakpoint-down</span><span class="p">(</span><span class="n">md</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-<span class="k">@include</span> <span class="nd">media-breakpoint-down</span><span class="p">(</span><span class="n">lg</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span>
-<span class="k">@include</span> <span class="nd">media-breakpoint-down</span><span class="p">(</span><span class="n">xl</span><span class="p">)</span> <span class="p">{</span> <span class="nc">...</span> <span class="p">}</span></code></pre></figure>
-
-
-        </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 col-md-push-9 bd-sidebar">
+      <div class="bd-sidebar">
+        <%#= render partial: 'layouts/sidebar' %>
+        <%= yield :sidebar %>
       </div>
     </div>
 
-    <footer class="bd-footer text-muted" role="contentinfo">
+    <div class="col-md-9 col-md-pull-3 bd-content">
+      <%= yield %>
+    </div>
+  </div>
+</div>
+
+<footer class="bd-footer text-muted" role="contentinfo">
   <div class="container">
     <ul class="bd-footer-links">
       <li><a href="https://github.com/bio-org-au">GitHub</a></li>
       <li><a href="https://twitter.com/AuBiodiversity">Twitter</a></li>
       <li><a href="/about/history/">About</a></li>
     </ul>
-    <p>Designed and built on the Australian National Species List Infrastructure. Maintained by the ANSLI team.</p>
-    <p>Currently v0.0.1</p>
+    <p>Designed and built at the 
+    <%= link_to("Australian National Botanic Gardens (ANBG)", "http://www.anbg.gov.au", title: "Australian National Botanic Gardens web page") %>.
+    </p>
   </div>
 </footer>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')</script>
-
-<script src="/assets/js/vendor/tether.min.js"></script>
-
-
-  <script src="/dist/js/bootstrap.min.js"></script>
-
-
-
-  <script src="/assets/js/docs.min.js"></script>
-
-
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
-<script src="/assets/js/ie-emulation-modes-warning.js"></script>
-
-
-<script src="/assets/js/vendor/jekyll-search.min.js"></script>
-
-<script>
-SimpleJekyllSearch.init({
-  searchInput: document.getElementById('search-input'),
-  resultsContainer: document.getElementById('search-results'),
-  searchResultTemplate: '<a class="dropdown-item" href="{url}">{title}</a>',
-  noResultsText: '<div class="dropdown-item no-results">Sorry, there are no results for that search.</div>',
-  json: '/search.json'
-})
-</script>
-
 
 <script>
 Holder.addTheme('gray', {

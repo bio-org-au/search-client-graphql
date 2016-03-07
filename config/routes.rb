@@ -1,4 +1,23 @@
 Rails.application.routes.draw do
+  get 'welcome/index'
+
+  match "/plant/names", as: "plant_names", to: "plants/names#index", via: :get
+  match "/plants", as: "plants", to: "plants#index", via: :get
+  match "/mosses", as: "mosses", to: "mosses#index", via: :get
+  match "/fungi", as: "fungi", to: "fungi#index", via: :get
+  match "/lichens", as: "lichens", to: "lichens#index", via: :get
+  match "/algae", as: "algae", to: "algae#index", via: :get
+
+  match "/apni/about", as: "about_apni", to: 'apni#about', via: :get
+  match "/apni/index", as: "apni_index", to: 'apni#index', via: :get
+  match "/apni/search", as: "apni_search", to: 'apni#search', via: :get
+  match "/apni", as: "apni", to: 'apni#index', via: :get
+
+  get 'apc/index'
+  match "/apc", as: "apc", to: 'apc#index', via: :get
+
+  get 'apni/search'
+
   get 'search/index'
 
   get 'search/apni'
@@ -10,7 +29,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,0 +1,32 @@
+<% content_for :page_title do %>
+  Vascular Plants
+<% end %>
+<% content_for :page_banner do %>
+  <h1>Vascular Plants</h1>
+  <p class="lead"><%= link_to "Names in the Scientific Literature", plant_names_path %></p>
+  <p class="lead">Accepted Taxonomy</p>
+<% end %>
+<% content_for :sidebar do %>
+  <%= render "apni/sidebar" %>
+<% end %>
+
+<%= form_tag(apni_search_path, method: "get") do %>
+  <div class="form-group row">
+    <%= label_tag(:q,
+                  "Search for:",
+                  class:"sr-only col-sm-2 form-control-label") %>
+  <div class="col-sm-10">
+    <%= text_field_tag(:q,
+                       '',
+                       class: "form-control",
+                       value: "#{params[:q]}",
+                       placeholder: "Search terms") %>
+    </div>
+  <%= submit_tag("Search", class: "btn btn-search") %>
+  </div>
+<% end %>
+
+<% if @search.present? %>
+  <%= "#{@search.parsed.search_type} for '#{params[:q]}' returned
+  #{pluralize(@search.ran.results.size, 'record')}" %>
+<% end %>
