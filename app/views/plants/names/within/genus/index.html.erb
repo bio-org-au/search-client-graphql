@@ -9,4 +9,11 @@
   <%= render "sidebar" %>
 <% end %>
 
-<h2>APNI Names Within a Taxon</h2>
+<h2>APNI Names Within a Genus</h2>
+<br/>
+<%= render "search" %>
+
+<% if @search.present? %>
+  <%= "#{@search.parsed.search_type} for '#{params[:q]}' returned
+  #{pluralize(@search.results.size, 'genus')}" %>
+<% end %>

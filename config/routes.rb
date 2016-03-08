@@ -2,8 +2,11 @@ Rails.application.routes.draw do
   get 'welcome/index'
 
   match "/plant/names/checklist", as: "plant_names_checklist", to: "plants/names/checklist#index", via: :get
+  match "/plant/names/within/genus/search", as: "plant_names_within_genus_search", to: "plants/names/within/genus#search", via: :get
+  match "/plant/names/within/genus", as: "plant_names_within_genus", to: "plants/names/within/genus#index", via: :get
   match "/plant/names/within", as: "plant_names_within", to: "plants/names/within#index", via: :get
   match "/plant/names/advanced", as: "plant_names_advanced", to: "plants/names/advanced#index", via: :get
+  match "/plant/names/search/search", as: "plant_names_search_search", to: "plants/names/search#search", via: :get
   match "/plant/names/search", as: "plant_names_search", to: "plants/names/search#index", via: :get
   match "/plant/taxonomy/other", as: "plant_taxonomy_other", to: "plants/taxonomy/other#index", via: :get
   match "/plant/taxonomy/accepted/checklist", as: "plant_taxonomy_accepted_checklist", to: "plants/taxonomy/accepted/checklist#index", via: :get

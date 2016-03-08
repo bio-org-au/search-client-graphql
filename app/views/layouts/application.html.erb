@@ -32,13 +32,14 @@
   </div>
 </header>
 
-
-<div class="boa-pageheader">
+<div id="wrapper">
+<div id="header" class="boa-pageheader">
   <div class="container">
     <%= yield :page_banner %>
   </div>
 </div>
 
+<div id="content">
 <div class="container">
   <div class="row">
     <div class="col-md-3 col-md-push-9 bd-sidebar">
@@ -53,8 +54,9 @@
     </div>
   </div>
 </div>
+</div>
 
-<footer class="boa-footer text-muted" role="contentinfo">
+<div id="footer" class="boa-footer text-muted" role="contentinfo">
   <div class="container">
     <ul class="boa-footer-links">
       <li><a href="https://github.com/bio-org-au">GitHub</a></li>
@@ -66,7 +68,9 @@
     </p>
     <br/>
   </div>
-</footer>
+</div>
+
+</div>
 
 <script>
 Holder.addTheme('gray', {

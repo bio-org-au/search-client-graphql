@@ -1,12 +1,21 @@
+html,
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 138px;
+	margin:0;
+	padding:0;
+	height:100%;
 }
-.boa-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #f5f5f5;
+#wrapper {
+	min-height:100%;
+	position:relative;
+}
+#header {
+}
+#content {
+	padding-bottom: 260px; /* Height of the footer element */
+}
+#footer {
+	width:100%;
+	position:absolute;
+	bottom:0;
+	left:0;
 }
