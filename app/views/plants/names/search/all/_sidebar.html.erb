@@ -19,7 +19,7 @@
         <ul class="nav bd-sidenav">
           <li class="active bd-sidenav-active">
             <%= link_to "All",
-                        plant_names_search_all_path(q: params['q']),
+                        plant_names_search_all_search_path(q: params['q']),
                         class: "",
                         title: "APNI Search for scientific names" %>
           </li>
@@ -44,4 +44,4 @@
         </ul>
       </div>
   </nav>
-  <span class="debug">[plants/names/search]</span>
+  <span class="debug">[plants/names/search/all]</span>

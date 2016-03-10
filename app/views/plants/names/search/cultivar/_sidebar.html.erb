@@ -17,19 +17,19 @@
                     class: "bd-toc-link",
                     title: "APNI Simple Name Search" %>
         <ul class="nav bd-sidenav">
-          <li class="active bd-sidenav-active">
+          <li class="">
             <%= link_to "All",
-                        plant_names_search_all_path(q: params['q']),
+                        plant_names_search_all_search_path(q: params['q']),
                         class: "",
                         title: "APNI Search for scientific names" %>
           </li>
           <li class="">
             <%= link_to "Scientific",
-                        plant_names_search_scientific_search_path(q: params['q'], nt: 's'),
+                        plant_names_search_scientific_search_path(q: params['q']),
                         class: "",
                         title: "APNI Search for scientific names" %>
           </li>
-          <li class="">
+          <li class="active bd-sidenav-active">
             <%= link_to "Cultivar",
                         plant_names_search_cultivar_search_path(q: params['q'], nt: 'v'),
                         class: "",
@@ -44,4 +44,4 @@
         </ul>
       </div>
   </nav>
-  <span class="debug">[plants/names/search]</span>
+  <span class="debug">[plants/names/search/cultivar]</span>

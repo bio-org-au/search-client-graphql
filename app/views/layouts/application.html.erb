@@ -52,9 +52,17 @@
     <div class="col-md-9 col-md-pull-3 bd-content">
       <%= yield %>
     </div>
+    <div class="col-md-9 col-md-pull-3 bd-content">
+      <span class="debug">
+        <% if @search.present? && @search.results.present? %>
+          <%= @search.results.to_sql %>
+        <% end %>
+      </span>
+    </div>
   </div>
 </div>
 </div>
+
 
 <div id="footer" class="boa-footer text-muted" role="contentinfo">
   <div class="container">

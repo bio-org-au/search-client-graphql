@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
   get 'welcome/index'
 
+  match "/plant/names/search/common/search", as: "plant_names_search_common_search", to: "plants/names/search/common#search", via: :get
+  match "/plant/names/search/common", as: "plant_names_search_common", to: "plants/names/search/common#index", via: :get
+  match "/plant/names/search/cultivar/search", as: "plant_names_search_cultivar_search", to: "plants/names/search/cultivar#search", via: :get
+  match "/plant/names/search/cultivar", as: "plant_names_search_cultivar", to: "plants/names/search/cultivar#index", via: :get
+  match "/plant/names/search/scientific/search", as: "plant_names_search_scientific_search", to: "plants/names/search/scientific#search", via: :get
+  match "/plant/names/search/scientific", as: "plant_names_search_scientific", to: "plants/names/search/scientific#index", via: :get
+  match "/plant/names/search/all/search", as: "plant_names_search_all_search", to: "plants/names/search/all#search", via: :get
+  match "/plant/names/search/all", as: "plant_names_search_all", to: "plants/names/search/all#index", via: :get
   match "/plant/names/checklist", as: "plant_names_checklist", to: "plants/names/checklist#index", via: :get
   match "/plant/names/within/genus/search", as: "plant_names_within_genus_search", to: "plants/names/within/genus#search", via: :get
   match "/plant/names/within/genus", as: "plant_names_within_genus", to: "plants/names/within/genus#index", via: :get
