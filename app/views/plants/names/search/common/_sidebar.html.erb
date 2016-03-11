@@ -9,35 +9,35 @@
                     class: "bd-toc-link",
                     title: "Vascular Plants" %>
         <%= link_to "Names &mdash; APNI".html_safe,
-                    plant_names_path,
+                    plants_names_path,
                     class: "bd-toc-link",
                     title: "Vascular Plant Names" %>
         <%= link_to "APNI Search".html_safe,
-                    plant_names_search_path,
+                    plants_names_search_path,
                     class: "bd-toc-link",
                     title: "APNI Simple Name Search" %>
         <ul class="nav bd-sidenav">
           <li class="">
             <%= link_to "All",
-                        plant_names_search_all_search_path(q: params['q']),
+                        plants_names_search_all_search_path(q: params['q']),
                         class: "",
                         title: "APNI Search for scientific names" %>
           </li>
           <li class="">
             <%= link_to "Scientific",
-                        plant_names_search_scientific_search_path(q: params['q']),
+                        plants_names_search_scientific_search_path(q: params['q']),
                         class: "",
                         title: "APNI Search for scientific names" %>
           </li>
           <li class="">
             <%= link_to "Cultivar",
-                        plant_names_search_cultivar_search_path(q: params['q'], nt: 'v'),
+                        plants_names_search_cultivar_search_path(q: params['q'], nt: 'v'),
                         class: "",
                         title: "APNI Search for cultivar names" %>
           </li>
           <li class="active bd-sidenav-active">
             <%= link_to "Common",
-                        plant_names_search_common_search_path(q: params['q'], nt: 'c'),
+                        plants_names_search_common_search_path(q: params['q'], nt: 'c'),
                         class: "",
                         title: "APNI Search for common names - names that are not scientific" %>
           </li>

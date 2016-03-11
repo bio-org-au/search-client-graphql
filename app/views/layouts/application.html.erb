@@ -52,13 +52,6 @@
     <div class="col-md-9 col-md-pull-3 bd-content">
       <%= yield %>
     </div>
-    <div class="col-md-9 col-md-pull-3 bd-content">
-      <span class="debug">
-        <% if @search.present? && @search.results.present? %>
-          <%= @search.results.to_sql %>
-        <% end %>
-      </span>
-    </div>
   </div>
 </div>
 </div>
@@ -75,6 +68,11 @@
     <%= link_to("Australian National Botanic Gardens (ANBG)", "http://www.anbg.gov.au", title: "Australian National Botanic Gardens web page") %>.
     </p>
     <br/>
+      <span class="debug">
+        <% if @search.present? && @search.results.present? %>
+          <%= @search.results.to_sql %>
+        <% end %>
+      </span>
   </div>
 </div>
 

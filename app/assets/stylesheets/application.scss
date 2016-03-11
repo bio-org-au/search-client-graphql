@@ -18,10 +18,10 @@
 
 @import "bootstrap";
 
-$bd-purple:         #563d7c;
-$bd-purple:         #808000;
-$bd-purple:         #8f98c3;
-$bd-purple:         #7C84AB;
+$bd-purple-1:         #563d7c;
+$bd-purple-2:         #808000;
+$bd-purple-3:         #8f98c3;
+$bd-purple-4:         #7C84AB;
 $bd-purple:         #63698A;
 $bd-purple-bright:  lighten(saturate($bd-purple, 5%), 15%);
 $bd-purple-light:   #cdbfe3;
@@ -31,8 +31,11 @@ $bd-yellow:         #ffe484;
 $bd-danger:         #d9534f;
 $bd-warning:        #f0ad4e;
 $bd-info:           #5bc0de;
+$bb-link:           darken(slateblue, 10%);
+$bb-link-hover:     slateblue;
 
 @import "booticon";
+@import "font-family";
 @import "nav";
 @import "masthead";
 @import "featurettes";
@@ -51,5 +54,7 @@ $bd-info:           #5bc0de;
 @import "browser-bugs";
 @import "brand";
 @import "clipboard-js";
+@import "links";
+@import "apni";
 @import "debug";
 

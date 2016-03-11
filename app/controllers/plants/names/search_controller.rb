@@ -1,6 +1,7 @@
 class Plants::Names::SearchController < ApplicationController
-  #def search
-    #@search = Apni::Search::OnName::Simple.new(params)
-    #render action: "index"
-  #end
+  def index
+    #render controller: "Plants::Names::Search::AllController",
+           #action: "search"
+    redirect_to plants_names_search_all_path
+  end
 end

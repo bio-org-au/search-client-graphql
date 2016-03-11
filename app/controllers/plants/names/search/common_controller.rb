@@ -1,6 +1,8 @@
 class Plants::Names::Search::CommonController < ApplicationController
   def search
-    @search = Apni::Search::OnName::Common.new(params)
+    if params["q"].present?
+      @search = Apni::Search::OnName::Common.new(params)
+    end
     render action: "index"
   end
 end

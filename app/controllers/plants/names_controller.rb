@@ -1,4 +1,5 @@
 class Plants::NamesController < ApplicationController
-  def index
+  def show
+    @name = Name.find_by(id: params[:id])
   end
 end

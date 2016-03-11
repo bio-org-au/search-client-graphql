@@ -1,0 +1,26 @@
+<% content_for :page_title do %>
+  Vascular Plant Names
+<% end %>
+<% content_for :page_banner do %>
+  <h1>Vascular Plants</h1>
+  <p class="lead">&nbsp;</p>
+<% end %>
+<% content_for :sidebar do %>
+  <%= render "sidebar" %>
+<% end %>
+
+<h2>APNI</h2>
+
+<% if @name.present? %>
+  <div class="apni-name-display">
+  <div class="family-name" title="Family name"><%= @name.family_name %></div>
+  <span class="full-name" title="Full name"><%= @name.full_name %></span>
+  <br/>
+  <br/>
+  <% shown = [] -%>
+  <% @name.instances_in_order.each do | instance | %>
+    <% display, shown = display_instance(instance,shown) -%>
+    <%= display %>
+  <% end %>
+  </div>
+<% end %>

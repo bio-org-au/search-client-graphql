@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Plants::Names::ChecklistControllerTest < ActionController::TestCase
+class ReferenceTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -1,4 +1,4 @@
-<%= form_tag(plant_names_search_scientific_search_path, method: "get") do %>
+<%= form_tag(plants_names_search_scientific_search_path, method: "get") do %>
   <div class="form-group row">
     <%= label_tag(:q,
                   "Search for:",
@@ -8,7 +8,7 @@
                        '',
                        class: "form-control",
                        value: "#{params[:q]}",
-                       placeholder: "Search terms") %>
+                       placeholder: "Search scientific names") %>
     </div>
   <%= submit_tag("Search", class: "btn btn-search") %>
   </div>
@@ -23,7 +23,8 @@
 <% if @search.present? %>
   <ul>
   <% @search.results.each do |result| %>
-    <%= "<li/>#{result[:full_name]}".html_safe %>
+    <li/>
+    <%= link_to("#{result[:full_name]}", plants_names_show_path(result[:id])) %>
   <% end %>
   </ul>
 <% end %>
