@@ -131,6 +131,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    statsd-ruby (1.3.0)
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.2)
@@ -151,6 +152,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-jdbcpostgresql-adapter
   acts_as_tree
   bootstrap (~> 4.0.0.alpha3)
   byebug
@@ -158,11 +160,13 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   pg (~> 0.15)
+  puma
   rails (= 4.2.5.1)
   rails-assets-tether (>= 1.1.0)!
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring
+  statsd-ruby
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)

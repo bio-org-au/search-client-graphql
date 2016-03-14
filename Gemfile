@@ -3,7 +3,8 @@ source "https://rubygems.org"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails", "4.2.5.1"
 # Use postgresql as the database for Active Record
-gem "pg", "~> 0.15"
+gem "pg", "~> 0.15", platform: :mri
+gem "activerecord-jdbcpostgresql-adapter", platform: :jruby
 # Use SCSS for stylesheets
 gem "sass-rails", "~> 5.0"
 # Use Uglifier as compressor for JavaScript assets
@@ -28,6 +29,7 @@ gem "sdoc", "~> 0.4.0", group: :doc
 
 # Use Unicorn as the app server
 # gem 'unicorn'
+gem "puma", platforms: :jruby
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -54,3 +56,4 @@ source 'https://rails-assets.org' do
 end
 
 gem "acts_as_tree"
+gem "statsd-ruby", :require => "statsd"
