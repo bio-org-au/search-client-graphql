@@ -5,6 +5,7 @@ class Name < ActiveRecord::Base
   belongs_to :rank, class_name: "NameRank", foreign_key: "name_rank_id"
   belongs_to :name_type
   has_many :instances
+  has_many :tree_nodes
 
   def instances_in_order
     self.instances.sort do |x,y|
@@ -30,5 +31,13 @@ class Name < ActiveRecord::Base
       n = n.parent
       Name.seek_family_name(n)
     end
+  end
+
+  def apc?
+    TreeNode.apc?(full_name)
+  end
+
+  def apc_instance_id
+    TreeNode.apc(full_name).try('first').try('instance_id')
   end
 end

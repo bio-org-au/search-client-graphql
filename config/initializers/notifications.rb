@@ -11,6 +11,6 @@ def send_event_to_statsd(name, payload)
 end
 
 ActiveSupport::Notifications.subscribe do |name, start, finish, id, payload| 
-  Rails.logger.debug(["notification:", name, start, finish, id, payload].join(" "))
+  #Rails.logger.debug(["notification:", name, start, finish, id, payload].join(" "))
   send_event_to_statsd(name, payload)
 end

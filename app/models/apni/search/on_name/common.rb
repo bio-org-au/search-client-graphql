@@ -20,7 +20,7 @@ class Apni::Search::OnName::Common
 
   def name_search
     Name.joins(:name_type)
-        .where(name_type: { name: %w(common, informal) })
+        .where(name_type: { name: %w(common informal) })
         .where(duplicate_of_id: nil)
         .order(:full_name)
   end

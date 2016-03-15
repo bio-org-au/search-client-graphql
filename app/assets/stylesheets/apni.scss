@@ -3,10 +3,30 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 div.apni-name-display {
-  font-size: 80%;
+  font-size: 85%;
   color: black;
 }
 div.apni-name-display ul {
   list-style-type: none;
   margin-bottom: 0;
 }
+span.full-name {
+  font-weight: bold;
+}
+div.instance-citation {
+  margin-top: 0.5%;
+}
+span.instance-type-name {
+  font-size: 90%;
+  color: DimGray;
+}
+span.instance-type{
+  font-size: 98%;
+}
+li.subordinate-instance{
+  line-height: 120%;
+}
+
+
+
+

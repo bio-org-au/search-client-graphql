@@ -1,0 +1,13 @@
+      <div class="apni-name-display">
+      <div class="family-name" title="Family name"><%= name.family_name %></div>
+      <span class="full-name" title="Full name"><%= name.full_name %></span>
+      <br/>
+      <br/>
+      <% shown = [] -%>
+      <% apc_instance_id = name.apc_instance_id -%>
+      <% name.instances_in_order.each do | instance | %>
+        <% display, shown = display_instance(instance, shown, instance.id == apc_instance_id) -%>
+        <%= display %>
+      <% end %>
+      </div>
+

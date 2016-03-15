@@ -57,3 +57,4 @@ end
 
 gem "acts_as_tree"
 gem "statsd-ruby", :require => "statsd"
+gem "font-awesome-rails"

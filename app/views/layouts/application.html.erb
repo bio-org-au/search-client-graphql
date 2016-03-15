@@ -17,6 +17,7 @@
         <span class="skiplink-text">Skip to main content</span>
       </div>
     </a>
+    <a name="top"></a>
 
 <header class="navbar navbar-light navbar-static-top bd-navbar" role="banner">
   <div class="clearfix">
@@ -44,7 +45,6 @@
   <div class="row">
     <div class="col-md-3 col-md-push-9 bd-sidebar">
       <div class="bd-sidebar">
-        <%#= render partial: 'layouts/sidebar' %>
         <%= yield :sidebar %>
       </div>
     </div>
@@ -60,9 +60,13 @@
 <div id="footer" class="boa-footer text-muted" role="contentinfo">
   <div class="container">
     <ul class="boa-footer-links">
+      <li>
+         <%= link_to "#{ fa_icon('chevron-left')} Back".html_safe, 'javascript:history.go(-1);', title: "Go back 1 page" %>
+      </li>
       <li><a href="https://github.com/bio-org-au">GitHub</a></li>
       <li><a href="https://twitter.com/AuBiodiversity">Twitter</a></li>
       <li><a href="/about/history/">About</a></li>
+      <li><a href="#top" title="Go to the top of the page">Top</a></li>
     </ul>
     <p>Designed and built at the 
     <%= link_to("Australian National Botanic Gardens (ANBG)", "http://www.anbg.gov.au", title: "Australian National Botanic Gardens web page") %>.

@@ -18,9 +18,14 @@
   <br/>
   <br/>
   <% shown = [] -%>
+  <% apc_instance_id = @name.apc_instance_id -%>
   <% @name.instances_in_order.each do | instance | %>
-    <% display, shown = display_instance(instance,shown) -%>
+    <% display, shown = display_instance(instance, shown, instance.id == apc_instance_id) -%>
     <%= display %>
   <% end %>
   </div>
 <% end %>
+
+<br/>
+<br/>
+<%= link_to "#{ fa_icon('chevron-left')} back".html_safe, 'javascript:history.go(-1);', id: "big-back-btn", class:"btn btn-secondary btn-lg btn-block micro gray", title: "Go back 1 page" %>

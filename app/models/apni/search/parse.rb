@@ -1,6 +1,7 @@
 class Apni::Search::Parse
   attr_reader :search_type,
-              :search_term
+              :search_term,
+              :show_details
 
   SIMPLE_SEARCH = "Search"
 
@@ -11,5 +12,6 @@ class Apni::Search::Parse
       @search_type = SIMPLE_SEARCH
     end
     @search_term = params[:q].strip.gsub(/\*/,'%')
+    @show_details = params[:details] == 'true'
   end
 end
