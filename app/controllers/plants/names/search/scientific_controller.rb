@@ -7,7 +7,7 @@ class Plants::Names::Search::ScientificController < ApplicationController
       #@name = @search.results.first
       #render "/plants/names/show"
     #else
-      render action: "index"
+      render action: "index", stream: true
     #end
   end
 end

@@ -12,17 +12,11 @@
                     plants_names_path,
                     class: "bd-toc-link",
                     title: "Vascular Plant Names" %>
-        <%= link_to "APNI Search".html_safe,
+        <%= link_to "APNI Name Search".html_safe,
                     plants_names_search_path,
                     class: "bd-toc-link",
                     title: "APNI Simple Name Search" %>
         <ul class="nav bd-sidenav">
-          <li class="active bd-sidenav-active">
-            <%= link_to "All",
-                        plants_names_search_all_path(q: params['q']),
-                        class: "",
-                        title: "APNI Search on all names" %>
-          </li>
           <li class="">
             <%= link_to "Scientific",
                         plants_names_search_scientific_search_path(q: params['q'], nt: 's'),
@@ -40,6 +34,12 @@
                         plants_names_search_common_search_path(q: params['q'], nt: 'c'),
                         class: "",
                         title: "APNI Search for common names" %>
+          </li>
+          <li class="">
+            <%= link_to "All",
+                        plants_names_search_all_path(q: params['q']),
+                        class: "",
+                        title: "APNI Search on all names" %>
           </li>
         </ul>
       </div>

@@ -9,5 +9,28 @@
   <%= render "sidebar" %>
 <% end %>
 
-<h2>APNI Search</h2>
-<%= render "search" %>
+<h2>APNI Name Search</h2>
+<br/>
+<p>There are three name categories to search:</p>
+        <ul class="">
+          <li class="">
+            <%= link_to "Scientific or botanical names, which include the authority for the name.",
+                        plants_names_search_scientific_search_path(q: params['q']),
+                        class: "",
+                        title: "APNI Search for scientific names - list output" %>
+          
+          </li>
+          <li class="">
+            <%= link_to "Cultivar names",
+                        plants_names_search_cultivar_search_path(q: params['q'], nt: 'v'),
+                        class: "",
+                        title: "APNI Search for cultivar names - list output" %>
+          </li>
+          <li class="">
+            <%= link_to "Common Names",
+                        plants_names_search_common_search_path(q: params['q'], nt: 'c'),
+                        class: "",
+                        title: "APNI Search for common names - list output" %>
+          </li>
+        </ul>
+

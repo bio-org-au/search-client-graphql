@@ -19,12 +19,23 @@
 <% end %>
 <br/>
 <br/>
+
 <% if @search.present? %>
-  <ul>
-  <% @search.results.each do |result| %>
-    <li/>
-    <%= link_to("#{result[:full_name]}", plants_names_show_path(result[:id])) %>
+  <% if @search.results.size == 1 %>
+    <% name = @search.results.first %>
+      <%= render partial: '/plants/names/search/details', locals: {name: @search.results.first} %>
+  <% else %>
+    <ul>
+      <% @search.results.each do |result| %>
+        <li/>
+        <% if @search.parsed.show_details %>
+          <%= render partial: '/plants/names/search/details', locals: {name: result} %>
+          <br/>
+        <% else %>
+          <%= link_to("#{result[:full_name]}", plants_names_show_path(result[:id])) %>
+        <% end %>
+      <% end %>
+    </ul>
   <% end %>
-  </ul>
 <% end %>
 <span class="debug">[plants/names/search/all]</span>

@@ -9,5 +9,21 @@
   <%= render "sidebar" %>
 <% end %>
 
-<h2>Vascular Plant Names and Taxonomy</h2>
-<p>...</p>
+<p>Biodiversity Australia maintains a database of mainly vascular plants called the Australian Plant Name Index (APNI).</p>
+
+<p><%= link_to "APNI".html_safe,
+               plants_names_path,
+               class: "",
+               title: "Australian Plant Names Index" %>
+ is a tool for the
+botanical community that deals with plant names and their usage in the
+scientific literature, whether as a current name or synonym.</p>
+
+<p>APNI does not recommend any particular taxonomy or nomenclature.</p>
+
+<p>Biodiversity Australia also supports systems for maintaining 
+              <%= link_to "taxonomic arrangements of Australian Plants based on APNI.",
+                          plants_taxonomy_path,
+                          class: "",
+                          title: "Vascular Plant Taxonomy" %>
+</p>

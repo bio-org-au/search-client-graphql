@@ -12,10 +12,10 @@
                     plants_names_path,
                     class: "bd-toc-link",
                     title: "Vascular Plant Names" %>
-        <%= link_to "APNI Search".html_safe,
+        <%= link_to "APNI Name Search".html_safe,
                     plants_names_search_path,
                     class: "bd-toc-link",
-                    title: "APNI Simple Name Search" %>
+                    title: "APNI Name Search" %>
         <ul class="nav bd-sidenav">
           <li class="active bd-sidenav-active">
             <%= link_to "Scientific",
@@ -43,15 +43,28 @@
           </li>
         </ul>
       </div>
+
+      <% if @search.present? && @search.results.size > 0 %>
+      <hr>
+      <a name="viewing-options" class="tiny bd-toc-link" title="Viewing options for the search">Viewing options</a>
+
       <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
           <li class="">
+            <%= link_to "List",
+                        plants_names_search_scientific_search_path(q: params['q']),
+                        class: "tiny",
+                        title: "Re-run the search as a list." %>
+          </li>
+          <li class="">
             <%= link_to "Details",
                         plants_names_search_scientific_search_path(q: params['q'], details: true),
-                        class: "",
-                        title: "APNI Search for scientific names showing details" %>
+                        class: "tiny",
+                        title: "Re-run the search showing details." %>
           </li>
         </ul>
       </div>
+      <hr>
+      <% end %>
   </nav>
   <span class="debug">[plants/names/search/scientific]</span>
