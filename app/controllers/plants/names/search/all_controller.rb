@@ -1,5 +1,5 @@
 class Plants::Names::Search::AllController < ApplicationController
-  def search
+  def index
     if params["q"].present?
       @search = Apni::Search::OnName::TheLot.new(params)
     end

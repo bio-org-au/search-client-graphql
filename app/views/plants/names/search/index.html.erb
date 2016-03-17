@@ -15,20 +15,20 @@
         <ul class="">
           <li class="">
             <%= link_to "Scientific or botanical names, which include the authority for the name.",
-                        plants_names_search_scientific_search_path(q: params['q']),
+                        plants_names_search_scientific_path(q: params['q']),
                         class: "",
                         title: "APNI Search for scientific names - list output" %>
           
           </li>
           <li class="">
             <%= link_to "Cultivar names",
-                        plants_names_search_cultivar_search_path(q: params['q'], nt: 'v'),
+                        plants_names_search_cultivar_path(q: params['q'], nt: 'v'),
                         class: "",
                         title: "APNI Search for cultivar names - list output" %>
           </li>
           <li class="">
             <%= link_to "Common Names",
-                        plants_names_search_common_search_path(q: params['q'], nt: 'c'),
+                        plants_names_search_common_path(q: params['q'], nt: 'c'),
                         class: "",
                         title: "APNI Search for common names - list output" %>
           </li>

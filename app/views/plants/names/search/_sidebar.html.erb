@@ -19,19 +19,19 @@
         <ul class="nav bd-sidenav">
           <li class="">
             <%= link_to "Scientific",
-                        plants_names_search_scientific_search_path(q: params['q'], nt: 's'),
+                        plants_names_search_scientific_path(q: params['q'], nt: 's'),
                         class: "",
                         title: "APNI Search for scientific names" %>
           </li>
           <li class="">
             <%= link_to "Cultivar",
-                        plants_names_search_cultivar_search_path(q: params['q'], nt: 'v'),
+                        plants_names_search_cultivar_path(q: params['q'], nt: 'v'),
                         class: "",
                         title: "APNI Search for cultivar names" %>
           </li>
           <li class="">
             <%= link_to "Common",
-                        plants_names_search_common_search_path(q: params['q'], nt: 'c'),
+                        plants_names_search_common_path(q: params['q'], nt: 'c'),
                         class: "",
                         title: "APNI Search for common names" %>
           </li>
@@ -44,4 +44,28 @@
         </ul>
       </div>
   </nav>
+
+      <% if @search.present? && @search.results.size > 0 %>
+      <hr>
+      <a name="viewing-options" class="tiny bd-toc-link" title="Viewing options for the search">Viewing options</a>
+      <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+          <li class="">
+            <%= link_to "List",
+                        plants_names_search_path(q: params['q'], pc: params[:controller]),
+                        class: "tiny",
+                        title: "Re-run the search as a list." %>
+          </li>
+          <li class="">
+            <%= link_to "Details",
+                        plants_names_search_path(q: params['q'], pc: params[:controller], details: true),
+                        class: "tiny",
+                        title: "Re-run the search showing details." %>
+          </li>
+        </ul>
+      </div>
+      <hr>
+      <% end %>
+
+
   <span class="debug">[plants/names/search]</span>
