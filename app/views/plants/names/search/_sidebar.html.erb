@@ -19,25 +19,25 @@
         <ul class="nav bd-sidenav">
           <li class="">
             <%= link_to "Scientific",
-                        plants_names_search_scientific_path(q: params['q'], nt: 's'),
+                        plants_names_search_scientific_path(q: params['q'], nt: 's', look_at: 'list'),
                         class: "",
                         title: "APNI Search for scientific names" %>
           </li>
           <li class="">
             <%= link_to "Cultivar",
-                        plants_names_search_cultivar_path(q: params['q'], nt: 'v'),
+                        plants_names_search_cultivar_path(q: params['q'], nt: 'v', look_at: 'list'),
                         class: "",
                         title: "APNI Search for cultivar names" %>
           </li>
           <li class="">
             <%= link_to "Common",
-                        plants_names_search_common_path(q: params['q'], nt: 'c'),
+                        plants_names_search_common_path(q: params['q'], nt: 'c', look_at: 'list'),
                         class: "",
                         title: "APNI Search for common names" %>
           </li>
           <li class="">
             <%= link_to "All",
-                        plants_names_search_all_path(q: params['q']),
+                        plants_names_search_all_path(q: params['q'], look_at: 'list'),
                         class: "",
                         title: "APNI Search on all names" %>
           </li>
@@ -47,18 +47,25 @@
 
       <% if @search.present? && @search.results.size > 0 %>
       <hr>
-      <a name="viewing-options" class="tiny bd-toc-link" title="Viewing options for the search">Viewing options</a>
+      <a name="viewing-options" class="tiny bd-toc-link" title="Viewing options for the search results">Views</a>
       <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
           <li class="">
             <%= link_to "List",
-                        plants_names_search_path(q: params['q'], pc: params[:controller]),
+                        plants_names_search_path(q: params['q'], pc: params[:controller], look_at: 'list'),
                         class: "tiny",
                         title: "Re-run the search as a list." %>
           </li>
           <li class="">
             <%= link_to "Details",
-                        plants_names_search_path(q: params['q'], pc: params[:controller], details: true),
+                        plants_names_search_path(q: params['q'], pc: params[:controller], look_at: 'details'),
+                        class: "tiny",
+                        title: "Re-run the search showing details." %>
+          </li>
+          <hr/>
+          <li class="">
+            <%= link_to "Always show #{params[:look_at]} view",
+                        plants_names_search_path(q: params['q'], pc: params[:controller], look_at: 'details'),
                         class: "tiny",
                         title: "Re-run the search showing details." %>
           </li>
@@ -66,6 +73,10 @@
       </div>
       <hr>
       <% end %>
-
+  <span class="debug">Default view: <%= session[:default_viewing_option] %></span>
+  <br/>
+  <span class="debug">Current view: <%= params[:look_at] %></span>
+  <br/>
+  <span class="debug">show details: <%= @search.parsed.show_details %></span>
 
   <span class="debug">[plants/names/search]</span>

@@ -12,6 +12,6 @@ class Apni::Search::Parse
       @search_type = SIMPLE_SEARCH
     end
     @search_term = params[:q].strip.gsub(/\*/,'%')
-    @show_details = params[:details] == 'true'
+    @show_details = params[:look_at].present? && params[:look_at].match(/details/i)
   end
 end
