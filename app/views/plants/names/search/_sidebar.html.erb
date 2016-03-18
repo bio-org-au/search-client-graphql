@@ -19,27 +19,27 @@
         <ul class="nav bd-sidenav">
           <li class="">
             <%= link_to "Scientific",
-                        plants_names_search_scientific_path(q: params['q'], nt: 's', look_at: 'list'),
+                        plants_names_search_scientific_path(q: params["q"], nt: "s"),
                         class: "",
-                        title: "APNI Search for scientific names" %>
+                        title: "Run the currently displayed search again for scientific names.  Open the scientific search page if no currently displayed search." %>
           </li>
           <li class="">
             <%= link_to "Cultivar",
-                        plants_names_search_cultivar_path(q: params['q'], nt: 'v', look_at: 'list'),
+                        plants_names_search_cultivar_path(q: params['q'], nt: "v"),
                         class: "",
-                        title: "APNI Search for cultivar names" %>
+                        title: "Run the currently displayed search again for cultivar names.  Open the Cultivar search page if no currently displayed search." %>
           </li>
           <li class="">
             <%= link_to "Common",
-                        plants_names_search_common_path(q: params['q'], nt: 'c', look_at: 'list'),
+                        plants_names_search_common_path(q: params['q'], nt: 'c'),
                         class: "",
-                        title: "APNI Search for common names" %>
+                        title: "Run the currently displayed search again for common names.  Open the Common Name search page if no currently displayed search." %>
           </li>
           <li class="">
             <%= link_to "All",
-                        plants_names_search_all_path(q: params['q'], look_at: 'list'),
+                        plants_names_search_all_path(q: params['q']),
                         class: "",
-                        title: "APNI Search on all names" %>
+                        title: "Run the currently displayed search again for all names.  Open the search page for all names if no currently displayed search." %>
           </li>
         </ul>
       </div>
@@ -47,36 +47,49 @@
 
       <% if @search.present? && @search.results.size > 0 %>
       <hr>
-      <a name="viewing-options" class="tiny bd-toc-link" title="Viewing options for the search results">Views</a>
       <div class="bd-toc-item active">
+      <a name="viewing-options" class="tiny bd-toc-link" title="Viewing options for the search results">Results as:</a>
         <ul class="nav bd-sidenav">
           <li class="">
-            <%= link_to "List",
-                        plants_names_search_path(q: params['q'], pc: params[:controller], look_at: 'list'),
+            <%= link_to %(List &nbsp; #{fa_icon('check') if session[:default_show_results_as].match(/\Alist\z/i)}).html_safe,
+                        plants_names_search_path(q: params['q'], pc: params[:controller], show_results_as: 'list'),
                         class: "tiny",
                         title: "Re-run the search as a list." %>
           </li>
           <li class="">
-            <%= link_to "Details",
-                        plants_names_search_path(q: params['q'], pc: params[:controller], look_at: 'details'),
+            <%= link_to %(Details &nbsp; #{fa_icon('check') if session[:default_show_results_as].match(/\Adetails\z/i)}).html_safe,
+                        plants_names_search_path(q: params['q'], pc: params[:controller], show_results_as: 'details'),
                         class: "tiny",
                         title: "Re-run the search showing details." %>
           </li>
           <hr/>
           <li class="">
-            <%= link_to "Always show #{params[:look_at]} view",
-                        plants_names_search_path(q: params['q'], pc: params[:controller], look_at: 'details'),
+            <%= link_to "Prefer: #{(params[:show_results_as] || session[:default_show_results_as] || '').capitalize}",
+                        plants_names_search_defaults_show_as_path(show_results_as: (params[:show_results_as] || session[:default_show_results_as])),
                         class: "tiny",
-                        title: "Re-run the search showing details." %>
+                        method: "post",
+                        remote: true,
+                        title: "Show search results in this format unless otherwise stated." %>
+          </li>
+          <hr/>
+          <li>
+            <a href="javascript:window.print()" title="Print the page">Print</a>
+          </li>
+          <li>
+            <a href="javascript:body.select()" title="Select the data">Select</a>
           </li>
         </ul>
       </div>
       <hr>
       <% end %>
-  <span class="debug">Default view: <%= session[:default_viewing_option] %></span>
-  <br/>
-  <span class="debug">Current view: <%= params[:look_at] %></span>
-  <br/>
-  <span class="debug">show details: <%= @search.parsed.show_details %></span>
 
-  <span class="debug">[plants/names/search]</span>
+
+  <span class="debug hidden-print">Default view: <%= session[:default_show_results_as] %></span>
+  <br/>
+  <span class="debug hidden-print">Current view: <%= params[:show_results_as] %></span>
+  <br/>
+  <span class="debug hidden-print">show details: <%= @search.parsed.show_details if @search.present? %></span>
+  <br/>
+  <span class="debug hidden-print">show as: <%= @search.parsed.show_as if @search.present? %></span>
+
+  <span class="debug hidden-print">[plants/names/search]</span>

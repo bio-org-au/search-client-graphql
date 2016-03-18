@@ -3,8 +3,8 @@ class Apni::Search::OnName::Cultivar
   attr_reader :parsed,
               :results
   SEARCH_TYPE = "Cultivar Name".freeze
-  def initialize(params)
-    @parsed = Apni::Search::Parse.new(params, search_type: SEARCH_TYPE)
+  def initialize(params, default_show_results_as: 'list')
+    @parsed = Apni::Search::Parse.new(params, search_type: SEARCH_TYPE, default_show_results_as: default_show_results_as)
     @results = simple_name_search
     return unless @results.empty?
     @results = full_name_search

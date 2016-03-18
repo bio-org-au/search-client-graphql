@@ -7,6 +7,6 @@ class ApplicationController < ActionController::Base
   before_action :set_viewing_option
 
   def set_viewing_option
-    session[:default_viewing_option] ||= :list
+    session[:default_show_results_as] ||= :list
   end
 end

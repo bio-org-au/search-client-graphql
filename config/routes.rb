@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'welcome/index'
 
+  match "/plants/names/search/defaults/show_results_as", as: "plants_names_search_defaults_show_as", to: "plants/names/search/defaults/show_as#update", via: :post
   match "/plants/names/details", as: "plants_names_details", to: "plants/names/details#index", via: :get
   #match "/plants/names/search/common/search", as: "plants_names_search_common_search", to: "plants/names/search/common#search", via: :get
   match "/plants/names/search/common", as: "plants_names_search_common", to: "plants/names/search/common#index", via: :get

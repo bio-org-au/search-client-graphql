@@ -35,7 +35,7 @@
 
 <div id="wrapper">
 <div id="header" class="boa-pageheader">
-  <div class="container">
+  <div class="container print">
     <%= yield :page_banner %>
   </div>
 </div>
@@ -44,7 +44,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3 col-md-push-9 bd-sidebar">
-      <div class="bd-sidebar">
+      <div class="bd-sidebar hidden-print">
         <%= yield :sidebar %>
       </div>
     </div>
@@ -57,7 +57,7 @@
 </div>
 
 
-<div id="footer" class="boa-footer text-muted" role="contentinfo">
+<div id="footer" class="boa-footer text-muted hidden-print" role="contentinfo">
   <div class="container">
     <ul class="boa-footer-links">
       <li>
@@ -72,7 +72,7 @@
     <%= link_to("Australian National Botanic Gardens (ANBG)", "http://www.anbg.gov.au", title: "Australian National Botanic Gardens web page") %>.
     </p>
     <br/>
-      <span class="debug">
+      <span class="debug hidden-print">
         <% if @search.present? && @search.results.present? %>
           <%= @search.results.to_sql %>
         <% end %>
