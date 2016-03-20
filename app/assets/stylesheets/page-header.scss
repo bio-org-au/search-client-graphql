@@ -12,7 +12,7 @@
   }
 
   h1 {
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: normal;
     color: #fff;
   }
@@ -28,9 +28,9 @@
   }
 
   @include media-breakpoint-up(sm) {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-    margin-bottom: 3rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
     text-align: left;
 
     .carbonad {
@@ -40,7 +40,7 @@
 
   @include media-breakpoint-up(md) {
     h1 {
-      font-size: 4rem;
+      font-size: 2rem;
     }
 
     p {
