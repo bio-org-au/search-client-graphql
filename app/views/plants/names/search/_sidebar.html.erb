@@ -19,28 +19,28 @@
         <ul class="nav bd-sidenav">
           <li class="">
             <%= link_to "Scientific",
-                        plants_names_search_scientific_path(q: params["q"], nt: "s"),
+                        plants_names_search_scientific_path(q: "", nt: "s"),
                         class: "name-type-switch-link",
                         data: {switch_to: "scientific"},
                         title: "Scientific name search." %>
           </li>
           <li class="">
             <%= link_to "Cultivar",
-                        plants_names_search_cultivar_path(q: params['q'], nt: "v"),
+                        plants_names_search_cultivar_path(q: "", nt: "v"),
                         class: "name-type-switch-link",
                         data: {switch_to: "cultivar"},
                         title: "Cultivar name search." %>
           </li>
           <li class="">
             <%= link_to "Common",
-                        plants_names_search_common_path(q: params['q'], nt: 'c'),
+                        plants_names_search_common_path(q: "", nt: 'c'),
                         class: "name-type-switch-link",
                         data: {switch_to: "common"},
                         title: "Common or informal name search." %>
           </li>
           <li class="">
             <%= link_to "All",
-                        plants_names_search_all_path(q: params['q']),
+                        plants_names_search_all_path(q: ""),
                         class: "name-type-switch-link",
                         data: {switch_to: "all"},
                         title: "Search across all name types." %>
