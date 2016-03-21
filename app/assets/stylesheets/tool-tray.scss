@@ -1,6 +1,18 @@
+#tool-tray.hidden {
+  display: none;
+}
+
 #tool-tray {
   position: fixed;
-  background: red;
-  bottom: 20px;
-  right: 18%;
+  background: white;
+  border: 1px solid lightgray;
+  bottom: 15rem;
+  right: 6%;
+  width: 15rem;
+  height: 25rem;
+  padding: 1rem;
 }
+#tool-tray a {
+  color: gray;
+}
+

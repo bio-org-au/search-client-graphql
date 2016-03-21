@@ -6,7 +6,11 @@
   <%= stylesheet_link_tag 'application',
                           media: 'all',
                           'data-turbolinks-track' => true %>
-
+  <% if Rails.env == "development" || params[:debug] == 'true' %>
+      <script> debugSwitch = true; </script>
+  <% else %>
+      <script> debugSwitch = false; </script>
+  <% end %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
@@ -56,7 +60,6 @@
 </div>
 </div>
 
-
 <div id="footer" class="boa-footer text-muted hidden-print" role="contentinfo">
   <div class="container">
     <ul class="boa-footer-links">
@@ -82,18 +85,7 @@
 
 </div>
 
-<div id="tool-tray">
-  tool-tray
-</div>
 
-<script>
-Holder.addTheme('gray', {
-  background: '#777',
-  foreground: 'rgba(255,255,255,.75)',
-  font: 'Helvetica',
-  fontweight: 'normal'
-})
-</script>
-
-  </body>
+  <%= render 'layouts/tool_tray' %>
+</body>
 </html>

@@ -1,0 +1,50 @@
+<% if @search.present? && @search.results.size > 1 %>
+<div id="tool-tray" class="<%= 'hidden' unless @search.present? %> hidden-print">
+      <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+          <li class="">
+            <%= link_to %(List &nbsp; #{fa_icon('check') if @search.parsed.show_list?}).html_safe,
+                        plants_names_search_path(q: params['q'], pc: params[:controller], show_results_as: 'list'),
+                        class: "tiny",
+                        title: "Re-run the search as a list." %>
+          </li>
+          <li class="">
+            <%= link_to %(Details &nbsp; #{fa_icon('check') if @search.parsed.show_details?}).html_safe,
+                        plants_names_search_path(q: params['q'], pc: params[:controller], show_results_as: 'details'),
+                        class: "tiny",
+                        title: "Re-run the search showing details." %>
+          </li>
+          <hr/>
+          <li class="">
+            <%= link_to "Prefer: #{(params[:show_results_as] || session[:default_show_results_as] || '').capitalize}",
+                        plants_names_search_defaults_show_as_path(show_results_as: (params[:show_results_as] || session[:default_show_results_as])),
+                        class: "tiny",
+                        method: "post",
+                        remote: true,
+                        title: "Show search results in this format unless otherwise stated." %>
+          </li>
+          <hr/>
+          <li>
+            <a href="#top"
+               class="tiny"
+               title="Go to the top of the page">Top</a> / 
+            <a href="#footer"
+               class="tiny"
+               title="Go to the bottom of the page">Bottom</a>
+          <li>
+          </li>
+            <a href=""
+               class="tiny nav-new-search"
+               title="Go to the search field and clear it">New Search</a>
+          </li>
+          <hr/>
+          <li>
+            <a href="javascript:window.print()"
+               class="tiny"
+               title="Print the page">Print</a>
+          </li>
+        </ul>
+  </div>
+</div>
+<% end %>
+

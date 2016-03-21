@@ -45,13 +45,13 @@
       </div>
   </nav>
 
-      <% if @search.present? && @search.results.size > 0 %>
+      <% if false && @search.present? && @search.results.size > 0 %>
       <hr>
       <div class="bd-toc-item active">
       <a name="viewing-options" class="tiny bd-toc-link" title="Viewing options for the search results">Results as:</a>
         <ul class="nav bd-sidenav">
           <li class="">
-            <%= link_to %(List &nbsp; #{fa_icon('check') if session[:default_show_results_as].match(/\Alist\z/i)}).html_safe,
+            <%= link_to %(List &nbsp; #{fa_icon('check') if @search.parsed.show_list?}).html_safe,
                         plants_names_search_path(q: params['q'], pc: params[:controller], show_results_as: 'list'),
                         class: "tiny",
                         title: "Re-run the search as a list." %>
@@ -88,7 +88,7 @@
   <br/>
   <span class="debug hidden-print">Current view: <%= params[:show_results_as] %></span>
   <br/>
-  <span class="debug hidden-print">show details: <%= @search.parsed.show_details if @search.present? %></span>
+  <span class="debug hidden-print">show details: <%= @search.parsed.show_details? if @search.present? %></span>
   <br/>
   <span class="debug hidden-print">show as: <%= @search.parsed.show_as if @search.present? %></span>
 
