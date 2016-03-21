@@ -20,26 +20,30 @@
           <li class="">
             <%= link_to "Scientific",
                         plants_names_search_scientific_path(q: params["q"], nt: "s"),
-                        class: "",
-                        title: "Run the currently displayed search again for scientific names.  Open the scientific search page if no currently displayed search." %>
+                        class: "name-type-switch-link",
+                        data: {switch_to: "scientific"},
+                        title: "Scientific name search." %>
           </li>
           <li class="">
             <%= link_to "Cultivar",
                         plants_names_search_cultivar_path(q: params['q'], nt: "v"),
-                        class: "",
-                        title: "Run the currently displayed search again for cultivar names.  Open the Cultivar search page if no currently displayed search." %>
+                        class: "name-type-switch-link",
+                        data: {switch_to: "cultivar"},
+                        title: "Cultivar name search." %>
           </li>
           <li class="">
             <%= link_to "Common",
                         plants_names_search_common_path(q: params['q'], nt: 'c'),
-                        class: "",
-                        title: "Run the currently displayed search again for common names.  Open the Common Name search page if no currently displayed search." %>
+                        class: "name-type-switch-link",
+                        data: {switch_to: "common"},
+                        title: "Common or informal name search." %>
           </li>
           <li class="">
             <%= link_to "All",
                         plants_names_search_all_path(q: params['q']),
-                        class: "",
-                        title: "Run the currently displayed search again for all names.  Open the search page for all names if no currently displayed search." %>
+                        class: "name-type-switch-link",
+                        data: {switch_to: "all"},
+                        title: "Search across all name types." %>
           </li>
         </ul>
       </div>
@@ -61,15 +65,6 @@
                         plants_names_search_path(q: params['q'], pc: params[:controller], show_results_as: 'details'),
                         class: "tiny",
                         title: "Re-run the search showing details." %>
-          </li>
-          <hr/>
-          <li class="">
-            <%= link_to "Prefer: #{(params[:show_results_as] || session[:default_show_results_as] || '').capitalize}",
-                        plants_names_search_defaults_show_as_path(show_results_as: (params[:show_results_as] || session[:default_show_results_as])),
-                        class: "tiny",
-                        method: "post",
-                        remote: true,
-                        title: "Show search results in this format unless otherwise stated." %>
           </li>
           <hr/>
           <li>
