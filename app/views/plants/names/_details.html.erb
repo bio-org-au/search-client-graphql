@@ -1,0 +1,14 @@
+<% if @name.present? %>
+  <div class="apni-name-display">
+  <div class="family-name" title="Family name"><%= @name.family_name %></div>
+  <br/>
+  <% shown = [] -%>
+  <% apc_instance_id = @name.apc_instance_id -%>
+  <% @name.instances_in_order.each do | instance | %>
+    <% display, shown = display_instance(instance, shown, instance.id == apc_instance_id) -%>
+    <%= display %>
+  <% end %>
+  <br/>
+  </div>
+<% end %>
+

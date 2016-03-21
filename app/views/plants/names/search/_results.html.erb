@@ -10,7 +10,8 @@
           <%= render partial: '/plants/names/search/details', locals: {name: result} %>
           <br/>
         <% else %>
-          <%= link_to("#{result[:full_name]}", plants_names_show_path(result[:id])) %>
+          <%= link_to("#{result[:full_name]}", plants_names_show_path(result[:id]), remote: true) %>
+          <div id="name-<%= result[:id] %>" class="xhidden-xs-up"></div>
         <% end %>
       <% end %>
     </ul>

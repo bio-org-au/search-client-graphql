@@ -1,0 +1,3 @@
+if ($("#name-<%= @name.id %>").is(':empty')) {
+  $("#name-<%= @name.id %>").append('<%= escape_javascript(render("details")) %>');
+}
