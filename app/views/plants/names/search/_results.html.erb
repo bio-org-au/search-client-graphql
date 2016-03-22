@@ -7,10 +7,9 @@
       <%= render partial: '/plants/names/search/details', locals: {name: @search.results.first} %>
   <% else %>
     <ul>
-      <% limit = 100 %>
       <% @search.results.each_with_index do |result, ndx| %>
         <li/>
-        <% if @search.parsed.show_details? && ndx <= limit %>
+        <% if @search.parsed.show_details? && ndx < session[:default_details_limit] %>
           <%= render partial: '/plants/names/search/details', locals: {name: result} %>
           <br/>
         <% else %>

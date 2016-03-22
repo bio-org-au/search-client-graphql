@@ -10,6 +10,14 @@
                        value: "#{params[:q]}",
                        placeholder: "Search scientific names") %>
     </div>
+    <input type="hidden" 
+           min="0"
+           max="1000"
+           step="1"
+           value="<%= session[:default_details_limit] %>"
+           name="details_limit"
+           id="details-limit"
+           class="">
   <%= submit_tag("Search", class: "btn btn-search hidden-print") %>
   </div>
 <% end %>
