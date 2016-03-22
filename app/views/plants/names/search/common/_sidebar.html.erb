@@ -16,36 +16,10 @@
                     plants_names_search_path,
                     class: "bd-toc-link",
                     title: "APNI Simple Name Search" %>
-        <ul class="nav bd-sidenav">
-          <li class="">
-            <%= link_to "Scientific",
-                        plants_names_search_scientific_path(q: "", nt: "s"),
-                        class: "name-type-switch-link",
-                        data: {switch_to: "scientific"},
-                        title: "Scientific name search." %>
-          </li>
-          <li class="">
-            <%= link_to "Cultivar",
-                        plants_names_search_cultivar_path(q: "", nt: "v"),
-                        class: "name-type-switch-link",
-                        data: {switch_to: "cultivar"},
-                        title: "Cultivar name search." %>
-          </li>
-          <li class="">
-            <%= link_to "Common",
-                        plants_names_search_common_path(q: "", nt: 'c'),
-                        class: "name-type-switch-link",
-                        data: {switch_to: "common"},
-                        title: "Common or informal name search." %>
-          </li>
-          <li class="">
-            <%= link_to "All",
-                        plants_names_search_all_path(q: ""),
-                        class: "name-type-switch-link",
-                        data: {switch_to: "all"},
-                        title: "Search across all name types." %>
-          </li>
-        </ul>
+        <%= link_to "Common".html_safe,
+                    plants_names_search_common_path,
+                    class: "bd-toc-link",
+                    title: "APNI Common and Informal Name Search" %>
         <%= render 'layouts/back_link' %>
       </div>
   </nav>
@@ -71,18 +45,14 @@
           <li>
             <a href="javascript:window.print()" title="Print the page">Print</a>
           </li>
+          <li>
+            <a href="javascript:body.select()" title="Select the data">Select</a>
+          </li>
         </ul>
       </div>
       <hr>
       <% end %>
 
 
-  <span class="debug hidden-print">Default view: <%= session[:default_show_results_as] %></span>
   <br/>
-  <span class="debug hidden-print">Current view: <%= params[:show_results_as] %></span>
-  <br/>
-  <span class="debug hidden-print">show details: <%= @search.parsed.show_details? if @search.present? %></span>
-  <br/>
-  <span class="debug hidden-print">show as: <%= @search.parsed.show_as if @search.present? %></span>
-
-  <span class="debug hidden-print">[plants/names/search]</span>
+  <span class="debug hidden-print">[plants/names/search/common]</span>
