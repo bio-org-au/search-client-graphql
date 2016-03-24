@@ -8,33 +8,34 @@
                     plants_path,
                     class: "bd-toc-link",
                     title: "Vascular Plants" %>
-        <%= link_to "Taxonomy",
-                    plants_taxonomy_path,
-                    class: "bd-toc-link",
-                    title: "Vascular Plant Taxonomy" %>
-        <%= link_to "Accepted &mdash; APC".html_safe,
+        <%= link_to "APC Taxonomy".html_safe,
                     "#",
                     class: "bd-toc-link",
                     title: "Vascular Plant Taxonomy - Accepted by the Australian Plant Census" %>
         <ul class="nav bd-sidenav">
             <li class="">
-              <%= link_to "APC Search",
+              <%= link_to "APC Name Search",
                           plants_taxonomy_accepted_search_path,
                           class: "",
-                          title: "Australian Plant Census Names search" %>
+                          title: "Australian Plant Census Name search" %>
             </li>
             <li class="">
-              <%= link_to "APC Names within a Taxon",
+              <%= link_to "Search in APC taxa",
                           plants_taxonomy_accepted_within_path,
                           class: "",
-                          title: "Australian Plant Census Names within a Taxon" %>
+                          title: "Names within an Australian Plant Census taxon" %>
             </li>
             <li class="">
-              <%= link_to "APC Checklist",
+              <%= link_to "Check names in APC",
                           plants_taxonomy_accepted_checklist_path,
                           class: "",
-                          title: "Australian Plant Census Name Checklist" %>
+                          title: "Check names in the Australian Plant Census" %>
             </li>
         </ul>
+        <%= render 'layouts/back_link' %>
       </div>
   </nav>
+    <br/>
+      <span class="debug hidden-print">
+        app/views/plants/taxonomy/accepted/_sidebar
+      </span>

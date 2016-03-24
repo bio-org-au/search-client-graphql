@@ -5,4 +5,10 @@ class Plants::Names::Search::CultivarController < ApplicationController
     end
     render action: "index"
   end
+
+  private
+
+  def set_zone
+    @zone = 'plants'
+  end
 end

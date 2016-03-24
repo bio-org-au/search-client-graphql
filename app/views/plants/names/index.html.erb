@@ -8,15 +8,21 @@
   <%= render "sidebar" %>
 <% end %>
 
-<p>The Australian Plant Name Index (APNI) has
-<%= link_to("online searching",
+<p>The Australian Plant Name Index (APNI) has provided search pages for many years now.  This site provides the most recent versions of those searches.
+<p>
+
+<p>APNI searches:
+</p>
+<ul>
+  <li/> <%= link_to("APNI Name Search",
             plants_names_search_path,
-            title: "APNI Search Page") %>.
+            title: "APNI Search Page") %> is the basic APNI search page that searches on names and lets you provide wildcards (*).
+</ul>
 
 
 <br/>
 <br/>
 <br/>
 <br/>
-<span class="debug hidden-print">[plants/names/index]</span>
+<span class="debug tiny hidden-print">[plants/names/index]</span>
 

@@ -16,10 +16,16 @@
                           title: "Vascular Plant Names in the Australian Plant Names Index" %>
             </li>
             <li class="">
-              <%= link_to "Taxonomy",
-                          plants_taxonomy_path,
+              <%= link_to "APC Taxonomy",
+                          plants_taxonomy_accepted_path,
                           class: "",
-                          title: "Vascular Plant Taxonomy" %>
+                          title: "APC Taxonomy" %>
+            </li>
+            <li class="">
+              <%= link_to "Other taxonomies",
+                          plants_taxonomy_other_path,
+                          class: "",
+                          title: "Other Taxonomies" %>
             </li>
         </ul>
         <%= render 'layouts/back_link' %>

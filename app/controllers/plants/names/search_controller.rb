@@ -12,4 +12,10 @@ class Plants::Names::SearchController < ApplicationController
       redirect_to plants_names_search_common_path(q: params['q'], show_results_as: params['show_results_as'], pc: params[:pc])
     end
   end
+
+  private
+
+  def set_zone
+    @zone = 'plants'
+  end
 end

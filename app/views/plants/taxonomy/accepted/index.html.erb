@@ -2,10 +2,33 @@
   Vascular Plant Taxonomy &mdash; Accepted
 <% end %>
 <% content_for :page_banner do %>
-  <h1>Vascular Plants</h1>
+  <h1>APC Taxonomy</h1>
 <% end %>
 <% content_for :sidebar do %>
   <%= render "sidebar" %>
 <% end %>
 
-<h2>APC Taxonomy</h2>
+<p>The Australian Plant Census (APC) has provided search pages for many years.  This site provides the most recent versions of those searches.
+<p>
+
+<p>APC searches:
+</p>
+<ul>
+  <li/> <%= link_to("APC Name Search",
+            plants_taxonomy_accepted_search_path,
+            title: "APC Search Page") %> is the basic APC search page that searches on names and lets you provide wildcards (*).
+  <li/> <%= link_to("Search in APC taxa",
+            plants_taxonomy_accepted_within_path,
+            title: "Search in APC taxa") %> allows you to search for all the taxon names within another taxon e.g. all the species in the Banksia genus.
+  <li/> <%= link_to("Check names in APC",
+            plants_taxonomy_accepted_checklist_path,
+            title: "Check names in APC") %> allows you to check lists of names against APC.
+</ul>
+
+
+<br/>
+<br/>
+<br/>
+<span class="debug hidden-print tiny">
+  app/views/plants/taxonomy/accepted/index
+</span>

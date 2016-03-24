@@ -8,11 +8,7 @@
                     plants_path,
                     class: "bd-toc-link",
                     title: "Vascular Plants" %>
-        <%= link_to "Taxonomy",
-                    plants_taxonomy_path,
-                    class: "bd-toc-link",
-                    title: "Vascular Plant Taxonomy" %>
-        <%= link_to "Other",
+        <%= link_to "Other taxonomies",
                     "#",
                     class: "bd-toc-link",
                     title: "Vascular Plant Taxonomy - Other" %>
@@ -20,5 +16,10 @@
             <li class="">
             </li>
         </ul>
+      <%= render 'layouts/back_link' %>
       </div>
   </nav>
+    <br/>
+      <span class="debug hidden-print tiny">
+        app/views/plants/taxonomy/other/_sidebar
+      </span>

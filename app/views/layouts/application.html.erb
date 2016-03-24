@@ -23,7 +23,7 @@
     </a>
     <a name="top"></a>
 
-<header class="navbar navbar-light navbar-static-top bd-navbar" role="banner">
+    <header class="navbar navbar-light navbar-static-top bd-navbar" role="banner">
   <div class="clearfix">
     <button class="navbar-toggler pull-xs-right hidden-sm-up" type="button" data-toggle="collapse" data-target="#bd-main-nav">
       &#9776;
@@ -38,7 +38,7 @@
 </header>
 
 <div id="wrapper">
-<div id="header" class="boa-pageheader">
+<div id="header" class="boa-pageheader <%= @zone %>">
   <div class="container print">
     <%= yield :page_banner %>
   </div>

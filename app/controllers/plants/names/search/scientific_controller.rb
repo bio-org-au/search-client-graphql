@@ -10,4 +10,10 @@ class Plants::Names::Search::ScientificController < ApplicationController
       render action: "index", stream: true
     #end
   end
+
+  private
+
+  def set_zone
+    @zone = 'plants'
+  end
 end

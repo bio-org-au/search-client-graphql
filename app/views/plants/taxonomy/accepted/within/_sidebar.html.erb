@@ -8,33 +8,18 @@
                     plants_path,
                     class: "bd-toc-link",
                     title: "Vascular Plants" %>
-        <%= link_to "Taxonomy",
-                    plants_taxonomy_path,
-                    class: "bd-toc-link",
-                    title: "Vascular Plant Taxonomy" %>
-        <%= link_to "Accepted &mdash; APC".html_safe,
+        <%= link_to "APC Taxonomy".html_safe,
                     plants_taxonomy_accepted_path,
                     class: "bd-toc-link",
-                    title: "Vascular Plant Taxonomy - Accepted by the Australian Plant Census" %>
-        <ul class="nav bd-sidenav">
-          <li class="">
-            <%= link_to "Search APC".html_safe,
-                        plants_taxonomy_accepted_search_path,
-                        class: "",
-                        title: "Vascular Plant Taxonomy - Accepted by the Australian Plant Census" %>
-          </li>
-          <li class="active bd-sidenav-active">
-            <%= link_to "APC Names within a Taxon",
-                        plants_taxonomy_accepted_within_path,
-                        class: "",
-                        title: "Australian Plant Census Names within a Taxon search" %>
-          </li>
-          <li class="">
-            <%= link_to "APC Checklist",
-                        plants_taxonomy_accepted_checklist_path,
-                        class: "",
-                        title: "Australian Plant Census Name Checklist" %>
-          </li>
-        </ul>
+                    title: "APC Taxonomy - Accepted by the Australian Plant Census" %>
+        <%= link_to "Search in APC taxon".html_safe,
+                    plants_taxonomy_accepted_within_path,
+                    class: "bd-toc-link",
+                    title: "Search for names within a taxon in the Australian Plant Census" %>
+      <%= render 'layouts/back_link' %>
       </div>
   </nav>
+    <br/>
+      <span class="debug hidden-print">
+        app/views/plants/taxonomy/accepted/within/_sidebar
+      </span>
