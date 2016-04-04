@@ -9,8 +9,10 @@ module ApniHelper
   end
 
   def show_standalone_instance(instance, apc)
-    fragment = "<div class='instance-citation'>#{instance.reference.citation_html}"
+    fragment = "<div class='instance-citation'>"
+    fragment << instance.reference.citation_html
     fragment << ": #{instance.page}" if instance.page.present?
+    fragment << "&nbsp; [#{instance.instance_type.name}]" if instance.primary?
     fragment << "&nbsp;<span class='red'>(APC)</span>" if apc 
     fragment << "</div>"
     fragment << "<ul>"

@@ -6,4 +6,8 @@ class InstanceType < ActiveRecord::Base
   def primaries_first
     primary_instance ? "A" : "B"
   end
+
+  def primary?
+    primary_instance
+  end
 end

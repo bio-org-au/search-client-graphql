@@ -47,4 +47,8 @@ class Instance < ActiveRecord::Base
       .where(cited_by_id: instance.id)
       .in_nested_instance_type_order
   end
+
+  def primary?
+    instance_type.primary?
+  end
 end
