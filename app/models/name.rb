@@ -7,6 +7,11 @@ class Name < ActiveRecord::Base
   has_many :instances
   has_many :tree_nodes
 
+  scope :not_a_duplicate, -> { where(duplicate_of_id: nil) }
+  scope :with_an_instance, -> { where(["exists (select null from instance where name.id = instance.name_id)"]) }
+  scope :lower_full_name_like, ->(string) { where("lower(f_unaccent(full_name)) like lower(f_unaccent(?)) ", string.gsub(/\*/, "%").downcase) }
+  scope :lower_simple_name_like, ->(string) { where("lower((simple_name)) like lower((?)) ", string.gsub(/\*/, "%").downcase) }
+ 
   def instances_in_order
     self.instances.sort do |x,y|
       x.sort_fields <=> y.sort_fields
