@@ -16,8 +16,16 @@ module ApniHelper
     fragment << "<ul>"
     Instance.records_cited_by_standalone(instance).each do |cited_by|
       fragment << "<li class='subordinate-instance'/>"
-      fragment << "<span class='instance-type-name'>#{cited_by.instance_type.name}: </span>" \
-        "<span class='instance-type'>#{link_to(cited_by.name.full_name, plants_names_show_path(cited_by.name.id))}</span>"
+      fragment << "<span class='instance-type-name'>#{cited_by.instance_type.name}: </span>" 
+      fragment << "<span class='instance-type'>"
+      target_id =  "#{rand(1000)}-#{rand(1000)}-#{rand(1000)}"
+      fragment << link_to(cited_by.name.full_name, plants_names_show_path(cited_by.name.id,target_id: target_id),
+                          class: "drill-down-toggle",
+                          data: {target_id: target_id},
+                          remote: true)
+      fragment << "</span>"
+      fragment << "<div class='drill-down hidden-xs-up' id='#{target_id}'>"
+      fragment << "</div>"
     end
     fragment << "</ul>"
     fragment.html_safe
@@ -37,8 +45,20 @@ module ApniHelper
     Instance.records_cited_by_relationship(citing_instance).each do |cited_by|
       next unless cited_by.name.id == instance.name.id
       fragment << "<li class='subordinate-instance'/>"
-      fragment << "<span class='instance-type-name'>#{cited_by.instance_type.name} of: </span>" \
-        "<span class='instance-type'>#{link_to(cited_by.this_is_cited_by.name.full_name, plants_names_show_path(cited_by.this_is_cited_by.name.id))}</span>"
+      target_id =  "#{rand(1000)}-#{rand(1000)}-#{rand(1000)}"
+      fragment << "<span class='instance-type-name'>"
+      fragment << "#{cited_by.instance_type.name} of: </span>"
+      fragment << "<span class='instance-type'>"
+      fragment << link_to(cited_by.this_is_cited_by.name.full_name,
+                           plants_names_show_path(
+                           cited_by.this_is_cited_by.name.id,
+                           target_id: target_id), 
+                           class: "drill-down-toggle",
+                           data: {target_id: target_id},
+                           remote: true)
+      fragment << "</span>"
+      fragment << "<div class='drill-down hidden-xs-up' id='#{target_id}'>"
+      fragment << "</div>"
     end
     fragment << "</ul>"
   end
