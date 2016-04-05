@@ -1,0 +1,3 @@
+$("#<%= params[:target_id] %>").append('<%= escape_javascript(render partial: "index", locals: {name: @name}) %>');
+$("#<%= params[:target_id] %>").removeClass('hidden-xs-up');
+  

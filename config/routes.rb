@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   match "/plants/names/checklist", as: "plants_names_checklist", to: "plants/names/checklist#index", via: :get
   match "/plants/names/within/genus/search", as: "plants_names_within_genus_search", to: "plants/names/within/genus#search", via: :get
   match "/plants/names/within/genus", as: "plants_names_within_genus", to: "plants/names/within/genus#index", via: :get
+  match "/plants/names/within/taxon/:id/at/rank/:rank", as: "plants_names_within_taxon_at_rank", to: "plants/names/within/taxon/at/rank#index", via: :get
+  match "/plants/names/within/taxon/:id", as: "plants_names_within_taxon", to: "plants/names/within/taxon#index", via: :get
   match "/plants/names/within", as: "plants_names_within", to: "plants/names/within#index", via: :get
   match "/plants/names/advanced", as: "plants_names_advanced", to: "plants/names/advanced#index", via: :get
   match "/plants/names/search/search", as: "plants_names_search_search", to: "plants/names/search#search", via: :get

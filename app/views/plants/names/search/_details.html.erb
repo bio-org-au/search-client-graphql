@@ -1,6 +1,7 @@
       <div class="apni-name-display">
       <span class="full-name" title="Full name"><%= name.full_name %></span>
       <div class="family-name" title="Family name"><%= name.family_name %></div>
+      <%= %(<div class="name-rank" title="Name rank">#{name.rank.name}</div>).html_safe if name.rank.show? %>
       <% shown = [] -%>
       <% apc_instance_id = name.apc_instance_id -%>
       <% name.instances_in_order.each do | instance | %>
@@ -8,4 +9,5 @@
         <%= display %>
       <% end %>
       </div>
+      <%= render partial: '/plants/names/search/power_links', locals: {name: @search.results.first} %>
 
