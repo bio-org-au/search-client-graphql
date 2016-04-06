@@ -1,5 +1,15 @@
 <ul>
 <% @search.each do |s| %>
-  <li/><%= s['full_name'] %>
+  <li/>
+       <% target_id = new_target_id %>
+       <%= link_to("#{s['full_name']}",
+                   plants_names_show_path(s['id'],target_id: target_id),
+                   class: "drill-down-toggle",
+                   data: {target_id: target_id},
+                   title: "Select to show or hide details",
+                   remote: true
+                   )
+       %>
+       <div id="<%= target_id %>" class="details"></div>
 <% end %>
 </ul>

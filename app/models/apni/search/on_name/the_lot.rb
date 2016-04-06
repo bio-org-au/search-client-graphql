@@ -22,7 +22,6 @@ class Apni::Search::OnName::TheLot
   end
 
   def name_search
-    Name.not_a_duplicate
-        .order(:full_name)
+    Name.core_search
   end
 end

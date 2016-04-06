@@ -22,9 +22,8 @@ class Apni::Search::OnName::Cultivar
   end
 
   def name_search
-    Name.joins(:name_type)
+    Name.core_search
+        .joins(:name_type)
         .where(name_type: { cultivar: true })
-        .not_a_duplicate
-        .order(:full_name)
   end
 end

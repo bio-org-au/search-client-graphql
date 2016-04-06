@@ -1,3 +1,4 @@
+<%= name.class %><br/>
 <% if name.present? %>
   <div class="apni-name-display">
   <div class="family-name" title="Family name"><%= name.family_name %></div>
@@ -10,6 +11,6 @@
   <% end %>
   <br/>
   </div>
-  <%= render partial: '/plants/names/search/power_links', locals: {name: name} %>
+  <%= render(partial: '/plants/names/search/power_links', locals: {name: name}) if name.sub_taxon? %>
 <% end %>
 

@@ -1,12 +1,12 @@
 <div class="apni-name-display">
   <hr/>
+  <% target_id = new_target_id %>
   <%= link_to("Names within this taxon",
-              plants_names_within_taxon_path(name.id,
-                                             target_id:
-                                               "names-within-#{name.id}"),
+              plants_names_within_taxon_path(name.id, target_id: target_id),
               class: "drill-down-toggle",
-              data: {target_id: "names-within-#{name.id}"},
+              data: {target_id: target_id},
               remote: true) %>
-   <div id="names-within-<%= name.id %>" class="drill-down hidden-xs-up"></div>
+   <div id="<%= target_id %>" class="drill-down hidden-xs-up"></div>
+  <hr/>
 </div>
 

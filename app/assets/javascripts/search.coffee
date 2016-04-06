@@ -29,6 +29,7 @@ navNewSearch = (event, $element) ->
 # Hide/show details
 # Load details if necessary
 detailsToggle = (event, $element) ->
+  debug("detailsToggle")
   nameId = $element.data("name-id")
   targetId = "name-#{nameId}"
   if $("##{targetId}").hasClass("hidden-xs-up")
@@ -49,6 +50,7 @@ searchForm = (event, $element) ->
   true
 
 drillDownToggle = (event, $element) ->
+  debug("drillDownToggle")
   targetId = $element.data("target-id")
   if $("##{targetId}").hasClass("hidden-xs-up")
     showTarget(targetId)

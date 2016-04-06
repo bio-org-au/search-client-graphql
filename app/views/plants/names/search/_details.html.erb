@@ -1,5 +1,8 @@
       <div class="apni-name-display">
       <span class="full-name" title="Full name"><%= name.full_name %></span>
+      <% if name.show_status? %>
+        <span class="name-status" title="Name Status"><%= name.status.name %></span>
+      <% end %>
       <div class="family-name" title="Family name"><%= name.family_name %></div>
       <%= %(<div class="name-rank" title="Name rank">#{name.rank.name}</div>).html_safe if name.rank.show? %>
       <% shown = [] -%>
@@ -9,5 +12,5 @@
         <%= display %>
       <% end %>
       </div>
-      <%= render partial: '/plants/names/search/power_links', locals: {name: @search.results.first} %>
+      <%= render(partial: '/plants/names/search/power_links', locals: {name: @search.results.first}) if name.sub_taxon? %>
 

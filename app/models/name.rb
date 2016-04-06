@@ -3,12 +3,13 @@ class Name < ActiveRecord::Base
   self.primary_key = "id"
   acts_as_tree
   belongs_to :rank, class_name: "NameRank", foreign_key: "name_rank_id"
+  belongs_to :status, class_name: "NameStatus", foreign_key: "name_status_id"
   belongs_to :name_type
   has_many :instances
   has_many :tree_nodes
 
   scope :not_a_duplicate, -> { where(duplicate_of_id: nil) }
-  scope :with_an_instance, -> { where(["exists (select null from instance where name.id = instance.name_id)"]) }
+  scope :has_an_instance, -> { where(["exists (select null from instance where name.id = instance.name_id)"]) }
   scope :lower_full_name_like, ->(string) { where("lower(f_unaccent(full_name)) like lower(f_unaccent(?)) ", string.gsub(/\*/, "%").downcase) }
   scope :lower_simple_name_like, ->(string) { where("lower((simple_name)) like lower((?)) ", string.gsub(/\*/, "%").downcase) }
  
@@ -16,6 +17,13 @@ class Name < ActiveRecord::Base
     self.instances.sort do |x,y|
       x.sort_fields <=> y.sort_fields
     end
+  end
+
+  def self.core_search
+    Name.not_a_duplicate
+        .has_an_instance
+        .includes(:status)
+        .order(:full_name)
   end
 
   def family?
@@ -74,12 +82,13 @@ UNION ALL
   WHERE c.parent_id = p.id
 )                                                                
 SELECT n.rank, count(*) FROM nodes_cte AS n
+  where exists (select null from instance where instance.name_id = n.id) 
   group by n.rank, n.rank_order
   order by n.rank_order"
   ActiveRecord::Base.connection.execute(sql)
   end
 
-    def pg_descendants_at_rank(rank_name)
+  def pg_descendants_at_rank(rank_name)
     sql = "WITH RECURSIVE nodes_cte(id, full_name, parent_id, depth, path) AS (
  SELECT tn.id, tn.full_name, tn.parent_id, 1::INT AS depth,
         tn.id::TEXT AS path, tnr.name as rank, tnr.sort_order rank_order
@@ -98,8 +107,45 @@ UNION ALL
 )                                                                
 SELECT n.id, n.full_name FROM nodes_cte AS n
   where n.rank = '#{rank_name}'
+    and exists (select null from instance where instance.name_id = n.id) 
   order by n.full_name"
   ActiveRecord::Base.connection.execute(sql)
   end
 
+  def sub_taxon?
+    sql = "WITH RECURSIVE nodes_cte(id, full_name, parent_id, depth, path) AS (
+ SELECT tn.id, tn.full_name, tn.parent_id, 1::INT AS depth,
+        tn.id::TEXT AS path, tnr.name as rank, tnr.sort_order rank_order
+   FROM name AS tn
+        join
+        name_rank tnr
+        on tn.name_rank_id = tnr.id
+  WHERE tn.id = #{id}
+UNION ALL                   
+ SELECT c.id, c.full_name, c.parent_id, p.depth + 1 AS depth,
+        (p.path || '->' || c.id::TEXT), cnr.name as rank, cnr.sort_order rank_order
+   FROM nodes_cte AS p, name AS c
+        join name_rank cnr
+        on c.name_rank_id = cnr.id
+  WHERE c.parent_id = p.id
+)                                                                
+SELECT 1 FROM nodes_cte AS n
+  where exists (select null from instance where instance.name_id = n.id) 
+limit 3"
+    results = ActiveRecord::Base.connection.execute(sql)
+    max = 0
+    results.each_with_index do |result,index|
+      max = index
+    end
+    Rails.logger.debug("max: #{max}")
+    if max <= 1
+      return false
+    else
+      return true
+    end
+  end
+
+  def show_status?
+    status.show?
+  end
 end
