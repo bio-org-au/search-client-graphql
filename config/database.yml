@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: nsltick
+  database: nsl
   username: nsldev
   password: nsldev
   pool: 10
