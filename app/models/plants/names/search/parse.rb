@@ -1,4 +1,4 @@
-class Apni::Search::Parse
+class Plants::Names::Search::Parse
   attr_reader :search_type,
               :search_term,
               :show_as

@@ -2,7 +2,7 @@
 <% name.pg_ranked_descendant_counts.each do |d| %>
   <% target_id = new_target_id %>
   <li/><%= link_to("#{d['rank']}: #{d['count']}",
-                   plants_names_within_taxon_at_rank_path(name.id,d["rank"].gsub(/\./,'DOT'),target_id: target_id),
+                   plants_names_search_within_taxon_at_rank_path(name.id,d["rank"].gsub(/\./,'DOT'),target_id: target_id),
               class: "drill-down-toggle",
               data: {target_id: target_id},
               remote: true) %>

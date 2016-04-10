@@ -1,10 +1,10 @@
-#  Search for common names
-class Apni::Search::OnName::Common
+#  Search for scientific names
+class Plants::Names::Search::Scientific
   attr_reader :parsed,
               :results
-  SEARCH_TYPE = "Common Name".freeze
+  SEARCH_TYPE = "Scientific Name".freeze
   def initialize(params, default_show_results_as: "list")
-    @parsed = Apni::Search::Parse.new(params,
+    @parsed = Plants::Names::Search::Parse.new(params,
                                       search_type: SEARCH_TYPE,
                                       default_show_results_as:
                                         default_show_results_as)
@@ -24,6 +24,6 @@ class Apni::Search::OnName::Common
   def name_search
     Name.core_search
         .joins(:name_type)
-        .where(name_type: { name: %w(common informal) })
+        .where(name_type: { scientific: true })
   end
 end

@@ -1,10 +1,10 @@
-#  Search for scientific names
-class Apni::Search::OnName::Scientific
+#  Search all names
+class Plants::Names::Search::TheLot
   attr_reader :parsed,
               :results
-  SEARCH_TYPE = "Scientific Name".freeze
+  SEARCH_TYPE = "All Name".freeze
   def initialize(params, default_show_results_as: "list")
-    @parsed = Apni::Search::Parse.new(params,
+    @parsed = Plants::Names::Search::Parse.new(params,
                                       search_type: SEARCH_TYPE,
                                       default_show_results_as:
                                         default_show_results_as)
@@ -23,7 +23,5 @@ class Apni::Search::OnName::Scientific
 
   def name_search
     Name.core_search
-        .joins(:name_type)
-        .where(name_type: { scientific: true })
   end
 end

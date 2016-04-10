@@ -1,10 +1,10 @@
-#  Search all names
-class Apni::Search::OnName::TheLot
+#  Search for cultivar names
+class Plants::Names::Search::Cultivar
   attr_reader :parsed,
               :results
-  SEARCH_TYPE = "All Name".freeze
+  SEARCH_TYPE = "Cultivar Name".freeze
   def initialize(params, default_show_results_as: "list")
-    @parsed = Apni::Search::Parse.new(params,
+    @parsed = Plants::Names::Search::Parse.new(params,
                                       search_type: SEARCH_TYPE,
                                       default_show_results_as:
                                         default_show_results_as)
@@ -23,5 +23,7 @@ class Apni::Search::OnName::TheLot
 
   def name_search
     Name.core_search
+        .joins(:name_type)
+        .where(name_type: { cultivar: true })
   end
 end

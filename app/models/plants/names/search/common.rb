@@ -1,10 +1,10 @@
-#  Search for cultivar names
-class Apni::Search::OnName::Cultivar
+#  Search for common names
+class Plants::Names::Search::Common
   attr_reader :parsed,
               :results
-  SEARCH_TYPE = "Cultivar Name".freeze
+  SEARCH_TYPE = "Common Name".freeze
   def initialize(params, default_show_results_as: "list")
-    @parsed = Apni::Search::Parse.new(params,
+    @parsed = Plants::Names::Search::Parse.new(params,
                                       search_type: SEARCH_TYPE,
                                       default_show_results_as:
                                         default_show_results_as)
@@ -24,6 +24,6 @@ class Apni::Search::OnName::Cultivar
   def name_search
     Name.core_search
         .joins(:name_type)
-        .where(name_type: { cultivar: true })
+        .where(name_type: { name: %w(common informal) })
   end
 end
