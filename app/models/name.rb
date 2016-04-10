@@ -7,6 +7,8 @@ class Name < ActiveRecord::Base
   belongs_to :name_type
   has_many :instances
   has_many :tree_nodes
+  has_many :name_tree_paths
+  has_many :tree_arrangements, through: :name_tree_paths
 
   scope :not_a_duplicate, -> { where(duplicate_of_id: nil) }
   scope :has_an_instance, -> { where(["exists (select null from instance where name.id = instance.name_id)"]) }
@@ -23,7 +25,9 @@ class Name < ActiveRecord::Base
     Name.not_a_duplicate
         .has_an_instance
         .includes(:status)
-        .order(:full_name)
+        .joins(:tree_arrangements)
+        .where("tree_arrangement.label = 'APNI' ")
+      .order('name_tree_path.rank_path')
   end
 
   def family?

@@ -1,18 +1,15 @@
-#tool-tray.hidden {
+#search-tools-slider.hidden {
   display: none;
 }
 
-#tool-tray {
+#search-tools-slider {
   position: fixed;
   background: rgba(255, 255, 255, .8);
   border: 1px solid lightgray;
-  top: 20rem;
-  right: 6%;
-  width: 15rem;
-  height: 30rem;
-  padding: 1rem;
+  padding: 0.5rem 1rem 1rem 1rem;
 }
-#tool-tray a {
+
+#search-tools-slider a {
   color: gray;
 }
 
@@ -21,95 +18,124 @@
   max-width: 4rem;
 }
 
+@media (min-height: 850px) {
+  #search-tools-slider {
+    top: 20rem;
+    width: 15rem;
+    height: 30rem;
+  }
+}
+
+@media (max-height: 849px) {
+  #search-tools-slider {
+    background: rgba(255, 255, 255, .7);
+    bottom: 3rem;
+    width: 15rem;
+    height: 30rem;
+  }
+}
 
 @media (max-width: 999px) {
-  #tool-tray {
+  #search-tools-slider {
     right: 0%;
     width: 10rem;
   }
 }
 
 @media (min-width: 1000px) and (max-width: 1099px){
-  #tool-tray {
+  #search-tools-slider {
     right: 2%;
   }
 }
 
 @media (min-width: 1100px) and (max-width: 1199px){
-  #tool-tray {
+  #search-tools-slider {
     right: 6%;
   }
 }
 
 @media (min-width: 1200px) and (max-width: 1299px){
-  #tool-tray {
+  #search-tools-slider {
     right: 5%;
   }
 }
 
 @media (min-width: 1300px) and (max-width: 1349px){
-  #tool-tray {
+  #search-tools-slider {
     right: 7%;
   }
 }
 
 @media (min-width: 1350px) and (max-width: 1399px){
-  #tool-tray {
+  #search-tools-slider {
     right: 9%;
   }
 }
 
 @media (min-width: 1400px) and (max-width: 1499px){
-  #tool-tray {
+  #search-tools-slider {
     right: 11%;
   }
 }
 
 @media (min-width: 1500px) and (max-width: 1599px){
-  #tool-tray {
+  #search-tools-slider {
     right: 13%;
   }
 }
 
 @media (min-width: 1600px) and (max-width: 1649px){
-  #tool-tray {
+  #search-tools-slider {
     right: 14.5%;
   }
 }
 
 
 @media (min-width: 1650px) and (max-width: 1699px){
-  #tool-tray {
+  #search-tools-slider {
     right: 15.8%;
   }
 }
 
 @media (min-width: 1700px) and (max-width: 1799px){
-  #tool-tray {
+  #search-tools-slider {
     right: 16.5%;
   }
 }
 
 @media (min-width: 1800px) and (max-width: 1849px){
-  #tool-tray {
+  #search-tools-slider {
     right: 18.8%;
   }
 }
 
 @media (min-width: 1850px) and (max-width: 1899px){
-  #tool-tray {
+  #search-tools-slider {
     right: 19.8%;
   }
 }
 
 @media (min-width: 1900px) and (max-width: 1999px){
-  #tool-tray {
+  #search-tools-slider {
     right: 20%;
   }
 }
 
 @media (min-width: 2000px) {
-  #tool-tray {
+  #search-tools-slider {
     right: 22%;
   }
+}
+
+
+ul.dash {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 1em;
+}
+ul.dash > li:before {
+    display: inline-block;
+    content: "-";
+    width: 1em;
+    margin-left: -1em;
 }
