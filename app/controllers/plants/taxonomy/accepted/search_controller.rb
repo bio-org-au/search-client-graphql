@@ -1,4 +1,6 @@
 class Plants::Taxonomy::Accepted::SearchController < ApplicationController
+  def index
+  end
 
   private
 

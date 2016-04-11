@@ -30,6 +30,13 @@ class Name < ActiveRecord::Base
       .order('name_tree_path.rank_path')
   end
 
+  def self.accepted_search
+    Name.includes(:status)
+        .joins(:tree_arrangements)
+        .where("tree_arrangement.label = 'APC' ")
+      .order('name_tree_path.rank_path')
+  end
+
   def family?
     rank.family?
   end
@@ -68,6 +75,9 @@ class Name < ActiveRecord::Base
     end
   end
 
+  # Built as pg-specific code (although should be standard sql)
+  # Originally tried "tn.parent_id = #{id}" but this was slow
+  # (~1200ms vs ~3ms) despite an index on parent_id.
   def pg_ranked_descendant_counts
     sql = "WITH RECURSIVE nodes_cte(id, full_name, parent_id, depth, path) AS (
  SELECT tn.id, tn.full_name, tn.parent_id, 1::INT AS depth,
@@ -76,7 +86,7 @@ class Name < ActiveRecord::Base
         join
         name_rank tnr
         on tn.name_rank_id = tnr.id
-  WHERE tn.id = #{id}
+  WHERE tn.id = #{ActiveRecord::Base.sanitize(id)}
 UNION ALL                   
  SELECT c.id, c.full_name, c.parent_id, p.depth + 1 AS depth,
         (p.path || '->' || c.id::TEXT), cnr.name as rank, cnr.sort_order rank_order
@@ -86,7 +96,8 @@ UNION ALL
   WHERE c.parent_id = p.id
 )                                                                
 SELECT n.rank, count(*) FROM nodes_cte AS n
-  where exists (select null from instance where instance.name_id = n.id) 
+ where exists (select null from instance where instance.name_id = n.id) 
+   and n.id != #{ActiveRecord::Base.sanitize(id)}
   group by n.rank, n.rank_order
   order by n.rank_order"
   ActiveRecord::Base.connection.execute(sql)
@@ -100,7 +111,7 @@ SELECT n.rank, count(*) FROM nodes_cte AS n
         join
         name_rank tnr
         on tn.name_rank_id = tnr.id
-  WHERE tn.id = #{id}
+  WHERE tn.id = #{ActiveRecord::Base.sanitize(id)}
 UNION ALL                   
  SELECT c.id, c.full_name, c.parent_id, p.depth + 1 AS depth,
         (p.path || '->' || c.id::TEXT), cnr.name as rank, cnr.sort_order rank_order
@@ -110,7 +121,7 @@ UNION ALL
   WHERE c.parent_id = p.id
 )                                                                
 SELECT n.id, n.full_name FROM nodes_cte AS n
-  where n.rank = '#{rank_name}'
+  where n.rank = #{ActiveRecord::Base.sanitize(rank_name)}
     and exists (select null from instance where instance.name_id = n.id) 
   order by n.full_name"
   ActiveRecord::Base.connection.execute(sql)

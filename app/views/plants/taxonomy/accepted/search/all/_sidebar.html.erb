@@ -16,28 +16,14 @@
                     plants_taxonomy_accepted_search_path,
                     class: "bd-toc-link",
                     title: "Australian Plant Census Name Search" %>
-        <ul class="nav bd-sidenav">
-          <li class="">
-            <%= link_to "Included",
-                        plants_taxonomy_accepted_search_included_path(q: params['q']),
-                        title: "Search for included names only." %>
-          </li>
-          <li class="">
-            <%= link_to "Excluded",
-                        plants_taxonomy_accepted_search_excluded_path(q: params['q']),
-                        title: "Search for excluded names only." %>
-          </li>
-          <li class="">
-            <%= link_to "Included or excluded",
-                        plants_taxonomy_accepted_search_all_path(q: params['q']),
-                        title: "Search for names that are included or excluded." %>
-          </li>
-        </ul>
-        <%= render 'layouts/back_link' %>
+        <%= link_to "Included&nbsp;or&nbsp;excluded".html_safe,
+                    plants_taxonomy_accepted_search_all_path,
+                    class: "bd-toc-link",
+                    title: "All Accepted Names Search" %>
       </div>
+      <%= render 'layouts/back_link' %>
   </nav>
-
     <br/>
       <span class="debug hidden-print">
-        app/views/plants/taxonomy/accepted/search/_sidebar
+        app/views/plants/taxonomy/accepted/search/all/_sidebar
       </span>
