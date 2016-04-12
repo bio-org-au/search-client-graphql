@@ -1,0 +1,38 @@
+<%= number_with_delimiter(name.pg_apni_descendants.cmd_tuples) %>
+<%= "name".pluralize(name.pg_apni_descendants.cmd_tuples) %>
+<hr>
+
+<%= form_tag(plants_names_search_within_taxon_consolidated_ranks_search_path,
+             method: "get") do %>
+  <% name.pg_ranked_descendant_counts.each do |d| %>
+    <%# Some ranks are in square brackets, which messes with the params. %>
+    <% unbracketed_rank = d['rank'].gsub(/[\[\]]/,'') %>
+    <% if params[unbracketed_rank] == "1" %>
+      <%= check_box_tag(unbracketed_rank, 1, checked: true) %>
+    <% else %>
+      <%= check_box_tag(unbracketed_rank, 1) %>
+    <% end %>
+    <%= label_tag(unbracketed_rank, "#{d['rank']}: #{number_with_delimiter(d['count'].to_i)}") %>
+    <br>
+  <% end %>
+  <%= submit_tag("Show") %>
+  <br><%= hidden_field_tag("id",name.id) %>
+<% end %>
+
+<br>
+<hr>
+<ul>
+<% name.pg_apni_descendants_for_ranks(@ranks).each do |d| %>
+  <% target_id = new_target_id %>
+  <li/><%= d["full_name"] %>
+    <%#= link_to("#{d['full_name']}",
+                   plants_names_search_within_taxon_at_rank_path(
+                     name.id,
+                     d["rank"].gsub(/\./,'DOT'),
+                     target_id: target_id),
+                   class: "drill-down-toggle",
+                   data: {target_id: target_id},
+                   remote: true) %>
+   <div id="<%= target_id %>" class="drill-down hidden-xs-up"></div>
+<% end %>
+</ul>

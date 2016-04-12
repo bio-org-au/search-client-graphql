@@ -1,7 +1,12 @@
+<%= number_with_delimiter(name.pg_apni_descendants.cmd_tuples) %>
+<%= "name".pluralize(name.pg_apni_descendants.cmd_tuples) %>
+<br>
+<hr>
 <ul>
-<% name.pg_ranked_descendant_counts.each do |d| %>
+<% name.pg_apni_descendants.each do |d| %>
   <% target_id = new_target_id %>
-  <li/><%= link_to("#{d['rank']}: #{d['count']}",
+  <li/><%= d["full_name"] %>
+    <%#= link_to("#{d['full_name']}",
                    plants_names_search_within_taxon_at_rank_path(
                      name.id,
                      d["rank"].gsub(/\./,'DOT'),

@@ -18,9 +18,9 @@
                     title: "Australian Plant Census Name Search" %>
         <ul class="nav bd-sidenav">
           <li class="">
-            <%= link_to "Included",
-                        plants_taxonomy_accepted_search_included_path(q: params['q']),
-                        title: "Search for included names only." %>
+            <%= link_to "Accepted",
+                        plants_taxonomy_accepted_search_accepted_path(q: params['q']),
+                        title: "Search for accepted names only." %>
           </li>
           <li class="">
             <%= link_to "Excluded",
@@ -28,9 +28,9 @@
                         title: "Search for excluded names only." %>
           </li>
           <li class="">
-            <%= link_to "Included or excluded",
+            <%= link_to "Accepted and excluded",
                         plants_taxonomy_accepted_search_all_path(q: params['q']),
-                        title: "Search for names that are included or excluded." %>
+                        title: "Search for names that are accepted or excluded." %>
           </li>
         </ul>
         <%= render 'layouts/back_link' %>

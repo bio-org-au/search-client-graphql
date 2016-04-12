@@ -1,7 +1,8 @@
 <div class="apni-name-display">
   <hr/>
-  <%= link_to("Ranks within",
-              plants_names_search_within_taxon_path(name.id)) %>
+  <%= link_to("Names within",
+              plants_names_search_within_taxon_ranks_path(name.id),
+              title: "Show the names within this name. E.g. species within genus") %>
   <hr/>
 </div>
 

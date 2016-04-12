@@ -1,0 +1,15 @@
+<%= number_with_delimiter(name.pg_apni_descendants.cmd_tuples) %>
+<%= "name".pluralize(name.pg_apni_descendants.cmd_tuples) %>
+<hr>
+
+
+<%= form_tag(plants_names_search_within_taxon_consolidated_ranks_search_path,
+             method: "get") do %>
+  <% name.pg_ranked_descendant_counts.each do |d| %>
+    <%= check_box_tag(d['rank']) %>
+    <%= label_tag(d['rank'], "#{d['rank']}: #{number_with_delimiter(d['count'].to_i)}") %>
+    <br>
+  <% end %>
+  <%= submit_tag("Show") %>
+  <br><%= hidden_field_tag("id",name.id) %>
+<% end %>

@@ -4,13 +4,13 @@
         <div id="search-tools-slider-param-q"><%= params[:q] %></div>
         <ul class="dash">
           <li class="">
-            <%= link_to "Included #{fa_icon('check') if params[:controller].match(/\/included\z/)}".html_safe,
-                        plants_taxonomy_accepted_search_included_path(q: params['q']),
+            <%= link_to "Accepted #{fa_icon('check') if params[:controller].match(/\/accepted\z/)}".html_safe,
+                        plants_taxonomy_accepted_search_accepted_path(q: params['q']),
                         class: "tiny needs-details-limit",
                         title: "Run the currently displayed search again for all names.  Open the search page for all names if no currently displayed search." %>
           </li>
           <li class="">
-            <%= link_to "Included or excluded #{fa_icon('check') if params[:controller].match(/\/all\z/)}".html_safe,
+            <%= link_to "Accepted and excluded #{fa_icon('check') if params[:controller].match(/\/all\z/)}".html_safe,
                         plants_taxonomy_accepted_search_all_path(q: params['q']),
                         class: "tiny needs-details-limit",
                         title: "Run the currently displayed search again for all names.  Open the search page for all names if no currently displayed search." %>

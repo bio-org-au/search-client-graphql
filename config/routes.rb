@@ -11,6 +11,11 @@ Rails.application.routes.draw do
   match "/plants/names/within/genus/search", as: "plants_names_within_genus_search", to: "plants/names/within/genus#search", via: :get
   match "/plants/names/within/genus", as: "plants_names_within_genus", to: "plants/names/within/genus#index", via: :get
   match "/plants/names/search/within/taxon/:id/at/rank/:rank", as: "plants_names_search_within_taxon_at_rank", to: "plants/names/search/within/taxon/at/rank#index", via: :get
+  match "/plants/names/search/within/taxon/:id/ranks", as: "plants_names_search_within_taxon_ranks", to: "plants/names/search/within/taxon/ranks#index", via: :get
+  match "/plants/names/search/within/taxon/:id/consolidated", as: "plants_names_search_within_taxon_consolidated", to: "plants/names/search/within/taxon/consolidated#index", via: :get
+
+  match "/plants/names/search/within/taxon/consolidated_ranks/search", as: "plants_names_search_within_taxon_consolidated_ranks_search", to: "plants/names/search/within/taxon/consolidated_ranks/search#index", via: :get
+  match "/plants/names/search/within/taxon/:id/consolidated_ranks", as: "plants_names_search_within_taxon_consolidated_ranks", to: "plants/names/search/within/taxon/consolidated_ranks#index", via: :get
   match "/plants/names/search/within/taxon/:id", as: "plants_names_search_within_taxon", to: "plants/names/search/within/taxon#index", via: :get
   match "/plants/names/within", as: "plants_names_within", to: "plants/names/within#index", via: :get
   match "/plants/names/advanced", as: "plants_names_advanced", to: "plants/names/advanced#index", via: :get
@@ -18,7 +23,7 @@ Rails.application.routes.draw do
   match "/plants/names/search", as: "plants_names_search", to: "plants/names/search#index", via: :get
   match "/plants/name/:id", as: "plants_names_show", to: "plants/names#show", via: :get
 
-  match "/plants/taxonomy/accepted/search/included", as: "plants_taxonomy_accepted_search_included", to: "plants/taxonomy/accepted/search/included#index", via: :get
+  match "/plants/taxonomy/accepted/search/accepted", as: "plants_taxonomy_accepted_search_accepted", to: "plants/taxonomy/accepted/search/accepted#index", via: :get
   match "/plants/taxonomy/accepted/search/excluded", as: "plants_taxonomy_accepted_search_excluded", to: "plants/taxonomy/accepted/search/excluded#index", via: :get
   match "/plants/taxonomy/accepted/search/all", as: "plants_taxonomy_accepted_search_all", to: "plants/taxonomy/accepted/search/all#index", via: :get
   match "/plants/taxonomy/other", as: "plants_taxonomy_other", to: "plants/taxonomy/other#index", via: :get

@@ -1,0 +1,14 @@
+<% content_for :page_title do %>
+  Vascular Plant Names Search
+<% end %>
+<% content_for :page_banner do %>
+  <h1>APNI Names Within A Taxon - Consolidated</h1>
+<% end %>
+<% content_for :sidebar do %>
+  <%= render "sidebar" %>
+<% end %>
+
+<%= render "search" %>
+<h2><%= @name.full_name %></h2>
+
+<%= render partial: 'index', locals: {name: @name} %>

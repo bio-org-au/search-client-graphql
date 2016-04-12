@@ -9,13 +9,13 @@
 <% end %>
 
 
-<p>Names considered in the APC may be included or excluded.
+<p>Names considered in the APC may be accepted or excluded.
         <ul class="">
           <li class="">
-            <%= link_to "Included names.",
-                        plants_taxonomy_accepted_search_included_path(q: params['q']),
+            <%= link_to "Accepted names.",
+                        plants_taxonomy_accepted_search_accepted_path(q: params['q']),
                         class: "",
-                        title: "APC search for included names" %>
+                        title: "APC search for accepted names" %>
           
           </li>
           <li class="">
@@ -25,10 +25,10 @@
                         title: "APC search for excluded names" %>
           </li>
           <li class="">
-            <%= link_to "Included or excluded names",
+            <%= link_to "Accepted and excluded names",
                         plants_taxonomy_accepted_search_all_path(q: params['q']),
                         class: "",
-                        title: "APC search for names that are included or excluded" %>
+                        title: "APC search for names that are accepted or excluded" %>
           </li>
         </ul>
 
