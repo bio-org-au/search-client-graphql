@@ -16,42 +16,41 @@
                     plants_names_search_path,
                     class: "bd-toc-link",
                     title: "APNI Simple Name Search" %>
-        <%= link_to "Scientific".html_safe,
-                    plants_names_search_scientific_path,
-                    class: "bd-toc-link",
-                    title: "APNI Scientific Name Search" %>
-        <%= render 'layouts/back_link' %>
-      </div>
-  </nav>
-
-      <% if false && @search.present? && @search.results.size > 0 %>
-      <hr>
-      <div class="bd-toc-item active">
-      <a name="viewing-options" class="tiny bd-toc-link" title="Viewing options for the search results">Results as:</a>
-        <ul class="nav bd-sidenav">
-          <li class="">
-            <%= link_to %(List &nbsp; #{fa_icon('check') if @search.parsed.show_list?}).html_safe,
-                        plants_names_search_path(q: params['q'], pc: params[:controller], show_results_as: 'list'),
-                        class: "tiny",
-                        title: "Re-run the search as a list." %>
+      <hr/>
+      <ul class="nav bd-sidenav">
+          <li class="active">
+            <%= link_to "Scientific&nbsp;#{fa_icon('check')}".html_safe,
+                        plants_names_search_scientific_path(q: params[:q], nt: "s"),
+                        class: "name-type-switch-link",
+                        data: {switch_to: "scientific"},
+                        title: "Scientific name search." %>
           </li>
           <li class="">
-            <%= link_to %(Details &nbsp; #{fa_icon('check') if session[:default_show_results_as].match(/\Adetails\z/i)}).html_safe,
-                        plants_names_search_path(q: params['q'], pc: params[:controller], show_results_as: 'details'),
-                        class: "tiny",
-                        title: "Re-run the search showing details." %>
+            <%= link_to "Cultivar",
+                        plants_names_search_cultivar_path(q: params[:q], nt: "v"),
+                        class: "name-type-switch-link",
+                        data: {switch_to: "cultivar"},
+                        title: "Cultivar name search." %>
           </li>
-          <hr/>
-          <li>
-            <a href="javascript:window.print()" title="Print the page">Print</a>
+          <li class="">
+            <%= link_to "Common",
+                        plants_names_search_common_path(q: params[:q], nt: 'c'),
+                        class: "name-type-switch-link",
+                        data: {switch_to: "common"},
+                        title: "Common or informal name search." %>
           </li>
-          <li>
-            <a href="javascript:body.select()" title="Select the data">Select</a>
+          <li class="">
+            <%= link_to "All",
+                        plants_names_search_all_path(q: params[:q]),
+                        class: "name-type-switch-link",
+                        data: {switch_to: "all"},
+                        title: "Search across all name types." %>
           </li>
         </ul>
+        <%= render 'layouts/back_link' %>
       </div>
-      <hr>
-      <% end %>
+
+  </nav>
 
 
   <br/>

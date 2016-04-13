@@ -1,3 +1,4 @@
+#  Name object methods
 class Name < ActiveRecord::Base
   self.table_name = "name"
   self.primary_key = "id"
@@ -14,9 +15,9 @@ class Name < ActiveRecord::Base
   scope :has_an_instance, -> { where(["exists (select null from instance where name.id = instance.name_id)"]) }
   scope :lower_full_name_like, ->(string) { where("lower(f_unaccent(full_name)) like lower(f_unaccent(?)) ", string.gsub(/\*/, "%").downcase) }
   scope :lower_simple_name_like, ->(string) { where("lower((simple_name)) like lower((?)) ", string.gsub(/\*/, "%").downcase) }
- 
+
   def instances_in_order
-    self.instances.sort do |x,y|
+    self.instances.sort do |x, y|
       x.sort_fields <=> y.sort_fields
     end
   end
@@ -27,14 +28,14 @@ class Name < ActiveRecord::Base
         .includes(:status)
         .joins(:tree_arrangements)
         .where("tree_arrangement.label = 'APNI' ")
-      .order('name_tree_path.rank_path, name.full_name')
+        .order('name_tree_path.rank_path, name.full_name')
   end
 
   def self.accepted_search
     Name.includes(:status)
         .joins(:tree_arrangements)
         .where("tree_arrangement.label = 'APC' ")
-      .order('name_tree_path.rank_path')
+      .order("name_tree_path.rank_path")
   end
 
   def family?
@@ -62,16 +63,16 @@ class Name < ActiveRecord::Base
   end
 
   def apc_instance_id
-    TreeNode.apc(full_name).try('first').try('instance_id')
+    TreeNode.apc(full_name).try("first").try("instance_id")
   end
 
   def pg_descendants
-    rid = self.id
+    rid = id
     Name.join_recursive do
       start_with(id: rid)
-      .connect_by(id: :parent_id)
-      .order_siblings(:full_name)
-      .nocycle
+        .connect_by(id: :parent_id)
+        .order_siblings(:full_name)
+        .nocycle
     end
   end
 
@@ -87,16 +88,17 @@ class Name < ActiveRecord::Base
         name_rank tnr
         on tn.name_rank_id = tnr.id
   WHERE tn.id = #{ActiveRecord::Base.sanitize(id)}
-UNION ALL                   
+UNION ALL
  SELECT c.id, c.full_name, c.parent_id, p.depth + 1 AS depth,
-        (p.path || '->' || c.id::TEXT), cnr.name as rank, cnr.sort_order rank_order
+        (p.path || '->' || c.id::TEXT), cnr.name as rank,
+        cnr.sort_order rank_order
    FROM nodes_cte AS p, name AS c
         join name_rank cnr
         on c.name_rank_id = cnr.id
   WHERE c.parent_id = p.id
-)                                                                
-SELECT n.rank, count(*) FROM nodes_cte AS n
- where exists (select null from instance where instance.name_id = n.id) 
+)
+ SELECT n.rank, count(*) FROM nodes_cte AS n
+ where exists (select null from instance where instance.name_id = n.id)
    and n.id != #{ActiveRecord::Base.sanitize(id)}
   group by n.rank, n.rank_order
   order by n.rank_order"
@@ -112,14 +114,15 @@ SELECT n.rank, count(*) FROM nodes_cte AS n
         name_rank tnr
         on tn.name_rank_id = tnr.id
   WHERE tn.id = #{ActiveRecord::Base.sanitize(id)}
-UNION ALL                   
+UNION ALL
  SELECT c.id, c.full_name, c.parent_id, p.depth + 1 AS depth,
-        (p.path || '->' || c.id::TEXT), cnr.name as rank, cnr.sort_order rank_order
+        (p.path || '->' || c.id::TEXT),
+        cnr.name as rank, cnr.sort_order rank_order
    FROM nodes_cte AS p, name AS c
         join name_rank cnr
         on c.name_rank_id = cnr.id
   WHERE c.parent_id = p.id
-)                                                                
+)
 SELECT n.id, n.full_name FROM nodes_cte AS n
        inner join
        name_tree_path ntp
@@ -129,7 +132,7 @@ SELECT n.id, n.full_name FROM nodes_cte AS n
        on ta.id = ntp.tree_id
   where n.rank = #{ActiveRecord::Base.sanitize(rank_name)}
     and ta.label = 'APNI'
-    and exists (select null from instance where instance.name_id = n.id) 
+    and exists (select null from instance where instance.name_id = n.id)
   order by n.full_name"
   ActiveRecord::Base.connection.execute(sql)
   end
@@ -143,20 +146,21 @@ SELECT n.id, n.full_name FROM nodes_cte AS n
         name_rank tnr
         on tn.name_rank_id = tnr.id
   WHERE tn.id = #{id}
-UNION ALL                   
+UNION ALL
  SELECT c.id, c.full_name, c.parent_id, p.depth + 1 AS depth,
-        (p.path || '->' || c.id::TEXT), cnr.name as rank, cnr.sort_order rank_order
+        (p.path || '->' || c.id::TEXT),
+        cnr.name as rank, cnr.sort_order rank_order
    FROM nodes_cte AS p, name AS c
         join name_rank cnr
         on c.name_rank_id = cnr.id
   WHERE c.parent_id = p.id
-)                                                                
+)
 SELECT 1 FROM nodes_cte AS n
-  where exists (select null from instance where instance.name_id = n.id) 
+  where exists (select null from instance where instance.name_id = n.id)
 limit 3"
     results = ActiveRecord::Base.connection.execute(sql)
     max = 0
-    results.each_with_index do |result,index|
+    results.each_with_index do |result, index|
       max = index
     end
     Rails.logger.debug("max: #{max}")
@@ -176,15 +180,16 @@ limit 3"
         name_rank tnr
         on tn.name_rank_id = tnr.id
   WHERE tn.id = #{ActiveRecord::Base.sanitize(id)}
-UNION ALL                   
+UNION ALL
  SELECT c.id, c.full_name, c.parent_id, p.depth + 1 AS depth,
-        (p.path || '->' || c.id::TEXT), cnr.name as rank, cnr.sort_order rank_order
+        (p.path || '->' || c.id::TEXT),
+        cnr.name as rank, cnr.sort_order rank_order
    FROM nodes_cte AS p, name AS c
         join name_rank cnr
         on c.name_rank_id = cnr.id
   WHERE c.parent_id = p.id
-)                                                                
-SELECT n.id, n.full_name
+)
+ SELECT n.id, n.full_name
   FROM nodes_cte AS n
        inner join
        name_tree_path ntp
@@ -193,7 +198,7 @@ SELECT n.id, n.full_name
        tree_arrangement ta
        on ta.id = ntp.tree_id
   where ta.label = 'APNI'
-    and exists (select null from instance where instance.name_id = n.id) 
+    and exists (select null from instance where instance.name_id = n.id)
     and n.id != #{ActiveRecord::Base.sanitize(id)}
   order by ntp.rank_path, n.full_name"
   ActiveRecord::Base.connection.execute(sql)
@@ -208,14 +213,15 @@ SELECT n.id, n.full_name
         name_rank tnr
         on tn.name_rank_id = tnr.id
   WHERE tn.id = #{ActiveRecord::Base.sanitize(id)}
-UNION ALL                   
+UNION ALL
  SELECT c.id, c.full_name, c.parent_id, p.depth + 1 AS depth,
-        (p.path || '->' || c.id::TEXT), cnr.name as rank, cnr.sort_order rank_order
+        (p.path || '->' || c.id::TEXT),
+        cnr.name as rank, cnr.sort_order rank_order
    FROM nodes_cte AS p, name AS c
         join name_rank cnr
         on c.name_rank_id = cnr.id
   WHERE c.parent_id = p.id
-)                                                                
+)
 SELECT n.id, n.full_name
   FROM nodes_cte AS n
        inner join
@@ -225,14 +231,14 @@ SELECT n.id, n.full_name
        tree_arrangement ta
        on ta.id = ntp.tree_id
   where ta.label = 'APNI'
-    and exists (select null from instance where instance.name_id = n.id) 
+    and exists (select null from instance where instance.name_id = n.id)
     and n.id != #{ActiveRecord::Base.sanitize(id)}
     and n.rank in " + ranks +
-  "order by ntp.rank_path, n.full_name"
+        "order by ntp.rank_path, n.full_name"
   ActiveRecord::Base.connection.execute(sql)
   end
 
   def show_status?
     status.show?
   end
-end 
+end

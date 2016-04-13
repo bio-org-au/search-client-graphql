@@ -22,13 +22,13 @@
                     title: "Search APNI names" %>
         <hr>
         <ul class="nav bd-sidenav">
-          <li class="bd-sidenav-active">
+          <li class="active bd-sidenav-active">
             <%= link_to("Rank counts #{fa_icon('check')}".html_safe,
                         plants_names_search_within_taxon_ranks_path(@name.id),
                         class: "",
                         title: "Rank counts for names within a taxon")%>
           </li>
-          <li class="active bd-sidenav-active">
+          <li class="bd-sidenav-active">
             <%= link_to "Consolidated",
                         plants_names_search_within_taxon_consolidated_path(@name.id),
                         class: "",

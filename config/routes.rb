@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
+  get "welcome/index"
 
   match "/plants/names/search/defaults/show_results_as", as: "plants_names_search_defaults_show_as", to: "plants/names/search/defaults/show_as#update", via: :post
   match "/plants/names/details", as: "plants_names_details", to: "plants/names/details#index", via: :get
@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   match "/plants/taxonomy/accepted/checklist", as: "plants_taxonomy_accepted_checklist", to: "plants/taxonomy/accepted/checklist#index", via: :get
   match "/plants/taxonomy/accepted/within", as: "plants_taxonomy_accepted_within", to: "plants/taxonomy/accepted/within#index", via: :get
   match "/plants/taxonomy/accepted/search", as: "plants_taxonomy_accepted_search", to: "plants/taxonomy/accepted/search#index", via: :get
+  match "/plants/taxonomy/accepted/:id", as: "plants_taxonomy_accepted_show", to: "plants/taxonomy/accepted#show", via: :get
   match "/plants/taxonomy/accepted", as: "plants_taxonomy_accepted", to: "plants/taxonomy/accepted#index", via: :get
   match "/plants/taxonomy", as: "plants_taxonomy", to: "plants/taxonomy#index", via: :get
   match "/plants/names", as: "plants_names", to: "plants/names#index", via: :get
@@ -40,34 +41,34 @@ Rails.application.routes.draw do
   match "/algae", as: "algae", to: "algae#index", via: :get
   match "/fauna", as: "fauna", to: "fauna#index", via: :get
 
-  match "/apni/about", as: "about_apni", to: 'apni#about', via: :get
-  match "/apni/index", as: "apni_index", to: 'apni#index', via: :get
-  match "/apni/search", as: "apni_search", to: 'apni#search', via: :get
-  match "/apni", as: "apni", to: 'apni#index', via: :get
+  match "/apni/about", as: "about_apni", to: "apni#about", via: :get
+  match "/apni/index", as: "apni_index", to: "apni#index", via: :get
+  match "/apni/search", as: "apni_search", to: "apni#search", via: :get
+  match "/apni", as: "apni", to: "apni#index", via: :get
 
-  get 'apc/index'
-  match "/apc", as: "apc", to: 'apc#index', via: :get
+  get "apc/index"
+  match "/apc", as: "apc", to: "apc#index", via: :get
 
-  get 'apni/search'
+  get "apni/search"
 
-  get 'search/index'
+  get "search/index"
 
-  get 'search/apni'
+  get "search/apni"
 
-  get 'search/apc'
+  get "search/apc"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index', as: "welcome", via: :get
+  root "welcome#index", as: "welcome", via: :get
 
   # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  #   get "products/:id" => "catalog#view"
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  #   get "products/:id/purchase" => "catalog#purchase", as: :purchase
 
   # Example resource route
   # (maps HTTP verbs to controller actions automatically):
@@ -76,12 +77,12 @@ Rails.application.routes.draw do
   # Example resource route with options:
   #   resources :products do
   #     member do
-  #       get 'short'
-  #       post 'toggle'
+  #       get "short"
+  #       post "toggle"
   #     end
   #
   #     collection do
-  #       get 'sold'
+  #       get "sold"
   #     end
   #   end
 
@@ -95,13 +96,13 @@ Rails.application.routes.draw do
   #   resources :products do
   #     resources :comments
   #     resources :sales do
-  #       get 'recent', on: :collection
+  #       get "recent", on: :collection
   #     end
   #   end
 
   # Example resource route with concerns:
   #   concern :toggleable do
-  #     post 'toggle'
+  #     post "toggle"
   #   end
   #   resources :posts, concerns: :toggleable
   #   resources :photos, concerns: :toggleable

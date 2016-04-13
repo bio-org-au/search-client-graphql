@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class Plants::Names::Search::CommonControllerTest < ActionController::TestCase
   # test "the truth" do
