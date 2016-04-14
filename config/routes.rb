@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   match "/plants/taxonomy/accepted/search/accepted", as: "plants_taxonomy_accepted_search_accepted", to: "plants/taxonomy/accepted/search/accepted#index", via: :get
   match "/plants/taxonomy/accepted/search/excluded", as: "plants_taxonomy_accepted_search_excluded", to: "plants/taxonomy/accepted/search/excluded#index", via: :get
   match "/plants/taxonomy/accepted/search/all", as: "plants_taxonomy_accepted_search_all", to: "plants/taxonomy/accepted/search/all#index", via: :get
+  match "/plants/taxonomy/accepted/search/accepted-and-excluded", as: "plants_taxonomy_accepted_search_accepted_and_excluded", to: "plants/taxonomy/accepted/search/accepted_and_excluded#index", via: :get
   match "/plants/taxonomy/other", as: "plants_taxonomy_other", to: "plants/taxonomy/other#index", via: :get
   match "/plants/taxonomy/accepted/checklist", as: "plants_taxonomy_accepted_checklist", to: "plants/taxonomy/accepted/checklist#index", via: :get
   match "/plants/taxonomy/accepted/within", as: "plants_taxonomy_accepted_within", to: "plants/taxonomy/accepted/within#index", via: :get

@@ -1,0 +1,97 @@
+<% if @search.present? %>
+<div id="search-tools-slider" class="<%= 'hidden' unless @search.present? %> hidden-print">
+      <div class="bd-toc-item active">
+        <%= params[:q] %>
+        <ul class="dash">
+            <li class="">
+            <%= link_to "Scientific #{fa_icon('check') if params[:controller].match(/scientific/)}".html_safe,
+                        plants_names_search_scientific_path(q: params["q"], nt: "s"),
+                        class: "tiny needs-details-limit",
+                        title: "Run the currently displayed search again for scientific names.  Open the scientific search page if no currently displayed search." %>
+          </li>
+          <li class="">
+            <%= link_to "Cultivar #{fa_icon('check') if params[:controller].match(/cultivar/)}".html_safe,
+                        plants_names_search_cultivar_path(q: params['q'], nt: "v"),
+                        class: "tiny needs-details-limit",
+                        title: "Run the currently displayed search again for cultivar names.  Open the Cultivar search page if no currently displayed search." %>
+          </li>
+          <li class="">
+            <%= link_to "Common #{fa_icon('check') if params[:controller].match(/common/)}".html_safe,
+                        plants_names_search_common_path(q: params['q'], nt: 'c'),
+                        class: "tiny needs-details-limit",
+                        title: "Run the currently displayed search again for common names.  Open the Common Name search page if no currently displayed search." %>
+          </li>
+          <li class="">
+            <%= link_to "All #{fa_icon('check') if params[:controller].match(/\/all\z/)}".html_safe,
+                        plants_names_search_all_path(q: params['q']),
+                        class: "tiny needs-details-limit",
+                        title: "Run the currently displayed search again for all names.  Open the search page for all names if no currently displayed search." %>
+          </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+          <li class="">
+            <%= link_to "New Search".html_safe,
+                        plants_names_search_path(),
+                        class: "tiny",
+                        title: "New search." %>
+          </li>
+          <li class="">
+            <a href="javascript:void(0)"
+               class="tiny nav-new-search"
+               title="Go to the search field and clear it">Clear</a>
+          </li>
+          <hr/>
+          Results
+          <li class="">
+            <%= link_to %(List &nbsp; #{fa_icon('check') if @search.parsed.show_list?}).html_safe,
+                        plants_names_search_path(q: params['q'], pc: params[:controller], show_results_as: 'list'),
+                        class: "tiny needs-details-limit",
+                        title: "Re-run the search as a list." %>
+          </li>
+          <li class="">
+            <%= link_to %(Details &nbsp; #{fa_icon('check') if @search.parsed.show_details?}).html_safe,
+                        plants_names_search_path(q: params['q'], pc: params[:controller], show_results_as: 'details'),
+                        class: "tiny needs-details-limit",
+                        title: "Re-run the search showing details." %>
+            <input type="number"
+                   min="1"
+                   max="1000"
+                   step="1"
+                   value="<%= session[:default_details_limit] %>"
+                   name="details-limit"
+                   id="details-limit-field"
+                   class="">
+          </li>
+          <hr/>
+          <li>
+            <a href="javascript:window.print()"
+               class="tiny"
+               title="Print the page">Print</a>
+          </li>
+          <hr/>
+          <li class="gray tiny">
+            Top: 
+            <a href="#top"
+               class="tiny"
+               title="Go to the top of the page"><%= fa_stacked_icon "chevron-up inverse", base: "square" %></a>&nbsp; 
+          </li>
+          <li class="gray tiny">
+            <a href="javascript:history.go(-1);"
+               class="tiny"
+               title="Go back one page"><%= fa_stacked_icon "chevron-left inverse", base: "square" %></a>&nbsp; 
+            Back&nbsp;&mdash;&nbsp;Forward: 
+            <a href="javascript:history.go(1);"
+               class="tiny"
+               title="Go forward one page"><%= fa_stacked_icon "chevron-right inverse", base: "square" %></a>
+          </li>
+          <li class="gray tiny">
+            Bottom: 
+            <a href="#footer"
+               class="tiny"
+               title="Go to the bottom of the page"><%= fa_stacked_icon "chevron-down inverse", base: "square" %></a>&nbsp; 
+          </li>
+        </ul>
+  </div>
+</div>
+<% end %>
+

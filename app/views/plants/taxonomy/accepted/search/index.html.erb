@@ -26,12 +26,18 @@
           </li>
           <li class="">
             <%= link_to "Accepted and excluded names",
-                        plants_taxonomy_accepted_search_all_path(q: params['q']),
+                        plants_taxonomy_accepted_search_accepted_and_excluded_path(q: params['q']),
                         class: "",
                         title: "APC search for names that are accepted or excluded" %>
           </li>
+          <li class="">
+            <%= link_to "All names",
+                        plants_taxonomy_accepted_search_all_path(q: params['q']),
+                        class: "",
+                        title: "APC search for names that are accepted, excluded, or synonyms" %>
+          </li>
         </ul>
 
-        <p>Although the authority is included in some names e.g. scientific names, this search does not match on the authority.</p>
+        <p>Although the authority is included in some names e.g. scientific names, this search can match on names with or without authorities.</p>
   <br/>
-  <span class="debug tiny hidden-print">[plants/names/search/_sidebar]</span>
+  <span class="debug tiny hidden-print">[plants/taxonomy/accepted/search/index]</span>

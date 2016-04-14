@@ -29,12 +29,12 @@
                         title: "Search for excluded names only." %>
           </li>
           <li class="">
-            <%= link_to "Accepted and excluded",
+            <%= link_to "Accepted and excluded&nbsp;#{fa_icon('check')}".html_safe,
                         plants_taxonomy_accepted_search_accepted_and_excluded_path(q: params['q']),
                         title: "Search for names that are accepted or excluded." %>
           </li>
           <li class="">
-            <%= link_to "All&nbsp;#{fa_icon('check')}".html_safe,
+            <%= link_to "All",
                         plants_taxonomy_accepted_search_all_path(q: params['q']),
                         title: "Search for names that are accepted or excluded or synonyms." %>
           </li>
@@ -44,6 +44,6 @@
   </nav>
     <br/>
       <span class="debug hidden-print">
-        app/views/plants/taxonomy/accepted/search/all/_sidebar
+        app/views/plants/taxonomy/accepted/search/accepted_and_excluded/_sidebar
       </span>
 

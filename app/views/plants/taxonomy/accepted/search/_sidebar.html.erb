@@ -29,8 +29,13 @@
           </li>
           <li class="">
             <%= link_to "Accepted and excluded",
-                        plants_taxonomy_accepted_search_all_path(q: params['q']),
+                        plants_taxonomy_accepted_search_accepted_and_excluded_path(q: params['q']),
                         title: "Search for names that are accepted or excluded." %>
+          </li>
+          <li class="">
+            <%= link_to "All",
+                        plants_taxonomy_accepted_search_all_path(q: params['q']),
+                        title: "Search for names that are accepted, excluded, or synonyms." %>
           </li>
         </ul>
         <%= render 'layouts/back_link' %>

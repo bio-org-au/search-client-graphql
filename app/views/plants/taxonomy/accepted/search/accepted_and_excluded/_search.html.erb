@@ -1,4 +1,4 @@
-<%= form_tag(plants_taxonomy_accepted_search_excluded_path, method: "get", id: "search-form") do %>
+<%= form_tag(plants_taxonomy_accepted_search_accepted_and_excluded_path, method: "get", id: "search-form") do %>
   <div class="form-group row">
     <%= label_tag(:q,
                   "Search for:",
@@ -9,7 +9,7 @@
                        class: "form-control",
                        value: "#{params[:q]}",
                        autofocus: true,
-                       placeholder: "Search excluded names") %>
+                       placeholder: "Search accepted and excluded names") %>
     </div>
     <input type="hidden" 
            min="0"
@@ -24,7 +24,7 @@
 <% end %>
 
 <% if @search.present? %>
-  <%= "<span class='search-result-summary'>#{pluralize(@search.results.size, 'excluded name')}</span>".html_safe %>
+  <%= "<span class='search-result-summary'>#{pluralize(@search.results.size, 'accepted or excluded name')}</span>".html_safe %>
 <% end %>
 <br/>
 <br/>
@@ -32,4 +32,4 @@
 <% if @search.present? %>
   <%= render partial: '/plants/names/search/results', locals: {name: @search.results.first} %>
 <% end %>
-<span class="debug hidden-print tiny">[plants/taxonomy/accepted/search/excluded/_search]</span>
+<span class="debug hidden-print tiny">[plants/taxonomy/accepted_and_excluded/search/all/_search]</span>

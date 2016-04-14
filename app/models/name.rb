@@ -38,6 +38,13 @@ class Name < ActiveRecord::Base
       .order("name_tree_path.rank_path")
   end
 
+  def self.accepted_and_excluded_search
+    Name.includes(:status)
+        .joins(:tree_arrangements)
+        .where("tree_arrangement.label = 'APC' ")
+      .order("name_tree_path.rank_path")
+  end
+
   def family?
     rank.family?
   end
