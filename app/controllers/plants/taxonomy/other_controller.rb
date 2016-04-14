@@ -5,6 +5,7 @@ class Plants::Taxonomy::OtherController < ApplicationController
   end
 
   def show
+    @taxonomies = Plants::Taxonomy::Other::TAXONOMIES
     @taxonomy = Plants::Taxonomy::Other.new(params[:id])
   end
 
