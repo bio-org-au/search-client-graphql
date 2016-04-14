@@ -9,14 +9,26 @@
                     class: "bd-toc-link",
                     title: "Vascular Plants" %>
         <%= link_to "Other taxonomies",
-                    "#",
+                    plants_taxonomy_other_path,
                     class: "bd-toc-link",
-                    title: "Vascular Plant Taxonomy - Other" %>
+                    title: "Other taxonomies" %>
+        <hr>
         <ul class="nav bd-sidenav">
-            <li class="">
-            </li>
+        <% Plants::Taxonomy::Other::TAXONOMIES.each_pair do | key, taxonomy | %>
+          <% if params[:id] == key %>
+            <li>
+              <%= link_to(ticked(taxonomy[:name]),
+                          plants_taxonomy_other_show_path(key)) %>
+            </li> 
+          <% else %>
+            <li>
+              <%= link_to(taxonomy[:name],
+                          plants_taxonomy_other_show_path(key)) %>
+            </li> 
+          <% end %>
+        <% end %>
         </ul>
-      <%= render 'layouts/back_link' %>
+        <%= render 'layouts/back_link' %>
       </div>
   </nav>
     <br/>

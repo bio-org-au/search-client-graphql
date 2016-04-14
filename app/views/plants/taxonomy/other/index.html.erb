@@ -8,8 +8,20 @@
   <%= render "sidebar" %>
 <% end %>
 
+<p>Biodiversity Australia supports taxonomies other than the nationally
+accepted taxonomy.
+</p>
 
-    <br/>
-      <span class="debug hidden-print tiny">
-        app/views/plants/taxonomy/other/_sidebar
-      </span>
+<p>Those other taxonomies [will] include:
+</p>
+<ul>
+<% Plants::Taxonomy::Other::TAXONOMIES.each_pair do | key, taxonomy | %>
+  <li><%= link_to(taxonomy[:name], plants_taxonomy_other_show_path(key)) %></li> 
+<% end %>
+</ul>
+<br>
+
+
+<span class="debug hidden-print tiny">
+  app/views/plants/taxonomy/other/index
+</span>

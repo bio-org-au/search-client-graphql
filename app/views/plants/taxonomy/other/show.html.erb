@@ -1,0 +1,26 @@
+<% content_for :page_title do %>
+  Vascular Plant Taxonomy &mdash; Accepted
+<% end %>
+<% content_for :page_banner do %>
+  <h1><%= @taxonomy.name %></h1>
+<% end %>
+<% content_for :sidebar do %>
+  <%= render "sidebar" %>
+<% end %>
+
+
+<p>
+<%= @taxonomy.intro %>
+</p>
+<br/>
+<br/>
+<br/>
+  <h2><%= @taxonomy.key %></h2>
+<br/>
+  <h2><%= @taxonomy.name %></h2>
+<br/>
+<br/>
+<br/>
+<span class="debug hidden-print tiny">
+  app/views/plants/taxonomy/other/show
+</span>
