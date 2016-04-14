@@ -22,23 +22,23 @@
                     title: "Search APNI names" %>
         <hr>
         <ul class="nav bd-sidenav">
+          <li class="bd-sidenav-active">
+            <%= link_to "Summary",
+                        plants_names_search_within_taxon_summary_path(@name.id),
+                        class: "",
+                        title: "Summary of names within a taxon" %>
+          </li>
+          <li class="bd-sidenav-active">
+            <%= link_to "Selected ranks",
+                        plants_names_search_within_taxon_selected_ranks_path(@name.id),
+                        class: "",
+                        title: "Names in selected ranks within a taxon" %>
+          </li>
           <li class="active bd-sidenav-active">
-            <%= link_to("Rank counts #{fa_icon('check')}".html_safe,
-                        plants_names_search_within_taxon_ranks_path(@name.id),
+            <%= link_to("All #{fa_icon('check')}".html_safe,
+                        plants_names_search_within_taxon_all_path(@name.id),
                         class: "",
-                        title: "Rank counts for names within a taxon")%>
-          </li>
-          <li class="bd-sidenav-active">
-            <%= link_to "Consolidated",
-                        plants_names_search_within_taxon_consolidated_path(@name.id),
-                        class: "",
-                        title: "Consolidated for names within a taxon" %>
-          </li>
-          <li class="bd-sidenav-active">
-            <%= link_to "Consolidated ranks".html_safe,
-                        plants_names_search_within_taxon_consolidated_ranks_path(@name.id),
-                        class: "",
-                        title: "Consolidated for selected ranks of names within a taxon" %>
+                        title: "All names within a taxon")%>
           </li>
         </ul>
       </div>

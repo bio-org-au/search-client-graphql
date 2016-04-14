@@ -1,4 +1,4 @@
-class Plants::Names::Search::Within::Taxon::RanksController < ApplicationController
+class Plants::Names::Search::Within::Taxon::AllController < ApplicationController
   def index
     @name = Name.find(params[:id])
     render action: "index"

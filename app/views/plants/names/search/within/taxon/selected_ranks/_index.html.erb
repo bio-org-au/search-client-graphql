@@ -3,7 +3,7 @@
 <hr>
 
 
-<%= form_tag(plants_names_search_within_taxon_consolidated_ranks_search_path,
+<%= form_tag(plants_names_search_within_taxon_selected_ranks_search_path,
              method: "get") do %>
   <% name.pg_ranked_descendant_counts.each do |d| %>
     <%= check_box_tag(d['rank']) %>

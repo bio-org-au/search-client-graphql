@@ -2,7 +2,7 @@
 <%= "name".pluralize(name.pg_apni_descendants.cmd_tuples) %>
 <hr>
 
-<%= form_tag(plants_names_search_within_taxon_consolidated_ranks_search_path,
+<%= form_tag(plants_names_search_within_taxon_selected_ranks_search_path,
              method: "get") do %>
   <% name.pg_ranked_descendant_counts.each do |d| %>
     <%# Some ranks are in square brackets, which messes with the params. %>
@@ -19,8 +19,11 @@
   <br><%= hidden_field_tag("id",name.id) %>
 <% end %>
 
-<br>
 <hr>
+<%= name.pg_apni_descendants_for_ranks(@ranks).cmd_tuples %>
+<%= "name".pluralize(name.pg_apni_descendants_for_ranks(@ranks).cmd_tuples) %> in selected ranks
+<br>
+<br>
 <ul>
 <% name.pg_apni_descendants_for_ranks(@ranks).each do |d| %>
   <% target_id = new_target_id %>
