@@ -17,13 +17,13 @@
           Results
           <li class="">
             <%= link_to %(List &nbsp; #{fa_icon('check') if @search.parsed.show_list?}).html_safe,
-                        plants_taxonomy_accepted_search_path(q: params['q'], pc: params[:controller], show_results_as: 'list'),
+                        plants_taxonomy_accepted_search_all_path(q: params['q'], show_results_as: "list"),
                         class: "tiny needs-details-limit",
                         title: "Re-run the search as a list." %>
           </li>
           <li class="">
             <%= link_to %(Details &nbsp; #{fa_icon('check') if @search.parsed.show_details?}).html_safe,
-                        plants_taxonomy_accepted_search_path(q: params['q'], pc: params[:controller], show_results_as: 'details'),
+                        plants_taxonomy_accepted_search_all_path(q: params['q'], show_results_as: "details"),
                         class: "tiny needs-details-limit",
                         title: "Re-run the search showing details." %>
             <input type="number"
@@ -67,7 +67,7 @@
   </div>
     <br/>
       <span class="debug tiny hidden-print">
-        app/views/plants/taxonomy/_slider
+        app/views/plants/taxonomy/accepted/search/all/_slider
       </span>
 </div>
 <% end %>

@@ -3,5 +3,8 @@ class NameTreePath < ActiveRecord::Base
   self.primary_key = "id"
 
   belongs_to :name
-  belongs_to :tree_arrangement, foreign_key: "tree_id"
+  belongs_to :apni_name_tree_path, class_name: "Name"
+  belongs_to :apni_tree_arrangement, -> { where label: 'APNI' },
+             class_name: "TreeArrangement",
+             foreign_key: "tree_id"
 end

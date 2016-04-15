@@ -12,10 +12,11 @@
                     plants_taxonomy_accepted_path,
                     class: "bd-toc-link",
                     title: "Vascular Plant Taxonomy - Accepted by the Australian Plant Census" %>
-        <%= link_to "APC Name Search".html_safe,
+        <%= link_to ticked("APC Name Search"),
                     plants_taxonomy_accepted_search_path,
                     class: "bd-toc-link",
                     title: "Australian Plant Census Name Search" %>
+        <hr>
         <ul class="nav bd-sidenav">
           <li class="">
             <%= link_to "Accepted",

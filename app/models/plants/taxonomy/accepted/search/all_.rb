@@ -22,7 +22,7 @@ class Plants::Taxonomy::Accepted::Search::All_
   end
 
   def name_search
-    Name.accepted_search
+    Name.accepted_tree_search
         .joins(:name_type)
         .includes(:rank)
   end

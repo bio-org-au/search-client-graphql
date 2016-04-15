@@ -2,12 +2,15 @@
   Vascular Plant Taxonomy &mdash; Accepted
 <% end %>
 <% content_for :page_banner do %>
-  <h1>APC Taxonomy</h1>
+  <h1>APC</h1>
 <% end %>
 <% content_for :sidebar do %>
   <%= render "sidebar" %>
 <% end %>
 
+<p>
+The Australian Plant Census is....
+</p>
 <%= link_to("APC Name Search",
             plants_taxonomy_accepted_search_path,
             title: "APC Search Page") %> is the basic APC search page that searches on names and lets you provide wildcards (*).

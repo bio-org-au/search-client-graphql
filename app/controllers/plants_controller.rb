@@ -3,6 +3,6 @@ class PlantsController < ApplicationController
   private
 
   def set_zone
-    @zone = 'plants'
+    @zone = "plants"
   end
 end

@@ -10,6 +10,6 @@ class Plants::Names::Search::AllController < ApplicationController
   private
 
   def set_zone
-    @zone = 'plants'
+    @zone = "plants"
   end
 end

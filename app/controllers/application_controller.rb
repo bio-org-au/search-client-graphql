@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
   private
 
   def set_zone
-    @zone = ''
+    @zone = ""
   end
   def valid_show_results_as(user_preference = "blank")
     case user_preference.downcase.strip

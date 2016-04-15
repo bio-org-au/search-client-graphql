@@ -11,6 +11,6 @@ class Plants::Taxonomy::Accepted::Search::ExcludedController < ApplicationContro
   private
 
   def set_zone
-    @zone = 'plants'
+    @zone = "plants"
   end
 end

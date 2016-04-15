@@ -21,6 +21,7 @@
                         remote: true)
                       %>
                     <span class="debug name-rank" title="Name Rank"><%= name.rank.name %>:<%= name.rank.sort_order %></span>
+                    <span class="debug tree-info red" title="tree-info">[<%= name.apc_tree_nodes.pluck(:type_uri_id_part).join(',') %>]</span>
             <% if name.show_status? %>
               <span class="name-status" title="Name Status"><%= name.status.name %></span>
             <% end %>

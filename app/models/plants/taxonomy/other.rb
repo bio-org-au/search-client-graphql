@@ -2,26 +2,27 @@
 class Plants::Taxonomy::Other 
 
   TAXONOMIES = Rails.configuration.taxonomies
-  DUMMY = { name: "dummy taxonomy",
-            into: "This does not exist!",
-          }
 
   def initialize(key)
     @key = key
     if TAXONOMIES.has_key?(key)
       @taxonomy = TAXONOMIES[key]
+      @intro = @taxonomy[:intro]
     else
-      @taxonomy = DUMMY
+      @taxonomy = nil
     end
-    @intro = @taxonomy[:intro]
+  end
+
+  def empty?
+    @taxonomy.nil?
   end
 
   def name
-    @taxonomy[:name]
+    @taxonomy[:name] unless @taxonomy.nil?
   end
 
   def intro
-    @taxonomy[:intro]
+    @taxonomy[:intro] unless @taxonomy.nil?
   end
 
   def key

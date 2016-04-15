@@ -9,7 +9,14 @@ class Name < ActiveRecord::Base
   has_many :instances
   has_many :tree_nodes
   has_many :name_tree_paths
-  has_many :tree_arrangements, through: :name_tree_paths
+
+  has_many :apni_tree_arrangements, through: :apni_name_tree_paths
+  has_many :apni_name_tree_paths, class_name: "NameTreePath"
+
+  has_many :apc_tree_arrangements, through: :apc_tree_nodes
+  has_many :apc_tree_nodes, -> { where "next_node_id is null and checked_in_at_id is not null"},
+           class_name: "TreeNode"
+
 
   scope :not_a_duplicate, -> { where(duplicate_of_id: nil) }
   scope :has_an_instance, -> { where(["exists (select null from instance where name.id = instance.name_id)"]) }
@@ -26,23 +33,42 @@ class Name < ActiveRecord::Base
     Name.not_a_duplicate
         .has_an_instance
         .includes(:status)
-        .joins(:tree_arrangements)
-        .where("tree_arrangement.label = 'APNI' ")
+        .joins(:apni_tree_arrangements)
         .order('name_tree_path.rank_path, name.full_name')
   end
 
-  def self.accepted_search
+  def self.xaccepted_search
     Name.includes(:status)
-        .joins(:tree_arrangements)
-        .where("tree_arrangement.label = 'APC' ")
-      .order("name_tree_path.rank_path")
+        .includes(:rank)
+        .joins(:apc_tree_arrangements)
+        .where(" tree_node.type_uri_id_part = 'ApcConcept'")
+        .joins(:name_tree_paths)
+        .where(" name_tree_path.tree_id = tree_arrangement.id")
+        .order("name_tree_path.rank_path")
   end
 
-  def self.accepted_and_excluded_search
+  def self.accepted_tree_search
     Name.includes(:status)
-        .joins(:tree_arrangements)
-        .where("tree_arrangement.label = 'APC' ")
-      .order("name_tree_path.rank_path")
+        .includes(:rank)
+        .joins(:apc_tree_arrangements)
+        .joins(:name_tree_paths)
+        .where(" name_tree_path.tree_id = tree_arrangement.id")
+        .order("name_tree_path.rank_path")
+  end
+
+  def self.accepted_tree_accepted_search
+    Name.accepted_tree_search
+        .where(" tree_node.type_uri_id_part = 'ApcConcept'")
+  end
+
+  def self.accepted_tree_excluded_search
+    Name.accepted_tree_search
+        .where(" tree_node.type_uri_id_part = 'ApcExcluded'")
+  end
+
+  def self.accepted_tree_accepted_or_excluded_search
+    Name.accepted_tree_search
+        .where(" tree_node.type_uri_id_part in ('ApcExcluded', 'ApcConcept')")
   end
 
   def family?

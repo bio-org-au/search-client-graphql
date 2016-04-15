@@ -46,6 +46,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the
   # background. Read more: https://github.com/rails/spring
   gem "spring"
+  gem "awesome_print"
 end
 
 gem 'bootstrap', '~> 4.0.0.alpha3'  # Use Bootstrap 4.
@@ -59,3 +60,4 @@ gem "statsd-ruby", :require => "statsd"
 gem "font-awesome-rails"
 gem "nunes"
 gem "activerecord-hierarchical_query", require: "active_record/hierarchical_query"
+
