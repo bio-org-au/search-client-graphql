@@ -11,7 +11,7 @@
   <% else %>
       <script> debugSwitch = false; </script>
   <% end %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true, async: true, defer: true %>
   <%= csrf_meta_tags %>
 </head>
 

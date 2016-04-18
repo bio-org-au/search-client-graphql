@@ -274,4 +274,23 @@ SELECT n.id, n.full_name
   def show_status?
     status.show?
   end
+
+  def as_json(options = {})
+    case options[:show] 
+    when :details
+      [name: full_name, status: status.name]
+    else
+      [name: full_name, status: status.name]
+    end
+  end
+
+  def to_csv
+    attributes.values_at(*Name.columns.map(&:name))
+    [full_name, status.name].to_csv
+  end
+
+  def self.csv_headings
+    ["full_name", "status"].to_csv
+  end
+
 end

@@ -8,7 +8,7 @@
         <li/>
           <% if @search.parsed.show_details? &&
                 ndx < session[:default_details_limit] %>
-              <%= render partial: '/plants/names/search/details',
+              <%= render partial: '/plants/taxonomy/accepted/search/details',
                      locals: {name: name} %>
               <br/>
           <% else %>
