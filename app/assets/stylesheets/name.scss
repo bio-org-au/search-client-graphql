@@ -1,12 +1,14 @@
-// Place all the styles related to the apni controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
 
-div.apni-name-display {
+div.name-display h3 {
+  font-size: 120%;
+  font-weight: bold;
+}
+
+div.name-display {
   font-size: 85%;
   color: black;
 }
-div.apni-name-display ul {
+div.name-display ul {
   list-style-type: none;
   margin-bottom: 0;
 }

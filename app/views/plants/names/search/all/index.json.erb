@@ -1,0 +1,9 @@
+
+<% if @search.present? %>
+  <%= @search.to_json(options: :list).html_safe %>
+<% end %>
+
+<% if @search2.present? %>
+  <%= @search2.to_json(options: :list).html_safe %>
+<% end %>
+

@@ -1,7 +1,7 @@
-class Plants::Names::Search::ScientificController < ApplicationController
+class Plants::Taxonomy::Accepted::Search::CrossController < ApplicationController
   def index
     if params["q"].present?
-      @search = Plants::Names::Search::Scientific.new(params, default_show_results_as: session[:default_show_results_as])
+      @search = Plants::Taxonomy::Accepted::Search::Cross.new(params, default_show_results_as: session[:default_show_results_as])
     end
     respond_to do |format|
       format.html

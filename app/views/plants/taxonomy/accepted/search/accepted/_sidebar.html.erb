@@ -29,6 +29,11 @@
                         title: "Search for excluded names only." %>
           </li>
           <li class="">
+            <%= link_to "Cross Ref",
+                        plants_taxonomy_accepted_search_cross_path(q: params['q']),
+                        title: "Search for cross reference names only." %>
+          </li>
+          <li class="">
             <%= link_to "Accepted and excluded",
                         plants_taxonomy_accepted_search_accepted_and_excluded_path(q: params['q']),
                         title: "Search for names that are accepted or excluded." %>

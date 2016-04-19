@@ -1,6 +1,10 @@
 class Plants::Names::SearchController < ApplicationController
   def index
     logger.debug(" Plants::Names::SearchController < ApplicationController")
+  end
+
+  def deprec_index
+    logger.debug(" Plants::Names::SearchController < ApplicationController")
     case params[:pc]
     when /all\z/
       redirect_to plants_names_search_all_path(q: params["q"], show_results_as: params["show_results_as"], pc: params[:pc])

@@ -8,6 +8,7 @@ class Instance < ActiveRecord::Base
              class_name: "Instance",
              foreign_key: "cited_by_id"
 
+  belongs_to :cited_by_instance, foreign_key: "cited_by_id"
 
   scope :in_nested_instance_type_order, lambda {
     order(

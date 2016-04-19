@@ -17,6 +17,10 @@ class Name < ActiveRecord::Base
   has_many :apc_tree_nodes, -> { where "next_node_id is null and checked_in_at_id is not null"},
            class_name: "TreeNode"
 
+  has_many :cited_by_instances, through: :instances
+  has_many :cited_by_names, through: :cited_by_instances
+  has_many :cited_by_instance_tree_nodes, through: :cited_by_instances
+  has_many :cited_by_instance_tree_arrangements, through: :cited_by_instance_tree_nodes
 
   scope :not_a_duplicate, -> { where(duplicate_of_id: nil) }
   scope :has_an_instance, -> { where(["exists (select null from instance where name.id = instance.name_id)"]) }
@@ -52,6 +56,12 @@ class Name < ActiveRecord::Base
         .joins(:name_tree_paths)
         .where(" name_tree_path.tree_id = tree_arrangement.id")
         .order("name_tree_path.rank_path")
+  end
+
+  def self.accepted_tree_cross_search
+    Name.joins(:cited_by_instance_tree_arrangements)
+        .includes(:status)
+        .includes(:rank)
   end
 
   def self.accepted_tree_accepted_search

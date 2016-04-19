@@ -1,16 +1,17 @@
 <% if @search.present? %>
 <div id="search-tools-slider" class="<%= 'hidden' unless @search.present? %> hidden-print">
       <div class="bd-toc-item active">
+
         <ul class="nav bd-sidenav">
           <li class="">
             <%= link_to %(List &nbsp; #{fa_icon('check') if @search.parsed.show_list?}).html_safe,
-                        plants_taxonomy_accepted_search_accepted_and_excluded_path(q: params['q'], show_results_as: "list"),
+                        plants_names_search_scientific_path(q: params['q'], pc: params[:controller], show_results_as: 'list'),
                         class: "tiny needs-details-limit",
                         title: "Re-run the search as a list." %>
           </li>
           <li class="">
             <%= link_to %(Details &nbsp; #{fa_icon('check') if @search.parsed.show_details?}).html_safe,
-                        plants_taxonomy_accepted_search_accepted_and_excluded_path(q: params['q'], show_results_as: "details"),
+                        plants_names_search_scientific_path(q: params['q'], pc: params[:controller], show_results_as: 'details'),
                         class: "tiny needs-details-limit",
                         title: "Re-run the search showing details." %>
             <input type="number"
@@ -28,41 +29,37 @@
                class="tiny"
                title="Print the page">Print</a>
           </li>
+
           <% if @search.parsed.show_list? %>
             <li class="">
               <%= link_to "JSON",
-                          plants_taxonomy_accepted_search_accepted_and_excluded_path(q: params['q'], show_results_as: params[:show_results_as], format: :json),
+                          plants_names_search_scientific_path(q: params['q'], pc: params[:controller], show_results_as: 'list', format: :json),
                           class: "tiny needs-details-limit",
                           title: "Convert results to JSON." %>
             </li>
             <li class="">
               <%= link_to "CSV",
-                          plants_taxonomy_accepted_search_accepted_and_excluded_path(q: params['q'], show_results_as: params[:show_results_as], format: :csv),
+                          plants_names_search_scientific_path(q: params['q'], pc: params[:controller], show_results_as: 'list', format: :csv),
                           class: "tiny needs-details-limit",
                           title: "Convert results to CSV." %>
             </li>
           <% end %>
 
         </ul>
-          <hr/>
-            <a href="javascript:history.go(-1);"
-               class="micro"
-               title="Go back one page"><%= fa_stacked_icon "chevron-left inverse", base: "square" %></a>
-            <a href="#top"
-               class="micro"
-               title="Go to the top of the page"><%= fa_stacked_icon "chevron-up inverse", base: "square" %></a>
-            <a href="#footer"
-               class="micro"
-               title="Go to the bottom of the page"><%= fa_stacked_icon "chevron-down inverse", base: "square" %></a>
-            <a href="javascript:history.go(1);"
-               class="micro"
-               title="Go forward one page"><%= fa_stacked_icon "chevron-right inverse", base: "square" %></a>
+        <hr/>
+        <a href="javascript:history.go(-1);"
+           class="micro"
+           title="Go back one page"><%= fa_stacked_icon "chevron-left inverse", base: "square" %></a>
+        <a href="#top"
+           class="micro"
+           title="Go to the top of the page"><%= fa_stacked_icon "chevron-up inverse", base: "square" %></a>
+        <a href="#footer"
+           class="micro"
+           title="Go to the bottom of the page"><%= fa_stacked_icon "chevron-down inverse", base: "square" %></a>
+        <a href="javascript:history.go(1);"
+           class="micro"
+           title="Go forward one page"><%= fa_stacked_icon "chevron-right inverse", base: "square" %></a>
   </div>
-  </div>
-    <br/>
-      <span class="debug tiny hidden-print">
-        app/views/plants/taxonomy/accepted/search/accepted/_slider
-      </span>
 </div>
 <% end %>
 
