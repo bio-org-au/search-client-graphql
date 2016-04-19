@@ -22,7 +22,7 @@ class Plants::Names::Search::Scientific
   end
 
   def name_search
-    Name.core_search
+    Name.scientific_search
         .joins(:name_type)
         .where(name_type: { scientific: true })
   end

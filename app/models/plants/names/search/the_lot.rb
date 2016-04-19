@@ -22,6 +22,6 @@ class Plants::Names::Search::TheLot
   end
 
   def name_search
-    Name.core_search
+    Name.scientific_search
   end
 end

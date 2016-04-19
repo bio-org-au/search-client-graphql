@@ -24,12 +24,25 @@
 <% end %>
 
 <% if @search.present? %>
-  <%= "<span class='search-result-summary'>#{pluralize(@search.results.size, 'name')}</span>".html_safe %>
+  <%= "<span class='search-result-summary'>#{pluralize(@search.results.size, 'scientific or cultivar name')}</span>".html_safe %>
+<% end %>
+<br/>
+<% if @search2.present? %>
+  <%= "<span class='search-result-summary'>#{pluralize(@search2.results.size, 'common name')}</span>".html_safe %>
 <% end %>
 <br/>
 <br/>
 
-<% if @search.present? %>
-  <%= render partial: '/plants/names/search/results', locals: {name: @search.results.first} %>
+<% if @search.present? && @search.results.size > 0 %>
+  <h4>Scientific and Cultivar</h4>
+  <%= render partial: '/plants/names/search/results', locals: {search: @search, name: @search.results.first} %>
 <% end %>
+
+<% if @search2.present? && @search2.results.size > 0 %>
+  <h4>Common and Informal</h4>
+  <%= render partial: '/plants/names/search/results', locals: {search: @search2, name: @search2.results.first} %>
+<% end %>
+<br/>
+<br/>
+<br/>
 <span class="debug hidden-print">[plants/names/search/all]</span>

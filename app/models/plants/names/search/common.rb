@@ -22,7 +22,7 @@ class Plants::Names::Search::Common
   end
 
   def name_search
-    Name.core_search
+    Name.common_search
         .joins(:name_type)
         .where(name_type: { name: %w(common informal) })
   end

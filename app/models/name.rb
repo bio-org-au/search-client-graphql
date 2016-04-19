@@ -29,22 +29,20 @@ class Name < ActiveRecord::Base
     end
   end
 
-  def self.core_search
+  def self.scientific_search
     Name.not_a_duplicate
         .has_an_instance
         .includes(:status)
+        .includes(:rank)
         .joins(:apni_tree_arrangements)
         .order('name_tree_path.rank_path, name.full_name')
   end
 
-  def self.xaccepted_search
-    Name.includes(:status)
-        .includes(:rank)
-        .joins(:apc_tree_arrangements)
-        .where(" tree_node.type_uri_id_part = 'ApcConcept'")
-        .joins(:name_tree_paths)
-        .where(" name_tree_path.tree_id = tree_arrangement.id")
-        .order("name_tree_path.rank_path")
+  def self.common_search
+    Name.not_a_duplicate
+        .has_an_instance
+        .includes(:status)
+        .order('name.full_name')
   end
 
   def self.accepted_tree_search

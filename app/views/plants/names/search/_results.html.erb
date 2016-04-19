@@ -2,11 +2,11 @@
 
 
 
-<% if @search.results.size > 0 %>
+<% if search.results.size > 0 %>
     <ul>
-      <% @search.results.each_with_index do |name, ndx| %>
+      <% search.results.each_with_index do |name, ndx| %>
         <li/>
-          <% if @search.parsed.show_details? &&
+          <% if search.parsed.show_details? &&
                 ndx < session[:default_details_limit] %>
               <%= render partial: '/plants/names/search/details',
                      locals: {name: name} %>
