@@ -1,7 +1,6 @@
 <% if name.present? %>
+  <div class="name-display-family-name" title="Family name"><%= name.family_name unless name.rank.family? %></div>
   <div class="name-display">
-  <div class="fullname" title="Scientific name"><%= name.full_name %></div>
-  <div class="family-name" title="Family name"><%= name.family_name unless name.rank.family? %></div>
   <% shown = [] -%>
   <% apc_instance_id = name.apc_instance_id -%>
   <% name.instances_in_order.each do | instance | %>

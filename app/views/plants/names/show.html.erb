@@ -8,12 +8,10 @@
   <%= render "sidebar" %>
 <% end %>
 
-<h2>APNI</h2>
-
 <% if @name.present? %>
+  <h3 class="fullname details" title="Scientific name"><%= "#{@name.full_name} #{@name.status.name if @name.show_status?}" %></h3>
+  <div class="name-display-family-name" title="Family name"><%= @name.family_name unless @name.rank.family? %></div>
   <div class="name-display">
-  <div class="family-name" title="Family name"><%= @name.family_name %></div>
-  <span class="full-name" title="Full name"><%= @name.full_name %></span>
   <br/>
   <br/>
   <% shown = [] -%>

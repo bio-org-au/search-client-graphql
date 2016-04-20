@@ -1,0 +1,18 @@
+ul {
+  list-style-type: none;
+  padding-left:0;
+}
+
+ul.indented {
+  padding-left: 3rem;
+}
+
+li {
+  margin: 10px 0;
+}
+
+li.compact {
+  margin: 0;
+}
+
+

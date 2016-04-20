@@ -24,9 +24,9 @@ module ApplicationHelper
     fragment << "&nbsp; [#{instance.instance_type.name}]" if instance.primary?
     fragment << "&nbsp;<span class='red'>(APC)</span>" if apc 
     fragment << "</div>"
-    fragment << "<ul>"
+    fragment << "<ul class='indented'>"
     Instance.records_cited_by_standalone(instance).each do |cited_by|
-      fragment << "<li class='subordinate-instance'/>"
+      fragment << "<li class='compact subordinate-instance'>"
       fragment << "<span class='instance-type-name'>#{cited_by.instance_type.name}: </span>" 
       fragment << "<span class='instance-type'>"
       target_id =  "#{rand(1000)}-#{rand(1000)}-#{rand(1000)}"
@@ -35,6 +35,7 @@ module ApplicationHelper
                           data: {target_id: target_id},
                           remote: true)
       fragment << "</span>"
+      fragment << "</li>"
       fragment << "<div class='drill-down hidden-xs-up' id='#{target_id}'>"
       fragment << "</div>"
     end
@@ -52,10 +53,10 @@ module ApplicationHelper
   end
 
   def assemble_cited_by(instance, citing_instance)
-    fragment = "<ul>"
+    fragment = "<ul class='indented'>"
     Instance.records_cited_by_relationship(citing_instance).each do |cited_by|
       next unless cited_by.name.id == instance.name.id
-      fragment << "<li class='subordinate-instance'/>"
+      fragment << "<li class='compact subordinate-instance'>"
       target_id =  "#{rand(1000)}-#{rand(1000)}-#{rand(1000)}"
       fragment << "<span class='instance-type-name'>"
       fragment << "#{cited_by.instance_type.name} of: </span>"
@@ -68,6 +69,7 @@ module ApplicationHelper
                            data: {target_id: target_id},
                            remote: true)
       fragment << "</span>"
+      fragment << "</li>"
       fragment << "<div class='drill-down hidden-xs-up' id='#{target_id}'>"
       fragment << "</div>"
     end

@@ -1,6 +1,6 @@
 <% if name.present? %>
-  <div class="name-display">
   <div class="family-name" title="Family name"><%= name.family_name unless name.rank.family? %></div>
+  <div class="name-display">
   <% shown = [] -%>
   <% apc_instance_id = name.apc_instance_id -%>
   <% name.instances_in_order.each do | instance | %>
@@ -8,6 +8,5 @@
     <%= display %>
   <% end %>
   </div>
-  <%#= render(partial: '/plants/taxonomy/accepted/search/power_links', locals: {name: name}) if name.sub_taxon? %>
 <% end %>
 

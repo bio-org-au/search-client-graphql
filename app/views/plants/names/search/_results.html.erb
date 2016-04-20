@@ -5,7 +5,7 @@
 <% if search.results.size > 0 %>
     <ul>
       <% search.results.each_with_index do |name, ndx| %>
-        <li/>
+        <li>
           <% if search.parsed.show_details? &&
                 ndx < session[:default_details_limit] %>
               <%= render partial: '/plants/names/search/details',
@@ -13,6 +13,7 @@
               <br/>
           <% else %>
             <% target_id = new_target_id %>
+            <span class="result-item-heading">
             <%= link_to("#{name[:full_name]}",
                         plants_names_show_path(name[:id],target_id: target_id),
                         class: "drill-down-toggle",
@@ -24,8 +25,10 @@
             <% if name.show_status? %>
               <span class="name-status" title="Name Status"><%= name.status.name %></span>
             <% end %>
+            </span>
             <div id="<%= target_id %>" class="details"></div>
-        <% end %>
+          <% end %>
+        </li>
       <% end %>
     </ul>
   <% end %>

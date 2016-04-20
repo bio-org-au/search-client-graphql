@@ -1,6 +1,6 @@
 
 div.name-display h3 {
-  font-size: 120%;
+  font-size: 100%;
   font-weight: bold;
 }
 
@@ -29,6 +29,24 @@ li.subordinate-instance{
   line-height: 120%;
 }
 
+div.instance-citation {
+  padding-left: 3rem;
+}
 
+li.compact.subordinate-instance {
+  padding-left: 3rem;
+}
 
+div.name-display {
+  margin: 1em 0 0.8em 0;
+  font-size: 82%;
+}
+
+span.result-item-heading {
+  font-size: 94%;
+}
+
+div.name-display-family-name {
+  font-size: 82%;
+}
 

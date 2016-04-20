@@ -1,8 +1,5 @@
       <div class="name-display">
-      <span class="full-name" title="Full name"><%= name.full_name %></span>
-      <% if name.show_status? %>
-        <span class="name-status" title="Name Status"><%= name.status.name %></span>
-      <% end %>
+      <h3 class="fullname details" title="Scientific name"><%= "#{name.full_name} #{name.status.name if name.show_status?}" %></h3>
       <div class="family-name" title="Family name"><%= name.family_name %></div>
       <%= %(<div class="name-rank" title="Name rank">#{name.rank.name}</div>).html_safe if name.rank.show? %>
       <% shown = [] -%>

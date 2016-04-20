@@ -58,7 +58,9 @@ class Name < ActiveRecord::Base
         .order("name_tree_path.rank_path")
   end
 
-  def self.accepted_tree_cross_search
+  # Problem: seems I can only select Name columns, and only from one notional
+  # record.  So, I cannot get the synonym name and the original name.
+  def self.xaccepted_tree_cross_search
     Name.joins(:cited_by_instance_tree_arrangements)
         .includes(:status)
         .includes(:rank)
@@ -77,6 +79,42 @@ class Name < ActiveRecord::Base
   def self.accepted_tree_accepted_or_excluded_search
     Name.accepted_tree_search
         .where(" tree_node.type_uri_id_part in ('ApcExcluded', 'ApcConcept')")
+  end
+
+  def self.accepted_tree_cross_search(term)
+    sql = %Q(SELECT name.id,
+       name.full_name,
+       cited_by_name.full_name cited_by_name_full_name,
+       cited_by_name.id cited_by_name_id,
+       instance.id as instance_id,
+       synonym_instance.id,
+       synonym_instance.name_id,
+       tree_node.type_uri_id_part
+  FROM name
+       inner join instance
+       on name.id = instance.name_id
+       inner join instance synonym_instance
+       on instance.cited_by_id = synonym_instance.id
+       inner join name cited_by_name
+       on synonym_instance.name_id = cited_by_name.id
+ INNER JOIN tree_node
+    ON tree_node.instance_id = synonym_instance.id
+   AND (
+        next_node_id is null
+   and checked_in_at_id is not null
+       )
+ INNER JOIN tree_arrangement
+    ON tree_arrangement.id = tree_node.tree_arrangement_id
+   AND tree_arrangement.label = 'APC'
+ INNER JOIN name_tree_path
+    ON name_tree_path.name_id = cited_by_name.id
+ INNER JOIN name_type
+    ON name_type.id = name.name_type_id
+ where (lower((name.simple_name)) like lower(#{term}) )
+   and ( name_tree_path.tree_id     = tree_arrangement.id)
+  order by name_tree_path.rank_path
+                    )
+    ActiveRecord::Base.connection.execute(sql)
   end
 
   def family?
