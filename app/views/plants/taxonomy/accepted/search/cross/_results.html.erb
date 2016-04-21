@@ -3,9 +3,9 @@
 
 
 <% if @search.results.size > 0 %>
-    <ul>
+    <ul class="taxonomy-results">
       <% @search.results.each_with_index do |name, ndx| %>
-        <li/>
+        <li class="compact">
           <% if @search.parsed.show_details? &&
                 ndx < session[:default_details_limit] %>
               <%= render partial: '/plants/taxonomy/accepted/search/details',
@@ -13,7 +13,11 @@
               <br/>
           <% else %>
             <% target_id = new_target_id %>
-            <%= "#{name[:full_name]} = #{name[:cited_by_name_full_name]}" %>
+            <% if name.class.to_s.match(/ApcSynonymVw/) %>
+              <%= "#{name[:full_name]} = #{name[:cited_by_name_full_name]}" %>
+            <% else %>
+              <%= "#{name.full_name} = #{name.cited_by_instance_tree_nodes.first.name.full_name}" %>
+            <% end %>
 
             <%#= link_to("#{name[:full_name]} = #{name[:cited_by_name_full_name]}",
                         plants_taxonomy_accepted_show_path(name[:id],target_id: target_id),
@@ -26,7 +30,8 @@
               <span class="name-status" title="Name Status"><%= name.status.name %></span>
             <% end %>
             <div id="<%= target_id %>" class="details"></div>
-        <% end %>
+          <% end %>
+        </li>
       <% end %>
     </ul>
   <% end %>

@@ -1,7 +1,7 @@
 
 
 <% if @search.results.size > 0 %>
-    <ul>
+    <ul class="taxonomy-results">
       <% @search.results.each_with_index do |name, ndx| %>
         <li class="compact">
           <% if @search.parsed.show_details? &&
@@ -11,7 +11,7 @@
               <br/>
           <% else %>
             <% target_id = new_target_id %>
-            <%= link_to("#{name[:full_name]}",
+            <%= link_to(name[:full_name],
                         plants_taxonomy_accepted_show_path(name[:id],target_id: target_id),
                         class: "drill-down-toggle",
                         data: {target_id: target_id},
@@ -21,6 +21,10 @@
             <% if name.show_status? %>
               <span class="name-status" title="Name Status"><%= name.status.name %></span>
             <% end %>
+            <span class="small">
+            <%= "sensu #{name.apc_accepted_instance.reference.citation_html}".html_safe if name.apc_accepted? %>
+            <%= "sensu #{name.apc_excluded_instance.reference.citation_html}".html_safe if name.apc_excluded? %>
+            </span>
             <div id="<%= target_id %>" class="details"></div>
         <% end %>
         </li>

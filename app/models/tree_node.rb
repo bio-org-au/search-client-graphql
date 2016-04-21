@@ -5,6 +5,9 @@ class TreeNode < ActiveRecord::Base
   belongs_to :apc_tree_arrangement, -> { where label: 'APC' },
              class_name: "TreeArrangement", foreign_key: "tree_arrangement_id"
   belongs_to :name
+  belongs_to :instance
+  belongs_to :apc_accepted_instance, class_name: "Instance", foreign_key: "instance_id"
+  belongs_to :apc_excluded_instance, class_name: "Instance", foreign_key: "instance_id"
 
   def self.apc(full_name)
     TreeNode.where(tree_arrangement_id: TreeArrangement.apc.id)
