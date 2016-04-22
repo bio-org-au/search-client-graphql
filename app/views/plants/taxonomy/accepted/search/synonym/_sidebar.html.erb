@@ -29,9 +29,9 @@
                         title: "Search for excluded names only." %>
           </li>
           <li class="">
-            <%= link_to "Cross Ref&nbsp;#{fa_icon('check')}".html_safe,
-                        plants_taxonomy_accepted_search_cross_path(q: params['q']),
-                        title: "Search for cross reference names only." %>
+            <%= link_to "Synonyms&nbsp;#{fa_icon('check')}".html_safe,
+                        plants_taxonomy_accepted_search_synonym_path(q: params['q']),
+                        title: "Search for synonyms only." %>
           </li>
           <li class="">
             <%= link_to "Accepted and excluded",

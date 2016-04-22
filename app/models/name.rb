@@ -13,9 +13,10 @@ class Name < ActiveRecord::Base
   has_many :apni_tree_arrangements, through: :apni_name_tree_paths
   has_many :apni_name_tree_paths, class_name: "NameTreePath"
 
-  has_many :apc_tree_arrangements, through: :apc_tree_nodes
   has_many :apc_tree_nodes, -> { where "next_node_id is null and checked_in_at_id is not null"},
            class_name: "TreeNode"
+  has_many :apc_tree_arrangements, through: :apc_tree_nodes
+
   has_one :apc_accepted_tree_node, -> { where "next_node_id is null and checked_in_at_id is not null and type_uri_id_part = 'ApcConcept'"},
            class_name: "TreeNode"
   has_one :apc_accepted_instance, through: :apc_accepted_tree_node
@@ -29,13 +30,25 @@ class Name < ActiveRecord::Base
   has_many :cited_by_instance_tree_nodes, through: :cited_by_instances
   has_many :cited_by_instance_tree_arrangements, through: :cited_by_instance_tree_nodes
 
-  has_many :cited_by_instance_tree_node_name_tree_paths, through: :cited_by_instance_tree_nodes
+  #has_many :cited_by_instance_tree_node_name_tree_paths, through: :cited_by_instance_tree_nodes
   has_many :cited_by_instance_tree_node_names, through: :cited_by_instance_tree_nodes
+  has_many :cited_by_instance_tree_node_name_name_tree_paths , through: :cited_by_instances
 
   scope :not_a_duplicate, -> { where(duplicate_of_id: nil) }
   scope :has_an_instance, -> { where(["exists (select null from instance where name.id = instance.name_id)"]) }
   scope :lower_full_name_like, ->(string) { where("lower(f_unaccent(name.full_name)) like lower(f_unaccent(?)) ", string.gsub(/\*/, "%").downcase) }
   scope :lower_simple_name_like, ->(string) { where("lower((name.simple_name)) like lower((?)) ", string.gsub(/\*/, "%").downcase) }
+
+  # Setting up the final few associations got tricky.
+  def self.accepted_tree_synonyms
+    Name.joins(:cited_by_instance_tree_arrangements)
+        .joins(:cited_by_instance_tree_node_names)
+        .joins("inner join name_tree_path ntp on cited_by_instance_tree_node_names_name.id = ntp.name_id")
+        .joins(" inner join tree_arrangement ntp_ta on ntp.tree_id = ntp_ta.id and ntp_ta.label = 'APC' ")
+        .includes(:status)
+        .joins(:rank)
+        .order("name_rank.sort_order, lower(name.full_name)")
+  end
 
   def instances_in_order
     self.instances.sort do |x, y|
@@ -67,17 +80,6 @@ class Name < ActiveRecord::Base
         .where("name_tree_path.tree_id = tree_arrangement.id")
         .order("name_tree_path.rank_path")
   end
-
-  # Problem: seems I can only select Name columns, and only from one notional
-  # record.  So, I cannot get the synonym name and the original name.
-  def self.accepted_tree_synonyms
-    Name.joins(:cited_by_instance_tree_arrangements)
-        .joins(:cited_by_instance_tree_node_names)
-        .includes(:status)
-        .includes(:rank)
-  end
-  #     .joins(:cited_by_instance_tree_node_name_tree_paths)
-  #     .where(tree_arrangement: {label: "APC"})
 
   def self.accepted_tree_accepted_search
     Name.accepted_tree_search
@@ -360,4 +362,19 @@ SELECT n.id, n.full_name
     apc_excluded_instance.present?
   end
 
+  def apc_comment
+    if apc_accepted?
+      apc_accepted_instance.apc_comment
+    else
+      nil
+    end
+  end
+
+  def apc_distribution
+    if apc_accepted?
+      apc_accepted_instance.apc_distribution
+    else
+      nil
+    end
+  end
 end

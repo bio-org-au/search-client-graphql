@@ -1,7 +1,5 @@
 
 
-
-
 <% if @search.results.size > 0 %>
     <ul class="taxonomy-results">
       <% @search.results.each_with_index do |name, ndx| %>
@@ -13,24 +11,33 @@
               <br/>
           <% else %>
             <% target_id = new_target_id %>
-            <% if name.class.to_s.match(/ApcSynonymVw/) %>
-              <%= "#{name[:full_name]} = #{name[:cited_by_name_full_name]}" %>
-            <% else %>
-              <%= "#{name.full_name} = #{name.cited_by_instance_tree_nodes.first.name.full_name}" %>
-            <% end %>
-
-            <%#= link_to("#{name[:full_name]} = #{name[:cited_by_name_full_name]}",
+            <%= link_to(name[:full_name],
                         plants_taxonomy_accepted_show_path(name[:id],target_id: target_id),
                         class: "drill-down-toggle",
                         data: {target_id: target_id},
                         title: "Select to show or hide details",
                         remote: true)
                       %>
-            <% if false && name.show_status? %>
+            <% if name.apc_excluded? %>
+              <span class="red">Excluded</span>
+            <% end %>
+            <% if name.show_status? %>
               <span class="name-status" title="Name Status"><%= name.status.name %></span>
             <% end %>
+            <span class="small">
+            <%= "sensu #{name.apc_accepted_instance.reference.citation_html}".html_safe if name.apc_accepted? %>
+            <%= "sensu #{name.apc_excluded_instance.reference.citation_html}".html_safe if name.apc_excluded? %>
+            </span>
+            <br>
+            <span class="apc-comment">
+            <%= name.apc_comment %>
+            </span>
             <div id="<%= target_id %>" class="details"></div>
-          <% end %>
+            <span class="apc-distribution">
+            <%= name.apc_distribution %>
+            </span>
+            <div id="<%= target_id %>" class="details"></div>
+        <% end %>
         </li>
       <% end %>
     </ul>

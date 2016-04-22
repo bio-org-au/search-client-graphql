@@ -1,7 +1,7 @@
-class Plants::Taxonomy::Accepted::Search::CrossController < ApplicationController
+class Plants::Taxonomy::Accepted::Search::SynonymController < ApplicationController
   def index
     if params["q"].present?
-      @search = Plants::Taxonomy::Accepted::Search::Cross.new(params, default_show_results_as: session[:default_show_results_as])
+      @search = Plants::Taxonomy::Accepted::Search::Synonym.new(params, default_show_results_as: session[:default_show_results_as])
     end
     respond_to do |format|
       format.html

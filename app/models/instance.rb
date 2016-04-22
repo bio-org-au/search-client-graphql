@@ -7,6 +7,7 @@ class Instance < ActiveRecord::Base
   belongs_to :this_is_cited_by,
              class_name: "Instance",
              foreign_key: "cited_by_id"
+  has_many :instance_notes
 
   belongs_to :cited_by_instance, foreign_key: "cited_by_id"
 
@@ -51,5 +52,19 @@ class Instance < ActiveRecord::Base
 
   def primary?
     instance_type.primary?
+  end
+
+  def apc_comment
+    instance_notes.each do | note | 
+      return note.value if note.apc_comment?
+    end
+    return nil
+  end
+
+  def apc_distribution
+    instance_notes.each do | note | 
+      return note.value if note.apc_distribution?
+    end
+    return nil
   end
 end

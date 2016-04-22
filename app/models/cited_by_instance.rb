@@ -4,9 +4,9 @@ class CitedByInstance < ActiveRecord::Base
   belongs_to :name
   belongs_to :instance_type
   belongs_to :reference
-  has_many :instances,
-             foreign_key: "cited_by_id"
-  belongs_to :cited_by_name, foreign_key: "name_id"
-  has_many :cited_by_instance_tree_nodes,
-             foreign_key: "instance_id"
+  has_many   :instances,                    foreign_key: "cited_by_id"
+
+  belongs_to :cited_by_name,                foreign_key: "name_id"
+  has_many   :cited_by_instance_tree_nodes, foreign_key: "instance_id"
+  belongs_to :cited_by_instance_tree_node_name_name_tree_path, class_name: "Name", foreign_key: :name_id
 end

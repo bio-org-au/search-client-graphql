@@ -1,5 +1,5 @@
 #  Search for scientific names
-class Plants::Taxonomy::Accepted::Search::Cross
+class Plants::Taxonomy::Accepted::Search::Synonym
   attr_reader :parsed,
               :results
   SEARCH_TYPE = "Scientific Name".freeze
@@ -23,14 +23,9 @@ class Plants::Taxonomy::Accepted::Search::Cross
     name_search.lower_full_name_like(@parsed.search_term)
   end
 
-  def xname_search
-    ApcSynonymVw.where(["lower(full_name) like lower(?)",@parsed.search_term])
-                .order("rank_path, full_name")
-  end
-
   def name_search
     Name.accepted_tree_synonyms
-        #.joins(:name_type)
-        #.includes(:rank)
+        .joins(:name_type)
+        .includes(:rank)
   end
 end

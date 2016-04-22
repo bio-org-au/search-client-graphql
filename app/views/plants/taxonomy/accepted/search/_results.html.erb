@@ -25,6 +25,14 @@
             <%= "sensu #{name.apc_accepted_instance.reference.citation_html}".html_safe if name.apc_accepted? %>
             <%= "sensu #{name.apc_excluded_instance.reference.citation_html}".html_safe if name.apc_excluded? %>
             </span>
+            <br>
+            <span class="apc-comment">
+            <%= name.apc_comment %>
+            </span>
+            <div id="<%= target_id %>" class="details"></div>
+            <span class="apc-distribution">
+            <%= name.apc_distribution %>
+            </span>
             <div id="<%= target_id %>" class="details"></div>
         <% end %>
         </li>
