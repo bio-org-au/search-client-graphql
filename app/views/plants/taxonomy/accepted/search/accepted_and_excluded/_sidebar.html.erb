@@ -20,27 +20,27 @@
       <ul class="nav bd-sidenav">
           <li class="">
             <%= link_to "Accepted",
-                        plants_taxonomy_accepted_search_accepted_path(q: params['q']),
+                        plants_taxonomy_accepted_search_accepted_path(q: params['q'], show_permalinks: params[:show_permalinks]),
                         title: "Search for accepted names only." %>
           </li>
           <li class="">
             <%= link_to "Excluded",
-                        plants_taxonomy_accepted_search_excluded_path(q: params['q']),
+                        plants_taxonomy_accepted_search_excluded_path(q: params['q'], show_permalinks: params[:show_permalinks]),
                         title: "Search for excluded names only." %>
           </li>
           <li class="">
             <%= link_to "Synonyms",
-                        plants_taxonomy_accepted_search_synonym_path(q: params['q']),
+                        plants_taxonomy_accepted_search_synonym_path(q: params['q'], show_permalinks: params[:show_permalinks]),
                         title: "Search for synonyms only." %>
           </li>
           <li class="">
             <%= link_to "Accepted and excluded&nbsp;#{fa_icon('check')}".html_safe,
-                        plants_taxonomy_accepted_search_accepted_and_excluded_path(q: params['q']),
+                        plants_taxonomy_accepted_search_accepted_and_excluded_path(q: params['q'], show_permalinks: params[:show_permalinks]),
                         title: "Search for names that are accepted or excluded." %>
           </li>
           <li class="">
             <%= link_to "All",
-                        plants_taxonomy_accepted_search_all_path(q: params['q']),
+                        plants_taxonomy_accepted_search_all_path(q: params['q'], show_permalinks: params[:show_permalinks]),
                         title: "Search for names that are accepted or excluded or synonyms." %>
           </li>
         </ul>

@@ -25,7 +25,5 @@ class Plants::Taxonomy::Accepted::Search::Synonym
 
   def name_search
     Name.accepted_tree_synonyms
-        .joins(:name_type)
-        .includes(:rank)
   end
 end

@@ -24,7 +24,5 @@ class Plants::Taxonomy::Accepted::Search::Accepted
 
   def name_search
     Name.accepted_tree_accepted_search
-        .joins(:name_type)
-        .includes(:rank)
   end
 end

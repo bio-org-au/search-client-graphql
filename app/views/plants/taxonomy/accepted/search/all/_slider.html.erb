@@ -13,14 +13,6 @@
                         plants_taxonomy_accepted_search_all_path(q: params['q'], show_results_as: "details"),
                         class: "tiny needs-details-limit",
                         title: "Re-run the search showing details." %>
-            <input type="number"
-                   min="1"
-                   max="1000"
-                   step="1"
-                   value="<%= session[:default_details_limit] %>"
-                   name="details-limit"
-                   id="details-limit-field"
-                   class="">
           </li>
           <hr/>
           <li>

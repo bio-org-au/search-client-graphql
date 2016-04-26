@@ -77,7 +77,7 @@
     <br/>
       <span class="debug hidden-print">
         <% if @search.present? && @search.results.present? %>
-          <%= @search.results.to_sql %>
+          <%= @search.results.try("to_sql") %>
         <% end %>
       </span>
   </div>

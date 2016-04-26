@@ -3,24 +3,17 @@
       <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
           <li class="">
-            <%= link_to %(List &nbsp; #{fa_icon('check') if @search.parsed.show_list?}).html_safe,
-                        plants_taxonomy_accepted_search_synonym_path(q: params['q'], show_results_as: "list"),
+            <%= link_to %(List &nbsp; #{fa_icon('check')}).html_safe,
+                        plants_taxonomy_accepted_search_synonym_path(q: params['q'], show_results_as: "list", show_permalinks: params[:show_permalinks]),
                         class: "tiny needs-details-limit",
                         title: "Re-run the search as a list." %>
           </li>
+          <hr/>
           <li class="">
-            <%= link_to %(Details &nbsp; #{fa_icon('check') if @search.parsed.show_details?}).html_safe,
-                        plants_taxonomy_accepted_search_synonym_path(q: params['q'], show_results_as: "details"),
-                        class: "tiny needs-details-limit",
-                        title: "Re-run the search showing details." %>
-            <input type="number"
-                   min="1"
-                   max="1000"
-                   step="1"
-                   value="<%= session[:default_details_limit] %>"
-                   name="details-limit"
-                   id="details-limit-field"
-                   class="">
+            <%= link_to %(Citation links &nbsp; #{fa_icon('check') if @search.parsed.show_permalinks?}).html_safe,
+                        plants_taxonomy_accepted_search_synonym_path(q: params['q'], show_results_as: params[:show_results_as], show_permalinks: params[:show_permalinks] != "true"),
+                        class: "tiny",
+                        title: "Add permalinks to the results." %>
           </li>
           <hr/>
           <li>
@@ -28,7 +21,6 @@
                class="tiny"
                title="Print the page">Print</a>
           </li>
-          <% if @search.parsed.show_list? %>
             <li class="">
               <%= link_to "JSON",
                           plants_taxonomy_accepted_search_synonym_path(q: params['q'], show_results_as: params[:show_results_as], format: :json),
@@ -41,7 +33,6 @@
                           class: "tiny needs-details-limit",
                           title: "Convert results to CSV." %>
             </li>
-          <% end %>
         </ul>
         <hr/>
         <a href="javascript:history.go(-1);"

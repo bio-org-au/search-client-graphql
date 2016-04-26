@@ -8,6 +8,7 @@ class Instance < ActiveRecord::Base
              class_name: "Instance",
              foreign_key: "cited_by_id"
   has_many :instance_notes
+  has_many :synonyms, foreign_key: "cited_by_id"
 
   belongs_to :cited_by_instance, foreign_key: "cited_by_id"
 

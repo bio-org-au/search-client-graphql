@@ -7,6 +7,7 @@ class Name < ActiveRecord::Base
   belongs_to :status, class_name: "NameStatus", foreign_key: "name_status_id"
   belongs_to :name_type
   has_many :instances
+  has_many :synonyms
   has_many :tree_nodes
   has_many :name_tree_paths
 
@@ -40,14 +41,18 @@ class Name < ActiveRecord::Base
   scope :lower_simple_name_like, ->(string) { where("lower((name.simple_name)) like lower((?)) ", string.gsub(/\*/, "%").downcase) }
 
   # Setting up the final few associations got tricky.
-  def self.accepted_tree_synonyms
+  def self.unordered_accepted_tree_synonyms
     Name.joins(:cited_by_instance_tree_arrangements)
         .joins(:cited_by_instance_tree_node_names)
         .joins("inner join name_tree_path ntp on cited_by_instance_tree_node_names_name.id = ntp.name_id")
         .joins(" inner join tree_arrangement ntp_ta on ntp.tree_id = ntp_ta.id and ntp_ta.label = 'APC' ")
         .includes(:status)
         .joins(:rank)
-        .order("name_rank.sort_order, lower(name.full_name)")
+        .joins(:name_type)
+  end
+
+  def self.accepted_tree_synonyms
+    Name.unordered_accepted_tree_synonyms.order("name_rank.sort_order, lower(name.full_name)")
   end
 
   def instances_in_order
@@ -72,13 +77,15 @@ class Name < ActiveRecord::Base
         .order('name.full_name')
   end
 
-  def self.accepted_tree_search
+  def self.unordered_accepted_tree_search
     Name.includes(:status)
         .includes(:rank)
         .joins(:apc_tree_arrangements)
-        .joins(:name_tree_paths)
-        .where("name_tree_path.tree_id = tree_arrangement.id")
-        .order("name_tree_path.rank_path")
+        .joins(:name_type)
+  end
+
+  def self.accepted_tree_search
+    Name.unordered_accepted_tree_search.order("name_rank.sort_order, name.full_name")
   end
 
   def self.accepted_tree_accepted_search
@@ -96,7 +103,53 @@ class Name < ActiveRecord::Base
         .where(" tree_node.type_uri_id_part in ('ApcExcluded', 'ApcConcept')")
   end
 
-  def self.accepted_tree_cross_search(term)
+  # "Union with Active Record"
+  # http://thepugautomatic.com/2014/08/union-with-active-record/
+  #
+  # Gets past this error: ERROR:  bind message supplies 0 parameters, but prepared statement "" requires 2
+  # See the explanation here: https://github.com/rails/rails/issues/13686
+  def self.accepted_tree_all_simple_name_search(search_term = 'x')
+    query1 = Name.unordered_accepted_tree_search
+                 .where(" tree_node.type_uri_id_part in ('ApcExcluded', 'ApcConcept')")
+                 .joins(:name_type)
+                 .includes(:rank)
+                 .lower_simple_name_like(search_term)
+    query2 = Name.unordered_accepted_tree_synonyms
+                 .lower_simple_name_like(search_term)
+    # Get a real bind value instead of "$1" in the generated SQL.
+    sql = Name.connection.unprepared_statement {
+      "((#{query1.to_sql}) UNION (#{query2.to_sql})) AS name"
+    }
+    # Could not order by name_rank.sort_order
+    # .order("name_rank.sort_order, name.full_name")
+    # Sorting produced an array
+    Name.from(sql).sort {|x,y| x.rank.sort_order <=> y.rank.sort_order}
+  end
+
+  # "Union with Active Record"
+  # http://thepugautomatic.com/2014/08/union-with-active-record/
+  #
+  # Gets past this error: ERROR:  bind message supplies 0 parameters, but prepared statement "" requires 2
+  # See the explanation here: https://github.com/rails/rails/issues/13686
+  def self.accepted_tree_all_full_name_search(search_term = 'x')
+    query1 = Name.unordered_accepted_tree_search
+                 .where(" tree_node.type_uri_id_part in ('ApcExcluded', 'ApcConcept')")
+                 .joins(:name_type)
+                 .includes(:rank)
+                 .lower_full_name_like(search_term)
+    query2 = Name.unordered_accepted_tree_synonyms
+                 .lower_full_name_like(search_term)
+    # Get a real bind value instead of "$1" in the generated SQL.
+    sql = Name.connection.unprepared_statement {
+      "((#{query1.to_sql}) UNION (#{query2.to_sql})) AS name"
+    }
+    # Could not order by name_rank.sort_order
+    # .order("name_rank.sort_order, name.full_name")
+    # Sorting produced an array
+    Name.from(sql).sort {|x,y| x.rank.sort_order <=> y.rank.sort_order}
+  end
+
+  def self.xaccepted_tree_cross_search(term)
     sql = %Q(SELECT name.id,
        name.full_name,
        cited_by_name.full_name cited_by_name_full_name,

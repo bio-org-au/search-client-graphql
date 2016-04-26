@@ -1,0 +1,20 @@
+
+ <li class="compact">
+            <span class="synonym">
+              <%= link_to("#{name.full_name} (#{name.rank.name})",
+                        plants_taxonomy_accepted_show_path(cbn[:id]),
+                        title: "Show bibliographic details")
+                      %>
+            </span>
+            =
+            <strong>
+            <%= link_to("#{cbn.full_name}",
+                        plants_taxonomy_accepted_show_path(cbn.id),
+                        title: "Show bibliographic details")
+                      %>
+            </strong>
+            <% if false && cbn.show_status? %>
+              <span class="name-status" title="Name Status"><%= cbn.status.name %></span>
+            <% end %>
+ </li>
+

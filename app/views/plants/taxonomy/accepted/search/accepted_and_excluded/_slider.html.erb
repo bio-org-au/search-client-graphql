@@ -4,23 +4,22 @@
         <ul class="nav bd-sidenav">
           <li class="">
             <%= link_to %(List &nbsp; #{fa_icon('check') if @search.parsed.show_list?}).html_safe,
-                        plants_taxonomy_accepted_search_accepted_and_excluded_path(q: params['q'], show_results_as: "list"),
+                        plants_taxonomy_accepted_search_accepted_and_excluded_path(q: params['q'], show_results_as: "list", show_permalinks: params[:show_permalinks]),
                         class: "tiny needs-details-limit",
                         title: "Re-run the search as a list." %>
           </li>
           <li class="">
             <%= link_to %(Details &nbsp; #{fa_icon('check') if @search.parsed.show_details?}).html_safe,
-                        plants_taxonomy_accepted_search_accepted_and_excluded_path(q: params['q'], show_results_as: "details"),
+                        plants_taxonomy_accepted_search_accepted_and_excluded_path(q: params['q'], show_results_as: "details", show_permalinks: params[:show_permalinks]),
                         class: "tiny needs-details-limit",
                         title: "Re-run the search showing details." %>
-            <input type="number"
-                   min="1"
-                   max="1000"
-                   step="1"
-                   value="<%= session[:default_details_limit] %>"
-                   name="details-limit"
-                   id="details-limit-field"
-                   class="">
+          </li>
+          <hr/>
+          <li class="">
+            <%= link_to %(Citation links &nbsp; #{fa_icon('check') if @search.parsed.show_permalinks?}).html_safe,
+                        plants_taxonomy_accepted_search_accepted_path(q: params['q'], show_results_as: params[:show_results_as], show_permalinks: params[:show_permalinks] != "true"),
+                        class: "tiny",
+                        title: "Add permalinks to the results." %>
           </li>
           <hr/>
           <li>

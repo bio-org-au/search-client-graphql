@@ -15,6 +15,7 @@ class Plants::Taxonomy::Accepted::Search::Parse
     end
     @search_term = params[:q].strip.gsub(/\*/,'%')
     @show_as = params[:show_results_as] || info[:default_show_results_as]
+    @show_permalinks = params[:show_permalinks] == "true"
   end
 
   def show_list?
@@ -23,5 +24,9 @@ class Plants::Taxonomy::Accepted::Search::Parse
 
   def show_details?
     @show_as == SHOW_DETAILS
+  end
+
+  def show_permalinks?
+    @show_permalinks
   end
 end

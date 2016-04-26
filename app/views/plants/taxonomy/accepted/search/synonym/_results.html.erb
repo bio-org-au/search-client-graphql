@@ -6,37 +6,7 @@
     <ul class="taxonomy-results">
       <% @search.results.each_with_index do |name, ndx| %>
         <% name.cited_by_instance_tree_node_names.sort {|x,y| x.full_name <=> y.full_name}.each do |cbn|  %>
-        <li class="compact">
-          <% if @search.parsed.show_details? &&
-                ndx < session[:default_details_limit] %>
-              <%= render partial: '/plants/taxonomy/accepted/search/details',
-                     locals: {name: cbn} %>
-              <br/>
-          <% else %>
-            <% target_id = new_target_id %>
-            <span class="synonym">
-              <%= link_to("#{name.full_name} (#{name.rank.name})",
-                        plants_taxonomy_accepted_show_path(cbn[:id],target_id: target_id),
-                        class: "drill-down-toggle",
-                        data: {target_id: target_id},
-                        title: "Select to show or hide details",
-                        remote: true)
-                      %>
-            </span>
-            =
-            <%= link_to("#{cbn.full_name}",
-                        plants_taxonomy_accepted_show_path(cbn.id,target_id: target_id),
-                        class: "drill-down-toggle",
-                        data: {target_id: target_id},
-                        title: "Select to show or hide details",
-                        remote: true)
-                      %>
-            <% if false && cbn.show_status? %>
-              <span class="name-status" title="Name Status"><%= cbn.status.name %></span>
-            <% end %>
-            <div id="<%= target_id %>" class="details"></div>
-          <% end %>
-        </li>
+          <%= render partial: "/plants/taxonomy/accepted/search/synonym_name", locals: {name: name, cbn: cbn} %>
         <% end %>
       <% end %>
     </ul>
