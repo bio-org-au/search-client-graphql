@@ -3,12 +3,10 @@
 
 
 <% if @search.results.size > 0 %>
-    <ul class="taxonomy-results">
-      <% @search.results.each_with_index do |name, ndx| %>
-        <% name.cited_by_instance_tree_node_names.sort {|x,y| x.full_name <=> y.full_name}.each do |cbn|  %>
-          <%= render partial: "/plants/taxonomy/accepted/search/synonym_name", locals: {name: name, cbn: cbn} %>
-        <% end %>
-      <% end %>
-    </ul>
-  <% end %>
+  <ul class="taxonomy-results">
+    <% @search.results.each_with_index do |synonym| %>
+      <%= render partial: "/plants/taxonomy/accepted/search/synonym_name", locals: {synonym: synonym} %>
+    <% end %>
+  </ul>
+<% end %>
 

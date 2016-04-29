@@ -39,13 +39,15 @@
 
 <div id="wrapper">
 <div id="header" class="boa-pageheader <%= @zone %>">
-  <div class="container print">
-    <%= yield :page_banner %>
+  <div class="container-fluid print">
+    <div class="col-md-offset-1 col-md-12 xcol-md-pull-3 xbd-content">
+      <%= yield :page_banner %>
+    </div>
   </div>
 </div>
 
 <div id="content">
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="col-md-3 col-md-push-9 bd-sidebar">
       <div class="bd-sidebar hidden-print">
@@ -53,7 +55,7 @@
       </div>
     </div>
 
-    <div class="col-md-9 col-md-pull-3 bd-content">
+    <div class="col-md-offset-1 col-md-8 col-md-pull-3 bd-content">
       <%= yield %>
     </div>
   </div>

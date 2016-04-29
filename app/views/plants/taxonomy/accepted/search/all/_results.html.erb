@@ -1,43 +1,18 @@
 
 <% if @search.results.size > 0 %>
-    <ul class="taxonomy-results">
-      <% @search.results.each_with_index do |n, ndx| %>
-        <% name = Name.find(n[:id]) %> 
-        <li class="compact">
-          <% if name.apc_accepted? || name.apc_excluded? %>
-            <%= link_to(name[:full_name],
-                        plants_taxonomy_accepted_show_path(name[:id]),
-                        title: "Select to show Name details")
-                      %>
-            <% if name.show_status? %>
-              <span class="name-status" title="Name Status"><%= name.status.name %></span>
-            <% end %>
-            <span class="red">[<%= name.rank.name %>]</span>
-              <span class="small">
-              <%= "sensu #{name.apc_accepted_instance.reference.citation_html}".html_safe if name.apc_accepted? %>
-              <%= "sensu #{name.apc_excluded_instance.reference.citation_html}".html_safe if name.apc_excluded? %>
-              </span>
-            <% if name.apc_excluded? %>
-              <span class="red">[Excluded]</span>
-            <% end %>
-          <% else %>
-            <% name.cited_by_instance_tree_node_names.sort {|x,y| x.full_name <=> y.full_name}.each do |cbn|  %>
-              <%= render partial: "/plants/taxonomy/accepted/search/synonym_name", locals: {name: name, cbn: cbn} %>
-            <% end %>
-          <% end %>
-
-              <%= render partial: "/plants/taxonomy/accepted/search/citation_links", locals: {name: name} %>
-
-              <% if @search.parsed.show_details? %>
-                <% if name.apc_accepted? %>
-                  <%= render partial: "/plants/taxonomy/accepted/search/accepted_name", locals: {name: name} %>
-                <% elsif name.apc_excluded? %>
-                  <%= render partial: "/plants/taxonomy/accepted/search/excluded_name", locals: {name: name} %>
-                <% end %>
-              <% end %>
-        </li>
+  <ul class="taxonomy-results">
+    <% @search.results.each_with_index do |nos, ndx| %>
+      <% if nos.accepted_accepted? %>
+        <%= render partial: "/plants/taxonomy/accepted/search/accepted_accepted_name", locals: {nos: nos} %>
+      <% elsif nos.accepted_excluded? %>
+        <%= render partial: "/plants/taxonomy/accepted/search/accepted_excluded_name", locals: {nos: nos} %>
+      <% elsif nos.synonym? %>
+        <%= render partial: "/plants/taxonomy/accepted/search/synonym_name", locals: {synonym: nos} %>
+      <% else %>
+        <li>Unknown type of record: <%= nos.type_code %></li>
       <% end %>
-    </ul>
-  <% end %>
+    <% end %>
+  </ul>
+<% end %>
 
 

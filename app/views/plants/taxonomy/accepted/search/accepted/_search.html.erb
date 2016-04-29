@@ -30,7 +30,7 @@
 <br/>
 
 <% if @search.present? %>
-  <%= render partial: '/plants/taxonomy/accepted/search/results', locals: {name: @search.results.first} %>
+  <%= render partial: 'results', locals: {name: @search.results.first} %>
 <% end %>
 <br>
 <br>

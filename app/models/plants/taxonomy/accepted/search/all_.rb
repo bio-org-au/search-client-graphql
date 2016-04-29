@@ -14,9 +14,9 @@ class Plants::Taxonomy::Accepted::Search::All_
   end
 
   def simple_name_search
-    Name.accepted_tree_all_simple_name_search(@parsed.search_term)
+    NameOrSynonym.simple_name_like(@parsed.search_term)
   end
   def full_name_search
-    Name.accepted_tree_all_full_name_search(@parsed.search_term)
+    NameOrSynonym.full_name_like(@parsed.search_term)
   end
 end

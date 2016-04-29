@@ -19,14 +19,6 @@
   max-width: 3.5rem;
 }
 
-@media (min-height: 850px) {
-  #search-tools-slider {
-    bottom: 6rem;
-    width: 11rem;
-    height: 22rem;
-  }
-}
-
 @media (max-height: 849px) {
   #search-tools-slider {
     background: rgba(255, 255, 255, .7);
@@ -38,7 +30,8 @@
 
 @media (min-height: 850px) {
   #search-tools-slider {
-    bottom: 6rem;
+    bottom: 0rem;
+    right: 0rem;
     width: 11rem;
     height: 22rem;
   }
@@ -46,10 +39,9 @@
 
 @media (min-height: 900px) {
   #search-tools-slider {
-    top: 30rem;
+    top: 31rem;
     width: 11rem;
     height: 22rem;
-    color: blue;
   }
 }
 
@@ -68,80 +60,79 @@
 
 @media (min-width: 1100px) and (max-width: 1199px){
   #search-tools-slider {
-    right: 6%;
+    right: 4%;
   }
 }
 
 @media (min-width: 1200px) and (max-width: 1299px){
   #search-tools-slider {
-    right: 5%;
+    right: 4%;
   }
 }
 
 @media (min-width: 1300px) and (max-width: 1349px){
   #search-tools-slider {
-    right: 7%;
+    right: 6%;
   }
 }
 
 @media (min-width: 1350px) and (max-width: 1399px){
   #search-tools-slider {
-    right: 9%;
+    right: 7%;
   }
 }
 
 @media (min-width: 1400px) and (max-width: 1499px){
   #search-tools-slider {
-    right: 11%;
+    right: 8%;
   }
 }
 
 @media (min-width: 1500px) and (max-width: 1599px){
   #search-tools-slider {
-    right: 13%;
+    right: 8%;
   }
 }
 
 @media (min-width: 1600px) and (max-width: 1649px){
   #search-tools-slider {
-    right: 14.5%;
+    right: 10%;
   }
 }
 
-
 @media (min-width: 1650px) and (max-width: 1699px){
   #search-tools-slider {
-    right: 15.8%;
+    right: 10%;
   }
 }
 
 @media (min-width: 1700px) and (max-width: 1799px){
   #search-tools-slider {
-    right: 16.5%;
+    right: 11%;
   }
 }
 
 @media (min-width: 1800px) and (max-width: 1849px){
   #search-tools-slider {
-    right: 18.8%;
+    right: 12%;
   }
 }
 
 @media (min-width: 1850px) and (max-width: 1899px){
   #search-tools-slider {
-    right: 19.8%;
+    right: 12%;
   }
 }
 
 @media (min-width: 1900px) and (max-width: 1999px){
   #search-tools-slider {
-    right: 20%;
+    right: 12%;
   }
 }
 
 @media (min-width: 2000px) {
   #search-tools-slider {
-    right: 22%;
+    right: 12%;
   }
 }
 

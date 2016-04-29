@@ -15,16 +15,18 @@ class Plants::Taxonomy::Accepted::Search::AcceptedAndExcluded
   end
 
   def simple_name_search
-    name_search.lower_simple_name_like(@parsed.search_term)
+    search.simple_name_like(@parsed.search_term)
   end
 
   def full_name_search
-    name_search.lower_full_name_like(@parsed.search_term)
+    search.full_name_like(@parsed.search_term)
   end
 
-  def name_search
-    Name.accepted_tree_accepted_or_excluded_search
-        .joins(:name_type)
-        .includes(:rank)
+  def search
+    AcceptedName.ordered
+                .includes(:status)
+                .includes(:reference)
+                .includes(:rank)
   end
+
 end

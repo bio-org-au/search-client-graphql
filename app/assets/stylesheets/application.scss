@@ -12,6 +12,8 @@
  * CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ * under sticky footer
+ * import "component-examples";
  */
 // Custom bootstrap variables must be set or import before bootstrap itself.
 // Local docs variables
@@ -38,14 +40,12 @@ $bb-link-hover:     slateblue;
 @import "font-family";
 @import "nav";
 @import "masthead";
-@import "featurettes";
 @import "content";
 @import "page-header";
 @import "skiplink";
 @import "sidebar";
 @import "footer";
 @import "sticky-footer";
-@import "component-examples";
 @import "responsive-tests";
 @import "buttons";
 @import "callouts";

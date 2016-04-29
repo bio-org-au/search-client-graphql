@@ -15,14 +15,25 @@ class Plants::Taxonomy::Accepted::Search::Accepted
   end
 
   def simple_name_search
-    name_search.lower_simple_name_like(@parsed.search_term)
+    search.simple_name_like(@parsed.search_term)
   end
 
   def full_name_search
-    name_search.lower_full_name_like(@parsed.search_term)
+    search.full_name_like(@parsed.search_term)
   end
 
-  def name_search
-    Name.accepted_tree_accepted_search
+  def search
+    AcceptedName.accepted
+                .ordered
+                .includes(:status)
+                .includes(:reference)
+                .includes(:rank)
+                .includes(:instance)
+                .includes(:names)
+                .includes(:instance_types)
+                .includes(:synonyms)
+                .includes(:cites)
+                .includes(:cite_references)
+                .includes(:instance_note_keys)
   end
 end

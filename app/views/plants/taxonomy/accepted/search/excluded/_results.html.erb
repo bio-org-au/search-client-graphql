@@ -1,0 +1,9 @@
+
+
+<% if @search.results.size > 0 %>
+  <ul class="taxonomy-results">
+    <% @search.results.each_with_index do |name, ndx| %>
+      <%= render partial: "/plants/taxonomy/accepted/search/accepted_excluded_name", locals: {nos: name} %>
+    <% end %>
+  </ul>
+<% end %>

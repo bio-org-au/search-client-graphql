@@ -1,7 +1,27 @@
+        <li class="compact">
+            <span class="debug purple">[<%= name.sort_name %>]</span>
+            <%= link_to(name[:full_name],
+                        plants_taxonomy_accepted_show_path(name[:id]),
+                        title: "Select to show Name details")
+                      %>
+            <% if name.show_status? %>
+              <span class="name-status" title="Name Status"><%= name.status.name %></span>
+            <% end %>
+            <span class="small">
+              <%= "sensu #{name.apc_accepted_instance.reference.citation_html}".html_safe if name.apc_accepted? %>
+              <%= "sensu #{name.apc_excluded_instance.reference.citation_html}".html_safe if name.apc_excluded? %>
+            </span>
+            <span class="red">Excluded</span>
+            <span class="debug purple">[<%= name.rank.name %>]</span>
 
-            <div class="accepted-name-details indented">
-              <div class="accepted-name-comment small" title="Excluded name comment">
-                <%= name.apc_comment %>
-              </div>
-            </div>
+              <%= render partial: "/plants/taxonomy/accepted/search/citation_links", locals: {name: name} %>
+
+              <% if @search.parsed.show_details? %>
+                <% if name.apc_accepted? %>
+                  <%= render partial: "/plants/taxonomy/accepted/search/accepted_name_details", locals: {name: name} %>
+                <% elsif name.apc_excluded? %>
+                  <%= render partial: "/plants/taxonomy/accepted/search/excluded_name_details", locals: {name: name} %>
+                <% end %>
+              <% end %>
+        </li>
 

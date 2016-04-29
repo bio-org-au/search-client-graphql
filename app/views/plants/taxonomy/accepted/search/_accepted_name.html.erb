@@ -1,22 +1,22 @@
+        <li class="compact">
+            <span class="debug purple">[<%= name.sort_name %>]</span>
+            <%= link_to(name[:full_name],
+                        plants_taxonomy_accepted_show_path(name[:id]),
+                        title: "Select to show Name details")
+                      %>
+            <% if name.show_status? %>
+              <span class="name-status" title="Name Status"><%#= name.status.name %></span>
+            <% end %>
+              <span class="small">
+              <%#= "sensu #{name.apc_accepted_instance.reference.citation_html}".html_safe if name.apc_accepted? %>
+              <%#= "sensu #{name.apc_excluded_instance.reference.citation_html}".html_safe if name.apc_excluded? %>
+              </span>
+            <span class="debug purple">[rank: <%#= name.rank.name %>]</span>
+            <span class="debug purple">[sort: <%= name.sort_name %>]</span>
+            <%#= render partial: "/plants/taxonomy/accepted/search/citation_links", locals: {name: name} %>
 
-              <div class="accepted-name-details indented">
-              <ul class="apc-instances small">
-                <% name.apc_accepted_instance.synonyms.sort do |x,y|
-                  [x.name.full_name, x.cite.reference.year] <=> [y.name.full_name, y.cite.reference.year]
-                  end.each do |synonym| %>
-                  <%= synonym.name.full_name_html.html_safe %>
-                  <% if synonym.instance_type.misapplied? %>
-                    MISAPPLIED
-                    <%= synonym.cite.reference.citation_html.html_safe %>
-                  <% end %>
-                  <br/>
-              <% end %>
-              </ul>
-              <div class="accepted-name-comment small" title="Accepted name comment">
-              <%= name.apc_comment %>
-              </div>
-              <div class="accepted-name-distribution small" title="Accepted name distribution">
-              <%= name.apc_distribution %>
-              </div>
-            </div>
+              <%# if @search.parsed.show_details? %>
+                  <%#= render partial: "/plants/taxonomy/accepted/search/accepted_name_details", locals: {name: name} %>
+              <%# end %>
+        </li>
 

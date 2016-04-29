@@ -8,7 +8,11 @@ class Instance < ActiveRecord::Base
              class_name: "Instance",
              foreign_key: "cited_by_id"
   has_many :instance_notes
+  has_many :instance_note_keys, through: :instance_notes
+  has_one  :apc_comment, -> { where "instance_note_key_id = (select id from instance_note_key where name = 'APC Comment')" },
+           class_name: "InstanceNote", foreign_key: "instance_id"
   has_many :synonyms, foreign_key: "cited_by_id"
+  has_many :accepted_names
 
   belongs_to :cited_by_instance, foreign_key: "cited_by_id"
 

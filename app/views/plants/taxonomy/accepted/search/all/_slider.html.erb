@@ -15,6 +15,13 @@
                         title: "Re-run the search showing details." %>
           </li>
           <hr/>
+          <li class="">
+            <%= link_to %(Citation links &nbsp; #{fa_icon('check') if @search.parsed.show_permalinks?}).html_safe,
+                        plants_taxonomy_accepted_search_all_path(q: params['q'], show_results_as: params[:show_results_as], show_permalinks: params[:show_permalinks] != "true"),
+                        class: "tiny",
+                        title: "Add permalinks to the results." %>
+          </li>
+          <hr/>
           <li>
             <a href="javascript:window.print()"
                class="tiny"

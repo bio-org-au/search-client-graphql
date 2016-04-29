@@ -24,7 +24,7 @@
 <% end %>
 
 <% if @search.present? %>
-  <%= "<span class='search-result-summary'>#{pluralize(@search.results.size, 'name')}</span>".html_safe %>
+  <%= "<span class='search-result-summary'>#{pluralize(@search.results.size, 'accepted, excluded or synonym name')}</span>".html_safe %>
 <% end %>
 <br/>
 <br/>

@@ -16,14 +16,10 @@ class Plants::Taxonomy::Accepted::Search::Synonym
   end
 
   def simple_name_search
-    name_search.lower_simple_name_like(@parsed.search_term)
+    AcceptedSynonym.simple_name_like(@parsed.search_term).default_ordered
   end
 
   def full_name_search
-    name_search.lower_full_name_like(@parsed.search_term)
-  end
-
-  def name_search
-    Name.accepted_tree_synonyms
+    AcceptedSynonym.full_name_like(@parsed.search_term).default_ordered
   end
 end

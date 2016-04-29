@@ -47,12 +47,21 @@ class Name < ActiveRecord::Base
         .joins("inner join name_tree_path ntp on cited_by_instance_tree_node_names_name.id = ntp.name_id")
         .joins(" inner join tree_arrangement ntp_ta on ntp.tree_id = ntp_ta.id and ntp_ta.label = 'APC' ")
         .includes(:status)
+        .includes(:cited_by_instance_tree_node_names)
         .joins(:rank)
         .joins(:name_type)
   end
 
+  def self.new_unordered_accepted_tree_synonyms
+    Name.joins(:rank)
+        .joins(:cited_by_names)
+        .joins(:apc_tree_arrangements)
+        .joins(:name_type)
+        .includes(:status)
+  end
+
   def self.accepted_tree_synonyms
-    Name.unordered_accepted_tree_synonyms.order("name_rank.sort_order, lower(name.full_name)")
+    Name.unordered_accepted_tree_synonyms.order("sort_name")
   end
 
   def instances_in_order
@@ -85,12 +94,16 @@ class Name < ActiveRecord::Base
   end
 
   def self.accepted_tree_search
-    Name.unordered_accepted_tree_search.order("name_rank.sort_order, name.full_name")
+    Name.unordered_accepted_tree_search.order("name.sort_name")
+  end
+
+  def self.xaccepted_tree_accepted_search
+    Name.accepted_tree_search
+        .where(" tree_node.type_uri_id_part = 'ApcConcept'")
   end
 
   def self.accepted_tree_accepted_search
-    Name.accepted_tree_search
-        .where(" tree_node.type_uri_id_part = 'ApcConcept'")
+    AcceptedName.simple_name_like(search_term)
   end
 
   def self.accepted_tree_excluded_search
@@ -98,7 +111,7 @@ class Name < ActiveRecord::Base
         .where(" tree_node.type_uri_id_part = 'ApcExcluded'")
   end
 
-  def self.accepted_tree_accepted_or_excluded_search
+  def self.xaccepted_tree_accepted_or_excluded_search
     Name.accepted_tree_search
         .where(" tree_node.type_uri_id_part in ('ApcExcluded', 'ApcConcept')")
   end
@@ -108,7 +121,7 @@ class Name < ActiveRecord::Base
   #
   # Gets past this error: ERROR:  bind message supplies 0 parameters, but prepared statement "" requires 2
   # See the explanation here: https://github.com/rails/rails/issues/13686
-  def self.accepted_tree_all_simple_name_search(search_term = 'x')
+  def self.xaccepted_tree_all_simple_name_search(search_term = 'x')
     query1 = Name.unordered_accepted_tree_search
                  .where(" tree_node.type_uri_id_part in ('ApcExcluded', 'ApcConcept')")
                  .joins(:name_type)
@@ -123,7 +136,8 @@ class Name < ActiveRecord::Base
     # Could not order by name_rank.sort_order
     # .order("name_rank.sort_order, name.full_name")
     # Sorting produced an array
-    Name.from(sql).sort {|x,y| x.rank.sort_order <=> y.rank.sort_order}
+    ##Name.from(sql).sort {|x,y| x.rank.sort_order <=> y.rank.sort_order}
+    Name.from(sql).sort {|x,y| x.sort_key <=> y.sort_key}
   end
 
   # "Union with Active Record"
@@ -131,7 +145,7 @@ class Name < ActiveRecord::Base
   #
   # Gets past this error: ERROR:  bind message supplies 0 parameters, but prepared statement "" requires 2
   # See the explanation here: https://github.com/rails/rails/issues/13686
-  def self.accepted_tree_all_full_name_search(search_term = 'x')
+  def self.xaccepted_tree_all_full_name_search(search_term = 'x')
     query1 = Name.unordered_accepted_tree_search
                  .where(" tree_node.type_uri_id_part in ('ApcExcluded', 'ApcConcept')")
                  .joins(:name_type)
@@ -145,8 +159,14 @@ class Name < ActiveRecord::Base
     }
     # Could not order by name_rank.sort_order
     # .order("name_rank.sort_order, name.full_name")
-    # Sorting produced an array
-    Name.from(sql).sort {|x,y| x.rank.sort_order <=> y.rank.sort_order}
+    # Sorting produces an array
+    #
+    #Name.from(sql).sort {|x,y| x.rank.sort_order <=> y.rank.sort_order}
+    Name.from(sql).sort {|x,y| x.sort_key <=> y.sort_key}
+  end
+
+  def xsort_key
+    simple_name.sub(/ x /,' ')
   end
 
   def self.xaccepted_tree_cross_search(term)

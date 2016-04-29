@@ -1,0 +1,24 @@
+
+              <div class="accepted-name-details indented">
+              <ul class="accepted-instances small">
+                <%
+                   name.instance.synonyms.sort do |x,y|
+                     x.name.full_name <=> y.name.full_name
+                   end.each do |synonym|
+                %>
+                  <%= synonym.name.full_name_html.html_safe %>
+                  <% if synonym.instance_type.misapplied? %>
+                    MISAPPLIED
+                  <% end %>
+                  <%#= synonym.cite.reference.citation_html.html_safe %>
+                  <br/>
+                <% end %>
+              </ul>
+              <div class="accepted-name-comment small" title="Accepted name comment">
+                <%= name.instance.apc_comment.try("html_safe") %>
+              </div>
+              <div class="accepted-name-distribution small" title="Accepted name distribution">
+                <%= name.instance.apc_distribution %>
+              </div>
+            </div>
+

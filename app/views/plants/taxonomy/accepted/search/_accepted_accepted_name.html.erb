@@ -1,0 +1,21 @@
+        <li class="compact">
+            <span class="debug purple">[<%= nos.sort_name %>]</span>
+            <%= link_to(nos[:full_name],
+                        plants_taxonomy_accepted_show_path(nos[:id]),
+                        title: "Select to show Name details")
+                      %>
+            <% if nos.show_status? %>
+              <span class="name-status" title="Name Status"><%= nos.status.name %></span>
+            <% end %>
+              <span class="small">
+                <%= "sensu #{nos.reference.citation_html}".html_safe %>
+              </span>
+              <span class="debug purple">[<strong><%#= nos.rank.name %></strong>]</span>
+
+              <%= render partial: "/plants/taxonomy/accepted/search/citation_links", locals: {name: nos} %>
+
+              <% if @search.parsed.show_details? %>
+                  <%= render partial: "/plants/taxonomy/accepted/search/accepted_name_details", locals: {name: nos} %>
+              <% end %>
+        </li>
+
