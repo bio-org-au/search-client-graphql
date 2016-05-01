@@ -60,4 +60,5 @@ gem "statsd-ruby", :require => "statsd"
 gem "font-awesome-rails"
 gem "nunes"
 gem "activerecord-hierarchical_query", require: "active_record/hierarchical_query"
+gem 'scenic', '~> 0.3.0'
 

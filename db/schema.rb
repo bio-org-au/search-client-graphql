@@ -263,6 +263,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.boolean  "valid_record",                       default: false, null: false
     t.integer  "why_is_this_here_id",   limit: 8
     t.string   "verbatim_rank",         limit: 50
+    t.string   "sort_name",             limit: 250
   end
 
   add_index "name", ["author_id"], name: "name_author_index", using: :btree
@@ -836,4 +837,24 @@ ActiveRecord::Schema.define(version: 0) do
   add_foreign_key "tree_node", "tree_uri_ns", column: "taxon_uri_ns_part_id", name: "fk_16c4wgya68bwotwn6f50dhw69"
   add_foreign_key "tree_node", "tree_uri_ns", column: "type_uri_ns_part_id", name: "fk_oge4ibjd3ff3oyshexl6set2u"
   add_foreign_key "tree_uri_ns", "tree_uri_ns", column: "owner_uri_ns_part_id", name: "fk_q9k8he941kvl07j2htmqxq35v"
+      create_view :accepted_name_vw, sql_definition:<<-SQL
+        SELECT accepted.id,
+  accepted.simple_name,
+  accepted.full_name,
+  tree_node.type_uri_id_part AS type_code,
+  instance.id AS instance_id,
+  tree_node.id AS tree_node_id,
+  0 AS accepted_id,
+  ''::character varying AS accepted_full_name,
+  accepted.name_status_id,
+  instance.reference_id,
+  accepted.name_rank_id,
+  accepted.sort_name
+ FROM (((name accepted
+   JOIN instance ON ((accepted.id = instance.name_id)))
+   JOIN tree_node ON ((accepted.id = tree_node.name_id)))
+   JOIN tree_arrangement ta ON ((tree_node.tree_arrangement_id = ta.id)))
+WHERE (((((ta.label)::text = 'APC'::text) AND (tree_node.next_node_id IS NULL)) AND (tree_node.checked_in_at_id IS NOT NULL)) AND (instance.id = tree_node.instance_id));
+      SQL
+
 end

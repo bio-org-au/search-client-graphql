@@ -92,6 +92,9 @@
   font-size: 90%;
   color: #99979c;
 }
+.bd-sidebar .nav > li > a.allow-field-alongside {
+  display: inline;
+}
 .bd-sidebar .nav > li > a:hover,
 .bd-sidebar .nav > li > a:focus {
   color: $brand-primary;

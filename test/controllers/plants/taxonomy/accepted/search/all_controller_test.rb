@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Plants::NamesControllerTest < ActionController::TestCase
+class Plants::Taxonomy::Accepted::Search::AllControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
     assert_response :success

@@ -12,7 +12,7 @@
           <li class="">
             <%= link_to %(Details &nbsp; #{fa_icon('check') if @search.parsed.show_details?}).html_safe,
                         plants_names_search_common_path(q: params['q'], pc: params[:controller], show_results_as: 'details'),
-                        class: "tiny needs-details-limit",
+                        class: "tiny needs-details-limit allow-field-alongside",
                         title: "Re-run the search showing details." %>
             <input type="number"
                    min="1"
