@@ -32,6 +32,11 @@ class Instance < ActiveRecord::Base
       "          else 1 end ")
   }
 
+  def xsort_fields
+    [reference.year || 9999,
+     instance_type.primaries_first]
+  end
+
   def sort_fields
     [reference.year || 9999,
      instance_type.primaries_first,

@@ -43,19 +43,8 @@
           <% end %>
         </ul>
         <hr/>
-        <a href="javascript:history.go(-1);"
-           class="nav micro"
-           title="Go back one page"><%= fa_stacked_icon "chevron-left inverse", base: "square" %></a>
-        <a href="#top"
-           class="nav micro"
-           title="Go to the top of the page"><%= fa_stacked_icon "chevron-up inverse", base: "square" %></a>
-        <a href="#footer"
-           class="nav micro"
-           title="Go to the bottom of the page"><%= fa_stacked_icon "chevron-down inverse", base: "square" %></a>
-        <a href="javascript:history.go(1);"
-           class="nav micro"
-           title="Go forward one page"><%= fa_stacked_icon "chevron-right inverse", base: "square" %></a>
-  </div>
+        <%= render partial: "/layouts/search_nav_links" %>
+    </div>
   </div>
     <br/>
       <span class="debug tiny hidden-print">

@@ -4,6 +4,7 @@ class NameStatus < ActiveRecord::Base
   has_many :names
 
   def show?
-    name != "legitimate"
+    name != "legitimate" &&
+      name[0] != "["
   end
 end

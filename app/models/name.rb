@@ -7,7 +7,10 @@ class Name < ActiveRecord::Base
   belongs_to :status, class_name: "NameStatus", foreign_key: "name_status_id"
   belongs_to :name_type
   has_many :instances
-  has_many :synonyms
+  has_many :instance_types, through: :instances
+  has_many :references, through: :instances
+  has_many :synonyms, through: :instances
+  has_many :authors, through: :references
   has_many :tree_nodes
   has_many :name_tree_paths
 
@@ -34,6 +37,8 @@ class Name < ActiveRecord::Base
   #has_many :cited_by_instance_tree_node_name_tree_paths, through: :cited_by_instance_tree_nodes
   has_many :cited_by_instance_tree_node_names, through: :cited_by_instance_tree_nodes
   has_many :cited_by_instance_tree_node_name_name_tree_paths , through: :cited_by_instances
+
+  has_one :accepted_name, foreign_key: :id
 
   scope :not_a_duplicate, -> { where(duplicate_of_id: nil) }
   scope :has_an_instance, -> { where(["exists (select null from instance where name.id = instance.name_id)"]) }
@@ -75,15 +80,28 @@ class Name < ActiveRecord::Base
         .has_an_instance
         .includes(:status)
         .includes(:rank)
-        .joins(:apni_tree_arrangements)
-        .order('name_tree_path.rank_path, name.full_name')
+        .includes(:accepted_name)
+        .includes(:instances)
+        .includes(:instance_types)
+        .includes(:references)
+        .includes(:authors)
+        .includes(:synonyms)
+        .order("sort_name")
   end
 
   def self.common_search
     Name.not_a_duplicate
         .has_an_instance
         .includes(:status)
-        .order('name.full_name')
+        .order("sort_name")
+  end
+
+  def self.all_search
+    Name.not_a_duplicate
+        .has_an_instance
+        .includes(:status)
+        .includes(:rank)
+        .order("sort_name")
   end
 
   def self.unordered_accepted_tree_search
@@ -230,7 +248,8 @@ class Name < ActiveRecord::Base
   end
 
   def apc_instance_id
-    TreeNode.apc(full_name).try("first").try("instance_id")
+    #TreeNode.apc(full_name).try("first").try("instance_id")
+    AcceptedName.where(id: id)
   end
 
   def pg_descendants

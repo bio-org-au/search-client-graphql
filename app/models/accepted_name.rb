@@ -7,6 +7,7 @@ class AcceptedName < ActiveRecord::Base
   belongs_to :rank, class_name: "NameRank", foreign_key: "name_rank_id"
   belongs_to :reference
   belongs_to :instance
+  belongs_to :name, foreign_key: :id
   has_one :apc_comment, through: :instance
   has_many :synonyms, through: :instance
   has_many :names, through: :synonyms
