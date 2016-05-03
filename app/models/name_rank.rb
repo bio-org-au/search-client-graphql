@@ -19,4 +19,12 @@ class NameRank < ActiveRecord::Base
   def above_species?
     sort_order < NameRank.species.sort_order
   end
+
+  def self.above_species?(rank_sort_order)
+    rank_sort_order < NameRank.species.sort_order
+  end
+
+  def self.show?(rank_name,rank_visible_in_name,rank_sort_order)
+    !rank_visible_in_name && NameRank.above_species?(rank_sort_order)
+  end
 end

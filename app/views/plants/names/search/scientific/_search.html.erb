@@ -24,12 +24,12 @@
 <% end %>
 
 <% if @search.present? %>
-  <%= "<span class='search-result-summary'>#{pluralize(@search.results.size, 'scientific name')}</span>".html_safe %>
+  <%= "<span class='search-result-summary'>#{pluralize(@search.results.pluck("id").uniq.size, 'scientific name')}</span>".html_safe %>
 <% end %>
 <br/>
 <br/>
 
 <% if @search.present? %>
-  <%= render partial: '/plants/names/search/results', locals: {search: @search, name: @search.results.first} %>
+  <%= render partial: 'results' %>
 <% end %>
 <span class="debug hidden-print">[plants/names/search/scientific]</span>

@@ -24,7 +24,7 @@
 <% end %>
 
 <% if @search.present? %>
-  <span>
+  <span class='search-result-summary'>
   <%= pluralize(@search.results.size, 'Scientific, Cultivar, Common or Informal name') %>
   </span>
   <%= render partial: '/plants/names/search/results', locals: {search: @search, name: @search.results.first} %>

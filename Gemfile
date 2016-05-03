@@ -4,13 +4,15 @@ gem "rails", "4.2.5.1"
 
 platform :jruby do
   gem "activerecord-jdbcpostgresql-adapter"
+  gem "puma"
+  gem "therubyrhino"
+  gem "warbler"
 end
 
 platform :mri do
   gem "pg", "~> 0.15"
 end
 
-gem "puma"
 # Use SCSS for stylesheets
 gem "sass-rails", "~> 5.0"
 # Use Uglifier as compressor for JavaScript assets

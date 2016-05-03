@@ -7,4 +7,9 @@ class NameStatus < ActiveRecord::Base
     name != "legitimate" &&
       name[0] != "["
   end
+
+  def self.show?(status_name)
+    status_name != "legitimate" &&
+      status_name[0] != "["
+  end
 end

@@ -80,13 +80,21 @@ class Name < ActiveRecord::Base
         .has_an_instance
         .includes(:status)
         .includes(:rank)
-        .includes(:accepted_name)
+        .order("sort_name")
+  end
+
+  def self.scientific_search_detailed
+    Name.not_a_duplicate
+        .has_an_instance
+        .includes(:status)
+        .includes(:rank)
         .includes(:instances)
         .includes(:instance_types)
         .includes(:references)
         .includes(:authors)
         .includes(:synonyms)
         .order("sort_name")
+        #.includes(:accepted_name) # goes crazy on list search
   end
 
   def self.common_search
@@ -468,5 +476,10 @@ SELECT n.id, n.full_name
     else
       nil
     end
+  end
+
+  # For compatibility with name_instance_vw.
+  def status_name
+    status.name
   end
 end

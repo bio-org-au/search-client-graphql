@@ -17,11 +17,19 @@ class Plants::Names::Search::Parse
     @show_as = params[:show_results_as] || info[:default_show_results_as]
   end
 
-  def show_list?
+  def list?
     @show_as == SHOW_LIST
   end
 
-  def show_details?
+  def show_list?
+    list?
+  end
+
+  def details?
     @show_as == SHOW_DETAILS
+  end
+
+  def show_details?
+    details?
   end
 end
