@@ -1,5 +1,5 @@
-<%= number_with_delimiter(name.pg_apni_descendants.cmd_tuples) %>
-<%= "name".pluralize(name.pg_apni_descendants.cmd_tuples) %>
+<%= @descendants.size %>
+<%= "name".pluralize(@descendants.size) %>
 <hr>
 
 <%= form_tag(plants_names_search_within_taxon_selected_ranks_search_path,
@@ -20,12 +20,12 @@
 <% end %>
 
 <hr>
-<%= name.pg_apni_descendants_for_ranks(@ranks).cmd_tuples %>
-<%= "name".pluralize(name.pg_apni_descendants_for_ranks(@ranks).cmd_tuples) %> in selected ranks
+<%= @descendants_at_ranks.size %>
+<%= "name".pluralize(@descendants_at_ranks.size) %> in selected ranks
 <br>
 <br>
 <ul>
-<% name.pg_apni_descendants_for_ranks(@ranks).each do |d| %>
+<% @descendants_at_ranks.results.each do |d| %>
   <% target_id = new_target_id %>
   <li/><%= d["full_name"] %>
     <%#= link_to("#{d['full_name']}",

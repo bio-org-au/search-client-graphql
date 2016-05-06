@@ -1,14 +1,9 @@
 class Plants::Names::Search::Within::Taxon::SelectedRanks::SearchController < ApplicationController
   def index
     @name = Name.find(params[:id])
-    @ranks = params.keys.collect {|k| "'#{k}'"}.join(',')
-    @ranks.sub!(/'unranked'/,"'[unranked]'")
-    @ranks.sub!(/'infrafamily'/,"'[infrafamily]'")
-    @ranks.sub!(/'infragenus'/,"'[infragenus]'")
-    @ranks.sub!(/'infraspecies'/,"'[infraspecies]'")
-    @ranks.sub!(/'n\/a'/,"'[n/a]'")
-    @ranks.sub!(/'unknown'/,"'[unknown]'")
-    @ranks = "(#{@ranks})"
+    @descendants = Plants::Names::Descendants.new(params[:id])
+    return unless params[:id].present?
+    @descendants_at_ranks = Plants::Names::DescendantsAtRanks.new(params)
     render action: "index"
   end
 end

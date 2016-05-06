@@ -191,46 +191,6 @@ class Name < ActiveRecord::Base
     Name.from(sql).sort {|x,y| x.sort_key <=> y.sort_key}
   end
 
-  def xsort_key
-    simple_name.sub(/ x /,' ')
-  end
-
-  def self.xaccepted_tree_cross_search(term)
-    sql = %Q(SELECT name.id,
-       name.full_name,
-       cited_by_name.full_name cited_by_name_full_name,
-       cited_by_name.id cited_by_name_id,
-       instance.id as instance_id,
-       synonym_instance.id,
-       synonym_instance.name_id,
-       tree_node.type_uri_id_part
-  FROM name
-       inner join instance
-       on name.id = instance.name_id
-       inner join instance synonym_instance
-       on instance.cited_by_id = synonym_instance.id
-       inner join name cited_by_name
-       on synonym_instance.name_id = cited_by_name.id
- INNER JOIN tree_node
-    ON tree_node.instance_id = synonym_instance.id
-   AND (
-        next_node_id is null
-   and checked_in_at_id is not null
-       )
- INNER JOIN tree_arrangement
-    ON tree_arrangement.id = tree_node.tree_arrangement_id
-   AND tree_arrangement.label = 'APC'
- INNER JOIN name_tree_path
-    ON name_tree_path.name_id = cited_by_name.id
- INNER JOIN name_type
-    ON name_type.id = name.name_type_id
- where (lower((name.simple_name)) like lower(#{term}) )
-   and ( name_tree_path.tree_id     = tree_arrangement.id)
-  order by name_tree_path.rank_path
-                    )
-    ActiveRecord::Base.connection.execute(sql)
-  end
-
   def family?
     rank.family?
   end
@@ -363,73 +323,6 @@ limit 3"
     else
       return true
     end
-  end
-
-  def pg_apni_descendants
-    sql = "WITH RECURSIVE nodes_cte(id, full_name, parent_id, depth, path) AS (
- SELECT tn.id, tn.full_name, tn.parent_id, 1::INT AS depth,
-        tn.id::TEXT AS path, tnr.name as rank, tnr.sort_order rank_order
-   FROM name AS tn
-        join
-        name_rank tnr
-        on tn.name_rank_id = tnr.id
-  WHERE tn.id = #{ActiveRecord::Base.sanitize(id)}
-UNION ALL
- SELECT c.id, c.full_name, c.parent_id, p.depth + 1 AS depth,
-        (p.path || '->' || c.id::TEXT),
-        cnr.name as rank, cnr.sort_order rank_order
-   FROM nodes_cte AS p, name AS c
-        join name_rank cnr
-        on c.name_rank_id = cnr.id
-  WHERE c.parent_id = p.id
-)
- SELECT n.id, n.full_name
-  FROM nodes_cte AS n
-       inner join
-       name_tree_path ntp
-       on n.id = ntp.name_id
-       inner join
-       tree_arrangement ta
-       on ta.id = ntp.tree_id
-  where ta.label = 'APNI'
-    and exists (select null from instance where instance.name_id = n.id)
-    and n.id != #{ActiveRecord::Base.sanitize(id)}
-  order by ntp.rank_path, n.full_name"
-  ActiveRecord::Base.connection.execute(sql)
-  end
-
-  def pg_apni_descendants_for_ranks(ranks = " ('nothing') ")
-    sql = "WITH RECURSIVE nodes_cte(id, full_name, parent_id, depth, path) AS (
- SELECT tn.id, tn.full_name, tn.parent_id, 1::INT AS depth,
-        tn.id::TEXT AS path, tnr.name as rank, tnr.sort_order rank_order
-   FROM name AS tn
-        join
-        name_rank tnr
-        on tn.name_rank_id = tnr.id
-  WHERE tn.id = #{ActiveRecord::Base.sanitize(id)}
-UNION ALL
- SELECT c.id, c.full_name, c.parent_id, p.depth + 1 AS depth,
-        (p.path || '->' || c.id::TEXT),
-        cnr.name as rank, cnr.sort_order rank_order
-   FROM nodes_cte AS p, name AS c
-        join name_rank cnr
-        on c.name_rank_id = cnr.id
-  WHERE c.parent_id = p.id
-)
-SELECT n.id, n.full_name
-  FROM nodes_cte AS n
-       inner join
-       name_tree_path ntp
-       on n.id = ntp.name_id
-       inner join
-       tree_arrangement ta
-       on ta.id = ntp.tree_id
-  where ta.label = 'APNI'
-    and exists (select null from instance where instance.name_id = n.id)
-    and n.id != #{ActiveRecord::Base.sanitize(id)}
-    and n.rank in " + ranks +
-        "order by ntp.rank_path, n.full_name"
-  ActiveRecord::Base.connection.execute(sql)
   end
 
   def show_status?
