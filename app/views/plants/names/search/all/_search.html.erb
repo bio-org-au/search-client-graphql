@@ -25,7 +25,8 @@
 
 <% if @search.present? %>
   <span class='search-result-summary'>
-  <%= pluralize(@search.results.size, 'Scientific, Cultivar, Common or Informal name') %>
+    <%= pluralize(@search.results.size, 'Scientific, Cultivar, Common or Informal name') %>
+    <%= no_results_help(@search.results.size).html_safe %>
   </span>
   <%= render partial: '/plants/names/search/results', locals: {search: @search, name: @search.results.first} %>
 <% end %>

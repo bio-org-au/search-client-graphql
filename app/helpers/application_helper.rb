@@ -75,4 +75,12 @@ module ApplicationHelper
     end
     fragment << "</ul>"
   end
+
+  def no_results_help(size)
+    if size == 0 
+      "<br/><br/>You may want to alter or reduce your search string, or add wildcards."
+    else
+      ""
+    end
+  end
 end
