@@ -4,7 +4,6 @@ class Plants::Names::Descendants
               :sql,
               :size
 
-
   def initialize(id_string = '0')
     id = id_string.to_i
     @sql = "WITH RECURSIVE nodes_cte(id, full_name, parent_id, depth, path) AS (
@@ -24,9 +23,11 @@ UNION ALL
       FROM nodes_cte AS p, name AS c
  WHERE c.parent_id      =  p.id
        )
-SELECT name.full_name, name.sort_name, n.depth, n.path
+SELECT n.id, name.full_name, name.sort_name, n.depth, n.path,
+       nr.name rank
   FROM nodes_cte AS n
   inner join name on n.id = name.id
+  inner join name_rank nr on nr.id = name.name_rank_id
  where exists (
     select null
       from instance

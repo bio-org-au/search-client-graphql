@@ -48,20 +48,20 @@
 </div>
 
 <div id="content">
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-3 col-md-push-9 bd-sidebar">
-      <div class="bd-sidebar hidden-print">
-        <%= yield :sidebar %>
-        <%= yield :slider %>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 col-md-push-9 bd-sidebar">
+        <div class="bd-sidebar hidden-print">
+          <%#= yield :sidebar %>
+          <%#= yield :slider %>
+        </div>
+      </div>
+
+      <div class="col-md-offset-1 col-md-8 col-md-pull-3 bd-content">
+        <%= yield %>
       </div>
     </div>
-
-    <div class="col-md-offset-1 col-md-8 col-md-pull-3 bd-content">
-      <%= yield %>
-    </div>
   </div>
-</div>
 </div>
 
 <div id="footer" class="boa-footer text-muted hidden-print" role="contentinfo">
