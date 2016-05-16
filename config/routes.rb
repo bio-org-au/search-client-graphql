@@ -59,6 +59,7 @@ Rails.application.routes.draw do
   get "search/apni"
 
   get "search/apc"
+  get "diagnostics/index"
   get "diagnostics/headings"
   get "diagnostics/search_form"
   get "diagnostics/search_form_with_sidebar"
