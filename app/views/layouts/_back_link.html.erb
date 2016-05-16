@@ -1,16 +1,15 @@
 <% unless @search.present? %>
   <hr/>
   <ul class="nav bd-sidenav">
-    <li class="nav-links gray tiny">
-          <span>
-          Navigate: 
+    <li class="gray tiny">
           <a href="javascript:history.go(-1);"
-             class="tiny gray"
-             title="Go back one page"><%= fa_stacked_icon "chevron-left inverse", base: "square" %></a>&nbsp; 
-          <a href="javascript:history.go(1);"
-             class="tiny gray"
-             title="Go forward one page"><%= fa_stacked_icon "chevron-right inverse", base: "square" %></a>
+             class=""
+             title="Go back one page"><%= fa_stacked_icon "chevron-left inverse", base: "square" %>Back</a>
      </li>
-   </span>
+     <li class="gray tiny">
+          <a href="javascript:history.go(1);"
+             class=""
+             title="Go forward one page"><%= fa_stacked_icon "chevron-right inverse", base: "square" %>Forward</a>
+     </li>
  </ul>
 <% end %>
