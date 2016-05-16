@@ -59,6 +59,10 @@ Rails.application.routes.draw do
   get "search/apni"
 
   get "search/apc"
+  get "diagnostics/headings"
+  get "diagnostics/search_form"
+  get "diagnostics/search_form_with_sidebar"
+  get "diagnostics/search_form_with_sidebar_and_slider"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
