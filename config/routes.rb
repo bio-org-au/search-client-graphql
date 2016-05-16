@@ -62,7 +62,9 @@ Rails.application.routes.draw do
   get "diagnostics/index"
   get "diagnostics/headings"
   get "diagnostics/search_form"
-  get "diagnostics/search_form_with_sidebar"
+  get "diagnostics/search_form_with_sidebar_1"
+  get "diagnostics/search_form_with_sidebar_2"
+  get "diagnostics/search_form_with_sidebar_3"
   get "diagnostics/search_form_with_sidebar_and_slider"
 
   # The priority is based upon order of creation:
