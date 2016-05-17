@@ -1,6 +1,6 @@
-drop view name_instance_vw;
+drop view name_details_vw;
 
-create view name_instance_vw as
+create view name_details_vw as
 select n.id,
        n.full_name,
        n.simple_name,
@@ -22,12 +22,21 @@ select n.id,
        sty.name synonym_type_name,
        i.page,
        i.page_qualifier,
+       i.cited_by_id,
        case ity.primary_instance
       when true then 'A'
       else 'B'
       end primary_instance_first,
        sname.full_name synonym_full_name,
-       n.sort_name
+       author.name author_name,
+       n.sort_name,
+       ref.citation_html||': '|| coalesce(i.page,'') ||
+       case ity.primary_instance
+       when true then
+         ' ['||ity.name||']'
+       else
+        ''
+       end entry
   from name n
        join name_status s on n.name_status_id = s.id
        join name_rank r on n.name_rank_id = r.id
@@ -38,5 +47,6 @@ select n.id,
        left outer join instance syn on syn.cited_by_id = i.id
        left outer join instance_type sty on syn.instance_type_id = sty.id
        left outer join name sname on syn.name_id = sname.id
+       left outer join author on ref.author_id = author.id
  where n.duplicate_of_id is null
 ;

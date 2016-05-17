@@ -40,6 +40,8 @@ class Name < ActiveRecord::Base
 
   has_one :accepted_name, foreign_key: :id
 
+  has_many :name_instances, foreign_key: :id
+
   scope :not_a_duplicate, -> { where(duplicate_of_id: nil) }
   scope :has_an_instance, -> { where(["exists (select null from instance where name.id = instance.name_id)"]) }
   scope :lower_full_name_like, ->(string) { where("lower(f_unaccent(name.full_name)) like lower(f_unaccent(?)) ", string.gsub(/\*/, "%").downcase) }

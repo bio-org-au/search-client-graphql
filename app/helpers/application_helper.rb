@@ -16,7 +16,7 @@ module ApplicationHelper
     end
     [display, shown]
   end
-
+ 
   def show_standalone_instance(instance, apc)
     fragment = "<div class='instance-citation'>"
     fragment << instance.reference.citation_html
@@ -52,10 +52,32 @@ module ApplicationHelper
     [fragment.html_safe, shown]
   end
 
-  def assemble_cited_by(instance, citing_instance)
+  def display_name_instance(name_instance, shown, check_apc = false)
+    if name_instance.standalone?
+      display = show_standalone_name_instance(name_instance, check_apc)
+    else
+      display, shown = show_relationship_name_instance(name_instance, shown)
+    end
+    [display, shown]
+  end
+ 
+  def show_standalone_name_instance(name_instance, apc)
+    ["standalone",false]
+  end
+ 
+  def show_relationship_name_instance(name_instance, shown)
+    citing_instance = name_instance.instance.this_is_cited_by
+    return "", shown if shown.include?(citing_instance.id)
+    shown.push(citing_instance.id)
+    fragment = "<div class='instance-citation'>#{name_instance.reference.citation_html}</div>"
+    fragment << assemble_cited_by(name_instance, citing_instance)
+    [fragment.html_safe, shown]
+  end
+
+  def assemble_cited_by(name_instance, citing_instance)
     fragment = "<ul class='indented'>"
     Instance.records_cited_by_relationship(citing_instance).each do |cited_by|
-      next unless cited_by.name.id == instance.name.id
+      next unless cited_by.name.id == name_instance.name.id
       fragment << "<li class='compact subordinate-instance'>"
       target_id =  "#{rand(1000)}-#{rand(1000)}-#{rand(1000)}"
       fragment << "<span class='instance-type-name'>"
@@ -84,3 +106,4 @@ module ApplicationHelper
     end
   end
 end
+

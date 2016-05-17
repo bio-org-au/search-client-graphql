@@ -1,28 +1,15 @@
 <% content_for :page_title do %>
-  Vascular Plant Names
+  <%= @name.full_name_html %>
 <% end %>
 <% content_for :page_banner do %>
-  <h1>Vascular Plants</h1>
+  <h1><%= @name.full_name_html.html_safe %></h1>
 <% end %>
 <% content_for :sidebar do %>
   <%= render "sidebar" %>
 <% end %>
 
-<% if @name.present? %>
-  <h3 class="fullname details" title="Scientific name"><%= "#{@name.full_name} #{@name.status.name if @name.show_status?}" %></h3>
-  <div class="name-display-family-name" title="Family name"><%= @name.family_name unless @name.rank.family? %></div>
-  <div class="name-display">
-  <br/>
-  <br/>
-  <% shown = [] -%>
-  <% apc_instance_id = @name.apc_instance_id -%>
-  <% @name.instances_in_order.each do | instance | %>
-    <% display, shown = display_instance(instance, shown, instance.id == apc_instance_id) -%>
-    <%= display %>
-  <% end %>
-  </div>
-<% end %>
-
+<%= render partial: "details_extra", locals: {name: @name, name_details: @name_details} %>
 <br/>
 <br/>
 <%= link_to "#{ fa_icon('chevron-left')} back".html_safe, 'javascript:history.go(-1);', id: "big-back-btn", class:"btn btn-secondary btn-lg btn-block micro gray", title: "Go back 1 page" %>
+
