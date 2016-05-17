@@ -7,13 +7,12 @@
     <div class="instance-citation">
     <% unless shown.include?(name_detail.instance_id) %>
       <%= name_detail.entry.html_safe unless shown.include?(name_detail.instance_id) %>
-      instance_id: <%= name_detail.instance_id %>
-        <ul class='indented'>
-      <% name_detail.name_detail_synonyms.each do |syn| %>
+      <ul class='indented'>
+        <% name_detail.name_detail_synonyms.each do |syn| %>
           <li class='compact subordinate-instance'>
             <%= syn.entry.html_safe %>
           </li>
-      <% end %>
+        <% end %>
       </ul>
     <% end %>
     <% shown.push name_detail.instance_id %>
