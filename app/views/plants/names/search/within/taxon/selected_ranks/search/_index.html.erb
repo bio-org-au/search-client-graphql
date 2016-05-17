@@ -27,15 +27,14 @@
 <ul>
 <% @descendants_at_ranks.results.each do |d| %>
   <% target_id = new_target_id %>
-  <li/><%= d["full_name"] %>
-    <%#= link_to("#{d['full_name']}",
-                   plants_names_search_within_taxon_at_rank_path(
-                     name.id,
-                     d["rank"].gsub(/\./,'DOT'),
-                     target_id: target_id),
-                   class: "drill-down-toggle",
-                   data: {target_id: target_id},
-                   remote: true) %>
+  <li/>
+    <%= link_to("#{d['full_name']}",
+                 plants_names_show_path(
+                 d["id"],
+                 target_id: target_id),
+                 class: "drill-down-toggle",
+                 data: {target_id: target_id},
+                 remote: true) %>
    <div id="<%= target_id %>" class="drill-down hidden-xs-up"></div>
 <% end %>
 </ul>
