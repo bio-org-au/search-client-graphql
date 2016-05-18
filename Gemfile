@@ -11,6 +11,7 @@ end
 
 platform :mri do
   gem "pg", "~> 0.15"
+  gem "thin"
 end
 
 # Use SCSS for stylesheets

@@ -15,7 +15,7 @@ class Plants::Names::Search::Scientific
 
   def simple_name_search
     if @parsed.list?
-      list.lower_simple_name_like(@parsed.search_term)
+      list.lower_simple_name_allow_for_hybrids_like(@parsed.search_term)
     else
       details.simple_name_like(@parsed.search_term)
     end

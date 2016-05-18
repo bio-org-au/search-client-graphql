@@ -3,6 +3,7 @@ class NameRank < ActiveRecord::Base
   self.primary_key = "id"
   has_many :names
   has_many :name_or_synonyms
+  belongs_to :name_group
 
   def self.species
     self.find_by(name: "Species")

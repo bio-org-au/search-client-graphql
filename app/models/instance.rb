@@ -15,6 +15,7 @@ class Instance < ActiveRecord::Base
   has_many :accepted_names
 
   belongs_to :cited_by_instance, foreign_key: "cited_by_id"
+  belongs_to :namespace
 
   scope :in_nested_instance_type_order, lambda {
     order(

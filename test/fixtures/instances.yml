@@ -1,11 +1,12 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-#one: {}
-# column: value
-#
-#two: {}
-#  column: value
+triodia_in_brassard:
+  reference: paper_by_brassard
+  name: triodia_basedowii
+  instance_type: primary_reference
+  verbatim_name_string: verbatim
+  namespace: apni
+  created_by: tester
+  updated_by: tester
+  created_at: <%= Time.now + (24*60*60) %>
+  updated_at: <%= Time.now + (24*60*60) %>
+  page: "xx 200,300"
+  page_qualifier: qualified

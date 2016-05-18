@@ -3,4 +3,6 @@ class NameType < ActiveRecord::Base
   self.primary_key = "id"
 
   has_many :names
+  belongs_to :name_category
+  belongs_to :name_group
 end

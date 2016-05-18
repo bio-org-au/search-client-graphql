@@ -1,11 +1,27 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+DEFAULTS: &DEFAULTS
+  author: haeckel
+  rank: species
+  created_by: tester
+  created_at: <%= 5.weeks.ago.to_s(:db) %>
+  updated_by: tester
+  updated_at: <%= 3.weeks.ago.to_s(:db) %>
+  status: legitimate
+  name_type: scientific
+  namespace: apni
+  parent_id: nil
+
 # This model initially had no columns defined.  If you add columns to the
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-#one: {}
-# column: value
-#
-#two: {}
-#  column: value
+agro:
+  simple_name: agro
+  full_name: agro
+  <<: *DEFAULTS
+
+x_agro:
+  simple_name: x agro
+  full_name: x agro
+  <<: *DEFAULTS

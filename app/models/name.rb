@@ -3,9 +3,11 @@ class Name < ActiveRecord::Base
   self.table_name = "name"
   self.primary_key = "id"
   acts_as_tree
+  belongs_to :author
   belongs_to :rank, class_name: "NameRank", foreign_key: "name_rank_id"
   belongs_to :status, class_name: "NameStatus", foreign_key: "name_status_id"
   belongs_to :name_type
+  belongs_to :namespace
   has_many :instances
   has_many :instance_types, through: :instances
   has_many :references, through: :instances
@@ -34,18 +36,20 @@ class Name < ActiveRecord::Base
   has_many :cited_by_instance_tree_nodes, through: :cited_by_instances
   has_many :cited_by_instance_tree_arrangements, through: :cited_by_instance_tree_nodes
 
-  #has_many :cited_by_instance_tree_node_name_tree_paths, through: :cited_by_instance_tree_nodes
   has_many :cited_by_instance_tree_node_names, through: :cited_by_instance_tree_nodes
   has_many :cited_by_instance_tree_node_name_name_tree_paths , through: :cited_by_instances
 
   has_one :accepted_name, foreign_key: :id
-
   has_many :name_instances, foreign_key: :id
 
   scope :not_a_duplicate, -> { where(duplicate_of_id: nil) }
   scope :has_an_instance, -> { where(["exists (select null from instance where name.id = instance.name_id)"]) }
-  scope :lower_full_name_like, ->(string) { where("lower(f_unaccent(name.full_name)) like lower(f_unaccent(?)) ", string.gsub(/\*/, "%").downcase) }
-  scope :lower_simple_name_like, ->(string) { where("lower((name.simple_name)) like lower((?)) ", string.gsub(/\*/, "%").downcase) }
+  scope :lower_full_name_like, ->(string) { where("lower(f_unaccent(name.full_name)) like f_unaccent(?) ", string.gsub(/\*/, "%").downcase) }
+  scope :lower_simple_name_like, ->(string) { where("lower(name.simple_name) like ? ", string.gsub(/\*/, "%").downcase) }
+  scope :lower_simple_name_allow_for_hybrids_like, ->(string) { where("( lower(name.simple_name) like ? or lower(name.simple_name) like ?)",
+                                                                      string.gsub(/\*/, "%").downcase,
+                                                                      string.gsub(/\*/, "%").downcase.sub(/^([^x])/,'x \1')
+                                                                       ) }
 
   # Setting up the final few associations got tricky.
   def self.unordered_accepted_tree_synonyms
