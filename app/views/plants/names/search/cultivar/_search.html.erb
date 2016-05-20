@@ -25,11 +25,10 @@
 
 <% if @search.present? %>
   <span class='search-result-summary'>
-    <%= pluralize(@search.results.size, 'cultivar') %>
+    <%= pluralize(@search.results.pluck("id").uniq.size, 'cultivar') %>
     <%= no_results_help(@search.results.size).html_safe %>
   </span>
 <% end %>
-<br/>
 <br/>
 
 <% if @search.present? %>

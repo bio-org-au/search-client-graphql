@@ -1,5 +1,6 @@
 class Plants::Names::Search::ScientificController < ApplicationController
   def index
+    logger.debug('search.....')
     if params["q"].present?
       @search = Plants::Names::Search::Scientific.new(params, default_show_results_as: session[:default_show_results_as])
     end

@@ -14,7 +14,7 @@
           <% else %>
             <% target_id = new_target_id %>
             <span class="result-item-heading">
-            <%= link_to("#{name[:full_name]}",
+            <%= link_to("#{name[:full_name].sub(/^x /, "× ")}",
                         plants_names_show_path(name[:id],target_id: target_id),
                         class: "drill-down-toggle",
                         data: {target_id: target_id},

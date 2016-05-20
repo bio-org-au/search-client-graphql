@@ -14,16 +14,34 @@ class Plants::Names::Search::Common
   end
 
   def simple_name_search
-    name_search.lower_simple_name_like(@parsed.search_term)
+    Rails.logger.debug("common simple_name_search")
+    if @parsed.list?
+      Rails.logger.debug("common simple_name_search for list")
+      list_search.simple_name_allow_for_hybrids_like(@parsed.search_term)
+    else
+      Rails.logger.debug("common simple_name_search for details")
+      detail_search.simple_name_allow_for_hybrids_like(@parsed.search_term)
+    end
   end
 
   def full_name_search
-    name_search.lower_full_name_like(@parsed.search_term)
+    Rails.logger.debug("common full_name_search")
+    if @parsed.list?
+      Rails.logger.debug("common full_name_search for list")
+      list_search.full_name_allow_for_hybrids_like(@parsed.search_term)
+    else
+      Rails.logger.debug("common full_name_search for details")
+      detail_search.full_name_allow_for_hybrids_like(@parsed.search_term)
+    end
   end
 
-  def name_search
+  def list_search
     Name.common_search
         .joins(:name_type)
-        .where(name_type: { name: %w(common informal) })
+        .where(name_type: { name: ['common','informal'] })
+  end
+
+  def detail_search
+    NameInstance.common.ordered
   end
 end

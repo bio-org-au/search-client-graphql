@@ -6,6 +6,7 @@ class Plants::Names::Search::AllController < ApplicationController
   # Have resorted to two searches.
   def index
     if params["q"].present?
+      logger.debug("searching all")
       @search = Plants::Names::Search::All_.new(params, default_show_results_as: session[:default_show_results_as])
     end
     params[:show_results_as] = session[:default_show_results_as] unless params.has_key?(:show_results_as)

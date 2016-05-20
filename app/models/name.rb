@@ -19,15 +19,15 @@ class Name < ActiveRecord::Base
   has_many :apni_tree_arrangements, through: :apni_name_tree_paths
   has_many :apni_name_tree_paths, class_name: "NameTreePath"
 
-  has_many :apc_tree_nodes, -> { where "next_node_id is null and checked_in_at_id is not null"},
+  has_many :apc_tree_nodes, -> { where "next_node_id is null and checked_in_at_id is not null" },
            class_name: "TreeNode"
   has_many :apc_tree_arrangements, through: :apc_tree_nodes
 
-  has_one :apc_accepted_tree_node, -> { where "next_node_id is null and checked_in_at_id is not null and type_uri_id_part = 'ApcConcept'"},
+  has_one :apc_accepted_tree_node, -> { where "next_node_id is null and checked_in_at_id is not null and type_uri_id_part = 'ApcConcept'" },
            class_name: "TreeNode"
   has_one :apc_accepted_instance, through: :apc_accepted_tree_node
 
-  has_one :apc_excluded_tree_node, -> { where "next_node_id is null and checked_in_at_id is not null and type_uri_id_part = 'ApcExcluded'"},
+  has_one :apc_excluded_tree_node, -> { where "next_node_id is null and checked_in_at_id is not null and type_uri_id_part = 'ApcExcluded'" },
            class_name: "TreeNode"
   has_one :apc_excluded_instance, through: :apc_excluded_tree_node
 
@@ -37,19 +37,34 @@ class Name < ActiveRecord::Base
   has_many :cited_by_instance_tree_arrangements, through: :cited_by_instance_tree_nodes
 
   has_many :cited_by_instance_tree_node_names, through: :cited_by_instance_tree_nodes
-  has_many :cited_by_instance_tree_node_name_name_tree_paths , through: :cited_by_instances
+  has_many :cited_by_instance_tree_node_name_name_tree_paths, through: :cited_by_instances
 
   has_one :accepted_name, foreign_key: :id
   has_many :name_instances, foreign_key: :id
 
   scope :not_a_duplicate, -> { where(duplicate_of_id: nil) }
   scope :has_an_instance, -> { where(["exists (select null from instance where name.id = instance.name_id)"]) }
-  scope :lower_full_name_like, ->(string) { where("lower(f_unaccent(name.full_name)) like f_unaccent(?) ", string.gsub(/\*/, "%").downcase) }
+  scope :lower_full_name_like, ->(string) { where("lower(f_unaccent(name.full_name)) like f_unaccent(?) ", string.tr("*", "%").downcase) }
   scope :lower_simple_name_like, ->(string) { where("lower(name.simple_name) like ? ", string.gsub(/\*/, "%").downcase) }
-  scope :lower_simple_name_allow_for_hybrids_like, ->(string) { where("( lower(name.simple_name) like ? or lower(name.simple_name) like ?)",
-                                                                      string.gsub(/\*/, "%").downcase,
-                                                                      string.gsub(/\*/, "%").downcase.sub(/^([^x])/,'x \1')
-                                                                       ) }
+  scope :ordered, -> { order("sort_name") }
+
+  def self.simple_name_allow_for_hybrids_like(string)
+    where("( lower(name.simple_name) like ? or lower(name.simple_name) like ?)",
+          string.downcase.tr("*", "%").tr("×", "x"),
+          Name.string_for_possible_hybrids(string)
+         )
+  end
+
+  def self.full_name_allow_for_hybrids_like(string)
+    where("( lower(f_unaccent(name.full_name)) like ? or lower(f_unaccent(name.full_name)) like ?)",
+          string.downcase.tr("*", "%").tr("×", "x"),
+          Name.string_for_possible_hybrids(string)
+         )
+  end
+
+  def self.string_for_possible_hybrids(string)
+    string.downcase.tr("*", "%").sub(/^([^x])/, 'x \1').tr("×", "x")
+  end
 
   # Setting up the final few associations got tricky.
   def self.unordered_accepted_tree_synonyms
@@ -100,10 +115,17 @@ class Name < ActiveRecord::Base
         .includes(:authors)
         .includes(:synonyms)
         .order("sort_name")
-        #.includes(:accepted_name) # goes crazy on list search
+        # .includes(:accepted_name) # goes crazy on list search
   end
 
   def self.common_search
+    Name.not_a_duplicate
+        .has_an_instance
+        .includes(:status)
+        .order("sort_name")
+  end
+
+  def self.cultivar_search
     Name.not_a_duplicate
         .has_an_instance
         .includes(:status)
@@ -362,19 +384,13 @@ limit 3"
   end
 
   def apc_comment
-    if apc_accepted?
-      apc_accepted_instance.apc_comment
-    else
-      nil
-    end
+    return unless apc_accepted?
+    apc_accepted_instance.apc_comment
   end
 
   def apc_distribution
-    if apc_accepted?
-      apc_accepted_instance.apc_distribution
-    else
-      nil
-    end
+    return unless apc_accepted?
+    apc_accepted_instance.apc_distribution
   end
 
   # For compatibility with name_instance_vw.
