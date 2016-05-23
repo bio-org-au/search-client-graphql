@@ -9,6 +9,7 @@ class Plants::Names::Search::Scientific
                                       search_type: SEARCH_TYPE,
                                       default_show_results_as:
                                         default_show_results_as)
+    Rails.logger.debug("@parsed.limit: #{@parsed.limit}")
     @results = simple_name_search
     return unless @results.empty?
     @results = full_name_search
@@ -38,11 +39,13 @@ class Plants::Names::Search::Scientific
 
   def list_search
     Name.scientific_search
+        .limit(@parsed.limit)
         .joins(:name_type)
         .where(name_type: { scientific: true })
   end
 
   def detail_search
+    #NameInstance.scientific.limit(@parsed.limit).ordered
     NameInstance.scientific.ordered
   end
 end

@@ -47,6 +47,7 @@ class Name < ActiveRecord::Base
   scope :lower_full_name_like, ->(string) { where("lower(f_unaccent(name.full_name)) like f_unaccent(?) ", string.tr("*", "%").downcase) }
   scope :lower_simple_name_like, ->(string) { where("lower(name.simple_name) like ? ", string.gsub(/\*/, "%").downcase) }
   scope :ordered, -> { order("sort_name") }
+  scope :limited_high, -> { limit(5000) }
 
   def self.simple_name_allow_for_hybrids_like(string)
     where("( lower(name.simple_name) like ? or lower(name.simple_name) like ?)",
@@ -133,7 +134,8 @@ class Name < ActiveRecord::Base
   end
 
   def self.all_search
-    Name.not_a_duplicate
+    Name.limited_high
+        .not_a_duplicate
         .has_an_instance
         .includes(:status)
         .includes(:rank)

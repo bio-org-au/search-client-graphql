@@ -3,12 +3,25 @@
 
 
 <% if @search.results.size > 0 %>
+    <% shown = 0 %>
     <ul class="name-results">
       <% prev_name = -1 %>
       <% prev_instance = -1 %>
       <% @search.results.each_with_index do |name, ndx| %>
           <% curr_name = name.id %>
           <% unless prev_name == curr_name %>
+            <%# Another name %>
+            <% shown += 1 %>
+            <% if shown > 500 %>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <p>
+                <%= "Showing the first 500 records." %>
+              </p>
+              <% break %>
+            <% end %>
             <% target_id = new_target_id %>
             <li>
             <span class="result-item-heading">

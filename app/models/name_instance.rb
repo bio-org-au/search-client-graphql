@@ -10,7 +10,7 @@ class NameInstance < ActiveRecord::Base
   scope :scientific, -> { where("type_scientific") }
   scope :common, -> { where("type_name in ('common','informal')") }
   scope :cultivar, -> { where("type_cultivar") }
-  scope :ordered, -> { order("sort_name, reference_year, primary_instance_first, synonym_full_name") }
+  scope :ordered, -> { order("sort_name, id, reference_year, primary_instance_first, synonym_full_name") }
 
   def self.simple_name_allow_for_hybrids_like(string)
     Rails.logger.debug("NameInstance.simple_name_allow_for_hybrids_like")
