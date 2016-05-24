@@ -4,7 +4,7 @@ class NameInstance < ActiveRecord::Base
   self.primary_key = "id"
   belongs_to :instance
   belongs_to :reference
-  belongs_to :name, foreign_key: :name
+  belongs_to :name, foreign_key: :id
   scope :simple_name_like, ->(string) { where("lower(simple_name) like lower(?) ", string.gsub(/\*/, "%").downcase) }
   scope :full_name_like, ->(string) { where("lower(full_name) like lower(?) ", string.gsub(/\*/, "%").downcase) }
   scope :scientific, -> { where("type_scientific") }
@@ -45,5 +45,4 @@ class NameInstance < ActiveRecord::Base
   def standalone?
     instance_standalone
   end
-
 end

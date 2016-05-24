@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'changes/index'
+  match "/changes", as: "changes", to: "changes#index", via: :get
+
   get "welcome/index"
 
   match "/plants/names/search/defaults/show_results_as", as: "plants_names_search_defaults_show_as", to: "plants/names/search/defaults/show_as#update", via: :post

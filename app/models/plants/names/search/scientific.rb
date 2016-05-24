@@ -45,7 +45,6 @@ class Plants::Names::Search::Scientific
   end
 
   def detail_search
-    #NameInstance.scientific.limit(@parsed.limit).ordered
     NameInstance.scientific.ordered
   end
 end

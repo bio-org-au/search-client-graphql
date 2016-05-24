@@ -13,13 +13,13 @@
           <% unless prev_name == curr_name %>
             <%# Another name %>
             <% shown += 1 %>
-            <% if shown > 500 %>
+            <% if shown > 50 %>
               <br/>
               <br/>
               <br/>
               <br/>
               <p>
-                <%= "Showing the first 500 records." %>
+                <%= "Showing the first 50 records." %>
               </p>
               <% break %>
             <% end %>
@@ -40,6 +40,7 @@
                 <span class="name-status" title="Name Status"><%= name.status_name %></span>
               <% end %>
             </span>
+              <div class="name-display-family-name" title="Family name"><%= name.name.family_name unless name.name.family? %></div>
             </li>
             <div id="<%= target_id %>" class="instance-citation details small">
               <% div_started = true %>
@@ -52,12 +53,14 @@
               <%= "[#{name.instance_type_name}]" if name.primary_instance %>
               </li>
             <% end %>
-            <% if prev_instance == name.instance_id %>
+            <%# if prev_instance == name.instance_id %>
+            <% if name.synonym_full_name.present? %>
               <li class="compact subordinate-instance">
-                <%= name.synonym_type_name %>
-                <%= name.synonym_full_name %>
+                <%= name.synonym_type_name %>: 
+                <%= link_to(name.synonym_full_name, plants_names_show_path(name.synonym_name_id)) %>
               </li>
             <% end %>
+            <%# end %>
             <% prev_instance = name.instance_id %>
       <% end %>
     </ul>

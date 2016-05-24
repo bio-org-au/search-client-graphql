@@ -1,0 +1,61 @@
+<% content_for :page_title do %>
+  Changes made to Search
+<% end %>
+<% content_for :page_banner do %>
+  <h1>Changes made to Search</h1>
+<% end %>
+<% content_for :sidebar do %>
+<% end %>
+<% content_for :slider do %>
+<% end %>
+
+<ul class="list-group">
+  <li class="list-group-item">
+    <span class="label label-default label-pill pull-xs-left">24-May-2016</span>
+      <br/>
+     Add cross-links to name detail search results. 
+  </li>
+  <li class="list-group-item">
+    <span class="label label-default label-pill pull-xs-left">24-May-2016</span>
+      <br/>
+      Add page to list changes
+  </li>
+  <li class="list-group-item">
+    <span class="label label-default label-pill pull-xs-left">24-May-2016</span>
+      <br/>
+      Add show-all-details and hide-all-details links to name search results
+    <ul class="indented circles">
+      <li>Remove the number-of-details field beside details side link</li>
+      <li>Note: have not added any way to override the hard limits - discuss </li>
+    </ul>
+  </li>
+  <li class="list-group-item">
+    <span class="label label-default label-pill pull-xs-left">23-May-2016</span>
+      <br/>
+      Set hard limits for list search and details search.
+      <ul class="indented circles">
+        <li>Part of working through changes to name search for details</li>
+        <li>To do: allow options to override these hard defaults</li>
+      </ul>
+  </li>
+  <li class="list-group-item">
+    <span class="label label-default label-pill pull-xs-left">20-May-2016</span>
+      <br/>
+      Improve name search for details.
+      <ul class="indented circles">
+        <li>Uses a view.</li>
+        <li>Should be fast.</li>
+        <li>More complicated to program, so may be bugs</li>
+      </ul>
+  </li>
+  <li class="list-group-item">
+    <span class="label label-default label-pill pull-xs-left">20-May-2016</span>
+      <br/>
+      Improve hybrid formula searching.
+    <ul class="indented circles">
+      <li>All name searches also search for 'x ...'</li>
+      <li>Treat leading multiplication sign followed by space as 'x '</li>
+      <li>Display leading 'x ' as multiplication sign followed by space </li>
+    </ul>
+  </li>
+</ul

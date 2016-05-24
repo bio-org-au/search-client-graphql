@@ -7,9 +7,10 @@
 <% content_for :sidebar do %>
   <%= render "sidebar" %>
 <% end %>
-
 <%= render partial: "details_extra", locals: {name: @name, name_details: @name_details} %>
 <br/>
 <br/>
 <%= link_to "#{ fa_icon('chevron-left')} back".html_safe, 'javascript:history.go(-1);', id: "big-back-btn", class:"btn btn-secondary btn-lg btn-block micro gray", title: "Go back 1 page" %>
 
+
+<span class="debug">plants/names/show.html.erb</span>

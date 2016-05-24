@@ -20,6 +20,7 @@ select n.id,
        ity.standalone instance_standalone,
        sty.standalone synonym_standalone,
        sty.name synonym_type_name,
+       sname.id synonym_name_id,
        i.page,
        i.page_qualifier,
        case ity.primary_instance
