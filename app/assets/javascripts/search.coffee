@@ -17,6 +17,8 @@ ready = ->
   $('body').on('click','.needs-details-limit', (event) -> needsDetailsLimit(event,$(this)))
   $('body').on('submit','#search-form', (event) -> searchForm(event,$(this)))
   $('body').on('click','.drill-down-toggle', (event) -> drillDownToggle(event,$(this)))
+  $('body').on('click','.hide-all-details-link', (event) -> hideAllDetails(event,$(this)))
+  $('body').on('click','.show-all-details-link', (event) -> showAllDetails(event,$(this)))
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
@@ -50,12 +52,18 @@ searchForm = (event, $element) ->
   true
 
 drillDownToggle = (event, $element) ->
-  debug("drillDownToggle")
+  debug("drillDownTogglex")
   targetId = $element.data("target-id")
   if $("##{targetId}").hasClass("hidden-xs-up")
+    debug('showing')
+    $element.addClass("showing-details")
+    $element.removeClass("hiding-details")
     showTarget(targetId)
   else
+    debug('hiding')
     hideTarget(targetId)
+    $element.addClass("hiding-details")
+    $element.removeClass("showing-details")
   if $("##{targetId}:empty").length == 0
     return_and_keep_going()
 
@@ -69,3 +77,11 @@ hideTarget = (targetId) ->
 
 return_and_keep_going = () ->
   return false
+
+hideAllDetails = (event, $element) ->
+  debug("hideAllDetails")
+  $(".drill-down-toggle.showing-details").click()
+
+showAllDetails = (event, $element) ->
+  debug("showAllDetails")
+  $(".drill-down-toggle.hiding-details").click()

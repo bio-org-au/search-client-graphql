@@ -14,14 +14,17 @@
                         plants_names_search_cultivar_path(q: params['q'], pc: params[:controller], show_results_as: 'details'),
                         class: "tiny needs-details-limit allow-field-alongside",
                         title: "Re-run the search showing details." %>
-            <input type="number"
-                   min="1"
-                   max="1000"
-                   step="1"
-                   value="<%= session[:default_details_limit] %>"
-                   name="details-limit"
-                   id="details-limit-field"
-                   class="">
+          </li>
+          <hr/>
+          <li>
+            <a href="#"
+               class="tiny show-all-details-link"
+               title="Show all details">Show all details</a>
+          </li>
+          <li>
+            <a href="#"
+               class="tiny hide-all-details-link"
+               title="Hide all details">Hide all details</a>
           </li>
           <hr/>
           <li>

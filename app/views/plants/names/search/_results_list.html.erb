@@ -16,7 +16,7 @@
             <span class="result-item-heading">
             <%= link_to("#{name[:full_name].sub(/^x /, "× ")}",
                         plants_names_show_path(name[:id],target_id: target_id),
-                        class: "drill-down-toggle",
+                        class: "drill-down-toggle hiding-details",
                         data: {target_id: target_id},
                         title: "Select to show or hide details",
                         remote: true)
@@ -26,7 +26,7 @@
               <span class="name-status" title="Name Status"><%= name.status_name %></span>
             <% end %>
             </span>
-            <div id="<%= target_id %>" class="details"></div>
+            <div id="<%= target_id %>" class="details hidden-xs-up"></div>
           <% end %>
         </li>
       <% end %>

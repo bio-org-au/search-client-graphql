@@ -7,6 +7,7 @@
     <ul class="name-results">
       <% prev_name = -1 %>
       <% prev_instance = -1 %>
+      <% div_started = false %>
       <% @search.results.each_with_index do |name, ndx| %>
           <% curr_name = name.id %>
           <% unless prev_name == curr_name %>
@@ -23,39 +24,41 @@
               <% break %>
             <% end %>
             <% target_id = new_target_id %>
+            <% if div_started %>
+              </div>
+            <% end %>
             <li>
             <span class="result-item-heading">
               <%= link_to("#{name[:full_name]}",
                           plants_names_show_path(name[:id],target_id: target_id),
-                          class: "drill-down-toggle",
+                          class: "drill-down-toggle showing-details",
                           data: {target_id: target_id},
                           title: "Select to show or hide details",
                           remote: true)
                         %>
-                      <span class="debug name-rank" title="Name Rank"></span>
               <% if name.show_status? %>
                 <span class="name-status" title="Name Status"><%= name.status_name %></span>
               <% end %>
-              </span>
+            </span>
+            </li>
+            <div id="<%= target_id %>" class="instance-citation details small">
+              <% div_started = true %>
+            <% end %>
+            <% prev_name = curr_name %>
+            <% unless prev_instance == name.instance_id %>
+              <li>
+              <%= name.reference_citation_html.html_safe %>
+              <%= name.page %>
+              <%= "[#{name.instance_type_name}]" if name.primary_instance %>
               </li>
             <% end %>
-            <div id="<%= target_id %>" class="instance-citation details small">
-          <% prev_name = curr_name %>
-          <% unless prev_instance == name.instance_id %>
-            <li>
-            <%= name.reference_citation_html.html_safe %>
-            <%= name.page %>
-            <%= "[#{name.instance_type_name}]" if name.primary_instance %>
-            </li>
-          <% end %>
-          <% if prev_instance == name.instance_id %>
-            <li class="compact subordinate-instance">
-              <%= name.synonym_type_name %>
-              <%= name.synonym_full_name %>
-            </li>
-          <% end %>
-          <% prev_instance = name.instance_id %>
-            </div>
+            <% if prev_instance == name.instance_id %>
+              <li class="compact subordinate-instance">
+                <%= name.synonym_type_name %>
+                <%= name.synonym_full_name %>
+              </li>
+            <% end %>
+            <% prev_instance = name.instance_id %>
       <% end %>
     </ul>
   <% end %>
