@@ -40,10 +40,10 @@
                 <span class="name-status" title="Name Status"><%= name.status_name %></span>
               <% end %>
             </span>
-              <div class="name-display-family-name" title="Family name"><%= name.name.family_name unless name.name.family? %></div>
             </li>
             <div id="<%= target_id %>" class="instance-citation details small">
               <% div_started = true %>
+              <div class="xname-display-family-name" title="Family name"><%= name.name.family_name unless name.name.family? %></div>
             <% end %>
             <% prev_name = curr_name %>
             <% unless prev_instance == name.instance_id %>
