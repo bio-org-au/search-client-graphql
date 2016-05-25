@@ -45,6 +45,6 @@ class Plants::Names::Search::Scientific
   end
 
   def detail_search
-    NameInstance.scientific.ordered
+    NameInstance.scientific.includes(:name).includes(:rank).ordered
   end
 end

@@ -2,8 +2,8 @@ drop view name_instance_vw;
 
 create view name_instance_vw as
 select n.id,
-       n.full_name,
-       n.simple_name,
+       n.full_name name_full_name,
+       n.simple_name name_simple_name,
        s.name status_name,
        r.name rank_name,
        r.visible_in_name rank_visible_in_name,
@@ -28,7 +28,11 @@ select n.id,
       else 'B'
       end primary_instance_first,
        sname.full_name synonym_full_name,
-       n.sort_name
+       case r.name = 'Familia'
+      when true then true
+      else false
+      end is_a_family,
+       n.sort_name name_sort_name
   from name n
        join name_status s on n.name_status_id = s.id
        join name_rank r on n.name_rank_id = r.id
