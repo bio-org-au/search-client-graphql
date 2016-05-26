@@ -29,6 +29,8 @@
               </div>
             <% end %>
             <li>
+            <hr class="divider" />
+            <div class="name-display-family-name" title="Family name"><%= name_instance.name.family_name unless name_instance.is_a_family %></div>
             <span class="result-item-heading">
               <%= link_to("#{name_instance[:name_full_name]}",
                           plants_names_show_path(name_instance[:id],target_id: target_id),
@@ -44,25 +46,26 @@
             </li>
             <div id="<%= target_id %>" class="details">
               <% div_started = true %>
-              <div class="name-display-family-name" title="Family name"><%= name_instance.name.family_name unless name_instance.is_a_family %></div>
-              <div class="name-display">
+              <div class="name-details">
             <% end %>
             <% prev_name = curr_name %>
             <% unless prev_instance == name_instance.instance_id %>
               <li>
-              <%= name_instance.reference_citation_html.html_safe %>
-              <%= name_instance.page %>
-              <%= "[#{name_instance.instance_type_name}]" if name_instance.primary_instance %>
+                <div class="instance-citation">
+                  <%= name_instance.reference_citation_html.html_safe %>
+                  <%= name_instance.page %>
+                  <%= "[#{name_instance.instance_type_name}]" if name_instance.primary_instance %>
+                </div>
               </li>
             <% end %>
-            <%# if prev_instance == name_instance.instance_id %>
             <% if name_instance.synonym_full_name.present? %>
               <li class="compact subordinate-instance">
-                <%= name_instance.synonym_type_name %>: 
-                <%= link_to(name_instance.synonym_full_name, plants_names_show_path(name_instance.synonym_name_id)) %>
+                <span class="synonym-type"><%= name_instance.synonym_type_name %>: </span>
+                <%= link_to(name_instance.synonym_full_name,
+                            plants_names_show_path(name_instance.synonym_name_id),
+                            class: "synonym") %>
               </li>
             <% end %>
-            <%# end %>
             <% prev_instance = name_instance.instance_id %>
       <% end %>
     </ul>

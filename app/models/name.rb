@@ -15,6 +15,7 @@ class Name < ActiveRecord::Base
   has_many :authors, through: :references
   has_many :tree_nodes
   has_many :name_tree_paths
+  has_one  :name_tree_path_default
 
   has_many :apni_tree_arrangements, through: :apni_name_tree_paths
   has_many :apni_name_tree_paths, class_name: "NameTreePath"
@@ -102,7 +103,6 @@ class Name < ActiveRecord::Base
         .has_an_instance
         .includes(:status)
         .includes(:rank)
-        .order("sort_name")
   end
 
   def self.scientific_search_detailed
@@ -130,7 +130,6 @@ class Name < ActiveRecord::Base
     Name.not_a_duplicate
         .has_an_instance
         .includes(:status)
-        .order("sort_name")
   end
 
   def self.all_search
@@ -153,11 +152,6 @@ class Name < ActiveRecord::Base
     Name.unordered_accepted_tree_search.order("name.sort_name")
   end
 
-  def self.xaccepted_tree_accepted_search
-    Name.accepted_tree_search
-        .where(" tree_node.type_uri_id_part = 'ApcConcept'")
-  end
-
   def self.accepted_tree_accepted_search
     AcceptedName.simple_name_like(search_term)
   end
@@ -167,67 +161,14 @@ class Name < ActiveRecord::Base
         .where(" tree_node.type_uri_id_part = 'ApcExcluded'")
   end
 
-  def self.xaccepted_tree_accepted_or_excluded_search
-    Name.accepted_tree_search
-        .where(" tree_node.type_uri_id_part in ('ApcExcluded', 'ApcConcept')")
-  end
-
-  # "Union with Active Record"
-  # http://thepugautomatic.com/2014/08/union-with-active-record/
-  #
-  # Gets past this error: ERROR:  bind message supplies 0 parameters, but prepared statement "" requires 2
-  # See the explanation here: https://github.com/rails/rails/issues/13686
-  def self.xaccepted_tree_all_simple_name_search(search_term = 'x')
-    query1 = Name.unordered_accepted_tree_search
-                 .where(" tree_node.type_uri_id_part in ('ApcExcluded', 'ApcConcept')")
-                 .joins(:name_type)
-                 .includes(:rank)
-                 .lower_simple_name_like(search_term)
-    query2 = Name.unordered_accepted_tree_synonyms
-                 .lower_simple_name_like(search_term)
-    # Get a real bind value instead of "$1" in the generated SQL.
-    sql = Name.connection.unprepared_statement {
-      "((#{query1.to_sql}) UNION (#{query2.to_sql})) AS name"
-    }
-    # Could not order by name_rank.sort_order
-    # .order("name_rank.sort_order, name.full_name")
-    # Sorting produced an array
-    ##Name.from(sql).sort {|x,y| x.rank.sort_order <=> y.rank.sort_order}
-    Name.from(sql).sort {|x,y| x.sort_key <=> y.sort_key}
-  end
-
-  # "Union with Active Record"
-  # http://thepugautomatic.com/2014/08/union-with-active-record/
-  #
-  # Gets past this error: ERROR:  bind message supplies 0 parameters, but prepared statement "" requires 2
-  # See the explanation here: https://github.com/rails/rails/issues/13686
-  def self.xaccepted_tree_all_full_name_search(search_term = 'x')
-    query1 = Name.unordered_accepted_tree_search
-                 .where(" tree_node.type_uri_id_part in ('ApcExcluded', 'ApcConcept')")
-                 .joins(:name_type)
-                 .includes(:rank)
-                 .lower_full_name_like(search_term)
-    query2 = Name.unordered_accepted_tree_synonyms
-                 .lower_full_name_like(search_term)
-    # Get a real bind value instead of "$1" in the generated SQL.
-    sql = Name.connection.unprepared_statement {
-      "((#{query1.to_sql}) UNION (#{query2.to_sql})) AS name"
-    }
-    # Could not order by name_rank.sort_order
-    # .order("name_rank.sort_order, name.full_name")
-    # Sorting produces an array
-    #
-    #Name.from(sql).sort {|x,y| x.rank.sort_order <=> y.rank.sort_order}
-    Name.from(sql).sort {|x,y| x.sort_key <=> y.sort_key}
-  end
-
   def family?
     rank.family?
   end
 
   def family_name
-    n = self
-    Name.seek_family_name(n)
+    name_tree_path_default.rank_path.sub(/.*Familia:/,'').sub(/>.*$/,'')
+  rescue => e
+    "unknown"
   end
 
   def self.seek_family_name(n)

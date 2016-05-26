@@ -28,7 +28,7 @@
     <%= pluralize(@search.results.pluck("id").uniq.size, 'scientific, cultivar, common or informal name') %>
     <%= no_results_help(@search.results.size).html_safe %>
   </span>
-  <%= render partial: '/plants/names/search/results', locals: {search: @search, name: @search.results.first} %>
+  <%= render partial: 'results', locals: {search: @search, name: @search.results.first} %>
 <% end %>
 <br/>
 <br/>

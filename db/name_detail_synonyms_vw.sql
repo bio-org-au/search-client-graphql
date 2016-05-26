@@ -24,3 +24,7 @@ select cited_by_id,
     on ns.id = name.name_status_id
 
 ;
+
+grant select on name_detail_synonyms_vw to web;
+
+

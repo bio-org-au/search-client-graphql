@@ -45,3 +45,5 @@ select n.id,
        left outer join name sname on syn.name_id = sname.id
  where n.duplicate_of_id is null
 ;
+
+grant select on name_instance_vw to web;

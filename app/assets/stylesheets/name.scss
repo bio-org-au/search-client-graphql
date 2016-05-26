@@ -4,43 +4,52 @@ div.name-display h3 {
   font-weight: bold;
 }
 
+div.name-details,
 div.name-display {
   font-size: 85%;
   color: black;
+  margin: 1em 0 0.8em 8rem;
 }
+
+div.name-details,
 div.name-display ul {
   list-style-type: none;
   margin-bottom: 0;
 }
+
 span.full-name {
   font-weight: bold;
-}
-div.instance-citation {
-  margin-top: 0.5%;
-}
-span.instance-type-name {
-  font-size: 90%;
-  color: DimGray;
-}
-span.instance-type{
-  font-size: 98%;
-}
-li.subordinate-instance{
-  line-height: 120%;
 }
 
 span.instance-citation,
 div.instance-citation {
-  padding-left: 3rem;
+  margin-top: 1em;
+  line-height: 110%;
+  padding-bottom: 0;
+  margin-bottom: -3px;
+}
+
+span.instance-type-name {
+  font-size: 90%;
+  color: DimGray;
+}
+
+span.instance-type{
+  font-size: 98%;
 }
 
 li.compact.subordinate-instance {
-  padding-left: 3rem;
+  padding-left: 4rem;
+  line-height: 80%;
 }
 
-div.name-display {
-  margin: 1em 0 0.8em 0;
-  font-size: 82%;
+li.compact.subordinate-instance span.synonym-type {
+  font-size: 80%;
+  color: gray;
+}
+
+a.synonym {
+  font-style: italic;
 }
 
 span.result-item-heading {
@@ -50,4 +59,22 @@ span.result-item-heading {
 div.name-display-family-name {
   font-size: 82%;
 }
+
+hr.divider {
+  background: black;
+  margin-top: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+span.name-status {
+  font-size: 90%
+}
+
+.name-results a.full-name {
+}
+
+.name-status {
+  font-size: 90%;
+}
+
 

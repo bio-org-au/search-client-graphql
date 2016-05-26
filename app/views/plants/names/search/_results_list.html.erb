@@ -3,33 +3,34 @@
 
 
 <% if @search.results.size > 0 %>
-    <ul class="name-results">
-      <% @search.results.each_with_index do |name, ndx| %>
-        <li>
-          <% if @search.parsed.show_details? &&
-                ndx < session[:default_details_limit] %>
-              <%= render partial: 'details',
-                     locals: {name: name} %>
-              <br/>
-          <% else %>
-            <% target_id = new_target_id %>
-            <span class="result-item-heading">
+  <ul class="name-results">
+    <% @search.results.each_with_index do |name, ndx| %>
+      <li>
+        <% if @search.parsed.show_details? &&
+          ndx < session[:default_details_limit] %>
+          <%= render partial: 'details', locals: {name: name} %>
+          <br/>
+        <% else %>
+          <% target_id = new_target_id %>
+          <span class="result-item-heading">
+            <span class="family-name small">
+              <%= name.name_tree_path_default.try("family_name") %>
+            </span> 
             <%= link_to("#{name[:full_name].sub(/^x /, "× ")}",
                         plants_names_show_path(name[:id],target_id: target_id),
-                        class: "drill-down-toggle hiding-details",
+                        class: "full-name drill-down-toggle hiding-details",
                         data: {target_id: target_id},
                         title: "Select to show or hide details",
                         remote: true)
-                      %>
-                    <span class="debug name-rank" title="Name Rank"><%#= name.rank.name %>:<%#= name.rank.sort_order %></span>
+            %>
             <% if name.show_status? %>
               <span class="name-status" title="Name Status"><%= name.status_name %></span>
             <% end %>
-            </span>
-            <div id="<%= target_id %>" class="details hidden-xs-up"></div>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
-  <% end %>
+          </span>
+          <div id="<%= target_id %>" class="details hidden-xs-up"></div>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
 

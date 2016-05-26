@@ -41,7 +41,10 @@ class Plants::Names::Search::Scientific
     Name.scientific_search
         .limit(@parsed.limit)
         .joins(:name_type)
+        .joins(:name_tree_path_default)
+        .includes(:name_tree_path_default)
         .where(name_type: { scientific: true })
+        .order("trim( trailing '>' from substring(substring(name_tree_path.rank_path from 'Familia:[^>]*>') from 9)), sort_name")
   end
 
   def detail_search

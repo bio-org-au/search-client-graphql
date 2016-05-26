@@ -13,5 +13,7 @@ select 0 id,
        0 reference_id,
        0 name_rank_id,
        cast('' as varchar) sort_name
-  from name where 1 = 0
+  from name where 1 = 0;
 
+
+grant select on name_or_synonym_vw to web;

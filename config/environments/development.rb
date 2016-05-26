@@ -43,3 +43,7 @@ Rails.application.configure do
 end
 
 load "#{ENV['HOME']}/.nsl/development/search-config.rb"
+
+Rails.configuration.name_tree =
+  `grep "nameTree *=" %Q(#{ENV["HOME"]}/.nsl/development/services-config.groovy)`
+  .chomp.sub(/.*=/, "").sub(/  *'/, "").sub(/'.*$/, "")

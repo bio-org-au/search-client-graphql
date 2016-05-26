@@ -6,17 +6,3 @@ a {
 a:hover {
   color: $bb-link-hover;
 }
-
-a.drill-down-toggle {
-  text-decoration: underline;
-}
-
-span.synonym a.drill-down-toggle {
-  text-decoration: none;
-  font-style: italic;
-}
-
-span.citation-links {
-  padding-left: 0rem;
-}
-

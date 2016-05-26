@@ -50,3 +50,6 @@ select n.id,
        left outer join author on ref.author_id = author.id
  where n.duplicate_of_id is null
 ;
+
+grant select on name_details_vw to web;
+

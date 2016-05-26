@@ -25,5 +25,8 @@ select accepted.id,
  where ta.label = 'APC'
    and tree_node.next_node_id is null
    and tree_node.checked_in_at_id is not null
-   and instance.id = tree_node.instance_id
+   and instance.id = tree_node.instance_id;
+
+grant select on accepted_name_vw to web;
+
 

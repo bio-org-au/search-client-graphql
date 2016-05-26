@@ -40,4 +40,7 @@ select name_as_syn.id,
    and tree_node.next_node_id is null
    and tree_node.checked_in_at_id is not null
    and tree_node.instance_id = citer.id
+;
+
+grant select on accepted_synonym_vw to web;
 

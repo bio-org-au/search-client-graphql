@@ -1,25 +1,30 @@
 <% if name.present? %>
-  <div class="name-display-family-name" title="Family name"><%= name.family_name unless name.rank.family? %></div>
-  <div class="name-display">
+  <div class="name-details">
   <% shown = [] -%>
   <% apc_instance_id = name.apc_instance_id -%>
   <% name_details.each do | name_detail | %>
-    <div class="instance-citation">
+    <div class="instance-citation from-partial">
     <% unless shown.include?(name_detail.instance_id) %>
       <%= name_detail.entry.html_safe unless shown.include?(name_detail.instance_id) %>
-      <ul class='indented'>
+    </div>
+      <ul class='name-results'>
         <% name_detail.name_detail_synonyms.each do |syn| %>
           <li class='compact subordinate-instance'>
-            <%= syn.entry.html_safe %>
+            <span class="synonym-type">
+              <%= syn.instance_type_name %>
+            </span>
+          <%= link_to(syn.full_name,
+                      plants_names_show_path(syn.name_id),
+                      class: "synonym") %>
           </li>
         <% end %>
       </ul>
     <% end %>
     <% shown.push name_detail.instance_id %>
-    </div>
   <% end %>
   </div>
   <%= render(partial: '/plants/names/search/power_links', locals: {name: name}) if name.sub_taxon? %>
 <% end %>
 
 <span class="debug">plants/names/_details_extra.html.erb</span>
+
