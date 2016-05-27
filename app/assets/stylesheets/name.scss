@@ -29,6 +29,11 @@ div.instance-citation {
   margin-bottom: -3px;
 }
 
+span.instance-citation.from-partial,
+div.instance-citation.from-partial {
+  margin-bottom: 2px;
+}
+
 span.instance-type-name {
   font-size: 90%;
   color: DimGray;
