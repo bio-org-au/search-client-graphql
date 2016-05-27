@@ -28,9 +28,6 @@
             <% end %>
             <li> 
               <hr class="<%= target_id %> divider" />
-              <span class="name-display-family-name" title="Family name">
-                <%= name_instance.family_name %>
-              </span>
               <br class="<%=target_id%> details"/>
               <span class="result-item-heading">
                 <%= link_to("#{name_instance[:name_full_name]}",
@@ -40,9 +37,6 @@
                             title: "Select to show or hide details",
                             remote: true)
                           %>
-                <% if name_instance.show_status? %>
-                  <span class="name-status" title="Name Status"><%= name_instance.status_name %></span>
-                <% end %>
               </span>
             </li>
             <div id="<%= target_id %>" class="details">

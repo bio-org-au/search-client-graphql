@@ -13,9 +13,6 @@
         <% else %>
           <% target_id = new_target_id %>
           <hr class="<%= target_id %> divider hidden-xs-up" />
-          <span class="name-display-family-name" title="Family name">
-            <%= name.name_tree_path_default.family_name %>
-          </span> 
           <br class="<%=target_id%> details hidden-xs-up"/>
           <span class="result-item-heading">
             <%= link_to("#{name[:full_name].sub(/^x /, "× ")}",
@@ -25,9 +22,6 @@
                         title: "Select to show or hide details",
                         remote: true)
             %>
-            <% if name.show_status? %>
-              <span class="name-status" title="Name Status"><%= name.status_name %></span>
-            <% end %>
           </span>
           <div id="<%= target_id %>" class="details hidden-xs-up"></div>
         <% end %>

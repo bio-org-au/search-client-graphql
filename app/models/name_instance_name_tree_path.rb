@@ -1,11 +1,8 @@
 # Model for a view to simplify querying.
-# The view is similar to name_instance_name_tree_path but does not 
-# join to name_tree_path because some names do not have entries in
-# name_tree_path e.g. common names
-# 
-# So, this is primarily useful for common name queries.
-class NameInstance < ActiveRecord::Base
-  self.table_name = "name_instance_vw"
+# The view joins to name_tree_path to provide access to family name encoded
+# in the rank_path.
+class NameInstanceNameTreePath < ActiveRecord::Base
+  self.table_name = "name_instance_name_tree_path_vw"
   self.primary_key = "id"
   belongs_to :instance
   belongs_to :reference
@@ -16,7 +13,16 @@ class NameInstance < ActiveRecord::Base
   scope :scientific, -> { where("type_scientific") }
   scope :common, -> { where("type_name in ('common','informal')") }
   scope :cultivar, -> { where("type_cultivar") }
-  scope :ordered, -> { order("name_sort_name, id, reference_year, primary_instance_first, synonym_full_name") }
+  scope :ordered, -> { order("family_name, name_sort_name, id, reference_year, primary_instance_first, synonym_full_name") }
+
+  def self.search_for(string)
+    where("( lower(name_simple_name) like ? or lower(name_simple_name) like ? or lower(name_full_name) like ? or lower(name_full_name) like ?)",
+          string.downcase.tr("*", "%").tr("×", "x"),
+          Name.string_for_possible_hybrids(string),
+          string.downcase.tr("*", "%").tr("×", "x"),
+          Name.string_for_possible_hybrids(string)
+         )
+  end
 
   def self.simple_name_allow_for_hybrids_like(string)
     where("( lower(name_simple_name) like ? or lower(name_simple_name) like ?)",
@@ -26,7 +32,7 @@ class NameInstance < ActiveRecord::Base
   end
 
   def self.full_name_allow_for_hybrids_like(string)
-    Rails.logger.debug("NameInstance.full_name_allow_for_hybrids_like")
+    Rails.logger.debug("NameInstanceNameTreePath.full_name_allow_for_hybrids_like")
     where("( lower(name_full_name) like ? or lower(name_full_name) like ?)",
           string.downcase.tr("*", "%").tr("×", "x"),
           Name.string_for_possible_hybrids(string)
@@ -49,10 +55,5 @@ class NameInstance < ActiveRecord::Base
 
   def standalone?
     instance_standalone
-  end
-
-  # Common names do not belong to a family.
-  def family_name
-    ''
   end
 end

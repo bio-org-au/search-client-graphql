@@ -42,6 +42,7 @@ class Name < ActiveRecord::Base
 
   has_one :accepted_name, foreign_key: :id
   has_many :name_instances, foreign_key: :id
+  has_many :name_instance_name_tree_paths, foreign_key: :id
 
   scope :not_a_duplicate, -> { where(duplicate_of_id: nil) }
   scope :has_an_instance, -> { where(["exists (select null from instance where name.id = instance.name_id)"]) }
@@ -49,6 +50,15 @@ class Name < ActiveRecord::Base
   scope :lower_simple_name_like, ->(string) { where("lower(name.simple_name) like ? ", string.gsub(/\*/, "%").downcase) }
   scope :ordered, -> { order("sort_name") }
   scope :limited_high, -> { limit(5000) }
+
+  def self.search_for(string)
+    where("( lower(name.simple_name) like ? or lower(name.simple_name) like ? or lower(name.full_name) like ? or lower(name.full_name) like ?)",
+          string.downcase.tr("*", "%").tr("×", "x"),
+          Name.string_for_possible_hybrids(string),
+          string.downcase.tr("*", "%").tr("×", "x"),
+          Name.string_for_possible_hybrids(string)
+         )
+  end
 
   def self.simple_name_allow_for_hybrids_like(string)
     where("( lower(name.simple_name) like ? or lower(name.simple_name) like ?)",

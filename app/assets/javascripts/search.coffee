@@ -52,7 +52,7 @@ searchForm = (event, $element) ->
   true
 
 drillDownToggle = (event, $element) ->
-  debug("drillDownTogglex")
+  debug("drillDownToggle")
   targetId = $element.data("target-id")
   if $("##{targetId}").hasClass("hidden-xs-up")
     debug('showing')
@@ -60,7 +60,7 @@ drillDownToggle = (event, $element) ->
     $element.removeClass("hiding-details")
     showTarget(targetId)
   else
-    debug('hiding')
+    debug('hiding...')
     hideTarget(targetId)
     $element.addClass("hiding-details")
     $element.removeClass("showing-details")
@@ -70,10 +70,14 @@ drillDownToggle = (event, $element) ->
 showTarget = (targetId) ->
   $("##{targetId}").removeClass("hidden-xs-up")
   $("##{targetId}").removeClass("hidden-print")
+  $(".#{targetId}").removeClass("hidden-xs-up")
+  $(".#{targetId}").removeClass("hidden-print")
 
 hideTarget = (targetId) ->
   $("##{targetId}").addClass("hidden-xs-up")
-  $("##{targetId}").addClass("hidden-print")
+  $("##{targetId}").addClass("hidden-printx")
+  $(".#{targetId}").addClass("hidden-xs-up")
+  $(".#{targetId}").addClass("hidden-print")
 
 return_and_keep_going = () ->
   return false
