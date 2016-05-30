@@ -1,14 +1,33 @@
 <% if name.present? %>
+  <% show_dist = false %>
   <div class="name-details">
   <% shown = [] -%>
   <% apc_instance_id = name.apc_instance_id -%>
   <% name_details.each do | name_detail | %>
+
     <div class="instance-citation from-partial">
     <% unless shown.include?(name_detail.instance_id) %>
-      <%= name_detail.entry.html_safe unless shown.include?(name_detail.instance_id) %>
+      <%= name_detail.entry.sub(/: \z/,'').html_safe %>
+      <% if name_detail.instance_id == name.apc_instance_id %>
+        <% if name_detail.instance.accepted_name.type_code.match(/Concept\z/) %>
+          <% show_dist = true %>
+          <% apc_dist = name_detail.instance_note_for_distribution.value %>
+          <% apc_comment = name_detail.instance_note_for_comment.try("value") %>
+          <% show_comment = apc_comment.present? %>
+        <% end %>
+        <span class="red">
+          <%= name_detail.instance.accepted_name.type_code.sub(/Apc/i,"#{ShardConfig.classification_tree_label} ") %>
+        </span>
+      <% end %>
+      <% name_detail.instance_note_for_type_specimens.each do |type| %>
+        <div class="type-specimen-note">
+          <span class="classification-note-label">type:</span>
+          <%= type.marked_up_value.html_safe %>
+        </div>
+      <% end %>
     </div>
       <ul class='name-results'>
-        <% name_detail.name_detail_synonyms.each do |syn| %>
+        <% name_detail.name_detail_synonyms.sort {|x,y| [x.instance_type_sort_order, x.full_name] <=> [y.instance_type_sort_order, y.full_name] }.each do |syn| %>
           <li class='compact subordinate-instance'>
             <span class="synonym-type">
               <%= syn.instance_type_name %>
@@ -19,11 +38,25 @@
           </li>
         <% end %>
       </ul>
+      <% if show_dist %>
+        <div class="classification-tree-note"><span class="classification-note-label">distribution: </span><%= apc_dist %></span></div>
+        <% show_dist = false %>
+      <% end %>
+      <% if show_comment %>
+        <div class="classification-tree-note">
+          <span class="classification-note-label">comment: </span>
+          <%= apc_comment %>xxx
+          <span class="xclassification-tree-value debug"><%= apc_comment %></span>
+        </div>
+        <% show_comment = false %>
+      <% end %>
     <% end %>
     <% shown.push name_detail.instance_id %>
   <% end %>
+  <% if name.direct_sub_taxa_with_instance_count > 0 %>
+    <%= render(partial: '/plants/names/search/power_links', locals: {name: name}) %>
+  <% end %>
   </div>
-  <%= render(partial: '/plants/names/search/power_links', locals: {name: name}) if name.sub_taxon? %>
 <% end %>
 
 <span class="debug">plants/names/_details_extra.html.erb</span>

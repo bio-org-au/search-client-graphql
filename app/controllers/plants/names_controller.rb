@@ -1,12 +1,4 @@
 class Plants::NamesController < ApplicationController
-  def xshow
-    #@name = Name.find_by(id: params[:id])
-    @name = Name.includes(:status)
-                .includes(:instances)
-                .includes(:instance_types)
-                .where(id: params[:id]).first
-    @target_id = params[:target_id]
-  end
 
   def show
     @name = Name.find_by(id: params[:id])

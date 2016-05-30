@@ -52,7 +52,7 @@ class Name < ActiveRecord::Base
   scope :limited_high, -> { limit(5000) }
 
   def self.search_for(string)
-    where("( lower(name.simple_name) like ? or lower(name.simple_name) like ? or lower(name.full_name) like ? or lower(name.full_name) like ?)",
+    where("( lower(name.simple_name) like ? or lower(name.simple_name) like ? or lower(f_unaccent(name.full_name)) like ? or lower(f_unaccent(name.full_name)) like ?)",
           string.downcase.tr("*", "%").tr("×", "x"),
           Name.string_for_possible_hybrids(string),
           string.downcase.tr("*", "%").tr("×", "x"),
@@ -198,7 +198,7 @@ class Name < ActiveRecord::Base
 
   def apc_instance_id
     #TreeNode.apc(full_name).try("first").try("instance_id")
-    AcceptedName.where(id: id)
+    AcceptedName.where(id: id).try("first").try("instance_id")
   end
 
   def pg_descendants
@@ -305,6 +305,11 @@ limit 3"
       return true
     end
   end
+
+  def direct_sub_taxa_with_instance_count
+    Name.where(parent_id: id).joins(:instances).select("distinct name.id").count
+  end
+    
 
   def show_status?
     status.show?

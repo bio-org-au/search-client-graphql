@@ -17,13 +17,13 @@ class Plants::Names::Search::Scientific
     if @parsed.list?
       list_search.search_for(@parsed.search_term)
     else
-      detail_search.search_for(@parsed.search_term)
+      list_search.search_for(@parsed.search_term)
+      #detail_search.search_for(@parsed.search_term)
     end
   end
 
   def list_search
     Name.scientific_search
-        .limit(@parsed.limit)
         .joins(:name_type)
         .joins(:name_tree_path_default)
         .includes(:name_tree_path_default)

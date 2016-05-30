@@ -4,6 +4,7 @@ class InstanceNote < ActiveRecord::Base
 
   belongs_to :instance
   belongs_to :instance_note_key
+  belongs_to :name_detail, foreign_key: "instance_id"
 
   def apc_distribution?
     instance_note_key.apc_distribution?

@@ -8,6 +8,8 @@ class NameInstanceNameTreePath < ActiveRecord::Base
   belongs_to :reference
   belongs_to :name, foreign_key: :id
   has_one :rank, through: :name
+  has_many :instance_note_for_type_specimens, through: :instance
+  has_many :instance_note_for_distributions, through: :instance
   scope :simple_name_like, ->(string) { where("lower(name_simple_name) like lower(?) ", string.gsub(/\*/, "%").downcase) }
   scope :full_name_like, ->(string) { where("lower(name_full_name) like lower(?) ", string.gsub(/\*/, "%").downcase) }
   scope :scientific, -> { where("type_scientific") }
