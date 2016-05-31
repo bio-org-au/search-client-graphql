@@ -15,7 +15,8 @@ class Plants::Names::Search::Cultivar
     if @parsed.list?
       list_search.search_for(@parsed.search_term)
     else
-      detail_search.search_for(@parsed.search_term)
+      list_search.search_for(@parsed.search_term)
+      #detail_search.search_for(@parsed.search_term)
     end
   end
 
@@ -26,7 +27,7 @@ class Plants::Names::Search::Cultivar
         .joins(:name_type)
         .where(name_type: { cultivar: true })
         .order("trim( trailing '>' from substring(substring(name_tree_path.rank_path from 'Familia:[^>]*>') from 9)), sort_name")
-        .limit(@parsed.limit)
+        #.limit(@parsed.limit)
   end
 
   def detail_search

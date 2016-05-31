@@ -2,11 +2,12 @@
   <%= @name.full_name_html %>
 <% end %>
 <% content_for :page_banner do %>
-  <h1><%= @name.full_name_html.html_safe %></h1>
+  <h1>Name details</h1>
 <% end %>
 <% content_for :sidebar do %>
   <%= render "sidebar" %>
 <% end %>
+<h2><%= @name.full_name_html.html_safe %></h1>
 <%= render partial: "details_extra", locals: {name: @name, name_details: @name_details} %>
 <br/>
 <br/>

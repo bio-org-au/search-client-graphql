@@ -43,7 +43,7 @@ select n.id,
        join instance_type ity on i.instance_type_id = ity.id
        join name_tree_path ntp on ntp.name_id = n.id
        join tree_arrangement ta on ntp.tree_id = ta.id
-            and ta.label = (select value from shard_config where name = 'name_tree_label')
+            and ta.label = (select value from shard_config where name = 'name tree label')
        left outer join instance syn on syn.cited_by_id = i.id
        left outer join instance_type sty on syn.instance_type_id = sty.id
        left outer join name sname on syn.name_id = sname.id

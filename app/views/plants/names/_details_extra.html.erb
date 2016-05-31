@@ -25,7 +25,6 @@
           <%= type.marked_up_value.html_safe %>
         </div>
       <% end %>
-    </div>
       <ul class='name-results'>
         <% name_detail.name_detail_synonyms.sort {|x,y| [x.instance_type_sort_order, x.full_name] <=> [y.instance_type_sort_order, y.full_name] }.each do |syn| %>
           <li class='compact subordinate-instance'>
@@ -51,6 +50,7 @@
         <% show_comment = false %>
       <% end %>
     <% end %>
+    </div>
     <% shown.push name_detail.instance_id %>
   <% end %>
   <% if name.direct_sub_taxa_with_instance_count > 0 %>
