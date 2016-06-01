@@ -1,8 +1,0 @@
-
-<% if @search.results.size > 0 %>
-  <% if @search.parsed.list? %>
-      <%= render 'results_list' %>
-   <% else %>
-      <%= render 'results_detailed' %>
-  <% end %>
-<% end %>
