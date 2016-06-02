@@ -1,0 +1,22 @@
+
+          <% target_id = new_target_id %>
+          <span class="name-display-family-name" title="Family name">
+            <%= name.name_tree_path_default.family_name %>
+          </span> 
+          <br class="<%=target_id%> details"/>
+          <span class="result-item-heading">
+            <%= link_to("#{name[:full_name].sub(/^x /, "× ")}",
+                        plants_names_show_path(name[:id],target_id: target_id),
+                        class: "full-name drill-down-toggle showing-details",
+                        data: {target_id: target_id},
+                        title: "Select to show or hide details",
+                        remote: true)
+            %>
+            <% if name.show_status? %>
+              <span class="name-status" title="Name Status"><%= name.status_name %></span>
+            <% end %>
+          </span>
+          <div id="<%= target_id %>" class="details">
+            <%= render partial: "plants/names/details_extra", locals: {name: name, name_details: NameDetail.ordered.where(id: name.id)} %>
+          </div>
+          <hr class="<%= target_id %> divider" />

@@ -39,6 +39,7 @@ detailsToggle = (event, $element) ->
   else
     hideTarget(targetId)
   if $("#name-#{nameId}:empty").length == 0
+    debug('not querying details')
     return false
 
 needsDetailsLimit = (event, $element) ->
