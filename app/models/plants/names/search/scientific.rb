@@ -28,7 +28,7 @@ class Plants::Names::Search::Scientific
         .joins(:name_tree_path_default)
         .includes(:name_tree_path_default)
         .where(name_type: { scientific: true })
-        .order("trim( trailing '>' from substring(substring(name_tree_path.rank_path from 'Familia:[^>]*>') from 9)), sort_name")
+        .ordered_scientifically
   end
 
   def detail_search

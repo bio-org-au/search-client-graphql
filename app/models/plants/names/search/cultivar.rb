@@ -26,8 +26,7 @@ class Plants::Names::Search::Cultivar
         .includes(:name_tree_path_default)
         .joins(:name_type)
         .where(name_type: { cultivar: true })
-        .order("trim( trailing '>' from substring(substring(name_tree_path.rank_path from 'Familia:[^>]*>') from 9)), sort_name")
-        #.limit(@parsed.limit)
+        .ordered_scientifically
   end
 
   def detail_search

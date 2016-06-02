@@ -49,6 +49,7 @@ class Name < ActiveRecord::Base
   scope :lower_full_name_like, ->(string) { where("lower(f_unaccent(name.full_name)) like f_unaccent(?) ", string.tr("*", "%").downcase) }
   scope :lower_simple_name_like, ->(string) { where("lower(name.simple_name) like ? ", string.gsub(/\*/, "%").downcase) }
   scope :ordered, -> { order("sort_name") }
+  scope :ordered_scientifically, -> { order("coalesce(trim( trailing '>' from substring(substring(name_tree_path.rank_path from 'Familia:[^>]*>') from 9)),'A'||to_char(name_rank.sort_order,'0009')), sort_name, name_rank.sort_order") }
   scope :limited_high, -> { limit(5000) }
 
   def self.search_for(string)
@@ -140,6 +141,7 @@ class Name < ActiveRecord::Base
     Name.not_a_duplicate
         .has_an_instance
         .includes(:status)
+        .joins(:rank)
   end
 
   def self.all_search
