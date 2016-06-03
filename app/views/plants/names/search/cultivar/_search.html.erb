@@ -12,13 +12,9 @@
                        placeholder: "Search cultivar names") %>
     </div>
     <input type="hidden" 
-           min="0"
-           max="1000"
-           step="1"
-           value="<%= session[:default_details_limit] %>"
-           name="details_limit"
-           id="details-limit"
-           class="">
+           value="<%= params[:retrieve_details_on_load].blank? ? 'false' : params[:retrieve_details_on_load] %>"
+           name="retrieve_details_on_load"
+           id="retrieve_details_on_load">
   <%= submit_tag("Search", class: "btn btn-search hidden-print") %>
   </div>
 <% end %>

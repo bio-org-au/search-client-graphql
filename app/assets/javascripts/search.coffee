@@ -17,8 +17,13 @@ ready = ->
   $('body').on('click','.needs-details-limit', (event) -> needsDetailsLimit(event,$(this)))
   $('body').on('submit','#search-form', (event) -> searchForm(event,$(this)))
   $('body').on('click','.drill-down-toggle', (event) -> drillDownToggle(event,$(this)))
-  $('body').on('click','.hide-all-details-link', (event) -> hideAllDetails(event,$(this)))
-  $('body').on('click','.show-all-details-link', (event) -> showAllDetails(event,$(this)))
+  $('body').on('click','#hide-all-details-link', (event) -> hideAllDetails(event,$(this)))
+  $('body').on('click','.retrieve-details-control', (event) -> retrieveDetails(event,$(this)))
+  $('body').on('click','.collapse-details-control', (event) -> collapseAll(event,$(this)))
+  $('body').on('click','.expand-details-control', (event) -> expandAll(event,$(this)))
+  $('body').on('click','#always-retrieve-details-toggle', (event) -> alwaysShowHideAllToggle(event,$(this)))
+  loadDetailsIfRequired() if typeof(loadDetailsIfRequired) == "function"
+  resetControls() if typeof(resetControls) == "function"
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
@@ -58,15 +63,23 @@ drillDownToggle = (event, $element) ->
   if $("##{targetId}").hasClass("hidden-xs-up")
     debug('showing')
     $element.addClass("showing-details")
-    $element.removeClass("hiding-details")
+    $element.removeClass("no-details").removeClass("hiding-details")
     showTarget(targetId)
+    $element.find('i.fa-caret-right').removeClass('fa-caret-right').addClass('fa-caret-down')
+    resetControls()
+    if $("##{targetId}:empty").length == 0
+      keep_going()
+    else
+      stop()
   else
     debug('hiding...')
     hideTarget(targetId)
     $element.addClass("hiding-details")
     $element.removeClass("showing-details")
-  if $("##{targetId}:empty").length == 0
-    return_and_keep_going()
+    $element.find('i.fa-caret-down').removeClass('fa-caret-down').addClass('fa-caret-right')
+    resetControls()
+    event.preventDefault()
+    event.stopPropagation()
 
 showTarget = (targetId) ->
   $("##{targetId}").removeClass("hidden-xs-up")
@@ -76,17 +89,90 @@ showTarget = (targetId) ->
 
 hideTarget = (targetId) ->
   $("##{targetId}").addClass("hidden-xs-up")
-  $("##{targetId}").addClass("hidden-printx")
+  $("##{targetId}").addClass("hidden-print")
   $(".#{targetId}").addClass("hidden-xs-up")
   $(".#{targetId}").addClass("hidden-print")
 
-return_and_keep_going = () ->
+keep_going = () ->
   return false
+
+stop = () ->
+  return true
 
 hideAllDetails = (event, $element) ->
   debug("hideAllDetails")
   $(".drill-down-toggle.showing-details").click()
 
-showAllDetails = (event, $element) ->
-  debug("showAllDetails")
+retrieveDetails = (event, $element) ->
+  debug("retrieveDetails")
   $(".drill-down-toggle.hiding-details").click()
+  $(".drill-down-toggle.no-details").filter(" :lt(100) ").click()
+
+collapseAll = (event, $element) ->
+  debug("collapseAll")
+  $(".drill-down-toggle.showing-details").click()
+  resetControls()
+
+expandAll = (event, $element) ->
+  debug("expandAll")
+  $(".drill-down-toggle.hiding-details").click()
+  resetControls()
+
+alwaysShowHideAllToggle = (event, $element) ->
+  debug("alwaysShowHideAllToggle")
+  if $('#retrieve_details_on_load').val() == 'false'
+    $('#retrieve_details_on_load').val('true')
+    $element.text("Always retrieve details").append(" &nbsp;<i class='fa fa-check'></i>")
+  else
+    $('#retrieve_details_on_load').val('false')
+    $element.text("Always retrieve details")
+
+window.showAsExpanded = (targetId) ->
+  debug('showAsExpanded')
+  $('a.'+targetId).removeClass("no-details").removeClass("hiding-details")
+  $('a.'+targetId).addClass("showing-details")
+  showTarget(targetId)
+  $('a.'+targetId).find('i.fa-caret-right').removeClass('fa-caret-right').addClass('fa-caret-down')
+
+window.showDetailsRetrieved = (targetId) ->
+  debug('showDetailsRetrieved')
+  $("##{targetId}").addClass('retrieved')
+
+loadDetailsIfRequired = () ->
+  debug('loadDetailsIfRequired')
+  if $('#retrieve_details_on_load').val().match(/true/)
+    $('#retrieve-details-control').click()
+
+window.resetControls = () ->
+  debug('resetControls')
+  name_count = $('.name-heading').length
+  details_retrieved_count = $('.details.retrieved').length
+  expanded_details_count = $('.showing-details').length
+  collapsed_details_count = $('.hiding-details').length
+  debug("name_count: #{name_count}")
+  debug("details_retrieved_count: #{details_retrieved_count}")
+  debug("expanded_details_count: #{expanded_details_count}")
+  debug("collapsed_details_count: #{collapsed_details_count}")
+  if name_count == 0
+    $('.control').addClass('hidden-xs-up')
+  else
+    if details_retrieved_count == name_count
+      $('#retrieve-details-control').addClass('hidden-xs-up')
+    else
+      $('#retrieve-details-control').removeClass('hidden-xs-up')
+    if expanded_details_count > 0
+      $('#collapse-details-control').removeClass('hidden-xs-up')
+    else
+      $('#collapse-details-control').addClass('hidden-xs-up')
+    if collapsed_details_count > 0
+      $('#expand-details-control').removeClass('hidden-xs-up')
+    else
+      $('#expand-details-control').addClass('hidden-xs-up')
+    if details_retrieved_count > 0 && details_retrieved_count < name_count
+      debug("some details retrieved, but not all: name_count: #{name_count}; retrieved: #{details_retrieved_count}")
+      $('#details-retrieved-count').text("(#{details_retrieved_count})")
+      $('#more-details-text').removeClass('hidden-xs-up')
+    else
+      $('#details-retrieved-count').text('')
+      $('#more-details-text').addClass('hidden-xs-up')
+
