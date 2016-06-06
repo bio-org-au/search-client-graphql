@@ -161,15 +161,16 @@ window.resetControls = () ->
     else
       $('#retrieve-details-control').removeClass('hidden-xs-up')
     if expanded_details_count > 0
+      $('#expanded-details-count').text("(#{expanded_details_count})")
       $('#collapse-details-control').removeClass('hidden-xs-up')
     else
       $('#collapse-details-control').addClass('hidden-xs-up')
     if collapsed_details_count > 0
+      $('#collapsed-details-count').text("(#{collapsed_details_count})")
       $('#expand-details-control').removeClass('hidden-xs-up')
     else
       $('#expand-details-control').addClass('hidden-xs-up')
     if details_retrieved_count > 0 && details_retrieved_count < name_count
-      debug("some details retrieved, but not all: name_count: #{name_count}; retrieved: #{details_retrieved_count}")
       $('#details-retrieved-count').text("(#{details_retrieved_count})")
       $('#more-details-text').removeClass('hidden-xs-up')
     else
