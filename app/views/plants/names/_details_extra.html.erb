@@ -7,6 +7,7 @@
 
     <div class="instance-citation from-partial">
     <% unless shown.include?(name_detail.instance_id) %>
+      <div class="standalone-instance-citation">
       <%= name_detail.entry.sub(/: \z/,'').html_safe %>
       <% if name_detail.instance_id == name.apc_instance_id %>
         <% if name_detail.instance.accepted_name.type_code.match(/Concept\z/) %>
@@ -19,6 +20,7 @@
           <%= name_detail.instance.accepted_name.type_code.sub(/Apc/i,"#{ShardConfig.classification_tree_label} ") %>
         </span>
       <% end %>
+      </div>
       <% name_detail.instance_note_for_type_specimens.each do |type| %>
         <div class="type-specimen-note">
           <span class="classification-note-label">type:</span>
