@@ -4,7 +4,7 @@
       <%= name_detail.instance_type.name %> of 
     </span>
     <%= link_to(name_detail.cited_by.name.full_name_html.html_safe,
-                plants_names_show_path(name_detail.name_id),
+                plants_names_show_path(name_detail.cited_by.name.id),
                 class: "synonym") %>
   </li>
 <% end %>
