@@ -1,4 +1,4 @@
-class Cite < ActiveRecord::Base
+class CitedBy < ActiveRecord::Base
   self.table_name = "instance"
   self.primary_key = "id"
   has_many :name_details

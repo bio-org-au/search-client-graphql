@@ -51,6 +51,7 @@ li.compact.subordinate-instance {
   padding-left: 4rem;
   line-height: 80%;
   font-size: 90%;
+  margin-bottom: 0.25rem;
 }
 
 li.compact.subordinate-instance span.synonym-type {
@@ -59,7 +60,6 @@ li.compact.subordinate-instance span.synonym-type {
 }
 
 a.synonym {
-  font-style: italic;
 }
 
 span.result-item-heading {
@@ -89,7 +89,7 @@ span.name-status {
 
 .type-specimen-note {
   margin-left: 4rem;
-  font-size: 85%;
+  font-size: 95%;
 }
 
 div.classification-tree-note {
@@ -105,8 +105,8 @@ div.classification-tree-note {
 }
 
 span.classification-note-label {
-  color: gray;
-  font-size: 90%;
+  font-size: 95%;
+  font-weight: bold;
 }
 
 span.classification-tree-value {

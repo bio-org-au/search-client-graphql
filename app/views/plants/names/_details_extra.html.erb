@@ -4,7 +4,6 @@
   <% shown = [] -%>
   <% apc_instance_id = name.apc_instance_id -%>
   <% name_details.each do | name_detail | %>
-
     <div class="instance-citation from-partial">
     <% unless shown.include?(name_detail.instance_id) %>
       <div class="standalone-instance-citation">
@@ -23,7 +22,7 @@
       </div>
       <% name_detail.instance_note_for_type_specimens.each do |type| %>
         <div class="type-specimen-note">
-          <span class="classification-note-label">type:</span>
+          <span class="classification-note-label">Type:</span>
           <%= type.marked_up_value.html_safe %>
         </div>
       <% end %>
@@ -33,20 +32,21 @@
             <span class="synonym-type">
               <%= syn.instance_type_name %>
             </span>
-          <%= link_to(syn.full_name,
+          <%= link_to(syn.full_name_html.html_safe,
                       plants_names_show_path(syn.name_id),
                       class: "synonym") %>
           </li>
         <% end %>
+        <%= render(partial: "plants/names/instances_cited_by", locals: {name_detail: name_detail}) %>
       </ul>
       <% if show_dist %>
-        <div class="classification-tree-note"><span class="classification-note-label">distribution: </span><%= apc_dist %></span></div>
+        <div class="classification-tree-note"><span class="classification-note-label">Distribution: </span><%= apc_dist %></span></div>
         <% show_dist = false %>
       <% end %>
       <% if show_comment %>
         <div class="classification-tree-note">
           <span class="classification-note-label">comment: </span>
-          <%= apc_comment %>xxx
+          <%= apc_comment %>
           <span class="xclassification-tree-value debug"><%= apc_comment %></span>
         </div>
         <% show_comment = false %>
