@@ -8,7 +8,7 @@ div.name-details,
 div.name-display {
   font-size: 85%;
   color: black;
-  margin: 1em 0 0.8em 8rem;
+  margin: 1em 0 0.8em 5rem;
 }
 
 div.name-details,
@@ -17,6 +17,9 @@ div.name-display ul {
   margin-bottom: 0;
 }
 
+div.name-detail-synonyms {
+}
+ 
 span.full-name {
   font-weight: bold;
 }
@@ -48,7 +51,7 @@ span.instance-type{
 }
 
 li.compact.subordinate-instance {
-  padding-left: 4rem;
+  padding-left: 2.6rem;
   line-height: 80%;
   font-size: 90%;
   margin-bottom: 0.25rem;
@@ -88,7 +91,7 @@ span.name-status {
 }
 
 .type-specimen-note {
-  margin-left: 4rem;
+  margin-left: 2.6rem;
   font-size: 95%;
 }
 
@@ -99,12 +102,12 @@ div.classification-tree-note {
 }
 
 div.classification-tree-note {
-  margin-left: 4rem;
+  margin-left: 2.6rem;
   margin-top: 0.2rem;
   font-size: 85%;
 }
 
-span.classification-note-label {
+span.instance-note-label {
   font-size: 95%;
   font-weight: bold;
 }

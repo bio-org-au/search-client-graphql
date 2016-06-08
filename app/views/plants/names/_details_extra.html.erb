@@ -22,11 +22,11 @@
       </div>
       <% name_detail.instance_note_for_type_specimens.each do |type| %>
         <div class="type-specimen-note">
-          <span class="classification-note-label">Type:</span>
+          <span class="instance-note-label">Type:</span>
           <%= type.marked_up_value.html_safe %>
         </div>
       <% end %>
-      <ul class='name-results'>
+      <ul class='name-details-synonyms'>
         <% name_detail.name_detail_synonyms.sort {|x,y| [x.instance_type_sort_order, x.full_name] <=> [y.instance_type_sort_order, y.full_name] }.each do |syn| %>
           <li class='compact subordinate-instance'>
             <span class="synonym-type">
@@ -40,12 +40,12 @@
         <%= render(partial: "plants/names/instances_cited_by", locals: {name_detail: name_detail}) %>
       </ul>
       <% if show_dist %>
-        <div class="classification-tree-note"><span class="classification-note-label">Distribution: </span><%= apc_dist %></span></div>
+        <div class="classification-tree-note"><span class="instance-note-label">Distribution: </span><%= apc_dist %></span></div>
         <% show_dist = false %>
       <% end %>
       <% if show_comment %>
         <div class="classification-tree-note">
-          <span class="classification-note-label">comment: </span>
+          <span class="instance-note-label">Comment: </span>
           <%= apc_comment %>
           <span class="xclassification-tree-value debug"><%= apc_comment %></span>
         </div>
