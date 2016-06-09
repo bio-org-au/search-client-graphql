@@ -8,25 +8,15 @@ window.notice = (s) ->
     console.log('notice: ' + s)
   catch error
 
-# Turbolinks
-ready = ->
-  debug('Start of search.js document ready')
-  debug('jQuery version: ' + $().jquery)
-  $('body').on('click','.nav-new-search', (event) -> navNewSearch(event,$(this)))
-  $('body').on('click','.details-toggle', (event) -> detailsToggle(event,$(this)))
-  $('body').on('click','.needs-details-limit', (event) -> needsDetailsLimit(event,$(this)))
-  $('body').on('submit','#search-form', (event) -> searchForm(event,$(this)))
-  $('body').on('click','.drill-down-toggle', (event) -> drillDownToggle(event,$(this)))
-  $('body').on('click','#hide-all-details-link', (event) -> hideAllDetails(event,$(this)))
-  $('body').on('click','.retrieve-details-control', (event) -> retrieveDetails(event,$(this)))
-  $('body').on('click','.collapse-details-control', (event) -> collapseAll(event,$(this)))
-  $('body').on('click','.expand-details-control', (event) -> expandAll(event,$(this)))
-  $('body').on('click','#always-retrieve-details-toggle', (event) -> alwaysShowHideAllToggle(event,$(this)))
-  loadDetailsIfRequired() if typeof(loadDetailsIfRequired) == "function"
-  resetControls() if typeof(resetControls) == "function"
+loadDetailsIfRequired = () ->
+  debug('loadDetailsIfRequired')
+  if $('#retrieve_details_on_load').val().match(/true/)
+    $('#retrieve-details-control').click()
 
-$(document).ready(ready)
-$(document).on('page:load', ready)
+retrieveDetails = (event, $element) ->
+  debug("retrieveDetails")
+  $(".drill-down-toggle.hiding-details").click()
+  $(".drill-down-toggle.no-details").filter(" :lt(100) ").click()
 
 navNewSearch = (event, $element) ->
   $('#q').val('')
@@ -103,11 +93,6 @@ hideAllDetails = (event, $element) ->
   debug("hideAllDetails")
   $(".drill-down-toggle.showing-details").click()
 
-retrieveDetails = (event, $element) ->
-  debug("retrieveDetails")
-  $(".drill-down-toggle.hiding-details").click()
-  $(".drill-down-toggle.no-details").filter(" :lt(100) ").click()
-
 collapseAll = (event, $element) ->
   debug("collapseAll")
   $(".drill-down-toggle.showing-details").click()
@@ -137,11 +122,6 @@ window.showAsExpanded = (targetId) ->
 window.showDetailsRetrieved = (targetId) ->
   debug('showDetailsRetrieved')
   $("##{targetId}").addClass('retrieved')
-
-loadDetailsIfRequired = () ->
-  debug('loadDetailsIfRequired')
-  if $('#retrieve_details_on_load').val().match(/true/)
-    $('#retrieve-details-control').click()
 
 window.resetControls = () ->
   debug('resetControls')
@@ -177,3 +157,22 @@ window.resetControls = () ->
       $('#details-retrieved-count').text('')
       $('#more-details-text').addClass('hidden-xs-up')
 
+# Turbolinks
+ready = ->
+  debug('Start of search.js document ready')
+  debug('jQuery version: ' + $().jquery)
+  $('body').on('click','.nav-new-search', (event) -> navNewSearch(event,$(this)))
+  $('body').on('click','.details-toggle', (event) -> detailsToggle(event,$(this)))
+  $('body').on('click','.needs-details-limit', (event) -> needsDetailsLimit(event,$(this)))
+  $('body').on('submit','#search-form', (event) -> searchForm(event,$(this)))
+  $('body').on('click','.drill-down-toggle', (event) -> drillDownToggle(event,$(this)))
+  $('body').on('click','#hide-all-details-link', (event) -> hideAllDetails(event,$(this)))
+  $('body').on('click','.retrieve-details-control', (event) -> retrieveDetails(event,$(this)))
+  $('body').on('click','.collapse-details-control', (event) -> collapseAll(event,$(this)))
+  $('body').on('click','.expand-details-control', (event) -> expandAll(event,$(this)))
+  $('body').on('click','#always-retrieve-details-toggle', (event) -> alwaysShowHideAllToggle(event,$(this)))
+  loadDetailsIfRequired() if typeof(loadDetailsIfRequired) == "function"
+  resetControls() if typeof(resetControls) == "function"
+
+$(document).ready(ready)
+$(document).on('page:load', ready)
