@@ -15,8 +15,13 @@
           <% apc_comment = name_detail.instance_note_for_comment.try("value") %>
           <% show_comment = apc_comment.present? %>
         <% end %>
-        <span class="red">
-          <%= name_detail.instance.accepted_name.type_code.sub(/Apc/i,"#{ShardConfig.classification_tree_label} ") %>
+        <span class="accepted-or-excluded-indicator red">
+          <% case name_detail.instance.accepted_name.type_code %>
+          <% when 'ApcConcept' %>
+            <span title="APC Concept"><%= fa_icon('check', class: 'fa-lg green') %>APC</span>
+          <% when 'ApcExcluded' %>
+            <span title="Excluded from APC"><%= fa_icon('ban', class: 'fa-lg red') %>APC</span>
+          <% end %>
         </span>
       <% end %>
       </div>
@@ -47,7 +52,7 @@
         <div class="classification-tree-note">
           <span class="instance-note-label">Comment: </span>
           <%= apc_comment %>
-          <span class="xclassification-tree-value debug"><%= apc_comment %></span>
+          <span class="xclassification-tree-value"><%= apc_comment %></span>
         </div>
         <% show_comment = false %>
       <% end %>
