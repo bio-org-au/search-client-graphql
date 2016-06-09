@@ -38,7 +38,7 @@ div.instance-citation.from-partial {
 }
 
 div.standalone-instance-citation {
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.0rem;
 }
 
 span.instance-type-name {
@@ -52,9 +52,10 @@ span.instance-type{
 
 li.compact.subordinate-instance {
   padding-left: 2.6rem;
-  line-height: 80%;
+  line-height: 90%;
   font-size: 90%;
-  margin-bottom: 0.25rem;
+  margin-top: 0.15rem;
+  margin-bottom: 0;
 }
 
 li.compact.subordinate-instance span.synonym-type {
@@ -90,9 +91,12 @@ span.name-status {
   font-size: 90%;
 }
 
-.type-specimen-note {
+.instance-note {
   margin-left: 2.6rem;
+  line-height: 98%;
   font-size: 95%;
+  margin-top: 0.15rem;
+  margin-bottom: 0;
 }
 
 div.classification-tree-note {

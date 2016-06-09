@@ -21,7 +21,7 @@
       <% end %>
       </div>
       <% name_detail.instance_notes_for_details.sort {|x,y| x.instance_note_key.sort_order <=> y.instance_note_key.sort_order }.each do |note| %>
-        <div class="type-specimen-note">
+        <div class="instance-note">
           <span class="instance-note-label"><%= note.instance_note_key.name %>:</span>
           <%= note.marked_up_value.html_safe %>
         </div>
