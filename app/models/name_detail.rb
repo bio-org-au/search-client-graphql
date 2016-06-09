@@ -12,6 +12,7 @@ class NameDetail < ActiveRecord::Base
   belongs_to :instance_type
   has_many :instance_notes, foreign_key: :instance_id 
   has_many :instance_note_for_type_specimens, foreign_key: :instance_id 
+  has_many :instance_notes_for_details, foreign_key: :instance_id 
   has_one :instance_note_for_distribution, foreign_key: :instance_id 
   has_one :instance_note_for_comment, foreign_key: :instance_id 
   belongs_to :instance

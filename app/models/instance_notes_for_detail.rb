@@ -1,6 +1,7 @@
-class InstanceNote < ActiveRecord::Base
+class InstanceNotesForDetail < ActiveRecord::Base
   self.table_name = "instance_note"
   self.primary_key = "id"
+  default_scope { where("instance_note_key_id in (select id from instance_note_key where not deprecated and name not like 'APC%') ") }
 
   belongs_to :instance
   belongs_to :instance_note_key
