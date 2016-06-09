@@ -17,7 +17,7 @@ class Plants::Names::Search::Parse
       @search_type = SIMPLE_SEARCH
     end
     @search_term = params[:q].strip.gsub(/\*/,'%')
-    @show_as = params[:show_results_as] || info[:default_show_results_as]
+    @show_as = params[:show_results_as] || info[:default_show_results_as] || SHOW_LIST
     @limit = calculated_limit
   end
 

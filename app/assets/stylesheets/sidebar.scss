@@ -108,3 +108,12 @@
   color: $gray-dark;
   background-color: transparent;
 }
+
+i.hide-unless-active {
+  display: none;
+}
+
+li.active i.hide-unless-active {
+  display: inline;
+}
+

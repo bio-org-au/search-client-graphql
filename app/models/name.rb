@@ -116,7 +116,21 @@ class Name < ActiveRecord::Base
         .includes(:rank)
   end
 
-  def self.scientific_search_detailed
+  def self.cultivar_search
+    Name.not_a_duplicate
+        .has_an_instance
+        .includes(:status)
+        .joins(:rank)
+  end
+
+  def self.scientific_or_cultivar_search
+    Name.not_a_duplicate
+        .has_an_instance
+        .includes(:status)
+        .includes(:rank)
+  end
+
+  def self.xscientific_search_detailed
     Name.not_a_duplicate
         .has_an_instance
         .includes(:status)
@@ -137,14 +151,7 @@ class Name < ActiveRecord::Base
         .order("sort_name")
   end
 
-  def self.cultivar_search
-    Name.not_a_duplicate
-        .has_an_instance
-        .includes(:status)
-        .joins(:rank)
-  end
-
-  def self.all_search
+  def self.xall_search
     Name.limited_high
         .not_a_duplicate
         .has_an_instance

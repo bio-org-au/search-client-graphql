@@ -157,6 +157,17 @@ window.resetControls = () ->
       $('#details-retrieved-count').text('')
       $('#more-details-text').addClass('hidden-xs-up')
 
+
+switchNameType = (event, $element) ->
+  debug("switchNameType")
+  switchTo = $element.data("switch-to")
+  $('#name_type').val(switchTo)
+  $('.name-type-switch-item').removeClass('active')
+  $element.closest('.name-type-switch-item').addClass('active')
+  $('#search-button').click()
+  event.preventDefault()
+  event.stopPropagation()
+
 # Turbolinks
 ready = ->
   debug('Start of search.js document ready')
@@ -171,6 +182,7 @@ ready = ->
   $('body').on('click','.collapse-details-control', (event) -> collapseAll(event,$(this)))
   $('body').on('click','.expand-details-control', (event) -> expandAll(event,$(this)))
   $('body').on('click','#always-retrieve-details-toggle', (event) -> alwaysShowHideAllToggle(event,$(this)))
+  $('body').on('click','.name-type-switch-link', (event) -> switchNameType(event,$(this)))
   loadDetailsIfRequired() if typeof(loadDetailsIfRequired) == "function"
   resetControls() if typeof(resetControls) == "function"
 

@@ -1,4 +1,4 @@
-<%= form_tag(plants_names_search_scientific_path, method: "get", id: "search-form") do %>
+<%= form_tag(plants_names_search_path, method: "get", id: "search-form") do %>
   <div class="form-group row">
     <%= label_tag(:q,
                   "Search for:",
@@ -12,20 +12,21 @@
                        placeholder: "Search scientific names") %>
     </div>
   <%= submit_tag("Search", id: "search-button", class: "btn btn-search hidden-print") %>
-    <input type="text" 
+    <input type="hidden" 
            value="<%= params[:retrieve_details_on_load].blank? ? 'false' : params[:retrieve_details_on_load] %>"
            name="retrieve_details_on_load"
            id="retrieve_details_on_load">
-    <input type="text" 
+    <input type="hidden" 
            value="<%= params[:search_type].blank? ? 'scientific' : params[:search_type] %>"
            name="search_type"
-           id="search_type">
+           id="name_type">
   </div>
 <% end %>
 
 <% if @search.present? %>
   <span class='search-result-summary'>
-    <%= pluralize(@search.results.pluck("id").uniq.size, 'scientific name') %>
+    <%= pluralize(@search.results.pluck("id").uniq.size,
+                  "#{(params[:search_type] || 'scientific').sub(/-and-/,' or ')} name") %>
     <%= no_results_help(@search.results.size).html_safe %>
   </span>
 <% end %>
@@ -34,4 +35,4 @@
 <% if @search.present? %>
   <%= render partial: '/plants/names/search/results', locals: {search: @search, name: @search.results.first} %>
 <% end %>
-<span class="debug hidden-print">[plants/names/search/scientific]</span>
+<span class="debug hidden-print">[plants/names/search/_form]</span>

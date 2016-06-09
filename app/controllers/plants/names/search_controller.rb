@@ -1,23 +1,31 @@
 class Plants::Names::SearchController < ApplicationController
   def index
     logger.debug(" Plants::Names::SearchController < ApplicationController")
-  end
-
-  def deprec_index
-    logger.debug(" Plants::Names::SearchController < ApplicationController")
-    case params[:pc]
-    when /all\z/
-      redirect_to plants_names_search_all_path(q: params["q"], show_results_as: params["show_results_as"], pc: params[:pc])
-    when /scientific\z/
-      redirect_to plants_names_search_scientific_path(q: params["q"], show_results_as: params["show_results_as"], pc: params[:pc])
-    when /cultivar\z/
-      redirect_to plants_names_search_cultivar_path(q: params["q"], show_results_as: params["show_results_as"], pc: params[:pc])
-    when /common\z/
-      redirect_to plants_names_search_common_path(q: params["q"], show_results_as: params["show_results_as"], pc: params[:pc])
+    set_zone
+    if params["q"].present?
+      search
+    end
+    respond_to do |format|
+      format.html
+      format.json
+      format.csv { render :index }
     end
   end
 
   private
+
+  def search
+    case params[:search_type]
+    when /scientific-and-cultivar\z/
+      @search = Plants::Names::Search::ScientificAndCultivar.new(params)
+    when /cultivar\z/
+      @search = Plants::Names::Search::Cultivar.new(params)
+    when /common\z/
+      @search = Plants::Names::Search::Common.new(params)
+    else
+      @search = Plants::Names::Search::Scientific.new(params)
+    end
+  end
 
   def set_zone
     @zone = "plants"

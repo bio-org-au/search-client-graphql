@@ -5,32 +5,10 @@
   <h1>APNI Name Search</h1>
 <% end %>
 <% content_for :sidebar do %>
-  <%= render "/plants/names/search/sidebar" %>
+  <%= render "plants/names/search/sidebar" %>
+<% end %>
+<% content_for :slider do %>
+  <%= render "plants/names/slider" %>
 <% end %>
 
-<p>There are three broad categories of names to search:</p>
-        <ul class="">
-          <li class="">
-            <%= link_to "Scientific or botanical names, which include the authority for the name.",
-                        plants_names_search_scientific_path(q: params['q']),
-                        class: "",
-                        title: "APNI Search for scientific names - list output" %>
-          
-          </li>
-          <li class="">
-            <%= link_to "Cultivar names",
-                        plants_names_search_cultivar_path(q: params['q'], nt: 'v'),
-                        class: "",
-                        title: "APNI Search for cultivar names - list output" %>
-          </li>
-          <li class="">
-            <%= link_to "Common Names",
-                        plants_names_search_common_path(q: params['q'], nt: 'c'),
-                        class: "",
-                        title: "APNI Search for common names - list output" %>
-          </li>
-        </ul>
-
-        <p>Although the authority is included in some names e.g. scientific names, this search does not match on the authority.</p>
-  <br/>
-  <span class="debug tiny hidden-print">[plants/names/search/_sidebar]</span>
+<%= render "plants/names/search/form" %>

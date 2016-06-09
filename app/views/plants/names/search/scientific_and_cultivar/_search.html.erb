@@ -11,15 +11,11 @@
                        autofocus: true,
                        placeholder: "Search scientific names") %>
     </div>
-  <%= submit_tag("Search", id: "search-button", class: "btn btn-search hidden-print") %>
     <input type="text" 
            value="<%= params[:retrieve_details_on_load].blank? ? 'false' : params[:retrieve_details_on_load] %>"
            name="retrieve_details_on_load"
            id="retrieve_details_on_load">
-    <input type="text" 
-           value="<%= params[:search_type].blank? ? 'scientific' : params[:search_type] %>"
-           name="search_type"
-           id="search_type">
+  <%= submit_tag("Search", class: "btn btn-search hidden-print") %>
   </div>
 <% end %>
 
