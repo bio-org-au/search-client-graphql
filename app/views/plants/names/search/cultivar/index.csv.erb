@@ -1,7 +1,0 @@
-<% if @search.present? %>
-<%= Name.csv_headings.html_safe -%>
-  <% @search.results.each do |name| %>
-<%= name.to_csv.html_safe -%>
-  <% end %>
-<% end %>
-

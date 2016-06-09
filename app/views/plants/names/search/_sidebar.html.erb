@@ -32,13 +32,6 @@
                         data: {switch_to: "cultivar"},
                         title: "Cultivar name search." %>
           </li>
-          <li class="name-type-switch-item <%= 'active' if params[:search_type].present? && params[:search_type].match(/\Acommon\z/) %>">
-            <%= link_to "Common&nbsp;#{fa_icon('check', class: "hide-unless-active")}".html_safe,
-                        plants_names_search_common_path(q: params[:q], nt: 'c'),
-                        class: "name-type-switch-link",
-                        data: {switch_to: "common"},
-                        title: "Common or informal name search." %>
-          </li>
           <li class="name-type-switch-item <%= 'active' if params[:search_type].present? && params[:search_type].match(/\Ascientific.and.cultivar\z/) %>">
             <%= link_to "Scientific and Cultivar&nbsp;#{fa_icon('check', class: "hide-unless-active")}".html_safe,
                         plants_names_search_scientific_and_cultivar_path(q: params[:q]),
@@ -46,9 +39,16 @@
                         data: {switch_to: "scientific-and-cultivar"},
                         title: "Search across scientific and cultivar name types." %>
           </li>
+          <li class="name-type-switch-item <%= 'active' if params[:search_type].present? && params[:search_type].match(/\Acommon\z/) %>">
+            <%= link_to "Common&nbsp;#{fa_icon('check', class: "hide-unless-active")}".html_safe,
+                        plants_names_search_common_path(q: params[:q], nt: 'c'),
+                        class: "name-type-switch-link",
+                        data: {switch_to: "common"},
+                        title: "Common or informal name search." %>
+          </li>
         </ul>
         <%= render 'layouts/back_link' %>
       </div>
   </nav>
-  <span class="ebug hidden-print">[plants/names/search/_sidebar]</span>
+  <span class="debug hidden-print">[plants/names/search/_sidebar]</span>
 
