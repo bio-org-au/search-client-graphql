@@ -4,11 +4,15 @@
         <hr/>
         <ul class="nav bd-sidenav">
           <li>
+            <span class="details-retrieved-entry">Details retrieved: 
+              <span id="details-retrieved-count"></span>
+            </span>
+          </li>
+          <li>
             <a href="#"
                id="retrieve-details-control"
                class="tiny retrieve-details-control control"
-               title="Retrieve details, 100 at a time">Retrieve <span id="more-details-text" class="hidden-xs-up"> more</span> details
-               <span id="details-retrieved-count"></span>
+               title="Retrieve details, 50 at a time">Retrieve <span id="more-details-text" class="hidden-xs-up"> more</span> details
             </a>
           </li>
           <li>
@@ -21,7 +25,7 @@
               <a href="#"
                  id="always-retrieve-details-toggle"
                  class="tiny always-retrieve-details-toggle"
-                 title="Always retrieve details after records are queried.  Up to 100.">Always retrieve details</a>
+                 title="Always retrieve details after records are queried.  Up to 50.">Always retrieve details</a>
             <% end %>
           </li>
           <li>

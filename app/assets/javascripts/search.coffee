@@ -16,7 +16,7 @@ loadDetailsIfRequired = () ->
 retrieveDetails = (event, $element) ->
   debug("retrieveDetails")
   $(".drill-down-toggle.hiding-details").click()
-  $(".drill-down-toggle.no-details").filter(" :lt(100) ").click()
+  $(".drill-down-toggle.no-details").filter(" :lt(50) ").click()
 
 navNewSearch = (event, $element) ->
   $('#q').val('')
@@ -127,10 +127,11 @@ window.resetControls = () ->
   debug('resetControls')
   name_count = $('.name-heading').length
   details_retrieved_count = $('.details.retrieved').length
-  expanded_details_count = $('.showing-details').length
+  expanded_details_count = Math.min(details_retrieved_count, $('a.showing-details').length)
   collapsed_details_count = $('.hiding-details').length
   debug("name_count: #{name_count}")
   debug("details_retrieved_count: #{details_retrieved_count}")
+  $('#details-retrieved-count').text("#{details_retrieved_count}")
   debug("expanded_details_count: #{expanded_details_count}")
   debug("collapsed_details_count: #{collapsed_details_count}")
   if name_count == 0
@@ -151,10 +152,8 @@ window.resetControls = () ->
     else
       $('#expand-details-control').addClass('hidden-xs-up')
     if details_retrieved_count > 0 && details_retrieved_count < name_count
-      $('#details-retrieved-count').text("(#{details_retrieved_count})")
       $('#more-details-text').removeClass('hidden-xs-up')
     else
-      $('#details-retrieved-count').text('')
       $('#more-details-text').addClass('hidden-xs-up')
 
 
