@@ -8,16 +8,18 @@
   <%= render "sidebar" %>
 <% end %>
 
-<p>The Australian Plant Name Index (APNI) has provided search pages for many years now.  This site provides the most recent versions of those searches.
-<p>
-
-<p>APNI searches:
+<p>The Australian Plant Name Index (APNI) is a tool for the botanical community
+that deals with vascular plant names and their usage in the scientific literature,
+whether as a current name or synonym.  Names of cultivars derived from the
+Australian flora are also included.
 </p>
-<ul>
-  <li/> <%= link_to("APNI Name Search",
-            plants_names_search_path,
-            title: "APNI Search Page") %> is the basic APNI search page that searches on names and lets you provide wildcards (*).
-</ul>
+<p>
+APNI does not recommend any particular taxonomy or nomenclature.
+</p>
+<p>
+For a listing of currently accepted scientific names for the Australian
+vascular flora, use the
+<%= link_to("Australian Plant Census (APC)", plants_taxonomy_accepted_path) %>.
 
 
 <br/>

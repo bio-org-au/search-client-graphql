@@ -9,12 +9,32 @@
 <% end %>
 
 <p>
-The Australian Plant Census is....
+The Australian Plant Census (APC) lists the accepted scientific names for the
+Australia vascular flora, including:
+<ul class="xindented discs">
+  <li>angiosperms</li>
+  <li>ferns</li>
+  <li>gymnosperms</li>
+</ul>
+both native and naturalised, and includes synonys and misapplications for
+these names.
 </p>
-<%= link_to("APC Name Search",
-            plants_taxonomy_accepted_search_path,
-            title: "APC Search Page") %> is the basic APC search page that searches on names and lets you provide wildcards (*).
-
+<p>
+The APC covers all published scientific plant names used in an Australian
+context in the taxonomic literature, but excludes taxa known only from
+cultivation in Australia.
+</p>
+<p>
+The taxonomy and nomenclature adopted for the APC are endorsed by the
+<a href="http://chah.org.au">
+  Council of Heads of Australasian Herbaria (CHAH)
+</a>).
+</p>
+<p>
+For a full listing of scientific names applied to the Australian vascular flora,
+including bibliographic details, see the
+<%= link_to("Australian Plant Name Index (APNI)", plants_names_path) %>.
+</p>
 <br/>
 <br/>
 <br/>
