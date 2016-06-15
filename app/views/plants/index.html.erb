@@ -8,6 +8,17 @@
   <%= render "sidebar" %>
 <% end %>
 
+<p>Biodiversity Australia supports the
+              <%= link_to "Australian Plant Name Index (APNI)".html_safe,
+                          plants_names_path,
+                          class: "",
+                          title: "Vascular Plant Names in the Australian Plant Names Index" %>
+, and the
+              <%= link_to "Australian Plant Census (APC)",
+                          plants_taxonomy_accepted_path,
+                          class: "",
+                          title: "APC Taxonomy" %>.
+
 <br/>
 <br/>
 <br/>
