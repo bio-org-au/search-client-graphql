@@ -22,6 +22,7 @@
            id="name_type">
   </div>
 <% end %>
+<span class="debug red hidden-print">[plants/names/search/_form]</span>
 
 <% if @search.present? %>
   <span class='search-result-summary'>
@@ -35,4 +36,3 @@
 <% if @search.present? %>
   <%= render partial: '/plants/names/search/results', locals: {search: @search, name: @search.results.first} %>
 <% end %>
-<span class="debug hidden-print">[plants/names/search/_form]</span>

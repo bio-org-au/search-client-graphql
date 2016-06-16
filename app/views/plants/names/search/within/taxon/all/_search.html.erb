@@ -1,27 +1,5 @@
-<%= form_tag(plants_names_search_scientific_path, method: "get", id: "search-form") do %>
-  <div class="form-group row">
-    <%= label_tag(:q,
-                  "Search for:",
-                  class:"sr-only col-sm-2 form-control-label") %>
-  <div class="col-sm-10">
-    <%= text_field_tag(:q,
-                       '',
-                       class: "form-control",
-                       value: "#{params[:q]}",
-                       autofocus: true,
-                       placeholder: "Search names") %>
-    </div>
-    <input type="hidden" 
-           min="0"
-           max="1000"
-           step="1"
-           value="<%= session[:default_details_limit] %>"
-           name="details_limit"
-           id="details-limit"
-           class="">
-  <%= submit_tag("Search", class: "btn btn-search hidden-print") %>
-  </div>
-<% end %>
+<span class="debug red hidden-print">[plants/names/search/within/taxon/all/_search]</span>
+<%= render partial: '/plants/names/search/form' %>
 
 <% if @search.present? %>
   <%= "<span class='search-result-summary'>#{pluralize(@search.results.size, 'scientific name')}</span>".html_safe %>
@@ -30,4 +8,3 @@
 <% if @search.present? %>
   <%= render partial: '/plants/names/search/results', locals: {name: @search.results.first} %>
 <% end %>
-<span class="debug hidden-print">[plants/names/search/scientific]</span>
