@@ -36,7 +36,7 @@ span.instance-citation.from-partial,
 div.instance-citation.from-partial {
   margin-bottom: 2px;
 }
-
+ 
 div.standalone-instance-citation {
   margin-bottom: 0.0rem;
 }
@@ -95,20 +95,18 @@ span.name-status {
   margin-left: 2.6rem;
   line-height: 98%;
   font-size: 95%;
-  margin-top: 0.15rem;
+  margin-top: 0;
   margin-bottom: 0;
 }
 
 div.classification-tree-note {
-  margin-left: 4rem;
-  margin-top: 0.2rem;
+  margin-left: 2.6rem;
+  margin-top: 0;
   font-size: 85%;
 }
 
-div.classification-tree-note {
-  margin-left: 2.6rem;
-  margin-top: 0.2rem;
-  font-size: 85%;
+ul.name-detail-synonyms {
+  margin-bottom: 0;
 }
 
 span.instance-note-label {

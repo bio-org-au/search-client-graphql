@@ -5,6 +5,7 @@ class NameDetail < ActiveRecord::Base
   self.primary_key = "instance_id"
 
   has_many :name_detail_synonyms 
+  has_many :name_detail_commons 
   has_many :instance_that_cites, class_name: "InstanceThatCites", foreign_key: :cites_id 
   belongs_to :cite, foreign_key: :cites_id
   belongs_to :cited_by, foreign_key: :cited_by_id
