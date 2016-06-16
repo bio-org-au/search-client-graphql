@@ -6,13 +6,19 @@
 <% @descendants.results.each do |d| %>
   <% target_id = new_target_id %>
   <li/>
-    <%= link_to("#{d['full_name']}",
-                   plants_names_show_path(
-                     d["id"],
-                     target_id: target_id),
-                   class: "drill-down-toggle",
-                   data: {target_id: target_id},
-                   remote: true) %>
+
+     <%= link_to(fa_icon('caret-right lg'),
+                 plants_names_show_path(d["id"], target_id: target_id),
+                 class: "full-name drill-down-toggle no-details",
+                 data: {target_id: target_id},
+                 title: "Select to show or hide details",
+                 remote: true) %>
+     <%= link_to("#{d['full_name'].sub(/^x /, "× ")}",
+                 plants_names_show_path(name[:id],target_id: target_id),
+                 class: "name-heading full-name",
+                 data: {target_id: target_id},
+                 title: "Select to show this name on its own page")
+     %>
    <div id="<%= target_id %>" class="drill-down hidden-xs-up"></div>
 <% end %>
 </ul>

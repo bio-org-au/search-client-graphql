@@ -3,7 +3,9 @@
 <% name.pg_ranked_descendant_counts.each do |d| %>
   <% target_id = new_target_id %>
   <% tally += d['count'].to_i %>
-  <li/><%= link_to("#{d['rank']}: #{number_with_delimiter(d['count'].to_i)}",
+  <li>
+
+   <%= link_to("#{fa_icon('caret-right lg')} #{d['rank']}: #{number_with_delimiter(d['count'].to_i)}".html_safe,
                    plants_names_search_within_taxon_at_rank_path(
                      name.id,
                      d["rank"].gsub(/\./,'DOT'),
@@ -12,6 +14,7 @@
                    data: {target_id: target_id},
                    remote: true) %>
    <div id="<%= target_id %>" class="drill-down hidden-xs-up"></div>
+  </li>
 <% end %>
 </ul>
 <%= "#{number_with_delimiter(tally)} #{"name".pluralize(tally)}" %>

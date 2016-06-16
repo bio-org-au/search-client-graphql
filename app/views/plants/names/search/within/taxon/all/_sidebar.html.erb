@@ -26,18 +26,21 @@
             <%= link_to "Summary",
                         plants_names_search_within_taxon_summary_path(@name.id),
                         class: "",
+                        data: { no_turbolink: true },
                         title: "Summary of names within a taxon" %>
           </li>
           <li class="bd-sidenav-active">
             <%= link_to "Selected ranks",
                         plants_names_search_within_taxon_selected_ranks_path(@name.id),
                         class: "",
+                        data: { no_turbolink: true },
                         title: "Names in selected ranks within a taxon" %>
           </li>
           <li class="active bd-sidenav-active">
             <%= link_to("All #{fa_icon('check')}".html_safe,
                         plants_names_search_within_taxon_all_path(@name.id),
                         class: "",
+                        data: { no_turbolink: true },
                         title: "All names within a taxon")%>
           </li>
         </ul>
