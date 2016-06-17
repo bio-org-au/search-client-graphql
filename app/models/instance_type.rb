@@ -15,4 +15,16 @@ class InstanceType < ActiveRecord::Base
   def misapplied?
     name.match(/\Amisapplied\z/i)
   end
+
+  def cited_by_preposition
+    if name.downcase.match(/misapplied/)
+      "to"
+    else
+      "of"
+    end
+  end
+
+  def shows_reference_it_cites?
+    name.match('misapplied')
+  end
 end

@@ -156,7 +156,8 @@ select cited_by_id,
        ns.name,
        instance.name_id name_id,
        instance.id instance_id,
-       instance.cited_by_id name_detail_id
+       instance.cited_by_id name_detail_id,
+       instance.reference_id
   from instance
  inner join name
     on instance.name_id = name.id

@@ -34,14 +34,22 @@
       </div>
       
       <ul class='name-details-and-synonyms'>
-        <% name_detail.name_detail_synonyms.sort {|x,y| [x.instance_type_sort_order, x.full_name] <=> [y.instance_type_sort_order, y.full_name] }.each do |syn| %>
+        <% name_detail.name_detail_synonyms.sort {|x,y| [x.instance_type_sort_order, x.full_name, x.cites.reference.year] <=> [y.instance_type_sort_order, y.full_name, y.cites.reference.year] }.each do |syn| %>
           <li class='compact subordinate-instance'>
             <span class="synonym-type">
               <%= syn.label %>
             </span>
-          <%= link_to(syn.full_name_html.html_safe,
-                      plants_names_show_path(syn.name_id),
-                      class: "synonym") %>
+            <%= link_to(syn.full_name_html.html_safe,
+                        plants_names_show_path(syn.name_id),
+                        class: "synonym") %>
+            <% if syn.shows_cites_reference? %>
+              <% if syn.cites.page.present? %>
+                <%= "#{syn.cites.reference.citation_html}:".html_safe %>
+              <% else %>
+                <%= syn.cites.reference.citation_html.html_safe %>
+              <% end %>
+              <%= syn.cites.page %> <%= syn.cites.page_qualifier %>
+            <% end %>
           </li>
         <% end %>
         <%= render(partial: "plants/names/instances_cited_by", locals: {name_detail: name_detail}) %>
@@ -49,7 +57,9 @@
         <% name_detail.instance_notes_for_details.sort {|x,y| x.instance_note_key.sort_order <=> y.instance_note_key.sort_order }.each do |note| %>
           <div class="instance-note">
             <span class="instance-note-label"><%= note.instance_note_key.name %>:</span>
-            <%= note.marked_up_value.html_safe %>
+            <span class="instance-note-value">
+              <%= note.marked_up_value.html_safe %>:
+            </span>
           </div>
         <% end %>
 
@@ -62,7 +72,7 @@
           <div class="classification-tree-note">
             <span class="instance-note-label">APC comment: </span>
             <%= apc_comment %>
-            <span class="xclassification-tree-value"><%= apc_comment %></span>
+            <span class="classification-tree-value"><%= apc_comment %></span>
           </div>
           <% show_comment = false %>
         <% end %>

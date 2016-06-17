@@ -1,10 +1,21 @@
 <% if name_detail.cited_by.present? %>
   <li class='compact subordinate-instance'>
     <span class="synonym-type">
-      <%= name_detail.instance_type.name %> of 
+      <%= name_detail.instance_type.name %> 
+      <%= name_detail.instance_type.cited_by_preposition %>
     </span>
     <%= link_to(name_detail.cited_by.name.full_name_html.html_safe,
                 plants_names_show_path(name_detail.cited_by.name.id),
                 class: "synonym") %>
+    <% if name_detail.instance_type.shows_reference_it_cites? %>
+      by 
+      <% if name_detail.cite.page.present? %>
+        <%= "#{name_detail.cite.reference.citation_html}:".html_safe %>
+      <% else %>
+        <%= name_detail.cite.reference.citation_html.html_safe %>
+      <% end %>
+      <%= name_detail.cite.page %> 
+      <%= name_detail.cite.page_qualifier %>
+    <% end %>
   </li>
 <% end %>
