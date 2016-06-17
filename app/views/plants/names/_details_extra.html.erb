@@ -37,7 +37,7 @@
         <% name_detail.name_detail_synonyms.sort {|x,y| [x.instance_type_sort_order, x.full_name] <=> [y.instance_type_sort_order, y.full_name] }.each do |syn| %>
           <li class='compact subordinate-instance'>
             <span class="synonym-type">
-              <%= syn.instance_type_name %>
+              <%= syn.label %>
             </span>
           <%= link_to(syn.full_name_html.html_safe,
                       plants_names_show_path(syn.name_id),
