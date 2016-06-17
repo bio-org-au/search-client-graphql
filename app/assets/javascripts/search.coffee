@@ -167,9 +167,16 @@ switchNameType = (event, $element) ->
   event.preventDefault()
   event.stopPropagation()
 
+window.changeEditorSwitch = (bool) ->
+  if bool 
+    $('#editor-toggle-switch-indicator').removeClass('hidden-xs-up')
+    $('.for-editor').removeClass('hidden-xs-up')
+  else
+    $('#editor-toggle-switch-indicator').addClass('hidden-xs-up')
+    $('.for-editor').addClass('hidden-xs-up')
+
 # Turbolinks
 ready = ->
-  debug('Start of search.js document ready')
   debug('jQuery version: ' + $().jquery)
   $('body').on('click','.nav-new-search', (event) -> navNewSearch(event,$(this)))
   $('body').on('click','.details-toggle', (event) -> detailsToggle(event,$(this)))

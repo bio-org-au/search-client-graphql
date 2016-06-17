@@ -8,6 +8,9 @@
   <%= render "sidebar" %>
 <% end %>
 <strong><%= @name.full_name_html.html_safe %></strong>
+<% if session[:editor] %>
+  <%= render(partial: "/plants/names/search/editor_link.html.erb", locals: { name: @name }) %>
+<% end %>
 <%= render partial: "details_extra", locals: {name: @name, name_details: @name_details} %>
 <br/>
 <br/>

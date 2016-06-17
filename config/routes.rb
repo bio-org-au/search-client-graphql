@@ -63,6 +63,9 @@ Rails.application.routes.draw do
 
   get "search/apc"
 
+  post "editor" => "editor#toggle", as: :editor
+  get "config" => "config#index", as: :config
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
   # See how all your routes lay out with "rake routes".
