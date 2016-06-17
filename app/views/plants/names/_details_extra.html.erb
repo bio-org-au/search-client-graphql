@@ -24,6 +24,13 @@
           <% end %>
         </span>
       <% end %>
+      <% if name_detail.bhl_url.present? %>
+        <%= link_to("BHL #{fa_icon('external-link')}".html_safe,
+                    name_detail.bhl_url,
+                    class: "bhl-link external-link opens-in-new-tab-or-window",
+                    target: "_blank",
+                    title: "Link to Biodiversity Heritage Library source page. (Opens in a new tab or window)") %>
+      <% end =%>
       </div>
       
       <ul class='name-details-and-synonyms'>

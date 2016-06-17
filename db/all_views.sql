@@ -103,6 +103,7 @@ select n.id,
        i.page_qualifier,
        i.cited_by_id,
        i.cites_id,
+       i.bhl_url,
        case ity.primary_instance
       when true then 'A'
       else 'B'
