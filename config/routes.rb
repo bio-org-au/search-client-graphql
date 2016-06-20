@@ -6,10 +6,6 @@ Rails.application.routes.draw do
 
   match "/plants/names/search/defaults/show_results_as", as: "plants_names_search_defaults_show_as", to: "plants/names/search/defaults/show_as#update", via: :post
   match "/plants/names/details", as: "plants_names_details", to: "plants/names/details#index", via: :get
-  match "/plants/names/search/common", as: "plants_names_search_common", to: "plants/names/search/common#index", via: :get
-  match "/plants/names/search/cultivar", as: "plants_names_search_cultivar", to: "plants/names/search/cultivar#index", via: :get
-  match "/plants/names/search/scientific", as: "plants_names_search_scientific", to: "plants/names/search/scientific#index", via: :get
-  match "/plants/names/search/scientific_and_cultivar", as: "plants_names_search_scientific_and_cultivar", to: "plants/names/search/scientific_and_cultivar#index", via: :get
   match "/plants/names/checklist", as: "plants_names_checklist", to: "plants/names/checklist#index", via: :get
   match "/plants/names/within/genus/search", as: "plants_names_within_genus_search", to: "plants/names/within/genus#search", via: :get
   match "/plants/names/within/genus", as: "plants_names_within_genus", to: "plants/names/within/genus#index", via: :get
