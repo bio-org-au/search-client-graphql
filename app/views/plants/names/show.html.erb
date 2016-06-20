@@ -7,7 +7,7 @@
 <% content_for :sidebar do %>
   <%= render "sidebar" %>
 <% end %>
-<strong><%= @name.full_name_html.html_safe %></strong>
+<strong><%= @name.full_name %></strong>
 <% if session[:editor] %>
   <%= render(partial: "/plants/names/search/editor_link.html.erb", locals: { name: @name }) %>
 <% end %>
