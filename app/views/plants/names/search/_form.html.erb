@@ -20,6 +20,10 @@
            value="<%= params[:search_type].blank? ? 'scientific' : params[:search_type] %>"
            name="search_type"
            id="name_type">
+    <input type="hidden" 
+           value="html"
+           name="format"
+           id="search-output-format">
   </div>
 <% end %>
 <span class="debug red hidden-print">[plants/names/search/_form]</span>

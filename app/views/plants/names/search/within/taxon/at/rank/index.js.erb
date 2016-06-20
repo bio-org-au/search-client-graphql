@@ -1,5 +1,8 @@
-debug(' at rank');
-debug("<%= params[:target_id] %>");
-$("#<%= params[:target_id] %>").append('<%= escape_javascript(render partial: "index") %>');
-$("#<%= params[:target_id] %>").removeClass('hidden-xs-up');
+
+  $("#<%= params[:target_id] %>").append('<%= escape_javascript(render partial: "index") %>');
+  $("#<%= @target_id %>").removeClass('hidden-xs-up');
+  showAsExpanded("<%= @target_id %>");
+  showDetailsRetrieved("<%= @target_id %>");
+  resetControls();
+
   

@@ -6,7 +6,7 @@
                      name.id,
                      d["rank"].gsub(/\./,'DOT'),
                      target_id: target_id),
-                   class: "drill-down-toggle",
+                   class: "drill-down-toggle no-details",
                    data: {target_id: target_id},
                    remote: true) %>
    <div id="<%= target_id %>" class="drill-down hidden-xs-up"></div>

@@ -176,6 +176,26 @@ window.changeEditorSwitch = (bool) ->
     $('#editor-toggle-switch-indicator').addClass('hidden-xs-up')
     $('.for-editor').addClass('hidden-xs-up')
 
+stopEmptySearch = (event, $element) ->
+  unless $('#q').val().length > 0
+    event.preventDefault()
+    event.stopPropagation()
+
+jsonSearch = (event, $element) ->
+  debug('jsonSearch')
+  $('#search-output-format').val('json');
+  $('#search-button').click()
+  $('#search-output-format').val('html');
+  event.preventDefault()
+  event.stopPropagation()
+
+csvSearch = (event, $element) ->
+  $('#search-output-format').val('csv');
+  $('#search-button').click()
+  $('#search-output-format').val('html');
+  event.preventDefault()
+  event.stopPropagation()
+ 
 # Turbolinks
 ready = ->
   debug('jQuery version: ' + $().jquery)
@@ -190,6 +210,9 @@ ready = ->
   $('body').on('click','.expand-details-control', (event) -> expandAll(event,$(this)))
   $('body').on('click','#always-retrieve-details-toggle', (event) -> alwaysShowHideAllToggle(event,$(this)))
   $('body').on('click','.name-type-switch-link', (event) -> switchNameType(event,$(this)))
+  $('body').on('click','#search-button', (event) -> stopEmptySearch(event,$(this)))
+  $('body').on('click','#json-search', (event) -> jsonSearch(event,$(this)))
+  $('body').on('click','#csv-search', (event) -> csvSearch(event,$(this)))
   loadDetailsIfRequired() if typeof(loadDetailsIfRequired) == "function"
   resetControls() if typeof(resetControls) == "function"
 

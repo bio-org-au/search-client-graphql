@@ -1,5 +1,5 @@
-<% if @search.present? %>
-<div id="search-tools-slider" class="<%= 'hidden' unless @search.present? %> hidden-print">
+<% if @name.present? %>
+<div id="search-tools-slider" class="<%= 'hidden' unless @name.present? %> hidden-print">
       <div class="bd-toc-item active">
         <hr/>
         <ul class="nav bd-sidenav">
@@ -51,7 +51,6 @@
                title="Print the page">Print</a>
           </li>
 
-          <% if @search.parsed.show_list? %>
             <li class="">
               <%= link_to "JSON",
                           "javascript:void(0);",
@@ -66,7 +65,6 @@
                           class: "tiny",
                           title: "Convert results to CSV." %>
             </li>
-          <% end %>
 
         </ul>
         <%= render partial: "/layouts/search_nav_links" %>

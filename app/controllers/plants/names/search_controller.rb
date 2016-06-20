@@ -7,8 +7,8 @@ class Plants::Names::SearchController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.json
-      format.csv { render :index }
+      format.json { render :json => @search }
+      format.csv
     end
   end
 

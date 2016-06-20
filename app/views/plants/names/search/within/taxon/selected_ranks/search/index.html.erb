@@ -7,8 +7,20 @@
 <% content_for :sidebar do %>
   <%= render "sidebar" %>
 <% end %>
+<% content_for :slider do %>
+  <%= render "/plants/names/search/within/slider" %>
+<% end %>
 
 <%= render "search" %>
 <h2><%= @name.full_name %></h2>
 
 <%= render partial: 'index', locals: {name: @name} %>
+
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<span class="debug red tiny hidden-print">[plants/names/search/within/taxon/selected_ranks/search/index]</span>
+
