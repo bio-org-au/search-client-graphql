@@ -10,8 +10,9 @@ window.notice = (s) ->
 
 loadDetailsIfRequired = () ->
   debug('loadDetailsIfRequired')
-  if $('#retrieve_details_on_load').val().match(/true/)
-    $('#retrieve-details-control').click()
+  if $('#retrieve_details_on_load').val()
+    if $('#retrieve_details_on_load').val().match(/true/)
+      $('#retrieve-details-control').click()
 
 retrieveDetails = (event, $element) ->
   debug("retrieveDetails")
