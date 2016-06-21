@@ -4,7 +4,7 @@
             <em>
             <span class="synonym">
               <%= link_to("#{synonym.full_name}",
-                        plants_taxonomy_accepted_show_path(synonym.id),
+                        plants_taxonomy_show_path(synonym.id),
                         title: "Show bibliographic details")
                       %>
             </span>
@@ -14,7 +14,7 @@
             =
             <strong>
             <%= link_to("#{synonym.accepted_full_name}",
-                        plants_taxonomy_accepted_show_path(synonym.accepted_id),
+                        plants_taxonomy_show_path(synonym.accepted_id),
                         title: "Show bibliographic details")
                       %>
             </strong>

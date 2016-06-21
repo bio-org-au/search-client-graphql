@@ -94,8 +94,11 @@
     </div>
     <% shown.push name_detail.instance_id %>
   <% end %>
-  <% if name.direct_sub_taxa_with_instance_count > 0 %>
-    <%= render(partial: '/plants/names/search/power_links', locals: {name: name}) %>
+  <% show_power_links = true if show_power_links.nil? %>
+  <% if show_power_links %>
+    <% if name.direct_sub_taxa_with_instance_count > 0 %>
+      <%= render(partial: '/plants/names/search/power_links', locals: {name: name}) %>
+    <% end %>
   <% end %>
   </div>
 <% end %>

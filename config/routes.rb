@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   match "/plants/taxonomy/accepted/search", as: "plants_taxonomy_accepted_search", to: "plants/taxonomy/accepted/search#index", via: :get
   match "/plants/taxonomy/accepted/:id", as: "plants_taxonomy_accepted_show", to: "plants/taxonomy/accepted#show", via: :get
   match "/plants/taxonomy/accepted", as: "plants_taxonomy_accepted", to: "plants/taxonomy/accepted#index", via: :get
-  match "/plants/taxonomy/:id/show", as: "plants_taxonomy_other_show", to: "plants/taxonomy/other#show", via: :get
+  match "/plants/taxonomy/:id/show", as: "plants_taxonomy_show", to: "plants/taxonomy#show", via: :get
   match "/plants/taxonomy", as: "plants_taxonomy", to: "plants/taxonomy#index", via: :get
   match "/plants/names", as: "plants_names", to: "plants/names#index", via: :get
   match "/plants", as: "plants", to: "plants#index", via: :get

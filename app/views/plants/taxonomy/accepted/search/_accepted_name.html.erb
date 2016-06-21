@@ -1,7 +1,7 @@
         <li class="compact">
             <span class="debug purple">[<%= name.sort_name %>]</span>
             <%= link_to(name[:full_name],
-                        plants_taxonomy_accepted_show_path(name[:id]),
+                        plants_taxonomy_show_path(nos[:id]),
                         title: "Select to show Name details")
                       %>
             <% if name.show_status? %>
