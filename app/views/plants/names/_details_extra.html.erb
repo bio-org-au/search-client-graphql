@@ -32,7 +32,16 @@
                     title: "Link to Biodiversity Heritage Library source page. (Opens in a new tab or window)") %>
       <% end =%>
       </div>
-      
+
+        <% name_detail.instance_notes_for_details.only_type_notes.sort {|x,y| x.instance_note_key.sort_order <=> y.instance_note_key.sort_order }.each do |note| %>
+          <div class="instance-note">
+            <span class="instance-note-label"><%= note.instance_note_key.name %>:</span>
+            <span class="instance-note-value">
+              <%= note.marked_up_value.html_safe %>
+            </span>
+          </div>
+        <% end %>
+
       <ul class='name-details-and-synonyms'>
         <% name_detail.name_detail_synonyms.sort {|x,y| [x.instance_type_sort_order, x.full_name, x.cites.reference.year] <=> [y.instance_type_sort_order, y.full_name, y.cites.reference.year] }.each do |syn| %>
           <li class='compact subordinate-instance'>
@@ -55,7 +64,7 @@
         <% end %>
         <%= render(partial: "plants/names/instances_cited_by", locals: {name_detail: name_detail}) %>
 
-        <% name_detail.instance_notes_for_details.sort {|x,y| x.instance_note_key.sort_order <=> y.instance_note_key.sort_order }.each do |note| %>
+        <% name_detail.instance_notes_for_details.without_type_notes.sort {|x,y| x.instance_note_key.sort_order <=> y.instance_note_key.sort_order }.each do |note| %>
           <div class="instance-note">
             <span class="instance-note-label"><%= note.instance_note_key.name %>:</span>
             <span class="instance-note-value">
