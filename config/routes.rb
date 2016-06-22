@@ -61,6 +61,7 @@ Rails.application.routes.draw do
   get "search/apc"
 
   post "editor" => "editor#toggle", as: :editor
+  post "citations" => "citations#toggle", as: :citations
   get "config" => "config#index", as: :config
 
   # The priority is based upon order of creation:

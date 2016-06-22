@@ -27,6 +27,9 @@
           <% if session[:editor] %>
             <%= render(partial: "/plants/names/search/editor_link.html.erb", locals: { name: name }) %>
           <% end %>
+          <% if session[:citations] %>
+            <%= render(partial: "/plants/names/search/citations_link.html.erb", locals: { name: name }) %>
+          <% end %>
         </span>
         <div id="<%= target_id %>" class="details hidden-xs-up"></div>
         <hr class="<%= target_id %> divider hidden-xs-up" />

@@ -80,6 +80,13 @@
                         title:"Editor links on/off switch.",
                         method: :post,
                         remote: true %>
+        <li><%= link_to "Citations #{fa_icon('check',
+                        id: 'citations-toggle-switch-indicator',
+                        class: session[:citations] ? '' : 'hidden-xs-up')}".html_safe,
+                        citations_path,
+                        title:"Citations links on/off switch.",
+                        method: :post,
+                        remote: true %>
         </li>
       </ul>
       <p>Designed and built at the 

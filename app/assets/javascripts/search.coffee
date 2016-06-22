@@ -176,6 +176,14 @@ window.changeEditorSwitch = (bool) ->
     $('#editor-toggle-switch-indicator').addClass('hidden-xs-up')
     $('.for-editor').addClass('hidden-xs-up')
 
+window.changeCitationsSwitch = (bool) ->
+  if bool 
+    $('#citations-toggle-switch-indicator').removeClass('hidden-xs-up')
+    $('.for-citations').removeClass('hidden-xs-up')
+  else
+    $('#citations-toggle-switch-indicator').addClass('hidden-xs-up')
+    $('.for-citations').addClass('hidden-xs-up')
+
 stopEmptySearch = (event, $element) ->
   unless $('#q').val().length > 0
     event.preventDefault()
