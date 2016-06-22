@@ -67,7 +67,7 @@
         <% if show_comment %>
           <div class="classification-tree-note">
             <span class="instance-note-label">APC comment: </span>
-            <span class="classification-tree-value"><%= apc_comment %></span>
+            <span class="classification-tree-value"><%= apc_comment.html_safe %></span>
           </div>
           <% show_comment = false %>
         <% end %>
