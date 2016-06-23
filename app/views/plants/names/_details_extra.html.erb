@@ -52,7 +52,7 @@
                         plants_names_show_path(syn.name_id),
                         class: "synonym") %>
             <% if syn.shows_cites_reference? %>
-              <%= "by" if syn.label == 'misapplication' %>
+              <%= "by" if syn.label.match(/misapplication/) %>
               <% if syn.cites.page.present? %>
                 <%= "#{syn.cites.reference.citation_html}:".html_safe %>
               <% else %>
