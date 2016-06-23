@@ -7,6 +7,12 @@ class NameDetailSynonym < ActiveRecord::Base
     case instance_type_name
     when 'misapplied'
       'misapplication'
+    when 'pro parte misapplied'
+      'pro parte misapplication'
+    when 'doubtful pro parte misapplied'
+      'doubtful pro parte misapplication'
+    when 'doubtful misapplied'
+      'doubtful misapplication'
     else
       instance_type_name
     end
