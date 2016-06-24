@@ -184,6 +184,15 @@ window.changeCitationsSwitch = (bool) ->
     $('#citations-toggle-switch-indicator').addClass('hidden-xs-up')
     $('.for-citations').addClass('hidden-xs-up')
 
+window.changeAlwaysDetailsSwitch = (bool) ->
+  if bool 
+    $('#always-details-toggle-switch-indicator').removeClass('hidden-xs-up')
+    $('.for-always-details').removeClass('hidden-xs-up')
+  else
+    $('#always-details-toggle-switch-indicator').addClass('hidden-xs-up')
+    $('.for-always-details').addClass('hidden-xs-up')
+
+
 stopEmptySearch = (event, $element) ->
   unless $('#q').val().length > 0
     event.preventDefault()

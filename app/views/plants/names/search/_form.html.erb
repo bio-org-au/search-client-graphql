@@ -13,7 +13,7 @@
     </div>
   <%= submit_tag("Search", id: "search-button", class: "btn btn-search hidden-print") %>
     <input type="hidden" 
-           value="<%= params[:retrieve_details_on_load].blank? ? 'false' : params[:retrieve_details_on_load] %>"
+           value="<%= session[:always_details].blank? ? false : session[:always_details] %>"
            name="retrieve_details_on_load"
            id="retrieve_details_on_load">
     <input type="hidden" 
@@ -27,7 +27,6 @@
   </div>
 <% end %>
 <span class="debug red hidden-print">[plants/names/search/_form]</span>
-
 <% if @search.present? %>
   <span class='search-result-summary'>
     <%= pluralize(@search.results.pluck("id").uniq.size,
@@ -35,7 +34,6 @@
     <%= no_results_help(@search.results.size).html_safe %>
   </span>
 <% end %>
-<br/>
 
 <% if @search.present? %>
   <%= render partial: '/plants/names/search/results', locals: {search: @search, name: @search.results.first} %>

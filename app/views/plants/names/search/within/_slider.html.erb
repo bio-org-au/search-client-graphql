@@ -16,17 +16,13 @@
             </a>
           </li>
           <li>
-            <% if params[:retrieve_details_on_load].present? && params[:retrieve_details_on_load].match(/true/) %>
-              <a href="#"
-                 id="always-retrieve-details-toggle"
-                 class="tiny always-show-hide-all-toggle"
-                 title="Always retrieve the first block of details.">Always retrieve details &nbsp; <%= fa_icon('check') %></a>
-            <% else %>
-              <a href="#"
-                 id="always-retrieve-details-toggle"
-                 class="tiny always-retrieve-details-toggle"
-                 title="Always retrieve details after records are queried.  Up to 50.">Always retrieve details</a>
-            <% end %>
+              <%= link_to "Always retrieve details #{fa_icon('check', id: 'always-details-toggle-switch-indicator', class: session[:always_details] ? '' : 'hidden-xs-up')}".html_safe,
+                        always_details_path,
+                 id:"always-retrieve-details-toggle",
+                 class:"tiny always-retrieve-details-toggle",
+                        title:"Always retrieve details on/off switch.",
+                        method: :post,
+                        remote: true %>
           </li>
           <li>
               <a href="#"
@@ -71,3 +67,10 @@
   </div>
 </div>
 <% end %>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<span class="debug red tiny hidden-print">[plants/names/search/within/_slider]</span>
+
