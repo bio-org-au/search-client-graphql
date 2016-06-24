@@ -13,11 +13,15 @@ loadDetailsIfRequired = () ->
   if $('#retrieve_details_on_load').val()
     if $('#retrieve_details_on_load').val().match(/true/)
       $('#retrieve-details-control').click()
+      showFirstMoreDetailsWidget()
 
 retrieveDetails = (event, $element) ->
   debug("retrieveDetails")
   $(".drill-down-toggle.hiding-details").click()
   $(".drill-down-toggle.no-details").filter(" :lt(50) ").click()
+  # $(".drill-down-toggle.no-details").filter(" :eq(10) ").focus()
+  event.preventDefault()
+  event.stopPropagation()
 
 navNewSearch = (event, $element) ->
   $('#q').val('')
@@ -212,6 +216,9 @@ csvSearch = (event, $element) ->
   $('#search-output-format').val('html');
   event.preventDefault()
   event.stopPropagation()
+
+showFirstMoreDetailsWidget = () ->
+  $('more-details-widget').filter(":first").removeClass('hidden-xs-up')
  
 # Turbolinks
 ready = ->
