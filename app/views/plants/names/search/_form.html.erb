@@ -9,10 +9,11 @@
                        class: "form-control",
                        value: "#{params[:q]}",
                        autofocus: true,
+                       title: "Enter a name with or without wildcards to search APNI or APC.",
                        placeholder: "Search scientific names") %>
     </div>
-  <%= submit_tag("Search APNI", id: "search-button", class: "btn btn-search hidden-print") %>
-  <%= link_to("Search APC", plants_taxonomy_accepted_search_accepted_path(q: ""), id: "search-taxonomy-link", class: "alt-search-link btn btn-secondary hidden-print") %>
+  <%= submit_tag("Search APNI", id: "search-button", class: "btn btn-search hidden-print", title: "Searches APNI") %>
+  <%= link_to("Search APC", plants_taxonomy_accepted_search_accepted_path(q: ""), id: "search-taxonomy-link", class: "alt-search-link btn btn-secondary hidden-print", title: "Search APC") %>
     <input type="hidden" 
            value="<%= session[:always_details].blank? ? false : session[:always_details] %>"
            name="retrieve_details_on_load"

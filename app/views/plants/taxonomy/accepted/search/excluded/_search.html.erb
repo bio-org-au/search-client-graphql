@@ -9,6 +9,7 @@
                        class: "form-control",
                        value: "#{params[:q]}",
                        autofocus: true,
+                       title: "Enter a name with or without wildcards to search APC or APNI",
                        placeholder: "Search excluded names") %>
     </div>
     <input type="hidden" 
@@ -19,8 +20,8 @@
            name="details_limit"
            id="details-limit"
            class="">
-  <%= submit_tag("Search APC", class: "btn btn-search hidden-print") %>
-  <%= link_to("Search APNI", plants_names_search_path(q: ""), id: "search-names-link", class: "alt-search-link btn btn-secondary hidden-print") %>
+  <%= link_to("Search APNI", plants_names_search_path(q: ""), id: "search-names-link", class: "alt-search-link btn btn-secondary hidden-print", title: "Search APNI") %>
+  <%= submit_tag("Search APC", class: "btn btn-search hidden-print", title: "Search APC") %>
   </div>
 <% end %>
 
