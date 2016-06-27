@@ -3,7 +3,7 @@
     <%= label_tag(:q,
                   "Search for:",
                   class:"sr-only col-sm-2 form-control-label") %>
-  <div class="col-sm-10">
+  <div class="col-sm-9">
     <%= text_field_tag(:q,
                        '',
                        class: "form-control",
@@ -11,7 +11,8 @@
                        autofocus: true,
                        placeholder: "Search scientific names") %>
     </div>
-  <%= submit_tag("Search", id: "search-button", class: "btn btn-search hidden-print") %>
+  <%= submit_tag("Search APNI", id: "search-button", class: "btn btn-search hidden-print") %>
+  <%= link_to("Search APC", plants_taxonomy_accepted_search_accepted_path(q: ""), id: "search-taxonomy-link", class: "alt-search-link btn btn-secondary hidden-print") %>
     <input type="hidden" 
            value="<%= session[:always_details].blank? ? false : session[:always_details] %>"
            name="retrieve_details_on_load"

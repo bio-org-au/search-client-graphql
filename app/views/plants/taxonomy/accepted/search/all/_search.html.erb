@@ -3,7 +3,7 @@
     <%= label_tag(:q,
                   "Search for:",
                   class:"sr-only col-sm-2 form-control-label") %>
-  <div class="col-sm-10">
+  <div class="col-sm-9">
     <%= text_field_tag(:q,
                        '',
                        class: "form-control",
@@ -19,7 +19,8 @@
            name="details_limit"
            id="details-limit"
            class="">
-  <%= submit_tag("Search", class: "btn btn-search hidden-print") %>
+  <%= submit_tag("Search APC", class: "btn btn-search hidden-print") %>
+  <%= link_to("Search APNI", plants_names_search_path(q: ""), id: "search-names-link", class: "alt-search-link btn btn-secondary hidden-print") %>
   </div>
 <% end %>
 
