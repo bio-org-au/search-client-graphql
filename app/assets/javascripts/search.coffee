@@ -222,7 +222,7 @@ showFirstMoreDetailsWidget = () ->
 
 altSearchLink = (event, $element) ->
   new_href = $element.attr('href').replace(/q=.*/,'q=')
-  new_href = "#{new_href}#{$('#q').val()}"
+  new_href = "#{new_href}#{encodeURIComponent($('#q').val())}"
   $element.attr('href', new_href)
   # Let the link fire, now with the new href.
   
