@@ -1,12 +1,16 @@
   <nav class="bd-links" id="docsNavbarContent">
     <div class="bd-toc-item active">
-      <%= link_to "Biodiversity Australia",
-                  welcome_path,
+      <%= link_to "National Species List",
+                  nsl_path,
                   class: "bd-toc-link",
-                  title: "Biodiversity Australia" %>
-      <%= link_to "Fungi",
+                  title: "National Species List" %>
+      <%= link_to "Flora",
+                  flora_path,
+                  class: "bd-toc-link",
+                  title: "NSL Flora" %>
+      <%= link_to ticked("Fungi"),
                   fungi_path,
-                  class: "bd-toc-link",
-                  title: "Biodiversity Australia Fungi" %>
+                  class: "bd-toc-link active",
+                  title: "National Species List Fungi" %>
     </div>
   </nav>

@@ -2,8 +2,6 @@ Rails.application.routes.draw do
   get 'changes/index'
   match "/changes", as: "changes", to: "changes#index", via: :get
 
-  get "welcome/index"
-
   match "/plants/names/search/defaults/show_results_as", as: "plants_names_search_defaults_show_as", to: "plants/names/search/defaults/show_as#update", via: :post
   match "/plants/names/details", as: "plants_names_details", to: "plants/names/details#index", via: :get
   match "/plants/names/checklist", as: "plants_names_checklist", to: "plants/names/checklist#index", via: :get
@@ -43,6 +41,7 @@ Rails.application.routes.draw do
   match "/lichens", as: "lichens", to: "lichens#index", via: :get
   match "/algae", as: "algae", to: "algae#index", via: :get
   match "/fauna", as: "fauna", to: "fauna#index", via: :get
+  match "/flora", as: "flora", to: "flora#index", via: :get
 
   match "/apni/about", as: "about_apni", to: "apni#about", via: :get
   match "/apni/index", as: "apni_index", to: "apni#index", via: :get
@@ -70,7 +69,8 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root "welcome#index", as: "welcome", via: :get
+  get "nsl", as: "explicit_nsl", to: "nsl#index", via: :get
+  root "nsl#index", as: "nsl", via: :get
 
   # Example of regular route:
   #   get "products/:id" => "catalog#view"
