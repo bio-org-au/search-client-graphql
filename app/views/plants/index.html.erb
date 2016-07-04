@@ -8,19 +8,34 @@
   <%= render "sidebar" %>
 <% end %>
 
-<p>Biodiversity Australia supports the
-              <%= link_to "Australian Plant Name Index (APNI)".html_safe,
-                          plants_names_path,
-                          class: "",
-                          title: "Vascular Plant Names in the Australian Plant Names Index" %>
-, and the
-              <%= link_to "Australian Plant Census (APC)",
-                          plants_taxonomy_accepted_path,
-                          class: "",
-                          title: "APC Taxonomy" %>.
+<div class="row">
+  <div class="col-xl-6 col-lg-8 col-md-9">
+    <p>
+    The scope of names and taxonomies in this part of the National Species List
+    are the vascular plants, ferns and gymnosperms. Currently, for historical
+    reasons hornworts and liverworts are also included but they are to moved to
+    the appropriate taxonomic grouping.
+    </p>
+    
+    <p>
+      Names are recorded in the Australian Plant Name Index (APNI).
+    </p>
+    
+    <p>
+      The accepted taxonomy for Australian plants is recorded in the Australian Plant Census (APC)
+    </p>
+    
+    <p>
+      As other taxonomic lists are included in the NSL infrastructure they will also be available here.
+    </p>
+      
+  </div>
+</div>
 
+<hr class="black-bg" />
 
-<ul>
+Quick Links
+<ul class="discs">
    <li class="">
      <%= link_to "Search APNI",
                  plants_names_search_path,
@@ -34,8 +49,6 @@
                  title: "Search the Australian Plant Census" %>
    </li>
 </ul>
-  
-
 
 <br/>
 <br/>
