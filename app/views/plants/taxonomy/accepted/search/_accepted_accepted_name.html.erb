@@ -1,9 +1,10 @@
         <li class="compact">
-            <span class="debug purple">[<%= nos.sort_name %>]</span>
+          <b>
             <%= link_to(nos[:full_name],
                         plants_taxonomy_show_path(nos[:id]),
                         title: "Select to show Name details")
                       %>
+          </b>
             <% if nos.show_status? %>
               <span class="name-status" title="Name Status"><%= nos.status.name %></span>
             <% end %>
