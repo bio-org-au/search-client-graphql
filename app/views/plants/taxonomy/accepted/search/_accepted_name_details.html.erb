@@ -8,7 +8,12 @@
                 %>
                   <%= synonym.name.full_name_html.html_safe %>
                   <% if synonym.instance_type.misapplied? %>
-                    MISAPPLIED
+                    auct. non
+                    <% if synonym.cite.page.blank? %>
+                      <%= synonym.cite.reference.citation %>.
+                    <% else %>
+                      <%= synonym.cite.reference.citation %>: <%= synonym.cite.page %>.
+                    <% end %>
                   <% end %>
                   <%#= synonym.cite.reference.citation_html.html_safe %>
                   <br/>
@@ -21,4 +26,3 @@
                 <%= name.instance.apc_distribution %>
               </div>
             </div>
-
