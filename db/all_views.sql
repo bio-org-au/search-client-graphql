@@ -13,7 +13,11 @@ select accepted.id,
        accepted.name_status_id,
        instance.reference_id,
        accepted.name_rank_id,
-       accepted.sort_name
+       accepted.sort_name,
+       0 synonym_type_id,
+       0 synonym_ref_id,
+       0 citer_instance_id,
+       0 cites_instance_id
   from name accepted
        inner join instance
        on accepted.id = instance.name_id
@@ -45,7 +49,11 @@ select name_as_syn.id,
        name_as_syn.name_status_id,
        0 reference_id,
        name_as_syn.name_rank_id,
-       name_as_syn.sort_name
+       name_as_syn.sort_name,
+       cites.instance_type_id synonym_type_id,
+       cites.reference_id synonym_ref_id,
+       citer.id citer_instance_id,
+       cites.id cites_instance_id
   from name name_as_syn
        inner join
        instance cites

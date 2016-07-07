@@ -7,6 +7,9 @@ class Instance < ActiveRecord::Base
   belongs_to :this_is_cited_by,
              class_name: "Instance",
              foreign_key: "cited_by_id"
+  belongs_to :this_cites,
+             class_name: "Instance",
+             foreign_key: "cites_id"
   has_many :instance_notes
   has_many :instance_note_keys, through: :instance_notes
   has_many :instance_note_for_type_specimens

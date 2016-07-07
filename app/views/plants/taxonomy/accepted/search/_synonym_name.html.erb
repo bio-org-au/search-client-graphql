@@ -1,14 +1,24 @@
 
  <li class="tree-results compact">
             <span class="debug purple">[<%= synonym.sort_name %>]</span>
-            <em>
             <span class="synonym">
+              <em>
               <%= link_to("#{synonym.full_name}",
                         plants_taxonomy_show_path(synonym.id),
                         title: "Show bibliographic details")
                       %>
+              </em> 
+              <% if synonym.synonym_type.misapplied %> auct. non <%= synonym.synonym_name.author.abbrev %>:
+                <%= synonym.synonym_cites.this_cites.reference.author.name %>
+                (<%= synonym.synonym_cites.this_cites.reference.year %>)
+                [fide
+                <%= synonym.synonym_ref.author.name %>
+                (<%= synonym.synonym_ref.year %>)]
+                <% if synonym.synonym_type.pro_parte %>
+                  , p.p.
+                <% end %>
+              <% end %>
             </span>
-            </em> 
             <span class="debug purple">[<%#= name.rank.name %>]</span>
             <%= render partial: "/plants/taxonomy/accepted/search/citation_links", locals: {name: synonym} %>
             =
@@ -22,4 +32,3 @@
               <span class="name-status" title="Name Status"><%#= cbn.status.name %></span>
             <% end %>
  </li>
-
