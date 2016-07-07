@@ -25,17 +25,15 @@
   </div>
 <% end %>
 
+<%= render "plants/taxonomy/accepted/search/help_text" %>
+
 <% if @search.present? %>
   <%= "<span class='search-result-summary'>#{pluralize(@search.results.size, 'accepted name')}</span>".html_safe %>
+  <br/>
+  <br/>
 <% end %>
-<br/>
-<br/>
 
 <% if @search.present? %>
   <%= render partial: 'results', locals: {name: @search.results.first} %>
 <% end %>
-<br>
-<br>
-<br>
-<br>
 <span class="debug hidden-print tiny">[plants/taxonomy/accepted/search/accepted/_search]</span>

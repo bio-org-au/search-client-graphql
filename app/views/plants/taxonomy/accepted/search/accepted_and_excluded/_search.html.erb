@@ -25,6 +25,8 @@
   </div>
 <% end %>
 
+<%= render "plants/taxonomy/accepted/search/help_text" %>
+
 <% if @search.present? %>
   <%= "<span class='search-result-summary'>#{pluralize(@search.results.size, 'accepted or excluded name')}</span>".html_safe %>
 <% end %>
