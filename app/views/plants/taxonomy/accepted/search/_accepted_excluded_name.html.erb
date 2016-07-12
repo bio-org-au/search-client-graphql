@@ -15,8 +15,10 @@
 
               <%= render partial: "/plants/taxonomy/accepted/search/citation_links", locals: {name: nos} %>
 
-              <% if @search.parsed.show_details? %>
-                <%= render partial: "/plants/taxonomy/accepted/search/accepted_name_details", locals: {name: nos} %>
+              <% if session[:taxonomy_details] %>
+                  <%= render partial: "/plants/taxonomy/accepted/search/accepted_name_details", locals: {name: nos, visible: true} %>
+              <% else %>
+                  <%= render partial: "/plants/taxonomy/accepted/search/accepted_name_details", locals: {name: nos, visible: false} %>
               <% end %>
         </li>
 

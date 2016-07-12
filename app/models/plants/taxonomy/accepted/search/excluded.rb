@@ -3,7 +3,7 @@ class Plants::Taxonomy::Accepted::Search::Excluded
   attr_reader :parsed,
               :results
   SEARCH_TYPE = "Scientific Name".freeze
-  def initialize(params, default_show_results_as: "list")
+  def initialize(params, default_show_results_as: "details")
     @parsed = Plants::Taxonomy::Accepted::Search::Parse.new(
       params,
       search_type: SEARCH_TYPE,

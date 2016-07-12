@@ -196,6 +196,15 @@ window.changeAlwaysDetailsSwitch = (bool) ->
     $('#always-details-toggle-switch-indicator').addClass('hidden-xs-up')
     $('.for-always-details').addClass('hidden-xs-up')
 
+window.changeTaxonomyDetailsSwitch = (bool) ->
+  if bool 
+    $('#taxonomy-details-toggle-switch-indicator').removeClass('hidden-xs-up')
+    $('.for-taxonomy-details').removeClass('hidden-xs-up')
+  else
+    $('#taxonomy-details-toggle-switch-indicator').addClass('hidden-xs-up')
+    $('.for-taxonomy-details').addClass('hidden-xs-up')
+
+
 
 stopEmptySearch = (event, $element) ->
   unless $('#q').val().length > 0

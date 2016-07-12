@@ -1,5 +1,4 @@
-
-              <div class="accepted-name-details indented">
+           <div class="accepted-name-details indented for-taxonomy-details <%= visible ? '' : 'hidden-xs-up' %>">
               <ul class="accepted-instances small">
                 <%
                    name.instance.synonyms.sort do |x,y|
@@ -15,7 +14,6 @@
                       <%= synonym.cite.reference.citation %>: <%= synonym.cite.page %>.
                     <% end %>
                   <% end %>
-                  <%#= synonym.cite.reference.citation_html.html_safe %>
                   <br/>
                 <% end %>
               </ul>

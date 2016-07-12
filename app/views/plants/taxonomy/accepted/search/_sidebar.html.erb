@@ -62,6 +62,18 @@
                         data: { search_type: "all" }, 
                         title: "Search for all." %>
           </li>
+
+          <hr/>
+
+
+          <li><%= link_to "Details #{fa_icon('check',
+                        id: 'taxonomy-details-toggle-switch-indicator',
+                        class: session[:taxonomy_details] ? '' : 'hidden-xs-up')}".html_safe,
+                        taxonomy_details_path,
+                        title:"Deatils on/off switch.  Does not apply to synonyms.",
+                        method: :post,
+                        remote: true %>
+          </li>
           <hr/>
           <li>
             <a href="javascript:window.print()"
