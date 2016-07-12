@@ -8,5 +8,16 @@ class AcceptedSynonym < ActiveRecord::Base
   scope :simple_name_like, ->(string) { where("lower((simple_name)) like lower((?)) ", string.gsub(/\*/, "%").downcase) }
   scope :full_name_like, ->(string) { where("lower((full_name)) like lower((?)) ", string.gsub(/\*/, "%").downcase) }
   scope :default_ordered, -> { order("lower(simple_name)") }
-end
 
+  def accepted_accepted?
+    type_code == "ApcConcept"
+  end
+
+  def accepted_excluded?
+    type_code == "ApcExcluded"
+  end
+
+  def synonym?
+    type_code == "synonym"
+  end
+end

@@ -8,36 +8,17 @@
   <%= render "sidebar" %>
 <% end %>
 
+<%= render "plants/taxonomy/accepted/search/form" %>
 
-<p>Names considered in the APC may be accepted or excluded.
-        <ul class="">
-          <li class="">
-            <%= link_to "Accepted names.",
-                        plants_taxonomy_accepted_search_accepted_path(q: params['q']),
-                        class: "",
-                        title: "APC search for accepted names" %>
-          
-          </li>
-          <li class="">
-            <%= link_to "Excluded names",
-                        plants_taxonomy_accepted_search_excluded_path(q: params['q']),
-                        class: "",
-                        title: "APC search for excluded names" %>
-          </li>
-          <li class="">
-            <%= link_to "Accepted and excluded names",
-                        plants_taxonomy_accepted_search_accepted_and_excluded_path(q: params['q']),
-                        class: "",
-                        title: "APC search for names that are accepted or excluded" %>
-          </li>
-          <li class="">
-            <%= link_to "All names",
-                        plants_taxonomy_accepted_search_all_path(q: params['q']),
-                        class: "",
-                        title: "APC search for names that are accepted, excluded, or synonyms" %>
-          </li>
-        </ul>
+<% if @search.present? %>
+  <%= "<span class='search-result-summary'>#{pluralize(@search.results.size, 'name')}</span>".html_safe %>
+<% end %>
 
-        <p>Although the authority is included in some names e.g. scientific names, this search can match on names with or without authorities.</p>
-  <br/>
-  <span class="debug tiny hidden-print">[plants/taxonomy/accepted/search/index]</span>
+<% if @search.present? %>
+  <%= render partial: 'results', locals: {name: @search.results.first} %>
+<% end %>
+
+
+<br/>
+<span class="debug tiny hidden-print">[plants/taxonomy/accepted/search/index]</span>
+

@@ -225,7 +225,24 @@ altSearchLink = (event, $element) ->
   new_href = "#{new_href}#{encodeURIComponent($('#q').val())}"
   $element.attr('href', new_href)
   # Let the link fire, now with the new href.
-  
+
+taxonomySearchSidebarClick = (event, $element) ->
+  debug('taxonomySearchSidebarClick')
+  searchType = $element.data("search-type")
+  $('#search-type').val(searchType)
+  $('#search-button').click()
+  event.preventDefault()
+  event.stopPropagation()
+
+taxonomyFormatSearch = (event, $element) ->
+  debug('taxonomyFormatSearch')
+  searchFormat = $element.data("search-format")
+  $('#search-format').val(searchFormat)
+  $('#search-button').click()
+  $('#search-format').val('html')
+  event.preventDefault()
+  event.stopPropagation()
+
 # Turbolinks
 ready = ->
   debug('jQuery version: ' + $().jquery)
@@ -244,6 +261,8 @@ ready = ->
   $('body').on('click','#json-search', (event) -> jsonSearch(event,$(this)))
   $('body').on('click','#csv-search', (event) -> csvSearch(event,$(this)))
   $('body').on('click','.alt-search-link', (event) -> altSearchLink(event,$(this)))
+  $('body').on('click','.taxonomy-search-sidebar-link', (event) -> taxonomySearchSidebarClick(event,$(this)))
+  $('body').on('click','.taxonomy-format-search', (event) -> taxonomyFormatSearch(event,$(this)))
   loadDetailsIfRequired() if typeof(loadDetailsIfRequired) == "function"
   resetControls() if typeof(resetControls) == "function"
 

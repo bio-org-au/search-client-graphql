@@ -16,37 +16,79 @@
                     plants_taxonomy_accepted_path,
                     class: "bd-toc-link",
                     title: "Vascular Plant Taxonomy - Accepted by the Australian Plant Census" %>
-        <%= link_to ticked("APC Name Search"),
+        <%= link_to "APC Name Search",
                     plants_taxonomy_accepted_search_path,
                     class: "bd-toc-link",
                     title: "Australian Plant Census Name Search" %>
         <hr>
         <ul class="nav bd-sidenav">
           <li class="">
-            <%= link_to "Accepted",
-                        plants_taxonomy_accepted_search_accepted_path(q: params['q'], show_permalinks: params[:show_permalinks]),
-                        title: "Search for accepted names only." %>
+            <%= link_to "Accepted #{fa_icon('check') if (params[:search_type] || 'accepted').match(/\Aaccepted\z/)}".html_safe,
+                        "javascript: void;",
+                        id: "accepted-search-sidebar-link",
+                        class: "taxonomy-search-sidebar-link",
+                        data: { search_type: "accepted" }, 
+                        title: "Search for accepted names." %>
           </li>
           <li class="">
-            <%= link_to "Excluded",
-                        plants_taxonomy_accepted_search_excluded_path(q: params['q'], show_permalinks: params[:show_permalinks]),
-                        title: "Search for excluded names only." %>
+            <%= link_to "Excluded #{fa_icon('check') if (params[:search_type] || '').match(/\Aexcluded\z/)}".html_safe,
+                        "javascript: void;",
+                        id: "excluded-search-sidebar-link",
+                        class: "taxonomy-search-sidebar-link",
+                        data: { search_type: "excluded" }, 
+                        title: "Search for excluded names." %>
           </li>
           <li class="">
-            <%= link_to "Synonyms",
-                        plants_taxonomy_accepted_search_synonym_path(q: params['q'], show_permalinks: params[:show_permalinks]),
-                        title: "Search for synonyms only." %>
+            <%= link_to "Synonyms #{fa_icon('check') if (params[:search_type] || '').match(/synonyms/)}".html_safe,
+                        "javascript: void;",
+                        id: "synonyms-search-sidebar-link",
+                        class: "taxonomy-search-sidebar-link",
+                        data: { search_type: "synonyms" }, 
+                        title: "Search for synonyms." %>
           </li>
           <li class="">
-            <%= link_to "Accepted and excluded",
-                        plants_taxonomy_accepted_search_accepted_and_excluded_path(q: params['q'], show_permalinks: params[:show_permalinks]),
-                        title: "Search for names that are accepted or excluded." %>
+            <%= link_to "Accepted and excluded #{fa_icon('check') if (params[:search_type] || '').match(/accepted and excluded/)}".html_safe,
+                        "javascript: void;",
+                        id: "accepted-and-excluded-search-sidebar-link",
+                        class: "taxonomy-search-sidebar-link",
+                        data: { search_type: "accepted and excluded" }, 
+                        title: "Search for accepted and excluded names." %>
           </li>
           <li class="">
-            <%= link_to "All",
-                        plants_taxonomy_accepted_search_all_path(q: params['q'], show_permalinks: params[:show_permalinks]),
-                        title: "Search for names that are accepted, excluded, or synonyms." %>
+            <%= link_to "All #{fa_icon('check') if (params[:search_type] || '').match(/all/)}".html_safe,
+                        "javascript: void;",
+                        id: "all-search-sidebar-link",
+                        class: "taxonomy-search-sidebar-link",
+                        data: { search_type: "all" }, 
+                        title: "Search for all." %>
           </li>
+          <hr/>
+          <li>
+            <a href="javascript:window.print()"
+               class="tiny"
+               title="Print the page">Print</a>
+          </li>
+            <li class="">
+              <%= link_to "CSV",
+                          "javascript: void;",
+                          class: "tiny needs-details-limit taxonomy-format-search",
+                          data: {search_format: "csv"},
+                          title: "Convert results to CSV." %>
+            </li>
+            <li class="">
+              <%= link_to ticked("HTML"),
+                          "javascript: void;",
+                          class: "tiny needs-details-limit taxonomy-format-search",
+                          data: {search_format: "html"},
+                          title: "Results will be displayed in HTML unless you choose CSV or JSON." %>
+            </li>
+            <li class="">
+              <%= link_to "JSON",
+                          "javascript: void;",
+                          class: "tiny needs-details-limit taxonomy-format-search",
+                          data: {search_format: "json"},
+                          title: "Convert results to JSON." %>
+            </li>
         </ul>
         <%= render 'layouts/back_link' %>
       </div>

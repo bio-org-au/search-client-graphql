@@ -33,4 +33,9 @@ class AcceptedName < ActiveRecord::Base
   def accepted_excluded?
     type_code == APC_EXCLUDED
   end
+
+  def to_csv
+    attributes.values_at(*Name.columns.map(&:name))
+    [full_name, status.name].to_csv
+  end
 end
