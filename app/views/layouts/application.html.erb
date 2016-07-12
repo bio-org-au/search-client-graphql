@@ -14,6 +14,29 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true, async: true, defer: true %>
   <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
   <%= csrf_meta_tags %>
+  <% if Rails.configuration.try('display_as_test') == true %>
+      <style>
+        body {background: #e6e6fa; }
+        #footer {background: #e6e6fa;
+                 border-top: 1px solid black;}
+      </style>
+    <% end %>
+    <% if Rails.configuration.try('session_key_tag').try('match','/dev/i') %> 
+<style>
+a:not([title]),
+select:not([title]),
+textarea:not([title]),
+input:not([title]) {
+  background: red;
+}
+
+input[type="checkbox"]:not([title]) {
+  display: none;
+}
+</style>
+
+    <% end %>
+
 </head>
 
 <body class="bd-docs" data-spy="scroll" data-target=".bd-sidenav-active">
