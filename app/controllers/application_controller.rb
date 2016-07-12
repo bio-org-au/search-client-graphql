@@ -6,9 +6,24 @@ class ApplicationController < ActionController::Base
 
   before_action :set_default_show_results_as,
                 :set_default_details_limit,
+                :check_system_broadcast,
                 :set_zone
 
   private
+
+  def check_system_broadcast
+    @system_broadcast = ""
+    file_path = Rails.configuration.path_to_broadcast_file
+    if File.exist?(file_path)
+      logger.debug("System broadcast file exists at #{file_path}")
+      file = File.open(file_path, "r")
+      @system_broadcast = file.readline unless file.eof?
+    end
+  rescue => e
+    logger.error("Problem with system broadcast.")
+    logger.error(e.to_s)
+  end
+
 
   def set_default_show_results_as
     if params.key?("show_results_as")

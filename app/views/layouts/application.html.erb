@@ -80,6 +80,13 @@ input[type="checkbox"]:not([title]) {
           </div>
         </div>
 
+        <% if @system_broadcast.present? && !@system_broadcast.match(/This is the test instance./) %> 
+        <div class="col-md-9 col-md-pull-3 bd-content">
+          <div id="broadcast" class="col-xs-12 col-sm-11 col-md-10 col-lg-8">
+            <%= @system_broadcast %>
+          </div>
+        </div>
+        <% end %>
         <div class="col-md-9 col-md-pull-3 bd-content">
           <%= yield %>
         </div>
