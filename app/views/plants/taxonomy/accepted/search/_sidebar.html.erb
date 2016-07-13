@@ -65,12 +65,11 @@
 
           <hr/>
 
-
           <li><%= link_to "Details #{fa_icon('check',
                         id: 'taxonomy-details-toggle-switch-indicator',
                         class: session[:taxonomy_details] ? '' : 'hidden-xs-up')}".html_safe,
                         taxonomy_details_path,
-                        title:"Deatils on/off switch.  Does not apply to synonyms.",
+                        title:"Details on/off switch.  Does not apply to synonyms.",
                         method: :post,
                         remote: true %>
           </li>
@@ -101,6 +100,16 @@
                           data: {search_format: "json"},
                           title: "Convert results to JSON." %>
             </li>
+          <hr/>
+
+          <li><%= link_to "Help #{fa_icon('check',
+                        id: 'help-toggle-switch-indicator',
+                        class: session[:help] ? '' : 'hidden-xs-up')}".html_safe,
+                        help_path,
+                        title:"Help on/off switch.",
+                        method: :post,
+                        remote: true %>
+          </li>
         </ul>
         <%= render 'layouts/back_link' %>
       </div>

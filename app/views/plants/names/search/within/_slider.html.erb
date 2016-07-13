@@ -61,6 +61,16 @@
                           class: "tiny",
                           title: "Convert results to CSV." %>
             </li>
+          <hr/>
+
+          <li><%= link_to "Help #{fa_icon('check',
+                        id: 'help-toggle-switch-indicator',
+                        class: session[:help] ? '' : 'hidden-xs-up')}".html_safe,
+                        help_path,
+                        title:"Help on/off switch.",
+                        method: :post,
+                        remote: true %>
+          </li>
 
         </ul>
         <hr/> &nbsp;

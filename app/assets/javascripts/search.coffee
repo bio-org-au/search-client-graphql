@@ -204,7 +204,15 @@ window.changeTaxonomyDetailsSwitch = (bool) ->
     $('#taxonomy-details-toggle-switch-indicator').addClass('hidden-xs-up')
     $('.for-taxonomy-details').addClass('hidden-xs-up')
 
-
+window.changeHelpSwitch = (bool) ->
+  debug("changeHelpSwitch - bool: #{bool}")
+  debug($('.for-help').length)
+  if bool 
+    $('#help-toggle-switch-indicator').removeClass('hidden-xs-up')
+    $('.for-help').removeClass('hidden-xs-up')
+  else
+    $('#help-toggle-switch-indicator').addClass('hidden-xs-up')
+    $('.for-help').addClass('hidden-xs-up')
 
 stopEmptySearch = (event, $element) ->
   unless $('#q').val().length > 0

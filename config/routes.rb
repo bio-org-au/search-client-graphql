@@ -62,6 +62,7 @@ Rails.application.routes.draw do
   post "editor" => "editor#toggle", as: :editor
   post "citations" => "citations#toggle", as: :citations
   post "taxonomy_details" => "taxonomy_details#toggle", as: :taxonomy_details
+  post "help" => "help#toggle", as: :help
   post "always_details" => "always_details#toggle", as: :always_details
   get "config" => "config#index", as: :config
 
