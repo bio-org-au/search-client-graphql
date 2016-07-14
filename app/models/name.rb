@@ -364,4 +364,8 @@ limit 3"
   def status_name
     status.name
   end
+
+  def author_component_of_full_name
+    full_name.sub(/#{Regexp.escape(simple_name)}/,'')
+  end
 end
