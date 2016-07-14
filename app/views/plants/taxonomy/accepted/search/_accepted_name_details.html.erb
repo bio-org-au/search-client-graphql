@@ -2,7 +2,7 @@
               <ul class="accepted-instances small">
                 <%
                    name.instance.synonyms.sort do |x,y|
-                     [x.instance_type.misapplied.to_s, x.name.full_name] <=>  [y.instance_type.misapplied.to_s, y.name.full_name]
+                     [x.instance_type.misapplied.to_s, x.name.full_name, x.cite.reference.year] <=>  [y.instance_type.misapplied.to_s, y.name.full_name, y.cite.reference.year]
                    end.each do |synonym|
                 %>
                   <%= synonym.name.full_name_html.html_safe %>
