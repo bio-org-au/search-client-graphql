@@ -3,12 +3,10 @@
             <span class="debug purple">[<%= synonym.sort_name %>]</span>
             <span class="synonym">
               <em>
-              <%= link_to("#{synonym.full_name}",
+              <%= link_to("#{synonym.full_name.strip}",
                         plants_taxonomy_show_path(synonym.id),
                         title: "Show bibliographic details")
-                      %>
-              </em> 
-              <%= synonym.status.name_to_show %>
+              %></em><%= synonym.status.name_to_show %>
               <% if synonym.synonym_type.misapplied %> auct. non <%= synonym.synonym_name.author.try('abbrev') %>:
                 <%= synonym.synonym_cites.this_cites.reference.author.name %>
                 (<%= synonym.synonym_cites.this_cites.reference.year %>)
