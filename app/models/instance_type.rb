@@ -16,6 +16,14 @@ class InstanceType < ActiveRecord::Base
     misapplied == true
   end
 
+  def doubtful?
+    doubtful == true
+  end
+
+  def pro_parte?
+    pro_parte == true
+  end
+
   def cited_by_preposition
     if name.downcase.match(/misapplied/)
       "to"

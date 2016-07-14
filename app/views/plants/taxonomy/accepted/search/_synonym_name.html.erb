@@ -8,7 +8,8 @@
                         title: "Show bibliographic details")
                       %>
               </em> 
-              <% if synonym.synonym_type.misapplied %> auct. non <%= synonym.synonym_name.author.abbrev %>:
+              <%= synonym.status.name_to_show %>
+              <% if synonym.synonym_type.misapplied %> auct. non <%= synonym.synonym_name.author.try('abbrev') %>:
                 <%= synonym.synonym_cites.this_cites.reference.author.name %>
                 (<%= synonym.synonym_cites.this_cites.reference.year %>)
                 [fide
@@ -19,8 +20,8 @@
                 <% end %>
               <% end %>
             </span>
-            <span class="debug purple">[<%#= name.rank.name %>]</span>
             <%= render partial: "/plants/taxonomy/accepted/search/citation_links", locals: {name: synonym} %>
+            <%= '&nbsp;p.p.'.html_safe if synonym.synonym_type.pro_parte? %>
             =
             <strong>
             <%= link_to("#{synonym.accepted_full_name}",

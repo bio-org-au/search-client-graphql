@@ -7,7 +7,7 @@
 <% content_for :sidebar do %>
   <%= render "sidebar" %>
 <% end %>
-<%= render partial: "/plants/taxonomy/accepted/search/all/search", locals: {name: @name, name_details: @name_details, show_power_links: false} %>
+<%= render partial: "/plants/taxonomy/accepted/search/form" %>
 <strong><%= @name.full_name %></strong>
 <% if session[:editor] %>
   <%= render(partial: "/plants/names/search/editor_link.html.erb", locals: { name: @name }) %>
@@ -21,3 +21,4 @@
 
 
 <span class="debug">plants/taxonomy/show.html.erb</span>
+

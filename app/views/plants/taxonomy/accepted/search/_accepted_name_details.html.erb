@@ -5,7 +5,10 @@
                      [x.instance_type.misapplied.to_s, x.name.full_name, x.cite.reference.year] <=>  [y.instance_type.misapplied.to_s, y.name.full_name, y.cite.reference.year]
                    end.each do |synonym|
                 %>
+                  <%= '?' if synonym.instance_type.doubtful? %>
                   <%= synonym.name.full_name_html.html_safe %>
+                  <%= synonym.name.status.name_to_show %>
+                  <%= '&nbsp;p.p.'.html_safe if synonym.instance_type.pro_parte? %>
                   <% if synonym.instance_type.misapplied? %>
                     auct. non
                     <% if synonym.cite.page.blank? %>
