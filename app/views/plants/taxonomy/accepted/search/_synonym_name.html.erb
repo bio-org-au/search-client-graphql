@@ -2,12 +2,11 @@
  <li class="tree-results compact">
             <span class="debug purple">[<%= synonym.sort_name %>]</span>
             <span class="synonym">
-              <i>
-              <%= link_to("#{synonym.full_name.strip}",
+              <%= link_to("#{synonym.full_name_html}".html_safe,
                         plants_taxonomy_show_path(synonym.id),
                         title: "Show bibliographic details")
-              %></i><%= synonym.status.name_to_show %>
-              <% if synonym.synonym_type.misapplied %> auct. non <%= synonym.synonym_name.author.try('abbrev') %>:
+                        %><span class="name-status"><%= synonym.status.name_to_show %></span>
+                      <% if synonym.synonym_type.misapplied %> <span class="instance-type">auct. non</span> <%= synonym.synonym_name.author.try('abbrev') %>:
                 <%= synonym.synonym_cites.this_cites.reference.author.name %>
                 (<%= synonym.synonym_cites.this_cites.reference.year %>)
                 [fide
@@ -16,7 +15,7 @@
               <% end %>
             </span>
             <%= render partial: "/plants/taxonomy/accepted/search/citation_links", locals: {name: synonym} %>
-            <%= '&nbsp;p.p.'.html_safe if synonym.synonym_type.pro_parte? %>
+            <%= '&nbsp;<span class="pro-parte">p.p.</span>'.html_safe if synonym.synonym_type.pro_parte? %>
             =
             <strong>
             <%= link_to("#{synonym.accepted_full_name}",

@@ -6,15 +6,14 @@
                    end.each do |synonym|
                 %>
                   <%= '?' if synonym.instance_type.doubtful? %>
-                  <i>
-                    <%= synonym.instance_type.misapplied? ? synonym.name.simple_name_html.html_safe : synonym.name.full_name_html.html_safe %><%= synonym.name.status.name_to_show %></i><%= ', p.p.'.html_safe if synonym.instance_type.pro_parte? && !synonym.instance_type.misapplied %>
+                  <%= synonym.instance_type.misapplied? ? synonym.name.simple_name_html.html_safe : synonym.name.full_name_html.html_safe %><span class="name-status"><%= synonym.name.status.name_to_show %></span><%= ', p.p.'.html_safe if synonym.instance_type.pro_parte? && !synonym.instance_type.misapplied %>
                   <% if synonym.instance_type.misapplied? %>
-                    auct. non
+                    <i>auct. non</i>
                     <%= synonym.cite.name.author_component_of_full_name %>:
                     <% if synonym.cite.page.blank? %>
-                      <%= synonym.cite.reference.citation %><%= ', p.p'.html_safe if synonym.instance_type.pro_parte? %>.
+                      <%= synonym.cite.reference.citation %><%= ', <span class="pro-parte"><i>p.p</i></span>'.html_safe if synonym.instance_type.pro_parte? %>.
                     <% else %>
-                      <%= synonym.cite.reference.citation %>: <%= synonym.cite.page %><%= ', p.p'.html_safe if synonym.instance_type.pro_parte? %>.
+                      <%= synonym.cite.reference.citation %>: <%= synonym.cite.page %><%= ', <span class="pro-parte"><i>p.p</i></span>'.html_safe if synonym.instance_type.pro_parte? %>.
                     <% end %>
                   <% end %>
                   <br/>
@@ -27,3 +26,4 @@
                 <%= name.instance.apc_distribution %>
               </div>
             </div>
+
