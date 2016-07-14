@@ -13,7 +13,7 @@ class InstanceType < ActiveRecord::Base
   end
 
   def misapplied?
-    name.match(/\Amisapplied\z/i)
+    misapplied == true
   end
 
   def cited_by_preposition
