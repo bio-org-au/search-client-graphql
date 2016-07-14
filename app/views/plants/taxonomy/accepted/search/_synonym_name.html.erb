@@ -15,9 +15,6 @@
                 [fide
                 <%= synonym.synonym_ref.author.name %>
                 (<%= synonym.synonym_ref.year %>)]
-                <% if synonym.synonym_type.pro_parte %>
-                  , p.p.
-                <% end %>
               <% end %>
             </span>
             <%= render partial: "/plants/taxonomy/accepted/search/citation_links", locals: {name: synonym} %>
