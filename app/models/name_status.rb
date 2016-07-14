@@ -15,6 +15,6 @@ class NameStatus < ActiveRecord::Base
   end
 
   def name_to_show
-    name if show?
+    ", #{name}" if show?
   end
 end
