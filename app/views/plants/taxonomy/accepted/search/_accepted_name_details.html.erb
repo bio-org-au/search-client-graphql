@@ -2,7 +2,7 @@
               <ul class="accepted-instances small">
                 <%
                    name.instance.synonyms.sort do |x,y|
-                     [x.instance_type.misapplied.to_s, x.name.full_name, x.cite.reference.year] <=>  [y.instance_type.misapplied.to_s, y.name.full_name, y.cite.reference.year]
+                     [x.instance_type.misapplied.to_s, x.name.full_name, x.cite.try("reference").try("year")] <=>  [y.instance_type.misapplied.to_s, y.name.full_name, y.cite.try("reference").try("year")]
                    end.each do |synonym|
                 %>
                   <%= '?' if synonym.instance_type.doubtful? %>
