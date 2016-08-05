@@ -63,7 +63,7 @@ group :development do
   gem "awesome_print"
 end
 
-gem 'bootstrap', '~> 4.0.0.alpha3'  # Use Bootstrap 4.
+gem 'bootstrap', '~> 4.0.0.alpha3.1'  # Use Bootstrap 4.
 
 #source 'https://rails-assets.org' do
 gem 'rails-assets-tether', '~> 1.1.1'

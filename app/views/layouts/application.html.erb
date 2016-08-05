@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
   <title><%= yield :page_title %></title>
-
+  <%= csrf_meta_tags %>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   <%= stylesheet_link_tag 'application',
                           media: 'all',
                           'data-turbolinks-track' => true %>
@@ -13,7 +16,6 @@
   <% end %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true, async: true, defer: true %>
   <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
-  <%= csrf_meta_tags %>
   <% if Rails.configuration.try('display_as_test') == true %>
       <style>
         body {background: #e6e6fa; }
@@ -64,7 +66,7 @@ input[type="checkbox"]:not([title]) {
 <div id="wrapper">
   <div id="header" class="boa-pageheader <%= @zone %>">
     <div class="container-fluid print">
-      <div class="col-md-12 bd-content">
+      <div class="left-page-edge-padding md-12 bd-content">
         <%= yield :page_banner %>
       </div>
     </div>
@@ -72,25 +74,31 @@ input[type="checkbox"]:not([title]) {
 
   <div id="content">
     <div class="container-fluid">
+
+      <% if @system_broadcast.present? && !@system_broadcast.match(/This is the test instance./) %> 
+        <div class="row">
+          <div class="col-xs-12 bd-content">
+            <div id="broadcast">
+              <%= @system_broadcast %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
       <div class="row">
-        <div class="col-md-3 col-md-push-10 bd-sidebar">
-          <div class="bd-sidebar hidden-print">
+        <div class="no-left-padding col-md-3 col-xl-2 bd-sidebar">
+          <div class="left-page-edge-sidebar-padding bd-sidebar hidden-print">
             <%= yield :sidebar %>
             <%= yield :slider %>
           </div>
         </div>
-
-        <% if @system_broadcast.present? && !@system_broadcast.match(/This is the test instance./) %> 
-        <div class="col-xs-10 col-sm-11 col-md-7 col-md-pull-3 col-lg-5 col-xl-6 bd-content">
-          <div id="broadcast">
-            <%= @system_broadcast %>
-          </div>
-        </div>
-        <% end %>
-        <div class="col-md-9 col-md-pull-3 bd-content">
+        
+        <div class="col-md-9 bd-content">
           <%= yield %>
         </div>
+
       </div>
+
     </div>
   </div>
 
@@ -122,11 +130,6 @@ input[type="checkbox"]:not([title]) {
       <%= link_to("Australian National Botanic Gardens (ANBG)", "http://www.anbg.gov.au", title: "Australian National Botanic Gardens web page") %>.
       </p>
       <br/>
-      <span class="debug hidden-print">
-        <% if @search.present? && @search.results.present? %>
-          <%= @search.results.try("to_sql") %>
-        <% end %>
-      </span>
     </div>
   </div>
 </div>
