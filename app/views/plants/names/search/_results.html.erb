@@ -3,7 +3,7 @@
     <% @search.results.each_with_index do |name, ndx| %>
       <% target_id = new_target_id %>
       <li>
-        <%= link_to(fa_icon('caret-right lg'),
+        <%= link_to(fa_icon('caret-right lg', class: 'gray hidden-print'),
                     plants_names_show_path(name[:id],target_id: target_id),
                     class: "full-name drill-down-toggle no-details",
                     data: {target_id: target_id},
