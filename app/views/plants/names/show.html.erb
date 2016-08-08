@@ -9,6 +9,9 @@
 <% end %>
 <%= render "plants/names/search/form" %>
 <strong><%= @name.full_name %></strong>
+<% if @name.show_status? %>
+  <span class="name-status" title="Name Status"><%= @name.status_name %></span>
+<% end %>
 <% if session[:editor] %>
   <%= render(partial: "/plants/names/search/editor_link.html.erb", locals: { name: @name }) %>
 <% end %>
