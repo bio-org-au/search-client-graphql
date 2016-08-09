@@ -6,10 +6,12 @@
   <div class="col-xs-10 col-sm-11 col-md-5 col-lg-7 col-xl-8">
     <%= text_field_tag(:q,
                        '',
+                       name: "q",
                        class: "form-control",
                        value: "#{params[:q]}",
                        autofocus: true,
                        title: "Enter a name with or without wildcards to search APC or APNI",
+                       required: true,
                        placeholder: "Search APC") %>
   </div>
   <div class="col-xs-8 col-xs-offset-4 col-sm-8 col-sm-offset-7 col-md-5 col-md-offset-0 col-lg-4 col-lg-offset-0 col-xl-3">

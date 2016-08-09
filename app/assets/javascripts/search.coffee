@@ -168,7 +168,8 @@ switchNameType = (event, $element) ->
   $('#name_type').val(switchTo)
   $('.name-type-switch-item').removeClass('active')
   $element.closest('.name-type-switch-item').addClass('active')
-  $('#search-button').click()
+  if $('#q').val().length > 0
+    $('#search-button').click()
   event.preventDefault()
   event.stopPropagation()
 
@@ -214,11 +215,6 @@ window.changeHelpSwitch = (bool) ->
     $('#help-toggle-switch-indicator').addClass('hidden-xs-up')
     $('.for-help').addClass('hidden-xs-up')
 
-stopEmptySearch = (event, $element) ->
-  unless $('#q').val().length > 0
-    event.preventDefault()
-    event.stopPropagation()
-
 jsonSearch = (event, $element) ->
   debug('jsonSearch')
   $('#search-output-format').val('json');
@@ -243,13 +239,14 @@ altSearchLink = (event, $element) ->
   $element.attr('href', new_href)
   # Let the link fire, now with the new href.
 
-searchTypeSidebarClick = (event, $element) ->
-  debug('searchTypeSidebarClick')
+switchSidebarSearch = (event, $element) ->
+  debug('switchSidebarSearch')
   switchTo = $element.data("search-type")
   $('#search-type').val(switchTo)
   $('.search-type-switch-item').removeClass('active')
   $element.closest('.search-type-switch-item').addClass('active')
-  $('#search-button').click()
+  if $('#q').val().length > 0
+    $('#search-button').click()
   event.preventDefault()
   event.stopPropagation()
 
@@ -276,11 +273,10 @@ ready = ->
   $('body').on('click','.expand-details-control', (event) -> expandAll(event,$(this)))
   $('body').on('click','#always-retrieve-details-toggle', (event) -> alwaysShowHideAllToggle(event,$(this)))
   $('body').on('click','.name-type-switch-link', (event) -> switchNameType(event,$(this)))
-  $('body').on('click','#search-button', (event) -> stopEmptySearch(event,$(this)))
   $('body').on('click','#json-search', (event) -> jsonSearch(event,$(this)))
   $('body').on('click','#csv-search', (event) -> csvSearch(event,$(this)))
   $('body').on('click','.alt-search-link', (event) -> altSearchLink(event,$(this)))
-  $('body').on('click','.taxonomy-search-sidebar-link', (event) -> searchTypeSidebarClick(event,$(this)))
+  $('body').on('click','.taxonomy-search-sidebar-link', (event) -> switchSidebarSearch(event,$(this)))
   $('body').on('click','.taxonomy-format-search', (event) -> taxonomyFormatSearch(event,$(this)))
   loadDetailsIfRequired() if typeof(loadDetailsIfRequired) == "function"
   resetControls() if typeof(resetControls) == "function"
