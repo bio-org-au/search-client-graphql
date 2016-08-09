@@ -259,6 +259,10 @@ taxonomyFormatSearch = (event, $element) ->
   event.preventDefault()
   event.stopPropagation()
 
+addClearButton = () ->
+  $("#q").addClear({symbolClass: "fa fa-times-circle", color: "darkgray", top: 8, right: 30})
+  $("#q").focus()
+
 # Turbolinks
 ready = ->
   debug('jQuery version: ' + $().jquery)
@@ -278,8 +282,10 @@ ready = ->
   $('body').on('click','.alt-search-link', (event) -> altSearchLink(event,$(this)))
   $('body').on('click','.taxonomy-search-sidebar-link', (event) -> switchSidebarSearch(event,$(this)))
   $('body').on('click','.taxonomy-format-search', (event) -> taxonomyFormatSearch(event,$(this)))
+  addClearButton()
   loadDetailsIfRequired() if typeof(loadDetailsIfRequired) == "function"
   resetControls() if typeof(resetControls) == "function"
+	
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
