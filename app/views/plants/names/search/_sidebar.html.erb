@@ -1,5 +1,6 @@
-  <nav class="bd-links" id="docsNavbarContent">
+  <nav id="sidebar" class="bd-links" id="docsNavbarContent">
       <div class="bd-toc-item active">
+        <div id="sidebar-navigation-menu" class="">
         <%= link_to "National Species Lists",
                     nsl_path,
                     class: "bd-toc-link",
@@ -10,16 +11,17 @@
                     title: "Flora" %>
         <%= link_to "Vascular Plants",
                     plants_path,
-                    class: "bd-toc-link",
+                    class: "bd-toc-link", 
                     title: "Vascular Plants" %>
-        <%= link_to "APNI".html_safe,
+        <%= link_to "APNI",
                     plants_names_path,
                     class: "bd-toc-link",
                     title: "Vascular Plant Names" %>
-        <%= link_to "APNI Name Search".html_safe,
+        <%= link_to ticked("APNI Name Search").html_safe,
                     plants_names_search_path,
                     class: "bd-toc-link",
                     title: "APNI Simple Name Search" %>
+      </div>
       <hr/>
       <ul class="nav bd-sidenav">
         <li class="name-type-switch-item <%= 'active' if params[:search_type].blank? || params[:search_type].match(/\Ascientific\z/) %>">

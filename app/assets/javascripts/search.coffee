@@ -243,10 +243,12 @@ altSearchLink = (event, $element) ->
   $element.attr('href', new_href)
   # Let the link fire, now with the new href.
 
-taxonomySearchSidebarClick = (event, $element) ->
-  debug('taxonomySearchSidebarClick')
-  searchType = $element.data("search-type")
-  $('#search-type').val(searchType)
+searchTypeSidebarClick = (event, $element) ->
+  debug('searchTypeSidebarClick')
+  switchTo = $element.data("search-type")
+  $('#search-type').val(switchTo)
+  $('.search-type-switch-item').removeClass('active')
+  $element.closest('.search-type-switch-item').addClass('active')
   $('#search-button').click()
   event.preventDefault()
   event.stopPropagation()
@@ -278,7 +280,7 @@ ready = ->
   $('body').on('click','#json-search', (event) -> jsonSearch(event,$(this)))
   $('body').on('click','#csv-search', (event) -> csvSearch(event,$(this)))
   $('body').on('click','.alt-search-link', (event) -> altSearchLink(event,$(this)))
-  $('body').on('click','.taxonomy-search-sidebar-link', (event) -> taxonomySearchSidebarClick(event,$(this)))
+  $('body').on('click','.taxonomy-search-sidebar-link', (event) -> searchTypeSidebarClick(event,$(this)))
   $('body').on('click','.taxonomy-format-search', (event) -> taxonomyFormatSearch(event,$(this)))
   loadDetailsIfRequired() if typeof(loadDetailsIfRequired) == "function"
   resetControls() if typeof(resetControls) == "function"

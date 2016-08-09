@@ -1,5 +1,6 @@
   <nav class="bd-links" id="docsNavbarContent">
       <div class="bd-toc-item active">
+        <div id="sidebar-navigation-menu" class="">
         <%= link_to "National Species Lists",
                     nsl_path,
                     class: "bd-toc-link",
@@ -20,42 +21,43 @@
                     plants_taxonomy_accepted_search_path,
                     class: "bd-toc-link",
                     title: "Australian Plant Census Name Search" %>
+        </div>
         <hr>
         <ul class="nav bd-sidenav">
-          <li class="">
-            <%= link_to "Accepted #{fa_icon('check') if (params[:search_type] || 'accepted').match(/\Aaccepted\z/)}".html_safe,
+          <li class="search-type-switch-item <%= 'active' if params[:search_type].blank? || params[:search_type].match(/\Aaccepted\z/i) %>">
+            <%= link_to "Accepted&nbsp;#{fa_icon('check', class: "hide-unless-active")}".html_safe,
                         "javascript: void;",
                         id: "accepted-search-sidebar-link",
                         class: "taxonomy-search-sidebar-link",
                         data: { search_type: "accepted" }, 
                         title: "Search for accepted names." %>
           </li>
-          <li class="">
-            <%= link_to "Excluded #{fa_icon('check') if (params[:search_type] || '').match(/\Aexcluded\z/)}".html_safe,
+          <li class="search-type-switch-item <%= 'active' if params[:search_type].present? && params[:search_type].match(/\Aexcluded\z/i) %>">
+            <%= link_to "Excluded&nbsp;#{fa_icon('check', class: "hide-unless-active")}".html_safe,
                         "javascript: void;",
                         id: "excluded-search-sidebar-link",
                         class: "taxonomy-search-sidebar-link",
                         data: { search_type: "excluded" }, 
                         title: "Search for excluded names." %>
           </li>
-          <li class="">
-            <%= link_to "Synonyms #{fa_icon('check') if (params[:search_type] || '').match(/synonyms/)}".html_safe,
+          <li class="search-type-switch-item <%= 'active' if params[:search_type].present? && params[:search_type].match(/\Asynonyms\z/i) %>">
+            <%= link_to "Synonyms&nbsp;#{fa_icon('check', class: "hide-unless-active")}".html_safe,
                         "javascript: void;",
                         id: "synonyms-search-sidebar-link",
                         class: "taxonomy-search-sidebar-link",
                         data: { search_type: "synonyms" }, 
                         title: "Search for synonyms." %>
           </li>
-          <li class="">
-            <%= link_to "Accepted and excluded #{fa_icon('check') if (params[:search_type] || '').match(/accepted and excluded/)}".html_safe,
+          <li class="search-type-switch-item <%= 'active' if params[:search_type].present? && params[:search_type].match(/\Aaccepted.and.excluded\z/i) %>">
+            <%= link_to "Accepted and excluded&nbsp;#{fa_icon('check', class: "hide-unless-active")}".html_safe,
                         "javascript: void;",
                         id: "accepted-and-excluded-search-sidebar-link",
                         class: "taxonomy-search-sidebar-link",
                         data: { search_type: "accepted and excluded" }, 
                         title: "Search for accepted and excluded names." %>
           </li>
-          <li class="">
-            <%= link_to "All #{fa_icon('check') if (params[:search_type] || '').match(/all/)}".html_safe,
+          <li class="search-type-switch-item <%= 'active' if params[:search_type].present? && params[:search_type].match(/\Aall\z/i) %>">
+            <%= link_to "All&nbsp;#{fa_icon('check', class: "hide-unless-active")}".html_safe,
                         "javascript: void;",
                         id: "all-search-sidebar-link",
                         class: "taxonomy-search-sidebar-link",
