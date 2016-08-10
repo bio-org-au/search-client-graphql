@@ -232,6 +232,7 @@ altSearchLink = (event, $element) ->
   new_href = $element.attr('href').replace(/q=.*/,'q=')
   new_href = "#{new_href}#{encodeURIComponent($('#q').val())}"
   $element.attr('href', new_href)
+  startSearch(event, $element)
   # Let the link fire, now with the new href.
 
 switchSidebarSearch = (event, $element) ->
@@ -263,17 +264,12 @@ startSearch = (event, $element) ->
   if $('#q').val().length > 0
     $("body").css("cursor", "wait")
 
-altSearchLink = (event, $element) ->
-  debug('altSearchLink')
-  startSearch(event, $element)
-
 pageFetch = () ->
   debug('pageFetch')
 
-
 # Turbolinks
 turbolinksLoad = () ->
-  debug('turbolinksLoad')
+  debug('turbolinksLoad; =============')
   docReady()
 
 docReady = ->
@@ -291,7 +287,6 @@ docReady = ->
   $('body').on('click','.name-type-switch-link', (event) -> switchNameType(event,$(this)))
   $('body').on('click','#json-search', (event) -> jsonSearch(event,$(this)))
   $('body').on('click','#csv-search', (event) -> csvSearch(event,$(this)))
-  $('body').on('click','.alt-search-link', (event) -> altSearchLink(event,$(this)))
   $('body').on('click','.taxonomy-search-sidebar-link', (event) -> switchSidebarSearch(event,$(this)))
   $('body').on('click','.taxonomy-format-search', (event) -> taxonomyFormatSearch(event,$(this)))
   $('body').on('click','#search-button', (event) -> startSearch(event,$(this)))
@@ -303,5 +298,8 @@ docReady = ->
   resetControls() if typeof(resetControls) == "function"
 	
 
-$(document).on('turbolinks:load', turbolinksLoad())
+#$(document).on('turbolinks:load', turbolinksLoad())
+
+$ ->
+  docReady()
 

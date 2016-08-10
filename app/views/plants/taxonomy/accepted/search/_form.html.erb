@@ -16,7 +16,7 @@
   </div>
   <div class="col-xs-8 col-xs-offset-4 col-sm-8 col-sm-offset-7 col-md-5 col-md-offset-0 col-lg-4 col-lg-offset-0 col-xl-3">
     <%= link_to("#{fa_icon('search')} APNI".html_safe,
-                plants_names_search_path(q: params[:q]),
+                plants_names_search_path(q:''),
                 id: "search-names-link",
                 class: "alt-search-link btn btn-secondary hidden-print",
                 title: "Switch to APNI search") %>

@@ -18,7 +18,7 @@
       <%= fa_icon('search') %>&nbsp;APNI
     <% end %>
     <%= link_to("#{fa_icon('search')} APC".html_safe,
-              plants_taxonomy_accepted_search_path(q: params[:q]),
+              plants_taxonomy_accepted_search_path(q:''),
               id: "search-taxonomy-link",
               class: "alt-search-link btn btn-secondary hidden-print",
               title: "Switch to APC Search") %>

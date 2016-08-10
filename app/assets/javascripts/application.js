@@ -16,4 +16,3 @@
 //= require jquery_ujs
 //= require bootstrap-add-clear
 //= require search
-//= require turbolinks
