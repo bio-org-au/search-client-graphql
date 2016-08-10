@@ -212,16 +212,16 @@ window.changeHelpSwitch = (bool) ->
 
 jsonSearch = (event, $element) ->
   debug('jsonSearch')
-  $('#search-output-format').val('json');
+  $('#search-output-format').val('json')
   $('#search-button').click()
-  $('#search-output-format').val('html');
+  $('#search-output-format').val('html')
   event.preventDefault()
   event.stopPropagation()
 
 csvSearch = (event, $element) ->
-  $('#search-output-format').val('csv');
+  $('#search-output-format').val('csv')
   $('#search-button').click()
-  $('#search-output-format').val('html');
+  $('#search-output-format').val('html')
   event.preventDefault()
   event.stopPropagation()
 
