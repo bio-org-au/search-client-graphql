@@ -56,7 +56,6 @@ drillDownToggle = (event, $element) ->
   debug("drillDownToggle")
   targetId = $element.data("target-id")
   if $("##{targetId}").hasClass("hidden-xs-up")
-    debug('showing')
     $element.addClass("showing-details")
     $element.removeClass("no-details").removeClass("hiding-details")
     showTarget(targetId)
@@ -134,11 +133,7 @@ window.resetControls = () ->
   details_retrieved_count = $('.details.retrieved').length
   expanded_details_count = Math.min(details_retrieved_count, $('a.showing-details').length)
   collapsed_details_count = $('.hiding-details').length
-  debug("name_count: #{name_count}")
-  debug("details_retrieved_count: #{details_retrieved_count}")
   $('#details-retrieved-count').text("#{details_retrieved_count}")
-  debug("expanded_details_count: #{expanded_details_count}")
-  debug("collapsed_details_count: #{collapsed_details_count}")
   if name_count == 0
     $('.control').addClass('hidden-xs-up')
   else
@@ -259,13 +254,30 @@ taxonomyFormatSearch = (event, $element) ->
   event.preventDefault()
   event.stopPropagation()
 
-addClearButton = () ->
+window.addClearButton = () ->
   $("#q").addClear({symbolClass: "fa fa-times-circle", color: "darkgray", top: 8, right: 30})
   $("#q").focus()
 
+startSearch = (event, $element) ->
+  debug('startSearch')
+  if $('#q').val().length > 0
+    $("body").css("cursor", "wait")
+
+altSearchLink = (event, $element) ->
+  debug('altSearchLink')
+  startSearch(event, $element)
+
+pageFetch = () ->
+  debug('pageFetch')
+
+
 # Turbolinks
-ready = ->
-  debug('jQuery version: ' + $().jquery)
+turbolinksLoad = () ->
+  debug('turbolinksLoad')
+  docReady()
+
+docReady = ->
+  debug('docReady:  jQuery version: ' + $().jquery)
   $('body').on('click','.nav-new-search', (event) -> navNewSearch(event,$(this)))
   $('body').on('click','.details-toggle', (event) -> detailsToggle(event,$(this)))
   $('body').on('click','.needs-details-limit', (event) -> needsDetailsLimit(event,$(this)))
@@ -282,10 +294,14 @@ ready = ->
   $('body').on('click','.alt-search-link', (event) -> altSearchLink(event,$(this)))
   $('body').on('click','.taxonomy-search-sidebar-link', (event) -> switchSidebarSearch(event,$(this)))
   $('body').on('click','.taxonomy-format-search', (event) -> taxonomyFormatSearch(event,$(this)))
+  $('body').on('click','#search-button', (event) -> startSearch(event,$(this)))
+  $('body').on('click','.alt-search-link', (event) -> altSearchLink(event,$(this)))
+  $('body').on('page:fetch','*', (event) -> pageFetch(event,$(this)))
+  # addClearButton() if typeof(addClearButton) == "function"
   addClearButton()
   loadDetailsIfRequired() if typeof(loadDetailsIfRequired) == "function"
   resetControls() if typeof(resetControls) == "function"
 	
 
-$(document).ready(ready)
-$(document).on('page:load', ready)
+$(document).on('turbolinks:load', turbolinksLoad())
+

@@ -18,7 +18,7 @@
       <%= fa_icon('search') %>&nbsp;APNI
     <% end %>
     <%= link_to("#{fa_icon('search')} APC".html_safe,
-              plants_taxonomy_accepted_search_path(q: ""),
+              plants_taxonomy_accepted_search_path(q: params[:q]),
               id: "search-taxonomy-link",
               class: "alt-search-link btn btn-secondary hidden-print",
               title: "Switch to APC Search") %>
@@ -51,3 +51,7 @@
 <% if @search.present? %>
   <%= render partial: '/plants/names/search/results', locals: {search: @search, name: @search.results.first} %>
 <% end %>
+
+<script>
+  window.addClearButton();
+</script>
