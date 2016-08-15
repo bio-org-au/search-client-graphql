@@ -105,5 +105,17 @@ module ApplicationHelper
       ""
     end
   end
+
+  def nsl_path
+    Rails.configuration.nsl_path
+  end
+
+  def flora_path
+    Rails.configuration.flora_path
+  end
+
+  def fauna_path
+    Rails.configuration.fauna_path
+  end
 end
 

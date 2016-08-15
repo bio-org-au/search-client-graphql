@@ -33,3 +33,7 @@ module Search
     config.path_to_broadcast_file = "#{ENV['HOME']}/.nsl/broadcast.txt"
   end
 end
+
+Rails.configuration.nsl_path = "http://localhost:2016/"
+Rails.configuration.flora_path = "http://localhost:2016/flora"
+Rails.configuration.fauna_path = "http://localhost:2016/fauna"
