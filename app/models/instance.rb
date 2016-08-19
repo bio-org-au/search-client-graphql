@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Instance < ActiveRecord::Base
   self.table_name = "instance"
   self.primary_key = "id"
@@ -35,7 +36,8 @@ class Instance < ActiveRecord::Base
       "          else 2 end, " \
       "          case taxonomic " \
       "          when true then 2 " \
-      "          else 1 end ")
+      "          else 1 end "
+    )
   }
 
   def xsort_fields
@@ -55,15 +57,15 @@ class Instance < ActiveRecord::Base
 
   def self.records_cited_by_standalone(instance)
     Instance.joins(:instance_type, :name, :reference)
-      .where(cited_by_id: instance.id)
-      .in_nested_instance_type_order
-      .order("reference.year,lower(name.full_name)")
+            .where(cited_by_id: instance.id)
+            .in_nested_instance_type_order
+            .order("reference.year,lower(name.full_name)")
   end
 
   def self.records_cited_by_relationship(instance)
     Instance.joins(:instance_type)
-      .where(cited_by_id: instance.id)
-      .in_nested_instance_type_order
+            .where(cited_by_id: instance.id)
+            .in_nested_instance_type_order
   end
 
   def primary?
@@ -71,16 +73,16 @@ class Instance < ActiveRecord::Base
   end
 
   def apc_comment
-    instance_notes.each do | note | 
+    instance_notes.each do |note|
       return note.value if note.apc_comment?
     end
-    return nil
+    nil
   end
 
   def apc_distribution
-    instance_notes.each do | note | 
+    instance_notes.each do |note|
       return note.value if note.apc_distribution?
     end
-    return nil
+    nil
   end
 end

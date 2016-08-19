@@ -1,6 +1,6 @@
 <ul>
 <% tally = 0 %>
-<% name.pg_ranked_descendant_counts.each do |d| %>
+<% Plants::Names::Search::Within::RankedDescendantCounts.new(name.id).results.each do |d| %>
   <% target_id = new_target_id %>
   <% tally += d['count'].to_i %>
   <li>

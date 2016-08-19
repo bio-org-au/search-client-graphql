@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class AcceptedName < ActiveRecord::Base
   self.table_name = "accepted_name_vw"
   self.primary_key = "id"
@@ -16,8 +17,8 @@ class AcceptedName < ActiveRecord::Base
   has_many :instance_note_keys, through: :instance_notes
   has_many :cites, through: :synonyms
   has_many :cite_references, through: :synonyms, source: :reference
-  scope :simple_name_like, ->(string) { where("lower(simple_name) like lower(?) ", string.gsub(/\*/, "%").downcase) }
-  scope :full_name_like, ->(string) { where("lower(full_name) like lower(?) ", string.gsub(/\*/, "%").downcase) }
+  scope :simple_name_like, ->(string) { where("lower(simple_name) like lower(?) ", string.tr("*", "%").downcase) }
+  scope :full_name_like, ->(string) { where("lower(full_name) like lower(?) ", string.tr("*", "%").downcase) }
   scope :ordered, -> { order("sort_name") }
   scope :accepted, -> { where(type_code: APC_ACCEPTED) }
   scope :excluded, -> { where(type_code: APC_EXCLUDED) }

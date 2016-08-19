@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require File.expand_path("../boot", __FILE__)
 
 require "csv"
@@ -31,6 +32,7 @@ module Search
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.path_to_broadcast_file = "#{ENV['HOME']}/.nsl/broadcast.txt"
+    config.active_record.schema_format = :sql
   end
 end
 

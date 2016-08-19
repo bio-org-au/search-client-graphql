@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # General view helpers.
 module ApplicationHelper
   def new_target_id
@@ -16,23 +17,23 @@ module ApplicationHelper
     end
     [display, shown]
   end
- 
+
   def show_standalone_instance(instance, apc)
     fragment = "<div class='instance-citation'>"
     fragment << instance.reference.citation_html
     fragment << ": #{instance.page}" if instance.page.present?
     fragment << "&nbsp; [#{instance.instance_type.name}]" if instance.primary?
-    fragment << "&nbsp;<span class='red'>(APC)</span>" if apc 
+    fragment << "&nbsp;<span class='red'>(APC)</span>" if apc
     fragment << "</div>"
     fragment << "<ul class='indented'>"
     Instance.records_cited_by_standalone(instance).each do |cited_by|
       fragment << "<li class='compact subordinate-instance'>"
-      fragment << "<span class='instance-type-name'>#{cited_by.instance_type.name}: </span>" 
+      fragment << "<span class='instance-type-name'>#{cited_by.instance_type.name}: </span>"
       fragment << "<span class='instance-type'>"
-      target_id =  "#{rand(1000)}-#{rand(1000)}-#{rand(1000)}"
-      fragment << link_to(cited_by.name.full_name, plants_names_show_path(cited_by.name.id,target_id: target_id),
+      target_id = "#{rand(1000)}-#{rand(1000)}-#{rand(1000)}"
+      fragment << link_to(cited_by.name.full_name, plants_names_show_path(cited_by.name.id, target_id: target_id),
                           class: "drill-down-toggle",
-                          data: {target_id: target_id},
+                          data: { target_id: target_id },
                           remote: true)
       fragment << "</span>"
       fragment << "</li>"
@@ -60,11 +61,11 @@ module ApplicationHelper
     end
     [display, shown]
   end
- 
-  def show_standalone_name_instance(name_instance, apc)
-    ["standalone",false]
+
+  def show_standalone_name_instance(_name_instance, _apc)
+    ["standalone", false]
   end
- 
+
   def show_relationship_name_instance(name_instance, shown)
     citing_instance = name_instance.instance.this_is_cited_by
     return "", shown if shown.include?(citing_instance.id)
@@ -79,17 +80,18 @@ module ApplicationHelper
     Instance.records_cited_by_relationship(citing_instance).each do |cited_by|
       next unless cited_by.name.id == name_instance.name.id
       fragment << "<li class='compact subordinate-instance'>"
-      target_id =  "#{rand(1000)}-#{rand(1000)}-#{rand(1000)}"
+      target_id = "#{rand(1000)}-#{rand(1000)}-#{rand(1000)}"
       fragment << "<span class='instance-type-name'>"
       fragment << "#{cited_by.instance_type.name} of: </span>"
       fragment << "<span class='instance-type'>"
       fragment << link_to(cited_by.this_is_cited_by.name.full_name,
-                           plants_names_show_path(
-                           cited_by.this_is_cited_by.name.id,
-                           target_id: target_id), 
-                           class: "drill-down-toggle",
-                           data: {target_id: target_id},
-                           remote: true)
+                          plants_names_show_path(
+                            cited_by.this_is_cited_by.name.id,
+                            target_id: target_id
+                          ),
+                          class: "drill-down-toggle",
+                          data: { target_id: target_id },
+                          remote: true)
       fragment << "</span>"
       fragment << "</li>"
       fragment << "<div class='drill-down hidden-xs-up' id='#{target_id}'>"
@@ -99,7 +101,7 @@ module ApplicationHelper
   end
 
   def no_results_help(size)
-    if size == 0 
+    if size.zero?
       "<br/><br/>You may want to alter or reduce your search string, or add wildcards."
     else
       ""
@@ -118,4 +120,3 @@ module ApplicationHelper
     Rails.configuration.fauna_path
   end
 end
-

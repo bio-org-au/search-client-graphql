@@ -1,8 +1,7 @@
+# frozen_string_literal: true
 class Plants::Taxonomy::Accepted::SearchController < ApplicationController
   def index
-    if params["q"].present?
-      search
-    end
+    search if params["q"].present?
     respond_to do |format|
       format.html
       format.json
@@ -13,7 +12,7 @@ class Plants::Taxonomy::Accepted::SearchController < ApplicationController
   private
 
   def search
-    case params[:search_type] || ''
+    case params[:search_type] || ""
     when /accepted\z/
       @search = Plants::Taxonomy::Accepted::Search::Accepted.new(params)
     when /accepted and excluded\z/

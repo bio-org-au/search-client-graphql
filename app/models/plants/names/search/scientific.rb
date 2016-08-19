@@ -1,14 +1,15 @@
+# frozen_string_literal: true
 #  Search for scientific names
 class Plants::Names::Search::Scientific
   attr_reader :parsed,
               :results
-  SEARCH_TYPE = "Scientific Name".freeze
+  SEARCH_TYPE = "Scientific Name"
   def initialize(params, default_show_results_as: "list")
     Rails.logger.debug("Plants::Name::Search::Scientific")
     @parsed = Plants::Names::Search::Parse.new(params,
-                                      search_type: SEARCH_TYPE,
-                                      default_show_results_as:
-                                        default_show_results_as)
+                                               search_type: SEARCH_TYPE,
+                                               default_show_results_as:
+                                                 default_show_results_as)
     Rails.logger.debug("@parsed.limit: #{@parsed.limit}")
     @results = name_search
   end
@@ -18,7 +19,7 @@ class Plants::Names::Search::Scientific
       list_search.search_for(@parsed.search_term)
     else
       list_search.search_for(@parsed.search_term)
-      #detail_search.search_for(@parsed.search_term)
+      # detail_search.search_for(@parsed.search_term)
     end
   end
 

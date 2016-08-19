@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "test_helper"
 
 class SearchControllerTest < ActionController::TestCase
@@ -15,5 +16,4 @@ class SearchControllerTest < ActionController::TestCase
     get :apc
     assert_response :success
   end
-
 end

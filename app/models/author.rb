@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Author < ActiveRecord::Base
   self.table_name = "author"
   self.primary_key = "id"

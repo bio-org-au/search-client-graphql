@@ -1,11 +1,11 @@
+# frozen_string_literal: true
 #  Other taxonomies
-class Plants::Taxonomy::Other 
-
+class Plants::Taxonomy::Other
   TAXONOMIES = Rails.configuration.taxonomies
 
   def initialize(key)
     @key = key
-    if TAXONOMIES.has_key?(key)
+    if TAXONOMIES.key?(key)
       @taxonomy = TAXONOMIES[key]
       @intro = @taxonomy[:intro]
     else
@@ -25,8 +25,5 @@ class Plants::Taxonomy::Other
     @taxonomy[:intro] unless @taxonomy.nil?
   end
 
-  def key
-    @key
-  end
+  attr_reader :key
 end
-

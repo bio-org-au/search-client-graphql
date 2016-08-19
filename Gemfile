@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 source "https://rubygems.org"
 
 gem "rails", "4.2.5.1"
@@ -63,19 +64,18 @@ group :development do
   gem "awesome_print"
 end
 
-gem 'bootstrap', '~> 4.0.0.alpha3.1'  # Use Bootstrap 4.
-source 'https://rails-assets.org' do
-  gem 'rails-assets-tether', '>= 1.1.1'
+gem "bootstrap", "~> 4.0.0.alpha3.1" # Use Bootstrap 4.
+source "https://rails-assets.org" do
+  gem "rails-assets-tether", ">= 1.1.1"
 end
 
-#source 'https://rails-assets.org' do
-#gem 'rails-assets-tether', '~> 1.1.1'
-#end
+# source 'https://rails-assets.org' do
+# gem 'rails-assets-tether', '~> 1.1.1'
+# end
 
 gem "acts_as_tree"
-gem "statsd-ruby", :require => "statsd"
+gem "statsd-ruby", require: "statsd"
 gem "font-awesome-rails"
 gem "nunes"
 gem "activerecord-hierarchical_query", require: "active_record/hierarchical_query"
-gem 'scenic', '~> 0.3.0'
-
+gem "scenic", "~> 0.3.0"

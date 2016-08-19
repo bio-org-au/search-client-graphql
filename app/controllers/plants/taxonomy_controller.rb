@@ -1,5 +1,5 @@
+# frozen_string_literal: true
 class Plants::TaxonomyController < ApplicationController
-
   def show
     @name = Name.find_by(id: params[:id])
     @name_details = NameDetail.ordered.where(id: params[:id])

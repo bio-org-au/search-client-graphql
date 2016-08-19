@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class InstanceNoteForComment < ActiveRecord::Base
   self.table_name = "instance_note"
   self.primary_key = "id"

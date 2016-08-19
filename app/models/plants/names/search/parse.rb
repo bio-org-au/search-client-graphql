@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Plants::Names::Search::Parse
   attr_reader :search_type,
               :search_term,
@@ -11,12 +12,12 @@ class Plants::Names::Search::Parse
   DEFAULT_DETAILS_LIMIT = 3
 
   def initialize(params, info = {})
-    if info.has_key?(:search_type) 
-      @search_type = "#{info[:search_type]} Search"
-    else
-      @search_type = SIMPLE_SEARCH
-    end
-    @search_term = params[:q].strip.gsub(/\*/,'%')
+    @search_type = if info.key?(:search_type)
+                     "#{info[:search_type]} Search"
+                   else
+                     SIMPLE_SEARCH
+                   end
+    @search_term = params[:q].strip.tr("*", "%")
     @show_as = params[:show_results_as] || info[:default_show_results_as] || SHOW_LIST
     @limit = calculated_limit
   end

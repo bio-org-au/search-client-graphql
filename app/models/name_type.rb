@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class NameType < ActiveRecord::Base
   self.table_name = "name_type"
   self.primary_key = "id"

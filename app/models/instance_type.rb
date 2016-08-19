@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class InstanceType < ActiveRecord::Base
   self.table_name = "instance_type"
   self.primary_key = "id"
@@ -25,7 +26,7 @@ class InstanceType < ActiveRecord::Base
   end
 
   def cited_by_preposition
-    if name.downcase.match(/misapplied/)
+    if name.downcase =~ /misapplied/
       "to"
     else
       "of"
@@ -33,6 +34,6 @@ class InstanceType < ActiveRecord::Base
   end
 
   def shows_reference_it_cites?
-    name.match('misapplied')
+    name.match("misapplied")
   end
 end

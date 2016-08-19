@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 #  Name object methods
 class NameSearch < ActiveRecord::Base
   self.table_name = "name"
@@ -23,5 +24,4 @@ class NameSearch < ActiveRecord::Base
   def self.detail_search
     NameInstance.scientific.ordered
   end
-
 end

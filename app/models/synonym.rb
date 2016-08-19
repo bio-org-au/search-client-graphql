@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Synonym < ActiveRecord::Base
   self.table_name = "instance"
   self.primary_key = "id"
@@ -7,4 +8,3 @@ class Synonym < ActiveRecord::Base
   belongs_to :cite, foreign_key: "cites_id"
   belongs_to :instance_type
 end
-

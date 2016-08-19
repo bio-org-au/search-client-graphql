@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Superclass for controllers.
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
@@ -24,7 +25,6 @@ class ApplicationController < ActionController::Base
     logger.error(e.to_s)
   end
 
-
   def set_default_show_results_as
     if params.key?("show_results_as")
       session[:default_show_results_as] =
@@ -38,15 +38,14 @@ class ApplicationController < ActionController::Base
     if params.key?("details_limit")
       session[:default_details_limit] = params[:details_limit].to_i
     end
-    return if session[:default_details_limit].to_i > 0
+    return if session[:default_details_limit].to_i.positive?
     session[:default_details_limit] = 20
   end
-
-  private
 
   def set_zone
     @zone = ""
   end
+
   def valid_show_results_as(user_preference = "blank")
     case user_preference.downcase.strip
     when /\Alist\z/

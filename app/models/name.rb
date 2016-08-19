@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 #  Name object methods
 class Name < ActiveRecord::Base
   self.table_name = "name"
@@ -20,59 +21,90 @@ class Name < ActiveRecord::Base
   has_many :apni_tree_arrangements, through: :apni_name_tree_paths
   has_many :apni_name_tree_paths, class_name: "NameTreePath"
 
-  has_many :apc_tree_nodes, -> { where "next_node_id is null and checked_in_at_id is not null" },
+  has_many :apc_tree_nodes, (lambda do
+                               where "next_node_id is null
+                               and checked_in_at_id is not null"
+                             end),
            class_name: "TreeNode"
   has_many :apc_tree_arrangements, through: :apc_tree_nodes
 
-  has_one :apc_accepted_tree_node, -> { where "next_node_id is null and checked_in_at_id is not null and type_uri_id_part = 'ApcConcept'" },
-           class_name: "TreeNode"
+  has_one :apc_accepted_tree_node, (lambda do
+                                      where "next_node_id is null
+                                      and checked_in_at_id is not null
+                                      and type_uri_id_part = 'ApcConcept'"
+                                    end),
+          class_name: "TreeNode"
   has_one :apc_accepted_instance, through: :apc_accepted_tree_node
 
-  has_one :apc_excluded_tree_node, -> { where "next_node_id is null and checked_in_at_id is not null and type_uri_id_part = 'ApcExcluded'" },
-           class_name: "TreeNode"
+  has_one :apc_excluded_tree_node, (lambda do
+    where "next_node_id is null
+    and checked_in_at_id is not null
+    and type_uri_id_part = 'ApcExcluded'"
+  end),
+          class_name: "TreeNode"
   has_one :apc_excluded_instance, through: :apc_excluded_tree_node
 
   has_many :cited_by_instances, through: :instances
   has_many :cited_by_names, through: :cited_by_instances
   has_many :cited_by_instance_tree_nodes, through: :cited_by_instances
-  has_many :cited_by_instance_tree_arrangements, through: :cited_by_instance_tree_nodes
+  has_many :cited_by_instance_tree_arrangements,
+           through: :cited_by_instance_tree_nodes
 
-  has_many :cited_by_instance_tree_node_names, through: :cited_by_instance_tree_nodes
-  has_many :cited_by_instance_tree_node_name_name_tree_paths, through: :cited_by_instances
-
+  has_many :cited_by_instance_tree_node_names,
+           through: :cited_by_instance_tree_nodes
+  has_many :cited_by_instance_tree_node_name_name_tree_paths,
+           through: :cited_by_instances
   has_one :accepted_name, foreign_key: :id
-  has_many :name_instances, foreign_key: :id
   has_many :name_instance_name_tree_paths, foreign_key: :id
-
   scope :not_a_duplicate, -> { where(duplicate_of_id: nil) }
-  scope :has_an_instance, -> { where(["exists (select null from instance where name.id = instance.name_id)"]) }
-  scope :lower_full_name_like, ->(string) { where("lower(f_unaccent(name.full_name)) like f_unaccent(?) ", string.tr("*", "%").downcase) }
-  scope :lower_simple_name_like, ->(string) { where("lower(name.simple_name) like ? ", string.gsub(/\*/, "%").downcase) }
+  scope :has_an_instance, (lambda do
+    where(["exists (select null
+           from instance
+           where name.id = instance.name_id)"])
+  end)
+  scope :lower_full_name_like, (lambda do |string|
+                                  where("lower(f_unaccent(name.full_name))
+                                        like f_unaccent(?) ",
+                                        string.tr("*", "%").downcase)
+                                end)
+  scope :lower_simple_name_like, (lambda do |string|
+                                    where("lower(name.simple_name) like ? ",
+                                          string.tr("*", "%").downcase)
+                                  end)
   scope :ordered, -> { order("sort_name") }
-  scope :ordered_scientifically, -> { order("coalesce(trim( trailing '>' from substring(substring(name_tree_path.rank_path from 'Familia:[^>]*>') from 9)),'A'||to_char(name_rank.sort_order,'0009')), sort_name, name_rank.sort_order") }
+  scope :ordered_scientifically, (lambda do
+                                    order("coalesce(trim( trailing '>'
+                                          from substring(substring(
+                                          name_tree_path.rank_path from
+                                          'Familia:[^>]*>') from 9)),
+                                          'A'||to_char(name_rank.sort_order,
+                                          '0009')), sort_name,
+                                          name_rank.sort_order")
+                                  end)
   scope :limited_high, -> { limit(5000) }
 
   def self.search_for(string)
-    where("( lower(name.simple_name) like ? or lower(name.simple_name) like ? or lower(f_unaccent(name.full_name)) like ? or lower(f_unaccent(name.full_name)) like ?)",
+    where("( lower(name.simple_name) like ?
+          or lower(name.simple_name) like ?
+          or lower(f_unaccent(name.full_name)) like ?
+          or lower(f_unaccent(name.full_name)) like ?)",
           string.downcase.tr("*", "%").tr("×", "x"),
           Name.string_for_possible_hybrids(string),
           string.downcase.tr("*", "%").tr("×", "x"),
-          Name.string_for_possible_hybrids(string)
-         )
+          Name.string_for_possible_hybrids(string))
   end
 
   def self.simple_name_allow_for_hybrids_like(string)
     where("( lower(name.simple_name) like ? or lower(name.simple_name) like ?)",
           string.downcase.tr("*", "%").tr("×", "x"),
-          Name.string_for_possible_hybrids(string)
-         )
+          Name.string_for_possible_hybrids(string))
   end
 
   def self.full_name_allow_for_hybrids_like(string)
-    where("( lower(f_unaccent(name.full_name)) like ? or lower(f_unaccent(name.full_name)) like ?)",
+    where("( lower(f_unaccent(name.full_name)) like ?
+          or lower(f_unaccent(name.full_name)) like ?)",
           string.downcase.tr("*", "%").tr("×", "x"),
-          Name.string_for_possible_hybrids(string)
-         )
+          Name.string_for_possible_hybrids(string))
   end
 
   def self.string_for_possible_hybrids(string)
@@ -83,8 +115,10 @@ class Name < ActiveRecord::Base
   def self.unordered_accepted_tree_synonyms
     Name.joins(:cited_by_instance_tree_arrangements)
         .joins(:cited_by_instance_tree_node_names)
-        .joins("inner join name_tree_path ntp on cited_by_instance_tree_node_names_name.id = ntp.name_id")
-        .joins(" inner join tree_arrangement ntp_ta on ntp.tree_id = ntp_ta.id and ntp_ta.label = 'APC' ")
+        .joins("inner join name_tree_path ntp
+                on cited_by_instance_tree_node_names_name.id = ntp.name_id")
+        .joins(" inner join tree_arrangement ntp_ta
+                on ntp.tree_id = ntp_ta.id and ntp_ta.label = 'APC' ")
         .includes(:status)
         .includes(:cited_by_instance_tree_node_names)
         .joins(:rank)
@@ -104,7 +138,7 @@ class Name < ActiveRecord::Base
   end
 
   def instances_in_order
-    self.instances.sort do |x, y|
+    instances.sort do |x, y|
       x.sort_fields <=> y.sort_fields
     end
   end
@@ -141,7 +175,7 @@ class Name < ActiveRecord::Base
         .includes(:authors)
         .includes(:synonyms)
         .order("sort_name")
-        # .includes(:accepted_name) # goes crazy on list search
+    # .includes(:accepted_name) # goes crazy on list search
   end
 
   def self.common_search
@@ -185,9 +219,7 @@ class Name < ActiveRecord::Base
   end
 
   def family_name
-    name_tree_path_default.rank_path.sub(/.*Familia:/,'').sub(/>.*$/,'')
-  rescue => e
-    "unknown"
+    name_tree_path_default.rank_path.sub(/.*Familia:/, "").sub(/>.*$/, "")
   end
 
   def self.seek_family_name(n)
@@ -206,7 +238,7 @@ class Name < ActiveRecord::Base
   end
 
   def apc_instance_id
-    #TreeNode.apc(full_name).try("first").try("instance_id")
+    # TreeNode.apc(full_name).try("first").try("instance_id")
     AcceptedName.where(id: id).try("first").try("instance_id")
   end
 
@@ -218,35 +250,6 @@ class Name < ActiveRecord::Base
         .order_siblings(:full_name)
         .nocycle
     end
-  end
-
-  # Built as pg-specific code (although should be standard sql)
-  # Originally tried "tn.parent_id = #{id}" but this was slow
-  # (~1200ms vs ~3ms) despite an index on parent_id.
-  def pg_ranked_descendant_counts
-    sql = "WITH RECURSIVE nodes_cte(id, full_name, parent_id, depth, path) AS (
- SELECT tn.id, tn.full_name, tn.parent_id, 1::INT AS depth,
-        tn.id::TEXT AS path, tnr.name as rank, tnr.sort_order rank_order
-   FROM name AS tn
-        join
-        name_rank tnr
-        on tn.name_rank_id = tnr.id
-  WHERE tn.id = #{ActiveRecord::Base.sanitize(id)}
-UNION ALL
- SELECT c.id, c.full_name, c.parent_id, p.depth + 1 AS depth,
-        (p.path || '->' || c.id::TEXT), cnr.name as rank,
-        cnr.sort_order rank_order
-   FROM nodes_cte AS p, name AS c
-        join name_rank cnr
-        on c.name_rank_id = cnr.id
-  WHERE c.parent_id = p.id
-)
- SELECT n.rank, count(*) FROM nodes_cte AS n
- where exists (select null from instance where instance.name_id = n.id)
-   and n.id != #{ActiveRecord::Base.sanitize(id)}
-  group by n.rank, n.rank_order
-  order by n.rank_order"
-  ActiveRecord::Base.connection.execute(sql)
   end
 
   def pg_descendants_at_rank(rank_name)
@@ -278,7 +281,7 @@ SELECT n.id, n.full_name FROM nodes_cte AS n
     and ta.label = 'APNI'
     and exists (select null from instance where instance.name_id = n.id)
   order by n.full_name"
-  ActiveRecord::Base.connection.execute(sql)
+    ActiveRecord::Base.connection.execute(sql)
   end
 
   def sub_taxon?
@@ -304,33 +307,24 @@ SELECT 1 FROM nodes_cte AS n
 limit 3"
     results = ActiveRecord::Base.connection.execute(sql)
     max = 0
-    results.each_with_index do |result, index|
+    results.each_with_index do |_result, index|
       max = index
     end
     Rails.logger.debug("max: #{max}")
-    if max <= 1
-      return false
-    else
-      return true
-    end
+    max > 1
   end
 
   def direct_sub_taxa_with_instance_count
     Name.where(parent_id: id).joins(:instances).select("distinct name.id").count
   end
-    
 
   def show_status?
     status.show?
   end
 
   def as_json(options = {})
-    case options[:show] 
-    when :details
-      [name: full_name, status: status.name]
-    else
-      [name: full_name, status: status.name]
-    end
+    logger.debug("as_json options: #{options}")
+    [name: full_name, status: status.name]
   end
 
   def to_csv
@@ -339,7 +333,7 @@ limit 3"
   end
 
   def self.csv_headings
-    ["full_name", "status"].to_csv
+    %w(full_name status).to_csv
   end
 
   def apc_accepted?
@@ -366,6 +360,6 @@ limit 3"
   end
 
   def author_component_of_full_name
-    full_name.sub(/#{Regexp.escape(simple_name)}/,'')
+    full_name.sub(/#{Regexp.escape(simple_name)}/, "")
   end
 end

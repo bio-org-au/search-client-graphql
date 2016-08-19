@@ -1,13 +1,14 @@
+# frozen_string_literal: true
 #  Search for cultivar names
 class Plants::Names::Search::Cultivar
   attr_reader :parsed,
               :results
-  SEARCH_TYPE = "Cultivar Name".freeze
+  SEARCH_TYPE = "Cultivar Name"
   def initialize(params, default_show_results_as: "list")
     @parsed = Plants::Names::Search::Parse.new(params,
-                                      search_type: SEARCH_TYPE,
-                                      default_show_results_as:
-                                        default_show_results_as)
+                                               search_type: SEARCH_TYPE,
+                                               default_show_results_as:
+                                                 default_show_results_as)
     @results = name_search
   end
 
@@ -16,7 +17,7 @@ class Plants::Names::Search::Cultivar
       list_search.search_for(@parsed.search_term)
     else
       list_search.search_for(@parsed.search_term)
-      #detail_search.search_for(@parsed.search_term)
+      # detail_search.search_for(@parsed.search_term)
     end
   end
 

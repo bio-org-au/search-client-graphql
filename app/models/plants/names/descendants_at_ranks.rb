@@ -1,10 +1,11 @@
+# frozen_string_literal: true
 #  Name descendants in a set of ranks object
-class Plants::Names::DescendantsAtRanks 
+class Plants::Names::DescendantsAtRanks
   attr_reader :results,
               :sql,
               :size
 
-  #def initialize(id_string = '0', rank_strings = [])
+  # def initialize(id_string = '0', rank_strings = [])
   def initialize(params)
     id = params[:id].to_i
     " ('Varietas') "
@@ -36,25 +37,25 @@ SELECT n.id, n.full_name
   where ta.label = 'APNI'
     and exists (select null from instance where instance.name_id = n.id)
     and n.id != #{ActiveRecord::Base.sanitize(id)}
-    and n.rank in " + ranks_set(params) + 
-        "order by ntp.rank_path, n.full_name"
-  @results = ActiveRecord::Base.connection.execute(@sql)
-  # A difference between jRuby and Ruby
-  if @results.class == Array
-    @size = @results.size
-  else
-    @size = @results.values.size
-  end
+    and n.rank in " + ranks_set(params) +
+           "order by ntp.rank_path, n.full_name"
+    @results = ActiveRecord::Base.connection.execute(@sql)
+    # A difference between jRuby and Ruby
+    @size = if @results.class == Array
+              @results.size
+            else
+              @results.values.size
+            end
   end
 
   def ranks_set(params)
-    ranks = params.keys.collect {|k| "'#{k}'"}.join(',')
-    ranks.sub!(/'unranked'/,"'[unranked]'")
-    ranks.sub!(/'infrafamily'/,"'[infrafamily]'")
-    ranks.sub!(/'infragenus'/,"'[infragenus]'")
-    ranks.sub!(/'infraspecies'/,"'[infraspecies]'")
-    ranks.sub!(/'n\/a'/,"'[n/a]'")
-    ranks.sub!(/'unknown'/,"'[unknown]'")
+    ranks = params.keys.collect { |k| "'#{k}'" }.join(",")
+    ranks.sub!(/'unranked'/, "'[unranked]'")
+    ranks.sub!(/'infrafamily'/, "'[infrafamily]'")
+    ranks.sub!(/'infragenus'/, "'[infragenus]'")
+    ranks.sub!(/'infraspecies'/, "'[infraspecies]'")
+    ranks.sub!(/'n\/a'/, "'[n/a]'")
+    ranks.sub!(/'unknown'/, "'[unknown]'")
     "(#{ranks})"
   end
 end

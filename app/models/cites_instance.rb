@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CitesInstance < ActiveRecord::Base
   self.table_name = "instance"
   self.primary_key = "cites_id"

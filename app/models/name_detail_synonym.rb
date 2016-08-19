@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class NameDetailSynonym < ActiveRecord::Base
   self.table_name = "name_detail_synonyms_vw"
   belongs_to :name_detail, foreign_key: :cited_by_id
@@ -5,19 +6,19 @@ class NameDetailSynonym < ActiveRecord::Base
 
   def label
     case instance_type_name
-    when 'misapplied'
-      'misapplication'
-    when 'pro parte misapplied'
-      'pro parte misapplication'
-    when 'doubtful pro parte misapplied'
-      'doubtful pro parte misapplication'
-    when 'doubtful misapplied'
-      'doubtful misapplication'
+    when "misapplied"
+      "misapplication"
+    when "pro parte misapplied"
+      "pro parte misapplication"
+    when "doubtful pro parte misapplied"
+      "doubtful pro parte misapplication"
+    when "doubtful misapplied"
+      "doubtful misapplication"
     else
       instance_type_name
     end
   end
-  
+
   def shows_cites_reference?
     instance_type_name.match(/\Amisapplied\z/)
   end

@@ -25,3 +25,9 @@ x_agro:
   simple_name: x agro
   full_name: x agro
   <<: *DEFAULTS
+
+angophora_costata:
+  name_element: costata
+  simple_name: Angophora costata
+  full_name: Angophora costata (Gaertn.) Britten
+  <<: *DEFAULTS

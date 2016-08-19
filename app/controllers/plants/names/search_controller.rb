@@ -1,13 +1,12 @@
+# frozen_string_literal: true
 class Plants::Names::SearchController < ApplicationController
   def index
     logger.debug(" Plants::Names::SearchController < ApplicationController")
     set_zone
-    if params["q"].present?
-      search
-    end
+    search if params["q"].present?
     respond_to do |format|
       format.html
-      format.json { render :json => @search }
+      format.json { render json: @search }
       format.csv
     end
   end

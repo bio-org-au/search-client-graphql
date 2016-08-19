@@ -1,10 +1,11 @@
+# frozen_string_literal: true
 #  Name descendants object
-class Plants::Names::Descendants 
+class Plants::Names::Descendants
   attr_reader :results,
               :sql,
               :size
 
-  def initialize(id_string = '0')
+  def initialize(id_string = "0")
     id = id_string.to_i
     @sql = "WITH RECURSIVE nodes_cte(id, full_name, parent_id, depth, path) AS (
     SELECT tn.id,
@@ -35,12 +36,12 @@ SELECT n.id, name.full_name, name.sort_name, n.depth, n.path,
        )
     and n.id != #{ActiveRecord::Base.sanitize(id)}
  order by name.sort_name"
-  @results = ActiveRecord::Base.connection.execute(@sql)
-  # A difference between jRuby and Ruby
-  if @results.class == Array
-    @size = @results.size
-  else
-    @size = @results.values.size
-  end
+    @results = ActiveRecord::Base.connection.execute(@sql)
+    # A difference between jRuby and Ruby
+    @size = if @results.class == Array
+              @results.size
+            else
+              @results.values.size
+            end
   end
 end

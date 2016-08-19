@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Reference < ActiveRecord::Base
   self.table_name = "reference"
   self.primary_key = "id"

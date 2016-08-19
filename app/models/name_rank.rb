@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class NameRank < ActiveRecord::Base
   self.table_name = "name_rank"
   self.primary_key = "id"
@@ -6,11 +7,11 @@ class NameRank < ActiveRecord::Base
   belongs_to :name_group
 
   def self.species
-    self.find_by(name: "Species")
+    find_by(name: "Species")
   end
 
   def family?
-    name == 'Familia'
+    name == "Familia"
   end
 
   def show?
@@ -25,7 +26,7 @@ class NameRank < ActiveRecord::Base
     rank_sort_order < NameRank.species.sort_order
   end
 
-  def self.show?(rank_name,rank_visible_in_name,rank_sort_order)
+  def self.show?(_rank_name, rank_visible_in_name, rank_sort_order)
     !rank_visible_in_name && NameRank.above_species?(rank_sort_order)
   end
 end

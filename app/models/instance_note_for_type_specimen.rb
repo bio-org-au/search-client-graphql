@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class InstanceNoteForTypeSpecimen < ActiveRecord::Base
   self.table_name = "instance_note"
   self.primary_key = "id"
@@ -9,6 +10,6 @@ class InstanceNoteForTypeSpecimen < ActiveRecord::Base
   belongs_to :name_instance_name_tree_path, foreign_key: "instance_id"
 
   def marked_up_value
-    value.gsub(/<IT>/,"<em>").gsub(/<RO>/,"</em> ")
+    value.gsub(/<IT>/, "<em>").gsub(/<RO>/, "</em> ")
   end
 end

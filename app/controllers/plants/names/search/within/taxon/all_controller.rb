@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Plants::Names::Search::Within::Taxon::AllController < ApplicationController
   def index
     @name = Name.find(params[:id])

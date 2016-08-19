@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Non-accepted taxonomies controller
 class Plants::Taxonomy::OtherController < ApplicationController
   def index

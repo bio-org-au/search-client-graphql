@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class NameStatus < ActiveRecord::Base
   self.table_name = "name_status"
   self.primary_key = "id"

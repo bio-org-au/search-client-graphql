@@ -1,5 +1,5 @@
 <ul>
-<% name.pg_ranked_descendant_counts.each do |d| %>
+<% Plants::Names::Search::Within::RankedDescendantCounts.new(name.id).each do |d| %>
   <% target_id = new_target_id %>
   <li/><%= link_to("#{d['rank']}: #{d['count']}",
                    plants_names_search_within_taxon_at_rank_path(

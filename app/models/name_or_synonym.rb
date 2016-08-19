@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class NameOrSynonym < ActiveRecord::Base
   self.table_name = "name_or_synonym_vw"
   self.primary_key = "id"
@@ -15,25 +16,25 @@ class NameOrSynonym < ActiveRecord::Base
   # http://thepugautomatic.com/2014/08/union-with-active-record/
   #
   # Gets past this error:
-  #   ERROR:  bind message supplies 0 parameters, but 
+  #   ERROR:  bind message supplies 0 parameters, but
   #   prepared statement "" requires 2
   #
   # See the explanation here: https://github.com/rails/rails/issues/13686
-  def self.simple_name_like(search_term = 'x')
+  def self.simple_name_like(search_term = "x")
     query1 = AcceptedName.simple_name_like(search_term)
     query2 = AcceptedSynonym.simple_name_like(search_term)
-    sql = NameOrSynonym.connection.unprepared_statement {
+    sql = NameOrSynonym.connection.unprepared_statement do
       "((#{query1.to_sql}) UNION (#{query2.to_sql})) AS name_or_synonym_vw"
-    }
+    end
     NameOrSynonym.from(sql).order("sort_name")
   end
 
-  def self.full_name_like(search_term = 'x')
+  def self.full_name_like(search_term = "x")
     query1 = AcceptedName.full_name_like(search_term)
     query2 = AcceptedSynonym.full_name_like(search_term)
-    sql = NameOrSynonym.connection.unprepared_statement {
+    sql = NameOrSynonym.connection.unprepared_statement do
       "((#{query1.to_sql}) UNION (#{query2.to_sql})) AS name_or_synonym_vw"
-    }
+    end
     NameOrSynonym.from(sql).order("sort_name")
   end
 
@@ -52,5 +53,4 @@ class NameOrSynonym < ActiveRecord::Base
   def show_status?
     status.show?
   end
-
 end

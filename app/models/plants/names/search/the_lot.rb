@@ -1,13 +1,14 @@
+# frozen_string_literal: true
 #  Search all names
 class Plants::Names::Search::TheLot
   attr_reader :parsed,
               :results
-  SEARCH_TYPE = "All Name".freeze
+  SEARCH_TYPE = "All Name"
   def initialize(params, default_show_results_as: "list")
     @parsed = Plants::Names::Search::Parse.new(params,
-                                      search_type: SEARCH_TYPE,
-                                      default_show_results_as:
-                                        default_show_results_as)
+                                               search_type: SEARCH_TYPE,
+                                               default_show_results_as:
+                                                 default_show_results_as)
     @results = simple_name_search
     return unless @results.empty?
     @results = full_name_search

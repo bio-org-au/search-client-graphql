@@ -4,7 +4,7 @@
 
 <%= form_tag(plants_names_search_within_taxon_selected_ranks_search_path,
              method: "get") do %>
-  <% name.pg_ranked_descendant_counts.each do |d| %>
+  <% Plants::Names::Search::Within::RankedDescendantCounts.new(name.id).results.each do |d| %>
     <%# Some ranks are in square brackets, which messes with the params. %>
     <% unbracketed_rank = d['rank'].gsub(/[\[\]]/,'') %>
     <% if params[unbracketed_rank] == "1" %>

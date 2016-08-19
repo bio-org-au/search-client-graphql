@@ -1,13 +1,14 @@
+# frozen_string_literal: true
 #  Search for common names
 class Plants::Names::Search::Common
   attr_reader :parsed,
               :results
-  SEARCH_TYPE = "Common Name".freeze
+  SEARCH_TYPE = "Common Name"
   def initialize(params, default_show_results_as: "list")
     @parsed = Plants::Names::Search::Parse.new(params,
-                                      search_type: SEARCH_TYPE,
-                                      default_show_results_as:
-                                        default_show_results_as)
+                                               search_type: SEARCH_TYPE,
+                                               default_show_results_as:
+                                                 default_show_results_as)
     @results = simple_name_search
     return unless @results.empty?
     @results = full_name_search
@@ -38,7 +39,7 @@ class Plants::Names::Search::Common
   def list_search
     Name.common_search
         .joins(:name_type)
-        .where(name_type: { name: ['common','informal'] })
+        .where(name_type: { name: %w(common informal) })
   end
 
   def detail_search

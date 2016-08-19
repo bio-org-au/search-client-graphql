@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Plants::Names::Search::Base
   attr_reader :parsed,
               :ran

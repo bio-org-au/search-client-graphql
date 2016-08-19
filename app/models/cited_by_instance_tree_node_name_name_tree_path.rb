@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CitedByInstanceTreeNodeNameNameTreePath < ActiveRecord::Base
   self.table_name = "name_tree_path"
   self.primary_key = "id"
