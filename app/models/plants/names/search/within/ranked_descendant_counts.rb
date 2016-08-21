@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 # Extracted from Name.
-# Complex query.
+# Complex native postgres query has its own class.
 class Plants::Names::Search::Within::RankedDescendantCounts
   attr_reader :results, :size, :executed_query, :clean_id
 
