@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+
+# Rails model
 class NameOrSynonym < ActiveRecord::Base
   self.table_name = "name_or_synonym_vw"
   self.primary_key = "id"
@@ -7,10 +9,14 @@ class NameOrSynonym < ActiveRecord::Base
   belongs_to :rank, class_name: "NameRank", foreign_key: "name_rank_id"
   belongs_to :reference
   belongs_to :instance
-  belongs_to :synonym_type, class_name: "InstanceType", foreign_key: :synonym_type_id
+  belongs_to :synonym_type,
+             class_name: "InstanceType",
+             foreign_key: :synonym_type_id
   belongs_to :synonym_ref, class_name: "Reference", foreign_key: :synonym_ref_id
   belongs_to :synonym_name, class_name: "Name", foreign_key: :id
-  belongs_to :synonym_cites, class_name: "Instance", foreign_key: :cites_instance_id
+  belongs_to :synonym_cites,
+             class_name: "Instance",
+             foreign_key: :cites_instance_id
 
   # "Union with Active Record"
   # http://thepugautomatic.com/2014/08/union-with-active-record/

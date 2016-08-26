@@ -252,68 +252,6 @@ class Name < ActiveRecord::Base
     end
   end
 
-  def pg_descendants_at_rank(rank_name)
-    sql = "WITH RECURSIVE nodes_cte(id, full_name, parent_id, depth, path) AS (
- SELECT tn.id, tn.full_name, tn.parent_id, 1::INT AS depth,
-        tn.id::TEXT AS path, tnr.name as rank, tnr.sort_order rank_order
-   FROM name AS tn
-        join
-        name_rank tnr
-        on tn.name_rank_id = tnr.id
-  WHERE tn.id = #{ActiveRecord::Base.sanitize(id)}
-UNION ALL
- SELECT c.id, c.full_name, c.parent_id, p.depth + 1 AS depth,
-        (p.path || '->' || c.id::TEXT),
-        cnr.name as rank, cnr.sort_order rank_order
-   FROM nodes_cte AS p, name AS c
-        join name_rank cnr
-        on c.name_rank_id = cnr.id
-  WHERE c.parent_id = p.id
-)
-SELECT n.id, n.full_name FROM nodes_cte AS n
-       inner join
-       name_tree_path ntp
-       on n.id = ntp.name_id
-       inner join
-       tree_arrangement ta
-       on ta.id = ntp.tree_id
-  where n.rank = #{ActiveRecord::Base.sanitize(rank_name)}
-    and ta.label = 'APNI'
-    and exists (select null from instance where instance.name_id = n.id)
-  order by n.full_name"
-    ActiveRecord::Base.connection.execute(sql)
-  end
-
-  def sub_taxon?
-    sql = "WITH RECURSIVE nodes_cte(id, full_name, parent_id, depth, path) AS (
- SELECT tn.id, tn.full_name, tn.parent_id, 1::INT AS depth,
-        tn.id::TEXT AS path, tnr.name as rank, tnr.sort_order rank_order
-   FROM name AS tn
-        join
-        name_rank tnr
-        on tn.name_rank_id = tnr.id
-  WHERE tn.id = #{id}
-UNION ALL
- SELECT c.id, c.full_name, c.parent_id, p.depth + 1 AS depth,
-        (p.path || '->' || c.id::TEXT),
-        cnr.name as rank, cnr.sort_order rank_order
-   FROM nodes_cte AS p, name AS c
-        join name_rank cnr
-        on c.name_rank_id = cnr.id
-  WHERE c.parent_id = p.id
-)
-SELECT 1 FROM nodes_cte AS n
-  where exists (select null from instance where instance.name_id = n.id)
-limit 3"
-    results = ActiveRecord::Base.connection.execute(sql)
-    max = 0
-    results.each_with_index do |_result, index|
-      max = index
-    end
-    Rails.logger.debug("max: #{max}")
-    max > 1
-  end
-
   def direct_sub_taxa_with_instance_count
     Name.where(parent_id: id).joins(:instances).select("distinct name.id").count
   end

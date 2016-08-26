@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 require "test_helper"
 
+# Test the APNI Controller.
 class ApniControllerTest < ActionController::TestCase
   test "should get index" do
     # get :index

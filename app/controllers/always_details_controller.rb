@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+
+# Controller
 class AlwaysDetailsController < ApplicationController
   def toggle
     Rails.logger.debug("always details toggle")

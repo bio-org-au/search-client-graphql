@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+
+# Rails model
 class Plants::Taxonomy::Accepted::Search::Parse
   attr_reader :search_type,
               :search_term,

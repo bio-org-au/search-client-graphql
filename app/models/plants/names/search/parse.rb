@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+
+# Rails model
 class Plants::Names::Search::Parse
   attr_reader :search_type,
               :search_term,
@@ -18,7 +20,9 @@ class Plants::Names::Search::Parse
                      SIMPLE_SEARCH
                    end
     @search_term = params[:q].strip.tr("*", "%")
-    @show_as = params[:show_results_as] || info[:default_show_results_as] || SHOW_LIST
+    @show_as = params[:show_results_as] ||
+               info[:default_show_results_as] ||
+               SHOW_LIST
     @limit = calculated_limit
   end
 

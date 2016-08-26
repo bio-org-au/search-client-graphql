@@ -1,22 +1,13 @@
 # frozen_string_literal: true
+
+# Rails model
 class NameDetailSynonym < ActiveRecord::Base
   self.table_name = "name_detail_synonyms_vw"
   belongs_to :name_detail, foreign_key: :cited_by_id
   belongs_to :cites, class_name: "Instance", foreign_key: :cites_id
 
   def label
-    case instance_type_name
-    when "misapplied"
-      "misapplication"
-    when "pro parte misapplied"
-      "pro parte misapplication"
-    when "doubtful pro parte misapplied"
-      "doubtful pro parte misapplication"
-    when "doubtful misapplied"
-      "doubtful misapplication"
-    else
-      instance_type_name
-    end
+    instance_type_name.sub(/misapplied/, "misapplication")
   end
 
   def shows_cites_reference?

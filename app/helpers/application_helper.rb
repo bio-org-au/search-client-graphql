@@ -28,10 +28,13 @@ module ApplicationHelper
     fragment << "<ul class='indented'>"
     Instance.records_cited_by_standalone(instance).each do |cited_by|
       fragment << "<li class='compact subordinate-instance'>"
-      fragment << "<span class='instance-type-name'>#{cited_by.instance_type.name}: </span>"
+      fragment << "<span class='instance-type-name'>"
+      fragment << "#{cited_by.instance_type.name}: </span>"
       fragment << "<span class='instance-type'>"
       target_id = "#{rand(1000)}-#{rand(1000)}-#{rand(1000)}"
-      fragment << link_to(cited_by.name.full_name, plants_names_show_path(cited_by.name.id, target_id: target_id),
+      fragment << link_to(cited_by.name.full_name,
+                          plants_names_show_path(cited_by.name.id,
+                                                 target_id: target_id),
                           class: "drill-down-toggle",
                           data: { target_id: target_id },
                           remote: true)
@@ -48,7 +51,8 @@ module ApplicationHelper
     citing_instance = instance.this_is_cited_by
     return "", shown if shown.include?(citing_instance.id)
     shown.push(citing_instance.id)
-    fragment = "<div class='instance-citation'>#{instance.reference.citation_html}</div>"
+    fragment = "<div class='instance-citation'>"
+    fragment << "#{instance.reference.citation_html}</div>"
     fragment << assemble_cited_by(instance, citing_instance)
     [fragment.html_safe, shown]
   end
@@ -70,7 +74,8 @@ module ApplicationHelper
     citing_instance = name_instance.instance.this_is_cited_by
     return "", shown if shown.include?(citing_instance.id)
     shown.push(citing_instance.id)
-    fragment = "<div class='instance-citation'>#{name_instance.reference.citation_html}</div>"
+    fragment = "<div class='instance-citation'>"
+    fragment << "#{name_instance.reference.citation_html}</div>"
     fragment << assemble_cited_by(name_instance, citing_instance)
     [fragment.html_safe, shown]
   end
@@ -102,7 +107,8 @@ module ApplicationHelper
 
   def no_results_help(size)
     if size.zero?
-      "<br/><br/>You may want to alter or reduce your search string, or add wildcards."
+      "<br/><br/>You may want to alter or reduce your search string,
+      or add wildcards."
     else
       ""
     end

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # Model for a view to simplify querying.
 # The view joins to name_tree_path to provide access to family name encoded
 # in the rank_path.
@@ -11,15 +12,26 @@ class NameInstanceNameTreePath < ActiveRecord::Base
   has_one :rank, through: :name
   has_many :instance_note_for_type_specimens, through: :instance
   has_many :instance_note_for_distributions, through: :instance
-  scope :simple_name_like, ->(string) { where("lower(name_simple_name) like lower(?) ", string.tr("*", "%").downcase) }
-  scope :full_name_like, ->(string) { where("lower(name_full_name) like lower(?) ", string.tr("*", "%").downcase) }
+  scope :simple_name_like, (lambda do |string|
+    where("lower(name_simple_name) like lower(?) ",
+          string.tr("*", "%").downcase)
+  end)
+  scope :full_name_like, lambda do |string|
+    where("lower(name_full_name) like lower(?) ",
+          string.tr("*", "%").downcase)
+  end
   scope :scientific, -> { where("type_scientific") }
   scope :common, -> { where("type_name in ('common','informal')") }
   scope :cultivar, -> { where("type_cultivar") }
-  scope :ordered, -> { order("family_name, name_sort_name, id, reference_year, primary_instance_first, synonym_full_name") }
+  scope :ordered, (lambda do
+    order("family_name, name_sort_name, id, reference_year,
+          primary_instance_first, synonym_full_name")
+  end)
 
   def self.search_for(string)
-    where("( lower(name_simple_name) like ? or lower(name_simple_name) like ? or lower(name_full_name) like ? or lower(name_full_name) like ?)",
+    where("( lower(name_simple_name) like ? or lower(name_simple_name)
+          like ? or lower(name_full_name) like ?
+          or lower(name_full_name) like ?)",
           string.downcase.tr("*", "%").tr("×", "x"),
           Name.string_for_possible_hybrids(string),
           string.downcase.tr("*", "%").tr("×", "x"),
@@ -33,7 +45,8 @@ class NameInstanceNameTreePath < ActiveRecord::Base
   end
 
   def self.full_name_allow_for_hybrids_like(string)
-    Rails.logger.debug("NameInstanceNameTreePath.full_name_allow_for_hybrids_like")
+    Rails.logger
+         .debug("NameInstanceNameTreePath.full_name_allow_for_hybrids_like")
     where("( lower(name_full_name) like ? or lower(name_full_name) like ?)",
           string.downcase.tr("*", "%").tr("×", "x"),
           Name.string_for_possible_hybrids(string))

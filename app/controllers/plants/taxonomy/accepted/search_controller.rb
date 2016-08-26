@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+
+# Controller
 class Plants::Taxonomy::Accepted::SearchController < ApplicationController
   def index
     search if params["q"].present?
@@ -12,13 +14,30 @@ class Plants::Taxonomy::Accepted::SearchController < ApplicationController
   private
 
   def search
-    case params[:search_type] || ""
+    case params[:search_type]
+    when /^acc/
+      search_a
+    else
+      search_b
+    end
+  end
+
+  def search_a
+    case params[:search_type]
     when /accepted\z/
       @search = Plants::Taxonomy::Accepted::Search::Accepted.new(params)
     when /accepted and excluded\z/
-      @search = Plants::Taxonomy::Accepted::Search::AcceptedAndExcluded.new(params)
+      @search = Plants::Taxonomy::Accepted::Search::AcceptedAndExcluded
+                .new(params)
+    else
+      @search = Plants::Taxonomy::Accepted::Search::Accepted.new(params)
+    end
+  end
+
+  def search_b
+    case params[:search_type]
     when /all\z/
-      @search = Plants::Taxonomy::Accepted::Search::All_.new(params)
+      @search = Plants::Taxonomy::Accepted::Search::AllOptions.new(params)
     when /synonyms\z/
       @search = Plants::Taxonomy::Accepted::Search::Synonym.new(params)
     when /excluded\z/

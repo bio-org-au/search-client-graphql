@@ -5,19 +5,16 @@ class Plants::Names::DescendantsAtRanks
               :sql,
               :size
 
-  # def initialize(id_string = '0', rank_strings = [])
-  def initialize(params)
-    id = params[:id].to_i
-    " ('Varietas') "
-    @sql = "WITH RECURSIVE nodes_cte(id, full_name, parent_id, depth, path) AS (
+  SQL_1 = "WITH RECURSIVE nodes_cte(id, full_name, parent_id, depth, path) AS (
  SELECT tn.id, tn.full_name, tn.parent_id, 1::INT AS depth,
         tn.id::TEXT AS path, tnr.name as rank, tnr.sort_order rank_order
    FROM name AS tn
         join
         name_rank tnr
         on tn.name_rank_id = tnr.id
-  WHERE tn.id = #{ActiveRecord::Base.sanitize(id)}
-UNION ALL
+  WHERE tn.id = "
+
+  SQL_2 = "UNION ALL
  SELECT c.id, c.full_name, c.parent_id, p.depth + 1 AS depth,
         (p.path || '->' || c.id::TEXT),
         cnr.name as rank, cnr.sort_order rank_order
@@ -36,16 +33,29 @@ SELECT n.id, n.full_name
        on ta.id = ntp.tree_id
   where ta.label = 'APNI'
     and exists (select null from instance where instance.name_id = n.id)
-    and n.id != #{ActiveRecord::Base.sanitize(id)}
-    and n.rank in " + ranks_set(params) +
-           "order by ntp.rank_path, n.full_name"
-    @results = ActiveRecord::Base.connection.execute(@sql)
-    # A difference between jRuby and Ruby
-    @size = if @results.class == Array
-              @results.size
-            else
-              @results.values.size
-            end
+    and n.id != "
+
+  ORDER = "order by ntp.rank_path, n.full_name"
+
+  # def initialize(id_string = '0', rank_strings = [])
+  def initialize(params)
+    @id = params[:id].to_i || 0
+    sanitize
+    build
+    execute
+    be_compatible
+  end
+
+  private
+
+  def sanitize
+    @sanitized_id = ActiveRecord::Base.sanitize(@id)
+  end
+
+  def build
+    @sql = "#{SQL_1} #{ActiveRecord::Base.sanitize(id)}"
+    @sql += "#{SQL_2} #{ActiveRecord::Base.sanitize(id)}"
+    @sql += "and n.rank in " + ranks_set(params) + ORDER
   end
 
   def ranks_set(params)
@@ -54,8 +64,21 @@ SELECT n.id, n.full_name
     ranks.sub!(/'infrafamily'/, "'[infrafamily]'")
     ranks.sub!(/'infragenus'/, "'[infragenus]'")
     ranks.sub!(/'infraspecies'/, "'[infraspecies]'")
-    ranks.sub!(/'n\/a'/, "'[n/a]'")
+    ranks.sub!(%r{'n/a'}, "'[n/a]'")
     ranks.sub!(/'unknown'/, "'[unknown]'")
     "(#{ranks})"
+  end
+
+  def execute
+    @results = ActiveRecord::Base.connection.execute(@sql)
+  end
+
+  def be_compatible
+    # A difference between jRuby and Ruby
+    @size = if @results.class == Array
+              @results.size
+            else
+              @results.values.size
+            end
   end
 end

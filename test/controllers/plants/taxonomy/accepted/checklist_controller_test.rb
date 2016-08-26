@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 require "test_helper"
 
-class Plants::Taxonomy::Accepted::ChecklistControllerTest < ActionController::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+module Plants::Taxonomy::Accepted
+  # Test the Plants Taxaonomy Accepted Checklist Controller
+  class ChecklistControllerTest < ActionController::TestCase
+    # test "the truth" do
+    #   assert true
+    # end
+  end
 end

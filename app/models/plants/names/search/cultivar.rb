@@ -13,12 +13,7 @@ class Plants::Names::Search::Cultivar
   end
 
   def name_search
-    if @parsed.list?
-      list_search.search_for(@parsed.search_term)
-    else
-      list_search.search_for(@parsed.search_term)
-      # detail_search.search_for(@parsed.search_term)
-    end
+    list_search.search_for(@parsed.search_term)
   end
 
   def list_search
@@ -28,9 +23,5 @@ class Plants::Names::Search::Cultivar
         .joins(:name_type)
         .where(name_type: { cultivar: true })
         .ordered_scientifically
-  end
-
-  def detail_search
-    NameInstanceNameTreePath.cultivar.ordered
   end
 end

@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+
+# Rails model
 class InstanceNoteKey < ActiveRecord::Base
   self.table_name = "instance_note_key"
   self.primary_key = "id"

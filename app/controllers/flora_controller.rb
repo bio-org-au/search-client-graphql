@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+
+# Controller
 class FloraController < ApplicationController
   private
 

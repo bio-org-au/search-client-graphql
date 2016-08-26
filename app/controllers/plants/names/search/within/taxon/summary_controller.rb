@@ -1,5 +1,8 @@
 # frozen_string_literal: true
-class Plants::Names::Search::Within::Taxon::SummaryController < ApplicationController
+
+# Rails controller
+class Plants::Names::Search::Within::Taxon::SummaryController \
+  < ApplicationController
   def index
     @name = Name.find(params[:id])
     render action: "index"

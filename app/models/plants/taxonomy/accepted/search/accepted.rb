@@ -25,17 +25,14 @@ class Plants::Taxonomy::Accepted::Search::Accepted
   end
 
   def search
-    AcceptedName.accepted
-                .ordered
+    AcceptedName.accepted.ordered
                 .includes(:status)
-                .includes(:reference)
                 .includes(:rank)
-                .includes(:instance)
                 .includes(:names)
-                .includes(:instance_types)
-                .includes(:synonyms)
-                .includes(:cites)
-                .includes(:cite_references)
+                .includes(:reference)
+                .includes(:instance).includes(:instance_types)
                 .includes(:instance_note_keys)
+                .includes(:synonyms).includes(:cites)
+                .includes(:cite_references)
   end
 end

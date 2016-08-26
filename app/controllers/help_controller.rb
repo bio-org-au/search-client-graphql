@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+
+# Controller
 class HelpController < ApplicationController
   def toggle
     session[:help] ||= false

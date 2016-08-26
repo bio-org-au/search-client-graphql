@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+
+# Rails model
 class CitedByInstanceTreeArrangement < ActiveRecord::Base
   self.table_name = "tree_arrangement"
   self.primary_key = "id"

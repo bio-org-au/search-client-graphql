@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+
+# Rails model
 class InstanceType < ActiveRecord::Base
   self.table_name = "instance_type"
   self.primary_key = "id"

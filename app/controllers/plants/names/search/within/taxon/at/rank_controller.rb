@@ -1,7 +1,11 @@
 # frozen_string_literal: true
-class Plants::Names::Search::Within::Taxon::At::RankController < ApplicationController
-  def index
-    @name = Name.find(params[:id])
-    @results = @name.pg_descendants_at_rank(params[:rank].gsub(/DOT/, "."))
+
+module Plants::Names::Search::Within::Taxon::At
+  # Controller
+  class RankController < ApplicationController
+    def index
+      @name = Name.find(params[:id])
+      @results = Plants::Names::DescendantsAtRank.new(params).results
+    end
   end
 end

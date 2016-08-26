@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+
+# Controller
 class Plants::Names::SearchController < ApplicationController
   def index
     logger.debug(" Plants::Names::SearchController < ApplicationController")

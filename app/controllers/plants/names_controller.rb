@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+
+# Controller
 class Plants::NamesController < ApplicationController
   def show
     @name = Name.find_by(id: params[:id])

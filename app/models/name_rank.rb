@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+
+# Rails model
 class NameRank < ActiveRecord::Base
   self.table_name = "name_rank"
   self.primary_key = "id"

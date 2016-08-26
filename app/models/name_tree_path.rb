@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+
+# Rails model
 class NameTreePath < ActiveRecord::Base
   self.table_name = "name_tree_path"
   self.primary_key = "id"

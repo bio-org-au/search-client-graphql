@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+
+# Rails model
 class Cite < ActiveRecord::Base
   self.table_name = "instance"
   self.primary_key = "id"

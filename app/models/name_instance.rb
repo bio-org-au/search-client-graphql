@@ -12,12 +12,21 @@ class NameInstance < ActiveRecord::Base
   belongs_to :reference
   belongs_to :name, foreign_key: :id
   has_one :rank, through: :name
-  scope :simple_name_like, ->(string) { where("lower(name_simple_name) like lower(?) ", string.tr("*", "%").downcase) }
-  scope :full_name_like, ->(string) { where("lower(name_full_name) like lower(?) ", string.tr("*", "%").downcase) }
+  scope :simple_name_like, (lambda do |string|
+    where("lower(name_simple_name) like lower(?) ",
+          string.tr("*", "%").downcase)
+  end)
+  scope :full_name_like, (lambda do |string|
+    where("lower(name_full_name) like lower(?) ",
+          string.tr("*", "%").downcase)
+  end)
   scope :scientific, -> { where("type_scientific") }
   scope :common, -> { where("type_name in ('common','informal')") }
   scope :cultivar, -> { where("type_cultivar") }
-  scope :ordered, -> { order("name_sort_name, id, reference_year, primary_instance_first, synonym_full_name") }
+  scope :ordered, (lambda do
+    order("name_sort_name, id, reference_year, primary_instance_first,
+          synonym_full_name")
+  end)
 
   def self.simple_name_allow_for_hybrids_like(string)
     where("( lower(name_simple_name) like ? or lower(name_simple_name) like ?)",
