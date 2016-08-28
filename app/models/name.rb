@@ -164,33 +164,10 @@ class Name < ActiveRecord::Base
         .includes(:rank)
   end
 
-  def self.xscientific_search_detailed
-    Name.not_a_duplicate
-        .has_an_instance
-        .includes(:status)
-        .includes(:rank)
-        .includes(:instances)
-        .includes(:instance_types)
-        .includes(:references)
-        .includes(:authors)
-        .includes(:synonyms)
-        .order("sort_name")
-    # .includes(:accepted_name) # goes crazy on list search
-  end
-
   def self.common_search
     Name.not_a_duplicate
         .has_an_instance
         .includes(:status)
-        .order("sort_name")
-  end
-
-  def self.xall_search
-    Name.limited_high
-        .not_a_duplicate
-        .has_an_instance
-        .includes(:status)
-        .includes(:rank)
         .order("sort_name")
   end
 
