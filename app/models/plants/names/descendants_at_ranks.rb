@@ -5,7 +5,7 @@ class Plants::Names::DescendantsAtRanks
               :sql,
               :size
 
-  SQL_1 = "WITH RECURSIVE nodes_cte(id, full_name, parent_id, depth, path) AS (
+  SQL_1 = "WITH xRECURSIVE nodes_cte(id, full_name, parent_id, depth, path) AS (
  SELECT tn.id, tn.full_name, tn.parent_id, 1::INT AS depth,
         tn.id::TEXT AS path, tnr.name as rank, tnr.sort_order rank_order
    FROM name AS tn
@@ -40,6 +40,7 @@ SELECT n.id, n.full_name
   # def initialize(id_string = '0', rank_strings = [])
   def initialize(params)
     @id = params[:id].to_i || 0
+    @ranks_set = rank(params)
     sanitize
     build
     execute
@@ -53,12 +54,12 @@ SELECT n.id, n.full_name
   end
 
   def build
-    @sql = "#{SQL_1} #{ActiveRecord::Base.sanitize(id)}"
-    @sql += "#{SQL_2} #{ActiveRecord::Base.sanitize(id)}"
-    @sql += "and n.rank in " + ranks_set(params) + ORDER
+    @sql = "#{SQL_1} #{@sanitized_id}"
+    @sql += "#{SQL_2} #{@sanitized_id}"
+    @sql += "and n.rank in " + @ranks_set + ORDER
   end
 
-  def ranks_set(params)
+  def ranks(params)
     ranks = params.keys.collect { |k| "'#{k}'" }.join(",")
     ranks.sub!(/'unranked'/, "'[unranked]'")
     ranks.sub!(/'infrafamily'/, "'[infrafamily]'")

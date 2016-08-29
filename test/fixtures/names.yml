@@ -26,8 +26,16 @@ x_agro:
   full_name: x agro
   <<: *DEFAULTS
 
+angophora:
+  name_element: angophora
+  simple_name: Angophora
+  full_name: Angophora xxx
+  rank: genus
+  <<: *DEFAULTS
+
 angophora_costata:
   name_element: costata
   simple_name: Angophora costata
   full_name: Angophora costata (Gaertn.) Britten
+  parent: :angophora
   <<: *DEFAULTS

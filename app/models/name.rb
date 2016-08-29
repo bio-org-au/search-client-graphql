@@ -133,16 +133,6 @@ class Name < ActiveRecord::Base
         .includes(:status)
   end
 
-  def self.accepted_tree_synonyms
-    Name.unordered_accepted_tree_synonyms.order("sort_name")
-  end
-
-  def instances_in_order
-    instances.sort do |x, y|
-      x.sort_fields <=> y.sort_fields
-    end
-  end
-
   def self.scientific_search
     Name.not_a_duplicate
         .has_an_instance
@@ -157,13 +147,6 @@ class Name < ActiveRecord::Base
         .joins(:rank)
   end
 
-  def self.scientific_or_cultivar_search
-    Name.not_a_duplicate
-        .has_an_instance
-        .includes(:status)
-        .includes(:rank)
-  end
-
   def self.common_search
     Name.not_a_duplicate
         .has_an_instance
@@ -171,62 +154,13 @@ class Name < ActiveRecord::Base
         .order("sort_name")
   end
 
-  def self.unordered_accepted_tree_search
-    Name.includes(:status)
-        .includes(:rank)
-        .joins(:apc_tree_arrangements)
-        .joins(:name_type)
-  end
-
-  def self.accepted_tree_search
-    Name.unordered_accepted_tree_search.order("name.sort_name")
-  end
-
-  def self.accepted_tree_accepted_search
-    AcceptedName.simple_name_like(search_term)
-  end
-
-  def self.accepted_tree_excluded_search
-    Name.accepted_tree_search
-        .where(" tree_node.type_uri_id_part = 'ApcExcluded'")
-  end
-
-  def family?
-    rank.family?
-  end
-
   def family_name
     name_tree_path_default.rank_path.sub(/.*Familia:/, "").sub(/>.*$/, "")
-  end
-
-  def self.seek_family_name(n)
-    if n.blank?
-      ""
-    elsif n.family?
-      n.full_name
-    else
-      n = n.parent
-      Name.seek_family_name(n)
-    end
-  end
-
-  def apc?
-    TreeNode.apc?(full_name)
   end
 
   def apc_instance_id
     # TreeNode.apc(full_name).try("first").try("instance_id")
     AcceptedName.where(id: id).try("first").try("instance_id")
-  end
-
-  def pg_descendants
-    rid = id
-    Name.join_recursive do
-      start_with(id: rid)
-        .connect_by(id: :parent_id)
-        .order_siblings(:full_name)
-        .nocycle
-    end
   end
 
   def direct_sub_taxa_with_instance_count
