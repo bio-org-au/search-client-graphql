@@ -1,4 +1,5 @@
 # encoding: UTF-8
+# frozen_string_literal: true
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,7 +13,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 0) do
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 0) do
   enable_extension "unaccent"
 
   create_table "author", id: :bigserial, force: :cascade do |t|
-    t.integer  "lock_version",     limit: 8,    default: 0,     null: false
+    t.integer  "lock_version",     limit: 8,    default: 0, null: false
     t.string   "abbrev",           limit: 100
     t.datetime "created_at",                                    null: false
     t.string   "created_by",       limit: 255,                  null: false
@@ -29,21 +29,21 @@ ActiveRecord::Schema.define(version: 0) do
     t.string   "full_name",        limit: 255
     t.string   "ipni_id",          limit: 50
     t.string   "name",             limit: 1000
-    t.integer  "namespace_id",     limit: 8,                    null: false
+    t.integer  "namespace_id",     limit: 8, null: false
     t.string   "notes",            limit: 1000
     t.integer  "source_id",        limit: 8
     t.string   "source_id_string", limit: 100
     t.string   "source_system",    limit: 50
-    t.boolean  "trash",                         default: false, null: false
-    t.datetime "updated_at",                                    null: false
-    t.string   "updated_by",       limit: 255,                  null: false
-    t.boolean  "valid_record",                  default: false, null: false
+    t.boolean  "trash", default: false, null: false
+    t.datetime "updated_at", null: false
+    t.string   "updated_by", limit: 255, null: false
+    t.boolean  "valid_record", default: false, null: false
   end
 
   add_index "author", ["abbrev"], name: "author_abbrev_index", using: :btree
   add_index "author", ["abbrev"], name: "uk_9kovg6nyb11658j2tv2yv4bsi", unique: true, using: :btree
   add_index "author", ["name"], name: "author_name_index", using: :btree
-  add_index "author", ["namespace_id", "source_id", "source_system"], name: "auth_source_index", using: :btree
+  add_index "author", %w(namespace_id source_id source_system), name: "auth_source_index", using: :btree
   add_index "author", ["source_id_string"], name: "auth_source_string_index", using: :btree
   add_index "author", ["source_system"], name: "auth_system_index", using: :btree
 
@@ -70,41 +70,41 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   create_table "delayed_jobs", id: :bigserial, force: :cascade do |t|
-    t.integer  "lock_version", limit: 8,                             default: 0, null: false
-    t.decimal  "attempts",                  precision: 19, scale: 2
-    t.datetime "created_at",                                                     null: false
+    t.integer  "lock_version", limit: 8, default: 0, null: false
+    t.decimal  "attempts", precision: 19, scale: 2
+    t.datetime "created_at", null: false
     t.datetime "failed_at"
     t.text     "handler"
     t.text     "last_error"
     t.datetime "locked_at"
-    t.string   "locked_by",    limit: 4000
-    t.decimal  "priority",                  precision: 19, scale: 2
-    t.string   "queue",        limit: 4000
+    t.string   "locked_by", limit: 4000
+    t.decimal  "priority", precision: 19, scale: 2
+    t.string   "queue", limit: 4000
     t.datetime "run_at"
-    t.datetime "updated_at",                                                     null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "external_ref", id: :bigserial, force: :cascade do |t|
-    t.integer "lock_version",         limit: 8,                           default: 0, null: false
+    t.integer "lock_version",         limit: 8, default: 0, null: false
     t.string  "external_id",          limit: 50,                                      null: false
     t.string  "external_id_supplier", limit: 50,                                      null: false
     t.integer "instance_id",          limit: 8,                                       null: false
     t.integer "name_id",              limit: 8,                                       null: false
     t.string  "object_type",          limit: 50
-    t.decimal "original_provider",               precision: 19, scale: 2
-    t.integer "reference_id",         limit: 8,                                       null: false
+    t.decimal "original_provider", precision: 19, scale: 2
+    t.integer "reference_id", limit: 8, null: false
   end
 
   create_table "help_topic", id: :bigserial, force: :cascade do |t|
-    t.integer  "lock_version",   limit: 8,    default: 0,     null: false
-    t.datetime "created_at",                                  null: false
-    t.string   "created_by",     limit: 4000,                 null: false
-    t.text     "marked_up_text",                              null: false
-    t.string   "name",           limit: 4000,                 null: false
+    t.integer  "lock_version",   limit: 8, default: 0, null: false
+    t.datetime "created_at", null: false
+    t.string   "created_by", limit: 4000, null: false
+    t.text     "marked_up_text", null: false
+    t.string   "name", limit: 4000, null: false
     t.integer  "sort_order",                  default: 0,     null: false
     t.boolean  "trash",                       default: false, null: false
     t.datetime "updated_at",                                  null: false
-    t.string   "updated_by",     limit: 4000,                 null: false
+    t.string   "updated_by", limit: 4000, null: false
   end
 
   create_table "id_mapper", id: :bigserial, force: :cascade do |t|
@@ -114,17 +114,17 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "to_id",        limit: 8
   end
 
-  add_index "id_mapper", ["from_id", "namespace_id", "system"], name: "id_mapper_from_index", using: :btree
-  add_index "id_mapper", ["to_id", "from_id"], name: "unique_from_id", unique: true, using: :btree
+  add_index "id_mapper", %w(from_id namespace_id system), name: "id_mapper_from_index", using: :btree
+  add_index "id_mapper", %w(to_id from_id), name: "unique_from_id", unique: true, using: :btree
 
   create_table "instance", id: :bigserial, force: :cascade do |t|
-    t.integer  "lock_version",         limit: 8,    default: 0,     null: false
+    t.integer  "lock_version",         limit: 8, default: 0, null: false
     t.string   "bhl_url",              limit: 4000
     t.integer  "cited_by_id",          limit: 8
     t.integer  "cites_id",             limit: 8
-    t.datetime "created_at",                                        null: false
-    t.string   "created_by",           limit: 50,                   null: false
-    t.boolean  "draft",                             default: false, null: false
+    t.datetime "created_at", null: false
+    t.string   "created_by", limit: 50, null: false
+    t.boolean  "draft", default: false, null: false
     t.integer  "instance_type_id",     limit: 8,                    null: false
     t.integer  "name_id",              limit: 8,                    null: false
     t.integer  "namespace_id",         limit: 8,                    null: false
@@ -132,14 +132,14 @@ ActiveRecord::Schema.define(version: 0) do
     t.string   "page",                 limit: 255
     t.string   "page_qualifier",       limit: 255
     t.integer  "parent_id",            limit: 8
-    t.integer  "reference_id",         limit: 8,                    null: false
+    t.integer  "reference_id",         limit: 8, null: false
     t.integer  "source_id",            limit: 8
     t.string   "source_id_string",     limit: 100
     t.string   "source_system",        limit: 50
-    t.boolean  "trash",                             default: false, null: false
-    t.datetime "updated_at",                                        null: false
-    t.string   "updated_by",           limit: 1000,                 null: false
-    t.boolean  "valid_record",                      default: false, null: false
+    t.boolean  "trash", default: false, null: false
+    t.datetime "updated_at", null: false
+    t.string   "updated_by", limit: 1000, null: false
+    t.boolean  "valid_record", default: false, null: false
     t.string   "verbatim_name_string", limit: 255
   end
 
@@ -147,14 +147,14 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "instance", ["cites_id"], name: "instance_cites_index", using: :btree
   add_index "instance", ["instance_type_id"], name: "instance_instancetype_index", using: :btree
   add_index "instance", ["name_id"], name: "instance_name_index", using: :btree
-  add_index "instance", ["namespace_id", "source_id", "source_system"], name: "instance_source_index", using: :btree
+  add_index "instance", %w(namespace_id source_id source_system), name: "instance_source_index", using: :btree
   add_index "instance", ["parent_id"], name: "instance_parent_index", using: :btree
   add_index "instance", ["reference_id"], name: "instance_reference_index", using: :btree
   add_index "instance", ["source_id_string"], name: "instance_source_string_index", using: :btree
   add_index "instance", ["source_system"], name: "instance_system_index", using: :btree
 
   create_table "instance_note", id: :bigserial, force: :cascade do |t|
-    t.integer  "lock_version",         limit: 8,    default: 0,     null: false
+    t.integer  "lock_version",         limit: 8, default: 0, null: false
     t.datetime "created_at",                                        null: false
     t.string   "created_by",           limit: 50,                   null: false
     t.integer  "instance_id",          limit: 8,                    null: false
@@ -163,7 +163,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer  "source_id",            limit: 8
     t.string   "source_id_string",     limit: 100
     t.string   "source_system",        limit: 50
-    t.boolean  "trash",                             default: false, null: false
+    t.boolean  "trash", default: false, null: false
     t.datetime "updated_at",                                        null: false
     t.string   "updated_by",           limit: 50,                   null: false
     t.string   "value",                limit: 4000,                 null: false
@@ -171,17 +171,17 @@ ActiveRecord::Schema.define(version: 0) do
 
   add_index "instance_note", ["instance_id"], name: "note_instance_index", using: :btree
   add_index "instance_note", ["instance_note_key_id"], name: "note_key_index", using: :btree
-  add_index "instance_note", ["namespace_id", "source_id", "source_system"], name: "note_source_index", using: :btree
+  add_index "instance_note", %w(namespace_id source_id source_system), name: "note_source_index", using: :btree
   add_index "instance_note", ["source_id_string"], name: "note_source_string_index", using: :btree
   add_index "instance_note", ["source_system"], name: "note_system_index", using: :btree
 
   create_table "instance_note_key", id: :bigserial, force: :cascade do |t|
-    t.integer "lock_version",     limit: 8,   default: 0,     null: false
-    t.boolean "deprecated",                   default: false, null: false
-    t.string  "name",             limit: 255,                 null: false
-    t.integer "sort_order",                   default: 0,     null: false
+    t.integer "lock_version", limit: 8, default: 0, null: false
+    t.boolean "deprecated", default: false, null: false
+    t.string  "name", limit: 255,                 null: false
+    t.integer "sort_order", default: 0, null: false
     t.text    "description_html"
-    t.string  "rdf_id",           limit: 50
+    t.string  "rdf_id", limit: 50
   end
 
   add_index "instance_note_key", ["name"], name: "uk_a0justk7c77bb64o6u1riyrlh", unique: true, using: :btree
@@ -193,7 +193,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.boolean "deprecated",                     default: false, null: false
     t.boolean "doubtful",                       default: false, null: false
     t.boolean "misapplied",                     default: false, null: false
-    t.string  "name",               limit: 255,                 null: false
+    t.string  "name", limit: 255, null: false
     t.boolean "nomenclatural",                  default: false, null: false
     t.boolean "primary_instance",               default: false, null: false
     t.boolean "pro_parte",                      default: false, null: false
@@ -206,14 +206,14 @@ ActiveRecord::Schema.define(version: 0) do
     t.boolean "taxonomic",                      default: false, null: false
     t.boolean "unsourced",                      default: false, null: false
     t.text    "description_html"
-    t.string  "rdf_id",             limit: 50
+    t.string  "rdf_id", limit: 50
   end
 
   add_index "instance_type", ["name"], name: "uk_j5337m9qdlirvd49v4h11t1lk", unique: true, using: :btree
   add_index "instance_type", ["rdf_id"], name: "instance_type_rdfid", using: :btree
 
   create_table "language", id: :bigserial, force: :cascade do |t|
-    t.integer "lock_version", limit: 8,  default: 0, null: false
+    t.integer "lock_version", limit: 8, default: 0, null: false
     t.string  "iso6391code",  limit: 2
     t.string  "iso6393code",  limit: 3,              null: false
     t.string  "name",         limit: 50,             null: false
@@ -224,14 +224,14 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "language", ["name"], name: "uk_g8hr207ijpxlwu10pewyo65gv", unique: true, using: :btree
 
   create_table "locale", id: :bigserial, force: :cascade do |t|
-    t.integer "lock_version",       limit: 8,  default: 0, null: false
+    t.integer "lock_version",       limit: 8, default: 0, null: false
     t.string  "locale_name_string", limit: 50,             null: false
   end
 
   add_index "locale", ["locale_name_string"], name: "uk_qjkskvl9hx0w78truoyq9teju", unique: true, using: :btree
 
   create_table "name", id: :bigserial, force: :cascade do |t|
-    t.integer  "lock_version",          limit: 8,    default: 0,     null: false
+    t.integer  "lock_version",          limit: 8, default: 0, null: false
     t.integer  "author_id",             limit: 8
     t.integer  "base_author_id",        limit: 8
     t.datetime "created_at",                                         null: false
@@ -246,7 +246,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer  "name_status_id",        limit: 8,                    null: false
     t.integer  "name_type_id",          limit: 8,                    null: false
     t.integer  "namespace_id",          limit: 8,                    null: false
-    t.boolean  "orth_var",                           default: false, null: false
+    t.boolean  "orth_var", default: false, null: false
     t.integer  "parent_id",             limit: 8
     t.integer  "sanctioning_author_id", limit: 8
     t.integer  "second_parent_id",      limit: 8
@@ -257,10 +257,10 @@ ActiveRecord::Schema.define(version: 0) do
     t.string   "source_id_string",      limit: 100
     t.string   "source_system",         limit: 50
     t.string   "status_summary",        limit: 50
-    t.boolean  "trash",                              default: false, null: false
-    t.datetime "updated_at",                                         null: false
-    t.string   "updated_by",            limit: 50,                   null: false
-    t.boolean  "valid_record",                       default: false, null: false
+    t.boolean  "trash", default: false, null: false
+    t.datetime "updated_at", null: false
+    t.string   "updated_by", limit: 50, null: false
+    t.boolean  "valid_record", default: false, null: false
     t.integer  "why_is_this_here_id",   limit: 8
     t.string   "verbatim_rank",         limit: 50
     t.string   "sort_name",             limit: 250
@@ -276,7 +276,7 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "name", ["name_rank_id"], name: "name_rank_index", using: :btree
   add_index "name", ["name_status_id"], name: "name_status_index", using: :btree
   add_index "name", ["name_type_id"], name: "name_type_index", using: :btree
-  add_index "name", ["namespace_id", "source_id", "source_system"], name: "name_source_index", using: :btree
+  add_index "name", %w(namespace_id source_id source_system), name: "name_source_index", using: :btree
   add_index "name", ["parent_id"], name: "name_parent_id_ndx", using: :btree
   add_index "name", ["sanctioning_author_id"], name: "name_sanctioningauthor_index", using: :btree
   add_index "name", ["second_parent_id"], name: "name_second_parent_id_ndx", using: :btree
@@ -286,9 +286,9 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "name", ["why_is_this_here_id"], name: "name_whyisthishere_index", using: :btree
 
   create_table "name_category", id: :bigserial, force: :cascade do |t|
-    t.integer "lock_version",     limit: 8,  default: 0, null: false
-    t.string  "name",             limit: 50,             null: false
-    t.integer "sort_order",                  default: 0, null: false
+    t.integer "lock_version",     limit: 8, default: 0, null: false
+    t.string  "name",             limit: 50, null: false
+    t.integer "sort_order", default: 0, null: false
     t.text    "description_html"
     t.string  "rdf_id",           limit: 50
   end
@@ -300,14 +300,14 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "lock_version",     limit: 8,  default: 0, null: false
     t.string  "name",             limit: 50
     t.text    "description_html"
-    t.string  "rdf_id",           limit: 50
+    t.string  "rdf_id", limit: 50
   end
 
   add_index "name_group", ["name"], name: "uk_5185nbyw5hkxqyyqgylfn2o6d", unique: true, using: :btree
   add_index "name_group", ["rdf_id"], name: "name_group_rdfid", using: :btree
 
   create_table "name_part", id: :bigserial, force: :cascade do |t|
-    t.integer "lock_version",        limit: 8,  default: 0, null: false
+    t.integer "lock_version",        limit: 8, default: 0, null: false
     t.integer "name_id",             limit: 8,              null: false
     t.integer "preceding_name_id",   limit: 8,              null: false
     t.string  "preceding_name_type", limit: 50,             null: false
@@ -317,7 +317,7 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "name_part", ["preceding_name_type"], name: "preceding_name_type_index", using: :btree
 
   create_table "name_rank", id: :bigserial, force: :cascade do |t|
-    t.integer "lock_version",     limit: 8,  default: 0,     null: false
+    t.integer "lock_version",     limit: 8, default: 0,     null: false
     t.string  "abbrev",           limit: 20,                 null: false
     t.boolean "deprecated",                  default: false, null: false
     t.boolean "has_parent",                  default: false, null: false
@@ -338,20 +338,20 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "lock_version",     limit: 8,  default: 0,     null: false
     t.boolean "display",                     default: true,  null: false
     t.string  "name",             limit: 50
-    t.integer "name_group_id",    limit: 8,                  null: false
+    t.integer "name_group_id",    limit: 8, null: false
     t.integer "name_status_id",   limit: 8
     t.boolean "nom_illeg",                   default: false, null: false
     t.boolean "nom_inval",                   default: false, null: false
     t.text    "description_html"
-    t.string  "rdf_id",           limit: 50
+    t.string  "rdf_id", limit: 50
   end
 
   add_index "name_status", ["name"], name: "uk_se7crmfnhjmyvirp3p9hiqerx", unique: true, using: :btree
   add_index "name_status", ["rdf_id"], name: "name_status_rdfid", using: :btree
 
   create_table "name_tag", id: :bigserial, force: :cascade do |t|
-    t.string  "name",         limit: 255,             null: false
-    t.integer "lock_version", limit: 8,   default: 0, null: false
+    t.string  "name",         limit: 255, null: false
+    t.integer "lock_version", limit: 8, default: 0, null: false
   end
 
   add_index "name_tag", ["name"], name: "uk_o4su6hi7vh0yqs4c1dw0fsf1e", unique: true, using: :btree
@@ -376,16 +376,16 @@ ActiveRecord::Schema.define(version: 0) do
     t.text    "name_path",              null: false
     t.integer "next_id",      limit: 8
     t.integer "parent_id",    limit: 8
-    t.text    "rank_path",              null: false
-    t.integer "tree_id",      limit: 8, null: false
+    t.text    "rank_path", null: false
+    t.integer "tree_id", limit: 8, null: false
   end
 
-  add_index "name_tree_path", ["name_id", "tree_id"], name: "name_tree_path_treename_index", using: :btree
+  add_index "name_tree_path", %w(name_id tree_id), name: "name_tree_path_treename_index", using: :btree
 
   create_table "name_type", id: :bigserial, force: :cascade do |t|
-    t.integer "lock_version",     limit: 8,   default: 0,     null: false
-    t.boolean "autonym",                      default: false, null: false
-    t.string  "connector",        limit: 1
+    t.integer "lock_version", limit: 8, default: 0, null: false
+    t.boolean "autonym", default: false, null: false
+    t.string  "connector", limit: 1
     t.boolean "cultivar",                     default: false, null: false
     t.boolean "formula",                      default: false, null: false
     t.boolean "hybrid",                       default: false, null: false
@@ -395,7 +395,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.boolean "scientific",                   default: false, null: false
     t.integer "sort_order",                   default: 0,     null: false
     t.text    "description_html"
-    t.string  "rdf_id",           limit: 50
+    t.string  "rdf_id", limit: 50
     t.boolean "deprecated",                   default: false, null: false
   end
 
@@ -406,15 +406,15 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "lock_version",     limit: 8,   default: 0, null: false
     t.string  "name",             limit: 255,             null: false
     t.text    "description_html"
-    t.string  "rdf_id",           limit: 50
+    t.string  "rdf_id", limit: 50
   end
 
   add_index "namespace", ["name"], name: "uk_eq2y9mghytirkcofquanv5frf", unique: true, using: :btree
   add_index "namespace", ["rdf_id"], name: "namespace_rdfid", using: :btree
 
   create_table "nomenclatural_event_type", id: :bigserial, force: :cascade do |t|
-    t.integer "lock_version",             limit: 8,  default: 0, null: false
-    t.integer "name_group_id",            limit: 8,              null: false
+    t.integer "lock_version",             limit: 8, default: 0, null: false
+    t.integer "name_group_id",            limit: 8, null: false
     t.string  "nomenclatural_event_type", limit: 50
     t.text    "description_html"
     t.string  "rdf_id",                   limit: 50
@@ -431,36 +431,36 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "nsl_simple_name", id: :bigserial, force: :cascade do |t|
     t.string   "apc_comment",           limit: 4000
     t.string   "apc_distribution",      limit: 4000
-    t.boolean  "apc_excluded",                       default: false, null: false
+    t.boolean  "apc_excluded", default: false, null: false
     t.string   "apc_familia",           limit: 255
     t.integer  "apc_instance_id",       limit: 8
     t.string   "apc_name",              limit: 512
-    t.boolean  "apc_proparte",                       default: false, null: false
+    t.boolean  "apc_proparte", default: false, null: false
     t.string   "apc_relationship_type", limit: 255
-    t.boolean  "apni",                               default: false
+    t.boolean  "apni", default: false
     t.string   "author",                limit: 255
     t.string   "authority",             limit: 255
-    t.boolean  "autonym",                            default: false
+    t.boolean  "autonym", default: false
     t.string   "base_name_author",      limit: 255
     t.string   "classifications",       limit: 255
     t.string   "classis",               limit: 255
     t.datetime "created_at"
-    t.string   "created_by",            limit: 255
-    t.boolean  "cultivar",                           default: false, null: false
+    t.string   "created_by", limit: 255
+    t.boolean  "cultivar", default: false, null: false
     t.string   "cultivar_name",         limit: 255
     t.integer  "dup_of_id",             limit: 8
     t.string   "ex_author",             limit: 255
     t.string   "ex_base_name_author",   limit: 255
     t.string   "familia",               limit: 255
     t.integer  "family_nsl_id",         limit: 8
-    t.boolean  "formula",                            default: false, null: false
+    t.boolean  "formula", default: false, null: false
     t.string   "full_name_html",        limit: 2048
     t.string   "genus",                 limit: 255
     t.integer  "genus_nsl_id",          limit: 8
     t.boolean  "homonym",                            default: false
     t.boolean  "hybrid",                             default: false
     t.string   "infraspecies",          limit: 255
-    t.string   "name",                  limit: 255,                  null: false
+    t.string   "name",                  limit: 255, null: false
     t.string   "name_element",          limit: 255
     t.integer  "name_rank_id",          limit: 8,                    null: false
     t.integer  "name_status_id",        limit: 8,                    null: false
@@ -468,20 +468,20 @@ ActiveRecord::Schema.define(version: 0) do
     t.string   "name_type_name",        limit: 255,                  null: false
     t.boolean  "nom_illeg",                          default: false
     t.boolean  "nom_inval",                          default: false
-    t.string   "nom_stat",              limit: 255,                  null: false
+    t.string   "nom_stat",              limit: 255, null: false
     t.integer  "parent_nsl_id",         limit: 8
     t.integer  "proto_year",            limit: 2
-    t.string   "rank",                  limit: 255,                  null: false
+    t.string   "rank",                  limit: 255, null: false
     t.string   "rank_abbrev",           limit: 255
     t.integer  "rank_sort_order"
-    t.string   "sanctioning_author",    limit: 255
-    t.boolean  "scientific",                         default: false
+    t.string   "sanctioning_author", limit: 255
+    t.boolean  "scientific", default: false
     t.integer  "second_parent_nsl_id",  limit: 8
     t.string   "simple_name_html",      limit: 2048
     t.string   "species",               limit: 255
     t.integer  "species_nsl_id",        limit: 8
     t.string   "subclassis",            limit: 255
-    t.string   "taxon_name",            limit: 512,                  null: false
+    t.string   "taxon_name",            limit: 512, null: false
     t.datetime "updated_at"
     t.string   "updated_by",            limit: 255
     t.string   "basionym",              limit: 512
@@ -495,9 +495,9 @@ ActiveRecord::Schema.define(version: 0) do
     t.string   "apc_comment",           limit: 4000
     t.string   "apc_distribution",      limit: 4000
     t.boolean  "apc_excluded"
-    t.string   "apc_familia",           limit: 255
+    t.string   "apc_familia", limit: 255
     t.text     "apc_instance_id"
-    t.string   "apc_name",              limit: 512
+    t.string   "apc_name", limit: 512
     t.boolean  "apc_proparte"
     t.string   "apc_relationship_type", limit: 255
     t.boolean  "apni"
@@ -508,7 +508,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string   "base_name_author",      limit: 255
     t.string   "classifications",       limit: 255
     t.datetime "created_at"
-    t.string   "created_by",            limit: 255
+    t.string   "created_by", limit: 255
     t.boolean  "cultivar"
     t.string   "cultivar_name",         limit: 255
     t.string   "ex_author",             limit: 255
@@ -529,9 +529,9 @@ ActiveRecord::Schema.define(version: 0) do
     t.string   "name_type_name",        limit: 255
     t.boolean  "nom_illeg"
     t.boolean  "nom_inval"
-    t.string   "nom_stat",              limit: 255
+    t.string   "nom_stat", limit: 255
     t.text     "parent_nsl_id"
-    t.string   "proto_citation",        limit: 512
+    t.string   "proto_citation", limit: 512
     t.text     "proto_instance_id"
     t.integer  "proto_year",            limit: 2
     t.string   "rank",                  limit: 255
@@ -544,14 +544,14 @@ ActiveRecord::Schema.define(version: 0) do
     t.string   "simple_name_html",      limit: 2048
     t.string   "species",               limit: 255
     t.text     "species_nsl_id"
-    t.string   "taxon_name",            limit: 512
+    t.string   "taxon_name", limit: 512
     t.datetime "updated_at"
-    t.string   "updated_by",            limit: 255
+    t.string   "updated_by", limit: 255
   end
 
   create_table "ref_author_role", id: :bigserial, force: :cascade do |t|
-    t.integer "lock_version",     limit: 8,   default: 0, null: false
-    t.string  "name",             limit: 255,             null: false
+    t.integer "lock_version",     limit: 8, default: 0, null: false
+    t.string  "name",             limit: 255, null: false
     t.text    "description_html"
     t.string  "rdf_id",           limit: 50
   end
@@ -560,21 +560,21 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "ref_author_role", ["rdf_id"], name: "ref_author_role_rdfid", using: :btree
 
   create_table "ref_type", id: :bigserial, force: :cascade do |t|
-    t.integer "lock_version",     limit: 8,  default: 0,     null: false
-    t.string  "name",             limit: 50,                 null: false
+    t.integer "lock_version",     limit: 8, default: 0, null: false
+    t.string  "name",             limit: 50, null: false
     t.integer "parent_id",        limit: 8
-    t.boolean "parent_optional",             default: false, null: false
+    t.boolean "parent_optional", default: false, null: false
     t.text    "description_html"
-    t.string  "rdf_id",           limit: 50
+    t.string  "rdf_id", limit: 50
   end
 
   add_index "ref_type", ["name"], name: "uk_4fp66uflo7rgx59167ajs0ujv", unique: true, using: :btree
   add_index "ref_type", ["rdf_id"], name: "ref_type_rdfid", using: :btree
 
   create_table "reference", id: :bigserial, force: :cascade do |t|
-    t.integer  "lock_version",       limit: 8,    default: 0,     null: false
+    t.integer  "lock_version",       limit: 8, default: 0, null: false
     t.string   "abbrev_title",       limit: 2000
-    t.integer  "author_id",          limit: 8,                    null: false
+    t.integer  "author_id",          limit: 8, null: false
     t.string   "bhl_url",            limit: 4000
     t.string   "citation",           limit: 4000
     t.string   "citation_html",      limit: 4000
@@ -592,7 +592,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string   "pages",              limit: 1000
     t.integer  "parent_id",          limit: 8
     t.string   "publication_date",   limit: 50
-    t.boolean  "published",                       default: false, null: false
+    t.boolean  "published", default: false, null: false
     t.string   "published_location", limit: 1000
     t.string   "publisher",          limit: 1000
     t.integer  "ref_author_role_id", limit: 8,                    null: false
@@ -600,12 +600,12 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer  "source_id",          limit: 8
     t.string   "source_id_string",   limit: 100
     t.string   "source_system",      limit: 50
-    t.string   "title",              limit: 2000,                 null: false
+    t.string   "title",              limit: 2000, null: false
     t.string   "tl2",                limit: 30
-    t.boolean  "trash",                           default: false, null: false
-    t.datetime "updated_at",                                      null: false
-    t.string   "updated_by",         limit: 1000,                 null: false
-    t.boolean  "valid_record",                    default: false, null: false
+    t.boolean  "trash", default: false, null: false
+    t.datetime "updated_at", null: false
+    t.string   "updated_by", limit: 1000, null: false
+    t.boolean  "valid_record", default: false, null: false
     t.string   "verbatim_author",    limit: 1000
     t.string   "verbatim_citation",  limit: 2000
     t.string   "verbatim_reference", limit: 1000
@@ -615,7 +615,7 @@ ActiveRecord::Schema.define(version: 0) do
 
   add_index "reference", ["author_id"], name: "reference_author_index", using: :btree
   add_index "reference", ["doi"], name: "uk_kqwpm0crhcq4n9t9uiyfxo2df", unique: true, using: :btree
-  add_index "reference", ["namespace_id", "source_id", "source_system"], name: "ref_source_index", using: :btree
+  add_index "reference", %w(namespace_id source_id source_system), name: "ref_source_index", using: :btree
   add_index "reference", ["parent_id"], name: "reference_parent_index", using: :btree
   add_index "reference", ["ref_author_role_id"], name: "reference_authorrole_index", using: :btree
   add_index "reference", ["ref_type_id"], name: "reference_type_index", using: :btree
@@ -623,31 +623,31 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "reference", ["source_system"], name: "ref_system_index", using: :btree
 
   create_table "trashed_item", id: :bigserial, force: :cascade do |t|
-    t.integer  "lock_version",      limit: 8,                             default: 0, null: false
-    t.datetime "created_at",                                                          null: false
-    t.string   "created_by",        limit: 4000,                                      null: false
-    t.decimal  "trashable_id",                   precision: 19, scale: 2,             null: false
-    t.string   "trashable_type",    limit: 4000,                                      null: false
+    t.integer  "lock_version", limit: 8, default: 0, null: false
+    t.datetime "created_at", null: false
+    t.string   "created_by", limit: 4000, null: false
+    t.decimal  "trashable_id", precision: 19, scale: 2, null: false
+    t.string   "trashable_type",    limit: 4000, null: false
     t.integer  "trashing_event_id", limit: 8
-    t.datetime "updated_at",                                                          null: false
-    t.string   "updated_by",        limit: 4000,                                      null: false
+    t.datetime "updated_at", null: false
+    t.string   "updated_by", limit: 4000, null: false
   end
 
   create_table "trashing_event", id: :bigserial, force: :cascade do |t|
-    t.integer  "lock_version", limit: 8,    default: 0, null: false
-    t.datetime "created_at",                            null: false
-    t.string   "created_by",   limit: 4000,             null: false
-    t.datetime "updated_at",                            null: false
-    t.string   "updated_by",   limit: 4000,             null: false
+    t.integer  "lock_version", limit: 8, default: 0, null: false
+    t.datetime "created_at", null: false
+    t.string   "created_by", limit: 4000, null: false
+    t.datetime "updated_at", null: false
+    t.string   "updated_by", limit: 4000, null: false
   end
 
   create_table "tree_arrangement", id: :bigserial, force: :cascade do |t|
-    t.integer "lock_version", limit: 8,   default: 0, null: false
-    t.string  "tree_type",                            null: false
+    t.integer "lock_version", limit: 8, default: 0, null: false
+    t.string  "tree_type", null: false
     t.string  "description",  limit: 255
     t.string  "label",        limit: 50
     t.integer "node_id",      limit: 8
-    t.string  "is_synthetic",                         null: false
+    t.string  "is_synthetic", null: false
     t.string  "title",        limit: 50
     t.integer "namespace_id", limit: 8
   end
@@ -657,15 +657,15 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "tree_arrangement", ["node_id"], name: "tree_arrangement_node", using: :btree
 
   create_table "tree_event", id: :bigserial, force: :cascade do |t|
-    t.integer  "lock_version", limit: 8,   default: 0, null: false
-    t.string   "auth_user",    limit: 255,             null: false
+    t.integer  "lock_version", limit: 8, default: 0, null: false
+    t.string   "auth_user",    limit: 255, null: false
     t.string   "note",         limit: 255
-    t.datetime "time_stamp",                           null: false
+    t.datetime "time_stamp", null: false
     t.integer  "namespace_id", limit: 8
   end
 
   create_table "tree_link", id: :bigserial, force: :cascade do |t|
-    t.integer "lock_version",        limit: 8,   default: 0, null: false
+    t.integer "lock_version", limit: 8, default: 0, null: false
     t.integer "link_seq",                                    null: false
     t.integer "subnode_id",          limit: 8,               null: false
     t.integer "supernode_id",        limit: 8,               null: false
@@ -676,13 +676,13 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   add_index "tree_link", ["subnode_id"], name: "tree_link_subnode", using: :btree
-  add_index "tree_link", ["supernode_id", "link_seq"], name: "idx_tree_link_seq", unique: true, using: :btree
+  add_index "tree_link", %w(supernode_id link_seq), name: "idx_tree_link_seq", unique: true, using: :btree
   add_index "tree_link", ["supernode_id"], name: "tree_link_supernode", using: :btree
 
   create_table "tree_node", id: :bigserial, force: :cascade do |t|
-    t.integer "lock_version",            limit: 8,    default: 0, null: false
+    t.integer "lock_version",            limit: 8, default: 0, null: false
     t.integer "checked_in_at_id",        limit: 8
-    t.string  "internal_type",           limit: 255,              null: false
+    t.string  "internal_type",           limit: 255, null: false
     t.string  "literal",                 limit: 4096
     t.string  "name_uri_id_part",        limit: 255
     t.integer "name_uri_ns_part_id",     limit: 8
@@ -692,35 +692,35 @@ ActiveRecord::Schema.define(version: 0) do
     t.string  "resource_uri_id_part",    limit: 255
     t.integer "resource_uri_ns_part_id", limit: 8
     t.integer "tree_arrangement_id",     limit: 8
-    t.string  "is_synthetic",                                     null: false
+    t.string  "is_synthetic", null: false
     t.string  "taxon_uri_id_part",       limit: 255
     t.integer "taxon_uri_ns_part_id",    limit: 8
     t.string  "type_uri_id_part",        limit: 255
-    t.integer "type_uri_ns_part_id",     limit: 8,                null: false
+    t.integer "type_uri_ns_part_id",     limit: 8, null: false
     t.integer "name_id",                 limit: 8
     t.integer "instance_id",             limit: 8
   end
 
-  add_index "tree_node", ["instance_id", "tree_arrangement_id"], name: "idx_tree_node_instance_id_in", using: :btree
+  add_index "tree_node", %w(instance_id tree_arrangement_id), name: "idx_tree_node_instance_id_in", using: :btree
   add_index "tree_node", ["instance_id"], name: "idx_tree_node_instance_id", using: :btree
   add_index "tree_node", ["literal"], name: "idx_tree_node_literal", using: :btree
-  add_index "tree_node", ["name_id", "tree_arrangement_id"], name: "idx_tree_node_name_id_in", using: :btree
+  add_index "tree_node", %w(name_id tree_arrangement_id), name: "idx_tree_node_name_id_in", using: :btree
   add_index "tree_node", ["name_id"], name: "idx_tree_node_name_id", using: :btree
-  add_index "tree_node", ["name_uri_id_part", "name_uri_ns_part_id", "tree_arrangement_id"], name: "idx_tree_node_name_in", using: :btree
-  add_index "tree_node", ["name_uri_id_part", "name_uri_ns_part_id"], name: "idx_tree_node_name", using: :btree
+  add_index "tree_node", %w(name_uri_id_part name_uri_ns_part_id tree_arrangement_id), name: "idx_tree_node_name_in", using: :btree
+  add_index "tree_node", %w(name_uri_id_part name_uri_ns_part_id), name: "idx_tree_node_name", using: :btree
   add_index "tree_node", ["next_node_id"], name: "tree_node_next", using: :btree
   add_index "tree_node", ["prev_node_id"], name: "tree_node_prev", using: :btree
-  add_index "tree_node", ["resource_uri_id_part", "resource_uri_ns_part_id", "tree_arrangement_id"], name: "idx_tree_node_resource_in", using: :btree
-  add_index "tree_node", ["resource_uri_id_part", "resource_uri_ns_part_id"], name: "idx_tree_node_resource", using: :btree
-  add_index "tree_node", ["taxon_uri_id_part", "taxon_uri_ns_part_id", "tree_arrangement_id"], name: "idx_tree_node_taxon_in", using: :btree
-  add_index "tree_node", ["taxon_uri_id_part", "taxon_uri_ns_part_id"], name: "idx_tree_node_taxon", using: :btree
+  add_index "tree_node", %w(resource_uri_id_part resource_uri_ns_part_id tree_arrangement_id), name: "idx_tree_node_resource_in", using: :btree
+  add_index "tree_node", %w(resource_uri_id_part resource_uri_ns_part_id), name: "idx_tree_node_resource", using: :btree
+  add_index "tree_node", %w(taxon_uri_id_part taxon_uri_ns_part_id tree_arrangement_id), name: "idx_tree_node_taxon_in", using: :btree
+  add_index "tree_node", %w(taxon_uri_id_part taxon_uri_ns_part_id), name: "idx_tree_node_taxon", using: :btree
 
   create_table "tree_uri_ns", id: :bigserial, force: :cascade do |t|
-    t.integer "lock_version",           limit: 8,   default: 0, null: false
+    t.integer "lock_version",           limit: 8, default: 0, null: false
     t.string  "description",            limit: 255
     t.integer "id_mapper_namespace_id", limit: 8
     t.string  "id_mapper_system",       limit: 255
-    t.string  "label",                  limit: 20,              null: false
+    t.string  "label",                  limit: 20, null: false
     t.string  "owner_uri_id_part",      limit: 255
     t.integer "owner_uri_ns_part_id",   limit: 8
     t.string  "title",                  limit: 255
@@ -733,25 +733,25 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "tree_uri_ns", ["uri"], name: "uk_70p0ys3l5v6s9dqrpjr3u3rrf", unique: true, using: :btree
 
   create_table "user_query", id: :bigserial, force: :cascade do |t|
-    t.integer  "lock_version",       limit: 8,                             default: 0,     null: false
+    t.integer  "lock_version", limit: 8, default: 0, null: false
     t.datetime "created_at",                                                               null: false
     t.boolean  "query_completed",                                          default: false, null: false
     t.boolean  "query_started",                                            default: false, null: false
-    t.decimal  "record_count",                    precision: 19, scale: 2,                 null: false
+    t.decimal  "record_count", precision: 19, scale: 2, null: false
     t.datetime "search_finished_at"
     t.string   "search_info",        limit: 500
     t.string   "search_model",       limit: 4000
     t.text     "search_result"
     t.datetime "search_started_at"
-    t.string   "search_terms",       limit: 4000
-    t.boolean  "trash",                                                    default: false, null: false
-    t.datetime "updated_at",                                                               null: false
+    t.string   "search_terms", limit: 4000
+    t.boolean  "trash", default: false, null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "why_is_this_here", id: :bigserial, force: :cascade do |t|
-    t.integer "lock_version", limit: 8,  default: 0, null: false
-    t.string  "name",         limit: 50,             null: false
-    t.integer "sort_order",              default: 0, null: false
+    t.integer "lock_version", limit: 8, default: 0, null: false
+    t.string  "name",         limit: 50, null: false
+    t.integer "sort_order", default: 0, null: false
   end
 
   add_index "why_is_this_here", ["name"], name: "uk_sv1q1i7xve7xgmkwvmdbeo1mb", unique: true, using: :btree
@@ -837,7 +837,7 @@ ActiveRecord::Schema.define(version: 0) do
   add_foreign_key "tree_node", "tree_uri_ns", column: "taxon_uri_ns_part_id", name: "fk_16c4wgya68bwotwn6f50dhw69"
   add_foreign_key "tree_node", "tree_uri_ns", column: "type_uri_ns_part_id", name: "fk_oge4ibjd3ff3oyshexl6set2u"
   add_foreign_key "tree_uri_ns", "tree_uri_ns", column: "owner_uri_ns_part_id", name: "fk_q9k8he941kvl07j2htmqxq35v"
-      create_view :accepted_name_vw, sql_definition:<<-SQL
+  create_view :accepted_name_vw, sql_definition: <<-SQL
         SELECT accepted.id,
   accepted.simple_name,
   accepted.full_name,
@@ -856,5 +856,4 @@ ActiveRecord::Schema.define(version: 0) do
    JOIN tree_arrangement ta ON ((tree_node.tree_arrangement_id = ta.id)))
 WHERE (((((ta.label)::text = 'APC'::text) AND (tree_node.next_node_id IS NULL)) AND (tree_node.checked_in_at_id IS NOT NULL)) AND (instance.id = tree_node.instance_id));
       SQL
-
 end

@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 #  Name object methods
 class Name < ActiveRecord::Base
+  include NameSearchable
+  include NameDisplayable
+  include NameJsonable
+  include NameCsvable
   self.table_name = "name"
   self.primary_key = "id"
   acts_as_tree
@@ -83,132 +87,15 @@ class Name < ActiveRecord::Base
                                   end)
   scope :limited_high, -> { limit(5000) }
 
-  def self.search_for(string)
-    where("( lower(name.simple_name) like ?
-          or lower(name.simple_name) like ?
-          or lower(f_unaccent(name.full_name)) like ?
-          or lower(f_unaccent(name.full_name)) like ?)",
-          string.downcase.tr("*", "%").tr("×", "x"),
-          Name.string_for_possible_hybrids(string),
-          string.downcase.tr("*", "%").tr("×", "x"),
-          Name.string_for_possible_hybrids(string))
-  end
-
-  def self.simple_name_allow_for_hybrids_like(string)
-    where("( lower(name.simple_name) like ? or lower(name.simple_name) like ?)",
-          string.downcase.tr("*", "%").tr("×", "x"),
-          Name.string_for_possible_hybrids(string))
-  end
-
-  def self.full_name_allow_for_hybrids_like(string)
-    where("( lower(f_unaccent(name.full_name)) like ?
-          or lower(f_unaccent(name.full_name)) like ?)",
-          string.downcase.tr("*", "%").tr("×", "x"),
-          Name.string_for_possible_hybrids(string))
-  end
-
   def self.string_for_possible_hybrids(string)
     string.downcase.tr("*", "%").sub(/^([^x])/, 'x \1').tr("×", "x")
   end
 
-  # Setting up the final few associations got tricky.
-  def self.unordered_accepted_tree_synonyms
-    Name.joins(:cited_by_instance_tree_arrangements)
-        .joins(:cited_by_instance_tree_node_names)
-        .joins("inner join name_tree_path ntp
-                on cited_by_instance_tree_node_names_name.id = ntp.name_id")
-        .joins(" inner join tree_arrangement ntp_ta
-                on ntp.tree_id = ntp_ta.id and ntp_ta.label = 'APC' ")
-        .includes(:status)
-        .includes(:cited_by_instance_tree_node_names)
-        .joins(:rank)
-        .joins(:name_type)
-  end
-
-  def self.new_unordered_accepted_tree_synonyms
-    Name.joins(:rank)
-        .joins(:cited_by_names)
-        .joins(:apc_tree_arrangements)
-        .joins(:name_type)
-        .includes(:status)
-  end
-
-  def self.scientific_search
-    Name.not_a_duplicate
-        .has_an_instance
-        .includes(:status)
-        .includes(:rank)
-  end
-
-  def self.cultivar_search
-    Name.not_a_duplicate
-        .has_an_instance
-        .includes(:status)
-        .joins(:rank)
-  end
-
-  def self.common_search
-    Name.not_a_duplicate
-        .has_an_instance
-        .includes(:status)
-        .order("sort_name")
-  end
-
-  def family_name
+  def xfamily_name
     name_tree_path_default.rank_path.sub(/.*Familia:/, "").sub(/>.*$/, "")
-  end
-
-  def apc_instance_id
-    # TreeNode.apc(full_name).try("first").try("instance_id")
-    AcceptedName.where(id: id).try("first").try("instance_id")
   end
 
   def direct_sub_taxa_with_instance_count
     Name.where(parent_id: id).joins(:instances).select("distinct name.id").count
-  end
-
-  def show_status?
-    status.show?
-  end
-
-  def as_json(options = {})
-    logger.debug("as_json options: #{options}")
-    [name: full_name, status: status.name]
-  end
-
-  def to_csv
-    attributes.values_at(*Name.columns.map(&:name))
-    [full_name, status.name].to_csv
-  end
-
-  def self.csv_headings
-    %w(full_name status).to_csv
-  end
-
-  def apc_accepted?
-    apc_accepted_instance.present?
-  end
-
-  def apc_excluded?
-    apc_excluded_instance.present?
-  end
-
-  def apc_comment
-    return unless apc_accepted?
-    apc_accepted_instance.apc_comment
-  end
-
-  def apc_distribution
-    return unless apc_accepted?
-    apc_accepted_instance.apc_distribution
-  end
-
-  # For compatibility with name_instance_vw.
-  def status_name
-    status.name
-  end
-
-  def author_component_of_full_name
-    full_name.sub(/#{Regexp.escape(simple_name)}/, "")
   end
 end

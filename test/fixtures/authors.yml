@@ -2,5 +2,24 @@ haeckel:
   name: "Haeckel, Ernst Heinrich Philipp August"
   abbrev: Haeckel
   namespace_id: namespace.apni
-  created_by: kirstenc
-  updated_by: kirstenc
+  created_by: tester
+  updated_by: tester
+
+orchard_a_e:
+  name: "Orchard, A.E."
+  namespace_id: namespace.apni
+  created_by: tester
+  updated_by: tester
+
+beadle_evans_carolin:
+  name: "Beadle, N.C.W., Evans, O.D. & Carolin, R.C."
+  namespace_id: namespace.apni
+  created_by: tester
+  updated_by: tester
+
+mueller:
+  name: Mueller, F.J.H. von
+  abbrev: F.Muell.
+  namespace_id: namespace.apni
+  created_by: tester
+  updated_by: tester

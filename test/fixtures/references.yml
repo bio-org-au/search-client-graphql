@@ -9,3 +9,57 @@
 #
 #two: {}
 #  column: value
+chah_2011:
+  title: Australian Plant Census
+  display_title: Australian Plant Census
+  citation: CHAH 2011, Australian Plant Census
+  citation_html: CHAH 2011, Australian Plant Census
+  author: unknown
+  language_id: 0
+  namespace_id: 0
+  ref_author_role_id: 0
+  ref_type_id: 0
+  created_by: tester
+  updated_by: tester
+  
+orchard_2004:
+  title: "A revision of Cassinia (Asteraceae: Gnaphalieae) in Australia.  3.  Section Leptocephalae"
+  display_title: "A revision of Cassinia (Asteraceae: Gnaphalieae) in Australia.  3.  Section Leptocephalae"
+  citation: "Orchard, A.E. (2004), A revision of Cassinia (Asteraceae: Gnaphalieae) in Australia. 3. Section Leptocephalae. Australian Systematic Botany 17(6) : 535-566"
+  citation_html: "Orchard, A.E. (2004), A revision of Cassinia (Asteraceae: Gnaphalieae) in Australia. 3. Section Leptocephalae. Australian Systematic Botany 17(6) : 535-566"
+  author: orchard_a_e
+  language_id: 0
+  namespace_id: 0
+  ref_author_role_id: 0
+  ref_type_id: 0
+  volume: 17(6)
+  created_by: tester
+  updated_by: tester
+  
+flora_sydney_region_1972:
+  title: "Flora of the Sydney Region."
+  display_title: "Flora of the Sydney Region."
+  citation: "Orchard, A.E. (2004), A revision of Cassinia (Asteraceae: Gnaphalieae) in Australia. 3. Section Leptocephalae. Australian Systematic Botany 17(6) : 535-566"
+  citation_html: "Orchard, A.E. (2004), A revision of Cassinia (Asteraceae: Gnaphalieae) in Australia. 3. Section Leptocephalae. Australian Systematic Botany 17(6) : 535-566"
+  author: beadle_evans_carolin
+  language_id: 0
+  namespace_id: 0
+  ref_author_role_id: 0
+  ref_type_id: 0
+  edition: 2
+  created_by: tester
+  updated_by: tester
+  
+mueller_fragmenta:
+  title: "Mueller, F.J.H. von (1858-1882), Fragmenta Phytographiae Australiae"
+  display_title: "Mueller, F.J.H. von (1858-1882), Fragmenta Phytographiae Australiae"
+  citation: "Mueller, F.J.H. von (1858), Fragmenta Phytographiae Australiae 1(1) : 1-24"
+  citation_html: "Mueller, F.J.H. von (1858), Fragmenta Phytographiae Australiae 1(1) : 1-24"
+  author: mueller
+  language_id: 0
+  namespace_id: 0
+  ref_author_role_id: 0
+  ref_type_id: 0
+  year: 1858
+  created_by: tester
+  updated_by: tester
