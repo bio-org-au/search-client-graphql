@@ -1,0 +1,53 @@
+<% content_for :page_title do %>
+  NSL: Plants
+<% end %>
+<% content_for :page_banner do %>
+  <h1>Vascular Plants</h1>
+<% end %>
+<% content_for :sidebar do %>
+  <%= render "sidebar" %>
+<% end %>
+
+<div class="row">
+  <div class="col-xl-7 col-lg-9 col-md-10">
+    <p>This section of the National Species List infrastructure delivers names
+    and taxonomies for vascular plants, ferns, gymnosperms, hornworts, and
+    liverworts. The currently available data comprise names, bibliographic
+    information, and taxonomic concepts for plants that are either native
+    to or naturalised in Australia.
+    </p>
+    <p>
+        The Australian Plant Name Index (APNI) provides names and bibliographic information.
+    </p>
+    <p>
+        The Australian Plant Census (APC) provides a nationally-accepted taxonomy.
+    </p>
+    <p>
+        Additional names and taxonomies will be accessible here as they become available.
+    </p>
+
+<hr class="black-bg" />
+
+Quick Links
+<ul class="discs">
+   <li class="">
+     <%= link_to "Search APNI",
+                 names_search_path,
+                 class: "",
+                 title: "Search Vascular Plant Names" %>
+   </li>
+   <li class="">
+     <%= link_to "Search APC",
+                 taxonomy_accepted_search_path,
+                 class: "",
+                 title: "Search the Australian Plant Census" %>
+   </li>
+</ul>
+      
+  </div>
+</div>
+
+<br/>
+<br/>
+<br/>
+<span class="debug tiny hidden-print">[views/index]</span>

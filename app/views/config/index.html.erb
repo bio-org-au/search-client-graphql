@@ -1,1 +1,7 @@
-Editor: <%= Rails.configuration.try('instance_editor_address') %>
+Home: <%= ENV["HOME"] %>
+<br>
+Shard: <%= ENV["SHARD"] %>
+<br>
+Hub: <%= Rails.configuration.try('hub') %>
+<br>
+Instance Editor: <%= Rails.configuration.try('instance_editor') %>

@@ -1,0 +1,123 @@
+  <nav class="bd-links" id="docsNavbarContent">
+      <div class="bd-toc-item active">
+        <div id="sidebar-navigation-menu" class="">
+        <%= link_to "National Species Lists",
+                    nsl_path,
+                    class: "bd-toc-link",
+                    title: "National Species Lists" %>
+        <%= link_to "Flora",
+                    flora_path,
+                    class: "bd-toc-link",
+                    title: "Flora" %>
+        <%= link_to "Vascular Plants",
+                    root_path,
+                    class: "bd-toc-link",
+                    title: "Vascular Plants" %>
+        <%= link_to "APC".html_safe,
+                    taxonomy_accepted_path,
+                    class: "bd-toc-link",
+                    title: "Vascular Plant Taxonomy - Accepted by the Australian Plant Census" %>
+        <%= link_to "APC Name Search",
+                    taxonomy_accepted_search_path,
+                    class: "bd-toc-link",
+                    title: "Australian Plant Census Name Search" %>
+        </div>
+        <hr>
+        <ul class="nav bd-sidenav">
+          <li class="search-type-switch-item <%= 'active' if params[:search_type].blank? || params[:search_type].match(/\Aaccepted\z/i) %>">
+            <%= link_to "Accepted&nbsp;#{fa_icon('check', class: "hide-unless-active")}".html_safe,
+                        "javascript: void;",
+                        id: "accepted-search-sidebar-link",
+                        class: "taxonomy-search-sidebar-link",
+                        data: { search_type: "accepted" }, 
+                        title: "Search for accepted names." %>
+          </li>
+          <li class="search-type-switch-item <%= 'active' if params[:search_type].present? && params[:search_type].match(/\Aexcluded\z/i) %>">
+            <%= link_to "Excluded&nbsp;#{fa_icon('check', class: "hide-unless-active")}".html_safe,
+                        "javascript: void;",
+                        id: "excluded-search-sidebar-link",
+                        class: "taxonomy-search-sidebar-link",
+                        data: { search_type: "excluded" }, 
+                        title: "Search for excluded names." %>
+          </li>
+          <li class="search-type-switch-item <%= 'active' if params[:search_type].present? && params[:search_type].match(/\Asynonyms\z/i) %>">
+            <%= link_to "Synonyms&nbsp;#{fa_icon('check', class: "hide-unless-active")}".html_safe,
+                        "javascript: void;",
+                        id: "synonyms-search-sidebar-link",
+                        class: "taxonomy-search-sidebar-link",
+                        data: { search_type: "synonyms" }, 
+                        title: "Search for synonyms." %>
+          </li>
+          <li class="search-type-switch-item <%= 'active' if params[:search_type].present? && params[:search_type].match(/\Aaccepted.and.excluded\z/i) %>">
+            <%= link_to "Accepted and excluded&nbsp;#{fa_icon('check', class: "hide-unless-active")}".html_safe,
+                        "javascript: void;",
+                        id: "accepted-and-excluded-search-sidebar-link",
+                        class: "taxonomy-search-sidebar-link",
+                        data: { search_type: "accepted and excluded" }, 
+                        title: "Search for accepted and excluded names." %>
+          </li>
+          <li class="search-type-switch-item <%= 'active' if params[:search_type].present? && params[:search_type].match(/\Aall\z/i) %>">
+            <%= link_to "All&nbsp;#{fa_icon('check', class: "hide-unless-active")}".html_safe,
+                        "javascript: void;",
+                        id: "all-search-sidebar-link",
+                        class: "taxonomy-search-sidebar-link",
+                        data: { search_type: "all" }, 
+                        title: "Search for all." %>
+          </li>
+
+          <hr/>
+
+          <li><%= link_to "Details #{fa_icon('check',
+                        id: 'taxonomy-details-toggle-switch-indicator',
+                        class: session[:taxonomy_details] ? '' : 'hidden-xs-up')}".html_safe,
+                        taxonomy_details_path,
+                        title:"Details on/off switch.  Does not apply to synonyms.",
+                        method: :post,
+                        remote: true %>
+          </li>
+          <hr/>
+          <li>
+            <a href="javascript:window.print()"
+               class="tiny"
+               title="Print the page">Print</a>
+          </li>
+            <li class="">
+              <%= link_to "CSV",
+                          "javascript: void;",
+                          class: "tiny needs-details-limit taxonomy-format-search",
+                          data: {search_format: "csv"},
+                          title: "Convert results to CSV." %>
+            </li>
+            <li class="">
+              <%= link_to ticked("HTML"),
+                          "javascript: void;",
+                          class: "tiny needs-details-limit taxonomy-format-search",
+                          data: {search_format: "html"},
+                          title: "Results will be displayed in HTML unless you choose CSV or JSON." %>
+            </li>
+            <li class="">
+              <%= link_to "JSON",
+                          "javascript: void;",
+                          class: "tiny needs-details-limit taxonomy-format-search",
+                          data: {search_format: "json"},
+                          title: "Convert results to JSON." %>
+            </li>
+          <hr/>
+
+          <li><%= link_to "Help #{fa_icon('check',
+                        id: 'help-toggle-switch-indicator',
+                        class: session[:help] ? '' : 'hidden-xs-up')}".html_safe,
+                        help_path,
+                        title:"Help on/off switch.",
+                        method: :post,
+                        remote: true %>
+          </li>
+        </ul>
+        <%= render 'layouts/back_link' %>
+      </div>
+  </nav>
+
+    <br/>
+      <span class="debug hidden-print">
+        app/views/taxonomy/accepted/search/_sidebar
+      </span>

@@ -1,0 +1,44 @@
+  <nav class="bd-links" id="docsNavbarContent">
+      <div class="bd-toc-item active">
+        <div id="sidebar-navigation-menu" class="">
+        <%= link_to "National Species Lists",
+                    nsl_path,
+                    class: "bd-toc-link",
+                    title: "National Species Lists" %>
+        <%= link_to "Flora",
+                    flora_path,
+                    class: "bd-toc-link",
+                    title: "Flora" %>
+        <%= link_to ticked("Vascular Plants"),
+                    root_path,
+                    class: "bd-toc-link",
+                    title: "Vascular Plants" %>
+        </div>
+        <hr>
+        <ul class="nav bd-sidenav">
+            <li class="">
+              <%= link_to "APNI".html_safe,
+                          names_path,
+                          class: "",
+                          title: "Vascular Plant Names in the Australian Plant Names Index" %>
+            </li>
+            <li class="">
+              <%= link_to "APC",
+                          taxonomy_accepted_path,
+                          class: "",
+                          title: "APC Taxonomy" %>
+            </li>
+            <li class="">
+              <%= link_to "Other taxonomies",
+                          taxonomy_other_path,
+                          class: "",
+                          title: "Other Taxonomies" %>
+            </li>
+        </ul>
+        <%= render 'layouts/back_link' %>
+      </div>
+  </nav>
+    <br/>
+      <span class="debug hidden-print">
+        app/views/home/_sidebar
+      </span>

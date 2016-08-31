@@ -59,4 +59,9 @@ class NameOrSynonym < ActiveRecord::Base
   def show_status?
     status.show?
   end
+
+  def to_csv
+    attributes.values_at(*Name.columns.map(&:name))
+    [full_name, status.name].to_csv
+  end
 end

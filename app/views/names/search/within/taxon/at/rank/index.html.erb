@@ -1,0 +1,28 @@
+<% content_for :page_title do %>
+  Vascular Plant Names Search
+<% end %>
+<% content_for :page_banner do %>
+  <h1>APNI Names Within <%= @name.full_name %> at rank <%= params[:rank] %></h1>
+<% end %>
+<% content_for :sidebar do %>
+  <%= render "sidebar" %>
+<% end %>
+
+<%= render "search" %>
+<h2><%= @name.full_name %></h2>
+
+<% if @search.present? %>
+  <%= "#{@search.parsed.search_type} for '#{params[:q]}' returned
+  #{pluralize(@search.results.size, 'taxon')}" %>
+<% end %>
+
+<%= render partial: 'index', locals: {name: @name} %>
+
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<span class="debug red tiny hidden-print">[names/search/within/taxon/at/rank/index]</span>
+

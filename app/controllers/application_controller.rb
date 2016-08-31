@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_zone
-    @zone = ""
+    @zone = "plants"
   end
 
   def valid_show_results_as(user_preference = "blank")
