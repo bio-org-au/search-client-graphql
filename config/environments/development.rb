@@ -43,4 +43,25 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 end
 
-load "#{ENV['HOME']}/.nsl/development/search-config.rb"
+begin
+  raise "no_shard_set" if (ENV["SHARD"]).nil?
+  puts %(Configuring shard: #{ENV["SHARD"]})
+rescue => e
+  puts "="*100
+  puts "Expected the SHARD environmental variable to be set."
+  puts "Application start up will now fail."
+  puts "="*100
+  raise
+end
+
+begin
+  file_path = "#{ENV['HOME']}/.nsl/development/#{ENV["SHARD"]}-search-config.rb"
+  puts "Loading config from: #{file_path}"
+  load file_path
+rescue LoadError
+  puts "="*100
+  puts "Unable to find the config file: #{file_path}"
+  puts "Application start up will now fail."
+  puts "="*100
+  raise
+end
