@@ -11,7 +11,7 @@
               <span class="small">
                 <%= "sensu #{nos.reference.citation_html}".html_safe %>
               </span>
-              <span class="debug purple">[<strong><%#= nos.rank.name %></strong>]</span>
+              <span class="debug purple">[<strong><%= nos.rank.name %></strong>]</span>
 
               <%= render partial: "/taxonomy/accepted/search/citation_links", locals: {name: nos} %>
 

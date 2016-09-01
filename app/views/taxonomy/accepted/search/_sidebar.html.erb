@@ -9,15 +9,15 @@
                     flora_path,
                     class: "bd-toc-link",
                     title: "Flora" %>
-        <%= link_to "Vascular Plants",
+        <%= link_to shard.capitalize,
                     root_path,
                     class: "bd-toc-link",
-                    title: "Vascular Plants" %>
-        <%= link_to "APC".html_safe,
+                    title: "shard.capitalize" %>
+                  <%= link_to tree_label,
                     taxonomy_accepted_path,
                     class: "bd-toc-link",
                     title: "Vascular Plant Taxonomy - Accepted by the Australian Plant Census" %>
-        <%= link_to "APC Name Search",
+                  <%= link_to "#{ tree_label } Name Search",
                     taxonomy_accepted_search_path,
                     class: "bd-toc-link",
                     title: "Australian Plant Census Name Search" %>

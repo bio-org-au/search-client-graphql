@@ -9,18 +9,18 @@
                     flora_path,
                     class: "bd-toc-link",
                     title: "Flora" %>
-        <%= link_to "Vascular Plants",
+        <%= link_to shard.capitalize,
                     root_path,
                     class: "bd-toc-link", 
-                    title: "Vascular Plants" %>
-        <%= link_to "APNI",
+                    title: shard.capitalize %>
+        <%= link_to "#{name_label}",
                     names_path,
                     class: "bd-toc-link",
-                    title: "Vascular Plant Names" %>
-        <%= link_to ticked("APNI Name Search").html_safe,
+                    title: "#{name_label} Names" %>
+        <%= link_to ("#{name_label} Search").html_safe,
                     names_search_path,
                     class: "bd-toc-link",
-                    title: "APNI Simple Name Search" %>
+                    title: "#{name_label} Simple Name Search" %>
       </div>
       <hr/>
       <ul class="nav bd-sidenav">

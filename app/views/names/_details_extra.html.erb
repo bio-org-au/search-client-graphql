@@ -18,9 +18,9 @@
         <span class="accepted-or-excluded-indicator red">
           <% case name_detail.instance.accepted_name.type_code %>
           <% when 'ApcConcept' %>
-            <span title="APC Concept"><%= fa_icon('check', class: 'fa-lg green') %>APC</span>
+            <span title="<%= %Q(#{ tree_label } Concept) %>" ><%= fa_icon('check', class: 'fa-lg green') %><%= tree_label %></span>
           <% when 'ApcExcluded' %>
-            <span title="Excluded from APC"><%= fa_icon('ban', class: 'fa-lg red') %>APC</span>
+            <span title="Excluded from #{ tree_label }"><%= fa_icon('ban', class: 'fa-lg red') %><%= tree_label %></span>
           <% end %>
         </span>
       <% end %>
@@ -75,14 +75,14 @@
 
         <% if show_comment %>
           <div class="classification-tree-note">
-            <span class="instance-note-label">APC comment: </span>
+            <span class="instance-note-label"><%= tree_label %> comment: </span>
             <span class="classification-tree-value"><%= apc_comment.html_safe %></span>
           </div>
           <% show_comment = false %>
         <% end %>
 
         <% if show_dist %>
-          <div class="classification-tree-note"><span class="instance-note-label">APC distribution: </span><%= apc_dist %></span></div>
+          <div class="classification-tree-note"><span class="instance-note-label"><%= tree_label %> distribution: </span><%= apc_dist %></span></div>
           <% show_dist = false %>
         <% end %>
 

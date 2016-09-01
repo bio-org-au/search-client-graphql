@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_zone
-    @zone = "plants"
+    @zone = ENV["SHARD"] || "shard"
   end
 
   def valid_show_results_as(user_preference = "blank")

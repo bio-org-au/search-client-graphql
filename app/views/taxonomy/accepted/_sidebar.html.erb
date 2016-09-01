@@ -8,21 +8,21 @@
                     flora_path,
                     class: "bd-toc-link",
                     title: "Flora" %>
-        <%= link_to "Vascular Plants",
+                  <%= link_to "#{ menu_label }",
                     root_path,
                     class: "bd-toc-link",
-                    title: "Vascular Plants" %>
-        <%= link_to ticked("APC"),
+                    title: "#{ menu_label }" %>
+                  <%= link_to ticked("#{ tree_label }"),
                     "#",
                     class: "bd-toc-link",
-                    title: "Vascular Plant Taxonomy - Accepted by the Australian Plant Census" %>
+                    title: "#{ tree_label_text }" %>
         <hr>
         <ul class="nav bd-sidenav">
             <li class="">
-              <%= link_to "APC Name Search",
+              <%= link_to "#{ tree_label } Name Search",
                           taxonomy_accepted_search_path,
                           class: "",
-                          title: "Australian Plant Census Name search" %>
+                          title: "Name search" %>
             </li>
         </ul>
         <%= render 'layouts/back_link' %>

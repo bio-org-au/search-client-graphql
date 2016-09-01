@@ -1,5 +1,5 @@
 <% content_for :page_title do %>
- NSL: APNI
+  NSL: #{name_label}
 <% end %>
 <% content_for :page_banner do %>
   <h1>Australian Plant Name Index</h1>
@@ -8,45 +8,7 @@
   <%= render "sidebar" %>
 <% end %>
 
-  <p>
-  The Australian Plant Name Index (APNI) is a national resource providing information on the names of native and naturalised Australian plants and the usage of these names in the scientific literature, whether as a current name or synonym. APNI includes data for angiosperms, ferns, gymnosperms, hornworts, and liverworts. It also includes names for cultivars derived from the Australian flora. APNI does not recommend any particular taxonomy or nomenclature. For a listing of currently accepted scientific names for the Australian vascular flora, see the Australian Plant Census (APC).
-  </p>
-
-  <p>
-  Information available from APNI includes:
-    <ul class="discs">
-      <li>
-Scientific plant names;
-<li>
-Author details;
-</li>
-<li>
-Original publication details (protologue) with links to the publication when available;
-</li>
-<li>
-Subsequent usage of the name in the scientific literature (in an Australian context);
-</li>
-<li>
-Typification details;
-</li>
-<li>
-Icons indicating which, if any, is the currently accepted concept in the Australian Plant Census (APC);
-</li>
-<li>
-State distribution (from APC);
-</li>
-<li>
-Relevant comments and notes; and
-</li>
-<li>
-Links to other information where available.
-</li>
-    </ul>
-  </p>
-
-  <p>APNI is currently maintained within the Centre for Australian National Biodiversity Research with staff, resources and financial support from the Australian National Herbarium, Australian National Botanic Gardens and the Australian Biological Resources Study. The CANBR, ANBG and ABRS collaborate to further the updating and delivery of APNI and APC.
-  </p>
-
+  <%= name_description_html.html_safe %>
 
 <br/>
 <br/>

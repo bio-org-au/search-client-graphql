@@ -10,18 +10,18 @@
                        class: "form-control",
                        value: "#{params[:q]}",
                        autofocus: true,
-                       title: "Enter a name with or without wildcards to search APC or APNI",
+                       title: "Enter a name with or without wildcards to search #{ tree_label } or #{ name_label }",
                        required: true,
-                       placeholder: "Search APC") %>
+                       placeholder: "Search #{ tree_label }") %>
   </div>
   <div class="col-xs-8 col-xs-offset-4 col-sm-8 col-sm-offset-7 col-md-5 col-md-offset-0 col-lg-4 col-lg-offset-0 col-xl-3">
-    <%= link_to("#{fa_icon('search')} APNI".html_safe,
+    <%= link_to("#{fa_icon('search')} #{ name_label }".html_safe,
                 names_search_path(q:''),
                 id: "search-names-link",
                 class: "alt-search-link btn btn-secondary hidden-print",
-                title: "Switch to APNI search") %>
-    <%= button_tag(id: "search-button", type: "submit", class: "btn white nsl-blue-bg hidden-print", title: "Search APC")  do %>
-      <%= fa_icon('search') %>&nbsp;APC
+                title: "Switch to #{ name_label } search") %>
+              <%= button_tag(id: "search-button", type: "submit", class: "btn white nsl-blue-bg hidden-print", title: "Search #{ tree_label }")  do %>
+                <%= fa_icon('search') %>&nbsp;<%= tree_label %>
     <% end %> 
   </div>
   </div>

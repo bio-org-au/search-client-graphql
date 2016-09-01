@@ -12,18 +12,18 @@
                     root_path,
                     class: "bd-toc-link",
                     title: "Vascular Plants" %>
-        <%= link_to "APNI".html_safe,
+                  <%= link_to "#{name_label}".html_safe,
                     names_path,
                     class: "bd-toc-link",
                     title: "Vascular Plant Names" %>
-        <%= link_to "APNI Name search",
+                  <%= link_to "#{name_label} Name search",
                     names_search_path,
                     class: "bd-toc-link",
-                    title: "Search APNI names" %>
+                    title: "Search #{name_label} names" %>
         <%= link_to "Names within a taxon",
                     names_search_within_taxon_path(@name.id),
                     class: "bd-toc-link",
-                    title: "Search APNI names" %>
+                    title: "Search #{name_label} names" %>
         <hr>
         <ul class="nav bd-sidenav">
           <li class="bd-sidenav-active">

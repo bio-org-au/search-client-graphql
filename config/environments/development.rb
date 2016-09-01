@@ -50,6 +50,7 @@ rescue
   puts "=" * 100
   puts "Expected the SHARD environmental variable to be set."
   puts "Application start up will now fail."
+  puts "ENV['SHARD']: #{ENV['SHARD']}"
   puts "=" * 100
   raise
 end
