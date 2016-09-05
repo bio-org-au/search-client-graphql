@@ -84,4 +84,28 @@ module ApplicationHelper
   def page_title
     ShardConfig.page_title
   end
+
+  def services_path_name_element
+    ShardConfig.services_path_name_element
+  end
+
+  def services_path_tree_element
+    ShardConfig.services_path_tree_element
+  end
+
+  def tree_search_help_text_html
+    ShardConfig.tree_search_help_text_html
+  end
+
+  def name_search_help_text_html
+    ShardConfig.name_search_help_text_html
+  end
+
+  def name_services(name_id)
+    "#{Rails.configuration.services}#{Rails.configuration.services_path}/name/#{services_path_name_element}/#{name_id}"
+  end
+
+  def services_with_path
+    "#{Rails.configuration.services}#{Rails.configuration.services_path}"
+  end
 end

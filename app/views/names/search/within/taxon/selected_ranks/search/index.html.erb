@@ -1,14 +1,14 @@
 <% content_for :page_title do %>
-  Vascular Plant Names Search
+  <%= page_title %> Names Search
 <% end %>
 <% content_for :page_banner do %>
-  <h1>APNI Names Within A Taxon - Selected&nbsp;Ranks</h1>
+  <h1><%= name_label %> Names Within A Taxon - Selected&nbsp;Ranks</h1>
 <% end %>
 <% content_for :sidebar do %>
   <%= render "sidebar" %>
 <% end %>
 <% content_for :slider do %>
-  <%= render "/plants/names/search/within/slider" %>
+  <%= render "/names/search/within/slider" %>
 <% end %>
 
 <%= render "search" %>
@@ -22,5 +22,5 @@
 <br/>
 <br/>
 <br/>
-<span class="debug red tiny hidden-print">[plants/names/search/within/taxon/selected_ranks/search/index]</span>
+<span class="debug red tiny hidden-print">[names/search/within/taxon/selected_ranks/search/index]</span>
 

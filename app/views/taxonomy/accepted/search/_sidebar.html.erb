@@ -65,6 +65,8 @@
                         title: "Search for all." %>
           </li>
 
+          <% if @search.present? %>
+
           <hr/>
 
           <li><%= link_to "Details #{fa_icon('check',
@@ -102,6 +104,8 @@
                           data: {search_format: "json"},
                           title: "Convert results to JSON." %>
             </li>
+
+          <% end %>
           <hr/>
 
           <li><%= link_to "Help #{fa_icon('check',

@@ -9,7 +9,7 @@
                     flora_path,
                     class: "bd-toc-link",
                     title: "Flora" %>
-        <%= link_to shard.capitalize,
+        <%= link_to menu_label,
                     root_path,
                     class: "bd-toc-link", 
                     title: shard.capitalize %>
@@ -52,6 +52,15 @@
                         data: {switch_to: "common"},
                         title: "Common or informal name search." %>
           </li>
+          <hr/>
+
+          <li><%= link_to "Help #{fa_icon('check', id: 'help-toggle-switch-indicator', class: session[:help] ? '' : 'hidden-xs-up')}".html_safe,
+                        help_path,
+                        title:"Help on/off switch.",
+                        method: :post,
+                        remote: true %>
+          </li>
+
         </ul>
         <%= render 'layouts/back_link' %>
       </div>

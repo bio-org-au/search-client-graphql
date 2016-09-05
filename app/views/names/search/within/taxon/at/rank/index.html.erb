@@ -2,7 +2,7 @@
   Vascular Plant Names Search
 <% end %>
 <% content_for :page_banner do %>
-  <h1>APNI Names Within <%= @name.full_name %> at rank <%= params[:rank] %></h1>
+  <h1><%= name_label %> Names Within <%= @name.full_name %> at rank <%= params[:rank] %></h1>
 <% end %>
 <% content_for :sidebar do %>
   <%= render "sidebar" %>

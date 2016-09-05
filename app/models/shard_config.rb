@@ -64,4 +64,28 @@ class ShardConfig < ActiveRecord::Base
   rescue
     "name description html"
   end
+
+  def self.tree_search_help_text_html
+    find_by(name: "tree search help text html").value
+  rescue
+    "tree search help text html"
+  end
+
+  def self.name_search_help_text_html
+    find_by(name: "name search help text html").value
+  rescue
+    "name search help text html"
+  end
+
+  def self.services_path_name_element
+    find_by(name: "services path name element").value
+  rescue
+    "services path name element"
+  end
+
+  def self.services_path_tree_element
+    find_by(name: "services path tree element").value
+  rescue
+    "services path tree element"
+  end
 end

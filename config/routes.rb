@@ -126,22 +126,6 @@ Rails.application.routes.draw do
         via: :get
   match "/names", as: "names", to: "names#index", via: :get
 
-  match "/apni/about", as: "about_apni", to: "apni#about", via: :get
-  match "/apni/index", as: "apni_index", to: "apni#index", via: :get
-  match "/apni/search", as: "apni_search", to: "apni#search", via: :get
-  match "/apni", as: "apni", to: "apni#index", via: :get
-
-  get "apc/index"
-  match "/apc", as: "apc", to: "apc#index", via: :get
-
-  get "apni/search"
-
-  get "search/index"
-
-  get "search/apni"
-
-  get "search/apc"
-
   post "editor" => "editor#toggle", as: :editor
   post "citations" => "citations#toggle", as: :citations
   post "taxonomy_details" => "taxonomy_details#toggle", as: :taxonomy_details

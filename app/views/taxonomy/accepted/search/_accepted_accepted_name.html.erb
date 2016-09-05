@@ -11,9 +11,9 @@
               <span class="small">
                 <%= "sensu #{nos.reference.citation_html}".html_safe %>
               </span>
+              <%= render partial: "/taxonomy/accepted/search/citation_links", locals: {name: nos} %>
               <span class="debug purple">[<strong><%= nos.rank.name %></strong>]</span>
 
-              <%= render partial: "/taxonomy/accepted/search/citation_links", locals: {name: nos} %>
 
               <% if session[:taxonomy_details] %>
                   <%= render partial: "/taxonomy/accepted/search/accepted_name_details", locals: {name: nos, visible: true} %>
