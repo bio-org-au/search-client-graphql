@@ -1,10 +1,10 @@
-<span class="debug red hidden-print">[plants/names/search/within/taxon/selected_ranks/search/_search]</span>
-<%= render partial: '/plants/names/search/form' %>
+<span class="debug red hidden-print">[names/search/within/taxon/selected_ranks/search/_search]</span>
+<%= render partial: '/names/search/form' %>
 
 <% if @search.present? %>
   <%= "<span class='search-result-summary'>#{pluralize(@search.results.size, 'scientific name')}</span>".html_safe %>
 <% end %>
 
 <% if @search.present? %>
-  <%= render partial: '/plants/names/search/results', locals: {name: @search.results.first} %>
+  <%= render partial: '/names/search/results', locals: {name: @search.results.first} %>
 <% end %>

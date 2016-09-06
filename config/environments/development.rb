@@ -43,6 +43,9 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 end
 
+ENV["SHARD"] = "plants" if ENV["SHARD"] =~ /^test$/
+puts %(Configuring shard: #{ENV['SHARD']})
+
 begin
   raise "no_shard_set" if (ENV["SHARD"]).nil?
   puts %(Configuring shard: #{ENV['SHARD']})

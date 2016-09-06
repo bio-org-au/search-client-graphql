@@ -9,10 +9,10 @@
                     flora_path,
                     class: "bd-toc-link",
                     title: "Flora" %>
-                  <%= link_to ticked("#{ShardConfig.menu_label}"),
+        <%= link_to ticked("#{menu_label}"),
                     root_path,
                     class: "bd-toc-link",
-                    title: "Vascular Plants" %>
+                    title: "#{menu_label} Name Search" %>
         </div>
         <hr>
         <ul class="nav bd-sidenav">
@@ -20,13 +20,13 @@
               <%= link_to name_label,
                           names_path,
                           class: "",
-                          title: "Vascular Plant Names in the Australian Plant Names Index" %>
+                          title: "#{name_link_title}" %>
             </li>
             <li class="">
               <%= link_to tree_label,
                           taxonomy_accepted_path,
                           class: "",
-                          title: "APC Taxonomy" %>
+                          title: "#{tree_link_title}" %>
             </li>
             <li class="">
               <%= link_to "Other taxonomies",

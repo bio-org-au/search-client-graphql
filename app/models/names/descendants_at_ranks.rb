@@ -5,7 +5,7 @@ class Names::DescendantsAtRanks
               :sql,
               :size
 
-  SQL_1 = "WITH xRECURSIVE nodes_cte(id, full_name, parent_id, depth, path) AS (
+  SQL_1 = "WITH RECURSIVE nodes_cte(id, full_name, parent_id, depth, path) AS (
  SELECT tn.id, tn.full_name, tn.parent_id, 1::INT AS depth,
         tn.id::TEXT AS path, tnr.name as rank, tnr.sort_order rank_order
    FROM name AS tn
@@ -40,7 +40,7 @@ SELECT n.id, n.full_name
   # def initialize(id_string = '0', rank_strings = [])
   def initialize(params)
     @id = params[:id].to_i || 0
-    @ranks_set = rank(params)
+    @ranks_set = ranks(params)
     sanitize
     build
     execute

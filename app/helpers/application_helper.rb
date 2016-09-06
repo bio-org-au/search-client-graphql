@@ -74,7 +74,7 @@ module ApplicationHelper
   end
 
   def tree_label_text
-    ShardConfig.tree_banner_text
+    ShardConfig.tree_label_text
   end
 
   def banner_text
@@ -102,10 +102,31 @@ module ApplicationHelper
   end
 
   def name_services(name_id)
-    "#{Rails.configuration.services}#{Rails.configuration.services_path}/name/#{services_path_name_element}/#{name_id}"
+    "#{Rails.configuration.services}#{Rails.configuration.services_path}\
+/name/#{services_path_name_element}/#{name_id}"
   end
 
   def services_with_path
     "#{Rails.configuration.services}#{Rails.configuration.services_path}"
+  end
+
+  def name_link_title
+    ShardConfig.name_link_title
+  end
+
+  def tree_link_title
+    ShardConfig.tree_link_title
+  end
+
+  def menu_link_title
+    ShardConfig.menu_link_title
+  end
+
+  def name_label_text
+    ShardConfig.name_label_text
+  end
+
+  def name_banner_text
+    ShardConfig.name_banner_text
   end
 end

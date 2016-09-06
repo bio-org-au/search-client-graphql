@@ -43,4 +43,4 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 end
 
-ENV["SHARD"] = 'test'
+ENV["SHARD"] = "test"

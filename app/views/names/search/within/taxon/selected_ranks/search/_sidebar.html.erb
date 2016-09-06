@@ -8,39 +8,39 @@
                     flora_path,
                     class: "bd-toc-link",
                     title: "Flora" %>
-        <%= link_to "Vascular Plants",
-                    plants_path,
+        <%= link_to "#{menu_label}",
+                    root_path,
                     class: "bd-toc-link",
-                    title: "Vascular Plants" %>
-                  <%= link_to "#{name_label}".html_safe,
-                    plants_names_path,
+                    title: "#{name_link_title}" %>
+        <%= link_to "#{name_label}".html_safe,
+                    names_path,
                     class: "bd-toc-link",
-                    title: "Vascular Plant Names" %>
-                  <%= link_to "#{name_label} Name search",
-                    plants_names_search_path,
+                    title: "#{ name_link_title }" %>
+        <%= link_to "#{name_label} Name search",
+                    names_search_path,
                     class: "bd-toc-link",
                     title: "Search #{name_label} names" %>
         <%= link_to "Names within a taxon",
-                    plants_names_search_within_taxon_path(@name.id),
+                    names_search_within_taxon_summary_path(@name.id),
                     class: "bd-toc-link",
                     title: "Search #{name_label} names" %>
         <hr>
         <ul class="nav bd-sidenav">
           <li class="bd-sidenav-active">
             <%= link_to "Summary",
-                        plants_names_search_within_taxon_summary_path(@name.id),
+                        names_search_within_taxon_summary_path(@name.id),
                         class: "",
                         title: "Summary of names within a taxon" %>
           </li>
           <li class="active bd-sidenav-active">
             <%= link_to "Selected ranks #{fa_icon('check')}".html_safe,
-                        plants_names_search_within_taxon_selected_ranks_path(@name.id),
+                        names_search_within_taxon_selected_ranks_path(@name.id),
                         class: "",
                         title: "Names in selected ranks within a taxon" %>
           </li>
           <li class="bd-sidenav-active">
             <%= link_to("All".html_safe,
-                        plants_names_search_within_taxon_all_path(@name.id),
+                        names_search_within_taxon_all_path(@name.id),
                         class: "",
                         title: "All names within a taxon")%>
           </li>

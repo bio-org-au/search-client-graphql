@@ -9,18 +9,18 @@
                     flora_path,
                     class: "bd-toc-link",
                     title: "Flora" %>
-        <%= link_to shard.capitalize,
+        <%= link_to menu_label,
                     root_path,
                     class: "bd-toc-link",
-                    title: "shard.capitalize" %>
-                  <%= link_to tree_label,
+                    title: "#{menu_link_title}" %>
+        <%= link_to tree_label,
                     taxonomy_accepted_path,
                     class: "bd-toc-link",
-                    title: "Vascular Plant Taxonomy - Accepted by the Australian Plant Census" %>
-                  <%= link_to "#{ tree_label } Name Search",
+                    title: tree_link_title %>
+        <%= link_to "#{ tree_label } Name Search",
                     taxonomy_accepted_search_path,
                     class: "bd-toc-link",
-                    title: "Australian Plant Census Name Search" %>
+                    title: "#{tree_link_title} Name Search" %>
         </div>
         <hr>
         <ul class="nav bd-sidenav">

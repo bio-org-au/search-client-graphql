@@ -43,21 +43,9 @@ Rails.application.routes.draw do
         as: "names_search_within_taxon_selected_ranks",
         to: "names/search/within/taxon/selected_ranks#index",
         via: :get
-  match "/names/search/within/taxon/:id",
-        as: "names_search_within_taxon",
-        to: "names/search/within/taxon#index",
-        via: :get
   match "/names/within",
         as: "names_within",
         to: "names/within#index",
-        via: :get
-  match "/names/advanced",
-        as: "names_advanced",
-        to: "names/advanced#index",
-        via: :get
-  match "/names/search/search",
-        as: "names_search_search",
-        to: "names/search#search",
         via: :get
   match "/names/search",
         as: "names_search",

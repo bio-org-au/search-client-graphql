@@ -9,10 +9,10 @@
                     flora_path,
                     class: "bd-toc-link",
                     title: "Flora" %>
-        <%= link_to shard.capitalize,
+        <%= link_to menu_label,
                     root_path,
                     class: "bd-toc-link",
-                    title: "#{shard.capitalize}" %>
+                    title: "#{menu_label} Names" %>
         <%= link_to ticked("#{name_label}"),
                     names_path,
                     class: "bd-toc-link",
@@ -24,7 +24,7 @@
           <%= link_to "#{name_label} Name Search",
                         names_search_path,
                         class: "",
-                        title: "Vascular Plant Names Search" %>
+                        title: "#{ name_link_title }" %>
           </li>
         </ul>
         <%= render 'layouts/back_link' %>

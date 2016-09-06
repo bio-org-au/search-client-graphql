@@ -88,4 +88,34 @@ class ShardConfig < ActiveRecord::Base
   rescue
     "services path tree element"
   end
+
+  def self.name_link_title
+    find_by(name: "name link title").value
+  rescue
+    "name link title"
+  end
+
+  def self.tree_link_title
+    find_by(name: "tree link title").value
+  rescue
+    "tree link title"
+  end
+
+  def self.menu_link_title
+    find_by(name: "menu link title").value
+  rescue
+    "menu link title"
+  end
+
+  def self.name_label_text
+    find_by(name: "name label text").value
+  rescue
+    "name label text"
+  end
+
+  def self.name_banner_text
+    find_by(name: "name banner text").value
+  rescue
+    "name label text"
+  end
 end
