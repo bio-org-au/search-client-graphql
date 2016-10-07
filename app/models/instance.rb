@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Rails model
 class Instance < ActiveRecord::Base
   self.table_name = "instance"
   self.primary_key = "id"
@@ -14,7 +17,10 @@ class Instance < ActiveRecord::Base
   has_many :instance_note_keys, through: :instance_notes
   has_many :instance_note_for_type_specimens
   has_one  :instance_note_for_distribution
-  has_one  :apc_comment, -> { where "instance_note_key_id = (select id from instance_note_key where name = 'APC Comment')" },
+  has_one  :apc_comment, (lambda do
+    where "instance_note_key_id = (select id from instance_note_key
+          where name = 'APC Comment')"
+  end),
            class_name: "InstanceNote", foreign_key: "instance_id"
   has_many :synonyms, foreign_key: "cited_by_id"
   has_one :accepted_name
@@ -22,7 +28,7 @@ class Instance < ActiveRecord::Base
   belongs_to :cited_by_instance, foreign_key: "cited_by_id"
   belongs_to :namespace
 
-  scope :in_nested_instance_type_order, lambda {
+  scope :in_nested_instance_type_order, (lambda do
     order(
       "          case instance_type.name " \
       "          when 'basionym' then 1 " \
@@ -35,8 +41,9 @@ class Instance < ActiveRecord::Base
       "          else 2 end, " \
       "          case taxonomic " \
       "          when true then 2 " \
-      "          else 1 end ")
-  }
+      "          else 1 end "
+    )
+  end)
 
   def xsort_fields
     [reference.year || 9999,
@@ -55,15 +62,15 @@ class Instance < ActiveRecord::Base
 
   def self.records_cited_by_standalone(instance)
     Instance.joins(:instance_type, :name, :reference)
-      .where(cited_by_id: instance.id)
-      .in_nested_instance_type_order
-      .order("reference.year,lower(name.full_name)")
+            .where(cited_by_id: instance.id)
+            .in_nested_instance_type_order
+            .order("reference.year,lower(name.full_name)")
   end
 
   def self.records_cited_by_relationship(instance)
     Instance.joins(:instance_type)
-      .where(cited_by_id: instance.id)
-      .in_nested_instance_type_order
+            .where(cited_by_id: instance.id)
+            .in_nested_instance_type_order
   end
 
   def primary?
@@ -71,16 +78,16 @@ class Instance < ActiveRecord::Base
   end
 
   def apc_comment
-    instance_notes.each do | note | 
+    instance_notes.each do |note|
       return note.value if note.apc_comment?
     end
-    return nil
+    nil
   end
 
   def apc_distribution
-    instance_notes.each do | note | 
+    instance_notes.each do |note|
       return note.value if note.apc_distribution?
     end
-    return nil
+    nil
   end
 end

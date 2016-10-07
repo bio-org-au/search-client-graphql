@@ -1,2 +1,0 @@
-class ApniController < ApplicationController
-end

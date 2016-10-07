@@ -1,5 +1,5 @@
     <nav class="nav navbar-nav">
-      <%= link_to("National Species Lists", explicit_nsl_path, class: "nav-item nav-link #{'active' if params[:controller].match(/nsl/)}", title: "Home page of the National Species Lists") %>
+      <%= link_to("National Species Lists", nsl_path, class: "nav-item nav-link #{'active' if params[:controller].match(/nsl/)}", title: "Home page of the National Species Lists") %>
       <%= link_to("Flora", flora_path, class: "nav-item nav-link #{'active' if params[:controller].match(/flora/)}", title: "Home page of Flora National Species Lists") %>
       <%= link_to("Fauna", fauna_path, class: "nav-item nav-link #{'active' if params[:controller].match(/fauna/)}", title: "Home page of Fauna National Species Lists") %>
       <span class="debug hidden-sm-up pull-right">xs &lt;544px</span>

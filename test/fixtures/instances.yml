@@ -1,12 +1,45 @@
+DEFAULTS: &DEFAULTS
+  created_by: tester
+  updated_by: tester
+  created_at: <%= Time.now + (24*60*60) %>
+  updated_at: <%= Time.now + (24*60*60) %>
+
 triodia_in_brassard:
   reference: paper_by_brassard
   name: triodia_basedowii
   instance_type: primary_reference
   verbatim_name_string: verbatim
   namespace: apni
-  created_by: tester
-  updated_by: tester
-  created_at: <%= Time.now + (24*60*60) %>
-  updated_at: <%= Time.now + (24*60*60) %>
   page: "xx 200,300"
   page_qualifier: qualified
+  <<: *DEFAULTS
+
+cassinia_in_orchard:
+  reference: orchard_2004
+  name: cassinia_acc
+  instance_type: tax_nov
+  namespace: apni
+  page: "562-563, Figs 14 (map), 15" 
+  <<: *DEFAULTS
+
+cassinia_compacta_in_mueller:
+  reference: mueller_fragmenta
+  name: cassinia_compacta
+  instance_type: tax_nov
+  namespace: apni
+  page: 18
+  page: "562-563, Figs 14 (map), 15" 
+  <<: *DEFAULTS
+
+# Relationship instance - synonymy
+cassinia_compacta_misapplied:
+  reference: chah_2011
+  name: cassinia_acc
+  this_is_cited_by: cassinia_in_orchard
+  this_cites: cassinia_compacta_in_mueller
+  instance_type: misapplied
+  page: zzzz99911
+  namespace: apni
+  page: xx,20,700
+  <<: *DEFAULTS
+

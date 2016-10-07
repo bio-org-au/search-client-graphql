@@ -1,2 +1,0 @@
-class FaunaController < ApplicationController
-end

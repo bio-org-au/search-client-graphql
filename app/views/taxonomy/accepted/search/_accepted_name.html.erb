@@ -1,0 +1,22 @@
+        <li class="tree-results compact">
+            <span class="debug purple">[<%= name.sort_name %>]</span>
+            <%= link_to(name[:full_name],
+                        taxonomy_show_path(nos[:id]),
+                        title: "Select to show Name details")
+                      %>
+            <% if name.show_status? %>
+              <span class="name-status" title="Name Status"><%#= name.status.name %></span>
+            <% end %>
+              <span class="small">
+              <%#= "sensu #{name.apc_accepted_instance.reference.citation_html}".html_safe if name.apc_accepted? %>
+              <%#= "sensu #{name.apc_excluded_instance.reference.citation_html}".html_safe if name.apc_excluded? %>
+              </span>
+            <span class="debug purple">[rank: <%#= name.rank.name %>]</span>
+            <span class="debug purple">[sort: <%= name.sort_name %>]</span>
+            <%#= render partial: "/taxonomy/accepted/search/citation_links", locals: {name: name} %>
+
+              <%# if @search.parsed.show_details? %>
+                  <%#= render partial: "/taxonomy/accepted/search/accepted_name_details", locals: {name: name} %>
+              <%# end %>
+        </li>
+

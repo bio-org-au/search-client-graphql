@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # General view helpers.
 module ApplicationHelper
   def new_target_id
@@ -8,102 +9,124 @@ module ApplicationHelper
     "#{s} #{fa_icon('check')}".html_safe
   end
 
-  def display_instance(instance, shown, check_apc = false)
-    if instance.standalone?
-      display = show_standalone_instance(instance, check_apc)
-    else
-      display, shown = show_relationship_instance(instance, shown)
-    end
-    [display, shown]
-  end
- 
-  def show_standalone_instance(instance, apc)
-    fragment = "<div class='instance-citation'>"
-    fragment << instance.reference.citation_html
-    fragment << ": #{instance.page}" if instance.page.present?
-    fragment << "&nbsp; [#{instance.instance_type.name}]" if instance.primary?
-    fragment << "&nbsp;<span class='red'>(APC)</span>" if apc 
-    fragment << "</div>"
-    fragment << "<ul class='indented'>"
-    Instance.records_cited_by_standalone(instance).each do |cited_by|
-      fragment << "<li class='compact subordinate-instance'>"
-      fragment << "<span class='instance-type-name'>#{cited_by.instance_type.name}: </span>" 
-      fragment << "<span class='instance-type'>"
-      target_id =  "#{rand(1000)}-#{rand(1000)}-#{rand(1000)}"
-      fragment << link_to(cited_by.name.full_name, plants_names_show_path(cited_by.name.id,target_id: target_id),
-                          class: "drill-down-toggle",
-                          data: {target_id: target_id},
-                          remote: true)
-      fragment << "</span>"
-      fragment << "</li>"
-      fragment << "<div class='drill-down hidden-xs-up' id='#{target_id}'>"
-      fragment << "</div>"
-    end
-    fragment << "</ul>"
-    fragment.html_safe
-  end
-
-  def show_relationship_instance(instance, shown)
-    citing_instance = instance.this_is_cited_by
-    return "", shown if shown.include?(citing_instance.id)
-    shown.push(citing_instance.id)
-    fragment = "<div class='instance-citation'>#{instance.reference.citation_html}</div>"
-    fragment << assemble_cited_by(instance, citing_instance)
-    [fragment.html_safe, shown]
-  end
-
-  def display_name_instance(name_instance, shown, check_apc = false)
-    if name_instance.standalone?
-      display = show_standalone_name_instance(name_instance, check_apc)
-    else
-      display, shown = show_relationship_name_instance(name_instance, shown)
-    end
-    [display, shown]
-  end
- 
-  def show_standalone_name_instance(name_instance, apc)
-    ["standalone",false]
-  end
- 
-  def show_relationship_name_instance(name_instance, shown)
-    citing_instance = name_instance.instance.this_is_cited_by
-    return "", shown if shown.include?(citing_instance.id)
-    shown.push(citing_instance.id)
-    fragment = "<div class='instance-citation'>#{name_instance.reference.citation_html}</div>"
-    fragment << assemble_cited_by(name_instance, citing_instance)
-    [fragment.html_safe, shown]
-  end
-
-  def assemble_cited_by(name_instance, citing_instance)
-    fragment = "<ul class='indented'>"
-    Instance.records_cited_by_relationship(citing_instance).each do |cited_by|
-      next unless cited_by.name.id == name_instance.name.id
-      fragment << "<li class='compact subordinate-instance'>"
-      target_id =  "#{rand(1000)}-#{rand(1000)}-#{rand(1000)}"
-      fragment << "<span class='instance-type-name'>"
-      fragment << "#{cited_by.instance_type.name} of: </span>"
-      fragment << "<span class='instance-type'>"
-      fragment << link_to(cited_by.this_is_cited_by.name.full_name,
-                           plants_names_show_path(
-                           cited_by.this_is_cited_by.name.id,
-                           target_id: target_id), 
-                           class: "drill-down-toggle",
-                           data: {target_id: target_id},
-                           remote: true)
-      fragment << "</span>"
-      fragment << "</li>"
-      fragment << "<div class='drill-down hidden-xs-up' id='#{target_id}'>"
-      fragment << "</div>"
-    end
-    fragment << "</ul>"
-  end
-
   def no_results_help(size)
-    if size == 0 
-      "<br/><br/>You may want to alter or reduce your search string, or add wildcards."
+    if size.zero?
+      "<br/><br/>You may want to alter or reduce your search string,
+      or add wildcards."
     else
       ""
     end
   end
-end
 
+  def nsl_path
+    Rails.configuration.nsl_path
+  end
+
+  def flora_path
+    Rails.configuration.flora_path
+  end
+
+  def fauna_path
+    Rails.configuration.fauna_path
+  end
+
+  def rect_with_text(text, color = "lightsteelblue", width = "500")
+    %(<br><svg width="#{width}" height="100">
+  <rect width="#{width}" height="100"
+  style="fill:#{color};stroke-width:1;stroke:blue;" />
+  <text x="50%" y="50%" text-anchor="middle" stroke="black"
+  stroke-width="1px" dy=".3em" font-family="Verdana" font-size="18">
+    #{text}
+  </text>
+</svg>)
+  end
+
+  def shard
+    ENV["SHARD"] || "shard"
+  end
+
+  def menu_label
+    ShardConfig.menu_label
+  end
+
+  def name_label
+    ShardConfig.name_label
+  end
+
+  def tree_label
+    ShardConfig.tree_label
+  end
+
+  def description_html
+    ShardConfig.description_html
+  end
+
+  def tree_description_html
+    ShardConfig.tree_description_html
+  end
+
+  def name_description_html
+    ShardConfig.name_description_html
+  end
+
+  def tree_banner_text
+    ShardConfig.tree_banner_text
+  end
+
+  def tree_label_text
+    ShardConfig.tree_label_text
+  end
+
+  def banner_text
+    ShardConfig.banner_text
+  end
+
+  def page_title
+    ShardConfig.page_title
+  end
+
+  def services_path_name_element
+    ShardConfig.services_path_name_element
+  end
+
+  def services_path_tree_element
+    ShardConfig.services_path_tree_element
+  end
+
+  def tree_search_help_text_html
+    ShardConfig.tree_search_help_text_html
+  end
+
+  def name_search_help_text_html
+    ShardConfig.name_search_help_text_html
+  end
+
+  def name_services(name_id)
+    "#{Rails.configuration.services}#{Rails.configuration.services_path}\
+/name/#{services_path_name_element}/#{name_id}"
+  end
+
+  def services_with_path
+    "#{Rails.configuration.services}#{Rails.configuration.services_path}"
+  end
+
+  def name_link_title
+    ShardConfig.name_link_title
+  end
+
+  def tree_link_title
+    ShardConfig.tree_link_title
+  end
+
+  def menu_link_title
+    ShardConfig.menu_link_title
+  end
+
+  def name_label_text
+    ShardConfig.name_label_text
+  end
+
+  def name_banner_text
+    ShardConfig.name_banner_text
+  end
+end

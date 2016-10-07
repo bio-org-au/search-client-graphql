@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Rails model
 class CitedByInstance < ActiveRecord::Base
   self.table_name = "instance"
   self.primary_key = "id"
@@ -8,5 +11,7 @@ class CitedByInstance < ActiveRecord::Base
 
   belongs_to :cited_by_name,                foreign_key: "name_id"
   has_many   :cited_by_instance_tree_nodes, foreign_key: "instance_id"
-  belongs_to :cited_by_instance_tree_node_name_name_tree_path, class_name: "Name", foreign_key: :name_id
+  belongs_to :cited_by_instance_tree_node_name_name_tree_path,
+             class_name: "Name",
+             foreign_key: :name_id
 end

@@ -1,0 +1,57 @@
+<%= form_tag(names_search_path, method: "get", id: "search-form") do %>
+  <div class="form-group row">
+    <%= label_tag(:q,
+                  "Search for:",
+                  class:"sr-only col-sm-2 form-control-label") %>
+  <div class="col-xs-7 col-sm-8 col-md-6 col-lg-7 col-xl-8">
+    <%= search_field_tag(:q,
+                       '',
+                       class: "form-control",
+                       name: "q",
+                       value: "#{params[:q]}",
+                       autofocus: true,
+                       required: true,
+                       title: "Enter a name with or without wildcards.",
+                       placeholder: "Search Names") %>
+    </div>
+    <%= button_tag(id: "search-button", type: "submit", class: "btn white nsl-blue-bg hidden-print", title: "Search #{name_label}")  do %>
+      <%= fa_icon('search') %>&nbsp;<%= name_label %>
+    <% end %>
+    <%= link_to("#{fa_icon('search')} #{tree_label}".html_safe,
+              taxonomy_accepted_search_path(q:''),
+              id: "search-taxonomy-link",
+              class: "alt-search-link btn btn-secondary hidden-print",
+              title: "Switch to #{tree_label} Search") %>
+    <input type="hidden" 
+           value="<%= session[:always_details].blank? ? false : session[:always_details] %>"
+           name="retrieve_details_on_load"
+           id="retrieve_details_on_load">
+    <input type="hidden" 
+           value="<%= params[:search_type].blank? ? 'scientific' : params[:search_type] %>"
+           name="search_type"
+           id="name_type">
+    <input type="hidden" 
+           value="html"
+           name="format"
+           id="search-output-format">
+  </div>
+<% end %>
+<span class="debug red hidden-print">[names/search/_form]</span>
+
+<%= render "names/search/help_text" %>
+
+<% if @search.present? %>
+  <span class='search-result-summary'>
+    <%= pluralize(@search.results.pluck("id").uniq.size,
+                  "#{(params[:search_type] || 'scientific').sub(/-and-/,' or ')} name") %>
+    <%= no_results_help(@search.results.size).html_safe %>
+  </span>
+<% end %>
+
+<% if @search.present? %>
+  <%= render partial: '/names/search/results', locals: {search: @search, name: @search.results.first} %>
+<% end %>
+
+<script>
+  window.addClearButton();
+</script>

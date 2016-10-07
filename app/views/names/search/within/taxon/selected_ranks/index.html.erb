@@ -1,0 +1,24 @@
+<% content_for :page_title do %>
+  <%= page_title %> Names Search
+<% end %>
+<% content_for :page_banner do %>
+  <h1><%= name_label %>&nbsp;Names&nbsp;Within&nbsp;A&nbsp;Taxon&nbsp;&mdash;&nbsp;Selected&nbsp;Ranks</h1>
+<% end %>
+<% content_for :sidebar do %>
+  <%= render "sidebar" %>
+<% end %>
+
+<%= render "search" %>
+<h2><%= @name.full_name %></h2>
+
+<%= render partial: 'index', locals: {name: @name} %>
+
+
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<span class="debug red tiny hidden-print">[names/search/within/taxon/selected_ranks/index]</span>
+

@@ -1,0 +1,8 @@
+          <% if session[:citations] %>
+            <span class="citation-links">
+              <%= link_to(fa_icon("link"),
+                          name_services(name.id),
+                          title: "Citation link for the #{name.full_name}") %>
+            </span>
+          <% end %>
+

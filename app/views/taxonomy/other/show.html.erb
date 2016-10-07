@@ -1,0 +1,20 @@
+<% content_for :page_title do %>
+  page_title
+<% end %>
+<% content_for :page_banner do %>
+  <h1><%= @taxonomy.name %></h1>
+<% end %>
+<% content_for :sidebar do %>
+  <%= render "sidebar" %>
+<% end %>
+
+
+<p>
+<%= @taxonomy.intro %>
+</p>
+<br/>
+<br/>
+<br/>
+<span class="debug hidden-print tiny">
+  [/taxonomy/other/show]
+</span>

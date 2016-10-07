@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Rails model
 class CitedBy < ActiveRecord::Base
   self.table_name = "instance"
   self.primary_key = "id"

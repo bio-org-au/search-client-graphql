@@ -1,0 +1,26 @@
+<% content_for :page_title do %>
+  <%= page_title %> Name Search
+<% end %>
+<% content_for :page_banner do %>
+  <h1><%= name_label %> Names Within A Taxon - All</h1>
+<% end %>
+<% content_for :sidebar do %>
+  <%= render "sidebar" %>
+<% end %>
+<% content_for :slider do %>
+  <%= render "/names/search/within/slider" %>
+<% end %>
+
+<%= render "search" %>
+<h4><%= @name.full_name %></h4>
+
+<%= render partial: 'index', locals: {name: @name} %>
+
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<span class="debug red tiny hidden-print">[/names/search/within/taxon/all/index]</span>
+

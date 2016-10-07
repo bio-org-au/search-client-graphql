@@ -1,7 +1,13 @@
+# frozen_string_literal: true
+
+# Rails model
 class InstanceNoteForComment < ActiveRecord::Base
   self.table_name = "instance_note"
   self.primary_key = "id"
-  default_scope { where("instance_note_key_id = (select id from instance_note_key where name = 'APC Comment') ") }
+  default_scope do
+    where("instance_note_key_id = (select id from
+          instance_note_key where name = 'APC Comment') ")
+  end
 
   belongs_to :instance
   belongs_to :instance_note_key

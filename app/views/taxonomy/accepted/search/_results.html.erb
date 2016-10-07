@@ -1,0 +1,17 @@
+
+<% if @search.results.size > 0 %>
+  <ul class="taxonomy-results">
+    <% @search.results.each_with_index do |nos, ndx| %>
+      <% if nos.accepted_accepted? %>
+        <%= render partial: "/taxonomy/accepted/search/accepted_accepted_name", locals: {nos: nos} %>
+      <% elsif nos.accepted_excluded? %>
+        <%= render partial: "/taxonomy/accepted/search/accepted_excluded_name", locals: {nos: nos} %>
+      <% elsif nos.synonym? %>
+        <%= render partial: "/taxonomy/accepted/search/synonym_name", locals: {synonym: nos} %>
+      <% else %>
+        <li>Unknown type of record: <%= nos.type_code %></li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>
+

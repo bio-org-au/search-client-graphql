@@ -6,6 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true, async: true, defer: true %>
   <%= stylesheet_link_tag 'application',
                           media: 'all',
                           'data-turbolinks-track' => true %>
@@ -14,7 +15,6 @@
   <% else %>
       <script> debugSwitch = false; </script>
   <% end %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true, async: true, defer: true %>
   <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
   <% if Rails.configuration.try('display_as_test') == true %>
       <style>
@@ -55,7 +55,7 @@ input[type="checkbox"]:not([title]) {
         &#9776;
       </button>
       <a class="navbar-brand hidden-sm-up" href="/">
-        APNI/APC
+        Search
       </a>
     </div>
     <div class="collapse navbar-toggleable-xs" id="bd-main-nav">

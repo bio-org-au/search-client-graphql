@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Rails model
 class InstanceNote < ActiveRecord::Base
   self.table_name = "instance_note"
   self.primary_key = "id"
@@ -15,6 +18,6 @@ class InstanceNote < ActiveRecord::Base
   end
 
   def marked_up_value
-    value.gsub(/<IT>/,"<em>").gsub(/<RO>/,"</em> ")
+    value.gsub(/<IT>/, "<em>").gsub(/<RO>/, "</em> ")
   end
 end

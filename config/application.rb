@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require File.expand_path("../boot", __FILE__)
 
 require "csv"
@@ -20,7 +21,8 @@ module Search
     # auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names.
     # Default is UTC.
-    # config.time_zone = 'Central Time (US & Canada)'
+    config.time_zone = "Australia/Melbourne"
+    config.active_record.default_timezone = :local
 
     # The default locale is :en and all translations from
     # config/locales/*.rb,yml are auto loaded.
@@ -31,5 +33,10 @@ module Search
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.path_to_broadcast_file = "#{ENV['HOME']}/.nsl/broadcast.txt"
+    config.active_record.schema_format = :sql
   end
 end
+
+Rails.configuration.nsl_path = "http://localhost:2016/"
+Rails.configuration.flora_path = "http://localhost:2016/flora"
+Rails.configuration.fauna_path = "http://localhost:2016/fauna"
