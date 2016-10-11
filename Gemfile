@@ -1,11 +1,10 @@
 # frozen_string_literal: true
-source "https://rubygems.org"
+source "http://rubygems.org"
 
 gem "rails", "4.2.5.1"
 
 platform :jruby do
   gem "activerecord-jdbcpostgresql-adapter"
-  gem "puma"
   gem "therubyrhino"
   gem "warbler"
 end
@@ -45,6 +44,9 @@ gem "sdoc", "~> 0.4.0", group: :doc
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  platform :jruby do
+    gem "puma"
+  end
   platform :mri do
     # Call 'byebug' anywhere in the code to stop execution and get a debugger
     # console
