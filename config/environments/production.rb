@@ -85,4 +85,28 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 end
 
-load "#{ENV['HOME']}/.nsl/search-config.rb"
+puts %(Configuring shard: #{ENV['SHARD']})
+
+begin
+  raise "no_shard_set" if (ENV["SHARD"]).nil?
+  puts %(Configuring shard: #{ENV['SHARD']})
+rescue
+  puts "=" * 100
+  puts "Expected the SHARD environmental variable to be set."
+  puts "Application start up will now fail."
+  puts "ENV['SHARD']: #{ENV['SHARD']}"
+  puts "=" * 100
+  raise
+end
+
+begin
+  config_file_path = "#{ENV['HOME']}/.nsl/development/#{ENV['SHARD']}-search-config.rb"
+  puts "Loading config from: #{config_file_path}"
+  load config_file_path
+rescue LoadError
+  puts "=" * 100
+  puts "Unable to find the config file: #{config_file_path}"
+  puts "Application start up will now fail."
+  puts "=" * 100
+  raise
+end
