@@ -100,7 +100,7 @@ rescue
 end
 
 begin
-  config_file_path = "#{ENV['HOME']}/.nsl/development/#{ENV['SHARD']}-search-config.rb"
+  config_file_path = "#{ENV['HOME']}/.nsl/#{ENV['SHARD']}-search-config.rb"
   puts "Loading config from: #{config_file_path}"
   load config_file_path
 rescue LoadError
