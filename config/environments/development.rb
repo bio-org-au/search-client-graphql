@@ -43,6 +43,11 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 end
 
+# We need the SHARD set BEFORE config on the dev machine
+# so we can run plants, mosses, lichen, etc.
+#
+# This does not apply in production.
+#
 ENV["SHARD"] = "plants" if ENV["SHARD"] =~ /^test$/
 puts %(Configuring shard: #{ENV['SHARD']})
 
@@ -57,6 +62,9 @@ rescue
   puts "=" * 100
   raise
 end
+
+Rails.application.config.database_yml_file_path = "#{ENV['HOME']}/.nsl/development/#{ENV['SHARD']}-search-database.yml"
+puts "Rails.application.config.database_yml_file_path: #{Rails.application.config.database_yml_file_path}"
 
 begin
   file_path = "#{ENV['HOME']}/.nsl/development/#{ENV['SHARD']}-search-config.rb"
