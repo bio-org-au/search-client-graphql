@@ -96,3 +96,7 @@ rescue LoadError
   puts "=" * 100
   raise
 end
+
+Rails.application.config.database_yml_file_path = "#{ENV['HOME']}/.nsl/search-database.yml"
+puts "Rails.application.config.database_yml_file_path: #{Rails.application.config.database_yml_file_path}"
+
