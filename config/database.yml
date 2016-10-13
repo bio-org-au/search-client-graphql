@@ -1,6 +1,6 @@
 # Get database config and credentials.
 
-<% File.open("#{ENV['HOME']}/.nsl/#{ENV['SHARD']}-search-database.yml", 'r') do |file| %>
+<% File.open("#{ENV['HOME']}/.nsl/search-database.yml", 'r') do |file| %>
 <% while line = file.gets %>
 <%= line %>
 <% end %>
