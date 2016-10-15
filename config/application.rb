@@ -36,7 +36,3 @@ module Search
     config.active_record.schema_format = :sql
   end
 end
-
-Rails.configuration.nsl_path = "http://localhost:2016/"
-Rails.configuration.flora_path = "http://localhost:2016/flora"
-Rails.configuration.fauna_path = "http://localhost:2016/fauna"
