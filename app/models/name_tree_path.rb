@@ -7,7 +7,7 @@ class NameTreePath < ActiveRecord::Base
 
   belongs_to :name
   belongs_to :apni_name_tree_path, class_name: "Name"
-  belongs_to :apni_tree_arrangement, -> { where label: "APNI" },
+  belongs_to :apni_tree_arrangement, -> { where label: ShardConfig.name_label },
              class_name: "TreeArrangement",
              foreign_key: "tree_id"
 end

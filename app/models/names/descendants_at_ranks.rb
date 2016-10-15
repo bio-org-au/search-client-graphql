@@ -31,7 +31,7 @@ SELECT n.id, n.full_name
        inner join
        tree_arrangement ta
        on ta.id = ntp.tree_id
-  where ta.label = 'APNI'
+  where ta.label = '#{ShardConfig.name_label}'
     and exists (select null from instance where instance.name_id = n.id)
     and n.id != "
 

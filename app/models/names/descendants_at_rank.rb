@@ -32,7 +32,7 @@ SELECT n.id, n.full_name FROM nodes_cte AS n
        on ta.id = ntp.tree_id
   where n.rank = "
 
-  SQL_3 = " and ta.label = 'APNI'
+  SQL_3 = " and ta.label = '#{ShardConfig.name_label}'
     and exists (select null from instance where instance.name_id = n.id)"
 
   ORDER = "order by n.full_name"
