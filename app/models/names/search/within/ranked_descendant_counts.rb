@@ -35,7 +35,11 @@ class Names::Search::Within::RankedDescendantCounts
   def initialize(id)
     @clean_id = ActiveRecord::Base.sanitize(id)
     @executed_query = execute_query
-    @results = @executed_query.to_a unless @executed_query.instance_of?(Array)
+    @results = if @executed_query.instance_of?(Array)
+                 @executed_query
+               else
+                 @executed_query.to_a
+               end
     @size = @results.size
   end
 
