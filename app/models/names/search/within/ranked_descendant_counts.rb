@@ -30,12 +30,13 @@ class Names::Search::Within::RankedDescendantCounts
   SQL4 = " group by n.rank, n.rank_order
   order by n.rank_order"
 
+  # Note: the executed query will be a different class depending on which
+  # ruby you are running.  C ruby will return a PG::Result, JRuby an Array.
   def initialize(id)
     @clean_id = ActiveRecord::Base.sanitize(id)
     @executed_query = execute_query
-    @results = executed_query.to_a
-    @size = executed_query.ntuples
-    @status = executed_query.cmd_status
+    @results = @executed_query.to_a unless @executed_query.instance_of?(Array)
+    @size = @results.size
   end
 
   # Built as pg-specific code (although should be standard sql)
