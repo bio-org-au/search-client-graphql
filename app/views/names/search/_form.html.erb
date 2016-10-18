@@ -14,15 +14,15 @@
                        title: "Enter a name with or without wildcards.",
                        placeholder: "Search Names") %>
     </div>
-    <span class="hidden-lg-up">&nbsp;&nbsp;&nbsp;</span>
-    <%= button_tag(id: "search-button", type: "submit", class: "btn white nsl-blue-bg hidden-print", title: "Search #{name_label}")  do %>
-      <%= fa_icon('search') %>&nbsp;<%= name_label %>
+    <span class="hidden-md-up">&nbsp;&nbsp;&nbsp;</span>
+    <%= button_tag(id: "search-button", type: "submit", class: "btn white nsl-blue-bg hidden-print", title: "Search names")  do %>
+      <%= fa_icon('search') %>&nbsp;Names
     <% end %>
-    <%= link_to("#{fa_icon('search')} #{tree_label}".html_safe,
+    <%= link_to("#{fa_icon('search')} Taxonomy".html_safe,
               taxonomy_accepted_search_path(q:''),
               id: "search-taxonomy-link",
               class: "alt-search-link btn btn-secondary hidden-print",
-              title: "Switch to #{tree_label} Search") %>
+              title: "Switch to taxonomy search") %>
     <input type="hidden" 
            value="<%= session[:always_details].blank? ? false : session[:always_details] %>"
            name="retrieve_details_on_load"
