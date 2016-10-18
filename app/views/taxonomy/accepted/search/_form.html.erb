@@ -3,7 +3,8 @@
     <%= label_tag(:q,
                   "Search for:",
                   class:"sr-only col-sm-2 form-control-label") %>
-  <div class="col-xs-10 col-sm-11 col-md-5 col-lg-7 col-xl-8">
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-7">
     <%= text_field_tag(:q,
                        '',
                        name: "q",
@@ -14,6 +15,7 @@
                        required: true,
                        placeholder: "Search #{ tree_label }") %>
   </div>
+  <span class="hidden-lg-up">&nbsp;&nbsp;&nbsp;</span>
   <div class="col-xs-8 col-xs-offset-4 col-sm-8 col-sm-offset-7 col-md-5 col-md-offset-0 col-lg-4 col-lg-offset-0 col-xl-3">
     <%= link_to("#{fa_icon('search')} #{ name_label }".html_safe,
                 names_search_path(q:''),
