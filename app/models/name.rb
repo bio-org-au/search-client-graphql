@@ -98,4 +98,12 @@ class Name < ActiveRecord::Base
   def direct_sub_taxa_with_instance_count
     Name.where(parent_id: id).joins(:instances).select("distinct name.id").count
   end
+
+  def citation
+    if status.show?
+      "#{full_name_html}#{status.name_to_show}"
+    else
+      full_name_html
+    end
+  end
 end

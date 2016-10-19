@@ -2,7 +2,7 @@
   NSL: Changes
 <% end %>
 <% content_for :page_banner do %>
-  <h1>Changes made to Search</h1>
+  <h1>Changes to the Search App</h1>
 <% end %>
 <% content_for :sidebar do %>
   <%= render "sidebar" %>
@@ -10,6 +10,18 @@
 
 
 <ul class="list-group">
+  <li class="list-group-item">
+    <span class="label label-default label-pill pull-xs-left">19-Oct-2016</span>
+      <br/>
+      Display name status after any non-legitimate name in synonymy. (Related
+      ref: 1915)
+  </li>
+  <li class="list-group-item">
+    <span class="label label-default label-pill pull-xs-left">15-Sep-2016</span>
+      <br/>
+      Switch to the hub architecture and remove hard-coding for apni/apc so 
+      search can work with any correctly configured shard. (Approx. date)
+  </li>
   <li class="list-group-item">
     <span class="label label-default label-pill pull-xs-left">10-Aug-2016</span>
       <br/>
