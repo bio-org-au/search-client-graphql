@@ -48,7 +48,7 @@
             <span class="synonym-type">
               <%= syn.label %>
             </span>
-            <%= link_to(syn.full_name_html.html_safe,
+            <%= link_to(syn.name.citation.html_safe,
                         names_show_path(syn.name_id),
                         class: "synonym") %>
             <% if syn.shows_cites_reference? %>
