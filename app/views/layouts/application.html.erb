@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title><%= yield :page_title %></title>
+  <title>
+    <% if Rails.configuration.try('display_as_test') == true %>
+      Test
+    <% elsif Rails.env.match(/development/) %>
+      Dev
+    <% end %>
+    <%= yield :page_title %>
+  </title>
   <%= csrf_meta_tags %>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
