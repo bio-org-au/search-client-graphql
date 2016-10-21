@@ -6,7 +6,7 @@ class NameTreePathDefault < ActiveRecord::Base
   self.primary_key = "id"
   default_scope do
     where(["tree_id = (select id from tree_arrangement where label = ?) ",
-           ShardConfig.name_label])
+           ShardConfig.name_tree_label])
   end
   belongs_to :name
 

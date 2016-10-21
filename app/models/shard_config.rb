@@ -17,6 +17,12 @@ class ShardConfig < ActiveRecord::Base
     "name label"
   end
 
+  def self.name_tree_label
+    find_by(name: "name tree label").value
+  rescue
+    "name tree label"
+  end
+
   def self.banner_text
     find_by(name: "banner text").value
   rescue
@@ -63,6 +69,12 @@ class ShardConfig < ActiveRecord::Base
     find_by(name: "name description html").value
   rescue
     "name description html"
+  end
+
+  def self.name_space
+    find_by(name: "name space").value
+  rescue
+    "name space"
   end
 
   def self.tree_search_help_text_html
@@ -116,6 +128,6 @@ class ShardConfig < ActiveRecord::Base
   def self.name_banner_text
     find_by(name: "name banner text").value
   rescue
-    "name label text"
+    "name banner text"
   end
 end
