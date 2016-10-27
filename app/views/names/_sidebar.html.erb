@@ -13,21 +13,20 @@
                     root_path,
                     class: "bd-toc-link",
                     title: "#{menu_label} Names" %>
-        <%= link_to ticked("#{name_label}"),
+        <%= link_to ticked("Name Index"),
                     names_path,
                     class: "bd-toc-link",
-                    title: "#{name_label}" %>
+                    title: "#{name_label_text}" %>
         </div>
         <hr>
         <ul class="nav bd-sidenav">
           <li class="">
-          <%= link_to "#{name_label} Search",
+          <%= link_to "Search",
                         names_search_path,
                         class: "",
-                        title: "#{ name_link_title }" %>
+                        title: "Search #{ name_link_title }" %>
           </li>
         </ul>
-        <%= render 'layouts/back_link' %>
       </div>
   </nav>
   <br/>

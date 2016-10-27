@@ -13,11 +13,11 @@
                     root_path,
                     class: "bd-toc-link",
                     title: "#{menu_link_title}" %>
-        <%= link_to tree_label,
+        <%= link_to "Accepted Taxonomy",
                     taxonomy_accepted_path,
                     class: "bd-toc-link",
                     title: tree_link_title %>
-        <%= link_to "#{ tree_label } Search",
+        <%= link_to ticked("Search"),
                     taxonomy_accepted_search_path,
                     class: "bd-toc-link",
                     title: "#{tree_link_title} Search" %>
@@ -117,7 +117,6 @@
                         remote: true %>
           </li>
         </ul>
-        <%= render 'layouts/back_link' %>
       </div>
   </nav>
 

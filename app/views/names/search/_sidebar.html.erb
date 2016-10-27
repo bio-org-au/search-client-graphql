@@ -13,11 +13,11 @@
                     root_path,
                     class: "bd-toc-link", 
                     title: shard.capitalize %>
-        <%= link_to "#{name_label}",
+        <%= link_to "Name Index",
                     names_path,
                     class: "bd-toc-link",
                     title: "#{name_label} Names" %>
-        <%= link_to ("#{name_label} Search").html_safe,
+        <%= link_to ticked("Search"),
                     names_search_path,
                     class: "bd-toc-link",
                     title: "#{name_label} Search" %>
@@ -62,7 +62,6 @@
           </li>
 
         </ul>
-        <%= render 'layouts/back_link' %>
       </div>
   </nav>
   <span class="debug hidden-print">[names/search/_sidebar]</span>

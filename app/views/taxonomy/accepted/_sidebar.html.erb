@@ -12,20 +12,19 @@
                     root_path,
                     class: "bd-toc-link",
                     title: "#{ menu_label }" %>
-                  <%= link_to ticked("#{ tree_label }"),
+                  <%= link_to ticked("Accepted Taxonomy"),
                     "#",
                     class: "bd-toc-link",
                     title: "#{ tree_label_text }" %>
         <hr>
         <ul class="nav bd-sidenav">
             <li class="">
-              <%= link_to "#{ tree_label } Search",
+              <%= link_to "Search",
                           taxonomy_accepted_search_path,
                           class: "",
                           title: "#{tree_label} search" %>
             </li>
         </ul>
-        <%= render 'layouts/back_link' %>
       </div>
   </nav>
     <br/>
