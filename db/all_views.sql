@@ -27,7 +27,7 @@ select accepted.id,
        inner join
        tree_arrangement ta
        on tree_node.tree_arrangement_id = ta.id
- where ta.label = 'APC'
+ where ta.label = (select value from shard_config where name = 'tree label')
    and tree_node.next_node_id is null
    and tree_node.checked_in_at_id is not null
    and instance.id = tree_node.instance_id;
@@ -78,7 +78,7 @@ select name_as_syn.id,
        inner join
        tree_arrangement ta
        on tree_node.tree_arrangement_id = ta.id
- where ta.label = 'APC'
+ where ta.label = (select value from shard_config where name = 'tree label')
    and tree_node.next_node_id is null
    and tree_node.checked_in_at_id is not null
    and tree_node.instance_id = citer.id
