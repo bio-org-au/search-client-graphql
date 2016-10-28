@@ -13,11 +13,7 @@
                     root_path,
                     class: "bd-toc-link",
                     title: "#{menu_link_title}" %>
-        <%= link_to "Accepted Taxonomy",
-                    taxonomy_accepted_path,
-                    class: "bd-toc-link",
-                    title: tree_link_title %>
-        <%= link_to ticked("Search"),
+        <%= link_to ticked("Accepted Taxonomy"),
                     taxonomy_accepted_search_path,
                     class: "bd-toc-link",
                     title: "#{tree_link_title} Search" %>
@@ -30,7 +26,7 @@
                         id: "accepted-search-sidebar-link",
                         class: "taxonomy-search-sidebar-link",
                         data: { search_type: "accepted" }, 
-                        title: "Search for accepted names." %>
+                        title: "Search for accepted names within the accepted taxonomy." %>
           </li>
           <li class="search-type-switch-item <%= 'active' if params[:search_type].present? && params[:search_type].match(/\Aexcluded\z/i) %>">
             <%= link_to "Excluded&nbsp;#{fa_icon('check', class: "hide-unless-active")}".html_safe,
@@ -38,7 +34,7 @@
                         id: "excluded-search-sidebar-link",
                         class: "taxonomy-search-sidebar-link",
                         data: { search_type: "excluded" }, 
-                        title: "Search for excluded names." %>
+                        title: "Search for excluded names within the accepted taxonomy." %>
           </li>
           <li class="search-type-switch-item <%= 'active' if params[:search_type].present? && params[:search_type].match(/\Asynonyms\z/i) %>">
             <%= link_to "Synonyms&nbsp;#{fa_icon('check', class: "hide-unless-active")}".html_safe,
@@ -46,7 +42,7 @@
                         id: "synonyms-search-sidebar-link",
                         class: "taxonomy-search-sidebar-link",
                         data: { search_type: "synonyms" }, 
-                        title: "Search for synonyms." %>
+                        title: "Search for synonyms within the accepted taxonomy." %>
           </li>
           <li class="search-type-switch-item <%= 'active' if params[:search_type].present? && params[:search_type].match(/\Aaccepted.and.excluded\z/i) %>">
             <%= link_to "Accepted and excluded&nbsp;#{fa_icon('check', class: "hide-unless-active")}".html_safe,
@@ -54,7 +50,7 @@
                         id: "accepted-and-excluded-search-sidebar-link",
                         class: "taxonomy-search-sidebar-link",
                         data: { search_type: "accepted and excluded" }, 
-                        title: "Search for accepted and excluded names." %>
+                        title: "Search for accepted and excluded names within the accepted taxonomy." %>
           </li>
           <li class="search-type-switch-item <%= 'active' if params[:search_type].present? && params[:search_type].match(/\Aall\z/i) %>">
             <%= link_to "All&nbsp;#{fa_icon('check', class: "hide-unless-active")}".html_safe,
@@ -62,7 +58,7 @@
                         id: "all-search-sidebar-link",
                         class: "taxonomy-search-sidebar-link",
                         data: { search_type: "all" }, 
-                        title: "Search for all." %>
+                        title: "Search for all the above within the accepted taxonomy." %>
           </li>
 
           <% if @search.present? %>
@@ -108,13 +104,10 @@
           <% end %>
           <hr/>
 
-          <li><%= link_to "Help #{fa_icon('check',
-                        id: 'help-toggle-switch-indicator',
-                        class: session[:help] ? '' : 'hidden-xs-up')}".html_safe,
-                        help_path,
-                        title:"Help on/off switch.",
-                        method: :post,
-                        remote: true %>
+          <li>
+            <a href="#" class="about-link" data-target-selector="#about-page">
+              About <%= fa_icon("check", id: "about-link-tick", class: "tick hidden-xs-up") %>
+            </a>
           </li>
         </ul>
       </div>

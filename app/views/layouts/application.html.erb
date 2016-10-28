@@ -117,7 +117,6 @@ input[type="checkbox"]:not([title]) {
         </li>
         <li><a href="https://github.com/bio-org-au">GitHub</a></li>
         <li><a href="https://twitter.com/AuBiodiversity">Twitter</a></li>
-        <li><a href="/about/history/">About</a></li>
         <li><%= link_to "Changes", changes_path, title:"Changes to the application" %></li>
         <li><%= link_to "Editor #{fa_icon('check', id: 'editor-toggle-switch-indicator', class: session[:editor] ? '' : 'hidden-xs-up')}".html_safe,
                         editor_path,

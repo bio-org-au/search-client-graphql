@@ -1,9 +1,11 @@
+<div class="row">
+  <div class="col-xs-12">
 <%= form_tag(names_search_path, method: "get", id: "search-form") do %>
-  <div class="form-group row">
     <%= label_tag(:q,
                   "Search for:",
                   class:"sr-only col-sm-2 form-control-label") %>
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-7">
+<div class="row">
+    <div class="col-xs-12 col-sm-7 col-md-5 col-lg-5 col-xl-5">
     <%= search_field_tag(:q,
                        '',
                        class: "form-control",
@@ -12,9 +14,12 @@
                        autofocus: true,
                        required: true,
                        title: "Enter a name with or without wildcards.",
-                       placeholder: "Search Names") %>
+                       placeholder: "Search Name Index") %>
     </div>
     <span class="hidden-md-up">&nbsp;&nbsp;&nbsp;</span>
+    <div class="col-xs-8 col-xs-offset-4 col-sm-4 col-sm-offset-8 col-md-6
+                col-md-offset-5 col-lg-5 col-lg-offset-0 col-xl-4">
+
     <%= button_tag(id: "search-button", type: "submit", class: "btn white nsl-blue-bg hidden-print", title: "Search name index")  do %>
       <%= fa_icon('search') %>&nbsp;Names
     <% end %>
@@ -35,19 +40,25 @@
            value="html"
            name="format"
            id="search-output-format">
+</div>
+<% end %>
   </div>
-<% end %>
-<span class="debug red hidden-print">[names/search/_form]</span>
+  </div>
+</div>
+<span class="red hidden-print">[names/search/_form]</span>
 
-<%= render "names/search/help_text" %>
+<div class="row">
+  <div class="col-xs-12">
+    <% if @search.present? %>
+      <span class='search-result-summary'>
+        <%= pluralize(@search.results.pluck("id").uniq.size,
+                      "#{(params[:search_type] || 'scientific').sub(/-and-/,' or ')} name") %>
+        <%= no_results_help(@search.results.size).html_safe %>
+      </span>
+  <% end %>
 
-<% if @search.present? %>
-  <span class='search-result-summary'>
-    <%= pluralize(@search.results.pluck("id").uniq.size,
-                  "#{(params[:search_type] || 'scientific').sub(/-and-/,' or ')} name") %>
-    <%= no_results_help(@search.results.size).html_safe %>
-  </span>
-<% end %>
+  </div>
+</div>
 
 <% if @search.present? %>
   <%= render partial: '/names/search/results', locals: {search: @search, name: @search.results.first} %>

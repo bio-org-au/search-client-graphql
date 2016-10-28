@@ -1,8 +1,9 @@
 <% content_for :page_title do %>
-  <%= name_label %> Search
+  Name Index Search
 <% end %>
 <% content_for :page_banner do %>
-  <h1><%= name_label %> Search</h1>
+  <h1 class="hidden-sm-down"><%= ShardConfig.name_banner_text %></h1>
+  <h1 class="hidden-md-up"><%= ShardConfig.name_label %></h1>
 <% end %>
 <% content_for :sidebar do %>
   <%= render "names/search/sidebar" %>
@@ -11,7 +12,17 @@
   <%= render "names/slider" %>
 <% end %>
 
+<div id="about-page" class="hidden-xs-up col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+  <br>
+  <div id="about-page-inner" class="col-xl-7 col-lg-9 col-md-10">
+    <br>
+    <%= name_description_html.html_safe %>
+  </div>
+</div>
+
+<div class="not-about-page">
 <%= render "names/search/form" %>
+</div>
 
 <span class="debug red tiny hidden-print">[names/search/index]</span>
 

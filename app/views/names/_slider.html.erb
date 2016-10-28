@@ -64,14 +64,10 @@
             </li>
           <% end %>
           <hr/>
-
-          <li><%= link_to "Help #{fa_icon('check',
-                        id: 'help-toggle-switch-indicator',
-                        class: session[:help] ? '' : 'hidden-xs-up')}".html_safe,
-                        help_path,
-                        title:"Help on/off switch.",
-                        method: :post,
-                        remote: true %>
+          <li>
+            <a href="#" class="about-link" data-target-selector="#about-page">
+              Aboutx <%= fa_icon("check", id: "about-link-tick", class: "tick hidden-xs-up") %>
+            </a>
           </li>
 
         </ul>

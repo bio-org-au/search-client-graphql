@@ -13,11 +13,7 @@
                     root_path,
                     class: "bd-toc-link", 
                     title: shard.capitalize %>
-        <%= link_to "Name Index",
-                    names_path,
-                    class: "bd-toc-link",
-                    title: "#{name_label} Names" %>
-        <%= link_to ticked("Search"),
+        <%= link_to ticked("Name Index"),
                     names_search_path,
                     class: "bd-toc-link",
                     title: "#{name_label} Search" %>
@@ -29,40 +25,38 @@
                         "javascript:void(0);",
                         class: "name-type-switch-link",
                         data: {switch_to: "scientific"},
-                        title: "Scientific name search." %>
+                        title: "Search the Name Index for Scientific names." %>
           </li>
           <li class="name-type-switch-item <%= 'active' if params[:search_type].present? && params[:search_type].match(/\Acultivar\z/) %>">
             <%= link_to "Cultivar&nbsp;#{fa_icon('check', class: "hide-unless-active")}".html_safe,
                         "javascript:void(0);",
                         class: "name-type-switch-link",
                         data: {switch_to: "cultivar"},
-                        title: "Cultivar name search." %>
+                        title: "Search the Name Index for Cultivar names." %>
           </li>
           <li class="name-type-switch-item <%= 'active' if params[:search_type].present? && params[:search_type].match(/\Ascientific.and.cultivar\z/) %>">
             <%= link_to "Scientific and Cultivar&nbsp;#{fa_icon('check', class: "hide-unless-active")}".html_safe,
                         "javascript:void(0);",
                         class: "name-type-switch-link",
                         data: {switch_to: "scientific-and-cultivar"},
-                        title: "Search across scientific and cultivar name types." %>
+                        title: "Search the Name Index for scientific and cultivar names." %>
           </li>
           <li class="name-type-switch-item <%= 'active' if params[:search_type].present? && params[:search_type].match(/\Acommon\z/) %>">
             <%= link_to "Common&nbsp;#{fa_icon('check', class: "hide-unless-active")}".html_safe,
                         "javascript:void(0);",
                         class: "name-type-switch-link",
                         data: {switch_to: "common"},
-                        title: "Common or informal name search." %>
+                        title: "Search the Name Index for Common or informal names." %>
           </li>
+          <% unless @search.present? %>
           <hr/>
-
-          <li><%= link_to "Help #{fa_icon('check', id: 'help-toggle-switch-indicator', class: session[:help] ? '' : 'hidden-xs-up')}".html_safe,
-                        help_path,
-                        title:"Help on/off switch.",
-                        method: :post,
-                        remote: true %>
+          <li>
+            <a href="#" class="about-link" data-target-selector="#about-page">
+              About <%= fa_icon("check", id: "about-link-tick", class: "tick hidden-xs-up") %>
+            </a>
           </li>
-
+          <% end %>
         </ul>
       </div>
   </nav>
   <span class="debug hidden-print">[names/search/_sidebar]</span>
-

@@ -267,6 +267,20 @@ startSearch = (event, $element) ->
 pageFetch = () ->
   debug('pageFetch')
 
+# Hide/show details
+# Load details if necessary
+toggleAbout = (event, $element) ->
+  targetSelector = $element.data("target-selector")
+  $target = $("#{targetSelector}")
+  if $target.hasClass("hidden-xs-up")
+    $target.removeClass("hidden-xs-up")
+    $('#about-link-tick.hidden-xs-up').removeClass("hidden-xs-up")
+    $('.not-about-page').addClass("hidden-xs-up")
+  else
+    $target.addClass("hidden-xs-up")
+    $('#about-link-tick').addClass("hidden-xs-up")
+    $('.not-about-page').removeClass("hidden-xs-up")
+
 # Turbolinks
 turbolinksLoad = () ->
   debug('turbolinksLoad; =============')
@@ -292,6 +306,7 @@ docReady = ->
   $('body').on('click','#search-button', (event) -> startSearch(event,$(this)))
   $('body').on('click','.alt-search-link', (event) -> altSearchLink(event,$(this)))
   $('body').on('page:fetch','*', (event) -> pageFetch(event,$(this)))
+  $('body').on('click','.about-link', (event) -> toggleAbout(event,$(this)))
   # addClearButton() if typeof(addClearButton) == "function"
   addClearButton()
   loadDetailsIfRequired() if typeof(loadDetailsIfRequired) == "function"

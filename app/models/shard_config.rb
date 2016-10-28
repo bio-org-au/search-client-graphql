@@ -5,6 +5,18 @@ class ShardConfig < ActiveRecord::Base
   self.table_name = "shard_config"
   self.primary_key = "id"
 
+  # This replaces a lot of repetitive methods
+  # that take a "name" e.g. "tree_label" and
+  # return the value for that name in shard_config.
+  # We just have to remove the underscores to 
+  # convert from a method name to a shard_config name.
+  def self.method_missing(method, *args, &block)
+    name_string = method.to_s.gsub(%r{_}," ")
+    find_by(name: name_string).value
+  rescue
+    "No shard value for #{name_string}"
+  end
+
   def self.tree_label
     find_by(name: "tree label").value
   rescue

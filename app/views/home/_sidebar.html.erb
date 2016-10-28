@@ -18,18 +18,18 @@
         <ul class="nav bd-sidenav">
             <li class="">
               <%= link_to "Name Index",
-                          names_path,
+                          names_search_path,
                           class: "",
-                          title: "#{name_link_title}" %>
+                          title: "Search the Name Index" %>
             </li>
             <li class="">
               <%= link_to "Accepted Taxonomy",
-                          taxonomy_accepted_path,
+                          taxonomy_accepted_search_path,
                           class: "",
-                          title: "#{tree_link_title}" %>
+                          title: "Search the Accepted Taxonomy" %>
             </li>
             <li class="">
-              <%= link_to "Other Taxonomies",
+              <%= link_to "Other&nbsp;Taxonomies".html_safe,
                           taxonomy_other_path,
                           class: "",
                           title:

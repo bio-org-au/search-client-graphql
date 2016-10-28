@@ -1,23 +1,33 @@
 <% content_for :page_title do %>
-  NSL: <%= tree_label %> Search
+  Taxonomy Search
 <% end %>
 <% content_for :page_banner do %>
-  <h1><%= tree_label %> Search</h1>
+  <h1 class="hidden-sm-down"><%= ShardConfig.tree_banner_text %></h1>
+  <h1 class="hidden-md-up"><%= ShardConfig.tree_label %></h1>
 <% end %>
 <% content_for :sidebar do %>
   <%= render "sidebar" %>
 <% end %>
 
-<%= render "taxonomy/accepted/search/form" %>
+<div id="about-page" class="hidden-xs-up col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+  <br>
+  <div id="about-page-inner" class="col-xl-7 col-lg-9 col-md-10">
+    <br>
+    <%= tree_description_html.html_safe %>
+  </div>
+</div>
 
-<% if @search.present? %>
-  <%= "<span class='search-result-summary'>#{pluralize(@search.results.size, 'name')}</span>".html_safe %>
-<% end %>
+<div class="not-about-page">
+  <%= render "taxonomy/accepted/search/form" %>
 
-<% if @search.present? %>
-  <%= render partial: 'results', locals: {name: @search.results.first} %>
-<% end %>
+  <% if @search.present? %>
+    <%= "<span class='search-result-summary'>#{pluralize(@search.results.size, 'name')}</span>".html_safe %>
+  <% end %>
 
+  <% if @search.present? %>
+    <%= render partial: 'results', locals: {name: @search.results.first} %>
+  <% end %>
+</div>
 
 <br/>
 <span class="debug tiny hidden-print">[taxonomy/accepted/search/index]</span>
