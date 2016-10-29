@@ -7,7 +7,10 @@
 <% content_for :sidebar do %>
   <%= render "sidebar" %>
 <% end %>
+
 <%= render "names/search/form" %>
+<br>
+<br>
 <strong><%= @name.full_name %></strong>
 <% if @name.show_status? %>
   <span class="name-status" title="Name Status"><%= @name.status_name %></span>

@@ -112,7 +112,6 @@ Rails.application.routes.draw do
         as: "taxonomy",
         to: "taxonomy#index",
         via: :get
-  match "/names", as: "names", to: "names#index", via: :get
 
   post "editor" => "editor#toggle", as: :editor
   post "citations" => "citations#toggle", as: :citations
@@ -127,6 +126,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   # get "nsl", as: "explicit_nsl", to: "nsl#index", via: :get  # delete
   root "home#index", as: "root", via: :get
+  match "/*random", to: "home#index", via: [:get, :post, :delete, :patch]
 
   # Example of regular route:
   #   get "products/:id" => "catalog#view"

@@ -4,7 +4,9 @@ require "test_helper"
 # Test Accepted Taxonomy Controller
 class Taxonomy::AcceptedControllerTest < ActionController::TestCase
   test "should get index" do
-    get :index
-    assert_response :success
+    skip
+    assert_throws AbstractController::ActionNotFound do
+      get :index
+    end
   end
 end
