@@ -5,6 +5,7 @@ require "test_helper"
 module Names
   module Search
     module Within
+      # Controller test
       class Taxon::SummaryControllerTest < ActionController::TestCase
         test "should get index" do
           get :index, id: names(:angophora_costata).id

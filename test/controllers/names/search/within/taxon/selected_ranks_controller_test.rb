@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 require "test_helper"
 
-# Controller test
 module Names
   module Search
     module Within
+      # Controller test
       class Taxon::SelectedRanksControllerTest \
         < ActionController::TestCase
         test "should get index" do

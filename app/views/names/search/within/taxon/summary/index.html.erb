@@ -11,7 +11,8 @@
   <%= render "/names/search/within/slider" %>
 <% end %>
 <%= render "search" %>
-<h2 class="unobtrusive"><%= @name.full_name %></h2>
+<br>
+<h4 class="unobtrusive"><%= @name.full_name %></h4>
 <%= render partial: 'index', locals: {name: @name} %>
 <span class="debug red tiny hidden-print">[names/search/within/taxon/summary/index]</span>
 

@@ -3,7 +3,6 @@
 # Controller
 class Names::SearchController < ApplicationController
   def index
-    logger.debug("Names::SearchController < ApplicationController")
     search if params["q"].present?
     respond_to do |format|
       format.html

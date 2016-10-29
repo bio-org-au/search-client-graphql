@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 require "test_helper"
 
-class Plants::TaxonomyControllerTest < ActionController::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+# Controller test
+class TaxonomyControllerTest < ActionController::TestCase
+  test "show" do
+    name = names(:angophora)
+    get :show, id: name.id
+  end
 end
