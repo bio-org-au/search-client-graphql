@@ -18,7 +18,14 @@ select accepted.id,
        0 synonym_type_id,
        0 synonym_ref_id,
        0 citer_instance_id,
-       0 cites_instance_id
+       0 cites_instance_id,
+       cast('' as varchar) cites_instance_type_name,
+       false cites_misapplied,
+       0 citer_ref_year,
+       0 cites_cites_id,
+       0 cites_cites_ref_id,
+       0 cites_cites_ref_id,
+       0 cites_cites_ref_year
   from name accepted
        inner join instance
        on accepted.id = instance.name_id
@@ -55,11 +62,20 @@ select name_as_syn.id,
        cites.instance_type_id synonym_type_id,
        cites.reference_id synonym_ref_id,
        citer.id citer_instance_id,
-       cites.id cites_instance_id
+       cites.id cites_instance_id,
+       cites_instance_type.name cites_instance_type_name,
+       cites_instance_type.misapplied cites_misapplied,
+       citer_ref.year citer_ref_year,
+       cites_cites.id cites_cites_id,
+       cites_cites.reference_id cites_cites_ref_id,
+       cites_cites_ref.year cites_cites_ref_year
   from name name_as_syn
        inner join
        instance cites
        on name_as_syn.id = cites.name_id
+       inner join 
+       instance_type cites_instance_type
+       on cites.instance_type_id = cites_instance_type.id
        inner join
        reference cites_ref
        on cites.reference_id = cites_ref.id
@@ -78,6 +94,8 @@ select name_as_syn.id,
        inner join
        tree_arrangement ta
        on tree_node.tree_arrangement_id = ta.id
+       join instance cites_cites on cites.cites_id = cites_cites.id
+       join reference cites_cites_ref on cites_cites.reference_id = cites_cites_ref.id
  where ta.label = (select value from shard_config where name = 'tree label')
    and tree_node.next_node_id is null
    and tree_node.checked_in_at_id is not null

@@ -32,7 +32,10 @@ class NameOrSynonym < ActiveRecord::Base
     sql = NameOrSynonym.connection.unprepared_statement do
       "((#{query1.to_sql}) UNION (#{query2.to_sql})) AS name_or_synonym_vw"
     end
-    NameOrSynonym.from(sql).order("sort_name")
+    NameOrSynonym.from(sql)
+                 .order("sort_name,
+                         case cites_misapplied when true then 'Z' else 'A' end,
+                         cites_cites_ref_year")
   end
 
   def self.full_name_like(search_term = "x")

@@ -21,7 +21,11 @@ class AcceptedSynonym < ActiveRecord::Base
     where("lower((full_name)) like lower((?)) ",
           string.tr("*", "%").downcase)
   end)
-  scope :default_ordered, -> { order("lower(simple_name)") }
+  scope :default_ordered, (lambda do
+    order("lower(simple_name),
+          case cites_misapplied when true then 'Z'
+          else 'A' end, cites_cites_ref_year")
+  end)
 
   def accepted_accepted?
     type_code == "ApcConcept"

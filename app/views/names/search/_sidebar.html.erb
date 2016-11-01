@@ -51,7 +51,8 @@
           <% unless @search.present? %>
           <hr/>
           <li>
-            <a href="#" class="about-link" data-target-selector="#about-page">
+            <a href="#" class="about-link" data-target-selector="#about-page"
+               title="Show or hide text about this page." >
               About <%= fa_icon("check", id: "about-link-tick", class: "tick hidden-xs-up") %>
             </a>
           </li>
