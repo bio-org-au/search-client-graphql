@@ -16,7 +16,7 @@
         <%= link_to ticked("Accepted Taxonomy"),
                     taxonomy_accepted_search_path,
                     class: "bd-toc-link",
-                    title: "#{tree_link_title} Search" %>
+                    title: "Search the #{tree_label_text}" %>
         </div>
         <hr>
         <ul class="nav bd-sidenav">
@@ -26,7 +26,7 @@
                         id: "accepted-search-sidebar-link",
                         class: "taxonomy-search-sidebar-link",
                         data: { search_type: "accepted" }, 
-                        title: "Search for accepted names within the accepted taxonomy." %>
+                        title: "Search for accepted names within the #{tree_label_text}." %>
           </li>
           <li class="search-type-switch-item <%= 'active' if params[:search_type].present? && params[:search_type].match(/\Aexcluded\z/i) %>">
             <%= link_to "Excluded&nbsp;#{fa_icon('check', class: "hide-unless-active")}".html_safe,
@@ -34,7 +34,7 @@
                         id: "excluded-search-sidebar-link",
                         class: "taxonomy-search-sidebar-link",
                         data: { search_type: "excluded" }, 
-                        title: "Search for excluded names within the accepted taxonomy." %>
+                        title: "Search for excluded names within the #{tree_label_text}." %>
           </li>
           <li class="search-type-switch-item <%= 'active' if params[:search_type].present? && params[:search_type].match(/\Asynonyms\z/i) %>">
             <%= link_to "Synonyms&nbsp;#{fa_icon('check', class: "hide-unless-active")}".html_safe,
@@ -42,7 +42,7 @@
                         id: "synonyms-search-sidebar-link",
                         class: "taxonomy-search-sidebar-link",
                         data: { search_type: "synonyms" }, 
-                        title: "Search for synonyms within the accepted taxonomy." %>
+                        title: "Search for synonyms within the #{tree_label_text}." %>
           </li>
           <li class="search-type-switch-item <%= 'active' if params[:search_type].present? && params[:search_type].match(/\Aaccepted.and.excluded\z/i) %>">
             <%= link_to "Accepted and excluded&nbsp;#{fa_icon('check', class: "hide-unless-active")}".html_safe,
@@ -50,7 +50,7 @@
                         id: "accepted-and-excluded-search-sidebar-link",
                         class: "taxonomy-search-sidebar-link",
                         data: { search_type: "accepted and excluded" }, 
-                        title: "Search for accepted and excluded names within the accepted taxonomy." %>
+                        title: "Search for accepted and excluded names within the #{tree_label_text}." %>
           </li>
           <li class="search-type-switch-item <%= 'active' if params[:search_type].present? && params[:search_type].match(/\Aall\z/i) %>">
             <%= link_to "All&nbsp;#{fa_icon('check', class: "hide-unless-active")}".html_safe,
@@ -58,7 +58,7 @@
                         id: "all-search-sidebar-link",
                         class: "taxonomy-search-sidebar-link",
                         data: { search_type: "all" }, 
-                        title: "Search for all the above within the accepted taxonomy." %>
+                        title: "Search for all of the above within the #{tree_label_text}." %>
           </li>
 
           <% if @search.present? %>

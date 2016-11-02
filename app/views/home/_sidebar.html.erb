@@ -12,7 +12,7 @@
         <%= link_to ticked("#{menu_label}"),
                     root_path,
                     class: "bd-toc-link",
-                    title: "#{menu_label} Name Search" %>
+                    title: "Search #{menu_label}" %>
         </div>
         <hr>
         <ul class="nav bd-sidenav">
@@ -20,20 +20,20 @@
               <%= link_to "Name Index",
                           names_search_path,
                           class: "",
-                          title: "Search the Name Index" %>
+                          title: "Search #{ name_label_text }" %>
             </li>
             <li class="">
               <%= link_to "Accepted Taxonomy",
                           taxonomy_accepted_search_path,
                           class: "",
-                          title: "Search the Accepted Taxonomy" %>
+                          title: "Search #{ tree_label_text }" %>
             </li>
             <li class="">
               <%= link_to "Other&nbsp;Taxonomies".html_safe,
                           taxonomy_other_path,
                           class: "",
                           title:
-                          "Taxonomies other than the Accepted Taxonomy" %>
+                          "Search taxonomies other than the Accepted Taxonomy" %>
             </li>
         </ul>
       </div>
