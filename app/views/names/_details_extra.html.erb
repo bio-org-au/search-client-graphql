@@ -43,7 +43,7 @@
         <% end %>
 
       <ul class='name-details-and-synonyms'>
-        <% name_detail.name_detail_synonyms.sort {|x,y| [x.instance_type_sort_order, x.full_name, x.cites.reference.year] <=> [y.instance_type_sort_order, y.full_name, y.cites.reference.year] }.each do |syn| %>
+        <% name_detail.name_detail_synonyms.sort {|x,y| [x.instance_type_sort_order, x.full_name, x.cites.try("reference").try("year")] <=> [y.instance_type_sort_order, y.full_name, y.cites.try("reference").try("year")] }.each do |syn| %>
           <li class='compact subordinate-instance'>
             <span class="synonym-type">
               <%= syn.label %>
