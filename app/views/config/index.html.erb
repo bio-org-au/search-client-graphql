@@ -1,31 +1,25 @@
 
-<%= rect_with_text("#{ENV['SHARD'].capitalize} Shard","lightsteelblue").html_safe %>
-<%= rect_with_text("#{ShardConfig.tree_label} Tree").html_safe %>
-<%= rect_with_text("#{ShardConfig.name_label} Names").html_safe %>
-<%= rect_with_text("Rails #{Rails::VERSION::STRING} (#{Rails.env})").html_safe %>
-<%= rect_with_text("Ruby #{RUBY_VERSION} on #{RUBY_PLATFORM}").html_safe %>
-<%= rect_with_text("Postgresql #{Rails.configuration.database_configuration[Rails.env]['database']} database").html_safe %>
-<%= rect_with_text("Search Hub: #{Rails.configuration.try('hub')}").html_safe %>
-<%= rect_with_text("Instance Editor: #{Rails.configuration.try('instance_editor')}").html_safe %>
-<%= rect_with_text(%(Services: <a href="#{Rails.configuration.try('services')}">xassssssssssss</a>)).html_safe %>
-<%= rect_with_text("Home: #{ENV['HOME']}").html_safe %>
 
-
-<% services_href = %(#{Rails.configuration.try('services')}) %>
-<br>
-<svg width="500" class="shape-with-link">
-   <g>
-  <rect width="500" height="100" stroke="blue" stroke-width="1" fill="lightsteelblue" />
-  <a xlink:href="<%= services_href %>" target="_top">
-    <text x="50%" y="50%" style="text-anchor: middle">Services: <%= services_href %></text>
-  </a>
-     </g>
-</svg>
-
-<br>
 
 <div id="search-results" class="col-xs-12 col-sm-8 col-md-9 col-lg-9 nothing-selected stylish-scrollbar">
   <div id="search-results-inner" class="no-left-padding col-xs-12 col-sm-12 col-md-12 col-lg-12 search-results-inner">
+<ul>
+  <li/><%= "Shard: #{ENV['SHARD'].capitalize}" %>
+  <li/><%= "Tree label: #{ShardConfig.tree_label}" %>
+  <li/><%= "Name label: #{ShardConfig.name_label}" %>
+  <li/><hr/>
+  <li/><%= "Rails #{Rails::VERSION::STRING} (#{Rails.env})" %>
+  <li/><%= "Ruby #{RUBY_VERSION} on #{RUBY_PLATFORM}" %>
+  <li/><%= "Postgresql #{Rails.configuration.database_configuration[Rails.env]['database']} database" %>
+  <li/><hr/>
+  <li/><%= "Search Hub: #{Rails.configuration.try('hub')}" %>
+  <li/><%= "Instance Editor: #{Rails.configuration.try('instance_editor')}" %>
+  <li/><%#= %(Services: <a href="#{Rails.configuration.try('services')}">xassssssssssss</a>) %>
+  <li/><%= "Services: #{Rails.configuration.try("services")}" %>
+  <li/><hr/>
+  <li/><%= "Home: #{ENV['HOME']}" %>
+  <li/><hr/>
+</ul>
     <table  id="search-results-table" class="table table-condensed search-results" data-summary="Results of the latest search.">
     <tr><td colspan="99" width="80-percent">
         
@@ -122,6 +116,13 @@
     </table>
 
     </td></tr>
+    </table>
+
+    <h4>Shard Config</h4>
+    <table class="table table-condensed search-results width-100-percent">
+      <% ShardConfig.all.order(:name).each do |shard_config| %>
+      <tr><td><%= shard_config.name %></td><td><%= shard_config.value %></td></tr>
+    <% end %>
     </table>
 
   </div>

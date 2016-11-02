@@ -30,17 +30,6 @@ module ApplicationHelper
     Rails.configuration.fauna_path
   end
 
-  def rect_with_text(text, color = "lightsteelblue", width = "500")
-    %(<br><svg width="#{width}" height="100">
-  <rect width="#{width}" height="100"
-  style="fill:#{color};stroke-width:1;stroke:blue;" />
-  <text x="50%" y="50%" text-anchor="middle" stroke="black"
-  stroke-width="1px" dy=".3em" font-family="Verdana" font-size="18">
-    #{text}
-  </text>
-</svg>)
-  end
-
   def shard
     ENV["SHARD"] || "shard"
   end
