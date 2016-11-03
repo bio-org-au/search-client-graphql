@@ -5,11 +5,11 @@
                     nsl_path,
                     class: "bd-toc-link",
                     title: "National Species Lists" %>
-        <%= link_to "Flora",
+        <%= link_to "&ndash;&nbsp;Flora".html_safe,
                     flora_path,
                     class: "bd-toc-link",
                     title: "Flora" %>
-        <%= link_to ticked("#{menu_label}"),
+        <%= link_to ticked("&ndash;&ndash;&nbsp;#{menu_label}"),
                     root_path,
                     class: "bd-toc-link",
                     title: "Search #{menu_label}" %>
