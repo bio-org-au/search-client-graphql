@@ -20,7 +20,7 @@ to search taxonomy",
   <span class="hidden-md-up">&nbsp;&nbsp;&nbsp;</span>
   <div class="col-xs-8 col-xs-offset-4 col-sm-4 col-sm-offset-8 col-md-6
               col-md-offset-5 col-lg-5 col-lg-offset-0 col-xl-4">
-    <%= link_to("#{fa_icon('search')} Names".html_safe,
+    <%= link_to("#{fa_icon('search')} Name&nbsp;Index".html_safe,
                 names_search_path(q:''),
                 id: "search-names-link",
                 class: "alt-search-link btn btn-secondary hidden-print",
@@ -40,7 +40,3 @@ to search taxonomy",
 <%= render "taxonomy/accepted/search/help_text" %>
 
 <span class="debug hidden-print tiny">[taxonomy/accepted/search/_form]</span>
-
-<script>
-  window.addClearButton();
-</script>

@@ -160,6 +160,7 @@ window.resetControls = () ->
 switchNameType = (event, $element) ->
   debug("switchNameType")
   switchTo = $element.data("switch-to")
+  hideAbout()
   $('#name_type').val(switchTo)
   $('.name-type-switch-item').removeClass('active')
   $element.closest('.name-type-switch-item').addClass('active')
@@ -236,7 +237,7 @@ altSearchLink = (event, $element) ->
   # Let the link fire, now with the new href.
 
 switchSidebarSearch = (event, $element) ->
-  debug('switchSidebarSearch')
+  hideAbout()
   switchTo = $element.data("search-type")
   $('#search-type').val(switchTo)
   $('.search-type-switch-item').removeClass('active')
@@ -270,16 +271,22 @@ pageFetch = () ->
 # Hide/show details
 # Load details if necessary
 toggleAbout = (event, $element) ->
-  targetSelector = $element.data("target-selector")
-  $target = $("#{targetSelector}")
-  if $target.hasClass("hidden-xs-up")
-    $target.removeClass("hidden-xs-up")
-    $('#about-link-tick.hidden-xs-up').removeClass("hidden-xs-up")
-    $('.not-about-page').addClass("hidden-xs-up")
+  #targetSelector = $element.data("target-selector")
+  #$target = $("#{targetSelector}")
+  if $('#about-page.hidden-xs-up').length > 0
+    showAbout()
   else
-    $target.addClass("hidden-xs-up")
-    $('#about-link-tick').addClass("hidden-xs-up")
-    $('.not-about-page').removeClass("hidden-xs-up")
+    hideAbout()
+  
+showAbout = () ->
+  $('#about-page').removeClass("hidden-xs-up")
+  $('#about-link-tick.hidden-xs-up').removeClass("hidden-xs-up")
+  $('.not-about-page').addClass("hidden-xs-up")
+
+hideAbout = () ->
+  $('#about-page').addClass("hidden-xs-up")
+  $('#about-link-tick').addClass("hidden-xs-up")
+  $('.not-about-page').removeClass("hidden-xs-up")
 
 # Turbolinks
 turbolinksLoad = () ->
@@ -307,8 +314,7 @@ docReady = ->
   $('body').on('click','.alt-search-link', (event) -> altSearchLink(event,$(this)))
   $('body').on('page:fetch','*', (event) -> pageFetch(event,$(this)))
   $('body').on('click','.about-link', (event) -> toggleAbout(event,$(this)))
-  # addClearButton() if typeof(addClearButton) == "function"
-  addClearButton()
+  window.addClearButton()
   loadDetailsIfRequired() if typeof(loadDetailsIfRequired) == "function"
   resetControls() if typeof(resetControls) == "function"
 	

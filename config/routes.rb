@@ -118,6 +118,14 @@ Rails.application.routes.draw do
   post "taxonomy_details" => "taxonomy_details#toggle", as: :taxonomy_details
   post "always_details" => "always_details#toggle", as: :always_details
   get "config" => "config#index", as: :config
+  match "/names/search/about",
+        as: "name_search_about",
+        to: "names/search/about#index",
+        via: :get
+  match "/taxonomy/accepted/search/about",
+        as: "taxonomy_accepted_search_about",
+        to: "taxonomy/accepted/search/about#index",
+        via: :get
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

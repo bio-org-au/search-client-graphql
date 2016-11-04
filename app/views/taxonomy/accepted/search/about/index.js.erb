@@ -1,0 +1,3 @@
+if (!$.trim($('#about-page-inner').html())) {
+  $('#about-page-inner').html('<%= escape_javascript(tree_description_html.html_safe) %>')
+}

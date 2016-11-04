@@ -21,7 +21,7 @@
                 col-md-offset-5 col-lg-5 col-lg-offset-0 col-xl-4">
 
     <%= button_tag(id: "search-button", type: "submit", class: "btn white nsl-blue-bg hidden-print", title: "Search name index")  do %>
-      <%= fa_icon('search') %>&nbsp;Names
+      <%= fa_icon('search') %>&nbsp;Name&nbsp;Index
     <% end %>
     <%= link_to("#{fa_icon('search')} Taxonomy".html_safe,
               taxonomy_accepted_search_path(q:''),
@@ -46,8 +46,3 @@
   </div>
 </div>
 <span class="red hidden-print debug">[names/search/_form]</span>
-
-
-<script>
-  window.addClearButton();
-</script>

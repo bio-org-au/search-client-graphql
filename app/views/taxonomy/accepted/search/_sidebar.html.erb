@@ -105,10 +105,9 @@
           <hr/>
 
           <li>
-            <a href="#" class="about-link" data-target-selector="#about-page"
-               title="Show or hide text about this page." >
-              About <%= fa_icon("check", id: "about-link-tick", class: "tick hidden-xs-up") %>
-            </a>
+            <%= link_to "About #{fa_icon('check', id: 'about-link-tick', class: 'tick hidden-xs-up')}".html_safe,
+                taxonomy_accepted_search_about_path, class: "about-link", data: {target_selector: "#about-page"},
+                title: "Show or hide information about this page.", remote: true %>
           </li>
         </ul>
       </div>
