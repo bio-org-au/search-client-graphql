@@ -12,9 +12,6 @@ class Taxonomy::Accepted::Search::Synonym
       default_show_results_as
     )
     @results = simple_name_search
-    # @results = simple_name_search
-    # return unless @results.empty?
-    # @results = full_name_search
   end
 
   def simple_name_search
