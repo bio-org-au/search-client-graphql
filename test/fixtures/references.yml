@@ -1,65 +1,62 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+DEFAULTS: &DEFAULTS
+  ref_type_id: 0
+  ref_author_role_id: 0
+  namespace_id: 0
+  language_id: 0
+  created_by: tester
+  updated_by: tester
+  created_at: <%= Time.now + (24*60*60) %>
+  updated_at: <%= Time.now + (24*60*60) %>
 
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-#one: {}
-# column: value
-#
-#two: {}
-#  column: value
 chah_2011:
+  <<: *DEFAULTS
   title: Australian Plant Census
   display_title: Australian Plant Census
   citation: CHAH 2011, Australian Plant Census
   citation_html: CHAH 2011, Australian Plant Census
   author: unknown
-  language_id: 0
-  namespace_id: 0
-  ref_author_role_id: 0
-  ref_type_id: 0
-  created_by: tester
-  updated_by: tester
   
 orchard_2004:
+  <<: *DEFAULTS
   title: "A revision of Cassinia (Asteraceae: Gnaphalieae) in Australia.  3.  Section Leptocephalae"
   display_title: "A revision of Cassinia (Asteraceae: Gnaphalieae) in Australia.  3.  Section Leptocephalae"
   citation: "Orchard, A.E. (2004), A revision of Cassinia (Asteraceae: Gnaphalieae) in Australia. 3. Section Leptocephalae. Australian Systematic Botany 17(6) : 535-566"
   citation_html: "Orchard, A.E. (2004), A revision of Cassinia (Asteraceae: Gnaphalieae) in Australia. 3. Section Leptocephalae. Australian Systematic Botany 17(6) : 535-566"
   author: orchard_a_e
-  language_id: 0
-  namespace_id: 0
-  ref_author_role_id: 0
-  ref_type_id: 0
   volume: 17(6)
-  created_by: tester
-  updated_by: tester
   
 flora_sydney_region_1972:
+  <<: *DEFAULTS
   title: "Flora of the Sydney Region."
   display_title: "Flora of the Sydney Region."
   citation: "Orchard, A.E. (2004), A revision of Cassinia (Asteraceae: Gnaphalieae) in Australia. 3. Section Leptocephalae. Australian Systematic Botany 17(6) : 535-566"
   citation_html: "Orchard, A.E. (2004), A revision of Cassinia (Asteraceae: Gnaphalieae) in Australia. 3. Section Leptocephalae. Australian Systematic Botany 17(6) : 535-566"
   author: beadle_evans_carolin
-  language_id: 0
-  namespace_id: 0
-  ref_author_role_id: 0
-  ref_type_id: 0
   edition: 2
-  created_by: tester
-  updated_by: tester
   
 mueller_fragmenta:
+  <<: *DEFAULTS
   title: "Mueller, F.J.H. von (1858-1882), Fragmenta Phytographiae Australiae"
   display_title: "Mueller, F.J.H. von (1858-1882), Fragmenta Phytographiae Australiae"
   citation: "Mueller, F.J.H. von (1858), Fragmenta Phytographiae Australiae 1(1) : 1-24"
   citation_html: "Mueller, F.J.H. von (1858), Fragmenta Phytographiae Australiae 1(1) : 1-24"
   author: mueller
-  language_id: 0
-  namespace_id: 0
-  ref_author_role_id: 0
-  ref_type_id: 0
   year: 1858
-  created_by: tester
-  updated_by: tester
+
+cav_icones_1797:
+  <<: *DEFAULTS
+  author: cavanailles
+  title: Icones et Descriptiones Plantarum 
+  display_title: Icones et Descriptiones Plantarum 
+  citation: Icones et Descriptiones Plantarum 
+  citation_html: Icones et Descriptiones Plantarum 
+  volume: 4
+
+britten_journal:
+  <<: *DEFAULTS
+  author: britten
+  title: Journal of Botany, British and Foreign
+  display_title: Journal of Botany, British and Foreign
+  citation: Journal of Botany, British and Foreign
+  citation_html: Journal of Botany, British and Foreign
+  volume: 54

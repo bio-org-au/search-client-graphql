@@ -1,0 +1,40 @@
+angophora_apc:
+  name: angophora
+  version: 0
+  inserted: 0
+  name_id_path: 1.2.3
+  tree_id: <%= ActiveRecord::FixtureSet.identify(:apc_tree_arrangement) %>
+  name_path: Plantae.Charophyta.Equisetopsida.Magnoliidae.Rosanae.Myrtales.Myrtaceae.Angophora
+  rank_path: Regnum:Plantae>Division:Charophyta>Classis:Equisetopsida>Subclassis:Magnoliidae>Superordo:Rosanae>Ordo:Myrtales>Familia:Myrtaceae>Genus:Angophora
+  family_id: 0
+
+angophora_name:
+  name: angophora
+  version: 0
+  inserted: 0
+  name_id_path: 1.2.3
+  tree_id: <%= ActiveRecord::FixtureSet.identify(:name_tree_arrangement) %>
+  name_path: Plantae.Charophyta.Equisetopsida.Magnoliidae.Rosanae.Myrtales.Myrtaceae.Angophora
+  rank_path: Regnum:Plantae>Division:Charophyta>Classis:Equisetopsida>Subclassis:Magnoliidae>Superordo:Rosanae>Ordo:Myrtales>Familia:Myrtaceae>Genus:Angophora
+  family_id: 0
+
+angophora_costata_apc:
+  name: angophora_costata
+  version: 0
+  inserted: 0
+  name_id_path: 1.2.3
+  tree_id: <%= ActiveRecord::FixtureSet.identify(:apc_tree_arrangement) %>
+  name_path: Plantae.Charophyta.Equisetopsida.Magnoliidae.Rosanae.Myrtales.Myrtaceae.Angophora.costata
+  rank_path: Regnum:Plantae>Division:Charophyta>Classis:Equisetopsida>Subclassis:Magnoliidae>Superordo:Rosanae>Ordo:Myrtales>Familia:Myrtaceae>Genus:Angophora.costata
+  family_id: 0
+
+angophora_costata_name:
+  name: angophora_costata
+  version: 0
+  inserted: 0
+  name_id_path: 1.2.3
+  tree_id: <%= ActiveRecord::FixtureSet.identify(:name_tree_arrangement) %>
+  name_path: Plantae.Charophyta.Equisetopsida.Magnoliidae.Rosanae.Myrtales.Myrtaceae.Angophora.costata
+  rank_path: Regnum:Plantae>Division:Charophyta>Classis:Equisetopsida>Subclassis:Magnoliidae>Superordo:Rosanae>Ordo:Myrtales>Familia:Myrtaceae>Genus:Angophora.costata
+  family_id: 0
+

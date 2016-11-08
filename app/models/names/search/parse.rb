@@ -14,16 +14,43 @@ class Names::Search::Parse
   DEFAULT_DETAILS_LIMIT = 3
 
   def initialize(params, info = {})
-    @search_type = if info.key?(:search_type)
-                     "#{info[:search_type]} Search"
-                   else
-                     SIMPLE_SEARCH
-                   end
-    @search_term = params[:q].strip.tr("*", "%")
-    @show_as = params[:show_results_as] ||
-               info[:default_show_results_as] ||
-               SHOW_LIST
-    @limit = calculated_limit
+    @params = params
+    @info = info
+    @search_type = search_type
+    @search_term = search_term
+    @show_as = show_as
+    @limit = limit
+  end
+
+  def search_type
+    if @info.key?(:search_type)
+      "#{@info[:search_type]} Search"
+    else
+      SIMPLE_SEARCH
+    end
+  end
+
+  def add_trailing_wildcard
+    return "true" unless @params.key?(:add_trailing_wildcard)
+    @params[:add_trailing_wildcard]
+  end
+
+  def search_term
+    term = @params[:q].strip.tr("*", "%")
+    return term unless add_trailing_wildcard.start_with?("t")
+    term.sub(/$/, "%")
+  end
+
+  def show_as
+    @params[:show_results_as] || @info[:default_show_results_as] || SHOW_LIST
+  end
+
+  def limit
+    if list?
+      DEFAULT_LIST_LIMIT
+    else
+      DEFAULT_DETAILS_LIMIT
+    end
   end
 
   def list?
@@ -40,13 +67,5 @@ class Names::Search::Parse
 
   def show_details?
     details?
-  end
-
-  def calculated_limit
-    if list?
-      DEFAULT_LIST_LIMIT
-    else
-      DEFAULT_DETAILS_LIMIT
-    end
   end
 end

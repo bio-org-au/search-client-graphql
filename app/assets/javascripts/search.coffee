@@ -232,8 +232,9 @@ showFirstMoreDetailsWidget = () ->
 altSearchLink = (event, $element) ->
   new_href = $element.attr('href').replace(/q=.*/,'q=')
   new_href = "#{new_href}#{encodeURIComponent($('#q').val())}"
+  new_href = "#{new_href}&add_trailing_wildcard="
+  new_href = "#{new_href}#{encodeURIComponent($('#add-trailing-wildcard').val())}"
   $element.attr('href', new_href)
-  startSearch(event, $element)
   # Let the link fire, now with the new href.
 
 switchSidebarSearch = (event, $element) ->
@@ -264,6 +265,10 @@ startSearch = (event, $element) ->
   debug('startSearch')
   if $('#q').val().length > 0
     $("body").css("cursor", "wait")
+  else
+    alert("Please enter a search term")
+    event.preventDefault()
+    event.stopPropagation()
 
 pageFetch = () ->
   debug('pageFetch')
@@ -283,7 +288,7 @@ showAbout = () ->
   $('#about-link-tick.hidden-xs-up').removeClass("hidden-xs-up")
   $('.not-about-page').addClass("hidden-xs-up")
 
-hideAbout = () ->
+window.hideAbout = () ->
   $('#about-page').addClass("hidden-xs-up")
   $('#about-link-tick').addClass("hidden-xs-up")
   $('.not-about-page').removeClass("hidden-xs-up")

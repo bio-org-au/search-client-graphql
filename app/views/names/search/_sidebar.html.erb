@@ -48,14 +48,16 @@
                           data: {switch_to: "common"},
                           title: "Search the Name Index for Common or informal names." %>
             </li>
-            <% unless @search.present? %>
+            <% if @search.present? %>
+              <%= render partial: "names/search/results_widgets" %>
+            <% end %>
             <hr/>
+            <%= render partial: "toggle_wildcard/sidebar_widget" %>
             <li>
               <%= link_to "About #{fa_icon('check', id: 'about-link-tick', class: 'tick hidden-xs-up')}".html_safe,
                 name_search_about_path, class: "about-link", data: {target_selector: "#about-page"},
                 title: "Show or hide information about this page.", remote: true %>
             </li>
-            <% end %>
         </ul>
       </div>
   </nav>

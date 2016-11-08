@@ -11,13 +11,30 @@ class Taxonomy::Accepted::Search::Parse
   SHOW_LIST = "list"
 
   def initialize(params, info = {})
-    @search_type = if info.key?(:search_type)
-                     "#{info[:search_type]} Search"
-                   else
-                     SIMPLE_SEARCH
-                   end
-    @search_term = params[:q].strip.tr("*", "%")
-    @show_as = params[:show_results_as] || info[:default_show_results_as]
+    @params = params
+    @info = info
+    @search_type = search_type
+    @search_term = search_term
+    @show_as = @params[:show_results_as] || @info[:default_show_results_as]
+  end
+
+  def search_type
+    if @info.key?(:search_type)
+      "#{@info[:search_type]} Search"
+    else
+      SIMPLE_SEARCH
+    end
+  end
+
+  def add_trailing_wildcard
+    return "true" unless @params.key?(:add_trailing_wildcard)
+    @params[:add_trailing_wildcard]
+  end
+
+  def search_term
+    term = @params[:q].strip.tr("*", "%")
+    return term unless add_trailing_wildcard.start_with?("t")
+    term.sub(/$/, "%")
   end
 
   def show_list?

@@ -126,6 +126,10 @@ Rails.application.routes.draw do
         as: "taxonomy_accepted_search_about",
         to: "taxonomy/accepted/search/about#index",
         via: :get
+  match "/toggle-wildcard",
+        as: "toggle_wildcard",
+        to: "toggle_wildcard#update",
+        via: [:post, :get]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

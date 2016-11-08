@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 
   before_action :set_default_show_results_as,
                 :set_default_details_limit,
+                :set_default_add_trailing_wildcard,
                 :check_system_broadcast,
                 :set_zone
 
@@ -40,6 +41,11 @@ class ApplicationController < ActionController::Base
     end
     return if session[:default_details_limit].to_i.positive?
     session[:default_details_limit] = 20
+  end
+
+  def set_default_add_trailing_wildcard
+    return if session.key?(:add_trailing_wildcard)
+    session[:add_trailing_wildcard] = true
   end
 
   def set_zone

@@ -1,25 +1,34 @@
+DEFAULTS: &DEFAULTS
+  namespace_id: namespace.apni
+  created_by: tester
+  updated_by: tester
+  created_at: <%= Time.now + (24*60*60) %>
+  updated_at: <%= Time.now + (24*60*60) %>
+
 haeckel:
   name: "Haeckel, Ernst Heinrich Philipp August"
   abbrev: Haeckel
-  namespace_id: namespace.apni
-  created_by: tester
-  updated_by: tester
+  <<: *DEFAULTS
 
 orchard_a_e:
   name: "Orchard, A.E."
-  namespace_id: namespace.apni
-  created_by: tester
-  updated_by: tester
+  <<: *DEFAULTS
 
 beadle_evans_carolin:
   name: "Beadle, N.C.W., Evans, O.D. & Carolin, R.C."
-  namespace_id: namespace.apni
-  created_by: tester
-  updated_by: tester
+  <<: *DEFAULTS
 
 mueller:
   name: Mueller, F.J.H. von
   abbrev: F.Muell.
-  namespace_id: namespace.apni
-  created_by: tester
-  updated_by: tester
+  <<: *DEFAULTS
+
+cavanailles:
+  name: Cavanailles, A.J.
+  abbrev: Cav.
+  <<: *DEFAULTS
+
+britten:
+  name: Britten, J.
+  abbrev: Britten
+  <<: *DEFAULTS

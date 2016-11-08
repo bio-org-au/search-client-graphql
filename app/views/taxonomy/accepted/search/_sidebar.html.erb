@@ -103,7 +103,7 @@
 
           <% end %>
           <hr/>
-
+          <%= render partial: "toggle_wildcard/sidebar_widget" %>
           <li>
             <%= link_to "About #{fa_icon('check', id: 'about-link-tick', class: 'tick hidden-xs-up')}".html_safe,
                 taxonomy_accepted_search_about_path, class: "about-link", data: {target_selector: "#about-page"},

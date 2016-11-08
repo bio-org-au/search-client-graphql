@@ -20,19 +20,22 @@ agro:
   simple_name: agro
   simple_name_html: agro
   full_name: agro
+  full_name_html: agro
   <<: *DEFAULTS
 
 x_agro:
   simple_name: x agro
   simple_name_html: x agro
   full_name: x agro
+  full_name_html: x agro
   <<: *DEFAULTS
 
 angophora:
   name_element: angophora
   simple_name: Angophora
   simple_name_html: Angophora
-  full_name: Angophora xxx
+  full_name: Angophora Cav.
+  full_name_html: Angophora Cav.
   rank: genus
   <<: *DEFAULTS
 
@@ -41,6 +44,7 @@ angophora_costata:
   simple_name: Angophora costata
   simple_name_html: Angophora costata
   full_name: Angophora costata (Gaertn.) Britten
+  full_name_html: Angophora costata (Gaertn.) Britten
   parent: :angophora
   <<: *DEFAULTS
 
@@ -49,12 +53,13 @@ cassinia_acc:
   simple_name: Cassinia accipitrum Orchard
   simple_name_html: Cassinia accipitrum Orchard
   full_name: Cassinia accipitrum Orchard
+  full_name_html: Cassinia accipitrum Orchard
   <<: *DEFAULTS
 
 cassinia_compacta:
-  full_name: "<scientific><name id='54723'><scientific><name id='115916'><element class='Cassinia'>Cassinia</element></name></scientific> <element class='compacta'>compacta</element> <authors><author id='6832' title='Mueller, F.J.H. von'>F.Muell.</author></authors></name></scientific>"
   name_element: compacta
   simple_name: Cassinia compacta
   simple_name_html: Cassinia compacta
-  full_name: Cassinia compacta F.Muell.
+  full_name: "Cassinia compacta Mueller"
+  full_name_html: "<scientific><name id='54723'><scientific><name id='115916'><element class='Cassinia'>Cassinia</element></name></scientific> <element class='compacta'>compacta</element> <authors><author id='6832' title='Mueller, F.J.H. von'>F.Muell.</author></authors></name></scientific>"
   <<: *DEFAULTS

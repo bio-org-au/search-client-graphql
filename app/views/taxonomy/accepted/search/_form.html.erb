@@ -35,6 +35,7 @@ to search taxonomy",
   </div>
     <input type="hidden" name="search_type" id="search-type" class="" value="<%= params[:search_type] || 'accepted' %>">
     <input type="hidden" name="format" id="search-format" class="" value="html">
+    <%= render partial: "toggle_wildcard/form_widget" %>
 <% end %>
 
 <%= render "taxonomy/accepted/search/help_text" %>

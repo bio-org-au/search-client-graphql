@@ -9,4 +9,3 @@ class Names::Search::AboutControllerTest < ActionController::TestCase
     assert_response :success
   end
 end
-

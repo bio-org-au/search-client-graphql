@@ -1,14 +1,3 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-# This model initially had no columns defined.  If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-#one: {}
-# column: value
-#
-#two: {}
-#  column: value
 cassinia_acc_node:
   internal_type: T
   name_uri_id_part: <%= ActiveRecord::FixtureSet.identify(:cassinia_acc) %>
@@ -17,6 +6,30 @@ cassinia_acc_node:
   type_uri_id_part: ApcConcept
   name_id: <%= ActiveRecord::FixtureSet.identify(:cassinia_acc) %>
   instance_id: <%= ActiveRecord::FixtureSet.identify(:cassinia_in_orchard) %>
-  tree_arrangement_id: <%= ActiveRecord::FixtureSet.identify(:apc) %>
+  tree_arrangement_id: <%= ActiveRecord::FixtureSet.identify(:apc_tree_arrangement) %>
+  type_uri_ns_part_id: 0
+  checked_in_at_id: 1
+
+angophora_costata_node:
+  internal_type: T
+  name_uri_id_part: <%= ActiveRecord::FixtureSet.identify(:angophora_costata) %>
+  prev_node_id: 0
+  is_synthetic: Y
+  type_uri_id_part: ApcConcept
+  name_id: <%= ActiveRecord::FixtureSet.identify(:angophora_costata) %>
+  instance_id: <%= ActiveRecord::FixtureSet.identify(:angophora_costata_in_britten) %>
+  tree_arrangement_id: <%= ActiveRecord::FixtureSet.identify(:apc_tree_arrangement) %>
+  type_uri_ns_part_id: 0
+  checked_in_at_id: 1
+
+angophora_node:
+  internal_type: T
+  name_uri_id_part: <%= ActiveRecord::FixtureSet.identify(:angophora) %>
+  prev_node_id: 0
+  is_synthetic: Y
+  type_uri_id_part: ApcConcept
+  name_id: <%= ActiveRecord::FixtureSet.identify(:angophora) %>
+  instance_id: <%= ActiveRecord::FixtureSet.identify(:angophora_in_icones_cav) %>
+  tree_arrangement_id: <%= ActiveRecord::FixtureSet.identify(:apc_tree_arrangement) %>
   type_uri_ns_part_id: 0
   checked_in_at_id: 1
