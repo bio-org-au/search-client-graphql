@@ -50,9 +50,7 @@ class NameInstance < ActiveRecord::Base
   end
 
   def ordered
-    instances.sort do |x, y|
-      x.sort_fields <=> y.sort_fields
-    end
+    instances.sort_by(&:sort_fields)
   end
 
   def standalone?
