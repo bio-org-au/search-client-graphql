@@ -24,7 +24,6 @@ select accepted.id,
        0 citer_ref_year,
        0 cites_cites_id,
        0 cites_cites_ref_id,
-       0 cites_cites_ref_id,
        0 cites_cites_ref_year
   from name accepted
        inner join instance
