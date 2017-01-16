@@ -1,0 +1,33 @@
+@media screen and (min-width: 480px) and (max-width: 767px)  { 
+  #media-screen-xs { display: inline; background: rgba(255, 0, 0, 0.6); } // red
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px)  { 
+  #media-screen-sm { display: inline; background: rgba(255, 192, 203, 0.6); } // pink
+}
+@media screen and (min-width: 992px) and (max-width: 1199px) { 
+  #media-screen-md { display: inline; background: rgba(244, 164, 96, 0.6); } // sandyBrown
+}
+
+/* lg */
+@media screen and (min-width: 1200px) and (max-width: 1399px) { 
+  #media-screen-lg { display: inline; background: rgba(153, 153, 255, 0.6); } // mediumpurple
+}
+
+/* lg */
+@media screen and (min-width: 1400px) and (max-width: 1599px) {
+  #media-screen-lg { display: inline; background: rgba(65, 105, 225, 0.6); } // royalBlue
+}
+
+/* lg */
+@media screen and (min-width: 1600px)                        {
+  #media-screen-lg { display: inline; background: rgba(152, 251, 152, 0.6) ; } // paleGreen
+}
+
+span.media-spec {
+  display: none;
+}
+
+
+
+
