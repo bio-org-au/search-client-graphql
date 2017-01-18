@@ -6,3 +6,7 @@ accepted_tree_label:
 name_tree_label:
   name: name label
   value: name tree label
+
+classification_tree_key:
+  name: classification tree key
+  value: APC

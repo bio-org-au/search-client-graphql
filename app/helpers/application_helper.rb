@@ -42,8 +42,8 @@ module ApplicationHelper
     ShardConfig.name_label
   end
 
-  def tree_label
-    ShardConfig.tree_label
+  def classification_tree_key
+    ShardConfig.classification_tree_key
   end
 
   def description_html
