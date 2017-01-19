@@ -4,7 +4,7 @@ accepted_tree_label:
   value: APC
 
 name_tree_label:
-  name: name label
+  name: name tree label
   value: name tree label
 
 classification_tree_key:

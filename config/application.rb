@@ -34,5 +34,30 @@ module Search
     config.active_record.raise_in_transactional_callbacks = true
     config.path_to_broadcast_file = "#{ENV['HOME']}/.nsl/broadcast.txt"
     config.active_record.schema_format = :sql
+
+    config.after_initialize do
+      puts "Loading shard configuration..."
+      config.banner_text = ShardConfig.banner_text
+      config.menu_label = ShardConfig.menu_label
+      config.name_label = ShardConfig.name_label
+      config.classification_tree_key = ShardConfig.classification_tree_key
+      config.description_html = ShardConfig.description_html
+      config.tree_description_html = ShardConfig.tree_description_html
+      config.name_description_html = ShardConfig.name_description_html
+      config.tree_banner_text = ShardConfig.tree_banner_text
+      config.tree_label_text = ShardConfig.tree_label_text
+      config.page_title = ShardConfig.page_title
+      config.services_path_name_element = ShardConfig.services_path_name_element
+      config.services_path_tree_element = ShardConfig.services_path_tree_element
+      config.tree_search_help_text_html = ShardConfig.tree_search_help_text_html
+      config.name_search_help_text_html = ShardConfig.name_search_help_text_html
+      config.name_link_title = ShardConfig.name_link_title
+      config.tree_link_title = ShardConfig.tree_link_title
+      config.menu_link_title = ShardConfig.menu_link_title
+      config.name_label_text = ShardConfig.name_label_text
+      config.name_banner_text = ShardConfig.name_banner_text
+      config.name_tree_label = ShardConfig.name_tree_label
+      puts "Finished loading shard configuration..."
+    end
   end
 end
