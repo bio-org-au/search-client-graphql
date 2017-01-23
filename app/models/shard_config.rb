@@ -30,9 +30,7 @@ class ShardConfig < ActiveRecord::Base
   end
 
   def self.name_tree_label
-    Rails.application.config.name_tree_label
-  rescue
-    Rails.application.config.name_tree_label = find_by(name: "name tree label").value
+    find_by(name: "name tree label").value
   end
 
   def self.banner_text
