@@ -42,6 +42,10 @@ module ApplicationHelper
     Rails.application.config.name_label
   end
 
+  def name_tree_label
+    Rails.application.config.name_tree_label
+  end
+
   def classification_tree_key
     Rails.application.config.classification_tree_key
   end
