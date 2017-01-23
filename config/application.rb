@@ -55,8 +55,8 @@ module Search
       config.tree_link_title = ShardConfig.tree_link_title
       config.menu_link_title = ShardConfig.menu_link_title
       config.name_label_text = ShardConfig.name_label_text
-      config.name_banner_text = ShardConfig.name_banner_text
       config.name_tree_label = ShardConfig.name_tree_label
+      config.name_banner_text = ShardConfig.name_banner_text
       puts "Finished loading shard configuration..."
     end
   end
