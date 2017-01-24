@@ -47,6 +47,7 @@ drop view accepted_synonym_vw;
 create or replace view accepted_synonym_vw as
 select name_as_syn.id,
        name_as_syn.simple_name simple_name,
+       name_as_syn.simple_name_html simple_name_html,
        name_as_syn.full_name full_name,
        name_as_syn.full_name_html,
        cast('synonym' as varchar) type_code,
