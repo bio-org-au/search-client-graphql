@@ -4,6 +4,7 @@ drop view accepted_name_vw;
 create view accepted_name_vw as
 select accepted.id,
        accepted.simple_name,
+       accepted.simple_name_html simple_name_html,
        accepted.full_name,
        accepted.full_name_html,
        tree_node.type_uri_id_part type_code,
