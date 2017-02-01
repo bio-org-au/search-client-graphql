@@ -7,7 +7,7 @@
             <% if nos.show_status? %>
               <span class="name-status" title="Name Status"><%= nos.status.name %></span>
             <% end %>
-            <span title="Excluded from <%= tree_label %>"><%= fa_icon('ban', class: 'fa-lg red') %><%= tree_label %></span>
+            <span title="Excluded from <%= classification_tree_key %>"><%= fa_icon('ban', class: 'fa-lg red') %><%= classification_tree_key %></span>
               <span class="small">
                 <%= "sensu #{nos.reference.citation_html}".html_safe %>
               </span>

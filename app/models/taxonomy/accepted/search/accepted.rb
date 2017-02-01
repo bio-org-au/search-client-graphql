@@ -11,17 +11,7 @@ class Taxonomy::Accepted::Search::Accepted
       default_show_results_as:
       default_show_results_as
     )
-    @results = simple_name_search
-    return unless @results.empty?
-    @results = full_name_search
-  end
-
-  def simple_name_search
-    search.simple_name_like(@parsed.search_term)
-  end
-
-  def full_name_search
-    search.full_name_like(@parsed.search_term)
+    @results = search.name_matches(@parsed.search_term)
   end
 
   def search

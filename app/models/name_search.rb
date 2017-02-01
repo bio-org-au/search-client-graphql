@@ -3,11 +3,11 @@
 class NameSearch < ActiveRecord::Base
   self.table_name = "name"
 
-  def self.simple_name_list_search(search_term)
-    NameSearch.list_search.simple_name_allow_for_hybrids_like(search_term)
+  def self.xsimple_name_list_search(search_term)
+    #NameSearch.list_search.simple_name_allow_for_hybrids_like(search_term)
   end
 
-  def self.full_name_list_search(search_term)
+  def self.xfull_name_list_search(search_term)
     NameSearch.list_search.full_name_allow_for_hybrids_like(search_term)
   end
 

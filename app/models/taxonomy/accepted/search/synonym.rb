@@ -11,14 +11,6 @@ class Taxonomy::Accepted::Search::Synonym
       default_show_results_as:
       default_show_results_as
     )
-    @results = simple_name_search
-  end
-
-  def simple_name_search
-    AcceptedSynonym.simple_name_like(@parsed.search_term).default_ordered
-  end
-
-  def full_name_search
-    AcceptedSynonym.full_name_like(@parsed.search_term).default_ordered
+    @results = AcceptedSynonym.name_matches(@parsed.search_term).default_ordered
   end
 end

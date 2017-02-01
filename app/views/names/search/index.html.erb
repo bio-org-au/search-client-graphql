@@ -2,8 +2,8 @@
   Name Index Search
 <% end %>
 <% content_for :page_banner do %>
-  <h1 class="hidden-sm-down"><%= ShardConfig.name_banner_text %></h1>
-  <h1 class="hidden-md-up"><%= ShardConfig.name_label %></h1>
+  <h1 class="hidden-sm-down"><%= name_banner_text %></h1>
+  <h1 class="hidden-md-up"><%= name_label %></h1>
 <% end %>
 <% content_for :sidebar do %>
   <%= render "names/search/sidebar" %>

@@ -63,3 +63,40 @@ cassinia_compacta:
   full_name: "Cassinia compacta Mueller"
   full_name_html: "<scientific><name id='54723'><scientific><name id='115916'><element class='Cassinia'>Cassinia</element></name></scientific> <element class='compacta'>compacta</element> <authors><author id='6832' title='Mueller, F.J.H. von'>F.Muell.</author></authors></name></scientific>"
   <<: *DEFAULTS
+
+x_agro_x_again:
+  simple_name: x agro x again
+  simple_name_html: x agro x again
+  full_name: x agro x again
+  full_name_html: x agro x again
+  <<: *DEFAULTS
+
+x_excluded:
+  simple_name: x excluded
+  simple_name_html: x excluded
+  full_name: x excluded
+  full_name_html: x excluded
+  <<: *DEFAULTS
+
+x_excluded_x_again:
+  simple_name: x excluded x again
+  simple_name_html: x excluded x again
+  full_name: x excluded x again
+  full_name_html: x excluded x again
+  <<: *DEFAULTS
+
+x_synonym:
+  name_element: syn
+  simple_name: x synonym
+  simple_name_html: x synonym
+  full_name: x synonym
+  full_name_html: x synonym
+  <<: *DEFAULTS
+
+x_synonym_x_again:
+  name_element: syn
+  simple_name: x synonym x again
+  simple_name_html: x synonym x again
+  full_name: x synonym x again
+  full_name_html: x synonym x again
+  <<: *DEFAULTS

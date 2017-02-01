@@ -51,3 +51,47 @@ angophora_costata_in_britten:
   name: angophora_costata
   <<: *DEFAULTS
 
+agro_in_britten:
+  reference: britten_journal
+  name: agro
+  <<: *DEFAULTS
+
+x_agro_in_britten:
+  reference: britten_journal
+  name: x_agro
+  <<: *DEFAULTS
+
+x_agro_x_again_in_britten:
+  reference: britten_journal
+  name: x_agro_x_again
+  <<: *DEFAULTS
+
+x_excluded_in_britten:
+  reference: britten_journal
+  name: x_excluded
+  <<: *DEFAULTS
+
+x_excluded_x_again_in_britten:
+  reference: britten_journal
+  name: x_excluded_x_again
+  <<: *DEFAULTS
+
+# Relationship instance - synonymy
+x_synonym_synonym:
+  reference: chah_2011
+  name: x_synonym
+  this_is_cited_by: cassinia_in_orchard
+  this_cites: cassinia_compacta_in_mueller
+  instance_type: synonym
+  page: 
+  <<: *DEFAULTS
+
+# Relationship instance - synonymy
+x_synonym_x_again_synonym:
+  reference: chah_2011
+  name: x_synonym_x_again
+  this_is_cited_by: cassinia_in_orchard
+  this_cites: cassinia_compacta_in_mueller
+  instance_type: synonym
+  page: 
+  <<: *DEFAULTS

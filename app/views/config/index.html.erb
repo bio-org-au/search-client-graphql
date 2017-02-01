@@ -5,8 +5,8 @@
   <div id="search-results-inner" class="no-left-padding col-xs-12 col-sm-12 col-md-12 col-lg-12 search-results-inner">
 <ul>
   <li/><%= "Shard: #{ENV['SHARD'].capitalize}" %>
-  <li/><%= "Tree label: #{ShardConfig.tree_label}" %>
-  <li/><%= "Name label: #{ShardConfig.name_label}" %>
+  <li/><%= "Classification tree key: #{classification_tree_key}" %>
+  <li/><%= "Name label: #{name_label}" %>
   <li/><hr/>
   <li/><%= "Rails #{Rails::VERSION::STRING} (#{Rails.env})" %>
   <li/><%= "Ruby #{RUBY_VERSION} on #{RUBY_PLATFORM}" %>
@@ -89,11 +89,11 @@
     <tr><td class="width-40-percent min-width-10em" >API Doc </td><td> <%= link_to(service_url, service_url, title: 'API Documentation') %> </td></tr>
 
     <tr><td colspan="2"><strong>Services that do not change data</strong></td></tr>
-    <% service_url = "#{services_with_path}/api/tree/name/#{tree_label}/91759" %>
-    <tr><td class="width-40-percent min-width-10em" >A client side service </td><td> <%= link_to(service_url, service_url, title: "Link to the #{ tree_label } tree client side service.") %> </td></tr>
+    <% service_url = "#{services_with_path}/api/tree/name/#{classification_tree_key}/91759" %>
+    <tr><td class="width-40-percent min-width-10em" >A client side service </td><td> <%= link_to(service_url, service_url, title: "Link to the #{ classification_tree_key } tree client side service.") %> </td></tr>
 		
     <% service_url = "#{name_services(91759)}/api/#{ services_path_tree_element }.json" %>
-    <tr><td class="width-40-percent min-width-10em" >In <%= tree_label %>?</td><td> <%= link_to(service_url, service_url, title: 'Link to the "in #{ tree_label }?" client side service.') %> </td></tr>
+    <tr><td class="width-40-percent min-width-10em" >In <%= classification_tree_key %>?</td><td> <%= link_to(service_url, service_url, title: 'Link to the "in #{ classification_tree_key }?" client side service.') %> </td></tr>
 		
     <% service_url = "#{name_services(91759)}/api/#{services_path_name_element}.json" %>
     <tr><td class="width-40-percent min-width-10em" >In <%= name_label %>? </td><td> <%= link_to(service_url, service_url, title: 'Link to the "in #{ name_label }?" client side service.') %> </td></tr>

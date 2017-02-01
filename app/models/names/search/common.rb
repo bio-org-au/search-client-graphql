@@ -9,30 +9,17 @@ class Names::Search::Common
                                        search_type: SEARCH_TYPE,
                                        default_show_results_as:
                                        default_show_results_as)
-    @results = simple_name_search
-    return unless @results.empty?
-    @results = full_name_search
+    @results = name_search
   end
 
-  def simple_name_search
+  def name_search
     Rails.logger.debug("common simple_name_search")
     if @parsed.list?
       Rails.logger.debug("common simple_name_search for list")
-      list_search.simple_name_allow_for_hybrids_like(@parsed.search_term)
+      list_search.search_for(@parsed.search_term)
     else
       Rails.logger.debug("common simple_name_search for details")
-      detail_search.simple_name_allow_for_hybrids_like(@parsed.search_term)
-    end
-  end
-
-  def full_name_search
-    Rails.logger.debug("common full_name_search")
-    if @parsed.list?
-      Rails.logger.debug("common full_name_search for list")
-      list_search.full_name_allow_for_hybrids_like(@parsed.search_term)
-    else
-      Rails.logger.debug("common full_name_search for details")
-      detail_search.full_name_allow_for_hybrids_like(@parsed.search_term)
+      detail_search.search_for(@parsed.search_term)
     end
   end
 

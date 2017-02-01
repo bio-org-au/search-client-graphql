@@ -17,10 +17,10 @@ class ShardConfig < ActiveRecord::Base
     "No shard value for #{name_string}"
   end
 
-  def self.tree_label
-    find_by(name: "tree label").value
+  def self.classification_tree_key
+    find_by(name: "classification tree key").value
   rescue
-    "tree label"
+    "classification tree key"
   end
 
   def self.name_label
@@ -31,8 +31,6 @@ class ShardConfig < ActiveRecord::Base
 
   def self.name_tree_label
     find_by(name: "name tree label").value
-  rescue
-    "name tree label"
   end
 
   def self.banner_text
