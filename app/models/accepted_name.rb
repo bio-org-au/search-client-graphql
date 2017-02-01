@@ -1,11 +1,26 @@
 # frozen_string_literal: true
 
+  module SearchableNameStrings
+    refine String do
+      def regexified
+        self.gsub("*", ".*").gsub("%", ".*").sub(/$/,'$').sub(/^/,'^')
+      end
+      def hybridized
+        self.strip.gsub(/  */,' (x )?').sub(/^ */,'(x )?').tr("×", "x")
+      end
+    end
+  end
+
+
 # Rails model
 class AcceptedName < ActiveRecord::Base
+  using SearchableNameStrings
   self.table_name = "accepted_name_vw"
   self.primary_key = "id"
   APC_ACCEPTED = "ApcConcept"
   APC_EXCLUDED = "ApcExcluded"
+  SIMPLE_NAME_REGEX = "lower(f_unaccent(simple_name)) ~ lower(f_unaccent(?)) "
+  FULL_NAME_REGEX = "lower(f_unaccent(full_name)) ~ lower(f_unaccent(?)) "
   belongs_to :status, class_name: "NameStatus", foreign_key: "name_status_id"
   belongs_to :rank, class_name: "NameRank", foreign_key: "name_rank_id"
   belongs_to :reference
@@ -24,6 +39,11 @@ class AcceptedName < ActiveRecord::Base
   end)
   scope :full_name_like, (lambda do |string|
     where("lower(full_name) like lower(?) ", string.tr("*", "%").downcase)
+  end)
+  scope :name_matches, (lambda do |string|
+    where("#{SIMPLE_NAME_REGEX} or #{FULL_NAME_REGEX}",
+          string.hybridized.regexified,
+          string.hybridized.regexified)
   end)
   scope :ordered, -> { order("sort_name") }
   scope :accepted, -> { where(type_code: APC_ACCEPTED) }

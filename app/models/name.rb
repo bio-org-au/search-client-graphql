@@ -87,7 +87,7 @@ class Name < ActiveRecord::Base
                                   end)
   scope :limited_high, -> { limit(5000) }
 
-  def self.string_for_possible_hybrids(string)
+  def self.string_with_leading_x(string)
     string.downcase.tr("*", "%").sub(/^([^x])/, 'x \1').tr("×", "x")
   end
 

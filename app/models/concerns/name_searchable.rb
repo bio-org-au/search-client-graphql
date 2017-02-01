@@ -5,31 +5,38 @@
 module NameSearchable
   extend ActiveSupport::Concern
 
+
+  module SearchableNameStrings
+    refine String do
+      def regexified
+        self.gsub("*", ".*").gsub("%", ".*").sub(/$/,'$').sub(/^/,'^')
+      end
+      def hybridized
+        self.strip.gsub(/  */,' (x )?').sub(/^ */,'(x )?').tr("×", "x")
+      end
+    end
+  end
+
   # Class methods
   module ClassMethods
+
+    using SearchableNameStrings
+    
+    SIMPLE_NAME_REGEX = "lower(f_unaccent(simple_name)) ~ lower(f_unaccent(?)) "
+    FULL_NAME_REGEX = "lower(f_unaccent(full_name)) ~ lower(f_unaccent(?))"
+
     def search_for(string)
-      where("( lower(name.simple_name) like ?
-             or lower(name.simple_name) like ?
-             or lower(f_unaccent(name.full_name)) like ?
-             or lower(f_unaccent(name.full_name)) like ?)",
-            string.downcase.tr("*", "%").tr("×", "x"),
-            Name.string_for_possible_hybrids(string),
-            string.downcase.tr("*", "%").tr("×", "x"),
-            Name.string_for_possible_hybrids(string))
+      where("#{SIMPLE_NAME_REGEX} or #{FULL_NAME_REGEX}",
+            string.hybridized.regexified,
+            string.hybridized.regexified)
     end
 
     def simple_name_allow_for_hybrids_like(string)
-      where("( lower(name.simple_name) like ?
-            or lower(name.simple_name) like ?)",
-            string.downcase.tr("*", "%").tr("×", "x"),
-            Name.string_for_possible_hybrids(string))
+      self.search_for(string)
     end
 
     def full_name_allow_for_hybrids_like(string)
-      where("( lower(f_unaccent(name.full_name)) like ?
-        or lower(f_unaccent(name.full_name)) like ?)",
-            string.downcase.tr("*", "%").tr("×", "x"),
-            Name.string_for_possible_hybrids(string))
+      where(FULL_NAME_REGEX, string.regexified.hybridized)
     end
 
     def scientific_search
@@ -54,3 +61,4 @@ module NameSearchable
     end
   end
 end
+

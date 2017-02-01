@@ -1,9 +1,23 @@
 # frozen_string_literal: true
+  module SearchableNameStrings
+    refine String do
+      def regexified
+        self.gsub("*", ".*").gsub("%", ".*").sub(/$/,'$').sub(/^/,'^')
+      end
+      def hybridized
+        self.strip.gsub(/  */,' (x )?').sub(/^ */,'(x )?').tr("×", "x")
+      end
+    end
+  end
+
 
 # Rails model
 class AcceptedSynonym < ActiveRecord::Base
+  using SearchableNameStrings
   self.table_name = "accepted_synonym_vw"
   self.primary_key = "id"
+  SIMPLE_NAME_REGEX = "lower(f_unaccent(simple_name)) ~ lower(f_unaccent(?)) "
+  FULL_NAME_REGEX = "lower(f_unaccent(full_name)) ~ lower(f_unaccent(?)) "
   belongs_to :synonym_type,
              class_name: "InstanceType",
              foreign_key: :synonym_type_id
@@ -20,6 +34,11 @@ class AcceptedSynonym < ActiveRecord::Base
   scope :full_name_like, (lambda do |string|
     where("lower((full_name)) like lower((?)) ",
           string.tr("*", "%").downcase)
+  end)
+  scope :name_matches, (lambda do |string|
+    where("#{SIMPLE_NAME_REGEX} or #{FULL_NAME_REGEX}",
+          string.hybridized.regexified,
+          string.hybridized.regexified)
   end)
   scope :default_ordered, (lambda do
     order("lower(simple_name),

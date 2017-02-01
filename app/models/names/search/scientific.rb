@@ -5,7 +5,7 @@ class Names::Search::Scientific
               :results
   SEARCH_TYPE = "Scientific Name"
   def initialize(params, default_show_results_as: "list")
-    Rails.logger.debug("Name::Search::Scientific")
+    Rails.logger.debug("Name::Search::Scientific; params: #{params.inspect}")
     @parsed = Names::Search::Parse.new(params,
                                        search_type: SEARCH_TYPE,
                                        default_show_results_as:

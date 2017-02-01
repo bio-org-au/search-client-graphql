@@ -33,3 +33,87 @@ angophora_node:
   tree_arrangement_id: <%= ActiveRecord::FixtureSet.identify(:apc_tree_arrangement) %>
   type_uri_ns_part_id: 0
   checked_in_at_id: 1
+
+agro_node:
+  internal_type: T
+  name_uri_id_part: <%= ActiveRecord::FixtureSet.identify(:agro) %>
+  prev_node_id: 0
+  is_synthetic: Y
+  type_uri_id_part: ApcConcept
+  name_id: <%= ActiveRecord::FixtureSet.identify(:agro) %>
+  instance_id: <%= ActiveRecord::FixtureSet.identify(:agro_in_britten) %>
+  tree_arrangement_id: <%= ActiveRecord::FixtureSet.identify(:apc_tree_arrangement) %>
+  type_uri_ns_part_id: 0
+  checked_in_at_id: 1
+
+x_agro_node:
+  internal_type: T
+  name_uri_id_part: <%= ActiveRecord::FixtureSet.identify(:x_agro) %>
+  prev_node_id: 0
+  is_synthetic: Y
+  type_uri_id_part: ApcConcept
+  name_id: <%= ActiveRecord::FixtureSet.identify(:x_agro) %>
+  instance_id: <%= ActiveRecord::FixtureSet.identify(:x_agro_in_britten) %>
+  tree_arrangement_id: <%= ActiveRecord::FixtureSet.identify(:apc_tree_arrangement) %>
+  type_uri_ns_part_id: 0
+  checked_in_at_id: 1
+
+x_agro_x_again_node:
+  internal_type: T
+  name_uri_id_part: <%= ActiveRecord::FixtureSet.identify(:x_agro_x_again) %>
+  prev_node_id: 0
+  is_synthetic: Y
+  type_uri_id_part: ApcConcept
+  name_id: <%= ActiveRecord::FixtureSet.identify(:x_agro_x_again) %>
+  instance_id: <%= ActiveRecord::FixtureSet.identify(:x_agro_x_again_in_britten) %>
+  tree_arrangement_id: <%= ActiveRecord::FixtureSet.identify(:apc_tree_arrangement) %>
+  type_uri_ns_part_id: 0
+  checked_in_at_id: 1
+
+x_excluded_node:
+  internal_type: T
+  name_uri_id_part: <%= ActiveRecord::FixtureSet.identify(:x_excluded) %>
+  prev_node_id: 0
+  is_synthetic: Y
+  type_uri_id_part: ApcExcluded
+  name_id: <%= ActiveRecord::FixtureSet.identify(:x_excluded) %>
+  instance_id: <%= ActiveRecord::FixtureSet.identify(:x_excluded_in_britten) %>
+  tree_arrangement_id: <%= ActiveRecord::FixtureSet.identify(:apc_tree_arrangement) %>
+  type_uri_ns_part_id: 0
+  checked_in_at_id: 1
+
+x_excluded_x_again_node:
+  internal_type: T
+  name_uri_id_part: <%= ActiveRecord::FixtureSet.identify(:x_excluded_x_again) %>
+  prev_node_id: 0
+  is_synthetic: Y
+  type_uri_id_part: ApcExcluded
+  name_id: <%= ActiveRecord::FixtureSet.identify(:x_excluded_x_again) %>
+  instance_id: <%= ActiveRecord::FixtureSet.identify(:x_excluded_x_again_in_britten) %>
+  tree_arrangement_id: <%= ActiveRecord::FixtureSet.identify(:apc_tree_arrangement) %>
+  type_uri_ns_part_id: 0
+  checked_in_at_id: 1
+
+x_synonym_node:
+  internal_type: T
+  name_uri_id_part: <%= ActiveRecord::FixtureSet.identify(:x_synonym) %>
+  prev_node_id: 0
+  is_synthetic: Y
+  type_uri_id_part: ApcExcluded
+  name_id: <%= ActiveRecord::FixtureSet.identify(:x_synonym) %>
+  instance_id: <%= ActiveRecord::FixtureSet.identify(:x_synonym_synonym) %>
+  tree_arrangement_id: <%= ActiveRecord::FixtureSet.identify(:apc_tree_arrangement) %>
+  type_uri_ns_part_id: 0
+  checked_in_at_id: 1
+
+x_synonym_x_again_node:
+  internal_type: T
+  name_uri_id_part: <%= ActiveRecord::FixtureSet.identify(:x_synonym_x_again) %>
+  prev_node_id: 0
+  is_synthetic: Y
+  type_uri_id_part: ApcExcluded
+  name_id: <%= ActiveRecord::FixtureSet.identify(:x_synonym_x_again) %>
+  instance_id: <%= ActiveRecord::FixtureSet.identify(:x_synonym_x_again_synonym) %>
+  tree_arrangement_id: <%= ActiveRecord::FixtureSet.identify(:apc_tree_arrangement) %>
+  type_uri_ns_part_id: 0
+  checked_in_at_id: 1

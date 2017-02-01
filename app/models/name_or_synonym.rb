@@ -26,6 +26,35 @@ class NameOrSynonym < ActiveRecord::Base
   #   prepared statement "" requires 2
   #
   # See the explanation here: https://github.com/rails/rails/issues/13686
+  def self.name_matches(search_term = "x")
+    query1 = AcceptedName.name_matches(search_term)
+    query2 = AcceptedSynonym.name_matches(search_term)
+    sql = NameOrSynonym.connection.unprepared_statement do
+      "((#{query1.to_sql}) UNION (#{query2.to_sql})) AS name_or_synonym_vw"
+    end
+    NameOrSynonym.from(sql)
+                 .order("sort_name,
+                         case cites_misapplied when true then 'Z' else 'A' end,
+                         cites_cites_ref_year")
+  end
+
+  def self.full_name_like(search_term = "x")
+    query1 = AcceptedName.full_name_like(search_term)
+    query2 = AcceptedSynonym.full_name_like(search_term)
+    sql = NameOrSynonym.connection.unprepared_statement do
+      "((#{query1.to_sql}) UNION (#{query2.to_sql})) AS name_or_synonym_vw"
+    end
+    NameOrSynonym.from(sql).order("sort_name")
+  end
+
+  # "Union with Active Record"
+  # http://thepugautomatic.com/2014/08/union-with-active-record/
+  #
+  # Gets past this error:
+  #   ERROR:  bind message supplies 0 parameters, but
+  #   prepared statement "" requires 2
+  #
+  # See the explanation here: https://github.com/rails/rails/issues/13686
   def self.simple_name_like(search_term = "x")
     query1 = AcceptedName.simple_name_like(search_term)
     query2 = AcceptedSynonym.simple_name_like(search_term)
