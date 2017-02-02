@@ -6,6 +6,7 @@ gem "rails", "4.2.7.1"
 platform :jruby do
   gem "activerecord-jdbcpostgresql-adapter"
   gem "therubyrhino"
+  gem "jruby-jars", "9.1.5.0"
   gem "warbler"
 end
 
