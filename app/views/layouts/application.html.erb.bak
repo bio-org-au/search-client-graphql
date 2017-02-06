@@ -79,10 +79,17 @@ input[type="checkbox"]:not([title]) {
     </div>
   </div>
 
-  <div id="content" class="container-fluid">
+  <div id="content">
+    <div class="container-fluid">
 
       <% if @system_broadcast.present? && !@system_broadcast.match(/This is the test instance./) %> 
-        <%= render partial: "broadcast" %>
+        <div class="row">
+          <div class="col-xs-12 bd-content">
+            <div id="broadcast">
+              <%= @system_broadcast %>
+            </div>
+          </div>
+        </div>
       <% end %>
 
       <div class="row">
@@ -99,6 +106,7 @@ input[type="checkbox"]:not([title]) {
 
       </div>
 
+    </div>
   </div>
 
   <div id="footer" class="boa-footer text-muted hidden-print" role="contentinfo">
