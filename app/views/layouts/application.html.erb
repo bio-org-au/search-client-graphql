@@ -82,7 +82,7 @@ input[type="checkbox"]:not([title]) {
   <div id="content" class="container-fluid">
 
       <% if @system_broadcast.present? && !@system_broadcast.match(/This is the test instance./) %> 
-        <%= render partial: "broadcast" %>
+        <%#= render partial: "broadcast" %>
       <% end %>
 
       <div class="row">
