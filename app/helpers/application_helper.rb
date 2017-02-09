@@ -168,4 +168,19 @@ module ApplicationHelper
   rescue
     Rails.application.config.name_banner_text = ShardConfig.name_banner_text
   end
+
+  def env_tag
+    case Rails.configuration.try('environment')
+    when /^dev/i
+      "Dev"
+    when /^test/i
+      "Test"
+    when /^stag/i
+      "Stage"
+    when /^prod/i
+      ""
+    else
+      "Unknown"
+    end
+  end
 end
