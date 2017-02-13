@@ -264,7 +264,10 @@ window.addClearButton = () ->
 startSearch = (event, $element) ->
   debug('startSearch')
   if $('#q').val().length > 0
-    $("body").css("cursor", "wait")
+    # Need better way to show search is working
+    # This doesn't behave well - have to move
+    # cursor to make it go back to normal.
+    # $("body").css("cursor", "wait")
   else
     alert("Please enter a search term")
     event.preventDefault()
