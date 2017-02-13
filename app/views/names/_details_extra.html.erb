@@ -115,8 +115,11 @@
       <%= render(partial: '/names/search/power_links', locals: {name: name}) %>
     <% end %>
   <% end %>
+  <%= link_to(fa_icon("camera", class: "fa-lg black"), "http://www.anbg.gov.au/cgi-bin/apiiName?name=#{name.simple_name}" ) if name.images? %>
   </div>
 <% end %>
+
+
 
 <span class="debug">names/_details_extra.html.erb</span>
 
