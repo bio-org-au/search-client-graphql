@@ -29,4 +29,20 @@ class NameDetail < ActiveRecord::Base
   def standalone?
     instance_standalone
   end
+
+  def distribution?
+    instance_note_for_distribution.present?
+  end
+
+  def distribution
+    instance_note_for_distribution.try("value")
+  end
+
+  def comment?
+    instance_note_for_comment.present?
+  end
+
+  def comment
+    instance_note_for_comment.try("value")
+  end
 end

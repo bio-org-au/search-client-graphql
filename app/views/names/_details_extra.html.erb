@@ -1,5 +1,4 @@
 <% if name.present? %>
-  <% show_dist = false %>
   <div class="name-details">
   <% shown = [] -%>
   <% apc_instance_id = name.apc_instance_id -%>
@@ -14,12 +13,6 @@
       <% end %>
 
       <% if name_detail.instance_id == name.apc_instance_id %>
-        <% if name_detail.instance.accepted_name.type_code.match(/Concept\z/) %>
-          <% show_dist = true %>
-          <% apc_dist = name_detail.instance_note_for_distribution.try("value") %>
-          <% apc_comment = name_detail.instance_note_for_comment.try("value") %>
-          <% show_comment = apc_comment.present? %>
-        <% end %>
         <span class="accepted-or-excluded-indicator red">
           <% case name_detail.instance.accepted_name.type_code %>
           <% when 'ApcConcept' %>
@@ -79,17 +72,15 @@
           </div>
         <% end %>
 
-        <% if show_comment %>
+        <% if name_detail.comment? %>
           <div class="classification-tree-note">
             <span class="instance-note-label"><%= classification_tree_key %> comment: </span>
-            <span class="classification-tree-value"><%= apc_comment.html_safe %></span>
+            <span class="classification-tree-value"><%= name_detail.comment.html_safe %></span>
           </div>
-          <% show_comment = false %>
         <% end %>
 
-        <% if show_dist %>
-          <div class="classification-tree-note"><span class="instance-note-label"><%= classification_tree_key %> distribution: </span><%= apc_dist %></span></div>
-          <% show_dist = false %>
+        <% if name_detail.distribution? %>
+          <div class="classification-tree-note"><span class="instance-note-label"><%= classification_tree_key %> distribution: </span><%= name_detail.distribution %></span></div>
         <% end %>
 
         <% name_detail.name_detail_commons.sort {|x,y| [x.instance_type_sort_order, x.full_name] <=> [y.instance_type_sort_order, y.full_name] }.each do |syn| %>
