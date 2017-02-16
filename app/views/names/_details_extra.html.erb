@@ -73,14 +73,15 @@
         <% end %>
 
         <% if name_detail.comment? %>
-          <div class="classification-tree-note">
-            <span class="instance-note-label"><%= classification_tree_key %> comment: </span>
-            <span class="classification-tree-value"><%= name_detail.comment.html_safe %></span>
-          </div>
+          <%= render partial: "names/details/comments",
+                     locals: { name_detail: name_detail,
+                               classification_tree_key: classification_tree_key } %>
         <% end %>
 
         <% if name_detail.distribution? %>
-          <div class="classification-tree-note"><span class="instance-note-label"><%= classification_tree_key %> distribution: </span><%= name_detail.distribution %></span></div>
+          <div class="classification-tree-note">
+            <span class="instance-note-label"><%= classification_tree_key %> distribution: </span>
+            <span class="instance-note-value"><%= name_detail.distribution %></span></div>
         <% end %>
 
         <% name_detail.name_detail_commons.sort {|x,y| [x.instance_type_sort_order, x.full_name] <=> [y.instance_type_sort_order, y.full_name] }.each do |syn| %>
