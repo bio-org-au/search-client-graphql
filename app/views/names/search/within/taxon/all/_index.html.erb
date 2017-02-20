@@ -13,7 +13,7 @@
                  data: {target_id: target_id},
                  title: "Select to show or hide details",
                  remote: true) %>
-     <%= link_to("#{d['full_name'].sub(/^x /, "× ")}",
+     <%= link_to("#{d['full_name'].sub(/^x /, "× ")}#{Name.find(d['id']).status.name_to_show}",
                  names_show_path(name[:id],target_id: target_id),
                  class: "name-heading full-name",
                  data: {target_id: target_id},
