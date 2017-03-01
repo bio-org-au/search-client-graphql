@@ -56,6 +56,7 @@ Rails.application.configure do
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
+  config.log_tags = [ :subdomain, "search" ]
 
   # Use a different logger for distributed setups.
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
@@ -103,15 +104,3 @@ Rails.application.config.database_yml_file_path =
   "#{ENV['HOME']}/.nsl/search-database.yml"
 puts "Rails.application.config.database_yml_file_path:
 #{Rails.application.config.database_yml_file_path}"
-
-begin
-  file_path = "#{ENV['HOME']}/.nsl/search-config.rb"
-  puts "Loading config from: #{file_path}"
-  load file_path
-rescue LoadError
-  puts "=" * 100
-  puts "Unable to find the config file: #{file_path}"
-  puts "Application start up will now fail."
-  puts "=" * 100
-  raise
-end

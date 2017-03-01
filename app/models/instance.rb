@@ -4,6 +4,7 @@
 class Instance < ActiveRecord::Base
   self.table_name = "instance"
   self.primary_key = "id"
+  PLANT_NAME_REFERENCE = "PLANT_NAME_REFERENCE"
   belongs_to :name
   belongs_to :instance_type
   belongs_to :reference
@@ -89,5 +90,9 @@ class Instance < ActiveRecord::Base
       return note.value if note.apc_distribution?
     end
     nil
+  end
+
+  def has_protologue_link?
+    source_id.present? && source_system == PLANT_NAME_REFERENCE
   end
 end

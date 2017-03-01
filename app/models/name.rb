@@ -106,4 +106,13 @@ class Name < ActiveRecord::Base
       full_name_html
     end
   end
+
+  def images?
+    ENV['SHARD'].match(/plants/i) # && images_present?
+  end
+
+  # Too slow, need better solution.
+  def images_present?
+    Names::Services::Images.new(simple_name).exist?
+  end
 end

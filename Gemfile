@@ -8,11 +8,13 @@ platform :jruby do
   gem "therubyrhino"
   gem "jruby-jars", "9.1.5.0"
   gem "warbler"
+  gem "unf", "0.1.4"
 end
 
 platform :mri do
   gem "pg", "~> 0.15"
   gem "thin"
+  gem "unf", "0.1.4"
 end
 
 # Use SCSS for stylesheets
@@ -83,3 +85,4 @@ gem "nunes"
 gem "activerecord-hierarchical_query",
     require: "active_record/hierarchical_query"
 gem "scenic", "~> 0.3.0"
+gem "rest-client"

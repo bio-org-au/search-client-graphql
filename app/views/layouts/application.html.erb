@@ -2,17 +2,18 @@
 <html lang="en">
 <head>
   <title>
-    <% if Rails.configuration.try('display_as_test') == true %>
-      Test
-    <% elsif Rails.env.match(/development/) %>
-      Dev
-    <% end %>
-    <%= yield :page_title %>
+    <%= env_tag %>&nbsp;<%= yield :page_title %>
   </title>
   <%= csrf_meta_tags %>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <!--[if IE]>
+    <%= stylesheet_link_tag 'bootstrap-ie8',
+                            media: 'screen',
+                            'data-turbolinks-track' => true %>
+    <script src="https://cdn.jsdelivr.net/g/html5shiv@3.7.3,respond@1.4.2"></script>
+  <![endif]-->
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true, async: true, defer: true %>
   <%= stylesheet_link_tag 'application',
                           media: 'all',
@@ -23,14 +24,7 @@
       <script> debugSwitch = false; </script>
   <% end %>
   <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
-  <% if Rails.configuration.try('display_as_test') == true %>
-      <style>
-        body {background: #e6e6fa; }
-        #footer {background: #e6e6fa;
-                 border-top: 1px solid black;}
-      </style>
-    <% end %>
-    <% if Rails.configuration.try('session_key_tag').try('match','/dev/i') %> 
+  <% if Rails.configuration.try('session_key_tag').try('match','/dev/i') %> 
 <style>
 a:not([title]),
 select:not([title]),
@@ -48,7 +42,7 @@ input[type="checkbox"]:not([title]) {
 
 </head>
 
-<body class="bd-docs" data-spy="scroll" data-target=".bd-sidenav-active">
+<body class="bd-docs <%= Rails.configuration.try('environment') %>" data-spy="scroll" data-target=".bd-sidenav-active">
   <a id="skippy" class="sr-only sr-only-focusable" href="#content">
     <div class="container-fluid">
       <span class="skiplink-text">Skip to main content</span>
@@ -141,6 +135,7 @@ input[type="checkbox"]:not([title]) {
     <span id="media-screen-md" class="media-spec ">md</span>
     <span id="media-screen-lg" class="media-spec ">lg</span>
     <span id="media-screen-xl" class="media-spec ">xl</span>
+    <%= env_tag %>
     </div>
   </div>
 </div>

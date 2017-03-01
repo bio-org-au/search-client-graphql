@@ -1,0 +1,27 @@
+
+body.development {
+  background: $development-color;
+}
+
+body.development #footer {
+  background: $development-color;
+  border-top: 1px solid black;
+}
+
+body.test {
+  background: $test-color;
+}
+
+body.test #footer {
+  background: $test-color;
+  border-top: 1px solid black;
+}
+
+body.staging {
+  background: $staging-color;
+}
+
+body.staging #footer {
+  background: $staging-color;
+  border-top: 1px solid black;
+}

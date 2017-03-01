@@ -15,6 +15,10 @@ class InstanceType < ActiveRecord::Base
     primary_instance
   end
 
+  def protologue?
+    protologue
+  end
+
   def misapplied?
     misapplied == true
   end

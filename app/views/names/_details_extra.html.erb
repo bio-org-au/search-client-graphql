@@ -1,5 +1,4 @@
 <% if name.present? %>
-  <% show_dist = false %>
   <div class="name-details">
   <% shown = [] -%>
   <% apc_instance_id = name.apc_instance_id -%>
@@ -8,13 +7,12 @@
     <% unless shown.include?(name_detail.instance_id) %>
       <div class="standalone-instance-citation">
       <%= name_detail.entry.sub(/: \z/,'').html_safe %>
+
+      <% if name_detail.instance.instance_type.protologue? && name_detail.instance.has_protologue_link? %>
+        <%= render partial: "protologue_link", locals: {instance: name_detail.instance} %>
+      <% end %>
+
       <% if name_detail.instance_id == name.apc_instance_id %>
-        <% if name_detail.instance.accepted_name.type_code.match(/Concept\z/) %>
-          <% show_dist = true %>
-          <% apc_dist = name_detail.instance_note_for_distribution.try("value") %>
-          <% apc_comment = name_detail.instance_note_for_comment.try("value") %>
-          <% show_comment = apc_comment.present? %>
-        <% end %>
         <span class="accepted-or-excluded-indicator red">
           <% case name_detail.instance.accepted_name.type_code %>
           <% when 'ApcConcept' %>
@@ -24,6 +22,7 @@
           <% end %>
         </span>
       <% end %>
+
       <% if name_detail.bhl_url.present? %>
         <%= link_to("BHL #{fa_icon('external-link')}".html_safe,
                     name_detail.bhl_url,
@@ -73,17 +72,16 @@
           </div>
         <% end %>
 
-        <% if show_comment %>
-          <div class="classification-tree-note">
-            <span class="instance-note-label"><%= classification_tree_key %> comment: </span>
-            <span class="classification-tree-value"><%= apc_comment.html_safe %></span>
-          </div>
-          <% show_comment = false %>
+        <% if name_detail.comment? %>
+          <%= render partial: "names/details/comments",
+                     locals: { name_detail: name_detail,
+                               classification_tree_key: classification_tree_key } %>
         <% end %>
 
-        <% if show_dist %>
-          <div class="classification-tree-note"><span class="instance-note-label"><%= classification_tree_key %> distribution: </span><%= apc_dist %></span></div>
-          <% show_dist = false %>
+        <% if name_detail.distribution? %>
+          <div class="classification-tree-note">
+            <span class="instance-note-label"><%= classification_tree_key %> distribution: </span>
+            <span class="instance-note-value"><%= name_detail.distribution %></span></div>
         <% end %>
 
         <% name_detail.name_detail_commons.sort {|x,y| [x.instance_type_sort_order, x.full_name] <=> [y.instance_type_sort_order, y.full_name] }.each do |syn| %>
@@ -109,8 +107,11 @@
       <%= render(partial: '/names/search/power_links', locals: {name: name}) %>
     <% end %>
   <% end %>
+  <%= link_to(fa_icon("camera", class: "fa-lg black"), "http://www.anbg.gov.au/cgi-bin/apiiName?name=#{name.simple_name}" ) if name.images? %>
   </div>
 <% end %>
+
+
 
 <span class="debug">names/_details_extra.html.erb</span>
 
