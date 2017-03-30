@@ -34,6 +34,7 @@ module Search
     config.active_record.raise_in_transactional_callbacks = true
     config.path_to_broadcast_file = "#{ENV['HOME']}/.nsl/broadcast.txt"
     config.active_record.schema_format = :sql
+    config.cache_store = :memory_store, { size: 64.megabytes }
 
     # config.after_initialize do
       # puts "Loading shard configuration..."

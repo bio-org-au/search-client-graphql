@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 Rails.application.routes.draw do
+
   get "changes/index"
   match "/changes", as: "changes", to: "changes#index", via: :get
 
@@ -130,6 +131,11 @@ Rails.application.routes.draw do
         as: "toggle_wildcard",
         to: "toggle_wildcard#update",
         via: [:post, :get]
+
+  match "/image-cache/update",
+        as: "update_image_cache",
+        to: "image_cache#update",
+        via: [:post]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

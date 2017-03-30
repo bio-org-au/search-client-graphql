@@ -94,8 +94,6 @@
                       class: "") %>
           </li>
         <% end %>
-
-
       </ul>
       <% end %>
     </div>
@@ -107,11 +105,17 @@
       <%= render(partial: '/names/search/power_links', locals: {name: name}) %>
     <% end %>
   <% end %>
-  <%= link_to(fa_icon("camera", class: "fa-lg black"), "http://www.anbg.gov.au/cgi-bin/apiiName?name=#{name.simple_name}" ) if name.images? %>
+
+  <% if name.images_supported? && name.rank.species_or_below? && name.images_present? %>
+    <br/>
+    <%=
+      link_to(fa_icon("camera", class: "fa-lg black") + "&nbsp;x&nbsp;#{name.image_count}".html_safe,
+              "http://www.anbg.gov.au/cgi-bin/apiiName2?name=#{name.simple_name}",
+              target: "new",
+              title: "Show images. Opens in a new tab or window.")
+    %>
+  <% end %>
   </div>
 <% end %>
-
-
-
 <span class="debug">names/_details_extra.html.erb</span>
 

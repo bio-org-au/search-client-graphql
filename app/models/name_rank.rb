@@ -24,6 +24,10 @@ class NameRank < ActiveRecord::Base
     sort_order < NameRank.species.sort_order
   end
 
+  def species_or_below?
+    !above_species?
+  end
+
   def self.above_species?(rank_sort_order)
     rank_sort_order < NameRank.species.sort_order
   end

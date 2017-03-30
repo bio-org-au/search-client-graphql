@@ -107,12 +107,42 @@ class Name < ActiveRecord::Base
     end
   end
 
-  def images?
-    ENV['SHARD'].match(/plants/i) # && images_present?
+  def image_count
+    unless (Rails.cache.read("images")).class == Hash
+      Rails.logger.info("Image count not cached. Caching it now.")
+      Name.load_image_data
+    end
+    Rails.cache.read("images")[simple_name]
   end
 
-  # Too slow, need better solution.
+  def images_supported?
+    Rails.configuration.try("image_links_supported") || false
+  end
+
   def images_present?
-    Names::Services::Images.new(simple_name).exist?
+    (image_count || 0) > 0
+  end
+  
+  def self.load_image_data
+    logger.info("Start load_image_data")
+    # url = "http://www.anbg.gov.au/cgi-bin/apiiDigital?name=%&FORMAT=CSV"
+    url = Rails.configuration.image_data_url
+    s_response = RestClient.get(url, accept: :csv)
+    myhash = Hash.new
+    if s_response.code == 200 
+      s_response.each_line do |line|
+        fields = line.split(',')
+        myhash[fields[0].to_s.tr_s('"', '')] = ((fields[1].to_s || '\n').tr_s('"','').chomp.to_i||0)
+      end
+      Rails.cache.write "images", myhash, expires_in: Rails.configuration.try("image_cache_expiry_period") || 24.hours
+      logger.info("Image cache refreshed")
+    else
+      logger.error("load_image_data error")
+      preface = "load csv error:"
+      raise "#{preface} #{csv['errors'].try('join')} [#{s_response.code}]"
+    end
+  rescue => e
+    logger.error("Problem loading image data: #{e.to_s}")
   end
 end
+

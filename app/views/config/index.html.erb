@@ -116,8 +116,21 @@
     
     </table>
 
+    <h4>Image Cache</h4>
+    <table class="table table-condensed search-results width-100-percent">
+      <tr><td class="width-40-percent min-width-10em" >Image links supported</td><td> <%= Rails.configuration.try("image_links_supported") %> </td></tr>
+      <tr><td class="width-40-percent min-width-10em" >Image data URL</td><td> <%= Rails.configuration.try("image_data_url") %> </td></tr>
+      <tr><td class="width-40-percent min-width-10em" >Image display URL</td><td> <%= Rails.configuration.try("image_display_url") %> </td></tr>
+      <tr><td class="width-40-percent min-width-10em" >Image cache expiry period</td><td> <%= Rails.configuration.try("image_cache_expiry_period") %> </td></tr>
+      <% if Rails.configuration.try("image_links_supported") %>
+        <tr><td class="width-40-percent min-width-10em" >Refresh image cache</td><td> <%= link_to "Refresh", update_image_cache_path, method: :post %> </td></tr>
+      <% end %>
+    </table>
+
+
     </td></tr>
     </table>
+
 
     <h4>Shard Config</h4>
     <table class="table table-condensed search-results width-100-percent">
