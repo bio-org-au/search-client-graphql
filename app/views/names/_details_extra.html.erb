@@ -110,7 +110,7 @@
     <br/>
     <%=
       link_to(fa_icon("camera", class: "fa-lg black") + "&nbsp;x&nbsp;#{name.image_count}".html_safe,
-              "http://www.anbg.gov.au/cgi-bin/apiiName2?name=#{name.simple_name}",
+              "#{Rails.configuration.image_display_url}#{name.simple_name}",
               target: "new",
               title: "Show images. Opens in a new tab or window.")
     %>
