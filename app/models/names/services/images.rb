@@ -15,26 +15,55 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-#  Service to query APII for a name
+#  Request all APII metadata and cache it
+#
+#  Currently not using a queue or separate thread.
 class Names::Services::Images
-  ADDRESS = "http://www.anbg.gov.au/"
-  PATH = "cgi-bin/apiiName"
-  attr_reader :url
-
-  def initialize(name_string)
-    @name_string = name_string
-    raise "NoNameString" if name_string.blank?
-    @url = "#{ADDRESS}#{PATH}?name=#{name_string}"
-    request
+  def self.load
+    info("start load")
+    the_response = request_data
+    cache_data(the_response)
+    info("image data cache refreshed")
+  rescue => e
+    # Do not let this interrupt normal processing
+    error("Problem loading image data: #{e}")
   end
 
-  def request
-    Rails.logger.debug("Start apii request")
-    @request = RestClient.get('http://www.anbg.gov.au/cgi-bin/apiiName', {params: {name: @name_string}})
-    Rails.logger.debug("End apii request")
+  def self.request_data
+    url = Rails.configuration.image_data_url
+    RestClient.get(url, accept: :csv)
   end
 
-  def exist?
-    !@request.body.match(/No Records Found/)
+  def self.cache_data(response)
+    if response.code == 200
+      Rails.cache.write "images",
+                        hash_the_data(response),
+                        expires_in: expiry_period
+    else
+      error("Unsuccessful request: #{response.code}")
+    end
+  end
+
+  def self.hash_the_data(response)
+    hash = {}
+    response.each_line do |line|
+      fields = line.split(",")
+      hash[fields[0].to_s.tr_s('"', "")] =
+        ((fields[1].to_s || '\n').tr_s('"', "").chomp.to_i || 0)
+    end
+    hash
+  end
+
+  def self.expiry_period
+    Rails.configuration.try("image_cache_expiry_period") || 24.hours
+  end
+
+  def self.info(s)
+    Rails.logger.info("Names::Services::Images #{s}")
+  end
+
+  def self.error(s)
+    Rails.logger.error("Names::Services::Images error: #{s}")
   end
 end
+

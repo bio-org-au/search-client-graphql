@@ -1,1 +1,1 @@
-Name.load_image_data
+Names::Services::Images.load
