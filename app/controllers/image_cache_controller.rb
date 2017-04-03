@@ -1,6 +1,5 @@
 class ImageCacheController < ApplicationController
   def update
-    Name.load_image_data
-    render text: "updated"
+    Names::Services::Images.load
   end
 end

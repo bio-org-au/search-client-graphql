@@ -86,3 +86,10 @@ gem "activerecord-hierarchical_query",
     require: "active_record/hierarchical_query"
 gem "scenic", "~> 0.3.0"
 gem "rest-client"
+
+platform :ruby do
+  group :test do
+    gem "mocha", "~> 1.1.0"
+  end
+end
+

@@ -19,7 +19,9 @@
   <% if session[:editor] %>
     <%= render(partial: "/names/search/editor_link.html.erb", locals: { name: @name }) %>
   <% end %>
-  <%= render partial: "details_extra", locals: {name: @name, name_details: @name_details} %>
+  <% cache @name do %>
+    <%= render partial: "details_extra", locals: {name: @name, name_details: @name_details} %>
+  <% end %>
   <br/>
   <br/>
   <%= link_to "#{ fa_icon('chevron-left')} back".html_safe,

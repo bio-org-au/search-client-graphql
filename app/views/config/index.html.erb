@@ -123,7 +123,9 @@
       <tr><td class="width-40-percent min-width-10em" >Image display URL</td><td> <%= Rails.configuration.try("image_display_url") %> </td></tr>
       <tr><td class="width-40-percent min-width-10em" >Image cache expiry period</td><td> <%= Rails.configuration.try("image_cache_expiry_period") %> </td></tr>
       <% if Rails.configuration.try("image_links_supported") %>
-        <tr><td class="width-40-percent min-width-10em" >Refresh image cache</td><td> <%= link_to "Refresh", update_image_cache_path, method: :post %> </td></tr>
+        <tr><td class="width-40-percent min-width-10em" >Refresh image cache</td>
+            <td> <%= link_to "Refresh", update_image_cache_path, remote: true, method: :post %> <span id="update-image-cache-result" class="green"></span></td>
+        </tr>
       <% end %>
     </table>
 

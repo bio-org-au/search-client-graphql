@@ -1,4 +1,7 @@
-  $("#<%= @target_id %>").append('<%= escape_javascript(render partial: "details_extra", locals: {name: @name, name_details: @name_details}) %>');
+
+
+
+  $("#<%= @target_id %>").append('<%= escape_javascript(render partial: "cached_details_extra", locals: {name: @name, name_details: @name_details}) %>');
   $("#<%= @target_id %>").removeClass('hidden-xs-up');
   showAsExpanded("<%= @target_id %>");
   showDetailsRetrieved("<%= @target_id %>");

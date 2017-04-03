@@ -9,7 +9,7 @@
       <%= name_detail.entry.sub(/: \z/,'').html_safe %>
 
       <% if name_detail.instance.instance_type.protologue? && name_detail.instance.has_protologue_link? %>
-        <%= render partial: "protologue_link", locals: {instance: name_detail.instance} %>
+        <%= render partial: "application/protologue_link", locals: {instance: name_detail.instance} %>
       <% end %>
 
       <% if name_detail.instance_id == name.apc_instance_id %>

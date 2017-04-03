@@ -21,20 +21,20 @@
 class Names::Services::Images
   def self.load
     info("start load")
-    the_response = request_data
-    cache_data(the_response)
+    the_response = request_the_data
+    cache_the_data(the_response)
     info("image data cache refreshed")
   rescue => e
     # Do not let this interrupt normal processing
     error("Problem loading image data: #{e}")
   end
 
-  def self.request_data
+  def self.request_the_data
     url = Rails.configuration.image_data_url
     RestClient.get(url, accept: :csv)
   end
 
-  def self.cache_data(response)
+  def self.cache_the_data(response)
     if response.code == 200
       Rails.cache.write "images",
                         hash_the_data(response),
