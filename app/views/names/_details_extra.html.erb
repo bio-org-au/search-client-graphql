@@ -8,7 +8,7 @@
       <div class="standalone-instance-citation">
       <%= name_detail.entry.sub(/: \z/,'').html_safe %>
 
-      <% if name_detail.instance.instance_type.protologue? && name_detail.instance.has_protologue_link? %>
+      <% if name_detail.instance.has_protologue? %>
         <%= render partial: "application/protologue_link", locals: {instance: name_detail.instance} %>
       <% end %>
 

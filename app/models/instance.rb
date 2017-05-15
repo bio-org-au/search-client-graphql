@@ -4,7 +4,7 @@
 class Instance < ActiveRecord::Base
   self.table_name = "instance"
   self.primary_key = "id"
-  PLANT_NAME_REFERENCE = "PLANT_NAME_REFERENCE"
+
   belongs_to :name
   belongs_to :instance_type
   belongs_to :reference
@@ -28,6 +28,7 @@ class Instance < ActiveRecord::Base
 
   belongs_to :cited_by_instance, foreign_key: "cited_by_id"
   belongs_to :namespace
+  has_one :instance_resource_vw
 
   scope :in_nested_instance_type_order, (lambda do
     order(
@@ -92,7 +93,7 @@ class Instance < ActiveRecord::Base
     nil
   end
 
-  def has_protologue_link?
-    source_id.present? && source_system == PLANT_NAME_REFERENCE
+  def has_protologue?
+    instance_resource_vw.present?
   end
 end
