@@ -13,8 +13,8 @@
 // Turned off turbolinks.
 //
 //= require jquery
-//= require tether
 //= require jquery_ujs
+//= require tether
 //= require bootstrap
 //= require bootstrap-add-clear
 //= require search

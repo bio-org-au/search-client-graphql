@@ -2,19 +2,17 @@
 source "http://rubygems.org"
 
 gem "rails", "4.2.7.1"
-
+gem "unf", "0.1.4"
 platform :jruby do
   gem "activerecord-jdbcpostgresql-adapter"
   gem "therubyrhino"
   gem "jruby-jars", "9.1.5.0"
   gem "warbler"
-  gem "unf", "0.1.4"
 end
 
 platform :mri do
   gem "pg", "~> 0.15"
   gem "thin"
-  gem "unf", "0.1.4"
 end
 
 # Use SCSS for stylesheets
@@ -69,7 +67,7 @@ group :development do
   gem "awesome_print"
 end
 
-gem "bootstrap", "~> 4.0.0.alpha3.1" # Use Bootstrap 4.
+gem "bootstrap", "~> 4.0.0.alpha6" # Use Bootstrap 4.
 source "http://insecure.rails-assets.org" do
   gem "rails-assets-tether", ">= 1.1.1"
 end
