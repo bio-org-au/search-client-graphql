@@ -1,10 +1,8 @@
-<div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12">
 <%= form_tag(names_search_path, method: "get", id: "search-form") do %>
     <%= label_tag(:q,
                   "Search for:",
                   class:"sr-only col-sm-2 form-control-label") %>
-<div class="row">
+<div class="form-group row">
     <div class="col-xs-12 col-sm-7 col-md-5 col-lg-5 col-xl-5">
     <%= search_field_tag(:q,
                        '',
@@ -41,9 +39,7 @@
            name="format"
            id="search-output-format">
     <%= render partial: "toggle_wildcard/form_widget" %>
+  </div>
 </div>
 <% end %>
-  </div>
-  </div>
-</div>
 <span class="red hidden-print debug">[names/search/_form]</span>

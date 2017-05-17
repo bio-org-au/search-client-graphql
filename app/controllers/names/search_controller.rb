@@ -15,11 +15,11 @@ class Names::SearchController < ApplicationController
 
   def search
     @search = case params[:search_type]
-              when /scientific-and-cultivar\z/
+              when /scientific.and.cultivar\z/i
                 Names::Search::ScientificAndCultivar.new(params)
-              when /cultivar\z/
+              when /cultivar\z/i
                 Names::Search::Cultivar.new(params)
-              when /common\z/
+              when /common\z/i
                 Names::Search::Common.new(params)
               else
                 Names::Search::Scientific.new(params)

@@ -13,29 +13,25 @@
 
 <div id="about-page" class="no-left-padding hidden-xs-up col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
   <h5>About</h5>
-  <div id="about-page-inner" class="no-left-padding col-xl-7 col-lg-9 col-md-10">
-  </div>
+  <div id="about-page-inner" class="no-left-padding col-xl-7 col-lg-9 col-md-10"> </div>
 </div>
 
 <div class="not-about-page">
 <%= render "names/search/form" %>
-</div>
-
-<div class="row">
-  <div class="col-xs-12">
-    <% if @search.present? %>
+  <p>
+  <% if @search.present? %>
       <span class='search-result-summary'>
+        <p class="tiny">
         <%= pluralize(@search.results.pluck("id").uniq.size,
                       "#{(params[:search_type] || 'scientific').sub(/-and-/,' or ')} name") %>
-        <%= no_results_help(@search.results.size).html_safe %>
+        </p>
+        <%= render 'names/search/zero_results_help' if @search.results.empty? %>
       </span>
   <% end %>
 
-  </div>
+  <% if @search.present? %>
+    <%= render partial: '/names/search/results', locals: {search: @search, name: @search.results.first} %>
+  <% end %>
 </div>
-
-<% if @search.present? %>
-  <%= render partial: '/names/search/results', locals: {search: @search, name: @search.results.first} %>
-<% end %>
 
 <span class="debug red tiny hidden-print">[names/search/index]</span>

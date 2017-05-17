@@ -9,15 +9,6 @@ module ApplicationHelper
     "#{s} #{fa_icon('check')}".html_safe
   end
 
-  def no_results_help(size)
-    if size.zero?
-      "<br/><br/>You may want to alter or reduce your search string,
-      or add wildcards."
-    else
-      ""
-    end
-  end
-
   def nsl_path
     Rails.configuration.nsl_path
   rescue
