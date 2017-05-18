@@ -16,5 +16,8 @@
 *.sw?
 *~
 
+# Ignore tags file
+tags
+
 /search.war
 /public/assets/*
