@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-# Rails model
+# Rails model for a view
 class NameDetail < ActiveRecord::Base
   self.table_name = "name_details_vw"
-  # Not a primary key!
-  # But used as a primary key in the association.
+  # Not actually a primary key,
+  # but used as a primary key in the association.
   self.primary_key = "instance_id"
 
   has_many :name_detail_synonyms
