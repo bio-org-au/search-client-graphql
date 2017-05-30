@@ -1,0 +1,51 @@
+<% shown = [] -%>
+<% notes_shown = [] -%>
+<div class="name-details">
+<% name_references.each do |name_reference| %>
+    <% grouped_instances = [] -%>
+    <% prev_is_misapplied = false %>
+    <div class="instance-citation from-partial">
+    <% name_reference.instances.sort {|x,y| [(x.reference.year || 9999), x.instance_type.name] <=> [(y.reference.year || 9999), y.instance_type.name] }.each do |instance| %>
+      <% if instance.instance_type.misapplied %>
+        <%= "#{name_reference.entry}".html_safe unless shown.include?("#{name_reference.reference_id}:misapplied") %>
+        <% if prev_is_misapplied %>
+          <% grouped_instances.push(instance.id) %>
+        <% else %>
+          <br>
+        <% end %>
+        <% prev_is_misapplied = true %>
+      <% else %>
+        <%= name_reference.entry.html_safe unless shown.include?("#{name_reference.reference_id}:#{instance.id}:#{instance.instance_type.name}") %>
+        <% if prev_is_misapplied %>
+          <% grouped_instances = [instance.id] %>
+        <% else %>
+          <% grouped_instances.push(instance.id) %>
+        <% end %>
+        <% prev_is_misapplied = false %>
+      <% end %>
+
+      <% if instance.instance_type.misapplied %>
+        <% shown.push("#{name_reference.reference_id}:misapplied") %>
+      <% else %>
+        <% shown.push("#{name_reference.reference_id}:#{instance.id}:#{instance.instance_type.name}") %>
+      <% end %>
+
+      <%= render(partial: "instance_within_name_reference", locals: {name_reference: name_reference, instance: instance}) %>
+      <% prev = instance.instance_type.name %>
+    <% end %>
+    <% grouped_instances.each do |id| %>
+      <% Instance.find(id).instance_notes_for_details.without_type_notes.each do |note| %>
+        <% unless notes_shown.include?(note.id) %>
+        <div class="instance-note">
+            <span class="instance-note-label"><%= note.instance_note_key.name %>:</span>
+            <span class="instance-note-value">
+              <%= note.marked_up_value.html_safe %>
+            </span>
+        </div>
+        <% notes_shown.push(note.id) %>
+        <% end %>
+      <% end %>
+    <% end %>
+    </div>
+<% end %>
+</div>

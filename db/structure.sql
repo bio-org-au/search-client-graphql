@@ -1237,23 +1237,6 @@ CREATE TABLE distribution (
 
 
 --
--- Name: external_ref; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE external_ref (
-    id bigint DEFAULT nextval('nsl_global_seq'::regclass) NOT NULL,
-    lock_version bigint DEFAULT 0 NOT NULL,
-    external_id character varying(50) NOT NULL,
-    external_id_supplier character varying(50) NOT NULL,
-    instance_id bigint NOT NULL,
-    name_id bigint NOT NULL,
-    object_type character varying(50),
-    original_provider numeric(19,2),
-    reference_id bigint NOT NULL
-);
-
-
---
 -- Name: help_topic; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1326,13 +1309,8 @@ CREATE TABLE instance_note_key (
 --
 
 CREATE TABLE instance_resources (
-    instance_id integer NOT NULL,
-    resource_id integer NOT NULL,
-    created_at timestamp with time zone DEFAULT now() NOT NULL,
-    created_by character varying(1000) DEFAULT 'system'::character varying NOT NULL,
-    lock_version integer DEFAULT 0 NOT NULL,
-    updated_at timestamp with time zone DEFAULT now() NOT NULL,
-    updated_by character varying(1000) DEFAULT 'system'::character varying NOT NULL
+    instance_id bigint NOT NULL,
+    resource_id bigint NOT NULL
 );
 
 
@@ -1341,14 +1319,14 @@ CREATE TABLE instance_resources (
 --
 
 CREATE TABLE resource (
-    id integer DEFAULT nextval('nsl_global_seq'::regclass) NOT NULL,
-    path character varying(500) NOT NULL,
-    site_id integer NOT NULL,
-    lock_version integer DEFAULT 0 NOT NULL,
-    created_at timestamp with time zone DEFAULT now() NOT NULL,
-    created_by character varying(1000) DEFAULT 'system'::character varying NOT NULL,
-    updated_at timestamp with time zone DEFAULT now() NOT NULL,
-    updated_by character varying(1000) DEFAULT 'system'::character varying NOT NULL
+    id bigint DEFAULT nextval('nsl_global_seq'::regclass) NOT NULL,
+    lock_version bigint DEFAULT 0 NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    created_by character varying(50) NOT NULL,
+    path character varying(2400) NOT NULL,
+    site_id bigint NOT NULL,
+    updated_at timestamp with time zone NOT NULL,
+    updated_by character varying(50) NOT NULL
 );
 
 
@@ -1357,15 +1335,15 @@ CREATE TABLE resource (
 --
 
 CREATE TABLE site (
-    id integer DEFAULT nextval('nsl_global_seq'::regclass) NOT NULL,
-    url character varying(500) NOT NULL,
-    name character varying(100) NOT NULL,
+    id bigint DEFAULT nextval('nsl_global_seq'::regclass) NOT NULL,
+    lock_version bigint DEFAULT 0 NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    created_by character varying(50) NOT NULL,
     description character varying(1000) NOT NULL,
-    lock_version integer DEFAULT 0 NOT NULL,
-    created_at timestamp with time zone DEFAULT now() NOT NULL,
-    created_by character varying(1000) DEFAULT 'system'::character varying NOT NULL,
-    updated_at timestamp with time zone DEFAULT now() NOT NULL,
-    updated_by character varying(1000) DEFAULT 'system'::character varying NOT NULL
+    name character varying(100) NOT NULL,
+    updated_at timestamp with time zone NOT NULL,
+    updated_by character varying(50) NOT NULL,
+    url character varying(500) NOT NULL
 );
 
 
@@ -1616,6 +1594,57 @@ CREATE TABLE name_group (
 
 
 --
+-- Name: name_instances_refs_vw; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW name_instances_refs_vw AS
+ SELECT n.id,
+    n.full_name,
+    n.simple_name,
+    s.name AS status_name,
+    r.name AS rank_name,
+    r.visible_in_name AS rank_visible_in_name,
+    r.sort_order AS rank_sort_order,
+    t.name AS type_name,
+    t.scientific AS type_scientific,
+    t.cultivar AS type_cultivar,
+    i.id AS instance_id,
+    ref.year AS reference_year,
+    ref.id AS reference_id,
+    ref.citation_html AS reference_citation_html,
+    ity.name AS instance_type_name,
+    ity.id AS instance_type_id,
+    ity.primary_instance,
+    ity.standalone AS instance_standalone,
+    i.page,
+    i.page_qualifier,
+    i.cited_by_id,
+    i.cites_id,
+    i.bhl_url,
+        CASE ity.primary_instance
+            WHEN true THEN 'A'::text
+            ELSE 'B'::text
+        END AS primary_instance_first,
+    author.name AS author_name,
+    n.id AS name_id,
+    n.sort_name,
+    ((((ref.citation_html)::text || ': '::text) || (COALESCE(i.page, ''::character varying))::text) ||
+        CASE ity.primary_instance
+            WHEN true THEN ((' ['::text || (ity.name)::text) || ']'::text)
+            ELSE ''::text
+        END) AS entry
+   FROM (((((((name n
+     JOIN name_status s ON ((n.name_status_id = s.id)))
+     JOIN name_rank r ON ((n.name_rank_id = r.id)))
+     JOIN name_type t ON ((n.name_type_id = t.id)))
+     JOIN instance i ON ((n.id = i.name_id)))
+     JOIN instance_type ity ON ((i.instance_type_id = ity.id)))
+     JOIN reference ref ON ((i.reference_id = ref.id)))
+     JOIN author ON ((ref.author_id = author.id)))
+  WHERE (n.duplicate_of_id IS NULL);
+
+
+--
 -- Name: name_or_synonym_vw; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -1647,6 +1676,27 @@ CREATE TABLE name_part (
     preceding_name_id bigint NOT NULL,
     preceding_name_type character varying(50) NOT NULL
 );
+
+
+--
+-- Name: name_reference_vw; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW name_reference_vw AS
+ SELECT n.id AS name_id,
+    i.id AS instance_id,
+    r.id AS reference_id,
+    r.citation_html,
+    r.year AS reference_year,
+    itype.id AS instance_type_id,
+    itype.primary_instance,
+    a.id AS author_id,
+    a.name AS author_name
+   FROM ((((name n
+     JOIN instance i ON ((n.id = i.name_id)))
+     JOIN reference r ON ((i.reference_id = r.id)))
+     JOIN instance_type itype ON ((i.instance_type_id = itype.id)))
+     JOIN author a ON ((r.author_id = a.id)));
 
 
 --
@@ -1707,7 +1757,6 @@ CREATE TABLE tree_link (
     type_uri_id_part character varying(255),
     type_uri_ns_part_id bigint NOT NULL,
     versioning_method bpchar NOT NULL,
-    CONSTRAINT chk_tree_link_seq_positive CHECK ((link_seq >= 1)),
     CONSTRAINT chk_tree_link_sub_not_end CHECK ((subnode_id <> 0)),
     CONSTRAINT chk_tree_link_sup_not_end CHECK ((supernode_id <> 0)),
     CONSTRAINT chk_tree_link_synthetic_yn CHECK ((is_synthetic = ANY (ARRAY['N'::bpchar, 'Y'::bpchar]))),
@@ -2588,14 +2637,6 @@ ALTER TABLE ONLY delayed_jobs
 
 
 --
--- Name: external_ref_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY external_ref
-    ADD CONSTRAINT external_ref_pkey PRIMARY KEY (id);
-
-
---
 -- Name: help_topic_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2636,11 +2677,11 @@ ALTER TABLE ONLY instance
 
 
 --
--- Name: instance_resource_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: instance_resources_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY instance_resources
-    ADD CONSTRAINT instance_resource_pkey PRIMARY KEY (instance_id, resource_id);
+    ADD CONSTRAINT instance_resources_pkey PRIMARY KEY (instance_id, resource_id);
 
 
 --
@@ -3388,13 +3429,6 @@ CREATE INDEX instance_reference_index ON instance USING btree (reference_id);
 
 
 --
--- Name: instance_resource_resource_id_idx; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX instance_resource_resource_id_idx ON instance_resources USING btree (resource_id);
-
-
---
 -- Name: instance_source_index; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -3801,13 +3835,6 @@ CREATE INDEX reference_type_index ON reference USING btree (ref_type_id);
 
 
 --
--- Name: site_name_idx; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX site_name_idx ON site USING btree (name);
-
-
---
 -- Name: tree_arrangement_label; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4095,11 +4122,11 @@ ALTER TABLE ONLY comment
 
 
 --
--- Name: fk_4g2i2qry4941xmqijgeo8ns2h; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_49ic33s4xgbdoa4p5j107rtpf; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY external_ref
-    ADD CONSTRAINT fk_4g2i2qry4941xmqijgeo8ns2h FOREIGN KEY (instance_id) REFERENCES instance(id);
+ALTER TABLE ONLY instance_resources
+    ADD CONSTRAINT fk_49ic33s4xgbdoa4p5j107rtpf FOREIGN KEY (instance_id) REFERENCES instance(id);
 
 
 --
@@ -4167,6 +4194,14 @@ ALTER TABLE ONLY comment
 
 
 --
+-- Name: fk_8mal9hru5u3ypaosfoju8ulpd; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY instance_resources
+    ADD CONSTRAINT fk_8mal9hru5u3ypaosfoju8ulpd FOREIGN KEY (resource_id) REFERENCES resource(id);
+
+
+--
 -- Name: fk_9aq5p2jgf17y6b38x5ayd90oc; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -4212,14 +4247,6 @@ ALTER TABLE ONLY reference
 
 ALTER TABLE ONLY name
     ADD CONSTRAINT fk_bcef76k0ijrcquyoc0yxehxfp FOREIGN KEY (name_type_id) REFERENCES name_type(id);
-
-
---
--- Name: fk_bu7q5itmt7w7q1bex049xvac7; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY external_ref
-    ADD CONSTRAINT fk_bu7q5itmt7w7q1bex049xvac7 FOREIGN KEY (name_id) REFERENCES name(id);
 
 
 --
@@ -4311,14 +4338,6 @@ ALTER TABLE ONLY instance_note
 
 
 --
--- Name: fk_f7igpcpvgcmdfb7v3bgjluqsf; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY external_ref
-    ADD CONSTRAINT fk_f7igpcpvgcmdfb7v3bgjluqsf FOREIGN KEY (reference_id) REFERENCES reference(id);
-
-
---
 -- Name: fk_fvfq13j3dqv994o9vg54yj5kk; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -4388,6 +4407,14 @@ ALTER TABLE ONLY instance_note
 
 ALTER TABLE ONLY tree_link
     ADD CONSTRAINT fk_kqshktm171nwvk38ot4d12w6b FOREIGN KEY (supernode_id) REFERENCES tree_node(id);
+
+
+--
+-- Name: fk_l76e0lo0edcngyyqwkmkgywj9; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY resource
+    ADD CONSTRAINT fk_l76e0lo0edcngyyqwkmkgywj9 FOREIGN KEY (site_id) REFERENCES site(id);
 
 
 --
@@ -4535,6 +4562,14 @@ ALTER TABLE ONLY tree_node
 
 
 --
+-- Name: fk_sfj3hoevcuni3ak7no6byjp3; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY name_tree_path
+    ADD CONSTRAINT fk_sfj3hoevcuni3ak7no6byjp3 FOREIGN KEY (parent_id) REFERENCES name_tree_path(id);
+
+
+--
 -- Name: fk_sgvxmyj7r9g4wy9c4hd1yn4nu; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -4572,30 +4607,6 @@ ALTER TABLE ONLY tree_node
 
 ALTER TABLE ONLY tree_link
     ADD CONSTRAINT fk_tgankaahxgr4p0mw4opafah05 FOREIGN KEY (subnode_id) REFERENCES tree_node(id);
-
-
---
--- Name: instance_resource_instance_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY instance_resources
-    ADD CONSTRAINT instance_resource_instance_fk FOREIGN KEY (instance_id) REFERENCES instance(id);
-
-
---
--- Name: instance_resource_resource_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY instance_resources
-    ADD CONSTRAINT instance_resource_resource_fk FOREIGN KEY (resource_id) REFERENCES resource(id);
-
-
---
--- Name: resource_site_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY resource
-    ADD CONSTRAINT resource_site_fk FOREIGN KEY (site_id) REFERENCES site(id);
 
 
 --

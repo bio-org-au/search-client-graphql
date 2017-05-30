@@ -56,6 +56,10 @@ Rails.application.routes.draw do
         as: "names_show",
         to: "names#show",
         via: :get
+  match "/name/raw/:id",
+        as: "names_raw",
+        to: "names#raw",
+        via: :get
 
   match "/taxonomy/accepted/search/synonym",
         as: "taxonomy_accepted_search_synonym",

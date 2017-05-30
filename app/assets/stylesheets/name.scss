@@ -26,7 +26,7 @@ span.full-name {
 
 span.instance-citation,
 div.instance-citation {
-  margin-top: 1em;
+  margin-top: 0em;
   line-height: 110%;
   padding-bottom: 0;
   margin-bottom: -3px;
@@ -37,7 +37,7 @@ div.instance-citation.from-partial {
   margin-bottom: 2px;
 }
  
-div.standalone-instance-citation {
+div.instance-entry {
   margin-bottom: 0.0rem;
 }
 
@@ -147,4 +147,10 @@ span.classification-tree-value {
 
 .accepted-name-details name element {
   font-style: italic;
+}
+
+.reference-citation {
+  margin-top: -2px;
+  margin-bottom: -4px;
+  padding-bottom: 0px;
 }

@@ -9,5 +9,7 @@ class Reference < ActiveRecord::Base
   has_many :cites
   has_many :name_or_synonyms
   has_many :accepted_names
+  has_many :name_references
   belongs_to :author
+  belongs_to :reference_author, class_name: :author
 end

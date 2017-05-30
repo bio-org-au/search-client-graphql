@@ -1,0 +1,13 @@
+<% if instance.instance_type.misapplied? %>
+<div class="instance-entry">
+  <li class='compact subordinate-instance'>
+    <span class="synonym-type">
+      <%= instance.instance_type.of_label %>:
+      <%= link_to(instance.name.citation.html_safe,
+                  names_show_path(instance.name_id),
+                  class: "synonym") %>
+      <%= render(partial: "misapplied_by", locals: {instance: instance}) %>
+    </span>
+  </li>
+</div>
+<% end %>

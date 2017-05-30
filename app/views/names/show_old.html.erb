@@ -20,8 +20,7 @@
     <%= render(partial: "/names/search/editor_link.html.erb", locals: { name: @name }) %>
   <% end %>
   <%# cache @name do %>
-    <%#= render partial: "references", locals: {name: @name, name_references: @name_details} %>
-    <%= render partial: "references_new" %>
+    <%= render partial: "references", locals: {name: @name, name_references: @name_details} %>
   <%# end %>
   <br/>
   <br/>

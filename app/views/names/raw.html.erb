@@ -1,0 +1,7 @@
+<% unless @name.blank? %>
+  <strong><%= @name.full_name %></strong>
+  <% if @name.show_status? %>
+    <span class="name-status" title="Name Status"><%= @name.status_name %></span>
+  <% end %>
+  <%= render partial: "references_new2" %>
+<% end %>

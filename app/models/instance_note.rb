@@ -9,6 +9,12 @@ class InstanceNote < ActiveRecord::Base
   belongs_to :instance_note_key
   belongs_to :name_detail, foreign_key: "instance_id"
 
+  scope :without_type_notes, (lambda do
+    where("instance_note_key_id not in
+          (select id from instance_note_key
+          where name in ('Lectotype', 'Neotype','Type') ) ")
+  end)
+
   def apc_distribution?
     instance_note_key.apc_distribution?
   end

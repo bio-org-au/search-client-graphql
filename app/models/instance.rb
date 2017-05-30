@@ -15,9 +15,12 @@ class Instance < ActiveRecord::Base
              class_name: "Instance",
              foreign_key: "cites_id"
   has_many :instance_notes
+  has_many :instance_notes_for_details, foreign_key: :instance_id
   has_many :instance_note_keys, through: :instance_notes
   has_many :instance_note_for_type_specimens
   has_one  :instance_note_for_distribution
+  has_one  :instance_note_for_comment
+  has_many :name_detail_commons
   has_one  :apc_comment, (lambda do
     where "instance_note_key_id = (select id from instance_note_key
           where name = 'APC Comment')"
@@ -39,7 +42,7 @@ class Instance < ActiveRecord::Base
       "          when 'vernacular name' then 99 " \
       "          else 3 end, " \
       "          case nomenclatural " \
-      "          when true then 1 " \
+      "          when true then 99 " \
       "          else 2 end, " \
       "          case taxonomic " \
       "          when true then 2 " \
@@ -69,6 +72,14 @@ class Instance < ActiveRecord::Base
             .order("reference.year,lower(name.full_name)")
   end
 
+
+  def self.records_cited_by_standalone_excluding_commons(instance)
+    Instance.joins(:instance_type, :name, :reference)
+            .where(cited_by_id: instance.id)
+            .where("instance_type.name not in ('common name', 'vernacular name')")
+            .in_nested_instance_type_order
+            .order("reference.year,lower(name.full_name)")
+  end
   def self.records_cited_by_relationship(instance)
     Instance.joins(:instance_type)
             .where(cited_by_id: instance.id)
@@ -95,5 +106,22 @@ class Instance < ActiveRecord::Base
 
   def has_protologue?
     instance_resource_vw.present?
+  end
+
+  def synonyms_for_display
+    synonyms.joins(:instance_type)
+      .sort { |x,y| [x.instance_type.main_sort, x.instance_type.nom_tax_sort, x.name.full_name] <=> [y.instance_type.main_sort, y.instance_type.nom_tax_sort, y.name.full_name] }
+  end
+
+  def synonyms_for_display_without_commons
+    synonyms.joins(:instance_type)
+      .sort { |x,y| [x.instance_type.main_sort, x.instance_type.nom_tax_sort, x.reference.year] <=> [y.instance_type.main_sort, y.instance_type.nom_tax_sort, y.reference.year] }
+      .delete_if { |s| s.instance_type.common_or_vernacular? }
+  end
+
+  def synonyms_for_display_just_commons
+    synonyms.joins(:instance_type)
+      .sort { |x,y| [x.instance_type.main_sort, x.instance_type.nom_tax_sort, x.name.full_name] <=> [y.instance_type.main_sort, y.instance_type.nom_tax_sort, y.name.full_name] }
+      .delete_if { |s| !s.instance_type.common_or_vernacular? }
   end
 end

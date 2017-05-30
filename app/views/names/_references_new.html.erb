@@ -1,0 +1,62 @@
+<div class="name-details">
+<% @name_reference_instance_set.each do |nris| %>
+  <% if nris[:treat_as_new_reference] %>
+    <div class="reference-citation">
+      <% page = "" %>
+      <% page = ": #{nris[:page]}" if nris[:show_page] == true %>
+      <%= "#{nris[:citation_html]}#{page}".sub(/: *$/,'').html_safe %>
+      <%= "[#{nris[:instance_type_name]}]" if nris[:primary_instance] %>
+      <%= "<span class='red' title='Accepted by APC'>#{fa_icon('check')}APC</span>".html_safe if nris[:accepted_name] == true %>
+      <%= "<span class='red' title='Excluded from APC'>#{fa_icon('ban')}APC</span>".html_safe if nris[:excluded_name] == true %>
+      <%= "<span class='red' title='Declared broader term for APC'>Untreated APC</span>".html_safe if nris[:declared_bt] == true %>
+    </div>
+  <% end %>
+  <% if nris[:show_instance] %>
+    <li class="compact subordinate-instance">
+      <span class="synonym-type">
+        <%= "#{nris[:instance_type_label]}:" %>
+      </span>
+      <%= link_to(nris[:relationship_name_citation].html_safe,
+               names_show_path(nris[:relationship_name_id]),
+               class: "synonym") %>
+      <%= nris[:misapplied_by] if nris[:misapplied] %>
+    </li>
+  <% end %>
+  <% if nris[:cited_by_count].present? && nris[:cited_by_count] > 0 %>
+    <% nris[:cited_by].each do |cited_by| %>
+      <li class="compact subordinate-instance">
+        <span class="synonym-type">
+          <%= "#{cited_by[:instance_type]}:" %>
+        </span>
+        <%= link_to(cited_by[:name_citation].html_safe,
+                 names_show_path(cited_by[:name_id]),
+                 class: "synonym") %>
+      </li>
+    <% end %>
+  <% end %>
+  <% if nris[:common_names_count].present? && nris[:common_names_count] > 0 %>
+    <% nris[:common_names].each do |common| %>
+      <li class="compact subordinate-instance">
+        <span class="synonym-type">
+          common name:
+        </span>
+        <%= link_to(common[:name_citation].html_safe,
+                    names_show_path(common[:name_id]),
+                    class: "synonym") %>
+      </li>
+    <% end %>
+  <% end %>
+  <% if nris[:instance_notes_count].present? && nris[:instance_notes_count] > 0 %>
+    <% nris[:instance_notes].each do |note| %>
+      <div class="instance-note">
+        <span class="instance-note-label">
+          <%= note[:key_name] %>:
+        </span>
+        <span class="instance-note-value">
+          <%= note[:note_value].html_safe %><br>      
+        </span>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+</div>
