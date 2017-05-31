@@ -21,3 +21,7 @@ tags
 
 /search.war
 /public/assets/*
+
+# Ignore coverage directory
+coverage
+
