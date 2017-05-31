@@ -3,168 +3,228 @@
 # Starting with a name-reference, prepare a collection of instances,
 # comments and notes ready to be displayed.
 class NameReferenceInstanceSet
- 
-  attr_reader :results
-  def initialize(name_references)
-    @name_references = name_references
+  attr_reader :results, :name_references
+  def initialize(name_id)
+    @name_references =
+      Name.where(id: name_id)
+          .joins(instances: :instance_type)
+          .joins(references: :author)
+          .select("name.id name_id,name.full_name, name.full_name_html, \
+    reference.id reference_id,instance_type.id,author.id, \
+    reference.citation_html,coalesce(reference.year,9999), author.name,  \
+    primary_instance")
+          .group("name.id, name.full_name, reference.id,instance_type.id, \
+    author.id,reference.citation_html,coalesce(reference.year,9999),  \
+    author.name, primary_instance")
+          .order("coalesce(reference.year,9999), primary_instance desc,  \
+    author.name")
     build_results
   end
 
   def sorted_references
-    @name_references.sort {|x,y| (x.reference.year || 9999) <=> (y.reference.year || 9999)}
+    @name_references.sort { |x, y| (x.year || 9999) <=> (y.year || 9999) }
   end
 
   def build_results
-    stage_1
-    @results.uniq!
-    collapse_misapplieds
+    @results = @name_references.collect { |nr| template(nr) }.uniq
+    add_standalones
+    add_accepted_or_excluded
+    add_relationships
+    add_cited_by
+    add_misapplications
+    add_common_names
+    add_instance_notes
+    add_type_notes
+    add_page_no
+    add_primary_instance
   end
 
-  def stage_1
-    @results = []
-    sorted_references.each do |name_reference|
-      instances = name_reference.instances
-      instance_count = instances.size
-      misapplied_count = 0
-      non_misapplied_count = 0
-      instances.each do |i|
-        if i.instance_type.misapplied?
-          misapplied_count += 1
-        else
-          non_misapplied_count += 1
+  def add_standalones
+    @results.each do |result|
+      Instance.where(name_id: result[:name_id],
+                     reference_id: result[:reference_id],
+                     cited_by_id: nil, cites_id: nil).each do |instance|
+        result[:standalone_instances].push(instance.id)
+      end
+    end
+  end
+
+  def add_accepted_or_excluded
+    @results.each do |result|
+      result[:standalone_instances].each do |standalone_instance|
+        accepted_or_excluded = AcceptedOrExcluded
+                               .where(id: result[:name_id],
+                                      instance_id: standalone_instance)
+        accepted_or_excluded.each do |aoe|
+          result[:accepted_name] = true if aoe.accepted?
+          result[:excluded_name] = true if aoe.excluded?
+          result[:declared_bt] = true if aoe.declared_bt?
         end
       end
-      if instance_count == 1 && name_reference.instances.first.page.present?
-        show_page = true
-        page = name_reference.instances.first.page
-      else
-        show_page = false
-        page = nil
+    end
+  end
+
+  def add_relationships
+    @results.each do |result|
+      Instance.where(name_id: result[:name_id],
+                     reference_id: result[:reference_id])
+              .where("cited_by_id is not null").each do |instance|
+        next if instance.instance_type.misapplied?
+        result[:relationship_instances]
+          .push(instance_id: instance.id,
+                cites_id: instance.cites_id,
+                cited_by_id: instance.cited_by_id,
+                instance_type: instance.instance_type.of_label,
+                name_id: instance.this_is_cited_by.name.id,
+                name_citation: instance.this_is_cited_by.name.citation)
       end
-      name_reference.instances.sort {|x,y| (x.instance_type.misapplied? ? 'Z' : 'A') <=> (y.instance_type.misapplied? ? 'Z' : 'A') }.each_with_index do |instance, index|
-        if misapplied_count == 1 || non_misapplied_count == 1
-          show_page = true
-          page = instance.page
+    end
+  end
+
+  def add_misapplications
+    @results.each do |result|
+      Instance.where(name_id: result[:name_id],
+                     reference_id: result[:reference_id])
+              .where("cited_by_id is not null").each do |instance|
+        next unless instance.instance_type.misapplied?
+        misapplied_by = "by #{instance.this_cites.reference.citation_html}"
+        unless instance.this_cites.page.blank?
+          misapplied_by += ": #{instance.this_cites.page}"
         end
-        if instance.standalone?
-          relationship_name_id = ""
-          relationship_name_citation = ""
-          cited_by = Instance
-            .records_cited_by_standalone_excluding_commons(instance)
-            .collect do |cited_by|
-              {
-                instance_type: cited_by.instance_type.has_label,
-                name_id: cited_by.name.id,
-                name_citation: cited_by.name.citation,
-              }
+        result[:misapplications]
+          .push(instance_type: instance.instance_type.of_label,
+                name_id: instance.this_is_cited_by.name.id,
+                name_citation: instance.this_is_cited_by.name.citation,
+                misapplied_by: misapplied_by)
+      end
+    end
+  end
+
+  def add_common_names
+    @results.each do |result|
+      result[:standalone_instances].each do |standalone|
+        result[:common_names] =
+          Instance.find(standalone)
+                  .synonyms_for_display_just_commons
+                  .sort { |x, y| x.name.simple_name <=> y.name.simple_name }
+                  .collect do |common|
+                    { name_id: common.name_id,
+                      name_citation: common.name.citation }
+                  end
+      end
+    end
+  end
+
+  def add_cited_by
+    @results.each do |result|
+      result[:standalone_instances].each do |standalone|
+        result[:cited_by] =
+          Instance.where(cited_by_id: standalone)
+                  .joins(:instance_type, :name, :reference)
+                  .where("instance_type.name not in ('common name',
+        'vernacular name')")
+                  .sort do |x, y|
+                    [x.instance_type.sort_order,
+                     (x.this_cites.reference.year || 9999),
+                     x.name.full_name.downcase] \
+                     <=> \
+                      [y.instance_type.sort_order,
+                       (y.this_cites.reference.year || 9999),
+                       y.name.full_name.downcase]
+                  end
+                  .collect do |cited_by|
+                    {
+                      instance_type: cited_by.instance_type.has_label,
+                      name_id: cited_by.name.id,
+                      name_citation: cited_by.name.citation,
+                      reference_year: cited_by.this_cites.reference.year,
+                    }
+                  end
+      end
+    end
+  end
+
+  def add_type_notes
+    @results.each do |result|
+      result[:standalone_instances].each do |standalone|
+        result[:type_notes] =
+          Instance.find(standalone)
+                  .instance_notes
+                  .where(" instance_note.instance_note_key_id =
+        (select id from instance_note_key where name = 'Type')")
+                  .collect do |note|
+            { key_name: note.instance_note_key.name,
+              note_value: note.value }
           end
-        else
-          relationship_name_id = instance.this_is_cited_by.name.id
-          relationship_name_citation = instance.this_is_cited_by.name.citation
-          cited_by = []
-        end  
-        if instance.instance_type.misapplied?
-          misapplied = true
-          show_instance = true
-          misapplied_by = "by #{instance.this_cites.reference.citation_html}"
-          misapplied_by += ": #{instance.this_cites.page}" unless instance.this_cites.page.blank?
-          misapplied_by = misapplied_by.html_safe
-        else
-          misapplied = false
-          show_instance = false
-          misapplied_by = ""
-        end
-        accepted_or_excluded = AcceptedOrExcluded.where(id: name_reference.name_id, instance_id: instance.id)
-        unless accepted_or_excluded.empty?
-          accepted_name = accepted_or_excluded.first.accepted?
-          excluded_name = accepted_or_excluded.first.excluded?
-          declared_bt = accepted_or_excluded.first.declared_bt?
-        else
-          accepted_name = excluded_name = declared_bt = false
-        end
-        if instance.instance_type.relationship? && !instance.instance_type.misapplied?
-          @results.push(
-                        ActiveSupport::HashWithIndifferentAccess.new(
-                          sequence: index + 1,
-                          treat_as_new_reference: true,
-                          name_id: name_reference.name_id,
-                          full_name: instance.this_is_cited_by.name.full_name,
-                          name_citation: instance.name.citation,
-                          reference_id: name_reference.reference_id,
-                          author_id: name_reference.author_id,
-                          citation_html: instance.reference.citation_html,
-                          instance_id: instance.id,
-                          instance_type_id: instance.instance_type.id,
-                          instance_type_name: instance.instance_type.name,
-                          instance_count: instance_count,
-                          primary_instance: false,
-                          relationship_name_id: relationship_name_id,
-                          relationship_name_citation: relationship_name_citation,
-                          show_page: show_page,
-                          page: page,
-                          show_instance: true,
-                          standalone: instance.standalone?,
-                          instance_type_label: instance.instance_type.of_label,
-                          misapplied: false,
-                          misapplied_by: misapplied ? misapplied_by : "",
-                          instance_notes_count: 0,
-                          instance_notes: [],
-                          common_names_count: 0,
-                          common_names: [],
-                          cited_by_count: 0,
-                          cited_by: [],
-                          accepted_name: accepted_name,
-                          excluded_name: excluded_name,
-                          declared_bt: declared_bt,
-                        )
-          )
-        else
-          @results.push(
-                      ActiveSupport::HashWithIndifferentAccess.new(
-                        sequence: index + 1,
-                        treat_as_new_reference: true,
-                        name_id: name_reference.name_id,
-                        full_name: instance.name.full_name,
-                        name_citation: instance.name.citation,
-                        reference_id: name_reference.reference_id,
-                        author_id: name_reference.author_id,
-                        citation_html: name_reference.citation_html,
-                        instance_id: instance.id,
-                        instance_type_id: instance.instance_type.id,
-                        instance_type_name: instance.instance_type.name,
-                        instance_count: instance_count,
-                        primary_instance: name_reference.primary_instance,
-                        relationship_name_id: relationship_name_id,
-                        relationship_name_citation: relationship_name_citation,
-                        show_page: show_page,
-                        page: page,
-                        show_instance: show_instance,
-                        standalone: instance.standalone?,
-                        instance_type_label: instance.instance_type.of_label,
-                        misapplied: misapplied,
-                        misapplied_by: misapplied ? misapplied_by : "",
-                        instance_notes_count: instance.instance_notes.size,
-                        instance_notes: instance.instance_notes.collect {|note| {key_name: note.instance_note_key.name, note_value: note.value} },
-                        common_names_count: instance.synonyms_for_display_just_commons.size,
-                        common_names: instance.synonyms_for_display_just_commons.sort {|x,y| x.name.simple_name <=> y.name.simple_name}.collect {|common| {name_id: common.name_id, name_citation: common.name.citation} },
-                        cited_by_count: cited_by.count,
-                        cited_by: cited_by,
-                        accepted_name: accepted_name,
-                        excluded_name: excluded_name,
-                        declared_bt: declared_bt,
-                      )
-          )
+      end
+    end
+  end
+
+  def add_instance_notes
+    @results.each do |result|
+      result[:standalone_instances].each do |standalone|
+        result[:instance_notes] =
+          Instance.find(standalone)
+                  .instance_notes
+                  .where(" instance_note.instance_note_key_id !=
+        (select id from instance_note_key where name = 'Type')")
+                  .collect do |note|
+                    { key_name: note.instance_note_key.name,
+                      note_value: note.value }
+                  end
+      end
+    end
+  end
+
+  def add_page_no
+    @results.each do |result|
+      if result[:standalone_instances].size == 1
+        result[:page] = Instance.find(result[:standalone_instances].first).page
+      end
+      next unless result[:page].nil? &&
+                  result[:relationship_instances].size == 1
+      result[:page] = Instance.find(result[:relationship_instances]
+                              .first[:instance_id])
+                              .page
+    end
+  end
+
+  def add_primary_instance
+    @results.each do |result|
+      result[:standalone_instances].each do |standalone|
+        instance = Instance.find(standalone)
+        if instance.primary?
+          result[:primary_instance] = true if Instance.find(standalone).primary?
+          result[:instance_type_name] = instance.instance_type.name
         end
       end
     end
   end
 
-  def collapse_misapplieds
-    previous = {}
-    @results.each do |element|
-      element[:treat_as_new_reference] = false if element[:sequence] > 1 && element[:instance_type_name] == "misapplied" && previous[:instance_type_name] == "misapplied"
-      previous = element
-    end
+  def template(nr)
+    ActiveSupport::HashWithIndifferentAccess.new(
+      sequence: nil,
+      treat_as_new_reference: true,
+      name_id: nr.name_id,
+      full_name: nr.full_name,
+      name_citation: nr.full_name_html,
+      reference_id: nr.reference_id,
+      author_id: nil,
+      citation_html: nr.citation_html,
+      page: nil,
+      type_notes: nil,
+      instance_notes_count: 0,
+      instance_notes: nil,
+      common_names_count: 0,
+      common_names: [],
+      cited_by_count: 0,
+      cited_by: nil,
+      accepted_name: nil,
+      excluded_name: nil,
+      declared_bt: nil,
+      standalone_instances: [],
+      relationship_instances: [],
+      misapplications: [],
+    )
   end
 end
-
