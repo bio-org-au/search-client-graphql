@@ -45,10 +45,6 @@ class NameInstance < ActiveRecord::Base
     NameStatus.show?(status_name)
   end
 
-  def show_rank?
-    NameRank.show?(rank_name, rank_visible_in_name, rank_sort_order)
-  end
-
   def ordered
     instances.sort_by(&:sort_fields)
   end

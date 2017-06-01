@@ -30,44 +30,4 @@ class InstanceType < ActiveRecord::Base
   def pro_parte?
     pro_parte == true
   end
-
-  def common_or_vernacular?
-    name == "common name" || name == "vernacular name"
-  end
-
-  def main_sort
-    case name
-    when "basionym"
-      1
-    when "replaced synonym"
-      2
-    when "common name"
-      99
-    when "vernacular name"
-      99
-    else
-      3
-    end
-  end
-  
-  def nom_tax_sort
-    case nomenclatural
-    when true
-      1
-    else
-      2
-    end
-  end
-
-  def cited_by_preposition
-    if name.downcase =~ /misapplied/
-      "to"
-    else
-      "of"
-    end
-  end
-
-  def shows_reference_it_cites?
-    name.match("misapplied")
-  end
 end

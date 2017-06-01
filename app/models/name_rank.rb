@@ -12,10 +12,6 @@ class NameRank < ActiveRecord::Base
     find_by(name: "Species")
   end
 
-  def family?
-    name == "Familia"
-  end
-
   def show?
     !visible_in_name && above_species?
   end

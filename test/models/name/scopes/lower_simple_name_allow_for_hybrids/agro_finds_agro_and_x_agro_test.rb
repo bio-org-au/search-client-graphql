@@ -2,7 +2,7 @@
 require "test_helper"
 
 # Test
-class NameScopesLSNAFHagro < ActiveSupport::TestCase
+class AgroFindsAgroAndXAgroTest < ActiveSupport::TestCase
   test "agro finds agro and x agro" do
     results = Name.simple_name_allow_for_hybrids_like("agro")
     assert results.pluck(:simple_name).include?("agro"),

@@ -21,13 +21,10 @@ class NameReferenceInstanceSet
     build_results
   end
 
-  def sorted_references
-    @name_references.sort { |x, y| (x.year || 9999) <=> (y.year || 9999) }
-  end
-
   def build_results
     @results = @name_references.collect { |nr| template(nr) }.uniq
     add_standalones
+    add_protologue
     add_accepted_or_excluded
     add_relationships
     add_cited_by
@@ -45,6 +42,17 @@ class NameReferenceInstanceSet
                      reference_id: result[:reference_id],
                      cited_by_id: nil, cites_id: nil).each do |instance|
         result[:standalone_instances].push(instance.id)
+      end
+    end
+  end
+
+  def add_protologue
+    @results.each do |result|
+      result[:standalone_instances].each do |standalone_instance|
+        instance = Instance.find(standalone_instance)
+        if instance.has_protologue?
+          result[:protologue] = {source_id: instance.source_id}
+        end
       end
     end
   end
@@ -76,7 +84,8 @@ class NameReferenceInstanceSet
                 cited_by_id: instance.cited_by_id,
                 instance_type: instance.instance_type.of_label,
                 name_id: instance.this_is_cited_by.name.id,
-                name_citation: instance.this_is_cited_by.name.citation)
+                name_citation: instance.this_is_cited_by.name.citation,
+                page: instance.this_is_cited_by.page,)
       end
     end
   end
@@ -178,8 +187,11 @@ class NameReferenceInstanceSet
 
   def add_page_no
     @results.each do |result|
-      if result[:standalone_instances].size == 1
+      if result[:standalone_instances].size == 1 && result[:relationship_instances].size <= 1
         result[:page] = Instance.find(result[:standalone_instances].first).page
+      elsif result[:standalone_instances].size <= 1 && result[:relationship_instances].size == 1
+        result[:page] = result[:relationship_instances].first[:page]
+        result[:relationship_instances].first[:page_shown_above] = true
       end
       next unless result[:page].nil? &&
                   result[:relationship_instances].size == 1
@@ -225,6 +237,7 @@ class NameReferenceInstanceSet
       standalone_instances: [],
       relationship_instances: [],
       misapplications: [],
+      protologue: nil,
     )
   end
 end

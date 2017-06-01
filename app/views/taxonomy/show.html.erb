@@ -12,7 +12,9 @@
 <% if session[:editor] %>
   <%= render(partial: "/names/search/editor_link.html.erb", locals: { name: @name }) %>
 <% end %>
-<%= render partial: "/names/instances", locals: {name: @name, name_details: @name_details, show_power_links: false} %>
+<%# cache @name do %>
+  <%= render partial: "names/references" %>
+<%# end %>
 
 <br/>
 <br/>

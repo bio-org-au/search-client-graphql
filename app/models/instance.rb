@@ -50,11 +50,6 @@ class Instance < ActiveRecord::Base
     )
   end)
 
-  def xsort_fields
-    [reference.year || 9999,
-     instance_type.primaries_first]
-  end
-
   def sort_fields
     [reference.year || 9999,
      instance_type.primaries_first,
@@ -63,27 +58,6 @@ class Instance < ActiveRecord::Base
 
   def standalone?
     cited_by_id.nil? && cites_id.nil?
-  end
-
-  def self.records_cited_by_standalone(instance)
-    Instance.joins(:instance_type, :name, :reference)
-            .where(cited_by_id: instance.id)
-            .in_nested_instance_type_order
-            .order("reference.year,lower(name.full_name)")
-  end
-
-
-  def self.records_cited_by_standalone_excluding_commons(instance)
-    Instance.joins(:instance_type, :name, :reference)
-            .where(cited_by_id: instance.id)
-            .where("instance_type.name not in ('common name', 'vernacular name')")
-            .in_nested_instance_type_order
-            .order("reference.year,lower(name.full_name)")
-  end
-  def self.records_cited_by_relationship(instance)
-    Instance.joins(:instance_type)
-            .where(cited_by_id: instance.id)
-            .in_nested_instance_type_order
   end
 
   def primary?
@@ -108,20 +82,10 @@ class Instance < ActiveRecord::Base
     instance_resource_vw.present?
   end
 
-  def synonyms_for_display
-    synonyms.joins(:instance_type)
-      .sort { |x,y| [x.instance_type.main_sort, x.instance_type.nom_tax_sort, x.name.full_name] <=> [y.instance_type.main_sort, y.instance_type.nom_tax_sort, y.name.full_name] }
-  end
-
-  def synonyms_for_display_without_commons
-    synonyms.joins(:instance_type)
-      .sort { |x,y| [x.instance_type.main_sort, x.instance_type.nom_tax_sort, x.reference.year] <=> [y.instance_type.main_sort, y.instance_type.nom_tax_sort, y.reference.year] }
-      .delete_if { |s| s.instance_type.common_or_vernacular? }
-  end
-
   def synonyms_for_display_just_commons
     synonyms.joins(:instance_type)
-      .sort { |x,y| [x.instance_type.main_sort, x.instance_type.nom_tax_sort, x.name.full_name] <=> [y.instance_type.main_sort, y.instance_type.nom_tax_sort, y.name.full_name] }
-      .delete_if { |s| !s.instance_type.common_or_vernacular? }
+            .where("instance_type.name = 'common name'
+                    or
+                    instance_type.name = 'vernacular name'")
   end
 end

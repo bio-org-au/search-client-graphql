@@ -1,51 +1,106 @@
-<% shown = [] -%>
-<% notes_shown = [] -%>
 <div class="name-details">
-<% name_references.each do |name_reference| %>
-    <% grouped_instances = [] -%>
-    <% prev_is_misapplied = false %>
-    <div class="instance-citation from-partial">
-    <% name_reference.instances.sort {|x,y| [(x.reference.year || 9999), x.instance_type.name] <=> [(y.reference.year || 9999), y.instance_type.name] }.each do |instance| %>
-      <% if instance.instance_type.misapplied %>
-        <%= "#{name_reference.entry}".html_safe unless shown.include?("#{name_reference.reference_id}:misapplied") %>
-        <% if prev_is_misapplied %>
-          <% grouped_instances.push(instance.id) %>
-        <% else %>
-          <br>
-        <% end %>
-        <% prev_is_misapplied = true %>
-      <% else %>
-        <%= name_reference.entry.html_safe unless shown.include?("#{name_reference.reference_id}:#{instance.id}:#{instance.instance_type.name}") %>
-        <% if prev_is_misapplied %>
-          <% grouped_instances = [instance.id] %>
-        <% else %>
-          <% grouped_instances.push(instance.id) %>
-        <% end %>
-        <% prev_is_misapplied = false %>
-      <% end %>
-
-      <% if instance.instance_type.misapplied %>
-        <% shown.push("#{name_reference.reference_id}:misapplied") %>
-      <% else %>
-        <% shown.push("#{name_reference.reference_id}:#{instance.id}:#{instance.instance_type.name}") %>
-      <% end %>
-
-      <%= render(partial: "instance_within_name_reference", locals: {name_reference: name_reference, instance: instance}) %>
-      <% prev = instance.instance_type.name %>
-    <% end %>
-    <% grouped_instances.each do |id| %>
-      <% Instance.find(id).instance_notes_for_details.without_type_notes.each do |note| %>
-        <% unless notes_shown.include?(note.id) %>
-        <div class="instance-note">
-            <span class="instance-note-label"><%= note.instance_note_key.name %>:</span>
-            <span class="instance-note-value">
-              <%= note.marked_up_value.html_safe %>
-            </span>
-        </div>
-        <% notes_shown.push(note.id) %>
-        <% end %>
-      <% end %>
-    <% end %>
+<% @name_reference_instance_set.each do |nris| %>
+  <% if nris[:treat_as_new_reference] %>
+    <div class="reference-citation">
+      <% page = ": -" %>
+      <% page = ": #{nris[:page]}" if nris[:page].present? %>
+      <%= "#{nris[:citation_html]}#{page}".sub(/: *$/,'').html_safe %>
+      <%= "[#{nris[:instance_type_name]}]" if nris[:primary_instance] %>
+      <%= "<span class='red' title='Accepted by APC'>#{fa_icon('check')}APC</span>".html_safe if nris[:accepted_name] == true %>
+      <%= "<span class='red' title='Excluded from APC'>#{fa_icon('ban')}APC</span>".html_safe if nris[:excluded_name] == true %>
+      <%= "<span class='red' title='Declared broader term for APC'>Untreated APC</span>".html_safe if nris[:declared_bt] == true %>
+      <%= link_to fa_icon("file-pdf-o"), "https://biodiversity.org.au/images/pnrid-pdf/#{nris[:protologue]['source_id']}.pdf" unless nris[:protologue].nil? -%>
     </div>
+  <% end %>
+  <% if nris[:type_notes].present? && nris[:type_notes].size > 0 %>
+    <% nris[:type_notes].each do |note| %>
+      <div class="instance-note">
+        <span class="instance-note-label">
+          <%= note[:key_name] %>:
+        </span>
+        <span class="instance-note-value">
+          <%= note[:note_value].html_safe %><br>      
+        </span>
+      </div>
+    <% end %>
+  <% end %>
+  <% if nris[:relationship_instances].present? && nris[:relationship_instances].size > 0 %>
+    <% nris[:relationship_instances].each do |relationship_instance| %>
+      <li class="compact subordinate-instance">
+        <span class="synonym-type">
+          <%= "#{relationship_instance[:instance_type]}:" %>
+        </span>
+        <% if relationship_instance[:page_shown_above] || relationship_instance[:page].nil? %>
+          <%= link_to(relationship_instance[:name_citation].html_safe,
+                   names_show_path(relationship_instance[:name_id]),
+                   class: "synonym") %>
+        <% else %>
+          <%= link_to("#{relationship_instance[:name_citation]}: #{relationship_instance[:page]}".html_safe,
+                   names_show_path(relationship_instance[:name_id]),
+                   class: "synonym") %>
+        <% end %>
+      </li>
+    <% end %>
+  <% end %>
+  <% if nris[:show_instance] %>
+    <li class="compact subordinate-instance">
+      <span class="synonym-type">
+        <%= "#{nris[:instance_type_label]}:" %>
+      </span>
+      <%= link_to(nris[:relationship_name_citation].html_safe,
+               names_show_path(nris[:relationship_name_id]),
+               class: "synonym") %>
+      <%= nris[:misapplied_by] if nris[:misapplied] %>
+    </li>
+  <% end %>
+  <% if nris[:cited_by].present? && nris[:cited_by].size > 0 %>
+    <% nris[:cited_by].each do |cited_by| %>
+      <li class="compact subordinate-instance">
+        <span class="synonym-type">
+          <%= "#{cited_by[:instance_type]}:" %>
+        </span>
+        <%= link_to(cited_by[:name_citation].html_safe,
+                 names_show_path(cited_by[:name_id]),
+                 class: "synonym") %>
+      </li>
+    <% end %>
+  <% end %>
+  <% if nris[:misapplications].present? && nris[:misapplications].size > 0 %>
+    <% nris[:misapplications].each do |misapplication| %>
+      <li class="compact subordinate-instance">
+        <span class="synonym-type">
+          <%= "#{misapplication[:instance_type]}:" %>
+        </span>
+        <%= link_to("#{misapplication[:name_citation]}".html_safe,
+                 names_show_path(misapplication[:name_id]),
+                 class: "synonym") %>
+        <%= "#{misapplication[:misapplied_by]}".html_safe %>
+      </li>
+    <% end %>
+  <% end %>
+  <% if nris[:instance_notes].present? && nris[:instance_notes].size > 0 %>
+    <% nris[:instance_notes].each do |note| %>
+      <div class="instance-note">
+        <span class="instance-note-label">
+          <%= note[:key_name] %>:
+        </span>
+        <span class="instance-note-value">
+          <%= note[:note_value].html_safe %><br>      
+        </span>
+      </div>
+    <% end %>
+  <% end %>
+  <% if nris[:common_names].present? && nris[:common_names].size > 0 %>
+    <% nris[:common_names].each do |common| %>
+      <li class="compact subordinate-instance">
+        <span class="synonym-type">
+          common name:
+        </span>
+        <%= link_to(common[:name_citation].html_safe,
+                    names_show_path(common[:name_id]),
+                    class: "common-name") %>
+      </li>
+    <% end %>
+  <% end %>
 <% end %>
 </div>

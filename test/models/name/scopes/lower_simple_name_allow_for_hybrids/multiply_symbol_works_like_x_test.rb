@@ -2,7 +2,7 @@
 require "test_helper"
 
 # Test
-class NameScopesLSNAFHmultSym < ActiveSupport::TestCase
+class MultiplySymbolWorksLikeXTest < ActiveSupport::TestCase
   test "multiply symbol works like x" do
     results = Name.simple_name_allow_for_hybrids_like("× agro")
     assert_equal 1, results.size
