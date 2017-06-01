@@ -3,7 +3,7 @@
 # Starting with a name-reference, prepare a collection of instances,
 # comments and notes ready to be displayed.
 class NameReferenceInstanceSet
-  attr_reader :results, :name_references
+  attr_reader :results, :name_references, :images
   def initialize(name_id)
     @name_references =
       Name.where(id: name_id)
@@ -34,6 +34,7 @@ class NameReferenceInstanceSet
     add_type_notes
     add_page_no
     add_primary_instance
+    add_images
   end
 
   def add_standalones
@@ -213,6 +214,15 @@ class NameReferenceInstanceSet
     end
   end
 
+  def add_images
+    name = Name.find(@results.first[:name_id])
+    if name.images_supported? && name.rank.species_or_below? && name.images_present?
+      @images = { simple_name: name.simple_name, count: name.image_count }
+    else
+      @images = nil
+    end
+  end
+
   def template(nr)
     ActiveSupport::HashWithIndifferentAccess.new(
       sequence: nil,
@@ -238,6 +248,7 @@ class NameReferenceInstanceSet
       relationship_instances: [],
       misapplications: [],
       protologue: nil,
+      images: nil,
     )
   end
 end

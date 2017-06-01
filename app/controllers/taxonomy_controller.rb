@@ -7,7 +7,7 @@ class TaxonomyController < ApplicationController
 
   def show
     @name = Name.find_by(id: params[:id])
-    @name_reference_instance_set = NameReferenceInstanceSet.new(params[:id]).results
+    @name_reference_instance_set = NameReferenceInstanceSet.new(params[:id])
     @target_id = params[:target_id]
   end
 end
