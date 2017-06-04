@@ -3,8 +3,9 @@
 # Starting with a name-reference, prepare a collection of instances,
 # comments and notes ready to be displayed.
 class NameReferenceInstanceSet
-  attr_reader :results, :name_references, :images
+  attr_reader :results, :name_references, :images, :name, :names_within
   def initialize(name_id)
+    @name = Name.find(name_id)
     @name_references =
       Name.where(id: name_id)
           .joins(instances: :instance_type)
@@ -19,6 +20,11 @@ class NameReferenceInstanceSet
           .order("coalesce(reference.year,9999), primary_instance desc,  \
     author.name")
     build_results
+    build_names_within
+  end
+
+  def build_names_within
+    @names_within = !Name.where(parent_id: @name.id).empty?
   end
 
   def build_results
@@ -148,6 +154,7 @@ class NameReferenceInstanceSet
                       name_id: cited_by.name.id,
                       name_citation: cited_by.name.citation,
                       reference_year: cited_by.this_cites.reference.year,
+                      page: cited_by.page,
                     }
                   end
       end
@@ -160,8 +167,8 @@ class NameReferenceInstanceSet
         result[:type_notes] =
           Instance.find(standalone)
                   .instance_notes
-                  .where(" instance_note.instance_note_key_id =
-        (select id from instance_note_key where name = 'Type')")
+                  .where(" instance_note.instance_note_key_id in
+        (select id from instance_note_key where name in ('Type','Lectotype','Neotype'))")
                   .collect do |note|
             { key_name: note.instance_note_key.name,
               note_value: note.value }
@@ -176,8 +183,8 @@ class NameReferenceInstanceSet
         result[:instance_notes] =
           Instance.find(standalone)
                   .instance_notes
-                  .where(" instance_note.instance_note_key_id !=
-        (select id from instance_note_key where name = 'Type')")
+                  .where(" instance_note.instance_note_key_id not in
+        (select id from instance_note_key where name in ('Type','Lectotype','Neotype'))")
                   .collect do |note|
                     { key_name: note.instance_note_key.name,
                       note_value: note.value }
@@ -188,11 +195,25 @@ class NameReferenceInstanceSet
 
   def add_page_no
     @results.each do |result|
-      if result[:standalone_instances].size == 1 && result[:relationship_instances].size <= 1
-        result[:page] = Instance.find(result[:standalone_instances].first).page
-      elsif result[:standalone_instances].size <= 1 && result[:relationship_instances].size == 1
+      result[:page_rule] = "no rule"
+      if result[:standalone_instances].size == 1 && result[:relationship_instances].empty? && result[:cited_by].empty?
+        instance = Instance.find(result[:standalone_instances].first)
+        result[:page] = instance.page
+        result[:page] ||= '-'
+        #result[:standalone_instances].first[:page_shown_above] = true
+        result[:page_rule] = "page from singl standalone instance"
+      elsif result[:standalone_instances].empty? && result[:relationship_instances].size == 1 && result[:cited_by].empty?
         result[:page] = result[:relationship_instances].first[:page]
+        result[:page] ||= '-'
         result[:relationship_instances].first[:page_shown_above] = true
+        result[:page_rule] = "page from singl relationship instance"
+      elsif result[:standalone_instances].empty? && result[:relationship_instances].empty? && result[:cited_by].size == 1
+        result[:page] = result[:cited_by].first[:page]
+        result[:page] ||= '-'
+        result[:cited_by].first[:page_shown_above] = true
+        result[:page_rule] = "page from single cited_by instance"
+      else
+        result[:page_rule] = "multiple instances"
       end
       next unless result[:page].nil? &&
                   result[:relationship_instances].size == 1
@@ -240,7 +261,7 @@ class NameReferenceInstanceSet
       common_names_count: 0,
       common_names: [],
       cited_by_count: 0,
-      cited_by: nil,
+      cited_by: [],
       accepted_name: nil,
       excluded_name: nil,
       declared_bt: nil,
@@ -249,6 +270,7 @@ class NameReferenceInstanceSet
       misapplications: [],
       protologue: nil,
       images: nil,
+      has_names_within: true,
     )
   end
 end
