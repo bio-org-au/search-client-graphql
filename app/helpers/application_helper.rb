@@ -52,7 +52,8 @@ module ApplicationHelper
   def classification_tree_key
     Rails.application.config.classification_tree_key
   rescue
-    Rails.application.config.classification_tree_key = ShardConfig.classification_tree_key
+    Rails.application.config.classification_tree_key =
+      ShardConfig.classification_tree_key
   end
 
   def description_html
@@ -64,13 +65,15 @@ module ApplicationHelper
   def tree_description_html
     Rails.application.config.tree_description_html
   rescue
-    Rails.application.config.tree_description_html = ShardConfig.tree_description_html
+    Rails.application.config.tree_description_html =
+      ShardConfig.tree_description_html
   end
 
   def name_description_html
     Rails.application.config.name_description_html
   rescue
-    Rails.application.config.name_description_html = ShardConfig.name_description_html
+    Rails.application.config.name_description_html =
+      ShardConfig.name_description_html
   end
 
   def tree_banner_text
@@ -87,7 +90,7 @@ module ApplicationHelper
 
   def banner_text
     Rails.application.config.banner_text
-  rescue 
+  rescue
     Rails.application.config.banner_text = ShardConfig.banner_text
   end
 
@@ -100,25 +103,29 @@ module ApplicationHelper
   def services_path_name_element
     Rails.application.config.services_path_name_element
   rescue
-    Rails.application.config.services_path_name_element = ShardConfig.services_path_name_element
+    Rails.application.config.services_path_name_element =
+      ShardConfig.services_path_name_element
   end
 
   def services_path_tree_element
     Rails.application.config.services_path_tree_element
   rescue
-    Rails.application.config.services_path_tree_element = ShardConfig.services_path_tree_element
+    Rails.application.config.services_path_tree_element =
+      ShardConfig.services_path_tree_element
   end
 
   def tree_search_help_text_html
     Rails.application.config.tree_search_help_text_html
   rescue
-    Rails.application.config.tree_search_help_text_html = ShardConfig.tree_search_help_text_html
+    Rails.application.config.tree_search_help_text_html =
+      ShardConfig.tree_search_help_text_html
   end
 
   def name_search_help_text_html
     Rails.application.config.name_search_help_text_html
   rescue
-    Rails.application.config.name_search_help_text_html = ShardConfig.name_search_help_text_html
+    Rails.application.config.name_search_help_text_html =
+      ShardConfig.name_search_help_text_html
   end
 
   def name_services(name_id)
@@ -161,7 +168,7 @@ module ApplicationHelper
   end
 
   def env_tag
-    case Rails.configuration.try('environment')
+    case Rails.configuration.try("environment")
     when /^dev/i
       "Dev"
     when /^test/i

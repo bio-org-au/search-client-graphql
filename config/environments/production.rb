@@ -56,7 +56,7 @@ Rails.application.configure do
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
-  config.log_tags = [ :subdomain, "search" ]
+  config.log_tags = [:subdomain, "search"]
 
   # Use a different logger for distributed setups.
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)

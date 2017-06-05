@@ -5,23 +5,22 @@
 module NameSearchable
   extend ActiveSupport::Concern
 
-
+  # String methods
   module SearchableNameStrings
     refine String do
       def regexified
-        self.gsub("*", ".*").gsub("%", ".*").sub(/$/,'$').sub(/^/,'^')
+        gsub("*", ".*").gsub("%", ".*").sub(/$/, "$").sub(/^/, "^")
       end
+
       def hybridized
-        self.strip.gsub(/  */,' (x )?').sub(/^ */,'(x )?').tr("×", "x")
+        strip.gsub(/  */, " (x )?").sub(/^ */, "(x )?").tr("×", "x")
       end
     end
   end
 
   # Class methods
   module ClassMethods
-
     using SearchableNameStrings
-    
     SIMPLE_NAME_REGEX = "lower(f_unaccent(simple_name)) ~ lower(f_unaccent(?)) "
     FULL_NAME_REGEX = "lower(f_unaccent(full_name)) ~ lower(f_unaccent(?))"
 
@@ -32,7 +31,7 @@ module NameSearchable
     end
 
     def simple_name_allow_for_hybrids_like(string)
-      self.search_for(string)
+      search_for(string)
     end
 
     def full_name_allow_for_hybrids_like(string)
@@ -61,4 +60,3 @@ module NameSearchable
     end
   end
 end
-

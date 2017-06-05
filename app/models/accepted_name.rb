@@ -1,16 +1,17 @@
 # frozen_string_literal: true
 
-  module SearchableNameStrings
-    refine String do
-      def regexified
-        self.gsub("*", ".*").gsub("%", ".*").sub(/$/,'$').sub(/^/,'^')
-      end
-      def hybridized
-        self.strip.gsub(/  */,' (x )?').sub(/^ */,'(x )?').tr("×", "x")
-      end
+# String methods
+module SearchableNameStrings
+  refine String do
+    def regexified
+      gsub("*", ".*").gsub("%", ".*").sub(/$/, "$").sub(/^/, "^")
+    end
+
+    def hybridized
+      strip.gsub(/  */, " (x )?").sub(/^ */, "(x )?").tr("×", "x")
     end
   end
-
+end
 
 # Rails model
 class AcceptedName < ActiveRecord::Base

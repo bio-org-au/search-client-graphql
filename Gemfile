@@ -90,4 +90,4 @@ platform :ruby do
     gem "mocha", "~> 1.1.0"
   end
 end
-gem 'simplecov', :require => false, :group => :test
+gem "simplecov", require: false, group: :test

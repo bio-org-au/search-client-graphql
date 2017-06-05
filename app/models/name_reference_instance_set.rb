@@ -58,7 +58,7 @@ class NameReferenceInstanceSet
       result[:standalone_instances].each do |standalone_instance|
         instance = Instance.find(standalone_instance)
         if instance.has_protologue?
-          result[:protologue] = {source_id: instance.source_id}
+          result[:protologue] = { source_id: instance.source_id }
         end
       end
     end
@@ -168,7 +168,8 @@ class NameReferenceInstanceSet
           Instance.find(standalone)
                   .instance_notes
                   .where(" instance_note.instance_note_key_id in
-        (select id from instance_note_key where name in ('Type','Lectotype','Neotype'))")
+        (select id from instance_note_key
+          where name in ('Type','Lectotype','Neotype'))")
                   .collect do |note|
             { key_name: note.instance_note_key.name,
               note_value: note.value }
@@ -184,7 +185,8 @@ class NameReferenceInstanceSet
           Instance.find(standalone)
                   .instance_notes
                   .where(" instance_note.instance_note_key_id not in
-        (select id from instance_note_key where name in ('Type','Lectotype','Neotype'))")
+        (select id from instance_note_key
+          where name in ('Type','Lectotype','Neotype'))")
                   .collect do |note|
                     { key_name: note.instance_note_key.name,
                       note_value: note.value }
@@ -199,17 +201,17 @@ class NameReferenceInstanceSet
       if result[:standalone_instances].size == 1 && result[:relationship_instances].empty? && result[:cited_by].empty?
         instance = Instance.find(result[:standalone_instances].first)
         result[:page] = instance.page
-        result[:page] ||= '-'
-        #result[:standalone_instances].first[:page_shown_above] = true
+        result[:page] ||= "-"
+        # result[:standalone_instances].first[:page_shown_above] = true
         result[:page_rule] = "page from singl standalone instance"
       elsif result[:standalone_instances].empty? && result[:relationship_instances].size == 1 && result[:cited_by].empty?
         result[:page] = result[:relationship_instances].first[:page]
-        result[:page] ||= '-'
+        result[:page] ||= "-"
         result[:relationship_instances].first[:page_shown_above] = true
         result[:page_rule] = "page from singl relationship instance"
       elsif result[:standalone_instances].empty? && result[:relationship_instances].empty? && result[:cited_by].size == 1
         result[:page] = result[:cited_by].first[:page]
-        result[:page] ||= '-'
+        result[:page] ||= "-"
         result[:cited_by].first[:page_shown_above] = true
         result[:page_rule] = "page from single cited_by instance"
       else

@@ -66,4 +66,3 @@ class Names::Services::Images
     Rails.logger.error("Names::Services::Images error: #{s}")
   end
 end
-

@@ -100,12 +100,10 @@ class Name < ActiveRecord::Base
   end
 
   def image_count
-    unless (Rails.cache.read("images")).class == Hash
-      Names::Services::Images.load
-    end
+    Names::Services::Images.load unless Rails.cache.read("images").class == Hash
     Rails.cache.read("images")[simple_name]
   rescue => e
-    logger.error("Error in Name#image_count: #{e.to_s}")
+    logger.error("Error in Name#image_count: #{e}")
     logger.error("Assuming image_count is 0")
     0
   end
@@ -115,6 +113,6 @@ class Name < ActiveRecord::Base
   end
 
   def images_present?
-    (image_count || 0) > 0
+    (image_count || 0).positive?
   end
 end

@@ -38,15 +38,6 @@ class NameOrSynonym < ActiveRecord::Base
                          cites_cites_ref_year")
   end
 
-  def self.full_name_like(search_term = "x")
-    query1 = AcceptedName.full_name_like(search_term)
-    query2 = AcceptedSynonym.full_name_like(search_term)
-    sql = NameOrSynonym.connection.unprepared_statement do
-      "((#{query1.to_sql}) UNION (#{query2.to_sql})) AS name_or_synonym_vw"
-    end
-    NameOrSynonym.from(sql).order("sort_name")
-  end
-
   # "Union with Active Record"
   # http://thepugautomatic.com/2014/08/union-with-active-record/
   #
