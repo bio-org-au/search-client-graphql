@@ -13,7 +13,8 @@ body {
 #content {
 	padding-bottom: 30%; /* Height of the footer element */
 }
-#footer {
+/* Makes display unusable in iphone size display */
+#xfooter {
 	width:100%;
 	position:absolute;
 	bottom:0;
