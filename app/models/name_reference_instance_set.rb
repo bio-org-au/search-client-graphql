@@ -184,6 +184,8 @@ class NameReferenceInstanceSet
         result[:instance_notes] =
           Instance.find(standalone)
                   .instance_notes
+          .where(" instance_note.instance_note_key_id not in (select id from instance_note_key where name like 'EPBC%') ")
+          .where(" instance_note.instance_note_key_id not in (select id from instance_note_key where deprecated) ")
                   .where(" instance_note.instance_note_key_id not in
         (select id from instance_note_key
           where name in ('Type','Lectotype','Neotype'))")
