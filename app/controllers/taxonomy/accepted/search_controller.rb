@@ -23,15 +23,12 @@ class Taxonomy::Accepted::SearchController < ApplicationController
   end
 
   def search_a
-    case params[:search_type]
-    when /accepted\z/
-      @search = Taxonomy::Accepted::Search::Accepted.new(params)
-    when /accepted and excluded\z/
-      @search = Taxonomy::Accepted::Search::AcceptedAndExcluded
-                .new(params)
-    else
-      @search = Taxonomy::Accepted::Search::Accepted.new(params)
-    end
+    @search = case params[:search_type]
+              when /accepted and excluded\z/
+                Taxonomy::Accepted::Search::AcceptedAndExcluded.new(params)
+              else
+                Taxonomy::Accepted::Search::Accepted.new(params)
+              end
   end
 
   def search_b

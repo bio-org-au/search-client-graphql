@@ -1,0 +1,4 @@
+$('#taxonomy-details-for-<%= params[:id] %>').append("<%= escape_javascript(render partial: 'load') %>");
+$('#taxonomy-details-for-<%= params[:id] %>').removeClass("hidden-xs-up").addClass("loaded");
+$('span#taxonomy-link-for-<%= params[:id] %> > a.taxonomy-heading').removeClass("no-details").addClass("loaded-details");
+

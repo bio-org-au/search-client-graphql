@@ -88,4 +88,37 @@ class Instance < ActiveRecord::Base
                     or
                     instance_type.name = 'vernacular name'")
   end
+
+  def name_html(synonym, core_name_html)
+    name_html = %(#{core_name_html}<span class="name-status">#{synonym.name.status.name_to_show}</span>)
+  end
+
+  def synonyms_for_taxonomy_display
+    synonyms.sort do |x,y|
+                    [x.instance_type.misapplied.to_s, x.name.full_name, x.try("this_cites").try("reference").try("year") || 9999] <=>  [y.instance_type.misapplied.to_s, y.name.full_name, y.try("this_cites").try("reference").try("year") || 9999]
+    end.collect do |synonym|
+      constructed_entry_html = synonym.instance_type.doubtful? ? "?" : ""
+      if synonym.instance_type.misapplied?
+        for_misapplied = { cites_author_component: synonym.this_cites.name.author_component_of_full_name,
+                           cites_page: synonym.this_cites.page,
+                           cites_reference_citation: synonym.this_cites.reference.citation }
+        constructed_entry_html += name_html(synonym,synonym.name.simple_name_html)
+        constructed_entry_html += "&nbsp;<i>auct. non</i>"
+        constructed_entry_html += "#{synonym.this_cites.name.author_component_of_full_name}:&nbsp;"
+        constructed_entry_html += synonym.this_cites.reference.citation
+        constructed_entry_html += ": #{synonym.this_cites.page}" unless synonym.this_cites.page.blank?
+        constructed_entry_html += %(, <span class="pro-parte"><i>p.p.</i></span>) if synonym.instance_type.pro_parte?
+      else
+        for_misapplied = {}
+        constructed_entry_html += name_html(synonym,synonym.name.full_name_html)
+        constructed_entry_html += ", p.p." if synonym.instance_type.pro_parte?
+      end
+      
+      {doubtful: synonym.instance_type.doubtful?,
+       misapplied: synonym.instance_type.misapplied?,
+       pro_parte: synonym.instance_type.pro_parte?,
+       constructed_entry_html: constructed_entry_html,
+       for_misapplied: for_misapplied}
+    end
+  end
 end

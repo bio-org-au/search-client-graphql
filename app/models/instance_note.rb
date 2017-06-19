@@ -15,6 +15,18 @@ class InstanceNote < ActiveRecord::Base
           where name in ('Lectotype', 'Neotype','Type') ) ")
   end)
 
+  scope :without_epbc_notes, (lambda do
+    where("instance_note_key_id not in
+          (select id from instance_note_key
+          where name like 'EPBC%') ")
+  end)
+
+  scope :not_deprecated, (lambda do
+    where("instance_note_key_id not in
+          (select id from instance_note_key
+          where deprecated) ")
+  end)
+
   def apc_distribution?
     instance_note_key.apc_distribution?
   end

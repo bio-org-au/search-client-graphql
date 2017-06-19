@@ -15,13 +15,37 @@ loadDetailsIfRequired = () ->
       $('#retrieve-details-control').click()
       showFirstMoreDetailsWidget()
 
-retrieveDetails = (event, $element) ->
-  debug("retrieveDetails")
-  $(".drill-down-toggle.hiding-details").click()
-  $(".drill-down-toggle.no-details").filter(" :lt(50) ").click()
-  # $(".drill-down-toggle.no-details").filter(" :eq(10) ").focus()
+stopRetrieveDetails = (event, $element) ->
+  debug("stopRetrieveDetails")
+  $('#stop-retrieve-details-control').addClass('hidden-xs-up')
+  $('#resume-retrieve-details-control').removeClass('hidden-xs-up')
+  window.retrieveDetailsBoolean = false
   event.preventDefault()
   event.stopPropagation()
+
+retrieveDetails = (event, $element) ->
+  debug('retrieveDetails')
+  links = $(".drill-down-toggle.no-details")
+  if window.retrieveDetailsBoolean == true && links.length > 0
+    retrieveOneDetail(links[0])
+    setTimeout(retrieveDetails,800)
+    $('#stop-retrieve-details-control').removeClass('hidden-xs-up')
+    $('#retrieve-details-control').addClass('hidden-xs-up')
+  unless typeof event == "undefined"
+    event.preventDefault()
+    event.stopPropagation()
+
+resumeRetrieveDetails = (event, $element) ->
+  debug('resumeRetrieveDetails')
+  window.retrieveDetailsBoolean = true
+  $('#resume-retrieve-details-control').addClass('hidden-xs-up')
+  retrieveDetails(event, $element)
+
+retrieveOneDetail = (link) ->
+  debug("retrieveOneDetail")
+  if window.retrieveDetailsBoolean == true
+    link.click()
+    resetNameControls()
 
 navNewSearch = (event, $element) ->
   $('#q').val('')
@@ -60,7 +84,7 @@ drillDownToggle = (event, $element) ->
     $element.removeClass("no-details").removeClass("hiding-details")
     showTarget(targetId)
     $element.find('i.fa-caret-right').removeClass('fa-caret-right').addClass('fa-caret-down')
-    resetControls()
+    resetNameControls()
     if $("##{targetId}:empty").length == 0
       keep_going()
     else
@@ -71,7 +95,7 @@ drillDownToggle = (event, $element) ->
     $element.addClass("hiding-details")
     $element.removeClass("showing-details")
     $element.find('i.fa-caret-down').removeClass('fa-caret-down').addClass('fa-caret-right')
-    resetControls()
+    resetNameControls()
     event.preventDefault()
     event.stopPropagation()
 
@@ -100,21 +124,31 @@ hideAllDetails = (event, $element) ->
 collapseAll = (event, $element) ->
   debug("collapseAll")
   $(".drill-down-toggle.showing-details").click()
-  resetControls()
+  resetNameControls()
 
 expandAll = (event, $element) ->
   debug("expandAll")
   $(".drill-down-toggle.hiding-details").click()
-  resetControls()
+  resetNameControls()
 
 alwaysShowHideAllToggle = (event, $element) ->
   debug("alwaysShowHideAllToggle")
   if $('#retrieve_details_on_load').val() == 'false'
     $('#retrieve_details_on_load').val('true')
-    $element.text("Always retrieve details").append(" &nbsp;<i class='fa fa-check'></i>")
+    $element.text("Always get details").append(" &nbsp;<i class='fa fa-check'></i>")
   else
     $('#retrieve_details_on_load').val('false')
-    $element.text("Always retrieve details")
+    $element.text("Always get details")
+
+showSelector = (selector) -> 
+  # Check non-empty array of hidden elements to avoid ugly error
+  # search:1SyntaxError: Unexpected identifier 'Object'. 
+  # Expected either a closing ']' or a ',' following an array element.
+  hiddenSelector = "#{selector}.hidden-xs-up"
+  $(hiddenSelector).removeClass('hidden-xs-up') if $(hiddenSelector).length > 0
+
+hideSelector = (selector) -> 
+  $(selector).addClass('hidden-xs-up')
 
 window.showAsExpanded = (targetId) ->
   debug('showAsExpanded')
@@ -127,35 +161,44 @@ window.showDetailsRetrieved = (targetId) ->
   debug('showDetailsRetrieved')
   $("##{targetId}").addClass('retrieved')
 
-window.resetControls = () ->
-  debug('resetControls')
+window.resetNameControls = () ->
+  return unless $('.name-results').length > 0
+  debug('resetNameControls')
+  debug('=================')
   name_count = $('.name-heading').length
+  debug("name_count: #{name_count}")
+  drill_down_toggles_retrieved_count = $('.drill-down-toggle.retrieved').length
+  debug("drill_down_toggles_retrieved_count: #{drill_down_toggles_retrieved_count}")
   details_retrieved_count = $('.details.retrieved').length
+  debug("details_retrieved_count: #{details_retrieved_count}")
   expanded_details_count = Math.min(details_retrieved_count, $('a.showing-details').length)
+  debug("expanded_details_count: #{expanded_details_count}")
   collapsed_details_count = $('.hiding-details').length
-  $('#details-retrieved-count').text("#{details_retrieved_count}")
+  debug("collapsed_details_count: #{collapsed_details_count}")
+  debug("window.retrieveDetailsBoolean: #{window.retrieveDetailsBoolean}")
+  $('.details-retrieved-entry').text("#{details_retrieved_count}")
   if name_count == 0
-    $('.control').addClass('hidden-xs-up')
+    hideSelector('.control')
   else
-    if details_retrieved_count == name_count
-      $('#retrieve-details-control').addClass('hidden-xs-up')
-    else
-      $('#retrieve-details-control').removeClass('hidden-xs-up')
     if expanded_details_count > 0
       $('#expanded-details-count').text("(#{expanded_details_count})")
-      $('#collapse-details-control').removeClass('hidden-xs-up')
+      showSelector('#collapse-details-control')
     else
-      $('#collapse-details-control').addClass('hidden-xs-up')
+      hideSelector('#collapse-details-control')
     if collapsed_details_count > 0
       $('#collapsed-details-count').text("(#{collapsed_details_count})")
-      $('#expand-details-control').removeClass('hidden-xs-up')
+      showSelector('#expand-details-control')
     else
-      $('#expand-details-control').addClass('hidden-xs-up')
-    if details_retrieved_count > 0 && details_retrieved_count < name_count
-      $('#more-details-text').removeClass('hidden-xs-up')
-    else
-      $('#more-details-text').addClass('hidden-xs-up')
-
+      hideSelector('#expand-details-control')
+  debug('End resetNameControls')
+ 
+window.resetTaxonomyControls = () ->
+  return unless $('.taxonomy-results').length > 0
+  debug('resetTaxonomyControls')
+  taxonomy_count = $('.taxonomy-heading').length
+  debug(taxonomy_count)
+  details_retrieved_count = $('.details.retrieved').length
+  debug(details_retrieved_count)
 
 switchNameType = (event, $element) ->
   debug("switchNameType")
@@ -193,12 +236,16 @@ window.changeAlwaysDetailsSwitch = (bool) ->
     $('#always-details-toggle-switch-indicator').addClass('hidden-xs-up')
     $('.for-always-details').addClass('hidden-xs-up')
 
-window.changeTaxonomyDetailsSwitch = (bool) ->
+window.changeIncludeTaxonomyDetailsSwitch = (bool) ->
   if bool 
-    $('#taxonomy-details-toggle-switch-indicator').removeClass('hidden-xs-up')
+    $('#include-taxonomy-details-toggle-switch-indicator').removeClass('hidden-xs-up')
+  else
+    $('#include-taxonomy-details-toggle-switch-indicator').addClass('hidden-xs-up')
+
+window.showTaxonomyDetailsSwitch = (bool) ->
+  if bool 
     $('.for-taxonomy-details').removeClass('hidden-xs-up')
   else
-    $('#taxonomy-details-toggle-switch-indicator').addClass('hidden-xs-up')
     $('.for-taxonomy-details').addClass('hidden-xs-up')
 
 window.changeHelpSwitch = (bool) ->
@@ -296,6 +343,25 @@ window.hideAbout = () ->
   $('#about-link-tick').addClass("hidden-xs-up")
   $('.not-about-page').removeClass("hidden-xs-up")
 
+showHideTaxonomyDetails = (event, element) ->
+  if element.hasClass('hiding')
+    element.removeClass('hiding').addClass('showing').html('Hide details')
+    $('.for-taxonomy-details').removeClass('hidden-xs-up')
+  else
+    element.removeClass('showing').addClass('hiding').html('Show details')
+    $('.for-taxonomy-details').addClass('hidden-xs-up')
+  event.preventDefault()
+  event.stopPropagation()
+
+toggleTaxonomyLoadedDetails = (event, element) ->
+  div = element.closest('li').find('div.accepted-name-details')
+  if div.hasClass('hidden-xs-up')
+    div.removeClass('hidden-xs-up')
+  else
+    div.addClass('hidden-xs-up')
+  event.preventDefault()
+  event.stopPropagation()
+
 # Turbolinks
 turbolinksLoad = () ->
   debug('turbolinksLoad; =============')
@@ -310,6 +376,8 @@ docReady = ->
   $('body').on('click','.drill-down-toggle', (event) -> drillDownToggle(event,$(this)))
   $('body').on('click','#hide-all-details-link', (event) -> hideAllDetails(event,$(this)))
   $('body').on('click','.retrieve-details-control', (event) -> retrieveDetails(event,$(this)))
+  $('body').on('click','#stop-retrieve-details-control', (event) -> stopRetrieveDetails(event,$(this)))
+  $('body').on('click','#resume-retrieve-details-control', (event) -> resumeRetrieveDetails(event,$(this)))
   $('body').on('click','.collapse-details-control', (event) -> collapseAll(event,$(this)))
   $('body').on('click','.expand-details-control', (event) -> expandAll(event,$(this)))
   $('body').on('click','#always-retrieve-details-toggle', (event) -> alwaysShowHideAllToggle(event,$(this)))
@@ -322,9 +390,13 @@ docReady = ->
   $('body').on('click','.alt-search-link', (event) -> altSearchLink(event,$(this)))
   $('body').on('page:fetch','*', (event) -> pageFetch(event,$(this)))
   $('body').on('click','.about-link', (event) -> toggleAbout(event,$(this)))
+  $('body').on('click','#show-hide-taxonomy-details', (event) -> showHideTaxonomyDetails(event,$(this)))
+  $('body').on('click','.taxonomy-heading.loaded-details', (event) -> toggleTaxonomyLoadedDetails(event,$(this)))
   window.addClearButton()
+  window.retrieveDetailsBoolean = true
   loadDetailsIfRequired() if typeof(loadDetailsIfRequired) == "function"
-  resetControls() if typeof(resetControls) == "function"
+  resetNameControls() if typeof(resetNameControls) == "function"
+  resetTaxonomyControls() if typeof(resetTaxonomyControls) == "function"
 	
 
 #$(document).on('turbolinks:load', turbolinksLoad())

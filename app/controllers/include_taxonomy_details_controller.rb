@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Controller
-class TaxonomyDetailsController < ApplicationController
+class IncludeTaxonomyDetailsController < ApplicationController
   def toggle
     session[:taxonomy_details] ||= false
     session[:taxonomy_details] = !session[:taxonomy_details]

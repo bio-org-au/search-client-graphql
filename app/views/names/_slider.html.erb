@@ -16,11 +16,11 @@
             </a>
           </li>
           <li>
-              <%= link_to "Always retrieve details #{fa_icon('check', id: 'always-details-toggle-switch-indicator', class: session[:always_details] ? '' : 'hidden-xs-up')}".html_safe,
+              <%= link_to "Retrieve details during query #{fa_icon('check', id: 'always-details-toggle-switch-indicator', class: session[:always_details] ? '' : 'hidden-xs-up')}".html_safe,
                         always_details_path,
                  id:"always-retrieve-details-toggle",
                  class:"tiny always-retrieve-details-toggle",
-                        title:"Always retrieve details on/off switch.",
+                        title:"Retrieve details during query. May slow the query.",
                         method: :post,
                         remote: true %>
           </li>
@@ -28,7 +28,7 @@
               <a href="#"
                  id="collapse-details-control"
                  class="tiny collapse-details-control control hidden-xs-up"
-                 title="Collapse retrieved details">Collapse retrieved
+                 title="Collapse retrieved details">Collapse details
                  <span id="expanded-details-count"></span>
               </a>
           </li>
@@ -36,7 +36,7 @@
               <a href="#"
                  id="expand-details-control"
                  class="tiny expand-details-control control hidden-xs-up"
-                 title="Expand retrieved details that are collapsed or hidden">Expand retrieved
+                 title="Expand retrieved details that are collapsed or hidden">Expand details
                  <span id="collapsed-details-count"></span>
               </a>
           </li>

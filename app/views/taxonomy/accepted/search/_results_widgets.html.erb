@@ -1,0 +1,73 @@
+
+
+          <hr/>
+          <li>
+            <span class="details-retrieved-entry">Details retrieved: 
+              <span id="taxonomy-details-retrieved-count"></span>
+            </span>
+          </li>
+          <li>
+            <a href="#"
+               id="taxonomy-retrieve-details-control"
+               class="tiny xretrieve-details-control taxonomy-control"
+               title="Retrieve details, 50 at a time">Retrieve <span id="more-details-text" class="hidden-xs-up"> more</span> details
+            </a>
+          </li>
+          <li>
+            <%= link_to "Always get details #{fa_icon('check',
+                        id: 'include-taxonomy-details-toggle-switch-indicator',
+                        class: session[:include_taxonomy_details] ? '' : 'hidden-xs-up')}".html_safe,
+                        taxonomy_details_include_exclude_path,
+                        id:"include-taxonomy-details-toggle",
+                        class:"tiny always-retrieve-details-toggle",
+                        title:"Include details with the query results - may be slower for large query results.  Affects the next query.",
+                        method: :post,
+                        remote: true %>
+          </li>
+          <li>
+              <%= link_to session[:include_taxonomy_details] ? "Hide details" : "Show details",
+                        taxonomy_details_show_hide_path,
+                 id:"show-hide-taxonomy-details",
+                 class: session[:include_taxonomy_details] ? "tiny showing" : "tiny hiding",
+                        title:"Include details with the query results - may be slower for large query results.  Affects the next query.",
+                        method: :post,
+                        remote: true %>
+          </li>
+          <li>
+              <a href="#"
+                 id="taxonomy-expand-details-control"
+                 class="tiny expand-details-control taxonomy-control hidden-xs-up"
+                 title="Show hidden details">Show details
+                 <span id="collapsed-details-count"></span>
+              </a>
+          </li>
+          <hr/>
+
+          <li>
+            <a href="javascript:window.print()"
+               class="tiny"
+               title="Print the page">Print</a>
+          </li>
+            <li class="">
+              <%= link_to "CSV",
+                          "javascript: void;",
+                          class: "tiny needs-details-limit taxonomy-format-search",
+                          data: {search_format: "csv"},
+                          title: "Convert results to CSV." %>
+            </li>
+            <li class="">
+              <%= link_to ticked("HTML"),
+                          "javascript: void;",
+                          class: "tiny needs-details-limit taxonomy-format-search",
+                          data: {search_format: "html"},
+                          title: "Results will be displayed in HTML unless you choose CSV or JSON." %>
+            </li>
+            <li class="">
+              <%= link_to "JSON",
+                          "javascript: void;",
+                          class: "tiny needs-details-limit taxonomy-format-search",
+                          data: {search_format: "json"},
+                          title: "Convert results to JSON." %>
+            </li>
+
+          <hr/>

@@ -60,49 +60,9 @@
                         data: { search_type: "all" }, 
                         title: "Search for all of the above within the #{tree_label_text}." %>
           </li>
-
           <% if @search.present? %>
-
-          <hr/>
-
-          <li><%= link_to "Details #{fa_icon('check',
-                        id: 'taxonomy-details-toggle-switch-indicator',
-                        class: session[:taxonomy_details] ? '' : 'hidden-xs-up')}".html_safe,
-                        taxonomy_details_path,
-                        title:"Details on/off switch.  Does not apply to synonyms.",
-                        method: :post,
-                        remote: true %>
-          </li>
-          <hr/>
-          <li>
-            <a href="javascript:window.print()"
-               class="tiny"
-               title="Print the page">Print</a>
-          </li>
-            <li class="">
-              <%= link_to "CSV",
-                          "javascript: void;",
-                          class: "tiny needs-details-limit taxonomy-format-search",
-                          data: {search_format: "csv"},
-                          title: "Convert results to CSV." %>
-            </li>
-            <li class="">
-              <%= link_to ticked("HTML"),
-                          "javascript: void;",
-                          class: "tiny needs-details-limit taxonomy-format-search",
-                          data: {search_format: "html"},
-                          title: "Results will be displayed in HTML unless you choose CSV or JSON." %>
-            </li>
-            <li class="">
-              <%= link_to "JSON",
-                          "javascript: void;",
-                          class: "tiny needs-details-limit taxonomy-format-search",
-                          data: {search_format: "json"},
-                          title: "Convert results to JSON." %>
-            </li>
-
+            <%= render partial: "taxonomy/accepted/search/results_widgets" %>
           <% end %>
-          <hr/>
           <%= render partial: "toggle_wildcard/sidebar_widget" %>
           <li>
             <%= link_to "About #{fa_icon('check', id: 'about-link-tick', class: 'tick hidden-xs-up')}".html_safe,

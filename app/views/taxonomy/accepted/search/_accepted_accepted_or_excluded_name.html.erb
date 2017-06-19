@@ -1,0 +1,41 @@
+     <% showing_details = session[:include_taxonomy_details] %>
+     <li class="tree-results compact">
+       <span id="taxonomy-link-for-<%= name.instance.id %>">
+         <%= link_to(name.full_name, taxonomy_details_load_path(id: name.instance.id, details_loaded: false, details_showing: false),
+         class: showing_details ? "taxonomy-heading loaded-details" : "taxonomy-heading no-details",
+                     title: "Select to show or hide details", remote: true) %>
+       </span>
+       <% if name.show_status? %>
+         <span class="name-status" title="Name Status"><%= name.status.name %></span>
+       <% end %>
+       <% if excluded %>
+         <span title="Excluded from <%= classification_tree_key %>"><%= fa_icon('ban', class: 'fa-lg red') %><%= classification_tree_key %></span>
+       <% end %>
+       <span class="small">
+         <%= "sensu #{name.reference.citation_html}".html_safe %>
+       </span>
+       <% if session[:citations] %>
+         <span class="citation-links">
+           <%= link_to(fa_icon("link"),
+                       name_services(name.id),
+                       title: "Citation link for the #{name.full_name}") %>
+         </span>
+       <% end %>
+       <div id="taxonomy-details-for-<%= name.instance.id %>" class="accepted-name-details indented for-taxonomy-details details <%= showing_details ? 'retrieved' : 'hidden-xs-up' %>">
+         <% if showing_details %>
+           <ul class="accepted-instances small">
+             <% name.instance.synonyms_for_taxonomy_display.each do |synonym| %>
+               <%= synonym[:constructed_entry_html].html_safe %>
+               <br>
+             <% end %>
+           </ul>
+           <div class="accepted-name-comment small" title="Accepted name comment">
+             <%= name.instance.apc_comment.try("html_safe") %>
+           </div>
+           <div class="accepted-name-distribution small" title="Accepted name distribution">
+             <%= name.instance.apc_distribution %>
+           </div>
+         <% end %>
+       </div>
+     </li>
+

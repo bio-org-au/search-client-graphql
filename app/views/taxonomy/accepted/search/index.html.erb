@@ -20,9 +20,6 @@
 
   <% if @search.present? %>
     <%= "<span class='search-result-summary'>#{pluralize(@search.results.size, 'name')}</span>".html_safe %>
-  <% end %>
-
-  <% if @search.present? %>
     <%= render partial: 'results', locals: {name: @search.results.first} %>
   <% end %>
 </div>

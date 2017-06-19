@@ -1,30 +1,28 @@
           <hr/>
           <li>
-            <span class="details-retrieved-entry">Details retrieved: 
-              <span id="details-retrieved-count"></span>
-            </span>
-          </li>
-          <li>
             <a href="#"
                id="retrieve-details-control"
                class="tiny retrieve-details-control control"
-               title="Retrieve details, 50 at a time">Retrieve <span id="more-details-text" class="hidden-xs-up"> more</span> details
+               title="Get details for the current set of records.">Get details
             </a>
-          </li>
-          <li>
-              <%= link_to "Always retrieve details #{fa_icon('check', id: 'always-details-toggle-switch-indicator', class: session[:always_details] ? '' : 'hidden-xs-up')}".html_safe,
-                        always_details_path,
-                 id:"always-retrieve-details-toggle",
-                 class:"tiny always-retrieve-details-toggle",
-                        title:"Always retrieve details on/off switch.",
-                        method: :post,
-                        remote: true %>
+            <a href="#"
+               id="stop-retrieve-details-control"
+               class="tiny retrieve-details-control control hidden-xs-up"
+               title="Pause details for the current set of records.">Pause details
+            <span class="details-retrieved-entry"></span>
+            </a>
+            <a href="#"
+               id="resume-retrieve-details-control"
+               class="tiny retrieve-details-control control hidden-xs-up"
+               title="Resume details for the current set of records.">Resume details
+            <span class="details-retrieved-entry"></span>
+            </a>
           </li>
           <li>
               <a href="#"
                  id="collapse-details-control"
                  class="tiny collapse-details-control control hidden-xs-up"
-                 title="Collapse retrieved details">Collapse retrieved
+                 title="Hide retrieved details">Hide details
                  <span id="expanded-details-count"></span>
               </a>
           </li>
@@ -32,9 +30,18 @@
               <a href="#"
                  id="expand-details-control"
                  class="tiny expand-details-control control hidden-xs-up"
-                 title="Expand retrieved details that are collapsed or hidden">Expand retrieved
+                 title="Show hidden details">Show details
                  <span id="collapsed-details-count"></span>
               </a>
+          </li>
+          <li>
+              <%= link_to "Always get details #{fa_icon('check', id: 'always-details-toggle-switch-indicator', class: session[:always_details] ? '' : 'hidden-xs-up')}".html_safe,
+                        always_details_path,
+                 id:"always-retrieve-details-toggle",
+                 class:"tiny always-retrieve-details-toggle",
+                        title:"Always include details with the query results - may be slower for large query sets.  Setting affects the next and subsequent queries.",
+                        method: :post,
+                        remote: true %>
           </li>
           <hr/>
           <li>

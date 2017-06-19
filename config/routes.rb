@@ -119,7 +119,20 @@ Rails.application.routes.draw do
 
   post "editor" => "editor#toggle", as: :editor
   post "citations" => "citations#toggle", as: :citations
-  post "taxonomy_details" => "taxonomy_details#toggle", as: :taxonomy_details
+
+
+  # Example resource route within a namespace:
+  #   namespace :admin do
+  #     # Directs /admin/products/* to Admin::ProductsController
+  #     # (app/controllers/admin/products_controller.rb)
+  #     resources :products
+  #   end
+  namespace :taxonomy do
+    post "show_hide_taxonomy_details" => "details#show_hide", as: :details_show_hide
+    post "include_exclude_taxonomy_details" => "details#include_exclude", as: :details_include_exclude
+    get  "load_details" => "details#load", as: :details_load
+  end
+   
   post "always_details" => "always_details#toggle", as: :always_details
   get "config" => "config#index", as: :config
   match "/names/search/about",

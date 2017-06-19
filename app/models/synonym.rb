@@ -8,6 +8,9 @@ class Synonym < ActiveRecord::Base
   belongs_to :name
   belongs_to :reference
   belongs_to :cite, foreign_key: "cites_id"
+  belongs_to :this_cites,
+             class_name: "Instance",
+             foreign_key: "cites_id"
   belongs_to :instance_type
   scope :in_nested_instance_type_order, (lambda do
     order(

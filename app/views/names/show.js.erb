@@ -2,5 +2,6 @@
   $("#<%= @target_id %>").append('<%= escape_javascript(render partial: "cached_instances") %>');
   $("#<%= @target_id %>").removeClass('hidden-xs-up');
   showAsExpanded("<%= @target_id %>");
+  showDetailsRetrieved("<%= @name.id %>");
   showDetailsRetrieved("<%= @target_id %>");
-  resetControls();
+  resetNameControls();

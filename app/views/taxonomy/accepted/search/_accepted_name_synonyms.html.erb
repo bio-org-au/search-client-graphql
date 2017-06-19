@@ -1,13 +1,15 @@
+           <div class="accepted-name-details indented for-taxonomy-details <%= visible ? '' : 'hidden-xs-up' %>">
              <ul class="accepted-instances small">
-               <% @instance.synonyms_for_taxonomy_display.each do |synonym| %>
+               <% name.instance.synonyms_for_taxonomy_display.each do |synonym| %>
                  <%= synonym[:constructed_entry_html].html_safe %>
                  <br>
                <% end %>
              </ul>
              <div class="accepted-name-comment small" title="Accepted name comment">
-               <%= @instance.apc_comment.try("html_safe") %>
+               <%= name.instance.apc_comment.try("html_safe") %>
              </div>
              <div class="accepted-name-distribution small" title="Accepted name distribution">
-               <%= @instance.apc_distribution %>
+               <%= name.instance.apc_distribution %>
              </div>
+           </div>
 
