@@ -3,7 +3,7 @@
 class Taxonomy::Accepted::Search::Synonym
   attr_reader :parsed,
               :results
-  SEARCH_TYPE = "Scientific Name"
+  SEARCH_TYPE = "Synonym"
   def initialize(params, default_show_results_as: "list")
     @parsed = Taxonomy::Accepted::Search::Parse.new(
       params,

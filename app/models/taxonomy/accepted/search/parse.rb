@@ -20,7 +20,7 @@ class Taxonomy::Accepted::Search::Parse
 
   def search_type
     if @info.key?(:search_type)
-      "#{@info[:search_type]} Search"
+      "#{@info[:search_type]}"
     else
       SIMPLE_SEARCH
     end

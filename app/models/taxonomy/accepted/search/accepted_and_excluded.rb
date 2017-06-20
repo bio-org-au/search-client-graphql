@@ -3,7 +3,7 @@
 class Taxonomy::Accepted::Search::AcceptedAndExcluded
   attr_reader :parsed,
               :results
-  SEARCH_TYPE = "Scientific Name"
+  SEARCH_TYPE = "Accepted and Excluded Name"
   def initialize(params, default_show_results_as: "details")
     @parsed = Taxonomy::Accepted::Search::Parse.new(
       params,

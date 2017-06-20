@@ -19,7 +19,7 @@
   <%= render "taxonomy/accepted/search/form" %>
 
   <% if @search.present? %>
-    <%= "<span class='search-result-summary'>#{pluralize(@search.results.size, 'name')}</span>".html_safe %>
+    <%= "<span class='search-result-summary'>#{pluralize(@search.results.size, @search.parsed.search_type)} </span>".html_safe %>
     <%= render partial: 'results', locals: {name: @search.results.first} %>
   <% end %>
 </div>
