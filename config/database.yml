@@ -1,1 +1,4 @@
-# Get database config and credentials.
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: no_such_thing
