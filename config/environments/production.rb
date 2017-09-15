@@ -89,7 +89,7 @@ Rails.application.configure do
 end
 
 begin
-  config_file_path = "#{ENV['HOME']}/.nsl/search-config.rb"
+  config_file_path = "#{ENV['HOME']}/.nsl/scg-config.rb"
   puts "Loading config from: #{config_file_path}"
   load config_file_path
 rescue LoadError
@@ -99,8 +99,3 @@ rescue LoadError
   puts "=" * 100
   raise
 end
-
-Rails.application.config.database_yml_file_path =
-  "#{ENV['HOME']}/.nsl/search-database.yml"
-puts "Rails.application.config.database_yml_file_path:
-#{Rails.application.config.database_yml_file_path}"

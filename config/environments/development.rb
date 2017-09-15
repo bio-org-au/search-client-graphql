@@ -65,13 +65,8 @@ rescue
   raise
 end
 
-Rails.application.config.database_yml_file_path =
-  "#{ENV['HOME']}/.nsl/development/#{ENV['SHARD']}-search-database.yml"
-puts "Rails.application.config.database_yml_file_path:
-#{Rails.application.config.database_yml_file_path}"
-
 begin
-  file_path = "#{ENV['HOME']}/.nsl/development/#{ENV['SHARD']}-search-config.rb"
+  file_path = "#{ENV['HOME']}/.nsl/development/#{ENV['SHARD']}-scg-config.rb"
   puts "Loading config from: #{file_path}"
   load file_path
 rescue LoadError

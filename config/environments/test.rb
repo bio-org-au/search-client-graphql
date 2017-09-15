@@ -57,13 +57,8 @@ rescue
   raise
 end
 
-Rails.application.config.database_yml_file_path =
-  "#{ENV['HOME']}/.nsl/test/#{ENV['SHARD']}-search-database.yml"
-puts "Rails.application.config.database_yml_file_path:
-#{Rails.application.config.database_yml_file_path}"
-
 begin
-  file_path = "#{ENV['HOME']}/.nsl/test/#{ENV['SHARD']}-search-config.rb"
+  file_path = "#{ENV['HOME']}/.nsl/test/#{ENV['SHARD']}-scg-config.rb"
   puts "Loading config from: #{file_path}"
   load file_path
 rescue LoadError
@@ -73,6 +68,3 @@ rescue LoadError
   puts "=" * 100
   raise
 end
-Rails.configuration.nsl_path = "http://localhost:2016/"
-Rails.configuration.flora_path = "http://localhost:2016/flora"
-Rails.configuration.fauna_path = "http://localhost:2016/fauna"

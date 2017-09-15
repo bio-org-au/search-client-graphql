@@ -91,3 +91,5 @@ platform :ruby do
   end
 end
 gem "simplecov", require: false, group: :test
+
+gem 'httparty'
