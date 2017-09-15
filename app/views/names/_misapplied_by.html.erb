@@ -1,7 +1,0 @@
-  by 
-  <% if instance.this_cites.page.present? %>
-    <%= "#{instance.this_cites.reference.citation_html}:".html_safe %>
-  <% else %>
-    <%= instance.this_cites.reference.citation_html.html_safe %>
-  <% end %>
-  <%= instance.this_cites.page %> <%= instance.this_cites.page_qualifier %>

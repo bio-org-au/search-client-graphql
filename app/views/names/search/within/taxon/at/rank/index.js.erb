@@ -1,5 +1,0 @@
-  $("#<%= params[:target_id] %>").append('<%= escape_javascript(render partial: "index") %>');
-  $("#<%= @target_id %>").removeClass('hidden-xs-up');
-  showAsExpanded("<%= @target_id %>");
-  showDetailsRetrieved("<%= @target_id %>");
-  resetNameControls();

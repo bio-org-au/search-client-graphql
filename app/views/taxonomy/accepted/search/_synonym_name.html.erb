@@ -1,6 +1,0 @@
-
- <% if synonym.synonym_type.misapplied %>
-   <%= render partial: "/taxonomy/accepted/search/misapplied_synonym_name", locals: {synonym: synonym} %>
- <% else %>
-   <%= render partial: "/taxonomy/accepted/search/normal_synonym_name", locals: {synonym: synonym} %>
- <% end %>

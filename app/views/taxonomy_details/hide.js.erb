@@ -1,6 +1,0 @@
-$("#taxonomy-details-for-<%= params[:id] %>").addClass('hidden-xs-up');
-$("#taxonomy-link-for-<%= params[:id] %>").html('<%=
-      link_to(@instance.name.full_name+'hidden-so-show',
-              taxonomy_details_path(id: @instance.id, details_showing: false, details_loaded: params[:details_loaded],),
-              class: "xfull-name xdrill-down-toggle xno-details",
-              title: "Select to show or hide details", remote: true) %>');
