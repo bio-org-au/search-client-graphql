@@ -67,9 +67,11 @@
   <hr>
   <% elapsed = Time.now - @start_time %>
   <%= elapsed.round(2) %> seconds (~<%= (@search.data.name_search.names.size/elapsed).round %> records/second) (index.html)
-
-<pre>
-<%= simple_format @search.to_yaml %>
-</pre>
 <% end %>
 </div>
+
+yml
+<pre>
+<%= simple_format @search.try('to_yaml') %>
+</pre>
+yml
