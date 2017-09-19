@@ -1,0 +1,54 @@
+<div id="form-div">
+<%= form_tag(names_search_path, method: :get) %>
+<input name='q' type="search" class="form-field width40pc min-width20em" value="<%= params['q'] %>" required="" autofocus="true">
+<input type="submit" value="Search" class="form-button">
+<ul class="plain">
+  <li>
+    <select name="list_or_detail" class="form-field" title="Show names in a list (quicker) or in a list with details of each name's history">
+      <%= options_for_select([['List', 'list'],
+                              ['Details', 'detail']], params[:list_or_detail]) %>
+    </select>
+  </li>
+  <li>
+    <select name="name_type" title="The type of names to retrieve" class="form-field">
+      <%= options_for_select([['Scientific', 'scientific', {title: "Scientific names only"}],
+                              ['Cultivar', 'cultivar', {title: "Cultivar names only"}],
+                              ['Scientific and cultivar', 'scientific-or-cultivar', {title: "Scientific and cultivar names only"}],
+                              ['Common', 'common', {title: "Common names only"}]], params[:name_type]) %>
+    </select>
+  </li>
+  <li>
+    <select name="fuzzy_or_exact" title="Add a trailing wildcard automatically or search for exactly what you enter. (You can add your own wildcards in either case.)" class="form-field">
+      <%= options_for_select([['Automatic wildcard',
+                               'add_trailing_wildcard',
+                               {title:"Add a trailing wildcard to the search term automaticaly"}],
+                               ['Exact',
+                                'exact',
+                                {title:"Do not add a wildcard automatically"}]], params[:fuzzy_or_exact]) %>
+    </select>
+  </li>
+  <li>
+    <input type="number"
+           name="limit"
+           title="Limit the number of names retrieved"
+           placeholder="limit"
+           min="10"
+           max="5000"
+           step="10"
+           value="<%= params[:limit] || 100 %>"
+           class="form-field">
+  </li>
+  <li>
+  </li>
+  <li>
+    <select name="format" title="Show the results in this form" class="form-field">
+      <%= options_for_select([['HTML', 'html',{title:"Show results as a web page here"}],
+                              ['CSV', 'csv',{title:"Show results as comma-separated data"}],
+                              ['JSON', 'json',{title:"Show results as JSON"}]],
+                             params[:format]) %>
+    </select>
+  </li>
+</ul>
+</form>
+</div>
+
