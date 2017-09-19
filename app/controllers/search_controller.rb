@@ -42,9 +42,10 @@ class SearchController < ApplicationController
   def search_as_post
     options = {
                 body: {
-                  query: '{name_search(search_term:"angophora"){names{id,simple_name,full_name,name_status_name}}}'
+                  query: query_string
                       }
               }
+    logger.debug(options.inspect)
     json = HTTParty.post("#{DATA_SERVER}/v1",options)
     @search = JSON.parse(json.to_s, object_class: OpenStruct)
     present_results
@@ -61,6 +62,15 @@ class SearchController < ApplicationController
     json = HTTParty.get(request_string).to_json
     @search = JSON.parse(json, object_class: OpenStruct)
     present_results
+  end
+
+  def query_string
+    review_params
+    if @show_details
+      detail_query_for_post
+    else
+      list_query_for_post
+    end
   end
 
   def review_params
@@ -87,6 +97,16 @@ class SearchController < ApplicationController
     logger.info("client: present_info")
     @results = Results.new(@search)
     render :index
+  end
+
+  def list_query_for_post
+    list_query_raw.delete(' ')
+                  .delete("\n")
+                  .sub(/search_term_placeholder/, @search_term)
+                  .sub(/type_of_name_placeholder/, @type_of_name)
+                  .sub(/fuzzy_or_exact_placeholder/,
+                       @fuzzy_or_exact)
+                  .sub(/"limit_placeholder"/, @limit)
   end
 
   def list_query
@@ -116,6 +136,16 @@ class SearchController < ApplicationController
           }
       }
     HEREDOC
+  end
+
+  def detail_query_for_post
+    detail_query_raw.delete(' ')
+                    .delete("\n")
+                    .sub(/search_term_placeholder/, @search_term)
+                    .sub(/type_of_name_placeholder/, @type_of_name)
+                    .sub(/fuzzy_or_exact_placeholder/,
+                         @fuzzy_or_exact)
+                    .sub(/"limit_placeholder"/, @limit)
   end
 
   def detail_query
