@@ -1,3 +1,11 @@
+# Get database config and credentials.
+
+<% File.open("#{Rails.application.config.database_yml_file_path}", 'r') do |file| %>
+<% while line = file.gets %>
+<%= line %>
+<% end %>
+<% end %>
+
 
 development:
   adapter: postgresql
@@ -5,11 +13,6 @@ development:
   database: plants_dev
 
 test:
-  adapter: postgresql
-  encoding: unicode
-  database: no_such_thing
-
-production:
   adapter: postgresql
   encoding: unicode
   database: no_such_thing
