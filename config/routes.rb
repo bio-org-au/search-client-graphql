@@ -159,7 +159,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # get "nsl", as: "explicit_nsl", to: "nsl#index", via: :get  # delete
-  root "home#index", as: "root", via: :get
+  root "search#index", as: "root", via: :get
   match "/*random", to: "home#index", via: [:get, :post, :delete, :patch]
 
   # Example of regular route:

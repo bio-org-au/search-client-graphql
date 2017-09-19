@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 # Controller
-class Names::SearchController < ApplicationController
-  DATA_SERVER = 'http://localhost:8083/nsl/ssg'
+class SearchController < ApplicationController
+  #DATA_SERVER = 'http://localhost:8083/nsl/ssg'
+  DATA_SERVER = Rails.configuration.data_server
   def index
     logger.info("request_fred")
     request_string = "#{DATA_SERVER}/v1?query=fred"
