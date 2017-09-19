@@ -25,7 +25,7 @@ class SearchController < ApplicationController
     @search = nil
     @show_details = false
     if search_params['q'].present?
-      search
+      search_as_post
     else
       no_search
     end
@@ -39,7 +39,18 @@ class SearchController < ApplicationController
     render :index, layout: "minimal"
   end
 
-  def search
+  def search_as_post
+    options = {
+                body: {
+                  query: '{name_search(search_term:"angophora"){names{id,simple_name,full_name,name_status_name}}}'
+                      }
+              }
+    json = HTTParty.post("#{DATA_SERVER}/v1",options)
+    @search = JSON.parse(json.to_s, object_class: OpenStruct)
+    present_results
+  end
+
+  def search_as_get
     review_params
     request_string = if @show_details
                        "#{DATA_SERVER}/v1?query=#{detail_query}"
