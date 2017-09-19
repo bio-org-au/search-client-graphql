@@ -39,18 +39,6 @@ class SearchController < ApplicationController
     render :index, layout: "minimal"
   end
 
-  def request_fred
-    logger.info("request_fred")
-    request_string = "#{DATA_SERVER}/v1?query=fred"
-    logger.info("request_string: #{request_string}")
-    logger.info("partying")
-    json = HTTParty.get(request_string).to_json
-    logger.info("after partying... parsing....")
-    @search = JSON.parse(json, object_class: OpenStruct)
-    logger.info("after parsing.... about to present results")
-    present_results
-  end
-
   def search
     review_params
     request_string = if @show_details
@@ -74,6 +62,7 @@ class SearchController < ApplicationController
   end
 
   def present_results
+    logger.info("client:  present_results")
     respond_to do |format|
       format.html { present_html }
       format.json { render json: @search }
@@ -84,6 +73,7 @@ class SearchController < ApplicationController
   end
 
   def present_html
+    logger.info("client: present_info")
     @results = Results.new(@search)
     render :index
   end
