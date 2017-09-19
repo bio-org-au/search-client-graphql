@@ -1,35 +1,21 @@
-ul {
+
+ul.plain {
   list-style-type: none;
-  padding-left:0;
-}
-
-ul.indented {
-  padding-left: 3rem;
-}
-
-ul.small-indent {
-  padding-left: 2rem;
-}
-
-li {
-  margin: 10px 0;
-}
-
-li.compact {
+  padding: 0;
   margin: 0;
 }
-
-ul.taxonomy-results li {
-  margin: 10px 0;
+ul.indent1 {
+  margin-left: 1em;
 }
-
-ul.circles {
-  list-style-type: circle;
+ul.indent2 {
+  margin-left: 2em;
 }
-
-ul.discs {
-  list-style-type: disc;
-  padding-left: 1rem;
+ul.indent3 {
+  margin-left: 3em;
 }
-
-
+ul.indent4 {
+  margin-left: 4em;
+}
+ul.indent5 {
+  margin-left: 5em;
+}

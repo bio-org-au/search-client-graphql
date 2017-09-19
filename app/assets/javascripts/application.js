@@ -10,11 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-// Turned off turbolinks.
-//
 //= require jquery
 //= require jquery_ujs
-//= require tether
-//= require bootstrap
-//= require bootstrap-add-clear
-//= require search
+//= require turbolinks
+//= require_tree .

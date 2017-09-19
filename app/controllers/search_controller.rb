@@ -19,7 +19,6 @@
 # - on page
 class SearchController < ApplicationController
   DATA_SERVER = Rails.configuration.data_server
-  layout 'minimal'
 
   def index
     @search = nil

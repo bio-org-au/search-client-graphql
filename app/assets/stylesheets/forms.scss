@@ -1,0 +1,46 @@
+
+
+*.width20pc {
+  width: 20%;
+}
+
+*.width40pc {
+  width: 40%;
+}
+
+*.width60pc {
+  width: 60%;
+}
+
+*.width80pc {
+  width: 80%;
+}
+
+*.width100pc {
+  width: 100%;
+}
+
+*.min-width10em {
+  min-width: 10em;
+}
+
+*.min-width20em {
+  min-width: 20em;
+}
+
+.form-field {
+  height: 2em;
+  padding: 0 0 0 0;
+  margin: 3px 0 0 0;
+  border: 1px solid slategray; /* For Safari dev. mode iPhone */
+}
+.xform-button {
+  height: 2em;
+  border: 1px solid slategray; /* For Safari dev. mode iPhone */
+}
+.form-button {
+  padding: 0.5em 1em 0.5em 1em;
+  margin: 0.5em 1em 0.5em 1em;
+  border: 1px solid slategray; /* For Safari dev. mode iPhone */
+}
+
