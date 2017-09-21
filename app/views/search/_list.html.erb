@@ -1,6 +1,6 @@
   <ul class="plain">
   <% @results.names.each do |name| %>
-    <li>[family]
+    <li>[<span title="family name" class="family-name"><%= name.family_name %></span>]
       <%= name.full_name %>
       <%= name.name_status_name %>
   <% end %>

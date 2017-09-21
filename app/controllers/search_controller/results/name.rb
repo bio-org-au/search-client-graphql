@@ -22,4 +22,8 @@ class SearchController::Results::Name
       SearchController::Results::Name::Usage.new(usage)
     end
   end
+
+  def family_name
+    @raw_name.family_name
+  end
 end

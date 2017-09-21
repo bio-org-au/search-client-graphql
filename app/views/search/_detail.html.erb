@@ -1,5 +1,5 @@
   <% @results.names.each do |name| %>
-    <h3>[family]
+    <h3>[<span title="family name" class="family-name"><%= name.family_name %></span>]
       <%= name.full_name %>
       <%= name.name_status_name %>
     </h3>

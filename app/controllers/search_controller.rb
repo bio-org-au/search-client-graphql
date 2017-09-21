@@ -130,7 +130,8 @@ class SearchController < ApplicationController
             {
               id,
               full_name,
-              name_status_name
+              name_status_name,
+              family_name
             }
           }
       }
@@ -172,6 +173,7 @@ class SearchController < ApplicationController
           full_name,
           full_name_html,
           name_status_name,
+          family_name,
           name_history
           {
             name_usages
