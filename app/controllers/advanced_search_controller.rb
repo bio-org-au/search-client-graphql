@@ -17,22 +17,33 @@
 # Show useful error diagnostics
 # - in log
 # - on page
-class SearchController < ApplicationController
+class AdvancedSearchController < ApplicationController
   DATA_SERVER = Rails.configuration.data_server
 
   def index
+    logger.debug('index')
     @search = nil
     @show_details = false
-    if search_params['q'].present?
+    logger.debug('before if')
+    if search_required?
       search_as_post
     else
+      logger.debug('no q')
+      #@search_term = search_link_params['q']
+      @link_params = params['link_params']
       no_search
     end
   end
 
   private
 
+  def search_required?
+    search_params['q'].present?  ||
+      search_params['author_abbrev'].present?
+  end
+
   def no_search
+    logger.debug('no search')
     @results = nil
     @search_term = nil
     render :index
@@ -50,19 +61,6 @@ class SearchController < ApplicationController
     present_results
   end
 
-  def search_as_get
-    review_params
-    request_string = if @show_details
-                       "#{DATA_SERVER}/v1?query=#{detail_query}"
-                     else
-                       "#{DATA_SERVER}/v1?query=#{list_query}"
-                     end
-    logger.info("request_string: #{request_string}")
-    json = HTTParty.get(request_string).to_json
-    @search = JSON.parse(json, object_class: OpenStruct)
-    present_results
-  end
-
   def query_string
     review_params
     if @show_details
@@ -74,6 +72,7 @@ class SearchController < ApplicationController
 
   def review_params
     @search_term = search_params[:q].gsub(/ *$/, '')
+    @author_abbrev = search_params[:author_abbrev].gsub(/ *$/, '')
     @type_of_name = search_params[:name_type]
     @fuzzy_or_exact = search_params[:fuzzy_or_exact]
     @limit = search_params[:limit]
@@ -102,6 +101,7 @@ class SearchController < ApplicationController
     list_query_raw.delete(' ')
                   .delete("\n")
                   .sub(/search_term_placeholder/, @search_term)
+                  .sub(/author_abbrev_placeholder/, @author_abbrev)
                   .sub(/type_of_name_placeholder/, @type_of_name)
                   .sub(/fuzzy_or_exact_placeholder/,
                        @fuzzy_or_exact)
@@ -122,6 +122,7 @@ class SearchController < ApplicationController
     <<~HEREDOC
       {
         name_search(search_term: "search_term_placeholder",
+                    author_abbrev: "author_abbrev_placeholder",
                     type_of_name: "type_of_name_placeholder",
                     fuzzy_or_exact: "fuzzy_or_exact_placeholder",
                     limit: "limit_placeholder")
@@ -142,6 +143,7 @@ class SearchController < ApplicationController
     detail_query_raw.delete(' ')
                     .delete("\n")
                     .sub(/search_term_placeholder/, @search_term)
+                    .sub(/author_abbrev_placeholder/, @author_abbrev)
                     .sub(/type_of_name_placeholder/, @type_of_name)
                     .sub(/fuzzy_or_exact_placeholder/,
                          @fuzzy_or_exact)
@@ -162,6 +164,7 @@ class SearchController < ApplicationController
     <<~HEREDOC
     {
       name_search(search_term: "search_term_placeholder",
+                  author_abbrev: "author_abbrev_placeholder",
                   type_of_name: "type_of_name_placeholder",
                   fuzzy_or_exact: "fuzzy_or_exact_placeholder",
                   limit: "limit_placeholder")
@@ -215,6 +218,6 @@ class SearchController < ApplicationController
 
   def search_params
     params.permit(:utf8, :q, :format, :list_or_detail, :fuzzy_or_exact,
-                  :name_type, :limit)
+                  :name_type, :limit, :author_abbrev)
   end
 end

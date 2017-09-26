@@ -1,6 +1,11 @@
 <div id="form-div">
-<%= form_tag(names_search_path, method: :get) %>
-<input name='q' type="search" class="form-field width40pc min-width20em" value="<%= params['q'] %>" required="" autofocus="true">
+<%= form_tag(names_advanced_search_path, method: :get) %>
+Taxon name:
+<input name='q' type="search" class="form-field width40pc min-width20em" value="<%= params['q'] || @link_params['q'] %>" autofocus="true">
+<br>
+Author abbrev:
+<input name='author_abbrev' type="search" class="form-field width40pc min-width20em" value="<%= params['author_abbrev'] %>">
+<br>
 <input type="submit" value="Search" class="form-button">
 <ul class="plain">
   <li>

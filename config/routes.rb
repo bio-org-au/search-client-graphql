@@ -19,6 +19,10 @@ Rails.application.routes.draw do
         via: :get
   get '/index.*',
       to: 'search#index'
+  match '/names/advanced',
+        as: 'names_advanced_search',
+        to: 'advanced_search#index',
+        via: :get
   root to: 'search#index'
   get '*path' => 'search#index'
 end
