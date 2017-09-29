@@ -1,8 +1,9 @@
 <h1>Advanced Name Search</h1>
 
 <%= render partial: 'name_form' %>
-<%= link_to('new', names_advanced_search_path,title: 'New search') %> |
-<%= link_to('basic', names_search_path) %>
+<%= link_to('new', names_advanced_search_path,title: 'Start a new advanced search') %> |
+<%= link_to('name', names_search_path, title: 'Go to name search') %> |
+<%= link_to('taxonomy', names_search_path, title: 'Go to taxonomy search') %>
 <hr>
 
 <div id="search-results">

@@ -1,0 +1,14 @@
+<% if @search.nil? %>
+  No search.
+<% elsif @search.data.nil? %>
+  No data.
+<% elsif @search.data.name_search.nil? %>
+  No name_search data.
+<% elsif @search.data.name_search.names.blank? %>
+  No names found for "<%= @search_term %>".
+<% else %>
+ID, Full Name
+<% @search.data.name_search.names.each do |name| %>
+<%= name[:id] %>,<%= name[:full_name].html_safe %>
+<% end %>
+<% end %>

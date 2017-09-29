@@ -8,6 +8,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   #   inflect.plural /^(ox)$/i, '\1en'
   #   inflect.singular /^(ox)en/i, '\1'
   inflect.irregular "genus", "genera"
+  inflect.irregular "taxon", "taxa"
   #   inflect.uncountable %w( fish sheep )
 end
 

@@ -23,6 +23,10 @@ Rails.application.routes.draw do
         as: 'names_advanced_search',
         to: 'advanced_search#index',
         via: :get
+  match '/taxonomy/search',
+        as: 'taxonomy_search',
+        to: 'taxonomy#index',
+        via: :get
   root to: 'search#index'
   get '*path' => 'search#index'
 end
