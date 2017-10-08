@@ -1,7 +1,9 @@
   <ul class="plain">
-  <% @results.names.each do |name| %>
+  <% @taxa.each do |taxon| %>
     <li>
-      <%= name.full_name %>
-      <%= name.name_status_name %>
+      <%= taxon.full_name %>
+      <%= taxon.name_status_name %>
+       sensu 
+      <%= taxon.reference_citation %>
   <% end %>
   </ul>

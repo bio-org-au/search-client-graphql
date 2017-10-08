@@ -10,11 +10,12 @@
     </select>
   </li>
   <li>
-    <select name="name_type" title="The type of names to retrieve" class="form-field">
-      <%= options_for_select([['Scientific', 'scientific', {title: "Scientific names only"}],
-                              ['Cultivar', 'cultivar', {title: "Cultivar names only"}],
-                              ['Scientific and cultivar', 'scientific-or-cultivar', {title: "Scientific and cultivar names only"}],
-                              ['Common', 'common', {title: "Common names only"}]], params[:name_type]) %>
+    <select name="taxon_type" title="The type of taxa to retrieve" class="form-field">
+      <%= options_for_select([['Accepted', 'accepted', {title: "Accepted names only"}],
+                              ['Excluded', 'excluded', {title: "Excluded names only"}],
+                              ['Accepted and Excluded', 'accepted-or-excluded', {title: "Accepted and excluded names only"}],
+                              ['Synonyms', 'synonyms', {title: "Synonyms only"}],
+                              ['All', 'all', {title: "Accepted, excluded and synonyms"}]], params[:taxon_type]) %>
     </select>
   </li>
   <li>

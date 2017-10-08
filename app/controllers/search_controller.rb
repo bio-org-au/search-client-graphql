@@ -50,19 +50,6 @@ class SearchController < ApplicationController
     present_results
   end
 
-  def search_as_get
-    review_params
-    request_string = if @show_details
-                       "#{DATA_SERVER}/v1?query=#{detail_query}"
-                     else
-                       "#{DATA_SERVER}/v1?query=#{list_query}"
-                     end
-    logger.info("request_string: #{request_string}")
-    json = HTTParty.get(request_string).to_json
-    @search = JSON.parse(json, object_class: OpenStruct)
-    present_results
-  end
-
   def query_string
     review_params
     if @show_details

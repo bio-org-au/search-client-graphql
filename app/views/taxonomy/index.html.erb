@@ -1,22 +1,22 @@
 <h1>Taxonomy Search</h1>
 
-<%= render partial: 'name_form' %>
-<%= link_to('new', names_search_path,title: 'Start a new name search') %> |
-<%= link_to('advanced', names_advanced_search_path(link_params: params),title: 'Go to advanced search') %> |
-<%= link_to('taxonomy', names_advanced_search_path(link_params: params),title: 'Go to taxonomy search') %>
+<%= render partial: 'search_form' %>
+<%= link_to('clear', taxonomy_search_path,title: 'Clear any search and start a new taxonomy search') %> |
+<%#= link_to('advanced', names_advanced_search_path(link_params: params),title: 'Go to advanced search') %> 
+<%= link_to('name', names_search_path(link_params: params),title: 'Go to name search') %>
 <hr>
 
 <div id="search-results">
 <% if @search_term.present? %>
-  <% unless @results.present? %>
+  <% unless @taxa.present? %>
   No results for "<%= @search_term %>"
   <% elapsed = Time.now - @start_time %>(<%= elapsed.round(2) %>s)
   <% end %>
 <% end %>
 
-<% if @results.present? %>
+<% if @taxa.present? %>
   <h2>
-  <%= pluralize(@results.size,'taxon') %>
+  <%= pluralize(@taxa.size,'taxon') %>
   found for "<%= @search_term %>"
   <% elapsed = Time.now - @start_time %>(<%= elapsed.round(2) %>s)
   </h2>
@@ -31,9 +31,7 @@
   <hr>
   <% elapsed = Time.now - @start_time %>
   <%= elapsed.round(2) %> seconds (~<%= (@search.data.taxonomy_search.taxa.size/elapsed).round %> records/second) (index.html)
+  <br/>
+  <%= Time.now %>
 <% end %>
 </div>
-
-<pre>
-<%#= simple_format @search.try('to_yaml') %>
-</pre>

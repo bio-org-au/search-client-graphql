@@ -40,26 +40,11 @@ class TaxonomyController < ApplicationController
 
   def search_as_post
     options = {
-                body: {
-                  query: query_string
-                      }
+                body: { query: query_string }
               }
     logger.debug(options.inspect)
-    json = HTTParty.post("#{DATA_SERVER}/v1",options)
+    json = HTTParty.post("#{DATA_SERVER}/v1.json",options)
     @search = JSON.parse(json.to_s, object_class: OpenStruct)
-    present_results
-  end
-
-  def search_as_get
-    review_params
-    request_string = if @show_details
-                       "#{DATA_SERVER}/v1?query=#{detail_query}"
-                     else
-                       "#{DATA_SERVER}/v1?query=#{list_query}"
-                     end
-    logger.info("request_string: #{request_string}")
-    json = HTTParty.get(request_string).to_json
-    @search = JSON.parse(json, object_class: OpenStruct)
     present_results
   end
 
@@ -74,7 +59,7 @@ class TaxonomyController < ApplicationController
 
   def review_params
     @search_term = search_params[:q].gsub(/ *$/, '')
-    @type_of_name = search_params[:name_type]
+    @type_of_name = search_params[:taxon_type]
     @fuzzy_or_exact = search_params[:fuzzy_or_exact]
     @limit = search_params[:limit]
     @show_details = search_params[:list_or_detail] == 'detail'
@@ -87,14 +72,14 @@ class TaxonomyController < ApplicationController
       format.html { present_html }
       format.json { render json: @search }
     end
-  rescue => e
-    logger.error("Search error #{e} for params: #{params.inspect}")
-    render :error
+  #rescue => e
+    #logger.error("Search error #{e} for params: #{params.inspect}")
+    #render :error
   end
 
   def present_html
     logger.info("client: present_info")
-    @results = Results.new(@search)
+    @taxa = @search.data.taxonomy_search.taxa
     render :index
   end
 
@@ -112,18 +97,21 @@ class TaxonomyController < ApplicationController
     list_query_raw.delete(' ')
                   .delete("\n")
                   .sub(/search_term_placeholder/, URI.escape(@search_term))
+                  .sub(/"limit_placeholder"/, URI.escape(@limit))
   end
 
   def list_query_raw
     <<~HEREDOC
       {
-        taxonomy_search(search_term: "search_term_placeholder")
+        taxonomy_search(search_term: "search_term_placeholder",
+                        limit: "limit_placeholder")
           {
             taxa
             {
               id,
               full_name,
-              name_status_name
+              name_status_name,
+              reference_citation
             }
           }
       }
@@ -134,9 +122,6 @@ class TaxonomyController < ApplicationController
     detail_query_raw.delete(' ')
                     .delete("\n")
                     .sub(/search_term_placeholder/, @search_term)
-                    .sub(/type_of_name_placeholder/, @type_of_name)
-                    .sub(/fuzzy_or_exact_placeholder/,
-                         @fuzzy_or_exact)
                     .sub(/"limit_placeholder"/, @limit)
   end
 
@@ -144,60 +129,29 @@ class TaxonomyController < ApplicationController
     detail_query_raw.delete(' ')
                     .delete("\n")
                     .sub(/search_term_placeholder/, URI.escape(@search_term))
-                    .sub(/type_of_name_placeholder/, URI.escape(@type_of_name))
-                    .sub(/fuzzy_or_exact_placeholder/,
-                         URI.escape(@fuzzy_or_exact))
                     .sub(/"limit_placeholder"/, URI.escape(@limit))
   end
 
   def detail_query_raw
     <<~HEREDOC
     {
-      name_search(search_term: "search_term_placeholder",
-                  type_of_name: "type_of_name_placeholder",
-                  fuzzy_or_exact: "fuzzy_or_exact_placeholder",
-                  limit: "limit_placeholder")
+      taxonomy_search(search_term: "search_term_placeholder",
+                      limit: "limit_placeholder")
       {
-        names
+        taxa
         {
           id,
-          simple_name,
           full_name,
-          full_name_html,
           name_status_name,
-          family_name,
-          name_history
-          {
-            name_usages
-            {
-              instance_id,
-              reference_id,
-              citation,
-              page,
-              page_qualifier,
-              year,
-              standalone,
-              instance_type_name,
-              primary_instance,
-              misapplied,
-              misapplied_to_name,
-              misapplied_to_id,
-              misapplied_by_id,
-              misapplied_by_citation,
-              misapplied_on_page,
-              synonyms {
-                id,
-                full_name,
-                instance_type,
-                label,
-                page,
-              }
-              notes {
-                id,
-                key,
-                value
-              }
+          reference_citation,
+          taxon_details {
+            instance_id,
+            taxon_synonyms {
+              id,
+              name_id,
+              full_name
             }
+            taxon_distribution
           }
         }
       }
@@ -207,6 +161,6 @@ class TaxonomyController < ApplicationController
 
   def search_params
     params.permit(:utf8, :q, :format, :list_or_detail, :fuzzy_or_exact,
-                  :name_type, :limit)
+                  :taxon_type, :limit)
   end
 end

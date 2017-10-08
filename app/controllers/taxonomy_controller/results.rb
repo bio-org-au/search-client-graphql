@@ -46,7 +46,7 @@ class TaxonomyController::Results
 
   def names
     @search.data.taxonomy_search.taxa.collect do |taxon|
-      SearchController::Results::Name.new(taxon)
+      TaxonomyController::Results::Name.new(taxon)
     end
   end
 end

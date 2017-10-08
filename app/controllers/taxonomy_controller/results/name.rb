@@ -26,4 +26,8 @@ class TaxonomyController::Results::Name
   def family_name
     @raw_name.family_name
   end
+
+  def reference_citation
+    @raw_name.reference_citation
+  end
 end
