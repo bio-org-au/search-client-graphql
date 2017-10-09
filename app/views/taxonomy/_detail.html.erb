@@ -8,7 +8,12 @@
         </ul>
         <div class="tiny-break"></div>
         <ul class="plain indent2">
-          <%= taxon.taxon_details.taxon_distribution %>
+          <% unless taxon.taxon_details.taxon_comment.blank? %>
+            <li><%= taxon.taxon_details.taxon_comment.html_safe %>
+          <% end %>
+          <% unless taxon.taxon_details.taxon_distribution.blank? %>
+            <li><%= taxon.taxon_details.taxon_distribution %>
+          <% end %>
         </ul>
         <div class="tiny-break"></div>
     <% end %>

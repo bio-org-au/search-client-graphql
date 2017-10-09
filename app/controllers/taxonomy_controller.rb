@@ -151,7 +151,8 @@ class TaxonomyController < ApplicationController
               name_id,
               full_name
             }
-            taxon_distribution
+            taxon_distribution,
+            taxon_comment
           }
         }
       }
