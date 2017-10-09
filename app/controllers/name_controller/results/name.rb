@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Container for names in results
-class SearchController::Results::Name
+class NameController::Results::Name
   def initialize(raw_name)
     @raw_name = raw_name
   end
@@ -19,7 +19,7 @@ class SearchController::Results::Name
 
   def usages
     @raw_name.name_history.name_usages.collect do |usage|
-      SearchController::Results::Name::Usage.new(usage)
+      NameController::Results::Name::Usage.new(usage)
     end
   end
 

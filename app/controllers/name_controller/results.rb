@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Container for search results
-class SearchController::Results
+class NameController::Results
   def initialize(search)
     @search = search
   end
@@ -46,7 +46,7 @@ class SearchController::Results
 
   def names
     @search.data.name_search.names.collect do |name|
-      SearchController::Results::Name.new(name)
+      NameController::Results::Name.new(name)
     end
   end
 end
