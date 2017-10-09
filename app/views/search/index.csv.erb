@@ -7,8 +7,8 @@
 <% elsif @search.data.name_search.names.blank? %>
   No names found for "<%= @search_term %>".
 <% else %>
-ID, Full Name
+Family, Full Name, Status
 <% @search.data.name_search.names.each do |name| %>
-<%= name[:id] %>,<%= name[:full_name].html_safe %>
+<%= name.family_name %>,<%= name.full_name %>,,<%= name.name_status_name %>
 <% end %>
 <% end %>

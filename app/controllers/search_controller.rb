@@ -73,16 +73,39 @@ class SearchController < ApplicationController
     respond_to do |format|
       format.html { present_html }
       format.json { render json: @search }
+      format.csv { present_csv }
+      #format.csv { send_data(csv_data,:filename => 'data.csv') }
+      format.yaml { send_data(@search.to_yaml, {filename: 'data.yml', disposition: 'inline'}) }
     end
-  rescue => e
-    logger.error("Search error #{e} for params: #{params.inspect}")
-    render :error
+  # rescue => e
+  #   logger.error("Search error #{e} for params: #{params.inspect}")
+  #   render :error
+  end
+
+  def csv_data
+    data = 'a,b,c' #@search.to_csv
+    begin
+      data = data.unicode_normalize(:nfc).encode("UTF-16LE")
+      data = "\xFF\xFE".dup.force_encoding("UTF-16LE") + data
+    rescue => encoding_error
+      logger.error(encoding_error.to_s)
+      logger.error("This CSV error in the SearchController does not")
+      logger.error("prevent CSV data being created but it does indicate")
+      logger.error("failure to encode the CSV as UTF-16LE")
+    end
+    data
   end
 
   def present_html
-    logger.info("client: present_info")
+    logger.info("client: present_html")
     @results = Results.new(@search)
     render :index
+  end
+
+  def present_csv
+    logger.info("client: present_csv")
+    @results = Results.new(@search)
+    render 'csv.html', layout: nil
   end
 
   def list_query_for_post

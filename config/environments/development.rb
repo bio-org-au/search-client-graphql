@@ -69,6 +69,7 @@ begin
   file_path = "#{ENV['HOME']}/.nsl/development/#{ENV['SHARD']}-scg-config.rb"
   puts "Loading config from: #{file_path}"
   load file_path
+  puts "After loading config from: #{file_path}"
 rescue LoadError
   puts "=" * 100
   puts "Unable to find the config file: #{file_path}"
