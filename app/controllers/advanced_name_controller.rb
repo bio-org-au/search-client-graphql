@@ -39,7 +39,8 @@ class AdvancedNameController < ApplicationController
 
   def search_required?
     search_params['q'].present?  ||
-      search_params['author_abbrev'].present?
+      search_params['author_abbrev'].present? ||
+      search_params['family'].present?
   end
 
   def no_search
@@ -73,6 +74,7 @@ class AdvancedNameController < ApplicationController
   def review_params
     @search_term = search_params[:q].gsub(/ *$/, '')
     @author_abbrev = search_params[:author_abbrev].gsub(/ *$/, '')
+    @family = search_params[:family].gsub(/ *$/, '')
     @type_of_name = search_params[:name_type]
     @fuzzy_or_exact = search_params[:fuzzy_or_exact]
     @limit = search_params[:limit]
@@ -102,6 +104,7 @@ class AdvancedNameController < ApplicationController
                   .delete("\n")
                   .sub(/search_term_placeholder/, @search_term)
                   .sub(/author_abbrev_placeholder/, @author_abbrev)
+                  .sub(/family_placeholder/, @family)
                   .sub(/type_of_name_placeholder/, @type_of_name)
                   .sub(/fuzzy_or_exact_placeholder/,
                        @fuzzy_or_exact)
@@ -123,6 +126,7 @@ class AdvancedNameController < ApplicationController
       {
         name_search(search_term: "search_term_placeholder",
                     author_abbrev: "author_abbrev_placeholder",
+                    family: "family_placeholder",
                     type_of_name: "type_of_name_placeholder",
                     fuzzy_or_exact: "fuzzy_or_exact_placeholder",
                     limit: "limit_placeholder")
@@ -144,6 +148,7 @@ class AdvancedNameController < ApplicationController
                     .delete("\n")
                     .sub(/search_term_placeholder/, @search_term)
                     .sub(/author_abbrev_placeholder/, @author_abbrev)
+                    .sub(/family_placeholder/, @family_abbrev)
                     .sub(/type_of_name_placeholder/, @type_of_name)
                     .sub(/fuzzy_or_exact_placeholder/,
                          @fuzzy_or_exact)
@@ -165,6 +170,7 @@ class AdvancedNameController < ApplicationController
     {
       name_search(search_term: "search_term_placeholder",
                   author_abbrev: "author_abbrev_placeholder",
+                  family: "family_placeholder",
                   type_of_name: "type_of_name_placeholder",
                   fuzzy_or_exact: "fuzzy_or_exact_placeholder",
                   limit: "limit_placeholder")
@@ -218,6 +224,6 @@ class AdvancedNameController < ApplicationController
 
   def search_params
     params.permit(:utf8, :q, :format, :list_or_detail, :fuzzy_or_exact,
-                  :name_type, :limit, :author_abbrev)
+                  :name_type, :limit, :author_abbrev, :family)
   end
 end

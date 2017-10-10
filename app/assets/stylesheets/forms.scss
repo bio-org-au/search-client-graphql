@@ -28,6 +28,14 @@
   min-width: 20em;
 }
 
+*.max-width20em {
+  max-width: 20em;
+}
+
+*.max-width30em {
+  max-width: 30em;
+}
+
 .form-field {
   height: 2em;
   padding: 0 0 0 0;
@@ -43,4 +51,10 @@
   margin: 0.5em 1em 0.5em 1em;
   border: 1px solid slategray; /* For Safari dev. mode iPhone */
 }
+.left-aligned-form-button {
+  padding: 0.5em 1em 0.5em 1em;
+  margin: 0.5em 1em 0.5em 0em;
+  border: 1px solid slategray; /* For Safari dev. mode iPhone */
+}
+
 

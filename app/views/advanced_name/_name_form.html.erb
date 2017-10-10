@@ -1,12 +1,15 @@
 <div id="form-div">
 <%= form_tag(names_advanced_search_path, method: :get) %>
 Taxon name:
-<input name='q' type="search" class="form-field width40pc min-width20em" value="<%= params['q'] || @link_params['q'] %>" autofocus="true">
+<input name='q' type="search" class="form-field width40pc min-width10em max-width30em" value="<%= params['q'] || @link_params['q'] %>" autofocus="true">
 <br>
 Author abbrev:
-<input name='author_abbrev' type="search" class="form-field width40pc min-width20em" value="<%= params['author_abbrev'] %>">
+<input name='author_abbrev' type="search" class="form-field width40pc min-width10em max-width30em" value="<%= params['author_abbrev'] %>">
 <br>
-<input type="submit" value="Search" class="form-button">
+Family:
+<input name='family' type="search" class="form-field width40pc min-width10em max-width30em" value="<%= params['family'] %>">
+<br>
+<input type="submit" value="Search" class="left-aligned-form-button">
 <ul class="plain">
   <li>
     <select name="list_or_detail" class="form-field" title="Show names in a list (quicker) or in a list with details of each name's history">
@@ -48,7 +51,7 @@ Author abbrev:
   <li>
     <select name="format" title="Show the results in this form" class="form-field">
       <%= options_for_select([['HTML', 'html',{title:"Show results as a web page here"}],
-                              ['CSV', 'csv',{disabled: true, title:"Show results as comma-separated data. [Disabled]"}],
+                              ['CSV', 'csv',{title:"Show results as comma-separated data."}],
                               ['JSON', 'json',{title:"Show results as JSON"}]],
                              params[:format]) %>
     </select>
