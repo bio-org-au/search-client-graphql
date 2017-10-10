@@ -65,7 +65,7 @@ class AdvancedNameController < ApplicationController
   def query_string
     review_params
     if @show_details
-      detail_query_for_post
+      detail_query
     else
       list_query_for_post
     end
@@ -87,6 +87,7 @@ class AdvancedNameController < ApplicationController
     respond_to do |format|
       format.html { present_html }
       format.json { render json: @search }
+      format.csv { present_csv }
     end
   rescue => e
     logger.error("Search error #{e} for params: #{params.inspect}")
@@ -97,6 +98,11 @@ class AdvancedNameController < ApplicationController
     logger.info("client: present_info")
     @results = Results.new(@search)
     render :index
+  end
+
+  def present_csv
+    @results = Results.new(@search)
+    render 'csv.html', layout: nil
   end
 
   def list_query_for_post
@@ -143,26 +149,16 @@ class AdvancedNameController < ApplicationController
     HEREDOC
   end
 
-  def detail_query_for_post
+  def detail_query
     detail_query_raw.delete(' ')
                     .delete("\n")
                     .sub(/search_term_placeholder/, @search_term)
                     .sub(/author_abbrev_placeholder/, @author_abbrev)
-                    .sub(/family_placeholder/, @family_abbrev)
+                    .sub(/family_placeholder/, @family)
                     .sub(/type_of_name_placeholder/, @type_of_name)
                     .sub(/fuzzy_or_exact_placeholder/,
                          @fuzzy_or_exact)
                     .sub(/"limit_placeholder"/, @limit)
-  end
-
-  def detail_query
-    detail_query_raw.delete(' ')
-                    .delete("\n")
-                    .sub(/search_term_placeholder/, URI.escape(@search_term))
-                    .sub(/type_of_name_placeholder/, URI.escape(@type_of_name))
-                    .sub(/fuzzy_or_exact_placeholder/,
-                         URI.escape(@fuzzy_or_exact))
-                    .sub(/"limit_placeholder"/, URI.escape(@limit))
   end
 
   def detail_query_raw

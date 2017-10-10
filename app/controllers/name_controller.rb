@@ -74,8 +74,6 @@ class NameController < ApplicationController
       format.html { present_html }
       format.json { render json: @search }
       format.csv { present_csv }
-      #format.csv { send_data(csv_data,:filename => 'data.csv') }
-      format.yaml { send_data(@search.to_yaml, {filename: 'data.yml', disposition: 'inline'}) }
     end
   # rescue => e
   #   logger.error("Search error #{e} for params: #{params.inspect}")
@@ -97,13 +95,11 @@ class NameController < ApplicationController
   end
 
   def present_html
-    logger.info("client: present_html")
     @results = Results.new(@search)
     render :index
   end
 
   def present_csv
-    logger.info("client: present_csv")
     @results = Results.new(@search)
     render 'csv.html', layout: nil
   end
