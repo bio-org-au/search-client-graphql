@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       to: 'name#index'
   match '/names/advanced',
         as: 'names_advanced_search',
-        to: 'advanced_search#index',
+        to: 'advanced_name#index',
         via: :get
   match '/taxonomy/search',
         as: 'taxonomy_search',

@@ -2,7 +2,7 @@
   <% @results.names.each do |name| %>
     <li>
     <% unless name.family_name == 'na' %>
-      [<span title="Family Name" class="family-name"><%= name.family_name %></span>]
+      [<span title="family name" class="family-name"><%= name.family_name %></span>]
     <% end %>
     <%= name.full_name %>
     <%= name.name_status_name %>

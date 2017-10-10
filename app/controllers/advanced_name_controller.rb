@@ -17,7 +17,7 @@
 # Show useful error diagnostics
 # - in log
 # - on page
-class AdvancedSearchController < ApplicationController
+class AdvancedNameController < ApplicationController
   DATA_SERVER = Rails.configuration.data_server
 
   def index

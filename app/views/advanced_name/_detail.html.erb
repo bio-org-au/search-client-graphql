@@ -1,5 +1,8 @@
   <% @results.names.each do |name| %>
-    <h3>[<span title="family name" class="family-name"><%= name.family_name %></span>]
+    <h3>
+      <% unless name.family_name == 'na' %>
+        [<span title="family name" class="family-name"><%= name.family_name %></span>]
+      <% end %>
       <%= name.full_name %>
       <%= name.name_status_name %>
     </h3>

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Container for search results
-class AdvancedSearchController::Results
+class AdvancedNameController::Results
   def initialize(search)
     @search = search
   end
