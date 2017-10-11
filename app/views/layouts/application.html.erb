@@ -3,6 +3,11 @@
 <head>
   <title>SearchClientGraphql</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+  <style media="print">
+     body {color:#000000;
+           background-color:#FFFFFF;} 
+     .no-print {display: none;}
+  </style>
   <%#= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>

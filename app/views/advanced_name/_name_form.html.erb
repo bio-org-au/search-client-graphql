@@ -1,4 +1,4 @@
-<div id="form-div">
+<div id="form-div" class="no-print">
 <%= form_tag(names_advanced_search_path, method: :get) %>
 Taxon name:
 <input name='q' type="search" class="form-field width40pc min-width10em max-width30em" value="<%= params['q'] || @link_params['q'] %>" autofocus="true">
@@ -8,8 +8,6 @@ Author abbrev:
 <br>
 Family:
 <input name='family' type="search" class="form-field width40pc min-width10em max-width30em" value="<%= params['family'] %>">
-<br>
-<input type="submit" value="Search" class="left-aligned-form-button">
 <ul class="plain">
   <li>
     <select name="list_or_detail" class="form-field" title="Show names in a list (quicker) or in a list with details of each name's history">
@@ -57,6 +55,7 @@ Family:
     </select>
   </li>
 </ul>
+<input type="submit" value="Search" class="left-aligned-form-button">
 </form>
 </div>
 
