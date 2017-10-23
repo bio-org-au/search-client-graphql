@@ -38,7 +38,7 @@
               <% usage.notes.each do |note| %>
                 <li>
                 <b><%= note.key %>:</b>
-                <%= note.value %>
+                <%= note.value.html_safe %>
               <% end %>
               </ul>
             <% end %>
