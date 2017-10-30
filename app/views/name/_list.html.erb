@@ -4,7 +4,9 @@
     <% unless name.family_name == 'na' %>
       [<span title="Family Name" class="family-name"><%= name.family_name %></span>]
     <% end %>
-    <%= name.full_name %>
-    <%= name.name_status_name %>
+    <%= name.full_name %><%= "," unless name.name_status_name.blank? %>
+    <% unless name.name_status_name.blank? %>
+      <i class="name-status" title="name status"><%= name.name_status_name %></i>
+    <% end %>
   <% end %>
   </ul>
