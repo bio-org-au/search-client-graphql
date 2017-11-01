@@ -1,7 +1,6 @@
 <div id="form-div">
 <%= form_tag(name_search_path, method: :get) %>
-<input name='q' type="search" class="form-field width40pc min-width20em" value="<%= params['q'] %>" required="" autofocus="true">
-<input type="submit" value="Search" class="form-button">
+<input name='q' type="search" class="form-field width40pc min-width10em max-width30em" value="<%= params['q'] %>" required="" autofocus="true">
 <ul class="plain">
   <li>
     <select name="list_or_detail" class="form-field" title="Show names in a list (quicker) or in a list with details of each name's history">
@@ -14,7 +13,8 @@
       <%= options_for_select([['Scientific', 'scientific', {title: "Scientific names only"}],
                               ['Cultivar', 'cultivar', {title: "Cultivar names only"}],
                               ['Scientific and cultivar', 'scientific-or-cultivar', {title: "Scientific and cultivar names only"}],
-                              ['Common', 'common', {title: "Common names only"}]], params[:name_type]) %>
+                              ['Common', 'common', {title: "Common names only"}],
+                              ['All', 'all', {title: "Scientific, cultivar and common names"}]], params[:name_type]) %>
     </select>
   </li>
   <li>
@@ -49,6 +49,7 @@
     </select>
   </li>
 </ul>
+<input type="submit" value="Search" class="left-aligned-form-button">
 </form>
 </div>
 
