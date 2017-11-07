@@ -44,7 +44,6 @@ class NameController < ApplicationController
                   query: query_string
                       }
               }
-    logger.debug(options.inspect)
     json = HTTParty.post("#{DATA_SERVER}/v1",options)
     @search = JSON.parse(json.to_s, object_class: OpenStruct)
     present_results
@@ -205,6 +204,7 @@ class NameController < ApplicationController
                 instance_type,
                 label,
                 page,
+                name_status_name,
               }
               notes {
                 id,

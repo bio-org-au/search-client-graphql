@@ -22,7 +22,7 @@
             <% end %>
             <% usage.synonyms.each do |synonym| %>
               <li class="indent"><span class="synonym-type"><%= synonym.label %>:</span>
-                <%= synonym.full_name %>
+                <%= synonym.full_name %> <%= "#{synonym.name_status_name}" unless synonym.name_status_name == 'legitimate' %>
             <% end %>
           <% end %>
             <% if usage.misapplied? %>

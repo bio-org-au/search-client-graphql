@@ -15,6 +15,10 @@ class NameController::Results::Name::Usage::Synonym
     @raw_synonym.page
   end
 
+  def name_status_name
+    @raw_synonym.name_status_name
+  end
+
   def full_name
     @raw_synonym.full_name
   end
