@@ -1,7 +1,8 @@
 <h1><%= @name_label %> Search</h1>
 
 <%= render partial: 'name_form' %>
-<%= link_to('clear', name_search_path,title: 'Clear any search and start a new name search') %> |
+<hr>
+<%= link_to('new', name_search_path,name: 'x', title: 'Clear fields and start a new name search') %> |
 <%= link_to('advanced', names_advanced_search_path(link_params: params),title: 'Go to advanced name search') %> |
 <%= link_to('taxonomy', taxonomy_search_path(link_params: params),title: 'Go to taxonomy search') %>
 <hr>
