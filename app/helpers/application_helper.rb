@@ -181,4 +181,7 @@ module ApplicationHelper
       "Unknown"
     end
   end
+  def development?
+    Rails.configuration.try("environment").match(/^development/i)
+  end
 end

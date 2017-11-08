@@ -8,6 +8,24 @@
            background-color:#FFFFFF;} 
      .no-print {display: none;}
   </style>
+      <% if development? %>
+<style>
+a:not([title]),
+select:not([title]),
+textarea:not([title]),
+input:not([title]) {
+  background: red;
+}
+
+input[type="checkbox"]:not([title]) {
+  background: red;
+  color: red;
+  border: 2px solid black;
+}
+</style>
+
+    <% end %>
+
   <%#= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>

@@ -26,4 +26,8 @@ class NameController::Results::Name
   def family_name
     @raw_name.family_name
   end
+
+  def id
+    @raw_name.id
+  end
 end

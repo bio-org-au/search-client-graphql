@@ -5,6 +5,10 @@ Rails.application.routes.draw do
         as: 'name_search',
         to: 'name#index',
         via: :get
+  match '/name/:id',
+        as: 'name_show',
+        to: 'name#show',
+        via: :get
   match '/search',
         as: 'search',
         to: 'name#index',
