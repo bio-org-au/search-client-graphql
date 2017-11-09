@@ -22,8 +22,8 @@ class NameController < ApplicationController
 
   def index
     @search = nil
-    @show_details = false
-    if search_params['q'].present?
+    @query_request = NameController::QueryRequest.new(search_params)
+    if @query_request.search?
       search
     else
       no_search
@@ -38,17 +38,14 @@ class NameController < ApplicationController
 
   def no_search
     @results = nil
-    @search_term = nil
+    @search = nil
+    @query_request = nil
     render :index
   end
 
   def search
-    options = {
-                body: {
-                  query: query_string
-                      }
-              }
-    json = HTTParty.post("#{DATA_SERVER}/v1",options)
+    @graphql_request = GraphqlRequest.new(@query_request)
+    json = HTTParty.post("#{DATA_SERVER}/v1", @graphql_request.query)
     @search = JSON.parse(json.to_s, object_class: OpenStruct)
     present_results
   end
@@ -59,30 +56,9 @@ class NameController < ApplicationController
                   query: show_query
                       }
               }
-    json = HTTParty.post("#{DATA_SERVER}/v1",options)
+    json = HTTParty.post("#{DATA_SERVER}/v1", options)
     @name = JSON.parse(json.to_s, object_class: OpenStruct)
     show_name
-  end
-
-  def query_string
-    review_params
-    if @show_details
-      detail_query_for_post
-    else
-      list_query
-    end
-  end
-
-  def review_params
-    @search_term = search_params[:q].gsub(/ *$/, '')
-    @type_of_name = search_params[:name_type]
-    @fuzzy_or_exact = 'fuzzy' #search_params[:fuzzy_or_exact]
-    @limit = search_params[:limit]
-    @show_details = search_params[:output_options].match(/detail/)
-    @list_only = !@show_details
-    @hide_family = search_params[:output_options].match(/without family/)
-    @show_family = !@hide_family
-    @show_links = search_params[:output_options].match(/linked/)
   end
 
   def present_results
@@ -136,112 +112,6 @@ class NameController < ApplicationController
     show_query_raw.delete(' ')
                   .delete("\n")
                   .sub(/id_placeholder/, show_params[:id])
-  end
-
-  def list_query
-    list_query_raw.delete(' ')
-                  .delete("\n")
-                  .sub(/search_term_placeholder/, @search_term)
-                  .sub(/type_of_name_placeholder/, @type_of_name)
-                  .sub(/fuzzy_or_exact_placeholder/,
-                       @fuzzy_or_exact)
-                  .sub(/"limit_placeholder"/, @limit)
-  end
-
-  def list_query_raw
-    <<~HEREDOC
-      {
-        name_search(search_term: "search_term_placeholder",
-                    type_of_name: "type_of_name_placeholder",
-                    fuzzy_or_exact: "fuzzy_or_exact_placeholder",
-                    limit: "limit_placeholder")
-          {
-            names
-            {
-              id,
-              full_name,
-              name_status_name,
-              family_name
-            }
-          }
-      }
-    HEREDOC
-  end
-
-  def detail_query_for_post
-    detail_query_raw.delete(' ')
-                    .delete("\n")
-                    .sub(/search_term_placeholder/, @search_term)
-                    .sub(/type_of_name_placeholder/, @type_of_name)
-                    .sub(/fuzzy_or_exact_placeholder/,
-                         @fuzzy_or_exact)
-                    .sub(/"limit_placeholder"/, @limit)
-  end
-
-  def detail_query
-    detail_query_raw.delete(' ')
-                    .delete("\n")
-                    .sub(/search_term_placeholder/, URI.escape(@search_term))
-                    .sub(/type_of_name_placeholder/, URI.escape(@type_of_name))
-                    .sub(/fuzzy_or_exact_placeholder/,
-                         URI.escape(@fuzzy_or_exact))
-                    .sub(/"limit_placeholder"/, URI.escape(@limit))
-  end
-
-  def detail_query_raw
-    <<~HEREDOC
-    {
-      name_search(search_term: "search_term_placeholder",
-                  type_of_name: "type_of_name_placeholder",
-                  fuzzy_or_exact: "fuzzy_or_exact_placeholder",
-                  limit: "limit_placeholder")
-      {
-        names
-        {
-          id,
-          simple_name,
-          full_name,
-          full_name_html,
-          name_status_name,
-          family_name,
-          name_history
-          {
-            name_usages
-            {
-              instance_id,
-              reference_id,
-              citation,
-              page,
-              page_qualifier,
-              year,
-              standalone,
-              instance_type_name,
-              primary_instance,
-              misapplied,
-              misapplied_to_name,
-              misapplied_to_id,
-              misapplied_by_id,
-              misapplied_by_citation,
-              misapplied_on_page,
-              synonyms {
-                id,
-                full_name,
-                instance_type,
-                label,
-                page,
-                name_status_name,
-              }
-              notes {
-                id,
-                key,
-                value
-              }
-            }
-          }
-        }
-      }
-    }
-    HEREDOC
   end
 
   def show_query_raw
@@ -299,7 +169,7 @@ class NameController < ApplicationController
   end
 
   def search_params
-    params.permit(:utf8, :q, :format, :list_or_detail, :fuzzy_or_exact,
-                  :name_type, :limit, :output_options)
+    params.permit(:utf8, :q, :format, :show_details, :show_family, :show_links,
+                  :fuzzy_or_exact, :name_type, :limit, :output_options)
   end
 end

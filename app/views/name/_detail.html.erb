@@ -1,10 +1,18 @@
   <% @results.names.each do |name| %>
     <h3>
-      <% unless name.family_name == 'na' %>
+      <% if @query_request.family? && name.family_name != 'na' %>
         [<span title="family name" class="family-name"><%= name.family_name %></span>]
       <% end %>
-      <%= name.full_name %>
-      <%= name.name_status_name %>
+
+      <% name_string = name.full_name %>
+      <% unless name.name_status_name.blank? %>
+        <% name_string += %(, <i class="name-status" title="name status">#{name.name_status_name}</i>) %>
+      <% end %>
+      <% if @query_request.links? %>
+        <%= link_to name_string.html_safe, name_show_path(id: name.id), title: "Show name details in a new page" %>
+      <% else %>
+        <%= name_string.html_safe %>
+      <% end %>
     </h3>
 
       <ul class="plain indent3">
