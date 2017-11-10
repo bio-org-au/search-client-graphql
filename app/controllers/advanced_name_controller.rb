@@ -29,7 +29,7 @@ class AdvancedNameController < ApplicationController
       search_as_post
     else
       logger.debug('no q')
-      #@search_term = search_link_params['q']
+      # @search_term = search_link_params['q']
       @link_params = params['link_params']
       no_search
     end
@@ -38,7 +38,7 @@ class AdvancedNameController < ApplicationController
   private
 
   def search_required?
-    search_params['q'].present?  ||
+    search_params['q'].present? ||
       search_params['author_abbrev'].present? ||
       search_params['family'].present?
   end
@@ -52,12 +52,12 @@ class AdvancedNameController < ApplicationController
 
   def search_as_post
     options = {
-                body: {
-                  query: query_string
-                      }
-              }
+      body: {
+        query: query_string
+      }
+    }
     logger.debug(options.inspect)
-    json = HTTParty.post("#{DATA_SERVER}/v1",options)
+    json = HTTParty.post("#{DATA_SERVER}/v1", options)
     @search = JSON.parse(json.to_s, object_class: OpenStruct)
     present_results
   end
@@ -83,7 +83,7 @@ class AdvancedNameController < ApplicationController
   end
 
   def present_results
-    logger.info("client:  present_results")
+    logger.info('client:  present_results')
     respond_to do |format|
       format.html { present_html }
       format.json { render json: @search }
@@ -95,7 +95,7 @@ class AdvancedNameController < ApplicationController
   end
 
   def present_html
-    logger.info("client: present_info")
+    logger.info('client: present_info')
     @results = Results.new(@search)
     render :index
   end
@@ -120,11 +120,11 @@ class AdvancedNameController < ApplicationController
   def list_query
     list_query_raw.delete(' ')
                   .delete("\n")
-                  .sub(/search_term_placeholder/, URI.escape(@search_term))
-                  .sub(/type_of_name_placeholder/, URI.escape(@type_of_name))
+                  .sub(/search_term_placeholder/, CGI.escape(@search_term))
+                  .sub(/type_of_name_placeholder/, CGI.escape(@type_of_name))
                   .sub(/fuzzy_or_exact_placeholder/,
-                       URI.escape(@fuzzy_or_exact))
-                  .sub(/"limit_placeholder"/, URI.escape(@limit))
+                       CGI.escape(@fuzzy_or_exact))
+                  .sub(/"limit_placeholder"/, CGI.escape(@limit))
   end
 
   def list_query_raw
@@ -163,58 +163,58 @@ class AdvancedNameController < ApplicationController
 
   def detail_query_raw
     <<~HEREDOC
-    {
-      name_search(search_term: "search_term_placeholder",
-                  author_abbrev: "author_abbrev_placeholder",
-                  family: "family_placeholder",
-                  type_of_name: "type_of_name_placeholder",
-                  fuzzy_or_exact: "fuzzy_or_exact_placeholder",
-                  limit: "limit_placeholder")
       {
-        names
+        name_search(search_term: "search_term_placeholder",
+                    author_abbrev: "author_abbrev_placeholder",
+                    family: "family_placeholder",
+                    type_of_name: "type_of_name_placeholder",
+                    fuzzy_or_exact: "fuzzy_or_exact_placeholder",
+                    limit: "limit_placeholder")
         {
-          id,
-          simple_name,
-          full_name,
-          full_name_html,
-          name_status_name,
-          family_name,
-          name_history
+          names
           {
-            name_usages
+            id,
+            simple_name,
+            full_name,
+            full_name_html,
+            name_status_name,
+            family_name,
+            name_history
             {
-              instance_id,
-              reference_id,
-              citation,
-              page,
-              page_qualifier,
-              year,
-              standalone,
-              instance_type_name,
-              primary_instance,
-              misapplied,
-              misapplied_to_name,
-              misapplied_to_id,
-              misapplied_by_id,
-              misapplied_by_citation,
-              misapplied_on_page,
-              synonyms {
-                id,
-                full_name,
-                instance_type,
-                label,
+              name_usages
+              {
+                instance_id,
+                reference_id,
+                citation,
                 page,
-              }
-              notes {
-                id,
-                key,
-                value
+                page_qualifier,
+                year,
+                standalone,
+                instance_type_name,
+                primary_instance,
+                misapplied,
+                misapplied_to_name,
+                misapplied_to_id,
+                misapplied_by_id,
+                misapplied_by_citation,
+                misapplied_on_page,
+                synonyms {
+                  id,
+                  full_name,
+                  instance_type,
+                  label,
+                  page,
+                }
+                notes {
+                  id,
+                  key,
+                  value
+                }
               }
             }
           }
         }
       }
-    }
     HEREDOC
   end
 

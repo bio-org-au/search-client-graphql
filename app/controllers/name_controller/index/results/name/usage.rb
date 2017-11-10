@@ -6,7 +6,6 @@ class NameController::Index::Results::Name::Usage
 
   def initialize(raw_usage)
     @raw_usage = raw_usage
-    self
   end
 
   def misapplied?

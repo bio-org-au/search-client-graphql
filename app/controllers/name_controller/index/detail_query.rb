@@ -7,7 +7,7 @@ class NameController::Index::DetailQuery
   end
 
   def query_string
-    raw_query_string.delete(" ")
+    raw_query_string.delete(' ')
                     .delete("\n")
                     .sub(/search_term_placeholder/, @form_request.search_term)
                     .sub(/type_of_name_placeholder/, @form_request.name_type)

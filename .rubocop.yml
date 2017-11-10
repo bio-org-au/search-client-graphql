@@ -7,9 +7,6 @@ Style/TrailingCommaInLiteral:
   Enabled: false
 Style/TrailingCommaInArguments:
   Enabled: false
-StringLiterals:
-  EnforcedStyle: double_quotes
-  Enabled: true
 Style/ClassAndModuleChildren:
   Enabled: false
 

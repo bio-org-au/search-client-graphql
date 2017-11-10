@@ -34,4 +34,3 @@ Rails.application.routes.draw do
   root to: 'name#index'
   get '*path' => 'name#index'
 end
-

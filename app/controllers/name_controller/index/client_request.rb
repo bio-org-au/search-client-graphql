@@ -11,7 +11,7 @@ class NameController::Index::ClientRequest
   end
 
   def search_term
-    @params[:q].present? && @params[:q].gsub(/ *$/, "")
+    @params[:q].present? && @params[:q].gsub(/ *$/, '')
   end
 
   def name_type
@@ -23,7 +23,7 @@ class NameController::Index::ClientRequest
   end
 
   def details?
-    @params[:show_details].present? && @params[:show_details] == "show"
+    @params[:show_details].present? && @params[:show_details] == 'show'
   end
   alias show_details details?
 
@@ -32,10 +32,10 @@ class NameController::Index::ClientRequest
   end
 
   def family?
-    @params[:show_family].present? && @params[:show_family] == "show"
+    @params[:show_family].present? && @params[:show_family] == 'show'
   end
 
   def links?
-    @params[:show_links].present? && @params[:show_links] == "show"
+    @params[:show_links].present? && @params[:show_links] == 'show'
   end
 end

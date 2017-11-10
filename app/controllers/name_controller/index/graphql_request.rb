@@ -19,7 +19,7 @@ class NameController::Index::GraphqlRequest
       }
     }
   end
-  
+
   def graphql_query_string
     if @client_request.details?
       NameController::Index::DetailQuery.new(@client_request).query_string

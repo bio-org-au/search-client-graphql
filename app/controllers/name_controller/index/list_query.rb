@@ -7,13 +7,13 @@ class NameController::Index::ListQuery
   end
 
   def query_string
-    Rails.logger.debug("@client_request.class: #{@client_request.class}") 
-    Rails.logger.debug("@client_request.search_term: #{@client_request.search_term}") 
+    Rails.logger.debug("@client_request.class: #{@client_request.class}")
+    Rails.logger.debug("@client_request.search_term: #{@client_request.search_term}")
     interpolated_query_string
   end
 
   def interpolated_query_string
-    raw_query_string.delete(" ")
+    raw_query_string.delete(' ')
                     .delete("\n")
                     .sub(/search_term_placeholder/, @client_request.search_term)
                     .sub(/type_of_name_placeholder/, @client_request.name_type)

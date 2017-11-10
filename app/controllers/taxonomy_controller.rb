@@ -40,10 +40,10 @@ class TaxonomyController < ApplicationController
 
   def search_as_post
     options = {
-                body: { query: query_string }
-              }
+      body: { query: query_string }
+    }
     logger.debug(options.inspect)
-    json = HTTParty.post("#{DATA_SERVER}/v1.json",options)
+    json = HTTParty.post("#{DATA_SERVER}/v1.json", options)
     @search = JSON.parse(json.to_s, object_class: OpenStruct)
     present_results
   end
@@ -67,18 +67,18 @@ class TaxonomyController < ApplicationController
   end
 
   def present_results
-    logger.info("client:  present_results")
+    logger.info('client:  present_results')
     respond_to do |format|
       format.html { present_html }
       format.json { render json: @search }
     end
-  #rescue => e
-    #logger.error("Search error #{e} for params: #{params.inspect}")
-    #render :error
+    # rescue => e
+    # logger.error("Search error #{e} for params: #{params.inspect}")
+    # render :error
   end
 
   def present_html
-    logger.info("client: present_info")
+    logger.info('client: present_info')
     @taxa = @search.data.taxonomy_search.taxa
     render :index
   end
@@ -96,8 +96,8 @@ class TaxonomyController < ApplicationController
   def list_query
     list_query_raw.delete(' ')
                   .delete("\n")
-                  .sub(/search_term_placeholder/, URI.escape(@search_term))
-                  .sub(/"limit_placeholder"/, URI.escape(@limit))
+                  .sub(/search_term_placeholder/, CGI.escape(@search_term))
+                  .sub(/"limit_placeholder"/, CGI.escape(@limit))
   end
 
   def list_query_raw
@@ -128,35 +128,35 @@ class TaxonomyController < ApplicationController
   def detail_query
     detail_query_raw.delete(' ')
                     .delete("\n")
-                    .sub(/search_term_placeholder/, URI.escape(@search_term))
-                    .sub(/"limit_placeholder"/, URI.escape(@limit))
+                    .sub(/search_term_placeholder/, CGI.escape(@search_term))
+                    .sub(/"limit_placeholder"/, CGI.escape(@limit))
   end
 
   def detail_query_raw
     <<~HEREDOC
-    {
-      taxonomy_search(search_term: "search_term_placeholder",
-                      limit: "limit_placeholder")
       {
-        taxa
+        taxonomy_search(search_term: "search_term_placeholder",
+                        limit: "limit_placeholder")
         {
-          id,
-          full_name,
-          name_status_name,
-          reference_citation,
-          taxon_details {
-            instance_id,
-            taxon_synonyms {
-              id,
-              name_id,
-              full_name
+          taxa
+          {
+            id,
+            full_name,
+            name_status_name,
+            reference_citation,
+            taxon_details {
+              instance_id,
+              taxon_synonyms {
+                id,
+                name_id,
+                full_name
+              }
+              taxon_distribution,
+              taxon_comment
             }
-            taxon_distribution,
-            taxon_comment
           }
         }
       }
-    }
     HEREDOC
   end
 

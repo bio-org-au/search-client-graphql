@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in
   # config/application.rb.
@@ -56,7 +57,7 @@ Rails.application.configure do
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
-  config.log_tags = [:subdomain, "search"]
+  config.log_tags = [:subdomain, 'search']
 
   # Use a different logger for distributed setups.
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
@@ -85,7 +86,7 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_controller.relative_url_root = "/nsl/scg"
+  config.action_controller.relative_url_root = '/nsl/scg'
 end
 
 begin
@@ -93,10 +94,10 @@ begin
   puts "Loading config from: #{config_file_path}"
   load config_file_path
 rescue LoadError
-  puts "=" * 100
+  puts '=' * 100
   puts "Unable to find the config file: #{config_file_path}"
-  puts "Application start up will now fail."
-  puts "=" * 100
+  puts 'Application start up will now fail.'
+  puts '=' * 100
   raise
 end
 

@@ -57,7 +57,7 @@ class NameController < ApplicationController
 
   def render_csv
     @results = NameController::Index::Results.new(@search)
-    render "csv.html", layout: nil
+    render 'csv.html', layout: nil
   end
 
   def show_params
