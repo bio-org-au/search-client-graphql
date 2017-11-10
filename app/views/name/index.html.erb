@@ -1,6 +1,6 @@
 <h1><%= @name_label %> Search</h1>
 
-<%= render partial: 'search_form' %>
+<%= render partial: 'name/index/search_form' %>
 <hr>
 <%= link_to('new', name_search_path,name: 'x', title: 'Clear fields and start a new name search') %> |
 <%= link_to('advanced', names_advanced_search_path(link_params: params),title: 'Go to advanced name search') %> |
@@ -23,9 +23,9 @@
 
   <hr>
   <% if @client_request.details? %>
-    <%= render partial: 'detail' %>
+    <%= render partial: 'name/index/detail' %>
   <% else %>
-    <%= render partial: 'list' %>
+    <%= render partial: 'name/index/list' %>
   <% end %>
 
   <hr>

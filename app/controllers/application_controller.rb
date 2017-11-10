@@ -5,7 +5,15 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :start_timer, :settings
+  #rescue_from 'Errno::ECONNREFUSED', with: :rescue_error
+  rescue_from StandardError do | exception |
+    logger.error("Show error #{exception}")
+    exception.backtrace.each { |b| logger.error(b) }
+    render :error
+  end
+
   private
+
   def start_timer
     @start_time = Time.now
   end
@@ -14,5 +22,11 @@ class ApplicationController < ActionController::Base
     @setting = Setting.new
     @name_label = @setting.name_label
     @taxonomy_label = @setting.taxonomy_label
+  end
+
+  def rescue_error
+    logger.error("Show error #{e}")
+    e.backtrace.each { |b| logger.error(b) }
+    render :error
   end
 end

@@ -25,24 +25,15 @@ class NameController < ApplicationController
                                                      .result
     end
     render_index
-  rescue => e
-     logger.error("Index error #{e} for params: #{params.inspect}")
-     render :error
   end
 
   def show
     @client_request = NameController::Show::ClientRequest.new(show_params)
     @name = NameController::Show::GraphqlRequest.new(@client_request).result
     render_name
-  rescue => e
-    logger.error("Show error #{e} for params: #{params.inspect}")
-    render :error
   end
 
   private
-
-  def search
-  end
 
   def render_index
     respond_to do |format|
@@ -57,19 +48,16 @@ class NameController < ApplicationController
       format.html { render :show }
       format.json { render json: @name }
     end
-  rescue => e
-    logger.error("Search error #{e} for params: #{params.inspect}")
-    render :error
   end
 
   def render_index_html
-    @results = Results.new(@search)
+    @results = NameController::Index::Results.new(@search)
     render :index
   end
 
   def render_csv
-    @results = Results.new(@search)
-    render 'csv.html', layout: nil
+    @results = NameController::Index::Results.new(@search)
+    render "csv.html", layout: nil
   end
 
   def show_params
