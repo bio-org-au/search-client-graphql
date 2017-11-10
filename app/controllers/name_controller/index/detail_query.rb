@@ -1,24 +1,20 @@
 # frozen_string_literal: true
 
 # Class extracted from name controller.
-class NameController::DetailQuery
+class NameController::Index::DetailQuery
   def initialize(form_request)
     @form_request = form_request
   end
 
   def query_string
-    interpolated_query_string
-  end
-
-  private
-
-  def interpolated_query_string
     raw_query_string.delete(" ")
                     .delete("\n")
                     .sub(/search_term_placeholder/, @form_request.search_term)
                     .sub(/type_of_name_placeholder/, @form_request.name_type)
                     .sub(/"limit_placeholder"/, @form_request.limit)
   end
+
+  private
 
   def raw_query_string
     <<~HEREDOC

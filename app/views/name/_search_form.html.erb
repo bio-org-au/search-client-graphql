@@ -31,11 +31,11 @@
     </select>
   </li>-->
   <li>
-<%= check_box_tag(:show_family, "show", @query_request.family?) %> <%= label_tag(:show_family, "Show family") %>
+<%= check_box_tag(:show_family, "show", @client_request.family?) %> <%= label_tag(:show_family, "Show family") %>
 <br/>
-<%= check_box_tag(:show_links, "show", @query_request.links?) %> <%= label_tag(:show_links, "Show links") %>
+<%= check_box_tag(:show_links, "show", @client_request.links?) %> <%= label_tag(:show_links, "Show links") %>
 <br/>
-<%= check_box_tag(:show_details, "show", @query_request.details?) %> <%= label_tag(:show_details, "Show details") %>
+<%= check_box_tag(:show_details, "show", @client_request.details?) %> <%= label_tag(:show_details, "Show details") %>
   </li>
   <li>
     Qty:

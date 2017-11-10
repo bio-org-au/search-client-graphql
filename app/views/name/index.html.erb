@@ -8,21 +8,21 @@
 <hr>
 
 <div id="search-results">
-<% if @query_request.search_term.present? %>
+<% if @client_request.search? %>
   <% unless @results.present? %>
-  No results for "<%= @query_request.search_term %>"
+  No results for "<%= @client_request.search_term %>"
   <% elapsed = Time.now - @start_time %>(<%= elapsed.round(2) %>s)
   <% end %>
 <% end %>
 <% if @results.present? %>
   <h2>
   <%= pluralize(@results.size,'name') %>
-  found for "<%= @query_request.search_term %>"
+  found for "<%= @client_request.search_term %>"
   <% elapsed = Time.now - @start_time %>(<%= elapsed.round(2) %>s)
   </h2>
 
   <hr>
-  <% if @query_request.details? %>
+  <% if @client_request.details? %>
     <%= render partial: 'detail' %>
   <% else %>
     <%= render partial: 'list' %>

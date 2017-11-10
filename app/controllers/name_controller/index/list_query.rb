@@ -1,21 +1,23 @@
 # frozen_string_literal: true
 
 # Class extracted from name controller.
-class NameController::ListQuery
-  def initialize(form_request)
-    @form_request = form_request
+class NameController::Index::ListQuery
+  def initialize(client_request)
+    @client_request = client_request
   end
 
   def query_string
+    Rails.logger.debug("@client_request.class: #{@client_request.class}") 
+    Rails.logger.debug("@client_request.search_term: #{@client_request.search_term}") 
     interpolated_query_string
   end
 
   def interpolated_query_string
     raw_query_string.delete(" ")
                     .delete("\n")
-                    .sub(/search_term_placeholder/, @form_request.search_term)
-                    .sub(/type_of_name_placeholder/, @form_request.name_type)
-                    .sub(/"limit_placeholder"/, @form_request.limit)
+                    .sub(/search_term_placeholder/, @client_request.search_term)
+                    .sub(/type_of_name_placeholder/, @client_request.name_type)
+                    .sub(/"limit_placeholder"/, @client_request.limit)
   end
 
   def raw_query_string

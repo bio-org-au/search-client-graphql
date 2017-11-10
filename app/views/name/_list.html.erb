@@ -1,14 +1,14 @@
   <ul class="plain">
   <% @results.names.each do |name| %>
     <li>
-    <% if @query_request.family? && name.family_name != 'na' %>
+    <% if @client_request.family? && name.family_name != 'na' %>
       [<span title="Family Name" class="family-name"><%= name.family_name %></span>]
     <% end %>
     <% name_string = name.full_name %>
     <% unless name.name_status_name.blank? %>
       <% name_string += %(, <i class="name-status" title="name status">#{name.name_status_name}</i>) %>
     <% end %>
-    <% if @query_request.links? %>
+    <% if @client_request.links? %>
       <%= link_to name_string.html_safe, name_show_path(id: name.id), title: "Show name details" %>
     <% else %>
       <%= name_string.html_safe %>

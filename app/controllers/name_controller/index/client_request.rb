@@ -1,13 +1,9 @@
 # frozen_string_literal: true
 
 # Class extracted from name controller.
-class NameController::QueryRequest
-  def initialize(search_params)
-    @params = search_params
-  end
-  
-  def inspect
-    'hello'
+class NameController::Index::ClientRequest
+  def initialize(params)
+    @params = params
   end
 
   def search?
@@ -15,7 +11,7 @@ class NameController::QueryRequest
   end
 
   def search_term
-    @params[:q].gsub(/ *$/, "")
+    @params[:q].present? && @params[:q].gsub(/ *$/, "")
   end
 
   def name_type
