@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Class extracted from name controller.
-class NameController::Index::ListQuery
+class NamesController::Index::ListQuery
   def initialize(client_request)
     @client_request = client_request
   end

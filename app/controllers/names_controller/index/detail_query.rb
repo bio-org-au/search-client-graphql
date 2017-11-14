@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Class extracted from name controller.
-class NameController::Index::DetailQuery
+class NamesController::Index::DetailQuery
   def initialize(form_request)
     @form_request = form_request
   end

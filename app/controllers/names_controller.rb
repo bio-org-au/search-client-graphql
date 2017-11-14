@@ -17,19 +17,19 @@
 # Show useful error diagnostics
 # - in log
 # - on page
-class NameController < ApplicationController
+class NamesController < ApplicationController
   def index
-    @client_request = NameController::Index::ClientRequest.new(search_params)
+    @client_request = NamesController::Index::ClientRequest.new(search_params)
     if @client_request.search?
-      @search = NameController::Index::GraphqlRequest.new(@client_request)
+      @search = NamesController::Index::GraphqlRequest.new(@client_request)
                                                      .result
     end
     render_index
   end
 
   def show
-    @client_request = NameController::Show::ClientRequest.new(show_params)
-    @name = NameController::Show::GraphqlRequest.new(@client_request).result
+    @client_request = NamesController::Show::ClientRequest.new(show_params)
+    @name = NamesController::Show::GraphqlRequest.new(@client_request).result
     render_name
   end
 
@@ -51,12 +51,12 @@ class NameController < ApplicationController
   end
 
   def render_index_html
-    @results = NameController::Index::Results.new(@search)
+    @results = NamesController::Index::Results.new(@search)
     render :index
   end
 
   def render_csv
-    @results = NameController::Index::Results.new(@search)
+    @results = NamesController::Index::Results.new(@search)
     render 'csv.html', layout: nil
   end
 

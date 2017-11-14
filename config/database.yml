@@ -15,4 +15,4 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: no_such_thing
+  database: dummy_test

@@ -3,15 +3,15 @@
 Rails.application.routes.draw do
   match '/names/search',
         as: 'name_search',
-        to: 'name#index',
+        to: 'names#index',
         via: :get
   match '/name/:id',
         as: 'name_show',
-        to: 'name#show',
+        to: 'names#show',
         via: :get
   match '/search',
         as: 'search',
-        to: 'name#index',
+        to: 'names#index',
         via: :get
   match '/name/history/:id',
         as: 'name_history',
@@ -22,15 +22,15 @@ Rails.application.routes.draw do
         to: 'names/search/within/taxon/summary#index',
         via: :get
   get '/index.*',
-      to: 'name#index'
+      to: 'names#index'
   match '/names/advanced',
         as: 'names_advanced_search',
-        to: 'advanced_name#index',
+        to: 'advanced_names#index',
         via: :get
   match '/taxonomy/search',
         as: 'taxonomy_search',
         to: 'taxonomy#index',
         via: :get
-  root to: 'name#index'
-  get '*path' => 'name#index'
+  root to: 'names#index'
+  get '*path' => 'names#index'
 end

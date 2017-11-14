@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Container for names in results
-class AdvancedNameController::Results::Name
+class NamesController::Index::Results::Name
   def initialize(raw_name)
     @raw_name = raw_name
   end
@@ -19,11 +19,15 @@ class AdvancedNameController::Results::Name
 
   def usages
     @raw_name.name_history.name_usages.collect do |usage|
-      NameController::Results::Name::Usage.new(usage)
+      NameController::Index::Results::Name::Usage.new(usage)
     end
   end
 
   def family_name
     @raw_name.family_name
+  end
+
+  def id
+    @raw_name.id
   end
 end

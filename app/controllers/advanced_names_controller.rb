@@ -17,7 +17,7 @@
 # Show useful error diagnostics
 # - in log
 # - on page
-class AdvancedNameController < ApplicationController
+class AdvancedNamesController < ApplicationController
   DATA_SERVER = Rails.configuration.data_server
 
   def index
@@ -89,9 +89,9 @@ class AdvancedNameController < ApplicationController
       format.json { render json: @search }
       format.csv { present_csv }
     end
-  rescue => e
-    logger.error("Search error #{e} for params: #{params.inspect}")
-    render :error
+  #rescue => e
+  #  logger.error("Search error #{e} for params: #{params.inspect}")
+  #  render :error
   end
 
   def present_html

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Class extracted from name controller.
-class NameController::Index::ClientRequest
+class NamesController::Index::ClientRequest
   def initialize(params)
     @params = params
   end

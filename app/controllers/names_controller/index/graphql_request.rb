@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Class extracted from name controller.
-class NameController::Index::GraphqlRequest
+class NamesController::Index::GraphqlRequest
   DATA_SERVER = Rails.configuration.data_server
   def initialize(client_request)
     @client_request = client_request
