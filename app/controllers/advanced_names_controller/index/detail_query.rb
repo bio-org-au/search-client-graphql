@@ -1,15 +1,17 @@
 # frozen_string_literal: true
 
 # Class extracted from name controller.
-class NamesController::Show::GraphqlQuery
-  def initialize(client_request)
-    @client_request = client_request
+class NamesController::Index::DetailQuery
+  def initialize(form_request)
+    @form_request = form_request
   end
 
-  def as_string
+  def query_string
     raw_query_string.delete(' ')
                     .delete("\n")
-                    .sub(/id_placeholder/, @client_request.id)
+                    .sub(/search_term_placeholder/, @form_request.search_term)
+                    .sub(/type_of_name_placeholder/, @form_request.name_type)
+                    .sub(/"limit_placeholder"/, @form_request.limit)
   end
 
   private
@@ -17,14 +19,19 @@ class NamesController::Show::GraphqlQuery
   def raw_query_string
     <<~HEREDOC
       {
-        name(id: id_placeholder)
+        name_search(search_term: "search_term_placeholder",
+                    type_of_name: "type_of_name_placeholder",
+                    fuzzy_or_exact: "fuzzy",
+                    limit: "limit_placeholder")
         {
+          names
+          {
             id,
             simple_name,
             full_name,
             full_name_html,
-            family_name,
             name_status_name,
+            family_name,
             name_history
             {
               name_usages
@@ -61,6 +68,7 @@ class NamesController::Show::GraphqlQuery
             }
           }
         }
+      }
     HEREDOC
   end
 end

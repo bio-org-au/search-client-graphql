@@ -20,7 +20,16 @@
 class AdvancedNamesController < ApplicationController
   DATA_SERVER = Rails.configuration.data_server
 
-  def index
+   def index
+    @client_request = AdvancedNamesController::Index::ClientRequest.new(search_params)
+    if @client_request.search?
+      @search = AdvancedNamesController::Index::GraphqlRequest.new(@client_request)
+                                                              .result
+    end
+    render_index
+  end
+
+  def xindex
     logger.debug('index')
     @search = nil
     @show_details = false
@@ -82,10 +91,9 @@ class AdvancedNamesController < ApplicationController
     @list_only = !@show_details
   end
 
-  def present_results
-    logger.info('client:  present_results')
+  def render_index
     respond_to do |format|
-      format.html { present_html }
+      format.html { render_index_html }
       format.json { render json: @search }
       format.csv { present_csv }
     end
@@ -94,9 +102,8 @@ class AdvancedNamesController < ApplicationController
   #  render :error
   end
 
-  def present_html
-    logger.info('client: present_info')
-    @results = Results.new(@search)
+  def render_index_html
+    @results = NamesController::Index::Results.new(@search)
     render :index
   end
 

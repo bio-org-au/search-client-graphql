@@ -22,9 +22,9 @@ class NamesController::Index::GraphqlRequest
 
   def graphql_query_string
     if @client_request.details?
-      NameController::Index::DetailQuery.new(@client_request).query_string
+      NamesController::Index::DetailQuery.new(@client_request).query_string
     else
-      NameController::Index::ListQuery.new(@client_request).query_string
+      NamesController::Index::ListQuery.new(@client_request).query_string
     end
   end
 end

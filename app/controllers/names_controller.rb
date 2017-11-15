@@ -22,7 +22,7 @@ class NamesController < ApplicationController
     @client_request = NamesController::Index::ClientRequest.new(search_params)
     if @client_request.search?
       @search = NamesController::Index::GraphqlRequest.new(@client_request)
-                                                     .result
+                                                      .result
     end
     render_index
   end

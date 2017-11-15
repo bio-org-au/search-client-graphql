@@ -19,7 +19,7 @@ class NamesController::Index::Results::Name
 
   def usages
     @raw_name.name_history.name_usages.collect do |usage|
-      NameController::Index::Results::Name::Usage.new(usage)
+      NamesController::Index::Results::Name::Usage.new(usage)
     end
   end
 

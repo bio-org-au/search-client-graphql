@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Class extracted from name controller.
-class NamesController::Show::GraphqlRequest
+class AdvancedNamesController::Index::GraphqlRequest
   DATA_SERVER = Rails.configuration.data_server
   def initialize(client_request)
     @client_request = client_request
@@ -15,8 +15,16 @@ class NamesController::Show::GraphqlRequest
   def query
     {
       body: {
-        query: NamesController::Show::GraphqlQuery.new(@client_request).as_string
+        query: graphql_query_string
       }
     }
+  end
+
+  def graphql_query_string
+    if @client_request.details?
+      AdvancedNamesController::Index::DetailQuery.new(@client_request).query_string
+    else
+      AdvancedNamesController::Index::ListQuery.new(@client_request).query_string
+    end
   end
 end

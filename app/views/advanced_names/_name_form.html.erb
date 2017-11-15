@@ -1,7 +1,8 @@
 <div id="form-div" class="no-print">
 <%= form_tag(names_advanced_search_path, method: :get) %>
 Taxon name:
-<input name='q' type="search" class="form-field width40pc min-width10em max-width30em" value="<%= params['q'] || @link_params['q'] %>" autofocus="true">
+<input name='q' type="search"
+                class="form-field width40pc min-width10em max-width30em" value="<%= params['q'] || ( @link_params.present? ? @link_params['q'] : '' ) %>" autofocus="true">
 <br>
 Author abbrev:
 <input name='author_abbrev' type="search" class="form-field width40pc min-width10em max-width30em" value="<%= params['author_abbrev'] %>">
