@@ -51,12 +51,12 @@ class NamesController < ApplicationController
   end
 
   def render_index_html
-    @results = NamesController::Index::Results.new(@search)
+    @results = Application::Names::Results.new(@search)
     render :index
   end
 
   def render_csv
-    @results = NamesController::Index::Results.new(@search)
+    @results = Application::Names::Results.new(@search)
     render 'csv.html', layout: nil
   end
 

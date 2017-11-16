@@ -23,9 +23,9 @@
 
   <hr>
   <% if @client_request.details? %>
-    <%= render partial: 'names/index/detail' %>
+    <%= render partial: 'name_detail' %>
   <% else %>
-    <%= render partial: 'names/index/list' %>
+    <%= render partial: 'name_list' %>
   <% end %>
 
   <hr>

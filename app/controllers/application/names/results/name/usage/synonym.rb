@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Container for name usage synonyms in results
-class NamesController::Index::Results::Name::Usage::Synonym
+class Application::Names::Results::Name::Usage::Synonym
   attr_reader :raw_synonym
   def initialize(raw_synonym)
     @raw_synonym = raw_synonym

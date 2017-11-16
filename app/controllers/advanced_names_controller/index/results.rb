@@ -46,7 +46,7 @@ class AdvancedNamesController::Index::Results
 
   def names
     @search.data.name_search.names.collect do |name|
-      AdvancedNamesController::Index::Results::Name.new(name)
+      Application::Names::Results::Name.new(name)
     end
   end
 end

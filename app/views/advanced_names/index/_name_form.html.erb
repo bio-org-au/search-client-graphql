@@ -1,40 +1,52 @@
-<div id="form-div" class="no-print">
+<div id="form-div">
 <%= form_tag(names_advanced_search_path, method: :get) %>
-Taxon name:
-<input name='q' type="search"
-                class="form-field width40pc min-width10em max-width30em" value="<%= params['q'] || ( @link_params.present? ? @link_params['q'] : '' ) %>" autofocus="true">
 <br>
-Author abbrev:
+Name:
+<input name='q' type="search" class="form-field width40pc min-width10em max-width30em" value="<%= params['q'] %>" autofocus="true">
+<br>
+Author:
 <input name='author_abbrev' type="search" class="form-field width40pc min-width10em max-width30em" value="<%= params['author_abbrev'] %>">
 <br>
 Family:
 <input name='family' type="search" class="form-field width40pc min-width10em max-width30em" value="<%= params['family'] %>">
 <ul class="plain">
-  <li>
+<!--  <li>
     <select name="list_or_detail" class="form-field" title="Show names in a list (quicker) or in a list with details of each name's history">
       <%= options_for_select([['List', 'list'],
                               ['Details', 'detail']], params[:list_or_detail]) %>
     </select>
   </li>
+-->
   <li>
-    <select name="name_type" title="The type of names to retrieve" class="form-field">
+    Types:
+      <select name="name_type" title="The type of names to retrieve" class="form-field">
       <%= options_for_select([['Scientific', 'scientific', {title: "Scientific names only"}],
                               ['Cultivar', 'cultivar', {title: "Cultivar names only"}],
                               ['Scientific and cultivar', 'scientific-or-cultivar', {title: "Scientific and cultivar names only"}],
-                              ['Common', 'common', {title: "Common names only"}]], params[:name_type]) %>
+                              ['Common', 'common', {title: "Common names only"}],
+                              ['All', 'all', {title: "Scientific, cultivar and common names"}]], params[:name_type]) %>
     </select>
   </li>
+  <!--
   <li>
     <select name="fuzzy_or_exact" title="Add a trailing wildcard automatically or search for exactly what you enter. (You can add your own wildcards in either case.)" class="form-field">
-      <%= options_for_select([['Automatic wildcard',
+      <%#= options_for_select([['Automatic wildcard',
                                'add_trailing_wildcard',
                                {title:"Add a trailing wildcard to the search term automaticaly"}],
                                ['Exact',
                                 'exact',
                                 {title:"Do not add a wildcard automatically"}]], params[:fuzzy_or_exact]) %>
     </select>
+  </li>-->
+  <li>
+<%= check_box_tag(:show_family, "show", @client_request.family?) %> <%= label_tag(:show_family, "Show family") %>
+<br/>
+<%= check_box_tag(:show_links, "show", @client_request.links?) %> <%= label_tag(:show_links, "Show links") %>
+<br/>
+<%= check_box_tag(:show_details, "show", @client_request.details?) %> <%= label_tag(:show_details, "Show details") %>
   </li>
   <li>
+    Qty:
     <input type="number"
            name="limit"
            title="Limit the number of names retrieved"
@@ -46,8 +58,6 @@ Family:
            class="form-field">
   </li>
   <li>
-  </li>
-  <li>
     <select name="format" title="Show the results in this form" class="form-field">
       <%= options_for_select([['HTML', 'html',{title:"Show results as a web page here"}],
                               ['CSV', 'csv',{title:"Show results as comma-separated data."}],
@@ -56,7 +66,7 @@ Family:
     </select>
   </li>
 </ul>
-<input type="submit" value="Search" class="left-aligned-form-button" title="Start searching">
+<input type="submit" value="Search" class="left-aligned-form-button" title="Search">
 </form>
 </div>
 

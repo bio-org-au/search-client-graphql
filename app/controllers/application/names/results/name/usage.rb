@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 # Container for name usages in results
-class NamesController::Index::Results::Name::Usage
+class Application::Names::Results::Name::Usage
   attr_reader :raw_usage
 
   def initialize(raw_usage)
     @raw_usage = raw_usage
+    self
   end
 
   def misapplied?
@@ -54,7 +55,7 @@ class NamesController::Index::Results::Name::Usage
 
   def synonyms
     @raw_usage.synonyms.collect do |synonym|
-      NamesController::Index::Results::Name::Usage::Synonym.new(synonym)
+      Application::Names::Results::Name::Usage::Synonym.new(synonym)
     end
   end
 

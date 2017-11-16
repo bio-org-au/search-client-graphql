@@ -7,16 +7,27 @@ class AdvancedNamesController::Index::ClientRequest
   end
 
   def search?
-    search_term.present? ||
-      author_abbrev.present?
+    @params['q'].present? ||
+      @params['family'].present? ||
+      @params['author_abbrev'].present?
   end
 
   def search_term
-    @params[:q].present? && @params[:q].gsub(/ *$/, '')
+    return '' if @params[:q].blank?
+    return '' unless @params[:q].class == String
+    @params[:q].strip
   end
 
   def author_abbrev
-    @params[:author_abbrev].present? && @params[:author_abbrev].gsub(/ *$/, '')
+    return '' if @params[:author_abbrev].blank?
+    return '' unless @params[:author_abbrev].class == String
+    @params[:author_abbrev].strip
+  end
+
+  def family
+    return '' if @params[:family].blank?
+    return '' unless @params[:family].class == String
+    @params[:family].strip
   end
 
   def name_type
@@ -28,6 +39,7 @@ class AdvancedNamesController::Index::ClientRequest
   end
 
   def details?
+    Rails.logger.debug("(advanced) details?")
     @params[:show_details].present? && @params[:show_details] == 'show'
   end
   alias show_details details?

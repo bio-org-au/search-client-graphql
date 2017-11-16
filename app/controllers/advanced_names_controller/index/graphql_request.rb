@@ -22,8 +22,10 @@ class AdvancedNamesController::Index::GraphqlRequest
 
   def graphql_query_string
     if @client_request.details?
+      Rails.logger.debug("choosing details")
       AdvancedNamesController::Index::DetailQuery.new(@client_request).query_string
     else
+      Rails.logger.debug("choosing list")
       AdvancedNamesController::Index::ListQuery.new(@client_request).query_string
     end
   end
