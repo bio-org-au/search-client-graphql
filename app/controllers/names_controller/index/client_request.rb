@@ -38,4 +38,8 @@ class NamesController::Index::ClientRequest
   def links?
     @params[:show_links].present? && @params[:show_links] == 'show'
   end
+
+  def timeout
+    TimeoutCalculator.new(limit: limit.to_i, details: details?).timeout
+  end
 end

@@ -30,4 +30,8 @@ class ApplicationController < ActionController::Base
     e.backtrace.each { |b| logger.error(b) }
     render :error
   end
+
+  def timeout
+    84
+  end
 end

@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# Quacks like a rails model
 class Setting
   DATA_SERVER = Rails.configuration.data_server
 

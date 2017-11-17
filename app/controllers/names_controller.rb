@@ -29,8 +29,8 @@ class NamesController < ApplicationController
 
   def show
     @client_request = NamesController::Show::ClientRequest.new(show_params)
-    @name = NamesController::Show::GraphqlRequest.new(@client_request).result
-    render_name
+    @raw_result = NamesController::Show::GraphqlRequest.new(@client_request).result
+    render_show
   end
 
   private
@@ -43,10 +43,13 @@ class NamesController < ApplicationController
     end
   end
 
-  def render_name
+  # Present the name details suitable for the name_detail partial.
+  def render_show
+    @results = OpenStruct.new
+    @results.names = [Application::Names::Results::Name.new(@raw_result.data.name)]
     respond_to do |format|
       format.html { render :show }
-      format.json { render json: @name }
+      format.json { render json: @raw_result.data.name }
     end
   end
 
