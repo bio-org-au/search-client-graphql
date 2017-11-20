@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Get settings from the server.
 class Setting
   DATA_SERVER = Rails.configuration.data_server
 

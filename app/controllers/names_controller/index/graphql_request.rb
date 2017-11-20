@@ -8,7 +8,9 @@ class NamesController::Index::GraphqlRequest
   end
 
   def result
-    json = HTTParty.post("#{DATA_SERVER}/v1", body: body, timeout: @client_request.timeout)
+    json = HTTParty.post("#{DATA_SERVER}/v1",
+                         body: body,
+                         timeout: @client_request.timeout)
     JSON.parse(json.to_s, object_class: OpenStruct)
   end
 

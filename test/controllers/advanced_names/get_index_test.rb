@@ -18,20 +18,22 @@ require 'test_helper'
 
 # Single controller test.
 class AdvancedNamesGetIndexTest < ActionController::TestCase
-  tests NamesController
+  tests AdvancedNamesController
   setup do
     Setting.any_instance.stubs(:name_label).returns('APNI')
     Setting.any_instance.stubs(:taxonomy_label).returns('APC')
     Setting.any_instance.stubs(:tree_label).returns('APC')
   end
 
-  test "get name index" do
+  test 'get name index' do
     get(:index)
     assert_response :success
-    assert_select "form", true, 'should find a form'
-    assert_select("form[action='/names/search']") do |elements|
-      assert_select("input[name='q']", true, "Form should have a query field.")
-      assert_select("input[type='submit']", true, "Form should have a submit button.")
+    assert_select 'form', true, 'should find a form'
+    assert_select("form[action='/names/advanced']") do
+      assert_select("input[name='q']", true,
+                    'Form should have a query field.')
+      assert_select("input[type='submit']", true,
+                    'Form should have a submit button.')
     end
   end
 end

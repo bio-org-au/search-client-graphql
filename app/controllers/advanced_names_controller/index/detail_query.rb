@@ -10,7 +10,8 @@ class AdvancedNamesController::Index::DetailQuery
     raw_query_string.delete(' ')
                     .delete("\n")
                     .sub(/search_term_placeholder/, @client_request.search_term)
-                    .sub(/author_abbrev_placeholder/, @client_request.author_abbrev)
+                    .sub(/author_abbrev_placeholder/,
+                         @client_request.author_abbrev)
                     .sub(/family_placeholder/, @client_request.family)
                     .sub(/type_of_name_placeholder/, @client_request.name_type)
                     .sub(/"limit_placeholder"/, @client_request.limit)

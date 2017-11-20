@@ -39,7 +39,7 @@ class AdvancedNamesController::Index::ClientRequest
   end
 
   def details?
-    Rails.logger.debug("(advanced) details?")
+    Rails.logger.debug('(advanced) details?')
     @params[:show_details].present? && @params[:show_details] == 'show'
   end
   alias show_details details?
@@ -60,4 +60,3 @@ class AdvancedNamesController::Index::ClientRequest
     TimeoutCalculator.new(limit: limit.to_i, details: details?).timeout
   end
 end
-

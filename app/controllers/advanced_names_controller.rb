@@ -20,11 +20,13 @@
 class AdvancedNamesController < ApplicationController
   DATA_SERVER = Rails.configuration.data_server
 
-   def index
-    @client_request = AdvancedNamesController::Index::ClientRequest.new(search_params)
+  def index
+    @client_request =
+      AdvancedNamesController::Index::ClientRequest.new(search_params)
     if @client_request.search?
-      @search = AdvancedNamesController::Index::GraphqlRequest.new(@client_request)
-                                                              .result
+      @search =
+        AdvancedNamesController::Index::GraphqlRequest.new(@client_request)
+                                                      .result
     end
     render_index
   end

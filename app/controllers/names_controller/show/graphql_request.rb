@@ -15,7 +15,8 @@ class NamesController::Show::GraphqlRequest
   def query
     {
       body: {
-        query: NamesController::Show::GraphqlQuery.new(@client_request).as_string
+        query: NamesController::Show::GraphqlQuery.new(@client_request)
+                                                  .as_string
       }
     }
   end

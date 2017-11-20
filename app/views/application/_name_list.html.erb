@@ -9,7 +9,7 @@
       <% name_string += %(, <i class="name-status" title="name status">#{name.name_status_name}</i>) %>
     <% end %>
     <% if @client_request.links? %>
-      <%= link_to name_string.html_safe, name_show_path(id: name.id), title: "Show name details" %>
+      <%= link_to name_string.html_safe, show_name_path(id: name.id), title: "Show name details" %>
     <% else %>
       <%= name_string.html_safe %>
     <% end %>

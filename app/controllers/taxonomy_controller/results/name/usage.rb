@@ -6,7 +6,6 @@ class TaxonomyController::Results::Name::Usage
 
   def initialize(raw_usage)
     @raw_usage = raw_usage
-    self
   end
 
   def misapplied?
@@ -18,7 +17,8 @@ class TaxonomyController::Results::Name::Usage
   end
 
   def full_citation_with_page
-    "#{@raw_usage.citation}: #{@raw_usage.page || '-'} #{'[' + @raw_usage.instance_type_name + ']' if @raw_usage.primary_instance}"
+    "#{@raw_usage.citation}: #{@raw_usage.page || '-'}
+    #{'[' + @raw_usage.instance_type_name + ']' if @raw_usage.primary_instance}"
   end
 
   def misapplied_to_name
