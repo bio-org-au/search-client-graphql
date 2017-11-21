@@ -43,7 +43,7 @@ class AdvancedNamesController < ApplicationController
     respond_to do |format|
       format.html { render_index_html }
       format.json { render json: @search }
-      format.csv { present_csv }
+      format.csv { render_csv }
     end
   end
 
@@ -59,8 +59,8 @@ class AdvancedNamesController < ApplicationController
     render :index
   end
 
-  def present_csv
-    @results = Results.new(@search)
+  def render_csv
+    @results = Application::Names::Results.new(@search)
     render 'csv.html', layout: nil
   end
 

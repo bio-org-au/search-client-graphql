@@ -44,6 +44,10 @@ class Application::Names::Results
     end
   end
 
+  def count
+    @search.data.name_search.count
+  end
+
   def names
     @search.data.name_search.names.collect do |name|
       Application::Names::Results::Name.new(name)

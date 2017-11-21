@@ -29,6 +29,7 @@ class AdvancedNamesController::Index::DetailQuery
                     fuzzy_or_exact: "fuzzy",
                     limit: "limit_placeholder")
         {
+          count,
           names
           {
             id,

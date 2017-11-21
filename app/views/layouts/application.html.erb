@@ -17,11 +17,19 @@ input:not([title]) {
   background: red;
 }
 
-input[type="checkbox"]:not([title]) {
-  background: red;
+input[type="checkbox"]:not([title]),
+label:not([title]) {
+  background: purple;
   color: red;
   border: 2px solid black;
+  width: 16px;
+  height: 16px;
 }
+
+input[type="number"] {
+  width: 4em;
+}
+
 </style>
 
     <% end %>

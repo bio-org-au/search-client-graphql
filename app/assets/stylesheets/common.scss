@@ -24,3 +24,29 @@ div.tiny-break {
 *.debug {
   border: 1px solid blue;
 }
+
+h3.name-heading {
+  margin-bottom: 5px;
+}
+
+ul.name-details {
+  margin-top: 0px;
+  margin-bottom: 25px;
+}
+
+div.name-detail-entry-separator.index {
+  margin: 4px 0 4px 0;
+}
+
+div.name-detail-entry-separator.show {
+  margin: 4px 0 4px 0;
+  border: 1px solid gainsboro;
+}
+
+h3.show {
+  font-size: 16px;
+  line-height: 100%;
+  margin-bottom: 15px;
+}
+
+

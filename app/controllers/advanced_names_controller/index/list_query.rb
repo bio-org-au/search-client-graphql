@@ -7,12 +7,6 @@ class AdvancedNamesController::Index::ListQuery
     @client_request = client_request
   end
 
-  def xquery_string
-    Rails.logger.debug('query_string')
-    Rails.logger.debug(raw_query_string)
-    raw_query_string
-  end
-
   def query_string
     raw_query_string.delete(' ')
                     .delete("\n")
@@ -34,6 +28,7 @@ class AdvancedNamesController::Index::ListQuery
                     fuzzy_or_exact: "fuzzy",
                     limit: "limit_placeholder")
           {
+            count,
             names
             {
               id,

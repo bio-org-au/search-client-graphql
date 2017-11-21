@@ -31,7 +31,6 @@ class NamesController < ApplicationController
     @client_request = NamesController::Show::ClientRequest.new(show_params)
     @raw_result = NamesController::Show::GraphqlRequest.new(@client_request)
                                                        .result
-    Rails.logger.debug(@raw_result)
     render_show
   end
 
@@ -45,7 +44,7 @@ class NamesController < ApplicationController
     end
   end
 
-  # Present the name details suitable for the name_detail partial.
+  # Present the name details in a structure that suits the name_detail partial.
   def render_show
     @results = OpenStruct.new
     @results.names =

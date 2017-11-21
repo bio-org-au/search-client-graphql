@@ -1,21 +1,21 @@
   <% @results.names.each do |name| %>
-    <h3>
+    <h3 class="name-heading <%= params[:action] %>">
       <% if @client_request.family? && name.family_name != 'na' %>
         [<span title="family name" class="family-name"><%= name.family_name %></span>]
       <% end %>
 
       <% name_string = name.full_name %>
       <% unless name.name_status_name.blank? %>
-        <% name_string += %(, <i class="name-status" title="name status">#{name.name_status_name}</i>) %>
+        <% name_string += %(, <i class="highlight name-status" title="name status">#{name.name_status_name}</i>) %>
       <% end %>
       <% if @client_request.links? %>
         <%= link_to name_string.html_safe, show_name_path(id: name.id), title: "Show name details in a new page" %>
       <% else %>
         <%= name_string.html_safe %>
       <% end %>
-    </h3>
+      </h3>
 
-      <ul class="plain indent3">
+      <ul class="name-details plain indent3">
         <% curr_ref_id = -1 %>
         <% name.usages.each do |usage| %>
           <% unless curr_ref_id == usage.reference_id %>
@@ -30,7 +30,7 @@
             <% end %>
             <% usage.synonyms.each do |synonym| %>
               <li class="indent"><span class="synonym-type"><%= synonym.label %>:</span>
-                <%= synonym.full_name %> <%= "#{synonym.name_status_name}" unless synonym.name_status_name == 'legitimate' %>
+                <%= synonym.full_name %> <%= "#{synonym.name_status_name}" %>
             <% end %>
           <% end %>
             <% if usage.misapplied? %>
@@ -50,6 +50,7 @@
               <% end %>
               </ul>
             <% end %>
+            <div class="name-detail-entry-separator <%= params[:action] %>"></div>
         <% end %>
         </ul>
       </ul>

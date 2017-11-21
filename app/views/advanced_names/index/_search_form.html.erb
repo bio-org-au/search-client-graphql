@@ -1,0 +1,18 @@
+<div id="form-div">
+<%= form_tag(names_advanced_search_path, method: :get) %>
+<br>
+Name:
+<input name='q' type="search" class="form-field width40pc min-width10em max-width30em" value="<%= params['q'] %>" autofocus="true">
+<br>
+Author:
+<input name='author_abbrev' type="search" class="form-field width40pc min-width10em max-width30em" value="<%= params['author_abbrev'] %>">
+<br>
+Family:
+<input name='family' type="search" class="form-field width40pc min-width10em max-width30em" value="<%= params['family'] %>">
+
+<%= render partial: "name_search_widgets" %>
+
+<input type="submit" value="Search" class="left-aligned-form-button" title="Search">
+</form>
+</div>
+

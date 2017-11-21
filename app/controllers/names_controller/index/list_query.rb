@@ -22,6 +22,7 @@ class NamesController::Index::ListQuery
                     fuzzy_or_exact: "fuzzy",
                     limit: "limit_placeholder")
           {
+            count,
             names
             {
               id,
