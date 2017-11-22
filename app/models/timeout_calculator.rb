@@ -2,7 +2,7 @@
 
 # Work out the timeout for a search request.
 class TimeoutCalculator
-  BASE = 10
+  BASE = 40
   DETAIL_COEFF = 0.045
   LIST_COEFF = 0.01
   DEFAULT_LIMIT = 100
