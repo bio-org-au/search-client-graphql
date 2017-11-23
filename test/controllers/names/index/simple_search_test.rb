@@ -45,7 +45,8 @@ class SimpleSearchTest < ActionController::TestCase
     end
     assert_select('div#search-results') do |d|
       assert_select('h2') do |h|
-        assert_match(/.*6.*names.*found.*for.*angophora.*costata/m, h.to_s, 'Should find 6 names found for angophora costata')
+        assert_match(/.*6.*names.*found.*for.*angophora.*costata/m, h.to_s,
+                     'Should find 6 names found for angophora costata')
       end
     end
   end
