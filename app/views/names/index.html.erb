@@ -8,10 +8,14 @@
 <hr>
 
 <div id="search-results">
-<% if @client_request.search? %>
-  <% unless @results.present? %>
-  No results for "<%= @client_request.search_term %>"
-  <% elapsed = Time.now - @start_time %>(<%= elapsed.round(2) %>s)
+<% if @client_request.any_type_of_search? %>
+  <% if @client_request.just_count? %>
+    <%= pluralize(@search.data.name_search.count, 'matching record') %>
+  <% else %>
+    <% unless @results.present? %>
+       No results for "<%= @client_request.search_term %>"
+       <% elapsed = Time.now - @start_time %>(<%= elapsed.round(2) %>s)
+    <% end %>
   <% end %>
 <% end %>
 <% if @results.present? %>

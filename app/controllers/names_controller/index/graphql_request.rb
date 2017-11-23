@@ -27,7 +27,9 @@ class NamesController::Index::GraphqlRequest
   end
 
   def graphql_query_string
-    if @client_request.details?
+    if @client_request.just_count?
+      NamesController::Index::CountQuery.new(@client_request).query_string
+    elsif @client_request.details?
       NamesController::Index::DetailQuery.new(@client_request).query_string
     else
       NamesController::Index::ListQuery.new(@client_request).query_string

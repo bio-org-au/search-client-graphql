@@ -1,10 +1,22 @@
 <div id="form-div">
 <%= form_tag(name_search_path, method: :get) %>
-<input name='q' type="search" class="form-field width40pc min-width10em max-width30em"
+<input name='q'
+       type="search"
+       class="form-field width40pc min-width10em max-width30em"
        value="<%= params['q'] %>" required="" autofocus="true">
 <%= render partial: "name_search_widgets" %>
 
-<input type="submit" value="Search" class="left-aligned-form-button" title="Search">
+<input type="submit"
+       value="Search"
+       name="search"
+       class="left-aligned-form-button"
+       title="Search the data and retrieve matching records">
+
+<input type="submit"
+       value="Count"
+       name="count"
+       class="left-aligned-form-button"
+       title="Search the data, count the matching records, and show results on this page.">
 </form>
 </div>
 

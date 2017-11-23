@@ -6,7 +6,7 @@ class NamesController::Index::ClientRequest
     @params = params
   end
 
-  def search?
+  def any_type_of_search?
     search_term.present?
   end
 
@@ -20,6 +20,10 @@ class NamesController::Index::ClientRequest
 
   def limit
     @params[:limit] || DEFAULT_LIMIT
+  end
+
+  def just_count?
+    @params[:count].present? && @params[:count].match(/count/i)
   end
 
   def details?

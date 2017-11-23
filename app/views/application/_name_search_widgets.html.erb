@@ -1,24 +1,30 @@
 <ul class="plain">
   <li>
       <select name="name_type" title="The type of names to retrieve" class="form-field">
-      <%= options_for_select([['Scientific names', 'scientific', {title: "Scientific names only"}],
-                              ['Cultivar names', 'cultivar', {title: "Cultivar names only"}],
-                              ['Scientific and cultivar names', 'scientific-or-cultivar', {title: "Scientific and cultivar names only"}],
-                              ['Common names', 'common', {title: "Common names only"}],
-                              ['All names', 'all', {title: "All names - scientific, cultivar and common"}]], params[:name_type]) %>
+        <%= options_for_select(
+          [['Scientific names', 'scientific', {title: "Scientific names only"}],
+           ['Cultivar names', 'cultivar', {title: "Cultivar names only"}],
+           ['Scientific and cultivar names', 'scientific-or-cultivar', {title: "Scientific and cultivar names only"}],
+           ['Common names', 'common', {title: "Common names only"}],
+           ['All names', 'all', {title: "All names - scientific, cultivar and common"}]], params[:name_type]) %>
     </select>
   </li>
   <li>
     <%= check_box_tag(:show_family, "show", @client_request.family?,
-                      title: 'Tick to show the family of each name next query') %>
+                      title:
+                      'Tick to show the family of each name next query') %>
     <%= label_tag(:show_family, "Show family",
                   title: 'Tick to show the family of each name next query') %>
     <br/>
-    <%= check_box_tag(:show_links, "show", @client_request.links?, title: "Tick to turn names into links next query.") %>
-    <%= label_tag(:show_links, "Show links", title: "Tick to turn names into links next query.") %>
+    <%= check_box_tag(:show_links, "show", @client_request.links?,
+                      title: "Tick to turn names into links next query.") %>
+    <%= label_tag(:show_links, "Show links",
+                  title: "Tick to turn names into links next query.") %>
     <br/>
-    <%= check_box_tag(:show_details, "show", @client_request.details?, title: "Tick to show details next query.") %>
-    <%= label_tag(:show_details, "Show details", title: "Tick to show details next query.") %>
+    <%= check_box_tag(:show_details, "show", @client_request.details?,
+                      title: "Tick to show details next query.") %>
+    <%= label_tag(:show_details, "Show details",
+                  title: "Tick to show details next query.") %>
   </li>
   <li>Show up to 
     <input type="number"

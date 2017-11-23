@@ -20,7 +20,7 @@
 class NamesController < ApplicationController
   def index
     @client_request = NamesController::Index::ClientRequest.new(search_params)
-    if @client_request.search?
+    if @client_request.any_type_of_search?
       @search = NamesController::Index::GraphqlRequest.new(@client_request)
                                                       .result
     end
@@ -71,6 +71,6 @@ class NamesController < ApplicationController
 
   def search_params
     params.permit(:utf8, :q, :format, :show_details, :show_family, :show_links,
-                  :name_type, :limit)
+                  :name_type, :limit, :count, :search)
   end
 end
