@@ -17,10 +17,13 @@
 
       <ul class="name-details plain indent3">
         <% curr_ref_id = -1 %>
+        <% curr_page = '' %>
         <% name.usages.each do |usage| %>
-          <% unless curr_ref_id == usage.reference_id %>
+          <% unless curr_ref_id == usage.reference_id && 
+                    curr_page == usage.page %>
             <%= "</ul>".html_safe unless curr_ref_id == -1 %>
             <% curr_ref_id = usage.reference_id %>
+            <% curr_page = usage.page %>
             <% if usage.misapplied? %>
               <li><%= usage.citation_for_misapplied %>
               <ul class="plain indent4">
@@ -28,11 +31,11 @@
               <li><%= usage.full_citation_with_page %>
               <ul class="plain indent4">
             <% end %>
+          <% end %>
             <% usage.synonyms.each do |synonym| %>
               <li class="indent"><span class="synonym-type"><%= synonym.label %>:</span>
                 <%= synonym.full_name %> <%= "#{synonym.name_status_name}" %>
             <% end %>
-          <% end %>
             <% if usage.misapplied? %>
               <li>misapplied to:
                 <%= usage.misapplied_to_name %>

@@ -37,6 +37,10 @@ class Application::Names::Results::Name::Usage
     @raw_usage.misapplied_on_page
   end
 
+  def page
+    @raw_usage.page
+  end
+
   def primary?
     @raw_usage.primary_instance
   end

@@ -12,6 +12,26 @@ Find and list
            ['All names', 'all', {title: "All names - scientific, cultivar and common"}]], params[:name_type]) %>
     </select>
   </li>
+  <li>
+    <select name="format" title="Show the results in this form" class="form-field">
+      <%= options_for_select([['on this page', 'html',{title:"Show results as a web page here"}],
+                              ['CSV download', 'csv',{title:"Show results as comma-separated data."}],
+                              ['JSON', 'json',{title:"Show results as JSON"}]],
+                             params[:format]) %>
+    </select>
+  </li>
+  <li>
+    for up to
+    <input type="number"
+           name="limit"
+           title="Limit the number of names retrieved"
+           placeholder="records"
+           min="1"
+           max="5000"
+           step="1"
+           value="<%= params[:limit] || 100 %>"
+           class="form-field"> records
+  </li>
 <h4 class="form-heading">
   Also show
 </h4>
@@ -31,26 +51,6 @@ Find and list
                       title: "Tick to show details next query.") %>
     <%= label_tag(:show_details, "bibliographic details and synonyms",
                   title: "Tick to show details next query.") %>
-  </li>
-  <li>
-    for up to
-    <input type="number"
-           name="limit"
-           title="Limit the number of names retrieved"
-           placeholder="records"
-           min="1"
-           max="5000"
-           step="1"
-           value="<%= params[:limit] || 100 %>"
-           class="form-field"> records
-  </li>
-  <li>
-    <select name="format" title="Show the results in this form" class="form-field">
-      <%= options_for_select([['on this page', 'html',{title:"Show results as a web page here"}],
-                              ['CSV download', 'csv',{title:"Show results as comma-separated data."}],
-                              ['JSON', 'json',{title:"Show results as JSON"}]],
-                             params[:format]) %>
-    </select>
   </li>
 </ul>
 
