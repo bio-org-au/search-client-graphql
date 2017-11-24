@@ -59,6 +59,8 @@ class NamesController::Index::DetailQuery
                   label,
                   page,
                   name_status_name,
+                  has_type_synonym,
+                  of_type_synonym,
                 }
                 notes {
                   id,
