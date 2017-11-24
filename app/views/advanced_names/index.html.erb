@@ -17,7 +17,7 @@
 <% end %>
 <% if @results.present? %>
   <h2>
-  <%= pluralize(@results.size,'name') %>
+  <%= pluralize(@results.size,'matching record') %>
   found for "<%= @client_request.search_term %>"
   <% unless params[:limit].to_i > @results.size %>
     out of <%= pluralize(@results.count,'record') %>

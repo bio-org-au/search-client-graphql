@@ -1,3 +1,6 @@
+<h4 class="form-heading">
+Find
+</h4>
 <ul class="plain">
   <li>
       <select name="name_type" title="The type of names to retrieve" class="form-field">
@@ -9,24 +12,27 @@
            ['All names', 'all', {title: "All names - scientific, cultivar and common"}]], params[:name_type]) %>
     </select>
   </li>
+<h4 class="form-heading">
+Show
+</h4>
   <li>
     <%= check_box_tag(:show_family, "show", @client_request.family?,
                       title:
                       'Tick to show the family of each name next query') %>
-    <%= label_tag(:show_family, "Show family",
+    <%= label_tag(:show_family, "family",
                   title: 'Tick to show the family of each name next query') %>
     <br/>
     <%= check_box_tag(:show_links, "show", @client_request.links?,
                       title: "Tick to turn names into links next query.") %>
-    <%= label_tag(:show_links, "Show links",
+    <%= label_tag(:show_links, "links",
                   title: "Tick to turn names into links next query.") %>
     <br/>
     <%= check_box_tag(:show_details, "show", @client_request.details?,
                       title: "Tick to show details next query.") %>
-    <%= label_tag(:show_details, "Show details",
+    <%= label_tag(:show_details, "details",
                   title: "Tick to show details next query.") %>
   </li>
-  <li>Show up to 
+  <li>
     <input type="number"
            name="limit"
            title="Limit the number of names retrieved"
@@ -39,9 +45,9 @@
   </li>
   <li>
     <select name="format" title="Show the results in this form" class="form-field">
-      <%= options_for_select([['Show results here.', 'html',{title:"Show results as a web page here"}],
-                              ['Download CSV results.', 'csv',{title:"Show results as comma-separated data."}],
-                              ['Show results as JSON', 'json',{title:"Show results as JSON"}]],
+      <%= options_for_select([['results on this page', 'html',{title:"Show results as a web page here"}],
+                              ['CSV download results', 'csv',{title:"Show results as comma-separated data."}],
+                              ['results as JSON', 'json',{title:"Show results as JSON"}]],
                              params[:format]) %>
     </select>
   </li>

@@ -11,17 +11,18 @@
 <% if @client_request.any_type_of_search? %>
   <% if @client_request.just_count? %>
     <%= pluralize(@search.data.name_search.count, 'matching record') %>
+    for "<%= @client_request.search_term %>"
   <% else %>
     <% unless @results.present? %>
-       No results for "<%= @client_request.search_term %>"
+       No records for "<%= @client_request.search_term %>"
        <% elapsed = Time.now - @start_time %>(<%= elapsed.round(2) %>s)
     <% end %>
   <% end %>
 <% end %>
 <% if @results.present? %>
   <h2>
-  <%= pluralize(@results.size,'name') %>
-  found for "<%= @client_request.search_term %>"
+  <%= pluralize(@results.size,'matching record') %>
+  for "<%= @client_request.search_term %>"
   <% unless params[:limit].to_i > @results.size %>
     out of <%= pluralize(@results.count,'record') %>
   <% end %>
