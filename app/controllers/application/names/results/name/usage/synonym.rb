@@ -23,11 +23,12 @@ class Application::Names::Results::Name::Usage::Synonym
     @raw_synonym.page
   end
 
-  # Return nil if not for display.
+  # Return nil if not to be displayed.
   def name_status_name
     return '' if @raw_synonym.name_status_name.match(LEFT_SQUARE_BRACKET)
     return '' if @raw_synonym.name_status_name == LEGITIMATE
-    return '' if @raw_synonym.name_status_name == ORTH_VAR && @raw_synonym.of_type_synonym
+    return '' if @raw_synonym.name_status_name == ORTH_VAR &&
+                 @raw_synonym.of_type_synonym
     @raw_synonym.name_status_name
   end
 

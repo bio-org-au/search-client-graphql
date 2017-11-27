@@ -29,7 +29,9 @@ class NamesShowTest < ActionController::TestCase
     NamesController::Show::GraphqlRequest.any_instance
                                          .stubs(:result)
                                          .returns(raw_result)
-    Application::Names::Results::Name::Usage::Synonym.any_instance.stubs(:name_id).returns(2)
+    Application::Names::Results::Name::Usage::Synonym.any_instance
+                                                     .stubs(:name_id)
+                                                     .returns(2)
   end
 
   test 'show name' do
