@@ -11,6 +11,10 @@ class Application::Names::Results::Name::Usage::Synonym
     @raw_synonym = raw_synonym
   end
 
+  def name_id
+    @raw_synonym.name_id
+  end
+
   def label
     @raw_synonym.label
   end

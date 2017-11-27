@@ -54,6 +54,7 @@ class NamesController::Index::DetailQuery
                 misapplied_on_page,
                 synonyms {
                   id,
+                  name_id,
                   full_name,
                   instance_type,
                   label,

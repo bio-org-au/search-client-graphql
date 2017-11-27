@@ -13,7 +13,7 @@
       <% else %>
         <%= name_string.html_safe %>
       <% end %>
-      </h3>
+    </h3>
 
       <ul class="name-details plain indent3">
         <% curr_ref_id = -1 %>
@@ -34,7 +34,15 @@
           <% end %>
             <% usage.synonyms.each do |synonym| %>
               <li class="indent"><span class="synonym-type"><%= synonym.label %>:</span>
-                <%= synonym.full_name %> <%= "#{synonym.name_status_name}" %>
+                <% if @client_request.links? %>
+                  <%= link_to synonym.full_name, show_name_path(id: synonym.name_id), title: "Show name details in a new page" %>
+                <% else %>
+                  <%= synonym.full_name %> <%= "#{synonym.name_status_name}" %>
+                <% end %>
+
+
+
+
             <% end %>
             <% if usage.misapplied? %>
               <li>misapplied to:
