@@ -51,6 +51,7 @@ class NamesController::Show::GraphqlQuery
                   label,
                   page,
                   name_status_name,
+                  of_type_synonym,
                 }
                 notes {
                   id,
