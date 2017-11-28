@@ -18,12 +18,13 @@ class AdvancedNamesController::Index::GraphqlRequest
   end
 
   def graphql_query_string
-    if @client_request.details?
-      Rails.logger.debug('choosing details')
+    if @client_request.just_count?
+      AdvancedNamesController::Index::CountQuery.new(@client_request)
+                                                 .query_string
+    elsif @client_request.details?
       AdvancedNamesController::Index::DetailQuery.new(@client_request)
                                                  .query_string
     else
-      Rails.logger.debug('choosing list')
       AdvancedNamesController::Index::ListQuery.new(@client_request)
                                                .query_string
     end

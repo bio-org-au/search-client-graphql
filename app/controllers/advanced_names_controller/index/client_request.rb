@@ -6,11 +6,16 @@ class AdvancedNamesController::Index::ClientRequest
     @params = params
   end
 
-  def search?
+  def any_type_of_search?
     @params['q'].present? ||
       @params['family'].present? ||
       @params['author_abbrev'].present? ||
-      @params['genus'].present?
+      @params['genus'].present? ||
+      @params['rank'].present?
+  end
+
+  def just_count?
+    @params[:count].present? && @params[:count].match(/count/i)
   end
 
   def search_term

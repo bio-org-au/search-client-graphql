@@ -4,6 +4,7 @@
 class TimeoutCalculator
   BASE = 40
   BASE_IF_NAME_BLANK = 140
+  BASE_FOR_A_COUNT = 20
   DETAIL_COEFF = 0.045
   LIST_COEFF = 0.01
   DEFAULT_LIMIT = 100
