@@ -9,7 +9,8 @@ class AdvancedNamesController::Index::ClientRequest
   def search?
     @params['q'].present? ||
       @params['family'].present? ||
-      @params['author_abbrev'].present?
+      @params['author_abbrev'].present? ||
+      @params['genus'].present?
   end
 
   def search_term
@@ -28,6 +29,12 @@ class AdvancedNamesController::Index::ClientRequest
     return '' if @params[:family].blank?
     return '' unless @params[:family].class == String
     @params[:family].strip
+  end
+
+  def genus
+    return '' if @params[:genus].blank?
+    return '' unless @params[:genus].class == String
+    @params[:genus].strip
   end
 
   def name_type
@@ -57,6 +64,6 @@ class AdvancedNamesController::Index::ClientRequest
   end
 
   def timeout
-    TimeoutCalculator.new(limit: limit.to_i, details: details?).timeout
+    TimeoutCalculator.new(limit: limit.to_i, details: details?, name_blank: search_term.blank?).timeout
   end
 end

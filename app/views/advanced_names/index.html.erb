@@ -2,7 +2,7 @@
 
 <%= render partial: 'advanced_names/index/search_form' %>
 <span class="no-print">
-<%= link_to('clear', names_advanced_search_path(link_params: params),title: 'Clear any search and start a new advanced search') %> |
+<%= link_to('new search', names_advanced_search_path(link_params: params),title: 'Clear any search and start a new advanced search') %> |
 <%= link_to('simple', name_search_path, title: 'Go to simple name search') %> |
 <%= link_to('taxonomy', taxonomy_search_path, title: 'Go to taxonomy search') %>
 </span>
@@ -18,7 +18,7 @@
 <% if @results.present? %>
   <h2>
   <%= pluralize(@results.size,'matching record') %>
-  found for "<%= @client_request.search_term %>"
+  found
   <% unless params[:limit].to_i > @results.size %>
     out of <%= pluralize(@results.count,'record') %>
   <% end %>
