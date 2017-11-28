@@ -37,6 +37,12 @@ class AdvancedNamesController::Index::ClientRequest
     @params[:genus].strip
   end
 
+  def rank
+    return '' if @params[:rank].blank?
+    return '' unless @params[:rank].class == String
+    @params[:rank].strip
+  end
+
   def name_type
     @params[:name_type]
   end
