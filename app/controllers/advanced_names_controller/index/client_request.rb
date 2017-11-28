@@ -11,7 +11,9 @@ class AdvancedNamesController::Index::ClientRequest
       @params['family'].present? ||
       @params['author_abbrev'].present? ||
       @params['genus'].present? ||
-      @params['rank'].present?
+      @params['species'].present? ||
+      @params['rank'].present? ||
+      @params['publication'].present?
   end
 
   def just_count?
@@ -42,10 +44,22 @@ class AdvancedNamesController::Index::ClientRequest
     @params[:genus].strip
   end
 
+  def species
+    return '' if @params[:species].blank?
+    return '' unless @params[:species].class == String
+    @params[:species].strip
+  end
+
   def rank
     return '' if @params[:rank].blank?
     return '' unless @params[:rank].class == String
     @params[:rank].strip
+  end
+
+  def publication
+    return '' if @params[:publication].blank?
+    return '' unless @params[:publication].class == String
+    @params[:publication].strip
   end
 
   def name_type

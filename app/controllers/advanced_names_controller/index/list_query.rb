@@ -15,7 +15,9 @@ class AdvancedNamesController::Index::ListQuery
                          @client_request.author_abbrev)
                     .sub(/family_placeholder/, @client_request.family)
                     .sub(/genus_placeholder/, @client_request.genus)
+                    .sub(/species_placeholder/, @client_request.species)
                     .sub(/rank_placeholder/, @client_request.rank)
+                    .sub(/publication_placeholder/, @client_request.publication)
                     .sub(/type_of_name_placeholder/, @client_request.name_type)
                     .sub(/"limit_placeholder"/, @client_request.limit)
   end
@@ -27,7 +29,9 @@ class AdvancedNamesController::Index::ListQuery
                     author_abbrev: "author_abbrev_placeholder",
                     family: "family_placeholder",
                     genus: "genus_placeholder",
+                    species: "species_placeholder",
                     rank: "rank_placeholder",
+                    publication: "publication_placeholder",
                     type_of_name: "type_of_name_placeholder",
                     fuzzy_or_exact: "fuzzy",
                     limit: "limit_placeholder")

@@ -25,13 +25,25 @@ Genus:
        value="<%= params['genus'] %>"
        title="Enter a genus name for the search.">
 <br>
+Species:
+<input name='species' type="search"
+       class="form-field width40pc min-width10em max-width30em"
+       value="<%= params['species'] %>"
+       title="Enter a species name for the search.">
+<br>
 Rank:
 <input name='rank' type="search"
        class="form-field width40pc min-width10em max-width30em"
        value="<%= params['rank'] %>"
        title="Enter a rank abbreviation for the search.">
 <br>
-fam. gen. sp. var.
+fam. gen. sp. var. 
+<br>
+Publication:
+<input name='publication' type="search"
+       class="form-field width40pc min-width10em max-width30em"
+       value="<%= params['publication'] %>"
+       title="Enter a publication citation for the search.  Wildcards are allowed.">
 
 <%= render partial: "name_search_widgets" %>
 

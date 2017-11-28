@@ -18,14 +18,6 @@ class NamesController::Index::GraphqlRequest
     { query: graphql_query_string }
   end
 
-  def query
-    {
-      body: {
-        query: graphql_query_string
-      }
-    }
-  end
-
   def graphql_query_string
     if @client_request.just_count?
       NamesController::Index::CountQuery.new(@client_request).query_string

@@ -10,6 +10,7 @@ class AdvancedNamesController::Index::GraphqlRequest
   def result
     json = HTTParty.post("#{DATA_SERVER}/v1",
                          body: body, timeout: @client_request.timeout)
+    Rails.logger.debug(json.to_s)
     JSON.parse(json.to_s, object_class: OpenStruct)
   end
 
