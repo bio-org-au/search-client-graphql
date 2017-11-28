@@ -75,6 +75,6 @@ class AdvancedNamesController::Index::ClientRequest
   end
 
   def timeout
-    TimeoutCalculator.new(limit: limit.to_i, details: details?, name_blank: search_term.blank?).timeout
+    TimeoutCalculator.new(self).timeout
   end
 end

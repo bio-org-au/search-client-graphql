@@ -2,27 +2,41 @@
 
 # Work out the timeout for a search request.
 class TimeoutCalculator
-  BASE = 40
+  DEFAULT_BASE = 40
   BASE_IF_NAME_BLANK = 140
   BASE_FOR_A_COUNT = 20
   DETAIL_COEFF = 0.045
   LIST_COEFF = 0.01
   DEFAULT_LIMIT = 100
 
-  def initialize(options)
-    throw 'Need limit to calculate timeout' unless options.key?(:limit)
-    throw 'Need details flag to calculate timeout' unless options.key?(:details)
-    @limit = options[:limit]
-    @details = options[:details]
-    @name_blank = options[:name_blank] || false
+  def initialize(client_request)
+    @client_request = client_request
+  end
+
+  def choose_base
+    if @client_request.just_count?
+      BASE_FOR_A_COUNT
+    elsif @client_request.search_term.blank?
+      BASE_IF_NAME_BLANK
+    else
+      DEFAULT_BASE
+    end
+  end
+
+  def choose_limit
+    if @client_request.limit.to_i - DEFAULT_LIMIT >= 0
+      @client_request.limit.to_i - DEFAULT_LIMIT
+    else
+      1
+    end
   end
 
   def timeout
-    cbase = @name_blank ? BASE_IF_NAME_BLANK : BASE
-    coeff = @details ? DETAIL_COEFF : LIST_COEFF
-    limit = (@limit - DEFAULT_LIMIT) >= 0 ? (@limit - DEFAULT_LIMIT) : 1
-    t = cbase + (limit * coeff)
-    Rails.logger.info("BASE: #{cbase}; coeff: #{coeff}; \
+    chosen_base = choose_base
+    coeff = @client_request.details? ? DETAIL_COEFF : LIST_COEFF
+    limit = choose_limit
+    t = chosen_base + (limit * coeff)
+    Rails.logger.info("Base: #{chosen_base}; coeff: #{coeff}; \
                       limit: #{limit}; timeout: #{t}")
     t.round
   end

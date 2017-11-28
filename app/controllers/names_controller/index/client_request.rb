@@ -44,6 +44,6 @@ class NamesController::Index::ClientRequest
   end
 
   def timeout
-    TimeoutCalculator.new(limit: limit.to_i, details: details?).timeout
+    TimeoutCalculator.new(self).timeout
   end
 end
