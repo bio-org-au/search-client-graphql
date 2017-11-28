@@ -13,6 +13,7 @@ class AdvancedNamesController::Index::DetailQuery
                     .sub(/author_abbrev_placeholder/,
                          @client_request.author_abbrev)
                     .sub(/family_placeholder/, @client_request.family)
+                    .sub(/genus_placeholder/, @client_request.genus)
                     .sub(/type_of_name_placeholder/, @client_request.name_type)
                     .sub(/"limit_placeholder"/, @client_request.limit)
   end
@@ -25,6 +26,7 @@ class AdvancedNamesController::Index::DetailQuery
         name_search(search_term: "search_term_placeholder",
                     author_abbrev: "author_abbrev_placeholder",
                     family: "family_placeholder",
+                    genus: "genus_placeholder",
                     type_of_name: "type_of_name_placeholder",
                     fuzzy_or_exact: "fuzzy",
                     limit: "limit_placeholder")
