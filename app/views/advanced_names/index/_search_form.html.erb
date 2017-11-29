@@ -44,6 +44,12 @@ Publication:
        class="form-field width40pc min-width10em max-width30em"
        value="<%= params['publication'] %>"
        title="Enter a publication citation for the search.  Wildcards are allowed.">
+<br>
+Epithet:
+<input name='epithet' type="search"
+       class="form-field width40pc min-width10em max-width30em"
+       value="<%= params['epithet'] %>"
+       title="Enter an epithet for the search.  Wildcards are allowed.">
 
 <%= render partial: "name_search_widgets" %>
 

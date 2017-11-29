@@ -18,6 +18,7 @@ class AdvancedNamesController::Index::ListQuery
                     .sub(/species_placeholder/, @client_request.species)
                     .sub(/rank_placeholder/, @client_request.rank)
                     .sub(/publication_placeholder/, @client_request.publication)
+                    .sub(/epithet_placeholder/, @client_request.epithet)
                     .sub(/type_of_name_placeholder/, @client_request.name_type)
                     .sub(/"limit_placeholder"/, @client_request.limit)
   end
@@ -32,6 +33,7 @@ class AdvancedNamesController::Index::ListQuery
                     species: "species_placeholder",
                     rank: "rank_placeholder",
                     publication: "publication_placeholder",
+                    epithet: "epithet_placeholder",
                     type_of_name: "type_of_name_placeholder",
                     fuzzy_or_exact: "fuzzy",
                     limit: "limit_placeholder")
