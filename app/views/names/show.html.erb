@@ -1,5 +1,5 @@
 <h1><%= @name_label %> Record Details</h1>
-<%= render partial: 'names/index/search_form' %>
+<%= render partial: "#{params[:search_form]}/index/search_form" %>
 <hr>
 <%= link_to('new search', name_search_path,name: 'x', title: 'Clear fields and start a new name search') %> |
 <%= link_to('advanced', names_advanced_search_path(link_params: params),title: 'Go to advanced name search') %> |

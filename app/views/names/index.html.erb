@@ -31,9 +31,9 @@
 
   <hr>
   <% if @client_request.details? %>
-    <%= render partial: 'name_detail' %>
+    <%= render partial: 'name_detail', locals: { search_form: 'names' } %>
   <% else %>
-    <%= render partial: 'name_list' %>
+    <%= render partial: 'name_list', locals: { search_form: 'names' } %>
   <% end %>
 
   <hr>

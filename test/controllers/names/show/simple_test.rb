@@ -35,7 +35,7 @@ class NamesShowTest < ActionController::TestCase
   end
 
   test 'show name' do
-    get(:show, id: 1)
+    get(:show, id: 1, search_form: 'names')
     assert_response :success
     assert_select 'h3', true, 'should find a heading level 3'
     assert_select('h3') do
