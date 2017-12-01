@@ -35,4 +35,8 @@ class Application::Names::Results::Name::Usage::Synonym
   def full_name
     @raw_synonym.full_name
   end
+
+  def full_name_html
+    @raw_synonym.full_name_html
+  end
 end

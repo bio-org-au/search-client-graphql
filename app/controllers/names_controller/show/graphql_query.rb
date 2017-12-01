@@ -48,6 +48,7 @@ class NamesController::Show::GraphqlQuery
                   id,
                   name_id,
                   full_name,
+                  full_name_html,
                   instance_type,
                   label,
                   page,

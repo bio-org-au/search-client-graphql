@@ -56,6 +56,7 @@ class NamesController::Index::DetailQuery
                   id,
                   name_id,
                   full_name,
+                  full_name_html,
                   instance_type,
                   label,
                   page,

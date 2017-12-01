@@ -81,12 +81,21 @@ class NamesShowTest < ActionController::TestCase
       {
         id: '804816',
         full_name: 'Metrosideros costata Gaertn.',
+        full_name_html: synonym_full_name_html,
         instance_type: 'basionym',
         label: 'basionym',
         page: '62',
         name_status_name: 'legitimate'
       }
     ]
+  end
+
+  def synonym_full_name_html
+    "<scientific><name id='110181'><scientific><name id='109596'>\
+    <element class='Metrosideros'>Metrosideros</element></name></scientific>\
+    <element class='costata'>costata</element> <authors>\
+    <author id='7066' title='Gaertner, J.'>Gaertn.</author></authors></name>\
+    </scientific>"
   end
 
   def name_usages
