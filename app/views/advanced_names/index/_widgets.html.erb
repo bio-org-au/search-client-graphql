@@ -1,0 +1,58 @@
+<h4 class="form-heading">
+Find and list
+</h4>
+<ul class="plain">
+  <li>
+      <select name="name_type" title="The type of names to retrieve" class="form-field">
+        <%= options_for_select(
+          [['Scientific names', 'scientific', {title: "Scientific names only"}],
+           ['Cultivar names', 'cultivar', {title: "Cultivar names only"}],
+           ['Scientific and cultivar names', 'scientific-or-cultivar', {title: "Scientific and cultivar names only"}],
+           ['Common names', 'common', {title: "Common names only"}],
+           ['All names', 'all', {title: "All names - scientific, cultivar and common"}],
+           ['Publications', 'publications', {title: "Show publications when querying just a publication name."}]],
+          params[:name_type]) %>
+    </select>
+  </li>
+  <li>
+    <select name="format" title="Show the results in this form" class="form-field">
+      <%= options_for_select([['on this page', 'html',{title:"Show results as a web page here"}],
+                              ['CSV download', 'csv',{title:"Show results as comma-separated data."}],
+                              ['JSON', 'json',{title:"Show results as JSON"}]],
+                             params[:format]) %>
+    </select>
+  </li>
+  <li>
+    for up to
+    <input type="number"
+           name="limit"
+           title="Limit the number of names retrieved"
+           placeholder="records"
+           min="1"
+           max="5000"
+           step="1"
+           value="<%= params[:limit] || 100 %>"
+           class="form-field"> records
+  </li>
+<h4 class="form-heading">
+  Also show
+</h4>
+  <li>
+    <%= check_box_tag(:show_family, "show", @client_request.family?,
+                      title:
+                      'Tick to show the family of each name next query') %>
+    <%= label_tag(:show_family, "family name",
+                  title: 'Tick to show the family of each name next query') %>
+    <br/>
+    <%= check_box_tag(:show_links, "show", @client_request.links?,
+                      title: "Tick to turn names into links next query.") %>
+    <%= label_tag(:show_links, "links to related names",
+                  title: "Tick to turn names into links next query.") %>
+    <br/>
+    <%= check_box_tag(:show_details, "show", @client_request.details?,
+                      title: "Tick to show details next query.") %>
+    <%= label_tag(:show_details, "bibliographic details and synonyms",
+                  title: "Tick to show details next query.") %>
+  </li>
+</ul>
+
