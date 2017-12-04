@@ -8,7 +8,8 @@ class ApplicationController < ActionController::Base
   before_action :start_timer, :settings
   # rescue_from 'Errno::ECONNREFUSED', with: :rescue_error
   rescue_from StandardError do |exception|
-    logger.error("Show error #{exception}")
+    logger.error("Rescued StandardError: #{exception}")
+    @error = exception
     exception.backtrace.each { |b| logger.error(b) }
     render :error
   end
@@ -23,12 +24,6 @@ class ApplicationController < ActionController::Base
     @setting = Setting.new
     @name_label = @setting.name_label
     @taxonomy_label = @setting.taxonomy_label
-  end
-
-  def rescue_error
-    logger.error("Show error #{e}")
-    e.backtrace.each { |b| logger.error(b) }
-    render :error
   end
 
   def timeout

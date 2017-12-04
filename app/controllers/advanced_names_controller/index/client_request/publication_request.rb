@@ -1,42 +1,19 @@
 # frozen_string_literal: true
 
 # Class extracted from name controller.
-class AdvancedNamesController::Index::ClientRequest
+class AdvancedNamesController::Index::PublicationRequest
   def initialize(params)
+    throw 'pub req'
     @params = params
-    @search_request = SearchRequest.new(params)
-  end
-
-  def search
-    if name_search?
-      GraphqlRequest::NameSearch.new(self).result
-    elsif publication_search?
-      GraphqlRequest::PublicationSearch.new(self).result
-    end
-  end
-
-  def name_search?
-    @search_request.name_search?
-  end
-
-  def publication_search?
-    @search_request.publication_search?
   end
 
   def any_type_of_search?
-    @search_request.any_type_of_search?
+    throw 'anc ind pub anytypeofsearch'
+    'publication_search'
   end
 
   def just_count?
-    @search_request.just_count?
-  end
-
-  def content_partial
-    if name_search?
-      "name_#{ details? ? 'detail' : 'list' }"
-    elsif publication_search?
-      "publication_#{ details? ? 'detail' : 'list' }"
-    end
+    @params[:count].present? && @params[:count].match(/count/i)
   end
 
   def search_term
@@ -96,7 +73,8 @@ class AdvancedNamesController::Index::ClientRequest
   end
 
   def details?
-    @search_request.details?
+    Rails.logger.debug('(advanced) details?')
+    @params[:show_details].present? && @params[:show_details] == 'show'
   end
   alias show_details details?
 
@@ -105,11 +83,11 @@ class AdvancedNamesController::Index::ClientRequest
   end
 
   def family?
-    @search_request.family?
+    @params[:show_family].present? && @params[:show_family] == 'show'
   end
 
   def links?
-    @search_request.links?
+    @params[:show_links].present? && @params[:show_links] == 'show'
   end
 
   def timeout

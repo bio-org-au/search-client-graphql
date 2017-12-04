@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Class extracted from name controller.
-class AdvancedNamesController::Index::CountQuery
+class AdvancedNamesController::Index::ClientRequest::GraphqlRequest::NameSearch::ListQuery
   def initialize(client_request)
     @client_request = client_request
   end
@@ -37,7 +37,14 @@ class AdvancedNamesController::Index::CountQuery
                     fuzzy_or_exact: "fuzzy",
                     limit: "limit_placeholder")
           {
-            count
+            count,
+            names
+            {
+              id,
+              full_name,
+              name_status_name,
+              family_name
+            }
           }
       }
     HEREDOC

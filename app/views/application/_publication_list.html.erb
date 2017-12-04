@@ -1,0 +1,7 @@
+<% search_form ||= params[:search_form] %>
+<ul class="plain">
+  <% @results.publications.each do |pub| %>
+    <li><%= pub.citation_html.html_safe %>
+  <% end %>
+</ul>
+<%#= @results.to_s %>

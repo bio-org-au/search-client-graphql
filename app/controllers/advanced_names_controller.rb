@@ -21,13 +21,8 @@ class AdvancedNamesController < ApplicationController
   DATA_SERVER = Rails.configuration.data_server
 
   def index
-    @client_request =
-      AdvancedNamesController::Index::ClientRequest.new(search_params)
-    if @client_request.any_type_of_search?
-      @search =
-        AdvancedNamesController::Index::GraphqlRequest.new(@client_request)
-                                                      .result
-    end
+    @client_request = Index::ClientRequest.new(search_params)
+    @search = @client_request.search
     render_index
   end
 
@@ -55,7 +50,11 @@ class AdvancedNamesController < ApplicationController
   end
 
   def render_index_html
-    @results = Application::Names::Results.new(@search)
+    if @client_request.name_search? 
+      @results = Application::Names::Results.new(@search)
+    elsif @client_request.publication_search? 
+      @results = Application::Publications::Results.new(@search)
+    end
     render :index
   end
 
