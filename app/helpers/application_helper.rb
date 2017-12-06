@@ -16,4 +16,8 @@ module ApplicationHelper
   def development?
     Rails.configuration.try('environment').match(/^development/i)
   end
+
+  def rank_options
+    [1,2,3,4]
+  end
 end

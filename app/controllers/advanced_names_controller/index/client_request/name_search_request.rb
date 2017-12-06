@@ -2,16 +2,50 @@
 
 # Class extracted from name controller.
 class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
-  def initialize(params)
+  def initialize(params, search_request)
     @params = params
+    @search_request = search_request
   end
 
   def type_of_search?
     'name_search'
   end
 
+  def search
+    RunSearch.new(self).result
+  end
+
+  def name_search?
+    true
+  end
+
+  def any_type_of_search?
+    @search_request.any_type_of_search?
+  end
+
+  def content_partial
+    "name_#{ details? ? 'detail' : 'list' }"
+  end
+
   def just_count?
-    @params[:count].present? && @params[:count].match(/count/i)
+    @search_request.just_count?
+  end
+
+  def details?
+    @search_request.details?
+  end
+  alias show_details details?
+
+  def list?
+    !details?
+  end
+
+  def family?
+    @search_request.family?
+  end
+
+  def links?
+    @search_request.links?
   end
 
   def search_term
@@ -68,24 +102,6 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
 
   def limit
     @params[:limit] || DEFAULT_LIMIT
-  end
-
-  def details?
-    Rails.logger.debug('(advanced) details?')
-    @params[:show_details].present? && @params[:show_details] == 'show'
-  end
-  alias show_details details?
-
-  def list?
-    !details?
-  end
-
-  def family?
-    @params[:show_family].present? && @params[:show_family] == 'show'
-  end
-
-  def links?
-    @params[:show_links].present? && @params[:show_links] == 'show'
   end
 
   def timeout

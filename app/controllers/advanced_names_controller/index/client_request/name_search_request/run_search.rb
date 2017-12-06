@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Class extracted from name controller.
-class AdvancedNamesController::Index::GraphqlRequest
+class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::RunSearch
   DATA_SERVER = Rails.configuration.data_server
   def initialize(client_request)
     @client_request = client_request
@@ -19,14 +19,11 @@ class AdvancedNamesController::Index::GraphqlRequest
 
   def graphql_query_string
     if @client_request.just_count?
-      AdvancedNamesController::Index::CountQuery.new(@client_request)
-                                                 .query_string
+      CountQuery.new(@client_request).query_string
     elsif @client_request.details?
-      AdvancedNamesController::Index::DetailQuery.new(@client_request)
-                                                 .query_string
+      DetailQuery.new(@client_request).query_string
     else
-      AdvancedNamesController::Index::ListQuery.new(@client_request)
-                                               .query_string
+      ListQuery.new(@client_request).query_string
     end
   end
 end

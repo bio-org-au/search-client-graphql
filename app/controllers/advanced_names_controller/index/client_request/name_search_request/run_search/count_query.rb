@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Class extracted from name controller.
-class AdvancedNamesController::Index::ClientRequest::GraphqlRequest::NameSearch::DetailQuery
+class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::RunSearch::CountQuery
   def initialize(client_request)
     @client_request = client_request
   end
@@ -22,8 +22,6 @@ class AdvancedNamesController::Index::ClientRequest::GraphqlRequest::NameSearch:
                     .sub(/"limit_placeholder"/, @client_request.limit)
   end
 
-  private
-
   def raw_query_string
     <<~HEREDOC
       {
@@ -38,54 +36,9 @@ class AdvancedNamesController::Index::ClientRequest::GraphqlRequest::NameSearch:
                     type_of_name: "type_of_name_placeholder",
                     fuzzy_or_exact: "fuzzy",
                     limit: "limit_placeholder")
-        {
-          count,
-          names
           {
-            id,
-            simple_name,
-            full_name,
-            full_name_html,
-            name_status_name,
-            family_name,
-            name_history
-            {
-              name_usages
-              {
-                instance_id,
-                reference_id,
-                citation,
-                page,
-                page_qualifier,
-                year,
-                standalone,
-                instance_type_name,
-                primary_instance,
-                misapplied,
-                misapplied_to_name,
-                misapplied_to_id,
-                misapplied_by_id,
-                misapplied_by_citation,
-                misapplied_on_page,
-                synonyms {
-                  id,
-                  name_id,
-                  full_name,
-                  full_name_html,
-                  instance_type,
-                  label,
-                  page,
-                  name_status_name,
-                }
-                notes {
-                  id,
-                  key,
-                  value
-                }
-              }
-            }
+            count
           }
-        }
       }
     HEREDOC
   end

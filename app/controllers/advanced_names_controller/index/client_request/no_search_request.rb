@@ -1,22 +1,21 @@
 # frozen_string_literal: true
 
 # Class extracted from name controller.
-class AdvancedNamesController::Index::ClientRequest::PublicationRequest
+class AdvancedNamesController::Index::ClientRequest::NoSearchRequest
   def initialize(params, search_request)
     @params = params
     @search_request = search_request
   end
 
   def search
-    RunSearch.new(self).result
   end
 
   def any_type_of_search?
-    publication_search
+    false
   end
 
   def publication_search?
-    true
+    false
   end
 
   def name_search?
@@ -24,11 +23,11 @@ class AdvancedNamesController::Index::ClientRequest::PublicationRequest
   end
 
   def just_count?
-    @params[:count].present? && @params[:count].match(/count/i)
+    false
   end
 
   def content_partial
-    "publication_#{ details? ? 'detail' : 'list' }"
+    nil
   end
 
   def search_term

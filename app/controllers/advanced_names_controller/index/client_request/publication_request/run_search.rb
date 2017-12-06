@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Class extracted from name controller.
-class AdvancedNamesController::Index::ClientRequest::GraphqlRequest::PublicationSearch
+class AdvancedNamesController::Index::ClientRequest::PublicationRequest::RunSearch
   DATA_SERVER = Rails.configuration.data_server
   def initialize(client_request)
     @client_request = client_request

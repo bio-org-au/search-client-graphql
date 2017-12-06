@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Class extracted from name controller.
-class AdvancedNamesController::Index::ClientRequest::GraphqlRequest::NameSearch::ListQuery
+class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::RunSearch::ListQuery
   def initialize(client_request)
     @client_request = client_request
   end

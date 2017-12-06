@@ -2,7 +2,7 @@
 
 <%= render partial: 'advanced_names/index/search_form' %>
 <span class="no-print">
-<%= link_to('new search', names_advanced_search_path(link_params: params),title: 'Clear any search and start a new advanced search') %> |
+<%= link_to('new search', names_advanced_search_path,title: 'Clear any search and start a new advanced search') %> |
 <%= link_to('simple', name_search_path, title: 'Go to simple name search') %> |
 <%= link_to('taxonomy', taxonomy_search_path, title: 'Go to taxonomy search') %>
 </span>
@@ -30,11 +30,6 @@
   </h2>
 
   <hr>
-  <% if @client_request.details? %>
-    <%#= render partial: 'name_detail', locals: { search_form: 'advanced_names' } %>
-  <% else %>
-    <%#= render partial: 'name_list', locals: { search_form: 'advanced_names' } %>
-  <% end %>
   <%= render partial: @client_request.content_partial, locals: { search_form: 'advanced_names' } %>
 
   <hr>

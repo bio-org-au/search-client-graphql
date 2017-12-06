@@ -21,7 +21,7 @@ class AdvancedNamesController < ApplicationController
   DATA_SERVER = Rails.configuration.data_server
 
   def index
-    @client_request = Index::ClientRequest.new(search_params)
+    @client_request = Index::ClientRequest.new(search_params).build_request
     @search = @client_request.search
     render_index
   end
@@ -64,8 +64,8 @@ class AdvancedNamesController < ApplicationController
   end
 
   def search_params
-    params.permit(:utf8, :q, :format, :show_details, :show_family, :show_links,
+    params.permit(:utf8, :list, :q, :format, :show_details, :show_family, :show_links,
                   :name_type, :limit, :author_abbrev, :family, :genus, :rank,
-                  :species, :publication, :epithet, :search, :count)
+                  :species, :publication, :protologue, :epithet, :search, :count)
   end
 end

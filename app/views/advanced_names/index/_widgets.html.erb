@@ -1,20 +1,7 @@
-<h4 class="form-heading">
-Find and list
-</h4>
+<h4 class="form-heading"> </h4>
 <ul class="plain">
   <li>
-      <select name="name_type" title="The type of names to retrieve" class="form-field">
-        <%= options_for_select(
-          [['Scientific names', 'scientific', {title: "Scientific names only"}],
-           ['Cultivar names', 'cultivar', {title: "Cultivar names only"}],
-           ['Scientific and cultivar names', 'scientific-or-cultivar', {title: "Scientific and cultivar names only"}],
-           ['Common names', 'common', {title: "Common names only"}],
-           ['All names', 'all', {title: "All names - scientific, cultivar and common"}],
-           ['Publications', 'publications', {title: "Show publications when querying just a publication name."}]],
-          params[:name_type]) %>
-    </select>
-  </li>
-  <li>
+    <strong>List names</strong>
     <select name="format" title="Show the results in this form" class="form-field">
       <%= options_for_select([['on this page', 'html',{title:"Show results as a web page here"}],
                               ['CSV download', 'csv',{title:"Show results as comma-separated data."}],

@@ -1,7 +1,11 @@
 <h1>Something has gone wrong in our system.</h1>
 <hr>
 <br/>
-<h2><%= @error.to_s %></h2>
+<% if development? %>
+  <h2><%= @error.to_s %></h2>
+  <br/>
+  <br/>
+<% end %>
 <br/>
 <br/>
 We have recorded some information about how the problem happened and will fix it as soon as possible.

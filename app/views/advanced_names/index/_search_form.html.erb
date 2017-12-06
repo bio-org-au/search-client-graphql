@@ -37,21 +37,34 @@ Element:
        value="<%= params['epithet'] %>"
        title="Enter an epithet for the search.  Wildcards are allowed.">
 <br>
-Rank:
-<input name='rank' type="search"
-       class="form-field width40pc min-width10em max-width30em"
-       value="<%= params['rank'] %>"
-       title="Enter a rank abbreviation for the search.">
+Rank: <%= select_tag(:rank, options_for_select(@rank_options, params['rank']), name: 'rank', class: "form-field width40pc min-width10em max-width30em", include_blank: true, value: "#{params['rank']}", title:"Enter a rank abbreviation for the search.") %>
 <br>
-fam. gen. sp. var. 
+Only: <select name="name_type" title="The type of names to retrieve" class="form-field">
+        <%= options_for_select(
+          [['Scientific names', 'scientific', {title: "Scientific names only"}],
+           ['Cultivar names', 'cultivar', {title: "Cultivar names only"}],
+           ['Scientific and cultivar names', 'scientific-or-cultivar', {title: "Scientific and cultivar names only"}],
+           ['Common names', 'common', {title: "Common names only"}],
+           ['All names', 'all', {title: "All names - scientific, cultivar and common"}]],
+          params[:name_type]) %>
+    </select>
+
 <br>
+<hr>
 Publication:
 <input name='publication' type="search"
        class="form-field width40pc min-width10em max-width30em"
        value="<%= params['publication'] %>"
        title="Enter a publication citation for the search.  Wildcards are allowed.">
+<br>
 
+<%= check_box_tag(:protologue, '1', params['protologue']) %>
+<%= label_tag(:protologue,
+              "Publication(s) must contain the protologue",
+              title: "When checked, this field checks for publications only when they contain the name protologue.") %>
+<hr>
 <%= render partial: "advanced_names/index/widgets" %>
+<hr>
 
 <input type="submit"
        value="Search"

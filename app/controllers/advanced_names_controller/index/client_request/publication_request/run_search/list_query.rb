@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Class extracted from name controller.
-class AdvancedNamesController::Index::ClientRequest::GraphqlRequest::PublicationSearch::CountQuery
+class AdvancedNamesController::Index::ClientRequest::PublicationRequest::RunSearch::ListQuery
   def initialize(client_request)
     @client_request = client_request
   end
@@ -17,9 +17,15 @@ class AdvancedNamesController::Index::ClientRequest::GraphqlRequest::Publication
     <<~HEREDOC
       {
         publication_search(publication: "publication_placeholder",
-                           limit: "limit_placeholder")
+                    limit: "limit_placeholder")
           {
-            count
+            count,
+            publications
+            {
+              id,
+              citation,
+              citation_html
+            }
           }
       }
     HEREDOC
