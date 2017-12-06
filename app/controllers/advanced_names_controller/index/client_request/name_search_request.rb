@@ -90,10 +90,10 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
     @params[:publication].strip
   end
 
-  def epithet
-    return '' if @params[:epithet].blank?
-    return '' unless @params[:epithet].class == String
-    @params[:epithet].strip
+  def name_element
+    return '' if @params[:name_element].blank?
+    return '' unless @params[:name_element].class == String
+    @params[:name_element].strip
   end
 
   def name_type
