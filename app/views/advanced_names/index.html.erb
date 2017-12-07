@@ -21,10 +21,9 @@
 <% end %>
 <% if @results.present? %>
   <h2>
-  <%= pluralize(@results.size,'matching record') %>
-  found
+  <%= pluralize(@results.size,'record') %>
   <% unless params[:limit].to_i > @results.size %>
-    out of <%= pluralize(@results.count,'record') %>
+    out of <%= pluralize(@results.count,'matching record') %>
   <% end %>
   <% elapsed = Time.now - @start_time %>(<%= elapsed.round(2) %>s)
   </h2>
