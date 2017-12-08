@@ -3,6 +3,9 @@
 <head>
   <title>SearchClientGraphql</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+  <script>
+    window.relative_url_root = "<%= Rails.application.config.relative_url_root %>";
+  </script>
   <style media="print">
      body {color:#000000;
            background-color:#FFFFFF;} 
@@ -30,7 +33,7 @@ label:not([title]) {
 
     <% end %>
 
-  <%#= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
   <%= csrf_meta_tags %>
 </head>
 <body>

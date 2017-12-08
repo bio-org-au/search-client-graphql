@@ -52,8 +52,8 @@ Only: <select name="name_type" title="The type of names to retrieve" class="form
 <br>
 <hr>
 Publication:
-<input name='publication' type="search"
-       class="form-field width40pc min-width10em max-width30em"
+<input id='publication' name='publication' type="search"
+       class="typeahead form-field width40pc min-width10em max-width30em"
        value="<%= params['publication'] %>"
        title="Enter a publication citation for the search.  Wildcards are supported.">
 <br>
@@ -62,6 +62,8 @@ Publication:
 <%= label_tag(:protologue,
               "Publication(s) must contain the protologue",
               title: "When checked, this field checks for publications only when they contain the name protologue.") %>
+<br>
+<script> setUpPublicationTA(); </script>
 <hr>
 <%= render partial: "advanced_names/index/widgets" %>
 <hr>

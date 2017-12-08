@@ -10,7 +10,12 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//
+// not require-ing turbolinks
+//
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require bloodhound
+//= require typeahead.jquery
+//= require main.js
 //= require_tree .

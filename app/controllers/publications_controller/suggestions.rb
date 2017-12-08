@@ -1,0 +1,3 @@
+
+class PublicationsController::Suggestions
+end

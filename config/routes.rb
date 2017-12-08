@@ -2,6 +2,8 @@
 
 # Rails plumbing.
 Rails.application.routes.draw do
+  get 'publications/suggestions'
+
   match '/names/search', as: 'name_search', to: 'names#index', via: :get
   match '/name/:id', as: 'show_name', to: 'names#show', via: :get
   match '/search', as: 'search', to: 'names#index', via: :get
@@ -16,6 +18,7 @@ Rails.application.routes.draw do
   match '/names/:id', as: 'show_names', to: 'names#show', via: :get
   match '/taxonomy/search', as: 'taxonomy_search',
                             to: 'taxonomy#index', via: :get
+  match '/publications/suggestions/:search_term', as: 'publication_suggestions', to: 'publications#suggestions', via: :get
   root to: 'names#index'
   get '*path' => 'names#index'
 end

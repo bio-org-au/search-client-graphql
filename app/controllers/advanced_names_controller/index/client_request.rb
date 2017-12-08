@@ -9,10 +9,8 @@ class AdvancedNamesController::Index::ClientRequest
   end
 
   def build_request
-    if name_search?
+    if @search_request.any_type_of_search?
       NameSearchRequest.new(@params, @search_request)
-    elsif publication_search?
-      PublicationRequest.new(@params, @search_request)
     else
       NoSearchRequest.new(@params, @search_request)
     end
