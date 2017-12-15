@@ -1,0 +1,9 @@
+$('#search-result-summary').html("<%= escape_javascript(h(render partial: 'name_search_result_summary')) %>");
+
+<% if @results.present? %>
+  $('#search-results').html("<%= escape_javascript(h(render partial: @client_request.content_partial, locals: { search_form: 'advanced_names' })) %>");
+  $('#timing-summary').html("<%= escape_javascript(h(render partial: 'result_timing_summary')) %>");
+<% end %>
+
+
+

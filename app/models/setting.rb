@@ -5,7 +5,11 @@ class Setting
   DATA_SERVER = Rails.configuration.data_server
 
   def name_label
-    @name_label ||= ask_for_setting('name label')
+    if Rails.configuration.name_label.blank?
+      Rails.configuration.name_label = ask_for_setting('name label')
+    else
+      Rails.configuration.name_label
+    end
   end
 
   def tree_label
@@ -13,7 +17,11 @@ class Setting
   end
 
   def taxonomy_label
-    @taxonomy_label ||= ask_for_setting('tree label')
+    if Rails.configuration.taxonomy_label.blank?
+      Rails.configuration.taxonomy_label = ask_for_setting('taxonomy label')
+    else
+      Rails.configuration.taxonomy_label
+    end
   end
 
   private

@@ -11,7 +11,6 @@ class PublicationsController::Suggestions::GraphqlRequest
     json = HTTParty.post("#{DATA_SERVER}/v1",
                          body: body,
                          timeout: @client_request.timeout)
-    Rails.logger.debug(json.to_s)
     a = []
     JSON.parse(json.to_s, object_class: OpenStruct).data.publication_search.publications.each do | publication |
       a.push('citation')

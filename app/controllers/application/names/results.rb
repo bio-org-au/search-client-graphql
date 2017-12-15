@@ -14,6 +14,14 @@ class Application::Names::Results
     @search.data.nil?
   end
 
+  def error?
+    @search.data.error.present?
+  end
+
+  def error
+    @search.data.error
+  end
+
   def no_search?
     @search.data.name_search.nil?
   end

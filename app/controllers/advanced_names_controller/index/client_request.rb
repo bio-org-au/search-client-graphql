@@ -23,8 +23,4 @@ class AdvancedNamesController::Index::ClientRequest
   def publication_search?
     @search_request.publication_search?
   end
-
-  def xdetails?
-    @search_request.details?
-  end
 end

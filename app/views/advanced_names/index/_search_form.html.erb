@@ -55,7 +55,8 @@ Publication:
 <input id='publication' name='publication' type="search"
        class="typeahead form-field width40pc min-width10em max-width30em"
        value="<%= params['publication'] %>"
-       title="Enter a publication citation for the search.  Wildcards are supported.">
+       title="Enter a publication citation for the search.  Wildcards are supported."
+       autocomplete="off" >
 <br>
 
 <%= check_box_tag(:protologue, '1', params['protologue']) %>

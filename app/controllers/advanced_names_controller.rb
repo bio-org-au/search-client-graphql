@@ -37,6 +37,7 @@ class AdvancedNamesController < ApplicationController
   def render_index
     respond_to do |format|
       format.html { render_index_html }
+      format.js { render_index_html }
       format.json { render json: @search }
       format.csv { render_csv }
     end
@@ -64,7 +65,7 @@ class AdvancedNamesController < ApplicationController
   end
 
   def search_params
-    params.permit(:utf8, :list, :q, :format, :show_details, :show_family, :show_links,
+    params.permit(:utf8, :list, :q, :requested_format, :show_details, :show_family, :show_links,
                   :name_type, :limit, :author_abbrev, :family, :genus, :rank,
                   :species, :publication, :protologue, :name_element, :search, :count)
   end

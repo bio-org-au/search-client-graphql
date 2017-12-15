@@ -17,6 +17,7 @@ function setUpPublicationTA() {
   },
   {
     name: 'publications',
-    source: publications
+    source: publications,
+    limit: 50
   });
 }

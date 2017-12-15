@@ -38,3 +38,7 @@ module Search
     config.cache_store = :memory_store, { size: 64.megabytes }
   end
 end
+
+Rails.configuration.name_label = ''
+Rails.configuration.taxonomy_label = ''
+Rails.configuration.rank_options = []

@@ -5,12 +5,16 @@ class Rank
   DATA_SERVER = Rails.configuration.data_server
 
   def options
-    @options ||= rank_options
+    if Rails.configuration.rank_options.blank?
+      Rails.configuration.rank_options = server_rank_options
+    else
+      Rails.configuration.rank_options
+    end
   end
 
   private
 
-  def rank_options
+  def server_rank_options
     ranks = {
       body: {
         query: "{ranks {options} }"
@@ -21,16 +25,3 @@ class Rank
     search.data.ranks.options
   end
 end
-
-def ask_for_setting(setting)
-    options = {
-      body: {
-        query: %({setting(search_term: "#{setting}") })
-      }
-    }
-    Rails.logger.debug(options.inspect)
-    json = HTTParty.post("#{DATA_SERVER}/v1", options)
-    @search = JSON.parse(json.to_s, object_class: OpenStruct)
-    @search.data.setting
-  end
-

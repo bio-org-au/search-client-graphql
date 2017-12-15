@@ -2,6 +2,7 @@
 
 # Class extracted from name controller.
 class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
+  DEFAULT_LIMIT = 50
   def initialize(params, search_request)
     @params = params
     @search_request = search_request

@@ -8,35 +8,21 @@
 </span>
 <hr>
 
-<div id="search-results">
-<% if @client_request.any_type_of_search? %>
-  <% if @client_request.just_count? %>
-    <%= pluralize(@results.count, 'matching record') %>
-  <% else %>
-    <% unless @results.present? %>
-    No records. 
-    <% elapsed = Time.now - @start_time %>(<%= elapsed.round(2) %>s)
-    <% end %>
+<div id="search-result-summary">
+  <% if @search.present? %>
+    <%= render partial: 'name_search_result_summary' %>
   <% end %>
-<% end %>
-<% if @results.present? %>
-  <h2>
-  <%= pluralize(@results.size,'record') %>
-  <% unless params[:limit].to_i > @results.size %>
-    out of <%= pluralize(@results.count,'matching record') %>
-  <% end %>
-  <% elapsed = Time.now - @start_time %>(<%= elapsed.round(2) %>s)
-  </h2>
-
-  <hr>
-  <%= render partial: @client_request.content_partial, locals: { search_form: 'advanced_names' } %>
-
-  <hr>
-  <% elapsed = Time.now - @start_time %>
-  <%= elapsed.round(2) %> seconds (~<%= (@results.size/elapsed).round %> records/second) (index.html)
-<% end %>
 </div>
 
-<pre>
-<%#= simple_format @search.try('to_yaml') %>
-</pre>
+<div id="search-results">
+  <% if @results.present? %>
+    <%= render partial: @client_request.content_partial, locals: { search_form: 'advanced_names' } %>
+  <% end %>
+</div>
+
+<div id="timing-summary">
+  <% if @results.present? %>
+    <%= render partial: 'result_timing_summary' %>
+  <% end %>
+</div>
+

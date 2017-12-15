@@ -6,11 +6,11 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :start_timer, :settings, :ranks
-  # rescue_from 'Errno::ECONNREFUSED', with: :rescue_error
+  
   rescue_from StandardError do |exception|
     logger.error("Rescued StandardError: #{exception}")
     @error = exception
-    exception.backtrace.each { |b| logger.error(b) }
+    # exception.backtrace.each { |b| logger.error(b) }
     render :error
   end
 
