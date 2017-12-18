@@ -55,10 +55,16 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
     @params[:q].strip
   end
 
-  def author_abbrev
-    return '' if @params[:author_abbrev].blank?
-    return '' unless @params[:author_abbrev].class == String
-    @params[:author_abbrev].strip
+  def taxon_name_author_abbrev
+    return '' if @params[:taxon_name_author_abbrev].blank?
+    return '' unless @params[:taxon_name_author_abbrev].class == String
+    @params[:taxon_name_author_abbrev].strip
+  end
+
+  def basionym_author_abbrev
+    return '' if @params[:basionym_author_abbrev].blank?
+    return '' unless @params[:basionym_author_abbrev].class == String
+    @params[:basionym_author_abbrev].strip
   end
 
   def family

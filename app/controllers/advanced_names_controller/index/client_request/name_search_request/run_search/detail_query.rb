@@ -10,8 +10,8 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::RunSearc
     raw_query_string.delete(' ')
                     .delete("\n")
                     .sub(/search_term_placeholder/, @client_request.search_term)
-                    .sub(/author_abbrev_placeholder/,
-                         @client_request.author_abbrev)
+                    .sub(/taxon_name_author_abbrev_placeholder/, @client_request.taxon_name_author_abbrev)
+                    .sub(/basionym_author_abbrev_placeholder/, @client_request.basionym_author_abbrev)
                     .sub(/family_placeholder/, @client_request.family)
                     .sub(/genus_placeholder/, @client_request.genus)
                     .sub(/species_placeholder/, @client_request.species)
@@ -29,7 +29,8 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::RunSearc
     <<~HEREDOC
       {
         name_search(search_term: "search_term_placeholder",
-                    author_abbrev: "author_abbrev_placeholder",
+                    taxon_name_author_abbrev: "taxon_name_author_abbrev_placeholder",
+                    basionym_author_abbrev: "basionym_author_abbrev_placeholder",
                     family: "family_placeholder",
                     genus: "genus_placeholder",
                     species: "species_placeholder",

@@ -13,7 +13,8 @@ class AdvancedNamesController::Index::ClientRequest::SearchRequest
   def name_search?
     @params['q'].present? ||
       @params['family'].present? ||
-      @params['author_abbrev'].present? ||
+      @params['taxon_name_author_abbrev'].present? ||
+      @params['basionym_author_abbrev'].present? ||
       @params['genus'].present? ||
       @params['species'].present? ||
       @params['rank'].present? ||
