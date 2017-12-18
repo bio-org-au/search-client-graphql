@@ -91,6 +91,11 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
     @params[:publication].strip
   end
 
+  def protologue
+    return '' if @params[:protologue].blank?
+    @params[:protologue].strip
+  end
+
   def name_element
     return '' if @params[:name_element].blank?
     return '' unless @params[:name_element].class == String

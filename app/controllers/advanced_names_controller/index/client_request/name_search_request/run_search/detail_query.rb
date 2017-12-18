@@ -17,6 +17,7 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::RunSearc
                     .sub(/species_placeholder/, @client_request.species)
                     .sub(/rank_placeholder/, @client_request.rank)
                     .sub(/publication_placeholder/, @client_request.publication)
+                    .sub(/protologue_placeholder/, @client_request.protologue)
                     .sub(/name_element_placeholder/, @client_request.name_element)
                     .sub(/type_of_name_placeholder/, @client_request.name_type)
                     .sub(/"limit_placeholder"/, @client_request.limit)
@@ -34,6 +35,7 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::RunSearc
                     species: "species_placeholder",
                     rank: "rank_placeholder",
                     publication: "publication_placeholder",
+                    protologue: "protologue_placeholder",
                     name_element: "name_element_placeholder",
                     type_of_name: "type_of_name_placeholder",
                     fuzzy_or_exact: "fuzzy",
