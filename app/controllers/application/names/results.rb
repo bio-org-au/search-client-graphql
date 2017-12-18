@@ -15,11 +15,11 @@ class Application::Names::Results
   end
 
   def error?
-    @search.data.error.present?
+    @search.errors.present?
   end
 
   def error
-    @search.data.error
+    @search.errors.first.message
   end
 
   def no_search?
