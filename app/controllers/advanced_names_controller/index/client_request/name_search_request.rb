@@ -3,6 +3,8 @@
 # Class extracted from name controller.
 class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
   DEFAULT_LIMIT = 50
+  MAX_LIST_LIMIT = 500
+  MAX_DETAILS_LIMIT = 100
   def initialize(params, search_request)
     @params = params
     @search_request = search_request
@@ -113,7 +115,15 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
   end
 
   def limit
-    @params[:limit] || DEFAULT_LIMIT
+    if list?
+      [@params[:limit].to_i, MAX_LIST_LIMIT].min
+    else
+      [@params[:limit].to_i, MAX_DETAILS_LIMIT].min
+    end
+  end
+
+  def offset
+    [@params[:offset].to_i,0].max
   end
 
   def timeout

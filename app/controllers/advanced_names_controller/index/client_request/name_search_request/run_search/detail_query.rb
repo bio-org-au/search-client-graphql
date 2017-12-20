@@ -20,7 +20,8 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::RunSearc
                     .sub(/protologue_placeholder/, @client_request.protologue)
                     .sub(/name_element_placeholder/, @client_request.name_element)
                     .sub(/type_of_name_placeholder/, @client_request.name_type)
-                    .sub(/"limit_placeholder"/, @client_request.limit)
+                    .sub(/"limit_placeholder"/, @client_request.limit.to_s)
+                    .sub(/"offset_placeholder"/, @client_request.offset.to_s)
   end
 
   private
@@ -40,7 +41,8 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::RunSearc
                     name_element: "name_element_placeholder",
                     type_of_name: "type_of_name_placeholder",
                     fuzzy_or_exact: "fuzzy",
-                    limit: "limit_placeholder")
+                    limit: "limit_placeholder",
+                    offset: "offset_placeholder")
         {
           count,
           names

@@ -7,64 +7,98 @@ Name:
        value="<%= params['q'] %>" autofocus="true"
        title="Enter a name or the leading part of a name or part of a name to restrict the search. Wildcards are supported.">
 -->
-
-<br>
+<table class="for-search-form width80pc">
+  <tr>
+    <td class="label width10pc">
 Family:
+    </td>
+    <td class="width80pc">
 <input name='family' type="search"
        class="form-field width40pc min-width10em max-width30em"
        value="<%= params['family'] %>"
+       autofocus="true"
        title="Enter a search term to restrict the family. Wildcards are supported.">
-<br>
+    </td>
+  </tr>
+  <tr>
+    <td class="label">
 Genus:
+    </td>
+    <td>
 <input name='genus' type="search"
        class="form-field width40pc min-width10em max-width30em"
        value="<%= params['genus'] %>"
        title="Enter a search term to restrict the genus. Wildcards are supported.">
-<br>
-Species/Infraspecies:
+    </td>
+  </tr>
+  <tr>
+    <td class="label">
+      Species/Infraspecies:
+    </td>
+    <td>
 <input name='species' type="search"
        class="form-field width40pc min-width10em max-width30em"
        value="<%= params['species'] %>"
-       title="Enter a search term to restrict the non-genus component of species names. Wildcards are supported.">
-<hr>
+       title="Enter a search term to restrict the non-genus component of taxon names. Wildcards are supported.">
+    </td>
+  </tr>
+  <tr> <td colspan="2"> <hr> </td> </tr>
+  <tr>
+    <td class="label">
 Taxon Name Author:
+    </td>
+    <td>
 <input name='taxon_name_author_abbrev' type="search"
        class="form-field width40pc min-width10em max-width30em"
        value="<%= params['taxon_name_author_abbrev'] %>"
-       title="Enter a search term to restrict the name authority.  Wildcards are supported.">
-<br>
+       title="Enter a search term to restrict the taxon name authority. Covers author and ex-author.">
+    </td>
+  </tr>
+  <tr>
+    <td class="label">
 Basionym Author:
+    </td>
+    <td>
 <input name='basionym_author_abbrev' type="search"
        class="form-field width40pc min-width10em max-width30em"
        value="<%= params['basionym_author_abbrev'] %>"
-       title="Enter a search term to restrict the name authority.  Wildcards are supported.">
-<hr>
-<!--
-<br>
-Element:
-<input name='name_element' type="search"
-       class="form-field width40pc min-width10em max-width30em"
-       value="<%= params['name_element'] %>"
-       title="Enter a search term to restrict the unique name component for a name in any rank.  Wildcards are supported.">
--->
+       title="Enter a search term to restrict the taxon name authority. Covers basionym-author and ex-basionym-author.">
+    </td>
+  </tr>
+  <tr> <td colspan="2"> <hr> </td> </tr>
+  <tr>
+    <td class="label">
+      Rank:
+    </td>
+    <td>
+      <%= select_tag(:rank, options_for_select(@rank_options, params['rank']), name: 'rank', class: "form-field width40pc min-width10em max-width30em", include_blank: true, value: "#{params['rank']}", title:"Enter a rank abbreviation for the search.") %>
 
-<br>
-Rank: <%= select_tag(:rank, options_for_select(@rank_options, params['rank']), name: 'rank', class: "form-field width40pc min-width10em max-width30em", include_blank: true, value: "#{params['rank']}", title:"Enter a rank abbreviation for the search.") %>
-
-<br>
-<hr>
+    </td>
+  </tr>
+  <tr> <td colspan="2"> <hr> </td> </tr>
+  <tr>
+    <td class="label">
 Publication:
+    </td>
+    <td>
 <input id='publication' name='publication' type="search"
        class="typeahead form-field width40pc min-width10em max-width30em"
        value="<%= params['publication'] %>"
-       title="Enter a publication citation for the search.  Wildcards are supported."
+       title="Enter a publication keywords for the search. No wildcards."
        autocomplete="off" >
-<br>
-<%= check_box_tag(:protologue, '1', params['protologue']) %>
+    </td>
+  </tr>
+  <tr>
+    <td class="label">
 <%= label_tag(:protologue,
-              "Protologue",
+              "Protologue:",
               title: "When checked, this field checks for publications only when they contain the name protologue.") %>
-<br>
+    </td>
+    <td>
+<%= check_box_tag(:protologue, '1', params['protologue'], title: "When checked, this field checks for publications only when they contain the name protologue.") %>
+    </td>
+  </tr>
+</table>
 <hr>
 Only: <select name="name_type" title="The type of names to retrieve" class="form-field">
         <%= options_for_select(

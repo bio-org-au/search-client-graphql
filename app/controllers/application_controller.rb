@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   rescue_from StandardError do |exception|
     logger.error("Rescued StandardError: #{exception}")
     @error = exception
-    # exception.backtrace.each { |b| logger.error(b) }
+    exception.backtrace.each { |b| logger.error(b) }
     render :error
   end
 
