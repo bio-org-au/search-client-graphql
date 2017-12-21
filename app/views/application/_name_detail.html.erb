@@ -3,10 +3,8 @@
   <% @results.names.each do |name| %>
     <h3 class="name-heading <%= params[:action] %>">
       <% if @client_request.family? && name.family_name != 'na' %>
-        <span title="family name" class="family-name"><%= name.family_name %></span>
+        <div title="family name" class="family-name"><%= name.family_name %></div>
       <% end %>
-      <br>
-      <br>
       <% name_string = name.full_name %>
       <% unless name.name_status_name.blank? %>
         <% name_string += %(, <i class="highlight name-status" title="name status">#{name.name_status_name}</i>) %>

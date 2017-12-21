@@ -40,9 +40,9 @@ class NamesShowTest < ActionController::TestCase
     assert_response :success
     assert_select 'h3', true, 'should find a heading level 3'
     assert_select('h3') do
-      assert_select("span.family-name[title = 'family name']",
+      assert_select("div.family-name[title = 'family name']",
                     'Myrtaceae Juss.',
-                    'Wrong family name')
+                    'Family name not as expected.')
     end
   end
 
