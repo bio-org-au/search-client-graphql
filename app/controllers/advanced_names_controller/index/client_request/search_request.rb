@@ -18,7 +18,8 @@ class AdvancedNamesController::Index::ClientRequest::SearchRequest
       @params['genus'].present? ||
       @params['species'].present? ||
       @params['rank'].present? ||
-      @params['name_element'].present?
+      @params['name_element'].present? ||
+      @params['type_note_text'].present?
   end
 
   def publication_search?

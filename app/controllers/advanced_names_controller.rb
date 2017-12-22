@@ -69,6 +69,6 @@ class AdvancedNamesController < ApplicationController
                   :show_family, :show_links, :name_type, :limit, :offset,
                   :taxon_name_author_abbrev, :basionym_author_abbrev, :family,
                   :genus, :rank, :species, :publication, :protologue,
-                  :name_element, :search, :count)
+                  :name_element, :type_note_text, :search, :count)
   end
 end

@@ -102,6 +102,18 @@ Publication:
 <%= check_box_tag(:protologue, '1', params['protologue'], title: "When checked, this field checks for publications only when they contain the name protologue.") %>
     </td>
   </tr>
+  <tr> <td colspan="2"> <hr> </td> </tr>
+  <tr>
+    <td class="label">
+Type Note:
+    </td>
+    <td>
+<input id='type_note_text' name='type_note_text' type="search"
+       class="form-field width40pc min-width10em max-width30em"
+       value="<%= params['type_note_text'] %>"
+       title="Enter type note text for the search. Wildcards are supported.">
+    </td>
+  </tr>
 </table>
 <hr>
 Only: <select name="name_type" title="The type of names to retrieve" class="form-field">

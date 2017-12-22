@@ -110,6 +110,12 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
     @params[:name_element].strip
   end
 
+  def type_note_text
+    return '' if @params[:type_note_text].blank?
+    return '' unless @params[:type_note_text].class == String
+    @params[:type_note_text].strip
+  end
+
   def name_type
     @params[:name_type]
   end
