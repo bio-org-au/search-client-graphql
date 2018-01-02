@@ -31,7 +31,6 @@ class AdvancedNamesController::Index::ClientRequest::SearchRequest
   end
 
   def details?
-    Rails.logger.debug('(advanced) details?')
     @params[:show_details].present? && @params[:show_details] == 'show'
   end
 

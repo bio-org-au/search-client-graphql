@@ -116,6 +116,22 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
     @params[:type_note_text].strip
   end
 
+  def type_note_keys
+    %Q(["#{type_note_key_lectotype?}","#{ type_note_key_type? }","#{ type_note_key_neotype? }"])
+  end
+
+  def type_note_key_type?
+    @params[:type_note_key_type] == '1' ? 'type' : ''
+  end
+
+  def type_note_key_lectotype?
+    @params[:type_note_key_lectotype] == '1' ? 'lectotype' : ''
+  end
+
+  def type_note_key_neotype?
+    @params[:type_note_key_neotype] == '1' ? 'neotype' : ''
+  end
+
   def name_type
     @params[:name_type]
   end

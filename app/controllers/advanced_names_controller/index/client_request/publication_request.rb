@@ -88,7 +88,6 @@ class AdvancedNamesController::Index::ClientRequest::PublicationRequest
   end
 
   def details?
-    Rails.logger.debug('(advanced) details?')
     @params[:show_details].present? && @params[:show_details] == 'show'
   end
   alias show_details details?

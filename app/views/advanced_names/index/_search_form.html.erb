@@ -96,7 +96,7 @@ Publication:
     <td class="label">
 <%= label_tag(:protologue,
               "Protologue:",
-              title: "When checked, this field checks for publications only when they contain the name protologue.") %>
+              title: "When checked, this field makes sure publications contain the name protologue.") %>
     </td>
     <td>
 <%= check_box_tag(:protologue, '1', params['protologue'], title: "When checked, this field checks for publications only when they contain the name protologue.") %>
@@ -112,6 +112,36 @@ Type Note:
        class="form-field width40pc min-width10em max-width30em"
        value="<%= params['type_note_text'] %>"
        title="Enter type note text for the search. Wildcards are supported.">
+    </td>
+  </tr>
+  <tr>
+    <td class="label">
+<%= label_tag(:type_note_key_type,
+              "Type:",
+              title: "When checked, this field looks for the type note text in a type note.") %>
+    </td>
+    <td>
+<%= check_box_tag(:type_note_key_type, '1', params['type_note_key_type'], title: "When checked, this field looks for the type note text in a type note.") %>
+    </td>
+  </tr>
+  <tr>
+    <td class="label">
+<%= label_tag(:type_note_key_neotype,
+              "Neotype:",
+              title: "When checked, this field looks for the type note text in a neotype note.") %>
+    </td>
+    <td>
+<%= check_box_tag(:type_note_key_neotype, '1', params['type_note_key_neotype'], title: "When checked, this field looks for the type note text in a neotype note.") %>
+    </td>
+  </tr>
+  <tr>
+    <td class="label">
+<%= label_tag(:type_note_key_lectotype,
+              "Lectotype:",
+              title: "When checked, this field looks for the type note text in a lectotype note.") %>
+    </td>
+    <td>
+<%= check_box_tag(:type_note_key_lectotype, '1', params['type_note_key_lectotype'], title: "When checked, this field looks for the type note text in a lectotype note.") %>
     </td>
   </tr>
 </table>

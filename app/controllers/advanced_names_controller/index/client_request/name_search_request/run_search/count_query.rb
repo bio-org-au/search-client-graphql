@@ -21,6 +21,7 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::RunSearc
                     .sub(/name_element_placeholder/, @client_request.name_element)
                     .sub(/type_of_name_placeholder/, @client_request.name_type)
                     .sub(/type_note_text_placeholder/, @client_request.type_note_text || '')
+                    .sub(/"type_note_keys_placeholder"/, @client_request.type_note_keys || '')
   end
 
   def raw_query_string
@@ -38,6 +39,7 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::RunSearc
                     name_element: "name_element_placeholder",
                     type_of_name: "type_of_name_placeholder",
                     type_note_text: "type_note_text_placeholder",
+                    type_note_keys: "type_note_keys_placeholder",
                     fuzzy_or_exact: "fuzzy")
           {
             count

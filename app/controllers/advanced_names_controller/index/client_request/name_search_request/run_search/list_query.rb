@@ -21,6 +21,7 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::RunSearc
                     .sub(/name_element_placeholder/, @client_request.name_element || '')
                     .sub(/type_of_name_placeholder/, @client_request.name_type || '')
                     .sub(/type_note_text_placeholder/, @client_request.type_note_text || '')
+                    .sub(/"type_note_keys_placeholder"/, @client_request.type_note_keys || '')
                     .sub(/"limit_placeholder"/, @client_request.limit.to_s)
                     .sub(/"offset_placeholder"/, @client_request.offset.to_s)
   end
@@ -40,6 +41,7 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::RunSearc
                     name_element: "name_element_placeholder",
                     type_of_name: "type_of_name_placeholder",
                     type_note_text: "type_note_text_placeholder",
+                    type_note_keys: "type_note_keys_placeholder",
                     fuzzy_or_exact: "fuzzy",
                     limit: "limit_placeholder",
                     offset: "offset_placeholder")
