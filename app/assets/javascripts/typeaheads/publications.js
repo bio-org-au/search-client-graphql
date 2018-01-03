@@ -3,7 +3,7 @@ var publications = new Bloodhound({
   datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
   queryTokenizer: Bloodhound.tokenizers.whitespace,
   remote: {
-    url: '/publications/suggestions/%QUERY',
+    url:  window.relative_url_root + '/publications/suggestions/%QUERY',
     wildcard: '%QUERY'
   },
   limit: 100
