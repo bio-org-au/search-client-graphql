@@ -9,11 +9,13 @@
       <% unless name.name_status_name.blank? %>
         <% name_string += %(, <i class="highlight name-status" title="name status">#{name.name_status_name}</i>) %>
       <% end %>
+      <span id="name-<%=name.id%>">
       <% if @client_request.links? %>
-        <%= link_to name_string.html_safe, show_name_path(id: name.id, search_form: search_form), title: "Show name details in a new page" %>
+        <%= link_to name_string.html_safe, show_name_path(id: name.id, search_form: search_form) + '#name-' + name.id, title: "Show name details in a new page" %>
       <% else %>
         <%= name_string.html_safe %>
       <% end %>
+      </span>
     </h3>
 
       <ul class="name-details plain indent3">
@@ -36,7 +38,7 @@
             <% usage.synonyms.each do |synonym| %>
               <li class="indent"><span class="synonym-type"><%= synonym.label %>:</span>
                 <% if @client_request.links? %>
-                  <span class="synonym"><%= link_to synonym.full_name_html.html_safe, show_name_path(id: synonym.name_id, search_form: search_form), title: "Show name details in a new page" %></span>
+                  <span class="synonym"><%= link_to synonym.full_name_html.html_safe, show_name_path(id: synonym.name_id, search_form: search_form) + '#name-' + synonym.name_id, title: "Show name details in a new page" %></span>
                 <% else %>
                   <span class="synonym"><%= synonym.full_name_html.html_safe %> <%= "#{synonym.name_status_name}" %></span>
                 <% end %>
