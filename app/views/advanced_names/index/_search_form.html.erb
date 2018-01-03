@@ -79,6 +79,18 @@ Taxon Name Author:
 
     </td>
   </tr>
+    <tr>
+    <td class="label">
+<%= label_tag(:include_ranks_below,
+              "Include ranks below:",
+              title: "If you choose a rank and check this box, the search will also include ranks below the one you selected.") %>
+    </td>
+    <td>
+      <%= check_box_tag(:include_ranks_below, '1', params['include_ranks_below'], 
+                        title: "If you choose a rank and check this box, the search will also include ranks below the one you selected.") %>
+    </td>
+  </tr>
+
   <tr> <td colspan="2"> <hr> </td> </tr>
   <tr>
     <td class="label">

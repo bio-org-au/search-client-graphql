@@ -71,6 +71,6 @@ class AdvancedNamesController < ApplicationController
                   :genus, :rank, :species, :publication, :protologue,
                   :name_element, :type_note_text, :type_note_key_type,
                   :type_note_key_neotype, :type_note_key_lectotype,
-                  :search, :count)
+                  :include_ranks_below, :search, :count)
   end
 end

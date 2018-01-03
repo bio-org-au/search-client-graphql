@@ -93,6 +93,12 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
     @params[:rank].strip
   end
 
+  def include_ranks_below
+    return '' if @params[:include_ranks_below].blank?
+    return '' unless @params[:include_ranks_below].class == String
+    @params[:include_ranks_below] == '1' ? 'true' : ''
+  end
+
   def publication
     return '' if @params[:publication].blank?
     return '' unless @params[:publication].class == String

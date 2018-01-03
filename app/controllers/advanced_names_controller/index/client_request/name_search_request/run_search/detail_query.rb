@@ -16,6 +16,7 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::RunSearc
                     .sub(/genus_placeholder/, @client_request.genus)
                     .sub(/species_placeholder/, @client_request.species)
                     .sub(/rank_placeholder/, @client_request.rank)
+                    .sub(/include_ranks_below_placeholder/, @client_request.include_ranks_below || '')
                     .sub(/publication_placeholder/, @client_request.publication)
                     .sub(/protologue_placeholder/, @client_request.protologue)
                     .sub(/name_element_placeholder/, @client_request.name_element)
@@ -38,6 +39,7 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::RunSearc
                     genus: "genus_placeholder",
                     species: "species_placeholder",
                     rank: "rank_placeholder",
+                    include_ranks_below: "include_ranks_below_placeholder",
                     publication: "publication_placeholder",
                     protologue: "protologue_placeholder",
                     name_element: "name_element_placeholder",
