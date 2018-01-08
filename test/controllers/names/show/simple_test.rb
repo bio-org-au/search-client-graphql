@@ -32,7 +32,7 @@ class NamesShowTest < ActionController::TestCase
                                          .returns(raw_result)
     Application::Names::Results::Name::Usage::Synonym.any_instance
                                                      .stubs(:name_id)
-                                                     .returns(2)
+                                                     .returns('2')
   end
 
   test 'show name' do

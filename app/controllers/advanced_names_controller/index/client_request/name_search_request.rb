@@ -138,8 +138,24 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
     @params[:type_note_key_neotype] == '1' ? 'neotype' : ''
   end
 
-  def name_type
-    @params[:name_type]
+  def scientific_name
+    (@params[:scientific_name] == '1').to_s
+  end
+
+  def scientific_autonym_name
+    (@params[:scientific_autonym_name] == '1').to_s
+  end
+
+  def scientific_hybrid_name
+    (@params[:scientific_hybrid_name] == '1').to_s
+  end
+
+  def cultivar_name
+    (@params[:cultivar_name] == '1').to_s
+  end
+
+  def common_name
+    (@params[:common_name] == '1').to_s
   end
 
   def limit

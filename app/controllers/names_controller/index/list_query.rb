@@ -7,20 +7,17 @@ class NamesController::Index::ListQuery
   end
 
   def query_string
-    raw_query_string.delete(' ')
-                    .delete("\n")
-                    .sub(/search_term_placeholder/, @client_request.search_term)
-                    .sub(/type_of_name_placeholder/, @client_request.name_type)
-                    .sub(/"limit_placeholder"/, @client_request.limit)
+    NamesController::Index::Utilities::CoreArgsFilter.new(@client_request, raw_query_string).raw_query_string
+                    .sub(/"limit_placeholder"/, @client_request.limit.to_s)
+                    .sub(/"offset_placeholder"/, @client_request.offset.to_s)
   end
 
   def raw_query_string
     <<~HEREDOC
       {
-        name_search(search_term: "search_term_placeholder",
-                    type_of_name: "type_of_name_placeholder",
-                    fuzzy_or_exact: "fuzzy",
-                    limit: "limit_placeholder")
+        name_search(#{NamesController::Index::Utilities::CoreArgs.new.core_args},
+                    limit: "limit_placeholder",
+                    offset: "offset_placeholder")
           {
             count,
             names

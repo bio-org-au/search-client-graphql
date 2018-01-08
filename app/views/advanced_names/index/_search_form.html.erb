@@ -156,10 +156,63 @@ Type Note:
 <%= check_box_tag(:type_note_key_lectotype, '1', params['type_note_key_lectotype'], title: "When checked, this field looks for the type note text in a lectotype note.") %>
     </td>
   </tr>
+  <tr> <td colspan="2"> <hr> </td> </tr>
+  <tr>
+    <td class="label">
+<%= label_tag(:scientific_name,
+              "Scientific:",
+              title: "When checked scientific names will be included in the search.") %>
+    </td>
+    <td>
+      <%= check_box_tag(:scientific_name, '1', params['scientific_name'], title: "When checked, this ensures scientific names will be included in the search.") %>
+    </td>
+  </tr>
+  <tr>
+    <td class="label">
+<%= label_tag(:scientific_autonym_name,
+              "Autonym:",
+              title: "When checked scientific autonym names will be included in the search.") %>
+    </td>
+    <td>
+      <%= check_box_tag(:scientific_autonym_name, '1', params['scientific_autonym_name'], title: "When checked, this ensures scientific autonym names will be included in the search.") %>
+    </td>
+  </tr>
+  <tr>
+    <td class="label">
+<%= label_tag(:scientific_hybrid_name,
+              "Hybrid:",
+              title: "When checked scientific hybrid names will be included in the search.") %>
+    </td>
+    <td>
+      <%= check_box_tag(:scientific_hybrid_name, '1', params['scientific_hybrid_name'], title: "When checked, this ensures scientific hybrid names will be included in the search.") %>
+    </td>
+  </tr>
+  <tr> <td colspan="2"> <hr> </td> </tr>
+  <tr>
+    <td class="label">
+<%= label_tag(:cultivar_name,
+              "Cultivar:",
+              title: "When checked cultivar names will be included in the search.") %>
+    </td>
+    <td>
+<%= check_box_tag(:cultivar_name, '1', params['cultivar_name'], title: "When checked cultivar names will be included in the search.") %>
+    </td>
+  </tr>
+  <tr>
+    <td class="label">
+<%= label_tag(:common_name,
+              "Common:",
+              title: "When checked common names will be included in the search.") %>
+    </td>
+    <td>
+<%= check_box_tag(:common_name, '1', params['common_name'], title: "When checked common names will be included in the search.") %>
+    </td>
+  </tr>
 </table>
+<!--
 <hr>
 Only: <select name="name_type" title="The type of names to retrieve" class="form-field">
-        <%= options_for_select(
+        <%#= options_for_select(
           [['Scientific names', 'scientific', {title: "Scientific names only"}],
            ['Cultivar names', 'cultivar', {title: "Cultivar names only"}],
            ['Scientific and cultivar names', 'scientific-or-cultivar', {title: "Scientific and cultivar names only"}],
@@ -169,6 +222,7 @@ Only: <select name="name_type" title="The type of names to retrieve" class="form
     </select>
 
 <br>
+-->
 <script> setUpPublicationTA(); </script>
 <hr>
 <%= render partial: "advanced_names/index/widgets" %>

@@ -66,11 +66,13 @@ class AdvancedNamesController < ApplicationController
 
   def search_params
     params.permit(:utf8, :list, :q, :requested_format, :show_details,
-                  :show_family, :show_links, :name_type, :limit, :offset,
+                  :show_family, :show_links, :limit, :offset,
                   :taxon_name_author_abbrev, :basionym_author_abbrev, :family,
                   :genus, :rank, :species, :publication, :protologue,
                   :name_element, :type_note_text, :type_note_key_type,
                   :type_note_key_neotype, :type_note_key_lectotype,
+                  :scientific_name, :scientific_autonym_name,
+                  :scientific_hybrid_name, :cultivar_name, :common_name,
                   :include_ranks_below, :search, :count)
   end
 end

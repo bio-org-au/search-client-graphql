@@ -14,12 +14,36 @@ class NamesController::Index::ClientRequest
     @params[:q].present? && @params[:q].gsub(/ *$/, '')
   end
 
-  def name_type
-    @params[:name_type]
+  def scientific_name
+    scientific?.to_s
+  end
+
+  def scientific_hybrid_name
+    scientific?.to_s
+  end
+
+  def scientific_autonym_name
+    scientific?.to_s
+  end
+
+  def scientific?
+    %w(scientific all scientific-or-cultivar).include?(@params[:name_type]).to_s
+  end
+
+  def cultivar_name
+    %w(cultivar all scientific-or-cultivar).include?(@params[:name_type]).to_s
+  end
+
+  def common_name
+    %w(common all).include?(@params[:name_type]).to_s
   end
 
   def limit
-    @params[:limit] || DEFAULT_LIMIT
+    @params[:limit].to_i || DEFAULT_LIMIT
+  end
+
+  def offset
+    0
   end
 
   def just_count?

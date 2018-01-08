@@ -1,9 +1,18 @@
 <% if @client_request.any_type_of_search? %>
   <% if @client_request.just_count? %>
-    <%= pluralize(@results.count, 'matching record') %>
+    <% if @results.error? %>
+      Error.
+      <% if development? %>
+         <%= @results.error %>
+         <br>
+         <br>
+      <% end %>
+    <% else %>
+      <%= pluralize(@results.count, 'matching record') %>
+    <% end %>
   <% else %>
     <% if @results.error? %>
-         Error!
+         Error.
       <% if development? %>
          <br>
          <br>
