@@ -45,10 +45,10 @@ class SimpleCountTest < ActionController::TestCase
       assert_select("input[type='submit']", true,
                     'Form should have a submit button.')
     end
-    assert_select('div#search-results') do |e|
-      assert_match(/.*6 matching records.*for "angophora costata".*/m,
+    assert_select('div#search-result-summary') do |e|
+      assert_match(/.*6 matching records.*/m,
                    e.text,
-                   "Results should say '6 matching records....'")
+                   "Results should say '6 matching records'")
     end
   end
 end

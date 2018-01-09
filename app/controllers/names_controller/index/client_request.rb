@@ -70,4 +70,8 @@ class NamesController::Index::ClientRequest
   def timeout
     TimeoutCalculator.new(self).timeout
   end
+
+  def content_partial
+    "name_#{ details? ? 'detail' : 'list' }"
+  end
 end

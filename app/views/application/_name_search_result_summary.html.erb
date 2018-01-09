@@ -12,7 +12,7 @@
     <% end %>
   <% else %>
     <% if @results.error? %>
-         Error.
+         Sorry!  Something went wrong.  Error details are logged and monitored.
       <% if development? %>
          <br>
          <br>
@@ -20,10 +20,11 @@
          <br>
          <br>
       <% end %>
-    <% end %>
-    <% unless @results.present? %>
-    No records. 
-    <% elapsed = Time.now - @start_time %>(<%= elapsed.round(2) %>s)
+    <% else %>
+      <% unless @results.present? %>
+        No records. 
+        <% elapsed = Time.now - @start_time %>(<%= elapsed.round(2) %>s)
+      <% end %>
     <% end %>
   <% end %>
 <% end %>

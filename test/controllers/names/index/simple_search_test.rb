@@ -44,11 +44,9 @@ class SimpleSearchTest < ActionController::TestCase
       assert_select("input[type='submit']", true,
                     'Form should have a submit button.')
     end
-    assert_select('div#search-results') do |_d|
-      assert_select('h2') do |h|
-        assert_match(/.*6.*records.*for.*angophora.*costata/m, h.text,
-                     'Should report 6 matching records for angophora costata')
-      end
+    assert_select('div#search-result-summary') do |_d|
+        assert_match(/.*6.matching records/m, _d.text,
+                     'Should report 6 matching records')
     end
   end
 end
