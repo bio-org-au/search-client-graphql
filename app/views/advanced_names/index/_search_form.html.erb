@@ -144,7 +144,7 @@ Type Note:
               title: "When checked, this field looks for the type note text in a type note.") %>
     </td>
     <td>
-<%= check_box_tag(:type_note_key_type, '1', params['type_note_key_type'], title: "When checked, this field looks for the type note text in a type note.") %>
+<%= check_box_tag(:type_note_key_type, '1', type_note_key_type_field_value, title: "When checked, this field looks for the type note text in a type note.") %>
     </td>
   </tr>
   <tr>
@@ -154,7 +154,7 @@ Type Note:
               title: "When checked, this field looks for the type note text in a neotype note.") %>
     </td>
     <td>
-<%= check_box_tag(:type_note_key_neotype, '1', params['type_note_key_neotype'], title: "When checked, this field looks for the type note text in a neotype note.") %>
+<%= check_box_tag(:type_note_key_neotype, '1', type_note_key_neotype_field_value, title: "When checked, this field looks for the type note text in a neotype note.") %>
     </td>
   </tr>
   <tr>
@@ -164,7 +164,7 @@ Type Note:
               title: "When checked, this field looks for the type note text in a lectotype note.") %>
     </td>
     <td>
-<%= check_box_tag(:type_note_key_lectotype, '1', params['type_note_key_lectotype'], title: "When checked, this field looks for the type note text in a lectotype note.") %>
+<%= check_box_tag(:type_note_key_lectotype, '1', type_note_key_lectotype_field_value, title: "When checked, this field looks for the type note text in a lectotype note.") %>
     </td>
   </tr>
   <tr> <td colspan="2"> <hr> </td> </tr>
@@ -172,10 +172,10 @@ Type Note:
     <td class="label">
 <%= label_tag(:scientific_name,
               "Scientific:",
-              title: "When checked scientific names will be included in the search.") %>
+              title: "When checked scientific names that are not autonyms or hybrids will be included in the search.") %>
     </td>
     <td>
-      <%= check_box_tag(:scientific_name, '1', params['scientific_name'], title: "When checked, this ensures scientific names will be included in the search.") %>
+      <%= check_box_tag(:scientific_name, '1', scientific_name_field_value, title: "When checked, this ensures scientific names that are not autonyms or hybrids will be included in the search.") %>
     </td>
   </tr>
   <tr>
@@ -185,7 +185,7 @@ Type Note:
               title: "When checked scientific autonym names will be included in the search.") %>
     </td>
     <td>
-      <%= check_box_tag(:scientific_autonym_name, '1', params['scientific_autonym_name'], title: "When checked, this ensures scientific autonym names will be included in the search.") %>
+      <%= check_box_tag(:scientific_autonym_name, '1', scientific_autonym_field_value, title: "When checked, this ensures scientific autonym names will be included in the search.") %>
     </td>
   </tr>
   <tr>
@@ -195,7 +195,7 @@ Type Note:
               title: "When checked scientific hybrid names will be included in the search.") %>
     </td>
     <td>
-      <%= check_box_tag(:scientific_hybrid_name, '1', params['scientific_hybrid_name'], title: "When checked, this ensures scientific hybrid names will be included in the search.") %>
+      <%= check_box_tag(:scientific_hybrid_name, '1', scientific_hybrid_name_field_value, title: "When checked, this ensures scientific hybrid names will be included in the search.") %>
     </td>
   </tr>
   <tr> <td colspan="2"> <hr> </td> </tr>
