@@ -105,6 +105,17 @@ Publication:
     </td>
   </tr>
   <tr>
+    <td class="label" title="Publication year">
+Year:
+    </td>
+    <td>
+<input name='publication_year' type="number" min="1000" max="2050" step="1"
+       class="form-field"
+       value="<%= params['publication_year'] %>"
+       title="Enter a publication year term to restrict the search. No wildcards.">
+    </td>
+  </tr>
+  <tr>
     <td class="label">
 <%= label_tag(:protologue,
               "Protologue:",

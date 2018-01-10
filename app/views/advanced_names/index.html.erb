@@ -11,6 +11,10 @@
 <div id="search-result-summary">
   <% if @search.present? %>
     <%= render partial: 'name_search_result_summary' %>
+  <% else %>
+    <% if params[:search].present? %>
+      No search done.  Please enter at least one primary search field. 
+    <% end %>
   <% end %>
 </div>
 

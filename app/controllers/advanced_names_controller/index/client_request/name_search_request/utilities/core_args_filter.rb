@@ -22,6 +22,7 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::Utilitie
                     .sub(/rank_placeholder/, @client_request.rank || '')
                     .sub(/include_ranks_below_placeholder/, @client_request.include_ranks_below || '')
                     .sub(/publication_placeholder/, @client_request.publication || '')
+                    .sub(/publication_year_placeholder/, @client_request.publication_year || '')
                     .sub(/protologue_placeholder/, @client_request.protologue || '')
                     .sub(/name_element_placeholder/, @client_request.name_element || '')
                     .sub(/"scientific_name_placeholder"/, @client_request.scientific_name || '')
