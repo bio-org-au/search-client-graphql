@@ -22,27 +22,31 @@ class AdvancedNamesController::Index::ClientRequest::NoSearchRequest
     false
   end
 
-  def just_count?
-    false
-  end
-
   def content_partial
     nil
   end
 
+  def name?
+    @search_request.name?
+  end
+
   def details?
-    false
+    @search_request.details?
   end
 
   def links?
-    false
+    @search_request.links?
   end
 
   def family?
-    false
+    @search_request.family?
   end
 
   def limit
     DEFAULT_LIMIT
+  end
+
+  def just_count?
+    @search_request.just_count?
   end
 end

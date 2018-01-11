@@ -34,6 +34,14 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
     @search_request.just_count?
   end
 
+  def list_or_count
+    @params['list_or_count']
+  end
+
+  def name?
+    @search_request.name?
+  end
+
   def details?
     @search_request.details?
   end
@@ -166,9 +174,9 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
 
   def limit
     if list?
-      [@params[:limit].to_i, MAX_LIST_LIMIT].min
+      [@params[:limit_per_page_for_list].to_i, MAX_LIST_LIMIT].min
     else
-      [@params[:limit].to_i, MAX_DETAILS_LIMIT].min
+      [@params[:limit_per_page_for_details].to_i, MAX_DETAILS_LIMIT].min
     end
   end
 

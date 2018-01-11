@@ -2,9 +2,9 @@
 
 <%= render partial: 'advanced_names/index/search_form' %>
 <span class="no-print">
-<%= link_to('clear form', names_advanced_search_path,class: 'underline', title: 'Clear any search and start a new advanced search') %> |
+  <%= link_to('clear form', names_advanced_search_path,class: 'underline', title: clear_form_link_hover_text('advanced')) %> |
 <%= link_to('simple', name_search_path, class: 'underline', title: 'Go to simple name search') %> |
-<%= link_to('taxonomy', taxonomy_search_path, class: 'underline', title: 'Go to taxonomy search') %>
+<%= link_to('taxonomy', taxonomy_search_path, class: 'underline', title: taxonomy_link_hover_text) %>
 </span>
 <hr>
 
@@ -13,7 +13,7 @@
     <%= render partial: 'name_search_result_summary' %>
   <% else %>
     <% if params[:search].present? %>
-      No search done.  Please enter at least one primary search field. 
+      <%= no_search_done_message %>
     <% end %>
   <% end %>
 </div>

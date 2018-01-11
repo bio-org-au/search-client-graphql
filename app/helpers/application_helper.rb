@@ -74,4 +74,72 @@ module ApplicationHelper
     end
     san
   end
+
+  def advanced_search_name_hover_text
+    "Enter a name or the leading part of a name or part of a name to restrict the search. Wildcards are supported."
+  end
+
+  def no_search_done_message
+    "No search done.  Please enter something in at least one search field."
+  end
+
+  def protologue_hover_text
+    "When checked, searches will only return names from matching publications if they are also the protologue reference."
+  end
+
+  def scientific_hybrid_hover_text
+    "When checked, scientific hybrid names will be included in the search."
+  end
+
+  def scientific_autonym_hover_text
+    "When checked, scientific autonym names will be included in the search."
+  end
+
+  def scientific_name_hover_text
+    "When checked, scientific names that are not autonyms or hybrids will be included in the search."
+  end
+
+  def type_note_key_type_hover_text
+    "When checked, this field looks for the type note text in a type note."
+  end
+
+  def type_note_key_neotype_hover_text
+    "When checked, this field looks for the type note text in a neotype note."
+  end
+
+  def type_note_key_lectotype_hover_text
+    "When checked, this field looks for the type note text in a lectotype note."
+  end
+
+  def cultivar_name_hover_text
+    "When checked, cultivar names will be included in the search."
+  end
+
+  def common_name_hover_text
+    "When checked, common names will be included in the search."
+  end
+
+  def include_ranks_below_hover_text
+    "When checked, the search will also include ranks below the one you selected."
+  end
+
+  def show_family_hover_text
+    "When checked, the family name for each taxon will be displayed in the search results."
+  end
+
+  def show_links_hover_text
+    "When checked, taxon names will be hyperlinked."
+  end
+
+  def show_details_hover_text
+    "When checked, biblographic and synonymy details for each taxon will be displayed in the search results."
+  end
+
+  def clear_form_link_hover_text(type_of_search = '')
+    "Clear any search and start a new #{type_of_search} search."
+  end
+
+  def taxonomy_link_hover_text
+    "Go to taxonomy search."
+  end
 end

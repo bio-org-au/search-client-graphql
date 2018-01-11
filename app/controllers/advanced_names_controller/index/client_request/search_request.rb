@@ -28,11 +28,11 @@ class AdvancedNamesController::Index::ClientRequest::SearchRequest
   end
 
   def just_count?
-    @params[:count].present? && @params[:count].match(/count/i)
+    @params[:list_or_count] == 'count'
   end
 
   def details?
-    @params[:show_details].present? && @params[:show_details] == 'show'
+    @params[:show_details].present? && @params[:show_details] == '1'
   end
 
   def list?
@@ -40,10 +40,18 @@ class AdvancedNamesController::Index::ClientRequest::SearchRequest
   end
 
   def family?
-    @params[:show_family].present? && @params[:show_family] == 'show'
+    @params[:show_family].present? && @params[:show_family] == '1'
   end
 
   def links?
-    @params[:show_links].present? && @params[:show_links] == 'show'
+    @params[:show_links].present? && @params[:show_links] == '1'
+  end
+
+  def name?
+    @params[:show_name].present? && @params[:show_name] == '1'
+  end
+
+  def show_name
+    @params[:show_name]
   end
 end

@@ -88,7 +88,7 @@ class AdvancedNamesController::Index::ClientRequest::PublicationRequest
   end
 
   def details?
-    @params[:show_details].present? && @params[:show_details] == 'show'
+    @params[:show_details].present? && @params[:show_details] == '1'
   end
   alias show_details details?
 
@@ -97,11 +97,11 @@ class AdvancedNamesController::Index::ClientRequest::PublicationRequest
   end
 
   def family?
-    @params[:show_family].present? && @params[:show_family] == 'show'
+    @params[:show_family].present? && @params[:show_family] == '1'
   end
 
   def links?
-    @params[:show_links].present? && @params[:show_links] == 'show'
+    @params[:show_links].present? && @params[:show_links] == '1'
   end
 
   def timeout
