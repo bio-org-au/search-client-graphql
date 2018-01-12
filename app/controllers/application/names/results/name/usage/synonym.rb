@@ -19,6 +19,11 @@ class Application::Names::Results::Name::Usage::Synonym
     @raw_synonym.label
   end
 
+  def font_style
+    #@raw_synonym.label == 'common name' ? '' : 'italics'
+    ['common name', 'vernacular name'].include?(@raw_synonym.label) ? '' : 'italics'
+  end
+
   def page
     @raw_synonym.page
   end
