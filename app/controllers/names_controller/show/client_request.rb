@@ -21,4 +21,8 @@ class NamesController::Show::ClientRequest
   def details?
     true
   end
+
+  def just_count?
+    false
+  end
 end

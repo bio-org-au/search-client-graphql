@@ -1,4 +1,5 @@
 Family Name,Full Name,Status
 <% @results.names.each do |name| %>
-<%= name.family_name %>,<%= name.full_name %>,<%= name.name_status_name %>
+  <a id="<%= "name-#{name.id}) %>">
+    <%= name.family_name %>,<%= name.full_name %>,<%= name.name_status_name %></a>
 <% end %>

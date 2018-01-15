@@ -31,8 +31,9 @@
 
 <% if @results.present? %>
   <div>
-  <%= pluralize(@results.count,'matching record') %>
-  <%#= pluralize(@results.size,'record') %>
+    <a id="search-results-summary" title="Search results">
+      <%= pluralize(@results.count,'matching record') %>
+    </a>
   <br>
   <% if @results.count > @client_request.limit %>
     Page <%= page %> of <%= pages %>

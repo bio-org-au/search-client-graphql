@@ -2,6 +2,7 @@ jQuery ->
   console.log("jQuery: #{jQuery.fn.jquery}")
   #$('body').on('click',"input.left-aligned-form-button", (event) -> submitClick(event,$(this)))
   $('body').on('submit','form', (event) -> submitForm(event,$(this)))
+  location.href = "#bottom-of-search-form"
 
 
 submitForm = (event,$element) ->

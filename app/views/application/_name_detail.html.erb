@@ -9,13 +9,11 @@
       <% unless name.name_status_name.blank? %>
         <% name_string += %(, <i class="highlight name-status" title="name status">#{name.name_status_name}</i>) %>
       <% end %>
-      <span id="name-<%=name.id%>">
       <% if @client_request.links? %>
         <%= link_to name_string.html_safe, show_name_path(id: name.id, search_form: search_form) + '#name-' + name.id, title: "Show name details in a new page" %>
       <% else %>
         <%= name_string.html_safe %>
       <% end %>
-      </span>
     </h3>
 
       <ul class="name-details plain indent3">

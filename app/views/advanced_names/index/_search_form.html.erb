@@ -9,7 +9,6 @@
     <input name='family' type="search"
        class="form-field width40pc min-width10em max-width30em"
        value="<%= params['family'] %>"
-       autofocus="true"
        title="Enter a search term to restrict the family. Wildcards are supported.">
     </td>
   </tr>
@@ -224,6 +223,7 @@ Type Note:
   </tr>
   <%= render partial: "advanced_names/index/widgets" %>
 </table>
+<a id="bottom-of-search-form" title="Bottom of search form">
 <script> setUpPublicationTA(); </script>
 
 <input type="submit"

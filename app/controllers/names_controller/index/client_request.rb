@@ -2,6 +2,9 @@
 
 # Class extracted from name controller.
 class NamesController::Index::ClientRequest
+  DEFAULT_LIMIT = 50
+  DEFAULT_LIST_LIMIT = 50
+  DEFAULT_DETAILS_LIMIT = 20
   def initialize(params)
     @params = params
   end
@@ -39,7 +42,11 @@ class NamesController::Index::ClientRequest
   end
 
   def limit
-    @params[:limit].to_i || DEFAULT_LIMIT
+    if list?
+      [@params[:limit_per_page_for_list].to_i, DEFAULT_LIST_LIMIT].min
+    else
+      [@params[:limit_per_page_for_details].to_i, DEFAULT_DETAILS_LIMIT].min
+    end
   end
 
   def offset
