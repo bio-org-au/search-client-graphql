@@ -3,6 +3,8 @@
 # Container for name usages in results
 class Application::Names::Results::Name::Usage
   attr_reader :raw_usage
+  TREE_ACCEPTED = 'ApcConcept'
+  TREE_EXCLUDED = 'ApcExcluded'
 
   def initialize(raw_usage)
     @raw_usage = raw_usage
@@ -55,6 +57,18 @@ class Application::Names::Results::Name::Usage
 
   def instance_type_name
     @raw_usage.instance_type_name
+  end
+
+  def accepted_tree_status
+    @raw_usage.accepted_tree_status
+  end
+
+  def accepted_in_tree?
+    @raw_usage.accepted_tree_status == TREE_ACCEPTED
+  end
+
+  def excluded_from_tree?
+    @raw_usage.accepted_tree_status == TREE_EXCLUDED
   end
 
   def synonyms

@@ -30,6 +30,8 @@
               <ul class="plain indent4">
             <% else %>
               <li><%= usage.full_citation_with_page %>
+              <%= "<span class='red' title='Accepted by APC'>#{fa_icon('check')}APC</span>".html_safe if usage.accepted_in_tree? %>
+              <%= "<span class='red' title='Excluded from APC'>#{fa_icon('ban')}APC</span>".html_safe if usage.excluded_from_tree? %>
               <ul class="plain indent4">
             <% end %>
           <% end %>
