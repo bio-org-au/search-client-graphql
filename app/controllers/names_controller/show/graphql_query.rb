@@ -37,6 +37,7 @@ class NamesController::Show::GraphqlQuery
                 year,
                 standalone,
                 instance_type_name,
+                accepted_tree_status,
                 primary_instance,
                 misapplied,
                 misapplied_to_name,
