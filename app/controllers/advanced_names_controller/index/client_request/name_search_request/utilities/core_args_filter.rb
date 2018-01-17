@@ -28,6 +28,7 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::Utilitie
                     .sub(/"scientific_name_placeholder"/, @client_request.scientific_name || '')
                     .sub(/"scientific_autonym_name_placeholder"/, @client_request.scientific_autonym_name || '')
                     .sub(/"scientific_named_hybrid_name_placeholder"/, @client_request.scientific_named_hybrid_name || '')
+                    .sub(/"scientific_hybrid_formula_name_placeholder"/, @client_request.scientific_hybrid_formula_name || '')
                     .sub(/"cultivar_name_placeholder"/, @client_request.cultivar_name || '')
                     .sub(/"common_name_placeholder"/, @client_request.common_name || '')
                     .sub(/type_note_text_placeholder/, @client_request.type_note_text || '')

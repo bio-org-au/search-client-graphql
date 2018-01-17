@@ -19,6 +19,7 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::Utilitie
                 scientific_name: "scientific_name_placeholder",
                 scientific_autonym_name: "scientific_autonym_name_placeholder",
                 scientific_named_hybrid_name: "scientific_named_hybrid_name_placeholder",
+                scientific_hybrid_formula_name: "scientific_hybrid_formula_name_placeholder",
                 cultivar_name: "cultivar_name_placeholder",
                 common_name: "common_name_placeholder",
                 type_note_text: "type_note_text_placeholder",

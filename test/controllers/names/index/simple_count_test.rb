@@ -36,8 +36,7 @@ class SimpleCountTest < ActionController::TestCase
   test 'simple count' do
     get(:index, q: 'angophora costata',
                 name_type: 'scientific', limit: '100', format: 'html',
-                count: 'Count')
-    puts response.body
+                list_or_count: 'count')
     assert_response :success
     assert_select 'form', true, 'should find a form'
     assert_select("form[action='/names/search']") do

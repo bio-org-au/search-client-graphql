@@ -39,6 +39,15 @@ module ApplicationHelper
     san
   end
 
+  def scientific_hybrid_formula_name_field_value
+    if params['search'] == 'Search'
+      san = params['scientific_hybrid_formula_name']
+    else
+      san = '1'
+    end
+    san
+  end
+
   def scientific_name_field_value
     if params['search'] == 'Search' || params['count'] == 'Count'
       san = params['scientific_name']
@@ -89,6 +98,10 @@ module ApplicationHelper
 
   def scientific_named_hybrid_name_hover_text
     "When checked, scientific named hybrid names will be included in the search."
+  end
+
+  def scientific_hybrid_formula_name_hover_text
+    "When checked, scientific hybrid formula names will be included in the search."
   end
 
   def scientific_autonym_hover_text

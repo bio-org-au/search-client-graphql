@@ -164,6 +164,10 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
     (@params[:scientific_named_hybrid_name] == '1').to_s
   end
 
+  def scientific_hybrid_formula_name
+    (@params[:scientific_hybrid_formula_name] == '1').to_s
+  end
+
   def cultivar_name
     (@params[:cultivar_name] == '1').to_s
   end
