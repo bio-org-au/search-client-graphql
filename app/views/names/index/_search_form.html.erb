@@ -5,7 +5,7 @@
        class="form-field width40pc min-width10em max-width30em"
        value="<%= params['q'] %>" required="" autofocus="true"
        title="Enter a search term - a name or part of a name.">
-<%= render partial: "advanced_names/index/widgets" %>
+<%= render partial: "names/index/widgets" %>
 
 <input type="submit"
        value="Search"
@@ -13,11 +13,6 @@
        class="left-aligned-form-button"
        title="Search the data and retrieve matching records">
 
-<input type="submit"
-       value="Count"
-       name="count"
-       class="left-aligned-form-button"
-       title="Just count the matching records">
 </form>
 </div>
 

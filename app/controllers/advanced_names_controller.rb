@@ -73,7 +73,7 @@ class AdvancedNamesController < ApplicationController
                   :publication, :publication_year, :protologue, :name_element,
                   :type_note_text, :type_note_key_type, :type_note_key_neotype,
                   :type_note_key_lectotype, :scientific_name,
-                  :scientific_autonym_name, :scientific_hybrid_name,
+                  :scientific_autonym_name, :scientific_named_hybrid_name,
                   :cultivar_name, :common_name, :include_ranks_below,
                   :search, :count, :list_or_count)
   end

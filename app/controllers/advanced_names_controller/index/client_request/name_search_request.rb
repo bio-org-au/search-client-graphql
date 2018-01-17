@@ -160,8 +160,8 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
     (@params[:scientific_autonym_name] == '1').to_s
   end
 
-  def scientific_hybrid_name
-    (@params[:scientific_hybrid_name] == '1').to_s
+  def scientific_named_hybrid_name
+    (@params[:scientific_named_hybrid_name] == '1').to_s
   end
 
   def cultivar_name
@@ -172,12 +172,17 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
     (@params[:common_name] == '1').to_s
   end
 
+  # We never want to limit of zero
   def limit
+    return 0 if just_count?
+    limit = 1
     if list?
-      [@params[:limit_per_page_for_list].to_i, MAX_LIST_LIMIT].min
+      limit = @params[:limit_per_page_for_list].to_i
     else
-      [@params[:limit_per_page_for_details].to_i, MAX_DETAILS_LIMIT].min
+      limit = @params[:limit_per_page_for_details].to_i
     end
+    limit = 1 if limit < 1
+    [limit, MAX_LIST_LIMIT].min
   end
 
   def offset

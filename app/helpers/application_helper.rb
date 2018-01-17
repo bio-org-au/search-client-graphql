@@ -30,9 +30,9 @@ module ApplicationHelper
     san
   end
 
-  def scientific_hybrid_name_field_value
+  def scientific_named_hybrid_name_field_value
     if params['search'] == 'Search' || params['count'] == 'Count'
-      san = params['scientific_hybrid_name']
+      san = params['scientific_named_hybrid_name']
     else
       san = '1'
     end
@@ -87,8 +87,8 @@ module ApplicationHelper
     "When checked, searches will only return names from matching publications if they are also the protologue reference."
   end
 
-  def scientific_hybrid_hover_text
-    "When checked, scientific hybrid names will be included in the search."
+  def scientific_named_hybrid_name_hover_text
+    "When checked, scientific named hybrid names will be included in the search."
   end
 
   def scientific_autonym_hover_text

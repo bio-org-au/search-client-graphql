@@ -35,7 +35,7 @@ class SimpleSearchTest < ActionController::TestCase
 
   test 'simple search' do
     get(:index, q: 'angophora costata',
-                name_type: 'scientific', limit: '100', format: 'html',
+                name_type: 'scientific', limit_per_page_for_list: '100', format: 'html',
                 search: 'Search')
     assert_select 'form', true, 'should find a form'
     assert_select("form[action='/names/search']") do

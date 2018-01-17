@@ -33,4 +33,3 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::RunSearc
     HEREDOC
   end
 end
-       # name_search(#{AdvancedNamesController::Index::ClientRequest::NameSearchRequest::RunSearch::CoreArgs.new.core_args},

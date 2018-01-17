@@ -14,8 +14,8 @@
 
 <div id="search-results">
   <% if @results.present? %>
-    <%= render partial: @client_request.content_partial, locals: { search_form: 'advanced_names' } %>
-    <%= render partial: 'advanced_names/index/pagination' %>
+    <%= render partial: @client_request.content_partial, locals: { search_form: 'names' } %>
+    <%= render partial: 'names/index/pagination' %>
   <% end %>
 </div>
 

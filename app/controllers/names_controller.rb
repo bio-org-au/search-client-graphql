@@ -71,7 +71,7 @@ class NamesController < ApplicationController
 
   def search_params
     params.permit(:utf8, :q, :format, :show_details, :show_family, :show_links,
-                  :name_type, :limit, :count, :search, :list_or_count,
+                  :name_type, :limit, :count, :search, :list_or_count, :offset,
                   :limit_per_page_for_list, :limit_per_page_for_details)
   end
 end

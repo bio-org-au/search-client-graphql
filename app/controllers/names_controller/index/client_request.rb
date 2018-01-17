@@ -3,8 +3,8 @@
 # Class extracted from name controller.
 class NamesController::Index::ClientRequest
   DEFAULT_LIMIT = 50
-  DEFAULT_LIST_LIMIT = 50
-  DEFAULT_DETAILS_LIMIT = 20
+  MAX_LIST_LIMIT = 500
+  MAX_DETAILS_LIMIT = 100
   def initialize(params)
     @params = params
   end
@@ -21,8 +21,12 @@ class NamesController::Index::ClientRequest
     scientific?.to_s
   end
 
-  def scientific_hybrid_name
-    scientific?.to_s
+  def scientific_named_hybrid_name
+    if @params[:scientific_named_hybrid_name] = '1'
+      'true'
+    else
+      'false'
+    end
   end
 
   def scientific_autonym_name
@@ -41,20 +45,25 @@ class NamesController::Index::ClientRequest
     %w(common all).include?(@params[:name_type]).to_s
   end
 
+  # We don't want limit of zero unless it is a count request.
   def limit
+    return 0 if just_count?
+    limit = 1
     if list?
-      [@params[:limit_per_page_for_list].to_i, DEFAULT_LIST_LIMIT].min
+      limit = @params[:limit_per_page_for_list].to_i
     else
-      [@params[:limit_per_page_for_details].to_i, DEFAULT_DETAILS_LIMIT].min
+      limit = @params[:limit_per_page_for_details].to_i
     end
+    limit = 1 if limit < 1
+    [limit, MAX_LIST_LIMIT].min
   end
 
   def offset
-    0
+    [@params[:offset].to_i,0].max
   end
 
   def just_count?
-    @params[:count].present? && @params[:count].match(/count/i)
+    @params[:list_or_count] == 'count'
   end
 
   def details?
@@ -82,3 +91,4 @@ class NamesController::Index::ClientRequest
     "name_#{ details? ? 'detail' : 'list' }"
   end
 end
+
