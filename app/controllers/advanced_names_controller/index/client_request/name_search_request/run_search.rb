@@ -10,7 +10,10 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::RunSearc
   def result
     json = HTTParty.post("#{DATA_SERVER}/v1",
                          body: body, timeout: @client_request.timeout)
+    Rails.logger.debug("AdvancedNamesController::Index::ClientRequest::NameSearchRequest::RunSearch")
     Rails.logger.error(json.to_s) if json.to_s.match(/error/)
+    Rails.logger.debug("json.to_s")
+    Rails.logger.debug(json.to_s)
     JSON.parse(json.to_s, object_class: OpenStruct)
   end
 
