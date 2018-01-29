@@ -13,6 +13,7 @@ submitForm = (event,$element) ->
 
 showFormHelp = (event,$element) ->
   toggleVisibility('.field-help')
+  toggleHtml('#form-help-link', 'Help', 'Hide Help')
   false
 
 toggleVisibility = (selector) ->
@@ -30,3 +31,10 @@ hideTargets = (selector) ->
 goToSearchResults = () ->
   if $("#top-of-search-results").length == 1
     location.href = "#top-of-search-results"
+
+toggleHtml = (selector, textA, textB) ->
+  if $(selector).html() == textA
+    $(selector).html(textB)
+  else
+    $(selector).html(textA)
+
