@@ -32,12 +32,9 @@
 <% if @results.present? %>
   <div>
     <a id="search-results-summary" title="Search results">
-      <%= pluralize(@results.count,'matching record') %>
+      <%= pluralize(@results.count,'matching record') %><%= "; #{@client_request.limit} shown per page" %>
     </a>
   <br>
-  <% if @results.count > @client_request.limit %>
-    Page <%= page %> of <%= pages %>
-  <% end %>
   </div>
   <hr>
 <% end %>

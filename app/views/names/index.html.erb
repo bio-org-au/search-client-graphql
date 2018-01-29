@@ -9,12 +9,15 @@
 <div id="search-result-summary">
   <% if @search.present? %>
     <%= render partial: 'name_search_result_summary' %>
+    <%= render partial: 'advanced_names/index/pagination' %>
+    <hr>
   <% end %>
 </div>
 
 <div id="search-results">
   <% if @results.present? %>
     <%= render partial: @client_request.content_partial, locals: { search_form: 'names' } %>
+    <hr>
     <%= render partial: 'names/index/pagination' %>
   <% end %>
 </div>

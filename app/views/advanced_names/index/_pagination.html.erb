@@ -1,13 +1,9 @@
 
 <% if @results.count > @client_request.limit.to_i %>
-  <hr>
   <%= first_ %>
   <%= previous %>
   <%= page %>
   <%= next_ %>
   <%= last_ %>
-  <hr>
-  count: <%= @results.count %>;
-  limit: <%= @client_request.limit %>
 <% end %>
 

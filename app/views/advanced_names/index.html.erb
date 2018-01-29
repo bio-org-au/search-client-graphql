@@ -11,6 +11,8 @@
 <div id="search-result-summary">
   <% if @search.present? %>
     <%= render partial: 'name_search_result_summary' %>
+    <%= render partial: 'advanced_names/index/pagination' %>
+    <hr>
   <% else %>
     <% if params[:search].present? %>
       <%= no_search_done_message %>
@@ -21,6 +23,7 @@
 <div id="search-results">
   <% if @results.present? %>
     <%= render partial: @client_request.content_partial, locals: { search_form: 'advanced_names' } %>
+    <hr>
     <%= render partial: 'advanced_names/index/pagination' %>
   <% end %>
 </div>
