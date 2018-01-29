@@ -1,3 +1,4 @@
+<a href="" id="form-help-link" title="Read about this search form." >Help</a>
 <div id="form-div">
 <%= form_tag(names_advanced_search_path, method: :get) %>
 <table class="for-search-form width80pc">
@@ -12,6 +13,12 @@
        title="Enter a search term to restrict the family. Wildcards are supported.">
     </td>
   </tr>
+  <tr id="family-field-help" class="field-help hidden">
+    <td></td>
+    <td>
+      Family field help
+    </td>
+  </tr>
   <tr>
     <td class="label">
     Genus:
@@ -23,6 +30,12 @@
        title="Enter a search term to restrict the genus. Wildcards are supported.">
     </td>
   </tr>
+  <tr id="genus-field-help" class="field-help hidden">
+    <td></td>
+    <td>
+      Genus field help
+    </td>
+  </tr>
   <tr>
     <td class="label">
     Epithet:
@@ -32,6 +45,12 @@
        class="form-field width40pc min-width10em max-width30em"
        value="<%= params['species'] %>"
        title="Enter a search term to restrict the non-genus component of taxon names. Wildcards are supported.">
+    </td>
+  </tr>
+  <tr id="epithet-field-help" class="field-help hidden">
+    <td></td>
+    <td>
+      Epithet field help
     </td>
   </tr>
 
@@ -48,6 +67,12 @@
               title= "<%= advanced_search_name_hover_text%>">
     </td>
   </tr>
+  <tr id="complete-name-field-help" class="field-help hidden">
+    <td></td>
+    <td>
+      Complete name field help
+    </td>
+  </tr>
 
   <tr> <td colspan="2"> <hr> </td> </tr>
 
@@ -62,6 +87,12 @@
        title="Enter a search term to restrict the taxon name authority. Covers basionym-author and ex-basionym-author.">
     </td>
   </tr>
+  <tr id="basionym-author-abbrev-field-help" class="field-help hidden">
+    <td></td>
+    <td>
+      Basionym author abbreviation field help
+    </td>
+  </tr>
 
   <tr>
     <td class="label">
@@ -72,6 +103,12 @@
        class="form-field width40pc min-width10em max-width30em"
        value="<%= params['taxon_name_author_abbrev'] %>"
        title="Enter a search term to restrict the taxon name authority. Covers author and ex-author.">
+    </td>
+  </tr>
+  <tr id="taxon-name_author-abbrev-field-help" class="field-help hidden">
+    <td></td>
+    <td>
+      Taxon name author abbreviation field help
     </td>
   </tr>
 
@@ -97,6 +134,12 @@
     <td>
       <%= check_box_tag(:include_ranks_below, '1', params['include_ranks_below'], 
                         title: include_ranks_below_hover_text) %>
+    </td>
+  </tr>
+  <tr id="rank-field-help" class="field-help hidden">
+    <td></td>
+    <td>
+      Rank field help
     </td>
   </tr>
 
@@ -130,6 +173,12 @@ Year:
     </td>
     <td>
       <%= check_box_tag(:protologue, '1', params['protologue'], title: protologue_hover_text) %>
+    </td>
+  </tr>
+  <tr id="publication-field-help" class="field-help hidden">
+    <td></td>
+    <td>
+      Publication field help
     </td>
   </tr>
   <tr> <td colspan="2"> <hr> </td> </tr>
@@ -173,6 +222,12 @@ Type Note:
       <%= check_box_tag(:type_note_key_lectotype, '1', type_note_key_lectotype_field_value, title: type_note_key_lectotype_hover_text) %>
     </td>
   </tr>
+  <tr id="type-note-field-help" class="field-help hidden">
+    <td></td>
+    <td>
+      Type note field help
+    </td>
+  </tr>
   <tr> <td colspan="2"> <hr> </td> </tr>
   <tr>
     <td class="label">
@@ -208,6 +263,12 @@ Type Note:
       <%= check_box_tag(:scientific_hybrid_formula_name, '1', scientific_hybrid_formula_name_field_value, title: scientific_hybrid_formula_name_hover_text) %>
     </td>
   </tr>
+  <tr id="names-types-to-search-field-help" class="field-help hidden">
+    <td></td>
+    <td>
+      Names types to search field help
+    </td>
+  </tr>
   <tr> <td colspan="2"> <hr> </td> </tr>
   <tr>
     <td class="label">
@@ -229,9 +290,14 @@ Type Note:
       <%= check_box_tag(:common_name, '1', params['common_name'], title: common_name_hover_text) %>
     </td>
   </tr>
+  <tr id="cultivar-common-field-help" class="field-help hidden">
+    <td></td>
+    <td>
+      Cultivar common field help
+    </td>
+  </tr>
   <%= render partial: "advanced_names/index/widgets" %>
 </table>
-<a id="bottom-of-search-form" title="Bottom of search form">
 <script> setUpPublicationTA(); </script>
 
 <input type="submit"
@@ -239,14 +305,10 @@ Type Note:
        name="search"
        class="left-aligned-form-button"
        title="Search the data and retrieve matching records">
-<!--
-<input type="submit"
-       value="Count"
-       name="count"
-       class="left-aligned-form-button"
-       title="Just count the matching records">
--->
 </form>
 </div>
+<% if @results.present? %>
+  <a id="top-of-search-results" title="Top of search results">
+<% end %>
 
 
