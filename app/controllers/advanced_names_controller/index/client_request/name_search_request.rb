@@ -27,7 +27,7 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
   end
 
   def content_partial
-    "name_#{ details? ? 'detail' : 'list' }"
+    "name_#{details? ? 'detail' : 'list'}"
   end
 
   def just_count?
@@ -137,7 +137,7 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
   end
 
   def type_note_keys
-    %Q(["#{type_note_key_lectotype?}","#{ type_note_key_type? }","#{ type_note_key_neotype? }"])
+    %(["#{type_note_key_lectotype?}","#{type_note_key_type?}","#{type_note_key_neotype?}"])
   end
 
   def type_note_key_type?
@@ -180,17 +180,17 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
   def limit
     return 0 if just_count?
     limit = 1
-    if list?
-      limit = @params[:limit_per_page_for_list].to_i
-    else
-      limit = @params[:limit_per_page_for_details].to_i
-    end
+    limit = if list?
+              @params[:limit_per_page_for_list].to_i
+            else
+              @params[:limit_per_page_for_details].to_i
+            end
     limit = 1 if limit < 1
     [limit, MAX_LIST_LIMIT].min
   end
 
   def offset
-    [@params[:offset].to_i,0].max
+    [@params[:offset].to_i, 0].max
   end
 
   def timeout

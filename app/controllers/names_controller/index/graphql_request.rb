@@ -12,7 +12,7 @@ class NamesController::Index::GraphqlRequest
                          body: body,
                          timeout: @client_request.timeout)
     # Rails.logger.debug(json.to_s) unless json.to_s.match(/error/)
-    Rails.logger.error(json.to_s) if json.to_s.match(/error/)
+    Rails.logger.error(json.to_s) if json.to_s =~ /error/
     JSON.parse(json.to_s, object_class: OpenStruct)
   end
 

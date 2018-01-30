@@ -20,7 +20,7 @@ class Application::Names::Results::Name::Usage::Synonym
   end
 
   def font_style
-    #@raw_synonym.label == 'common name' ? '' : 'italics'
+    # @raw_synonym.label == 'common name' ? '' : 'italics'
     ['common name', 'vernacular name'].include?(@raw_synonym.label) ? '' : 'italics'
   end
 

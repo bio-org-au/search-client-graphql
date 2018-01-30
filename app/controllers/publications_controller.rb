@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class PublicationsController < ApplicationController
   def xsuggestions
-    render json: [{value: 'a', id: 1}, {value: 'aza', id: 2}, {value: 'agea', id: 3}]
+    render json: [{ value: 'a', id: 1 }, { value: 'aza', id: 2 }, { value: 'agea', id: 3 }]
   end
 
   def suggestions
@@ -9,7 +11,7 @@ class PublicationsController < ApplicationController
       results = PublicationsController::Suggestions::GraphqlRequest.new(client_request)
                                                                    .result
     end
-    render json: results.collect{|r| r.citation}
+    render json: results.collect(&:citation)
   end
 
   private
@@ -18,4 +20,3 @@ class PublicationsController < ApplicationController
     params.permit(:search_term, :format)
   end
 end
-

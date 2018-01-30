@@ -23,7 +23,7 @@ class AdvancedNamesNoSearchIndexTest < ActionController::TestCase
     Setting.any_instance.stubs(:name_label).returns('APNI')
     Setting.any_instance.stubs(:taxonomy_label).returns('APC')
     Setting.any_instance.stubs(:tree_label).returns('APC')
-    Rank.any_instance.stubs(:options).returns(["regio", "reg.", "div.", "cl.", "subcl.", "superordo", "ordo", "subordo", "fam.", "subfam.", "trib.", "subtrib.", "gen.", "subg.", "sect.", "subsect.", "ser.", "subser.", "supersp.", "sp.", "subsp.", "var.", "nothovar.", "subvar.", "f.", "subf.", "[n/a]", "[infrafamily]", "[infragenus]", "[unranked]", "[infrasp.]"])
+    Rank.any_instance.stubs(:options).returns(['regio', 'reg.', 'div.', 'cl.', 'subcl.', 'superordo', 'ordo', 'subordo', 'fam.', 'subfam.', 'trib.', 'subtrib.', 'gen.', 'subg.', 'sect.', 'subsect.', 'ser.', 'subser.', 'supersp.', 'sp.', 'subsp.', 'var.', 'nothovar.', 'subvar.', 'f.', 'subf.', '[n/a]', '[infrafamily]', '[infragenus]', '[unranked]', '[infrasp.]'])
   end
 
   test 'no search name index' do
@@ -31,7 +31,7 @@ class AdvancedNamesNoSearchIndexTest < ActionController::TestCase
     assert_response :success
     assert_select 'form', true, 'should find a form'
     assert_select("form[action='/names/advanced']") do
-      #assert_select("input[name='q']", true, 'Form should have a query field.')
+      # assert_select("input[name='q']", true, 'Form should have a query field.')
       assert_select("input[name='genus']", true, 'Form should have a genus field.')
       assert_select("input[name='species']", true, 'Form should have a species field.')
       assert_select("input[name='taxon_name_author_abbrev']", true, 'Form should have a taxon_name_author_abbrev field.')

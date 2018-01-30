@@ -59,7 +59,7 @@ class Application::Names::Results
   def count
     @search.data.name_search.count
   rescue
-    "Error"
+    'Error'
   end
 
   def names

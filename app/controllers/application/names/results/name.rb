@@ -19,8 +19,8 @@ class Application::Names::Results::Name
 
   def usages
     if @raw_name.name_history.name_usages.nil?
-      Rails.logger.error("@raw_name.name_history.name_usages is nil")
-      return
+      Rails.logger.error('@raw_name.name_history.name_usages is nil')
+      nil
     else
       @raw_name.name_history.name_usages.collect do |usage|
         Application::Names::Results::Name::Usage.new(usage)

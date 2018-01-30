@@ -28,7 +28,7 @@ class AdvancedNamesController::Index::ClientRequest::PublicationRequest
   end
 
   def content_partial
-    "publication_#{ details? ? 'detail' : 'list' }"
+    "publication_#{details? ? 'detail' : 'list'}"
   end
 
   def search_term

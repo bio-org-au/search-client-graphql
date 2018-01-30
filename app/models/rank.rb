@@ -17,7 +17,7 @@ class Rank
   def server_rank_options
     ranks = {
       body: {
-        query: "{ranks {options} }"
+        query: '{ranks {options} }'
       }
     }
     json = HTTParty.post("#{DATA_SERVER}/v1", ranks)

@@ -7,8 +7,7 @@ class AdvancedNamesController::Index::ClientRequest::NoSearchRequest
     @search_request = search_request
   end
 
-  def search
-  end
+  def search; end
 
   def any_type_of_search?
     false

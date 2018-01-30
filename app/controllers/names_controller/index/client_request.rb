@@ -34,32 +34,32 @@ class NamesController::Index::ClientRequest
   end
 
   def scientific?
-    %w(scientific all scientific-or-cultivar).include?(@params[:name_type]).to_s
+    %w[scientific all scientific-or-cultivar].include?(@params[:name_type]).to_s
   end
 
   def cultivar_name
-    %w(cultivar all scientific-or-cultivar).include?(@params[:name_type]).to_s
+    %w[cultivar all scientific-or-cultivar].include?(@params[:name_type]).to_s
   end
 
   def common_name
-    %w(common all).include?(@params[:name_type]).to_s
+    %w[common all].include?(@params[:name_type]).to_s
   end
 
   # We don't want limit of zero unless it is a count request.
   def limit
     return 0 if just_count?
     limit = 1
-    if list?
-      limit = @params[:limit_per_page_for_list].to_i
-    else
-      limit = @params[:limit_per_page_for_details].to_i
-    end
+    limit = if list?
+              @params[:limit_per_page_for_list].to_i
+            else
+              @params[:limit_per_page_for_details].to_i
+            end
     limit = 1 if limit < 1
     [limit, MAX_LIST_LIMIT].min
   end
 
   def offset
-    [@params[:offset].to_i,0].max
+    [@params[:offset].to_i, 0].max
   end
 
   def just_count?
@@ -88,7 +88,6 @@ class NamesController::Index::ClientRequest
   end
 
   def content_partial
-    "name_#{ details? ? 'detail' : 'list' }"
+    "name_#{details? ? 'detail' : 'list'}"
   end
 end
-

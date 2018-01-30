@@ -10,9 +10,9 @@ class NamesController::Index::Utilities::CoreArgsFilter
   end
 
   def filter_raw_query_string
-    @raw_query_string = 
-    @raw_query_string.delete(' ')
-                    .delete("\n")
-                    .sub(/search_term_placeholder/, @client_request.search_term || '')
+    @raw_query_string =
+      @raw_query_string.delete(' ')
+                       .delete("\n")
+                       .sub(/search_term_placeholder/, @client_request.search_term || '')
   end
 end

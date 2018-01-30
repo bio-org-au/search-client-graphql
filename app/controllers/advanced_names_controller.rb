@@ -51,9 +51,9 @@ class AdvancedNamesController < ApplicationController
   end
 
   def render_index_html
-    if @client_request.name_search? 
+    if @client_request.name_search?
       @results = Application::Names::Results.new(@search)
-    elsif @client_request.publication_search? 
+    elsif @client_request.publication_search?
       @results = Application::Publications::Results.new(@search)
     end
     render :index

@@ -12,7 +12,7 @@ class PublicationsController::Suggestions::GraphqlRequest
                          body: body,
                          timeout: @client_request.timeout)
     a = []
-    JSON.parse(json.to_s, object_class: OpenStruct).data.publication_search.publications.each do | publication |
+    JSON.parse(json.to_s, object_class: OpenStruct).data.publication_search.publications.each do |_publication|
       a.push('citation')
     end
   end

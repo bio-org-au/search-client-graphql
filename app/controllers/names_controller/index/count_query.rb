@@ -21,4 +21,3 @@ class NamesController::Index::CountQuery
     HEREDOC
   end
 end
-
