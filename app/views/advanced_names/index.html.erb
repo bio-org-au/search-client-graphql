@@ -14,7 +14,6 @@
     <% if @results.present? %>
       <%= render partial: 'advanced_names/index/pagination' %>
     <% end %>
-    <hr>
   <% else %>
     <% if params[:search].present? %>
       <%= no_search_done_message %>

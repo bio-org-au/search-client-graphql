@@ -85,7 +85,8 @@ module ApplicationHelper
   end
 
   def advanced_search_name_hover_text
-    'Enter a name or the leading part of a name or part of a name to restrict the search. Wildcards are supported.'
+    'Enter a name, or part of a name to restrict the search.
+Wildcards are supported.'
   end
 
   def no_search_done_message
@@ -93,15 +94,15 @@ module ApplicationHelper
   end
 
   def protologue_hover_text
-    'When checked, searches will only return names from matching publications if they are also the protologue reference.'
+    'When checked, citations must match the protologue reference.'
   end
 
   def scientific_named_hybrid_name_hover_text
-    'When checked, scientific named hybrid names will be included in the search.'
+    'When checked, scientific named hybrid names will be searched.'
   end
 
   def scientific_hybrid_formula_name_hover_text
-    'When checked, scientific hybrid formula names will be included in the search.'
+    'When checked, scientific hybrid formula names will be searched.'
   end
 
   def scientific_autonym_hover_text
@@ -109,7 +110,8 @@ module ApplicationHelper
   end
 
   def scientific_name_hover_text
-    'When checked, scientific names that are not autonyms or hybrids will be included in the search.'
+    "When checked, scientific names that are not autonyms or hybrids will \
+be searched."
   end
 
   def type_note_key_type_hover_text
@@ -133,11 +135,11 @@ module ApplicationHelper
   end
 
   def include_ranks_below_hover_text
-    'When checked, the search will also include ranks below the one you selected.'
+    'When checked, the search will also include ranks below the selected rank.'
   end
 
   def show_family_hover_text
-    'When checked, the family name for each taxon will be displayed in the search results.'
+    "When checked, each taxon's family name will be displayed in the results."
   end
 
   def show_links_hover_text
@@ -145,7 +147,8 @@ module ApplicationHelper
   end
 
   def show_details_hover_text
-    'When checked, biblographic and synonymy details for each taxon will be displayed in the search results.'
+    "When checked, biblographic and synonymy details for each taxon will be \
+displayed in the search results.  This can slow down the results."
   end
 
   def clear_form_link_hover_text(type_of_search = '')

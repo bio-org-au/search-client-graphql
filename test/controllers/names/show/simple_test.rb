@@ -26,7 +26,7 @@ class NamesShowTest < ActionController::TestCase
     Setting.any_instance.stubs(:name_label).returns('APNI')
     Setting.any_instance.stubs(:taxonomy_label).returns('APC')
     Setting.any_instance.stubs(:tree_label).returns('APC')
-    Rank.any_instance.stubs(:options).returns(['regio', 'reg.', 'div.', 'cl.', 'subcl.', 'superordo', 'ordo', 'subordo', 'fam.', 'subfam.', 'trib.', 'subtrib.', 'gen.', 'subg.', 'sect.', 'subsect.', 'ser.', 'subser.', 'supersp.', 'sp.', 'subsp.', 'var.', 'nothovar.', 'subvar.', 'f.', 'subf.', '[n/a]', '[infrafamily]', '[infragenus]', '[unranked]', '[infrasp.]'])
+    stub_rank_options
     NamesController::Show::GraphqlRequest.any_instance
                                          .stubs(:result)
                                          .returns(raw_result)
@@ -79,15 +79,13 @@ class NamesShowTest < ActionController::TestCase
 
   def synonyms
     [
-      {
-        id: '804816',
+      { id: '804816',
         full_name: 'Metrosideros costata Gaertn.',
         full_name_html: synonym_full_name_html,
         instance_type: 'basionym',
         label: 'basionym',
         page: '62',
-        name_status_name: 'legitimate'
-      }
+        name_status_name: 'legitimate' }
     ]
   end
 

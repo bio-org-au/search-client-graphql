@@ -19,3 +19,14 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 end
+
+def stub_rank_options
+  Rank.any_instance
+      .stubs(:options)
+      .returns(['regio', 'reg.', 'div.', 'cl.', 'subcl.', 'superordo', 'ordo',
+                'subordo', 'fam.', 'subfam.', 'trib.', 'subtrib.', 'gen.',
+                'subg.', 'sect.', 'subsect.', 'ser.', 'subser.', 'supersp.',
+                'sp.', 'subsp.', 'var.', 'nothovar.', 'subvar.', 'f.', 'subf.',
+                '[n/a]', '[infrafamily]', '[infragenus]', '[unranked]',
+                '[infrasp.]'])
+end
