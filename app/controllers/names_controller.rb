@@ -19,17 +19,17 @@
 # - on page
 class NamesController < ApplicationController
   def index
-    @client_request = NamesController::Index::ClientRequest.new(search_params)
+    @client_request = Index::ClientRequest.new(search_params)
     if @client_request.any_type_of_search?
-      @search = NamesController::Index::GraphqlRequest.new(@client_request)
+      @search = Index::GraphqlRequest.new(@client_request)
                                                       .result
     end
     render_index
   end
 
   def show
-    @client_request = NamesController::Show::ClientRequest.new(show_params)
-    @raw_result = NamesController::Show::GraphqlRequest.new(@client_request)
+    @client_request = Show::ClientRequest.new(show_params)
+    @raw_result = Show::GraphqlRequest.new(@client_request)
                                                        .result
     render_show
   end

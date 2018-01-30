@@ -22,7 +22,7 @@ class NamesController::Index::ClientRequest
   end
 
   def scientific_named_hybrid_name
-    if @params[:scientific_named_hybrid_name] = '1'
+    if @params[:scientific_named_hybrid_name] == '1'
       'true'
     else
       'false'
@@ -48,7 +48,6 @@ class NamesController::Index::ClientRequest
   # We don't want limit of zero unless it is a count request.
   def limit
     return 0 if just_count?
-    limit = 1
     limit = if list?
               @params[:limit_per_page_for_list].to_i
             else
