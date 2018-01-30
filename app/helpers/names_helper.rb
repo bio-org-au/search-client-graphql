@@ -7,11 +7,11 @@ module NamesHelper
   end
 
   def page
-    (@client_request.offset/@client_request.limit) + 1
+    (@client_request.offset/[@client_request.limit,1].max) + 1
   end
 
   def pages
-    (@results.count.to_f/@client_request.limit).ceil
+    (@results.count.to_f/clean_limit).ceil
   end
 
   def previous
@@ -37,8 +37,12 @@ module NamesHelper
 
   def last_
     cparams = params.except!('action','controller')
-    cparams[:offset] = (@results.count/@client_request.limit) * @client_request.limit
+    cparams[:offset] = (@results.count/clean_limit) * @client_request.limit
     return if @client_request.offset == cparams[:offset]
     link_to('Last', name_search_path(cparams), title: 'First page')
+  end
+
+  def clean_limit
+    [@client_request.limit,1].max
   end
 end

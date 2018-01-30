@@ -2,7 +2,7 @@
 
 <%= render partial: 'advanced_names/index/search_form' %>
 <span class="no-print">
-  <%= link_to('clear form', names_advanced_search_path,class: 'underline', title: clear_form_link_hover_text('advanced')) %> |
+<%= link_to('clear form', names_advanced_search_path,class: 'underline', title: clear_form_link_hover_text('advanced')) %> |
 <%= link_to('simple', name_search_path, class: 'underline', title: 'Go to simple name search') %> |
 <%= link_to('taxonomy', taxonomy_search_path, class: 'underline', title: taxonomy_link_hover_text) %>
 </span>
@@ -11,7 +11,9 @@
 <div id="search-result-summary">
   <% if @search.present? %>
     <%= render partial: 'name_search_result_summary' %>
-    <%= render partial: 'advanced_names/index/pagination' %>
+    <% if @results.present? %>
+      <%= render partial: 'advanced_names/index/pagination' %>
+    <% end %>
     <hr>
   <% else %>
     <% if params[:search].present? %>
