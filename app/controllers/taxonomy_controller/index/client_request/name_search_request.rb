@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 # Class extracted from name controller.
-class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
+class TaxonomyController::Index::ClientRequest::NameSearchRequest
   DEFAULT_LIMIT = 50
   MAX_LIST_LIMIT = 500
   MAX_DETAILS_LIMIT = 100
   def initialize(params, search_request)
+    Rails.logger.debug(self.class.name)
     @params = params
     @search_request = search_request
   end
@@ -27,7 +28,7 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
   end
 
   def content_partial
-    "name_#{details? ? 'detail' : 'list'}"
+    "taxon_#{details? ? 'detail' : 'list'}"
   end
 
   def just_count?
@@ -137,9 +138,7 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
   end
 
   def type_note_keys
-    %(["#{type_note_key_lectotype?}",
-       "#{type_note_key_type?}",
-       "#{type_note_key_neotype?}"])
+    %(["#{type_note_key_lectotype?}","#{type_note_key_type?}","#{type_note_key_neotype?}"])
   end
 
   def type_note_key_type?
@@ -178,9 +177,10 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
     (@params[:common_name] == '1').to_s
   end
 
-  # We never want zero limit
+  # We never want to limit of zero
   def limit
     return 0 if just_count?
+    limit = 1
     limit = if list?
               @params[:limit_per_page_for_list].to_i
             else
@@ -199,14 +199,22 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
   end
 
   def accepted_name?
-    @search_request.accepted_name?
+    @params[:accepted_names].present? && @params[:accepted_names] == '1'
   end
 
   def excluded_name?
-    @search_request.excluded_name?
+    @params[:excluded_names].present? && @params[:excluded_names] == '1'
   end
 
-  def synonym?
-    @search_request.synonym?
+  def cross_reference?
+    @params[:cross_references].present? && @params[:cross_references] == '1'
+  end
+
+  def show_distributions?
+    @params[:show_distributions].present? && @params[:show_distributions] == '1'
+  end
+
+  def show_synonyms?
+    @params[:show_synonyms].present? && @params[:show_synonyms] == '1'
   end
 end

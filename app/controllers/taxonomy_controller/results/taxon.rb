@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Container for names in results
-class TaxonomyController::Results::Name
+class TaxonomyController::Results::Taxon
   def initialize(raw_name)
     @raw_name = raw_name
   end
@@ -29,5 +29,21 @@ class TaxonomyController::Results::Name
 
   def reference_citation
     @raw_name.reference_citation
+  end
+
+  def id
+    @raw_name.id
+  end
+
+  def record_type
+    @raw_name.record_type
+  end
+
+  def cross_reference?
+    record_type == 'cross-reference'
+  end
+
+  def accepted_full_name
+    @raw_name.accepted_full_name
   end
 end

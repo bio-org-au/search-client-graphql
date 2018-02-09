@@ -1,37 +1,35 @@
-<h1><%= @taxonomy_label %> Search</h1>
+<h1><%= @page_label %> Search</h1>
 
-<%= render partial: 'search_form' %>
+<%= render partial: 'taxonomy/index/search_form' %>
+<span class="no-print">
 <%= link_to('clear form', taxonomy_search_path,title: 'Clear any search and start a new taxonomy search') %> |
 <%#= link_to('advanced', names_advanced_search_path(link_params: params),title: 'Go to advanced search') %> 
 <%= link_to('name', name_search_path(link_params: params),title: 'Go to name search') %>
+</span>
 <hr>
 
-<div id="search-results">
-<% if @search_term.present? %>
-  <% unless @taxa.present? %>
-  No results for "<%= @search_term %>"
-  <% elapsed = Time.now - @start_time %>(<%= elapsed.round(2) %>s)
-  <% end %>
-<% end %>
 
-<% if @taxa.present? %>
-  <h2>
-  <%= pluralize(@taxa.size,'taxon') %>
-  found for "<%= @search_term %>"
-  <% elapsed = Time.now - @start_time %>(<%= elapsed.round(2) %>s)
-  </h2>
-
-  <hr>
-  <% if @show_details %>
-    <%= render partial: 'detail' %>
+<div id="search-result-summary">
+  <% if @search.present? %>
+    <%= render partial: 'taxonomy_search_result_summary' %>
+    <%= render partial: 'taxonomy/index/pagination' if @results.present? %>
   <% else %>
-    <%= render partial: 'list' %>
+    <%= no_search_done_message if params[:search].present? %>
   <% end %>
-
-  <hr>
-  <% elapsed = Time.now - @start_time %>
-  <%= elapsed.round(2) %> seconds (~<%= (@search.data.taxonomy_search.taxa.size/elapsed).round %> records/second) (index.html)
-  <br/>
-  <%= Time.now %>
-<% end %>
 </div>
+
+<div id="search-results">
+  <% if @results.present? %>
+    <%= render partial: @client_request.content_partial, locals: { search_form: 'advanced_names' } %>
+    <hr>
+    <%= render partial: 'taxonomy/index/pagination' %>
+  <% end %>
+</div>
+
+
+<div id="timing-summary">
+  <% if @results.present? %>
+    <%= render partial: 'result_timing_summary' %>
+  <% end %>
+</div>
+

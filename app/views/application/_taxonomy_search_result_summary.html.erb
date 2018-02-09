@@ -1,0 +1,45 @@
+<% if @client_request.any_type_of_search? %>
+  <% if @client_request.just_count? %>
+    <% if @results.error? %>
+      Error.
+      <% if development? %>
+         <%= @results.error %>
+         <br>
+         <br>
+      <% end %>
+    <% else %>
+      <%= pluralize(@results.count, 'matching record') %>
+    <% end %>
+  <% else %>
+    <% if @results.error? %>
+         Sorry!  Something went wrong.  Error details are logged and monitored.
+      <% if development? %>
+         <br>
+         <br>
+         <%= @results.error %>
+         <br>
+         <br>
+      <% end %>
+    <% else %>
+      <% unless @results.present? %>
+        No records. 
+        <% elapsed = Time.now - @start_time %>(<%= elapsed.round(2) %>s)
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% if @results.present? %>
+  <div>
+    <a id="search-results-summary" title="Search results">
+      <%= pluralize(@results.count,'matching record') %>,
+      <% if @results.count <= @client_request.limit %>
+        all shown
+      <% else %>
+        <%= "#{@client_request.limit} shown per page" %>
+      <% end %>
+    </a>
+  <br>
+  </div>
+  <hr>
+<% end %>

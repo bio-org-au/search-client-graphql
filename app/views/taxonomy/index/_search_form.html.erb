@@ -1,17 +1,20 @@
 <div id="form-div">
-<%= form_tag(name_search_path, method: :get) %>
+<%= form_tag(taxonomy_search_path, method: :get) %>
 <input name='q'
        type="search"
        class="form-field width40pc min-width10em max-width30em"
-       value="<%= params['q'] %>" required="" autofocus="true"
-       title="Enter a search term - a name or part of a name.">
-<%= render partial: "names/index/widgets" %>
+       value="<%= params['q'] %>"
+       required=""
+       title="Enter a search term - a name or part of a name."
+       autofocus="true">
+
+<%= render partial: "taxonomy/index/widgets" %>
 
 <input type="submit"
        value="Search"
-       name="search"
        class="left-aligned-form-button"
        title="Search the data and retrieve matching records">
 
 </form>
 </div>
+

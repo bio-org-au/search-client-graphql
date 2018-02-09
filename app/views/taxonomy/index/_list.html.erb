@@ -1,6 +1,7 @@
   <ul class="plain">
   <% @taxa.each do |taxon| %>
     <li>
+      <%= taxon.record_type %>:
       <%= taxon.full_name %>
       <%= taxon.name_status_name %>
        sensu 

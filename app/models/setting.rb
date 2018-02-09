@@ -13,12 +13,12 @@ class Setting
   end
 
   def tree_label
-    taxonomy_label
+    ask_for_setting('tree label')
   end
 
   def taxonomy_label
     if Rails.configuration.taxonomy_label.blank?
-      Rails.configuration.taxonomy_label = ask_for_setting('taxonomy label')
+      Rails.configuration.taxonomy_label = ask_for_setting('tree label')
     else
       Rails.configuration.taxonomy_label
     end
@@ -32,6 +32,7 @@ class Setting
         query: %({setting(search_term: "#{setting}") })
       }
     }
+    Rails.logger.debug("ask_for_setting(#{setting})")
     Rails.logger.debug(options.inspect)
     json = HTTParty.post("#{DATA_SERVER}/v1", options)
     @search = JSON.parse(json.to_s, object_class: OpenStruct)

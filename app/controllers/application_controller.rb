@@ -23,7 +23,11 @@ class ApplicationController < ActionController::Base
   def settings
     @setting = Setting.new
     @name_label = @setting.name_label
-    @taxonomy_label = @setting.taxonomy_label
+  end
+
+  def tree_label
+    @setting = Setting.new
+    @setting.tree_label
   end
 
   def ranks

@@ -14,6 +14,18 @@ class TaxonomyController::Results
     @search.data.nil?
   end
 
+  def error?
+    @search.errors.present? || @search.data.error.present?
+  end
+
+  def error
+    if @search.errors.present?
+      @search.errors.first.message
+    else
+      @search.data.error
+    end
+  end
+
   def no_search?
     @search.data.taxonomy_search.nil?
   end
@@ -44,9 +56,15 @@ class TaxonomyController::Results
     end
   end
 
-  def names
+  def count
+    @search.data.taxonomy_search.count
+  rescue
+    'Error'
+  end
+
+  def taxa
     @search.data.taxonomy_search.taxa.collect do |taxon|
-      TaxonomyController::Results::Name.new(taxon)
+      TaxonomyController::Results::Taxon.new(taxon)
     end
   end
 end

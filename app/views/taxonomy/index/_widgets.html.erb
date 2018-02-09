@@ -1,30 +1,46 @@
+<hr>
+<b>Include:</b>
+<br>
+    <%= label_tag(:accepted_names, "Accepted Names", title: accepted_name_cb_hover_text) %>
+    <%= check_box_tag(:accepted_names, '1', @client_request.accepted_name?,
+                      title: accepted_name_cb_hover_text) %>
+<br>
+    <%= label_tag(:excluded_names, "Excluded Names", title: excluded_name_cb_hover_text) %>
+    <%= check_box_tag(:excluded_names, '1', @client_request.excluded_name?,
+                      title: excluded_name_cb_hover_text) %>
+<br>
+    <%= label_tag(:cross_references, "Cross References", title: cross_references_cb_hover_text) %>
+    <%= check_box_tag(:cross_references, '1', @client_request.cross_reference?,
+                      title: cross_references_cb_hover_text) %>
+<br>
 <hr class="heavy">
 <b>Result options</b>
-<br/>
+<br>
 <%= label_tag(:list_or_count_list, "List", title: 'List matching names') %>
     <%= radio_button_tag(:list_or_count, "list", !@client_request.just_count?, title: 'List matching names') %>
-<br/>
+<br>
 <%= label_tag(:list_or_count_count, "Count", title: 'Count matching names') %>
     <%= radio_button_tag(:list_or_count, "count", @client_request.just_count?, title: 'Count matching names') %>
 
-    <hr>
-    <b>Result list options</b>
-<br/>
+<hr>
+<b>Result list options</b>
+<br>
     Also show:
-<br/>
-    <%= label_tag(:show_family, "Family", title: show_family_hover_text) %>
-    <%= check_box_tag(:show_family, '1', @client_request.family?,
-                      title: show_family_hover_text) %>
-<br/>
+<br>
     <%= label_tag(:show_links, "Links", title: show_links_hover_text) %>
     <%= check_box_tag(:show_links, '1', @client_request.links?, title: show_links_hover_text) %>
-<br/>
-    <%= label_tag(:show_details, "Details", title: show_details_hover_text) %>
-    <%= check_box_tag(:show_details, '1', @client_request.details?,
-                      title: show_details_hover_text) %>
+<br>
+    <%= label_tag(:show_synonyms, "Synonyms", title: show_synonyms_hover_text) %>
+    <%= check_box_tag(:show_synonyms, '1', @client_request.synonyms?,
+                      title: show_synonyms_hover_text) %>
+<br>
+    <%= label_tag(:show_distributions, "Distributions", title: show_distributions_hover_text) %>
+    <%= check_box_tag(:show_distributions, '1', @client_request.distributions?,
+                      title: show_distributions_hover_text) %>
 <hr>
+
 <b>Names per page:</b>
-<br/>
+<br>
     Names only:
     <input type="number"
            name="limit_per_page_for_list"
@@ -34,7 +50,7 @@
            step="1"
            value="<%= params[:limit_per_page_for_list] || 50 %>"
            class="form-field"> 
-<br/>
+<br>
     Names with details:
     <input type="number"
            name="limit_per_page_for_details"
@@ -45,4 +61,4 @@
            step="1"
            value="<%= params[:limit_per_page_for_details] || 10 %>"
            class="form-field"> 
-<hr>
+<br>

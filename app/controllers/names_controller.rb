@@ -21,8 +21,7 @@ class NamesController < ApplicationController
   def index
     @client_request = Index::ClientRequest.new(search_params)
     if @client_request.any_type_of_search?
-      @search = Index::GraphqlRequest.new(@client_request)
-                                                      .result
+      @search = Index::GraphqlRequest.new(@client_request).result
     end
     render_index
   end

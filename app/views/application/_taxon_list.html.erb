@@ -1,0 +1,26 @@
+
+<% search_form ||= params[:search_form] %>
+  <ul class="plain">
+  <% @results.taxa.each do |taxon| %>
+    <li>
+    <% taxon_name_string = taxon.full_name %>
+    <% unless taxon.name_status_name.blank? %>
+      <% taxon_name_string += %(, <i class="name-status" title="name status">#{taxon.name_status_name}</i>) %>
+    <% end %>
+
+
+
+
+
+    <% if taxon.cross_reference? %>
+      <i><%= taxon_name_string.html_safe %></i> = <b><%= taxon.accepted_full_name %></b>
+    <% else %>
+      <% if @client_request.links? %>
+        <%= link_to taxon_name_string.html_safe, show_name_path(id: taxon.id, search_form: search_form) + "#name-#{taxon.id}", title: "Show name details" %>
+      <% else %>
+        <%= taxon_name_string.html_safe %>
+      <% end %>
+       sensu <%= taxon.reference_citation %>
+    <% end %>
+  <% end %>
+  </ul>

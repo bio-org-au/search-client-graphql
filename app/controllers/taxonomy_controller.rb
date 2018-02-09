@@ -21,6 +21,14 @@ class TaxonomyController < ApplicationController
   DATA_SERVER = Rails.configuration.data_server
 
   def index
+    @page_label = tree_label
+    @client_request = Index::ClientRequest.new(search_params)
+    @search = @client_request.search
+    render_index
+  end
+
+  def old_index
+    @client_request = Index::ClientRequest.new(search_params)
     @search = nil
     @show_details = false
     if search_params['q'].present?
@@ -31,6 +39,17 @@ class TaxonomyController < ApplicationController
   end
 
   private
+
+  def render_index
+    respond_to do |format|
+      format.html { render_index_html }
+    end
+  end
+
+  def render_index_html
+    @results = TaxonomyController::Results.new(@search)
+    render :index
+  end
 
   def no_search
     @results = nil
@@ -72,9 +91,6 @@ class TaxonomyController < ApplicationController
       format.html { present_html }
       format.json { render json: @search }
     end
-    # rescue => e
-    # logger.error("Search error #{e} for params: #{params.inspect}")
-    # render :error
   end
 
   def present_html
@@ -162,6 +178,10 @@ class TaxonomyController < ApplicationController
 
   def search_params
     params.permit(:utf8, :q, :format, :list_or_detail, :fuzzy_or_exact,
-                  :taxon_type, :limit)
+                  :taxon_type, :limit, :offset, :list_or_count, :show_links,
+                  :limit_per_page_for_list, :limit_per_page_for_details,
+                  :accepted_names, :excluded_names, :cross_references,
+                  :show_synonyms, :show_distributions, :accepted_names,
+                  :excluded_names, :cross_references)
   end
 end
