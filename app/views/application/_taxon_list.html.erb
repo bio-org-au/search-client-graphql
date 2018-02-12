@@ -9,9 +9,6 @@
     <% end %>
 
 
-
-
-
     <% if taxon.cross_reference? %>
       <i><%= taxon_name_string.html_safe %></i> = <b><%= taxon.accepted_full_name %></b>
     <% else %>
@@ -19,6 +16,9 @@
         <%= link_to taxon_name_string.html_safe, show_name_path(id: taxon.id, search_form: search_form) + "#name-#{taxon.id}", title: "Show name details" %>
       <% else %>
         <%= taxon_name_string.html_safe %>
+      <% end %>
+      <% if taxon.excluded? %>
+        <span class='red' title='Excluded by APC'><i class="fa fa-ban"></i>APC</span>
       <% end %>
        sensu <%= taxon.reference_citation %>
     <% end %>

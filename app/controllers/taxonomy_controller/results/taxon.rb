@@ -46,4 +46,8 @@ class TaxonomyController::Results::Taxon
   def accepted_full_name
     @raw_name.accepted_full_name
   end
+
+  def excluded?
+    record_type == 'excluded-name'
+  end
 end
