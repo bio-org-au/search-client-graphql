@@ -34,9 +34,13 @@
     <%= check_box_tag(:show_synonyms, '1', @client_request.synonyms?,
                       title: show_synonyms_hover_text) %>
 <br>
-    <%= label_tag(:show_distributions, "Distributions", title: show_distributions_hover_text) %>
-    <%= check_box_tag(:show_distributions, '1', @client_request.distributions?,
-                      title: show_distributions_hover_text) %>
+    <%= label_tag(:show_comments, "Comments", title: show_comments_hover_text) %>
+    <%= check_box_tag(:show_comments, '1', @client_request.comments?,
+                      title: show_comments_hover_text) %>
+<br>
+    <%= label_tag(:show_distribution, "Distribution", title: show_distribution_hover_text) %>
+    <%= check_box_tag(:show_distribution, '1', @client_request.distribution?,
+                      title: show_distribution_hover_text) %>
 <hr>
 
 <b>Names per page:</b>

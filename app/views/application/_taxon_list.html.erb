@@ -2,6 +2,8 @@
 <% search_form ||= params[:search_form] %>
   <ul class="plain">
   <% @results.taxa.each do |taxon| %>
+
+
     <li>
     <% taxon_name_string = taxon.full_name %>
     <% unless taxon.name_status_name.blank? %>
@@ -10,17 +12,40 @@
 
 
     <% if taxon.cross_reference? %>
-      <i><%= taxon_name_string.html_safe %></i> = <b><%= taxon.accepted_full_name %></b>
+      <i><%= taxon_name_string.html_safe %></i> = <b><%= taxon.cross_referenced_full_name %></b>
     <% else %>
+
       <% if @client_request.links? %>
         <%= link_to taxon_name_string.html_safe, show_name_path(id: taxon.id, search_form: search_form) + "#name-#{taxon.id}", title: "Show name details" %>
       <% else %>
         <%= taxon_name_string.html_safe %>
       <% end %>
+
       <% if taxon.excluded? %>
         <span class='red' title='Excluded by APC'><i class="fa fa-ban"></i>APC</span>
       <% end %>
+
        sensu <%= taxon.reference_citation %>
+
     <% end %>
+
+    <ul class="plain indent2">
+
+      <% if @client_request.comments? %>
+        <% if taxon.accepted_taxon_comment? %>
+            <li><%= taxon.accepted_taxon_comment.html_safe %>
+        <% end %>
+      <% end %>
+
+      <% if @client_request.distribution? %>
+        <% if taxon.accepted_taxon_distribution? %>
+            <li><%= taxon.accepted_taxon_distribution %>
+        <% end %>
+      <% end %>
+
+    </ul>
+
+
+
   <% end %>
   </ul>

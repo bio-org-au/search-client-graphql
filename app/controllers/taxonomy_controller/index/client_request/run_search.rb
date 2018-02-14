@@ -13,8 +13,6 @@ class TaxonomyController::Index::ClientRequest::RunSearch
                          body: body, timeout: @client_request.timeout)
     Rails.logger.debug('TaxonomyController::Index::ClientRequest::Search')
     Rails.logger.error(json.to_s) if json.to_s =~ /error/
-    Rails.logger.debug('json.to_s')
-    Rails.logger.debug(json.to_s)
     JSON.parse(json.to_s, object_class: OpenStruct)
   end
 

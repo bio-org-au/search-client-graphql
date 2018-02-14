@@ -43,11 +43,27 @@ class TaxonomyController::Results::Taxon
     record_type == 'cross-reference'
   end
 
-  def accepted_full_name
-    @raw_name.accepted_full_name
+  def cross_referenced_full_name
+    @raw_name.cross_referenced_full_name
   end
 
   def excluded?
     record_type == 'excluded-name'
+  end
+
+  def accepted_taxon_comment?
+    !accepted_taxon_comment.blank?
+  end
+
+  def accepted_taxon_comment
+    @raw_name.accepted_taxon_comment
+  end
+
+  def accepted_taxon_distribution?
+    !accepted_taxon_distribution.blank?
+  end
+
+  def accepted_taxon_distribution
+    @raw_name.accepted_taxon_distribution
   end
 end

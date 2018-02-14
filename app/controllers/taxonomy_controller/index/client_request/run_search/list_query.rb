@@ -13,6 +13,13 @@ class TaxonomyController::Index::ClientRequest::RunSearch::ListQuery
   end
 
   def raw_query_string
+    s = base_raw_query_string
+    s = s.sub(/accepted_taxon_comment,/,'') unless @client_request.comments?
+    s = s.sub(/accepted_taxon_distribution,/,'') unless @client_request.distribution?
+    s
+  end
+
+  def base_raw_query_string
     <<~HEREDOC
       {
         taxonomy_search(#{TaxonomyController::Index::ClientRequest::Utilities::CoreArgs.new.core_args},
@@ -23,11 +30,13 @@ class TaxonomyController::Index::ClientRequest::RunSearch::ListQuery
             taxa
             {
               id,
+              accepted_taxon_comment,
+              accepted_taxon_distribution,
               record_type,
               simple_name,
               full_name,
               name_status_name,
-              accepted_full_name,
+              cross_referenced_full_name,
               reference_citation
             }
           }

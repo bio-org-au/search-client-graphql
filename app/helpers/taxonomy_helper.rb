@@ -58,8 +58,12 @@ module TaxonomyHelper
     "When checked, cross references will be included in the results."
   end
 
-  def show_distributions_hover_text
-    "When checked, distributions will be shown for taxa in the results."
+  def show_distribution_hover_text
+    "When checked, distribution will be shown for taxa in the results."
+  end
+
+  def show_comments_hover_text
+    "When checked, comments will be shown for taxa in the results."
   end
 
   def show_synonyms_hover_text

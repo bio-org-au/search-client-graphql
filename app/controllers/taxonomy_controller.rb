@@ -99,41 +99,6 @@ class TaxonomyController < ApplicationController
     render :index
   end
 
-  def list_query_for_post
-    list_query_raw.delete(' ')
-                  .delete("\n")
-                  .sub(/search_term_placeholder/, @search_term)
-                  .sub(/type_of_name_placeholder/, @type_of_name)
-                  .sub(/fuzzy_or_exact_placeholder/,
-                       @fuzzy_or_exact)
-                  .sub(/"limit_placeholder"/, @limit)
-  end
-
-  def list_query
-    list_query_raw.delete(' ')
-                  .delete("\n")
-                  .sub(/search_term_placeholder/, CGI.escape(@search_term))
-                  .sub(/"limit_placeholder"/, CGI.escape(@limit))
-  end
-
-  def list_query_raw
-    <<~HEREDOC
-      {
-        taxonomy_search(search_term: "search_term_placeholder",
-                        limit: "limit_placeholder")
-          {
-            taxa
-            {
-              id,
-              full_name,
-              name_status_name,
-              reference_citation
-            }
-          }
-      }
-    HEREDOC
-  end
-
   def detail_query_for_post
     detail_query_raw.delete(' ')
                     .delete("\n")
@@ -181,7 +146,7 @@ class TaxonomyController < ApplicationController
                   :taxon_type, :limit, :offset, :list_or_count, :show_links,
                   :limit_per_page_for_list, :limit_per_page_for_details,
                   :accepted_names, :excluded_names, :cross_references,
-                  :show_synonyms, :show_distributions, :accepted_names,
-                  :excluded_names, :cross_references)
+                  :show_synonyms, :show_distribution, :show_comments,
+                  :accepted_names, :excluded_names, :cross_references)
   end
 end

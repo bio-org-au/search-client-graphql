@@ -75,6 +75,14 @@ class TaxonomyController::Index::ClientRequest
   end
   alias show_details details?
 
+  def distribution?
+    @params[:show_distribution].present? && @params[:show_distribution] == '1'
+  end
+
+  def comments?
+    @params[:show_comments].present? && @params[:show_comments] == '1'
+  end
+
   def list?
     !details?
   end
@@ -109,9 +117,5 @@ class TaxonomyController::Index::ClientRequest
 
   def synonyms?
     @params[:show_synonyms].present? && @params[:show_synonyms] == '1'
-  end
-
-  def distributions?
-    @params[:show_distributions].present? && @params[:show_distributions] == '1'
   end
 end
