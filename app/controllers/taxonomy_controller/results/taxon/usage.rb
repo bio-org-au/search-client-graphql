@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Container for name usages in results
-class TaxonomyController::Results::Name::Usage
+class TaxonomyController::Results::Taxon::Usage
   attr_reader :raw_usage
 
   def initialize(raw_usage)
