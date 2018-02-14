@@ -23,7 +23,9 @@ class TaxonomyController < ApplicationController
   def index
     @page_label = tree_label
     @client_request = Index::ClientRequest.new(search_params)
-    @search = @client_request.search
+    if @client_request.any_type_of_search?
+      @search = @client_request.search
+    end
     render_index
   end
 
