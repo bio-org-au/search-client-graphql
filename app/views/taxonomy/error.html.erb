@@ -7,10 +7,17 @@
 </span>
 <hr>
 
-<hr>
-Error
-<pre>
-<%= simple_format @search.to_yaml %>
-</pre>
+<h2>A processing error occurred.</h2>
+<br/>
+<% if development? %>
+  <span>Error: <%= @error.to_s %></span>
+  <br/>
+  <br/>
+<% end %>
+<br/>
+<br/>
+We have recorded some information about how the problem happened and will fix it as soon as possible.
+<br/>
+<br/>
 
 

@@ -1,2 +1,4 @@
 <% elapsed = Time.now - @start_time %>
+<span class="hidden">
 <%= elapsed.round(2) %> seconds (~<%= (@results.size/elapsed).round %> records/second) (index.html)
+</span>

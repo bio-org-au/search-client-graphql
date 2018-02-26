@@ -22,6 +22,9 @@ class TaxonomyController < ApplicationController
 
   def index
     @page_label = tree_label
+    unless at_least_one_search_option?
+      params[:accepted_names] = params[:excluded_names] =  params[:cross_references] = '1'
+    end
     @client_request = Index::ClientRequest.new(search_params)
     if @client_request.any_type_of_search?
       @search = @client_request.search
@@ -29,18 +32,11 @@ class TaxonomyController < ApplicationController
     render_index
   end
 
-  def old_index
-    @client_request = Index::ClientRequest.new(search_params)
-    @search = nil
-    @show_details = false
-    if search_params['q'].present?
-      search_as_post
-    else
-      no_search
-    end
-  end
-
   private
+
+  def at_least_one_search_option?
+    params[:accepted_names] || params[:excluded_names] || params[:cross_references]
+  end
 
   def render_index
     respond_to do |format|
@@ -148,7 +144,6 @@ class TaxonomyController < ApplicationController
                   :taxon_type, :limit, :offset, :list_or_count, :show_links,
                   :limit_per_page_for_list, :limit_per_page_for_details,
                   :accepted_names, :excluded_names, :cross_references,
-                  :show_synonyms, :show_distribution, :show_comments,
-                  :accepted_names, :excluded_names, :cross_references)
+                  :show_synonyms, :show_distribution, :show_comments)
   end
 end

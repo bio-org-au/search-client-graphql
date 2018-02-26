@@ -34,7 +34,9 @@
     <a id="search-results-summary" title="Search results">
       <%= pluralize(@results.count,'matching record') %>,
       <% if @results.count <= @client_request.limit %>
-        all shown
+        <% if @results.count > 1 %>
+          all shown
+        <% end %>
       <% else %>
         <%= "#{@client_request.limit} shown per page" %>
       <% end %>

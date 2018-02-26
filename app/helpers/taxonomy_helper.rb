@@ -47,26 +47,34 @@ module TaxonomyHelper
   end
 
   def accepted_name_cb_hover_text
-    "When checked, accepted names will be included in the results."
+    "When checked, accepted names will be included in the results of the next search."
   end
 
   def excluded_name_cb_hover_text
-    "When checked, excluded names will be included in the results."
+    "When checked, excluded names will be included in the results of the next search."
   end
 
   def cross_references_cb_hover_text
-    "When checked, cross references will be included in the results."
+    "When checked, cross references will be included in the results of the next search."
   end
 
   def show_distribution_hover_text
-    "When checked, distribution will be shown for taxa in the results."
+    "When checked, distribution will be shown for taxa in the results of the next search."
   end
 
   def show_comments_hover_text
-    "When checked, comments will be shown for taxa in the results."
+    "When checked, comments will be shown for taxa in the results of the next search."
   end
 
   def show_synonyms_hover_text
-    "When checked, synonyms will be shown for taxa in the results."
+    "When checked, synonyms will be shown for taxa in the results of the next search."
+  end
+
+  def simple_name_and_status(simple_name, name_status)
+    if name_status == 'legitimate'
+      simple_name
+    else
+      %(#{simple_name} <span class="name-status">#{name_status}</span>)
+    end
   end
 end

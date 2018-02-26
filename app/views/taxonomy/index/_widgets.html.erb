@@ -1,16 +1,16 @@
 <hr>
 <b>Include:</b>
 <br>
-    <%= label_tag(:accepted_names, "Accepted Names", title: accepted_name_cb_hover_text) %>
-    <%= check_box_tag(:accepted_names, '1', @client_request.accepted_name?,
-                      title: accepted_name_cb_hover_text) %>
+  <%= label_tag(:accepted_names, "Accepted Names", title: accepted_name_cb_hover_text) %>
+  <%= check_box_tag(:accepted_names, '1', @client_request.accepted_name? || params.size == 2,
+                    title: accepted_name_cb_hover_text) %>
 <br>
     <%= label_tag(:excluded_names, "Excluded Names", title: excluded_name_cb_hover_text) %>
-    <%= check_box_tag(:excluded_names, '1', @client_request.excluded_name?,
+    <%= check_box_tag(:excluded_names, '1', @client_request.excluded_name? || params.size == 2,
                       title: excluded_name_cb_hover_text) %>
 <br>
     <%= label_tag(:cross_references, "Cross References", title: cross_references_cb_hover_text) %>
-    <%= check_box_tag(:cross_references, '1', @client_request.cross_reference?,
+    <%= check_box_tag(:cross_references, '1', @client_request.cross_reference? || params.size == 2,
                       title: cross_references_cb_hover_text) %>
 <br>
 <hr class="heavy">

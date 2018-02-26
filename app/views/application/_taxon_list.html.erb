@@ -6,13 +6,30 @@
 
     <li>
     <% taxon_name_string = taxon.full_name %>
+    <% taxon_name_author_string =  taxon.full_name.slice(taxon.simple_name.length,1000) %>
     <% unless taxon.name_status_name.blank? %>
       <% taxon_name_string += %(, <i class="name-status" title="name status">#{taxon.name_status_name}</i>) %>
     <% end %>
 
-
     <% if taxon.cross_reference? %>
-      <i><%= taxon_name_string.html_safe %></i> = <b><%= taxon.cross_referenced_full_name %></b>
+      <% if taxon.misapplication? %>
+        <% if taxon.cross_reference_misapplication.pro_parte? %>
+          <% pp_string = ', p.p.' %>
+        <% else %>
+          <% pp_string = '' %>
+        <% end %>
+        <%= taxon.full_name %> <i class="syntax-highlight cross-reference-sensu">sensu</i>
+        <%= taxon.cross_reference_misapplication.misapplying_author_string_and_year %>
+        <%= pp_string %>
+      <% else %>
+        <% if taxon.pro_parte? %>
+          <% pp_string = ' p.p.' %>
+        <% else %>
+          <% pp_string = '' %>
+        <% end %>
+        <i><%= taxon_name_string.html_safe -%><%= pp_string %></i>
+      <% end %>
+      = <b><%= taxon.cross_referenced_full_name %></b>
     <% else %>
 
       <% if @client_request.links? %>
@@ -29,23 +46,80 @@
 
     <% end %>
 
+    <% if @client_request.synonyms? %>
+      <ul class="plain indent2">
+        <% prev_misapp = '' %>
+        <% syn_displayed = false %>
+        <% taxon.synonyms.each do |syn| %>
+          <% syn_displayed = true %>
+          <% if syn.misapplied? %>
+            <% if prev_misapp.blank? %>
+              <br>
+              <% prev_misapp = simple_name_and_status(syn.simple_name, syn.name_status) %>
+              [<%= simple_name_and_status(syn.simple_name, syn.name_status).html_safe %>
+            &nbsp;<i class="syntax-highlight synonym-auct-non">auct. non</i> <%= syn.misapplication.name_author_string %>:
+            <% else %>
+              <% if prev_misapp == simple_name_and_status(syn.simple_name, syn.name_status) %>
+                <%# subsequent misapp %>
+;
+              <% else %>
+]
+                <br>
+                [<%= simple_name_and_status(syn.simple_name, syn.name_status).html_safe %>
+                <% prev_misapp = simple_name_and_status(syn.simple_name, syn.name_status) %>
+              <% end %>
+            <% end %>
+            <%= syn.misapplication.cites_reference_citation_html.html_safe -%>: <span class="synonym-page"><%= syn.misapplication.page -%></span>
+          <% elsif syn.pro_parte? %>
+            <% unless prev_misapp.blank? %>
+              ']'
+              <% prev_misapp = '' %>
+            <% end %>
+            <br>
+            pro parte
+            <%= syn.full_name %>
+          <% else %>
+            <% unless prev_misapp.blank? %>
+              ']'
+              <% prev_misapp = '' %>
+            <% end %>
+            <br>
+            <%= syn.full_name %>
+          <% end %>
+        <% end %>
+        <% unless prev_misapp.blank? %>
+          ]
+          <% prev_misapp = '' %>
+        <% end %>
+      </ul>
+      <% if syn_displayed %>
+        <br>
+      <% end %>
+    <% end %>
+
     <ul class="plain indent2">
 
       <% if @client_request.comments? %>
+        <% comments_displayed = false %>
         <% if taxon.accepted_taxon_comment? %>
+            <% comments_displayed = true %>
             <li><%= taxon.accepted_taxon_comment.html_safe %>
         <% end %>
       <% end %>
 
       <% if @client_request.distribution? %>
+        <% distribution_displayed = false %>
         <% if taxon.accepted_taxon_distribution? %>
+            <% distribution_displayed = true %>
             <li><%= taxon.accepted_taxon_distribution %>
         <% end %>
       <% end %>
 
     </ul>
-
-
-
+    <% if syn_displayed ||
+          comments_displayed ||
+          distribution_displayed %>
+      <br>
+    <% end %>
   <% end %>
   </ul>
