@@ -18,7 +18,7 @@
         <% else %>
           <% pp_string = '' %>
         <% end %>
-        <%= taxon.full_name %> <i class="syntax-highlight cross-reference-sensu">sensu</i>
+        <%= name_with_hybrid_symbol(taxon.full_name) %> <i class="syntax-highlight cross-reference-sensu">sensu</i>
         <%= taxon.cross_reference_misapplication.misapplying_author_string_and_year %>
         <%= pp_string %>
       <% else %>
@@ -27,15 +27,15 @@
         <% else %>
           <% pp_string = '' %>
         <% end %>
-        <i><%= taxon_name_string.html_safe -%><%= pp_string %></i>
+        <i><%= name_with_hybrid_symbol(taxon_name_string).html_safe -%><%= pp_string %></i>
       <% end %>
-      = <b><%= taxon.cross_referenced_full_name %></b>
+      = <b><%= name_with_hybrid_symbol(taxon.cross_referenced_full_name).html_safe %></b>
     <% else %>
 
       <% if @client_request.links? %>
-        <%= link_to taxon_name_string.html_safe, show_name_path(id: taxon.id, search_form: search_form) + "#name-#{taxon.id}", title: "Show name details" %>
+        <%= link_to name_with_hybrid_symbol(taxon_name_string).html_safe, show_name_path(id: taxon.id, search_form: search_form) + "#name-#{taxon.id}", title: "Show name details" %>
       <% else %>
-        <%= taxon_name_string.html_safe %>
+        <%= name_with_hybrid_symbol(taxon_name_string).html_safe %>
       <% end %>
 
       <% if taxon.excluded? %>
@@ -55,18 +55,18 @@
           <% if syn.misapplied? %>
             <% if prev_misapp.blank? %>
               <br>
-              <% prev_misapp = simple_name_and_status(syn.simple_name, syn.name_status) %>
-              [<%= simple_name_and_status(syn.simple_name, syn.name_status).html_safe %>
+              <% prev_misapp = name_and_status(syn.simple_name, syn.name_status) %>
+              [<%= name_and_status(name_with_hybrid_symbol(syn.simple_name), syn.name_status).html_safe %>
             &nbsp;<i class="syntax-highlight synonym-auct-non">auct. non</i> <%= syn.misapplication.name_author_string %>:
             <% else %>
-              <% if prev_misapp == simple_name_and_status(syn.simple_name, syn.name_status) %>
+              <% if prev_misapp == name_and_status(syn.simple_name, syn.name_status) %>
                 <%# subsequent misapp %>
 ;
               <% else %>
 ]
                 <br>
-                [<%= simple_name_and_status(syn.simple_name, syn.name_status).html_safe %>
-                <% prev_misapp = simple_name_and_status(syn.simple_name, syn.name_status) %>
+                [<%= name_and_status(name_with_hybrid_symbol(syn.simple_name), syn.name_status).html_safe %>
+                <% prev_misapp = name_and_status(syn.simple_name, syn.name_status) %>
               <% end %>
             <% end %>
             <%= syn.misapplication.cites_reference_citation_html.html_safe -%>: <span class="synonym-page"><%= syn.misapplication.page -%></span>
@@ -77,14 +77,14 @@
             <% end %>
             <br>
             pro parte
-            <%= syn.full_name %>
+            <%= name_and_status(name_with_hybrid_symbol(syn.full_name), syn.name_status).html_safe %>
           <% else %>
             <% unless prev_misapp.blank? %>
               ']'
               <% prev_misapp = '' %>
             <% end %>
             <br>
-            <%= syn.full_name %>
+            <%= name_and_status(name_with_hybrid_symbol(syn.full_name), syn.name_status).html_safe %>
           <% end %>
         <% end %>
         <% unless prev_misapp.blank? %>

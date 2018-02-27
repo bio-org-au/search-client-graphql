@@ -70,11 +70,17 @@ module TaxonomyHelper
     "When checked, synonyms will be shown for taxa in the results of the next search."
   end
 
-  def simple_name_and_status(simple_name, name_status)
+  def name_and_status(name, name_status)
     if name_status == 'legitimate'
-      simple_name
+      name
+    elsif name_status =~ /\A\[/
+      name
     else
-      %(#{simple_name} <span class="name-status">#{name_status}</span>)
+      %(#{name}, <span class="name-status">#{name_status}</span>)
     end
+  end
+
+  def name_with_hybrid_symbol(name)
+    name.gsub(/ x /,' × ')
   end
 end
