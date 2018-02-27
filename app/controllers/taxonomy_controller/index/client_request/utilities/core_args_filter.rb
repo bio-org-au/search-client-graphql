@@ -14,7 +14,6 @@ class TaxonomyController::Index::ClientRequest::Utilities::CoreArgsFilter
       @raw_query_string.delete(' ')
                        .delete("\n")
                        .sub(/search_term_placeholder/, @client_request.search_term || '')
-                       .sub(/"accepted_name_placeholder"/, @client_request.accepted_name?.to_s || 'false')
                        .sub(/"excluded_name_placeholder"/, @client_request.excluded_name?.to_s || 'false')
                        .sub(/"cross_reference_placeholder"/, @client_request.cross_reference?.to_s || 'false')
   end

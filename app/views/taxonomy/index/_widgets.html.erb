@@ -1,9 +1,12 @@
 <hr>
-<b>Include:</b>
-<br>
-  <%= label_tag(:accepted_names, "Accepted Names", title: accepted_name_cb_hover_text) %>
-  <%= check_box_tag(:accepted_names, '1', @client_request.accepted_name? || params.size == 2,
-                    title: accepted_name_cb_hover_text) %>
+<hr class="heavy">
+<%= label_tag(:list_or_count_list, "List", title: 'List matching names') %>
+    <%= radio_button_tag(:list_or_count, "list", !@client_request.just_count?, title: 'List matching names') %>
+<%= label_tag(:list_or_count_count, "Count", title: 'Count matching names') %>
+    <%= radio_button_tag(:list_or_count, "count", @client_request.just_count?, title: 'Count matching names') %>
+
+<hr>
+<b>If list, also show:</b>
 <br>
     <%= label_tag(:excluded_names, "Excluded Names", title: excluded_name_cb_hover_text) %>
     <%= check_box_tag(:excluded_names, '1', @client_request.excluded_name? || params.size == 2,
@@ -12,20 +15,6 @@
     <%= label_tag(:cross_references, "Cross References", title: cross_references_cb_hover_text) %>
     <%= check_box_tag(:cross_references, '1', @client_request.cross_reference? || params.size == 2,
                       title: cross_references_cb_hover_text) %>
-<br>
-<hr class="heavy">
-<b>Result options</b>
-<br>
-<%= label_tag(:list_or_count_list, "List", title: 'List matching names') %>
-    <%= radio_button_tag(:list_or_count, "list", !@client_request.just_count?, title: 'List matching names') %>
-<br>
-<%= label_tag(:list_or_count_count, "Count", title: 'Count matching names') %>
-    <%= radio_button_tag(:list_or_count, "count", @client_request.just_count?, title: 'Count matching names') %>
-
-<hr>
-<b>Result list options</b>
-<br>
-    Also show:
 <br>
     <%= label_tag(:show_links, "Links", title: show_links_hover_text) %>
     <%= check_box_tag(:show_links, '1', @client_request.links?, title: show_links_hover_text) %>
@@ -43,9 +32,8 @@
                       title: show_distribution_hover_text) %>
 <hr>
 
-<b>Names per page:</b>
+<b>If list, results per page:</b>
 <br>
-    Names only:
     <input type="number"
            name="limit_per_page_for_list"
            title="Number of records per page when details is not checked."
@@ -53,16 +41,5 @@
            max="500"
            step="1"
            value="<%= params[:limit_per_page_for_list] || 50 %>"
-           class="form-field"> 
-<br>
-    Names with details:
-    <input type="number"
-           name="limit_per_page_for_details"
-           title="Number of records per page when details is checked."
-           placeholder="records"
-           min="1"
-           max="20"
-           step="1"
-           value="<%= params[:limit_per_page_for_details] || 10 %>"
            class="form-field"> 
 <br>

@@ -22,9 +22,6 @@ class TaxonomyController < ApplicationController
 
   def index
     @page_label = tree_label
-    unless at_least_one_search_option?
-      params[:accepted_names] = params[:excluded_names] =  params[:cross_references] = '1'
-    end
     @client_request = Index::ClientRequest.new(search_params)
     if @client_request.any_type_of_search?
       @search = @client_request.search
@@ -33,10 +30,6 @@ class TaxonomyController < ApplicationController
   end
 
   private
-
-  def at_least_one_search_option?
-    params[:accepted_names] || params[:excluded_names] || params[:cross_references]
-  end
 
   def render_index
     respond_to do |format|
