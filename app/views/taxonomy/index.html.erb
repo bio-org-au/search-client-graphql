@@ -23,6 +23,10 @@
     <%= render partial: @client_request.content_partial, locals: { search_form: 'advanced_names' } %>
     <hr>
     <%= render partial: 'taxonomy/index/pagination' %>
+  <% else %>
+    <% @client_request.no_search_message.each do |msg| %>
+      <%= msg %><br>
+    <% end %>
   <% end %>
 </div>
 

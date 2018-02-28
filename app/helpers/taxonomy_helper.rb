@@ -47,15 +47,15 @@ module TaxonomyHelper
   end
 
   def accepted_name_cb_hover_text
-    "When checked, accepted names will be included in the results of the next search."
+    "When checked, accepted names will be displayed in the results of the next list search."
   end
 
   def excluded_name_cb_hover_text
-    "When checked, excluded names will be included in the results of the next search."
+    "When checked, excluded names will be displayed in the results of the next list search."
   end
 
   def cross_references_cb_hover_text
-    "When checked, cross references will be included in the results of the next search."
+    "When checked, cross references will be displayed in the results of the next list search."
   end
 
   def show_distribution_hover_text

@@ -11,7 +11,13 @@ class TaxonomyController::Index::ClientRequest
   end
 
   def any_type_of_search?
-    search_term.present?
+    search_term.present? && some_type_of_record_selected?
+  end
+
+  def some_type_of_record_selected?
+    @params["accepted_names"] == '1' ||
+    @params["excluded_names"] == '1' ||
+    @params["cross_references"] == '1'
   end
 
   def search
@@ -20,34 +26,6 @@ class TaxonomyController::Index::ClientRequest
 
   def search_term
     @params[:q].present? && @params[:q].gsub(/ *$/, '')
-  end
-
-  def scientific_name
-    scientific?.to_s
-  end
-
-  def scientific_named_hybrid_name
-    if @params[:scientific_named_hybrid_name] == '1'
-      'true'
-    else
-      'false'
-    end
-  end
-
-  def scientific_autonym_name
-    scientific?.to_s
-  end
-
-  def scientific?
-    %w[scientific all scientific-or-cultivar].include?(@params[:name_type]).to_s
-  end
-
-  def cultivar_name
-    %w[cultivar all scientific-or-cultivar].include?(@params[:name_type]).to_s
-  end
-
-  def common_name
-    %w[common all].include?(@params[:name_type]).to_s
   end
 
   # We don't want limit of zero unless it is a count request.
@@ -70,11 +48,6 @@ class TaxonomyController::Index::ClientRequest
     @params[:list_or_count] == 'count'
   end
 
-  def details?
-    @params[:show_details].present? && @params[:show_details] == '1'
-  end
-  alias show_details details?
-
   def distribution?
     @params[:show_distribution].present? && @params[:show_distribution] == '1'
   end
@@ -84,7 +57,7 @@ class TaxonomyController::Index::ClientRequest
   end
 
   def list?
-    !details?
+    @params[:list_or_count] == 'list'
   end
 
   def family?
@@ -93,6 +66,10 @@ class TaxonomyController::Index::ClientRequest
 
   def links?
     @params[:show_links].present? && @params[:show_links] == '1'
+  end
+
+  def details?
+    false
   end
 
   def timeout
@@ -117,5 +94,12 @@ class TaxonomyController::Index::ClientRequest
 
   def synonyms?
     @params[:show_synonyms].present? && @params[:show_synonyms] == '1'
+  end
+
+  def no_search_message
+    return [] unless any_type_of_search?
+    return [] if some_type_of_record_selected?
+    ["No search was possible.", 
+     %(Please choose at least one of "Accepted Names", "Excluded Names", or "Cross References")]
   end
 end
