@@ -19,8 +19,7 @@
           <% pp_string = '' %>
         <% end %>
         <%= name_with_hybrid_symbol(taxon.full_name) %> <i class="syntax-highlight cross-reference-sensu">sensu</i>
-        <%= taxon.cross_reference_misapplication.misapplying_author_string_and_year %>
-        <%= pp_string %>
+        <%= taxon.cross_reference_misapplication.misapplying_author_string_and_year -%><%= pp_string %>
       <% else %>
         <% if taxon.pro_parte? %>
           <% pp_string = ' p.p.' %>
@@ -29,7 +28,8 @@
         <% end %>
         <i><%= name_with_hybrid_symbol(taxon_name_string).html_safe -%><%= pp_string %></i>
       <% end %>
-      = <b><%= name_with_hybrid_symbol(taxon.cross_referenced_full_name).html_safe %></b>
+      <%= '?' if taxon.cross_reference_misapplication.doubtful? -%>=
+      <b><%= name_with_hybrid_symbol(taxon.cross_referenced_full_name).html_safe %></b>
     <% else %>
 
       <% if @client_request.links? %>

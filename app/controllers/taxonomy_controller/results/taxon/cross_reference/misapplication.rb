@@ -43,4 +43,12 @@ class TaxonomyController::Results::Taxon::CrossReference::Misapplication
       @raw_misapp.pro_parte
     end
   end
+
+  def doubtful?
+    if @raw_misapp.nil?
+      nil
+    else
+      @raw_misapp.is_doubtful
+    end
+  end
 end

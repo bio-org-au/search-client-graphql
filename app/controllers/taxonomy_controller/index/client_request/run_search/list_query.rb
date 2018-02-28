@@ -54,7 +54,8 @@ class TaxonomyController::Index::ClientRequest::RunSearch::ListQuery
                     cites_simple_name,
                     cites_page,
                     cites_reference_author_string,
-                    pro_parte
+                    pro_parte,
+                    is_doubtful
               },
               synonyms {
                 id,
