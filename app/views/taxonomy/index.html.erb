@@ -24,6 +24,7 @@
     <hr>
     <%= render partial: 'taxonomy/index/pagination' %>
   <% else %>
+    No search.<br><br>
     <% @client_request.no_search_message.each do |msg| %>
       <%= msg %><br>
     <% end %>
