@@ -18,8 +18,6 @@
 # - in log
 # - on page
 class AdvancedNamesController < ApplicationController
-  DATA_SERVER = Rails.configuration.data_server
-
   def index
     @client_request = Index::ClientRequest.new(search_params).build_request
     @search = @client_request.search
