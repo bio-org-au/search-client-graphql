@@ -99,6 +99,7 @@ class TaxonomyController::Index::ClientRequest
   def no_search_message
     return [] if any_type_of_search?
     return [] if some_type_of_record_selected?
-    [%(Please choose at least one of "Accepted Names", "Excluded Names", or "Cross References")]
+    return [] if @params.size < 3
+    ["No search", %(Please choose at least one of "Accepted Names", "Excluded Names", or "Cross References")]
   end
 end
