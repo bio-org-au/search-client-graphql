@@ -55,6 +55,10 @@ class TaxonomyController::Results::Taxon
     @raw_taxon.cross_referenced_full_name
   end
 
+  def cross_referenced_full_name_id
+    @raw_taxon.cross_referenced_full_name_id
+  end
+
   def excluded?
     record_type == 'excluded-name'
   end

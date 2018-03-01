@@ -38,6 +38,7 @@ class TaxonomyController::Index::ClientRequest::RunSearch::ListQuery
               full_name_html,
               name_status_name,
               cross_referenced_full_name,
+              cross_referenced_full_name_id,
               is_misapplication,
               is_pro_parte,
               reference_citation,

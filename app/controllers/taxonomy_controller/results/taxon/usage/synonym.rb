@@ -18,4 +18,8 @@ class TaxonomyController::Results::Taxon::Usage::Synonym
   def full_name
     @raw_synonym.full_name
   end
+
+  def name_id
+    @raw_synonym.name_id
+  end
 end

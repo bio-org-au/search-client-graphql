@@ -17,18 +17,41 @@
         <% else %>
           <% pp_string = '' %>
         <% end %>
-        <%= name_with_hybrid_symbol(taxon.full_name) %> <i class="syntax-highlight cross-reference-sensu">sensu</i>
-        <%= taxon.cross_reference_misapplication.misapplying_author_string_and_year -%><%= pp_string %>
+        <% if @client_request.links? %>
+          <%= link_to name_with_hybrid_symbol(taxon_name_string).html_safe,
+                      show_name_path(id: taxon.id,
+                                     search_form: 'names') + "#name-#{taxon.id}",
+                      title: "Show name details" %>
+          <i class="syntax-highlight cross-reference-sensu">sensu</i>
+          <%= taxon.cross_reference_misapplication.misapplying_author_string_and_year -%><%= pp_string %>
+        <% else %>
+          <%= name_with_hybrid_symbol(taxon.full_name) %> <i class="syntax-highlight cross-reference-sensu">sensu</i>
+          <%= taxon.cross_reference_misapplication.misapplying_author_string_and_year -%><%= pp_string %>
+        <% end %>
       <% else %>
         <% if taxon.pro_parte? %>
           <% pp_string = ' p.p.' %>
         <% else %>
           <% pp_string = '' %>
         <% end %>
-        <i><%= name_with_hybrid_symbol(taxon_name_string).html_safe -%><%= pp_string %></i>
+        <% if @client_request.links? %>
+          <i><%= link_to name_with_hybrid_symbol(taxon_name_string).html_safe + pp_string.html_safe,
+                         show_name_path(id: taxon.id,
+                                        search_form: 'names') + "#name-#{taxon.id}",
+                         title: "Show name details" %></i>
+        <% else %>
+          <i><%= name_with_hybrid_symbol(taxon_name_string).html_safe -%><%= pp_string %></i>
+        <% end %>
       <% end %>
       <%= '?' if taxon.cross_reference_misapplication.doubtful? -%>=
-      <b><%= name_with_hybrid_symbol(taxon.cross_referenced_full_name).html_safe %></b>
+        <% if @client_request.links? %>
+          <b><%= link_to name_with_hybrid_symbol(taxon.cross_referenced_full_name).html_safe,
+                         show_name_path(id: taxon.cross_referenced_full_name_id,
+                                        search_form: 'names') + "#name-#{taxon.cross_referenced_full_name_id}",
+                         title: "Show name details" %></b>
+        <% else %>
+          <b><%= name_with_hybrid_symbol(taxon.cross_referenced_full_name).html_safe %></b>
+        <% end %>
     <% else %>
 
       <% if @client_request.links? %>
@@ -83,7 +106,13 @@
               <% prev_misapp = '' %>
             <% end %>
             <br>
-            <%= name_and_status(name_with_hybrid_symbol(syn.full_name), syn.name_status).html_safe %>
+            <% if @client_request.links? %>
+              <%= link_to name_and_status(name_with_hybrid_symbol(syn.full_name), syn.name_status).html_safe,
+                          show_name_path(id: syn.name_id, search_form: 'names') + "#name-#{syn.name_id}",
+                          title: "Show name with details" %>
+            <% else %>
+              <%= name_and_status(name_with_hybrid_symbol(syn.full_name), syn.name_status).html_safe %>
+            <% end %>
           <% end %>
         <% end %>
         <% unless prev_misapp.blank? %>
