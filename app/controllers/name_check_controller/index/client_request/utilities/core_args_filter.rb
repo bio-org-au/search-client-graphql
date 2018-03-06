@@ -14,5 +14,6 @@ class NameCheckController::Index::ClientRequest::Utilities::CoreArgsFilter
       @raw_query_string.delete(' ')
                        .delete("\n")
       .sub(/"names_placeholder"/, @client_request.names_as_array_of_strings)
+      .sub(/"limit_placeholder"/, @client_request.limit.to_s)
   end
 end

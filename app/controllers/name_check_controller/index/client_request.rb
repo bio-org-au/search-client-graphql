@@ -3,18 +3,23 @@
 # Class extracted from name controller.
 # This is the client's request (interpreted).
 class NameCheckController::Index::ClientRequest
-  attr_reader :params
-  MAX_LIST_LIMIT = 500
+  attr_reader :params, :search_results
+  MAX_LIMIT = 500
   def initialize(params)
     @params = params
+    run_search
   end
 
   def any_type_of_search?
     search_term.present?
   end
 
-  def search_results
-    RunSearch.new(self).result
+  def run_search
+    if any_type_of_search?
+      @search_results = RunSearch.new(self).result
+    else
+      @search_results = nil
+    end
   end
 
   def search_term
@@ -34,14 +39,6 @@ class NameCheckController::Index::ClientRequest
     @params[:list_or_tabular] == 'list'
   end
 
-  def xtabular?
-    if @params.has_key?(:list_or_tabular)
-      @params[:list_or_tabular] == 'tabular' || !@params.has_key?(:list_or_tabular)
-    else
-      true
-    end
-  end
-
   def tabular?
     @params[:list_or_tabular] == 'tabular' || @params[:list_or_tabular] == nil
   end
@@ -52,10 +49,9 @@ class NameCheckController::Index::ClientRequest
 
   # We don't want limit of zero unless it is a count request.
   def limit
-    return 0 if just_count?
-    limit = @params[:limit_per_page].to_i
+    limit = @params[:limit].to_i
     limit = 1 if limit < 1
-    [limit, MAX_LIST_LIMIT].min
+    [limit, MAX_LIMIT].min
   end
 
   def offset

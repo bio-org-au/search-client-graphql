@@ -63,6 +63,7 @@ class NameCheckController::Results
   end
 
   def results
+    return nil if @search.nil?
     @search.data.name_check.results.collect do |checked_name|
       CheckedName.new(checked_name)
     end

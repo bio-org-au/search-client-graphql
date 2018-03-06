@@ -20,6 +20,12 @@ class NameCheckController::Index::ClientRequest::RunSearch::Query
         name_check(#{NameCheckController::Index::ClientRequest::Utilities::CoreArgs.new.core_args})
         {
           results_count,
+          results_limited,
+          names_checked_count,
+          names_checked_limited,
+          names_with_match_count,
+          names_found_count,
+          names_to_check_count,
           results
           {
             search_term,
