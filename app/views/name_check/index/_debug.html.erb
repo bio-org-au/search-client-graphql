@@ -1,0 +1,14 @@
+any type of search? <%= @client_request.any_type_of_search?.to_s %>
+<br>
+<%= params.inspect %>
+<br>
+<%= @client_request.params %>
+<br>
+raw results: <%= @client_request.search_results %>
+<% unless @wrapped_search_results.nil? %>
+<br> wrapped results present? <%= @wrapped_search_results.present? %>
+<br> wrapped results empty? <%= @wrapped_search_results.empty? %>
+<br> wrapped results results class? <%= @wrapped_search_results.results.class %>
+<br> wrapped results results size? <%= @wrapped_search_results.results.size %>
+<% end %>
+

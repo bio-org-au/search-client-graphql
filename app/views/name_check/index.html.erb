@@ -1,0 +1,25 @@
+<h1><%= @name_label %> Name Check</h1>
+<%= render partial: 'name_check/index/search_form' %>
+<hr>
+<%= link_to('clear form', name_check_path,name: 'x', title: clear_form_link_hover_text) %> |
+<%= link_to('name', name_search_path, title: 'Go to name search') %> |
+<%= link_to('taxonomy', taxonomy_search_path, title: taxonomy_link_hover_text) %>
+<hr>
+
+<% @client_request.no_search_message.each do |msg| %>
+  <%= msg %><br>
+<% end %>
+
+<%#= render partial: 'name_check/index/debug' %>
+
+<hr>
+
+<% unless @wrapped_search_results.nil? %>
+  <% if @client_request.list? %>
+    <%= render partial: 'name_check/index/list_output' %>
+  <% elsif @client_request.tabular? %>
+    <%= render partial: 'name_check/index/tabular_output' %>
+  <% end %>
+<% end %>
+
+

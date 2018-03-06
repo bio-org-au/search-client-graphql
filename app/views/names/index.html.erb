@@ -4,7 +4,8 @@
 <hr>
 <%= link_to('clear form', name_search_path,name: 'x', title: clear_form_link_hover_text) %> |
 <%= link_to('advanced', names_advanced_search_path, title: 'Go to advanced name search') %> |
-<%= link_to('taxonomy', taxonomy_search_path, title: taxonomy_link_hover_text) %>
+<%= link_to('taxonomy', taxonomy_search_path, title: taxonomy_link_hover_text) %> |
+<%= link_to('name check', name_check_path, title: name_check_link_hover_text) %>
 <hr>
 <div id="search-result-summary">
   <% if @search.present? %>

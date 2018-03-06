@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get 'publications/suggestions'
 
   match '/names/search', as: 'name_search', to: 'names#index', via: :get
+  match '/name/check', as: 'name_check', to: 'name_check#index', via: :get
+  match '/name/check/search', as: 'name_check_search',
+                            to: 'name_check#index', via: :get
   match '/name/:id', as: 'show_name', to: 'names#show', via: :get
   match '/search', as: 'search', to: 'names#index', via: :get
   match '/name/history/:id', as: 'name_history', to: 'names#history', via: :get

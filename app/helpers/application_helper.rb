@@ -158,4 +158,8 @@ displayed in the search results.  This can slow down the results."
   def taxonomy_link_hover_text
     'Go to taxonomy search.'
   end
+
+  def name_check_link_hover_text
+    'Go to name check.'
+  end
 end

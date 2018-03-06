@@ -1,0 +1,13 @@
+<table>
+  <tr>
+    <th class="left-align">Search Term</th>
+    <th class="left-align">Matching Term</th>
+  </tr>
+<% @wrapped_search_results.results.each do |result| %>
+  <tr>
+    <td><%= result.search_term unless result.index.to_i > 1 %></td>
+    <td><%= result.matched_name_full_name %></td>
+  </tr>
+<% end %>
+</table>
+
