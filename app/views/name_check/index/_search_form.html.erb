@@ -13,7 +13,19 @@
 <%= label_tag(:list_or_tabular_list, "List", title: 'List output - matching names only') %>
     <%= radio_button_tag(:list_or_tabular, "list", @client_request.list?, title: 'List of matching names') %>
 
-<hr>
+    <hr>
+    
+<b>Results limit:</b>
+<br>
+    <input type="number"
+           name="limit"
+           title="Number of records per page when details is not checked."
+           min="1"
+           max="500"
+           step="1"
+           value="<%= params[:limit] || 50 %>"
+           class="form-field"> 
+<br>
 
 <input type="submit"
        value="Search"

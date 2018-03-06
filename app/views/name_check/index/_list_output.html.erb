@@ -1,4 +1,6 @@
 <% @wrapped_search_results.results.each do |result| %>
+  <% unless result.matched_name_full_name.blank? %>
     <%= result.matched_name_full_name %><br>
+  <% end %>
 <% end %>
 

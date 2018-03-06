@@ -12,6 +12,27 @@
 
 <%#= render partial: 'name_check/index/debug' %>
 
+<% unless @client_request.search_results.nil? %>
+  <%= pluralize(@client_request.search_results.data.name_check.names_to_check_count, "name") %> submitted.
+  <br>
+  <%= pluralize(@client_request.search_results.data.name_check.names_checked_count, "name") %> checked.
+  <br>
+  <% if @client_request.search_results.data.name_check.names_checked_limited %>
+    Not all names were checked. You may want to increase the limit or split the list.
+    <br>
+  <% end %>
+  <%= pluralize(@client_request.search_results.data.name_check.names_with_match_count, "name") %> had at least one match.
+  <br>
+  <%= pluralize(@client_request.search_results.data.name_check.results_count, "result") %> in total.
+  <% if @client_request.search_results.data.name_check.results_limited %>
+    (limited) 
+  <% end %>
+  <br>
+  <%= pluralize(@client_request.search_results.data.name_check.names_found_count, "name") %> found.
+
+
+
+
 <hr>
 
 <% unless @wrapped_search_results.nil? %>
@@ -22,4 +43,5 @@
   <% end %>
 <% end %>
 
+<% end %>
 
