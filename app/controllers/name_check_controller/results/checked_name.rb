@@ -10,6 +10,10 @@ class NameCheckController::Results::CheckedName
     @checked_name.matched_name_full_name
   end
 
+  def matched_name_family_name
+    @checked_name.matched_name_family_name
+  end
+
   def search_term
     @checked_name.search_term
   end

@@ -1,12 +1,14 @@
 <table class="name-check">
   <tr>
     <th class="left-align">Search Term</th>
-    <th class="left-align">Matching Term</th>
+    <th class="left-align">Matching Name</th>
+    <th class="left-align">Matching Name Family</th>
   </tr>
 <% @wrapped_search_results.results.each do |result| %>
   <tr>
     <td><%= result.search_term unless result.index.to_i > 1 %></td>
     <td><%= result.matched_name_full_name %></td>
+    <td><%= result.matched_name_family_name %></td>
   </tr>
 <% end %>
 </table>
