@@ -1,3 +1,16 @@
 th.left-align {
   text-align: left;
 }
+
+table.name-check td,
+table.name-check th
+{
+  padding:0 15px 0 15px;
+  border-bottom: 1px solid lightgray;
+}
+
+table.name-check tr td:first-child,
+table.name-check tr th:first-child
+{
+  padding:0;
+}
