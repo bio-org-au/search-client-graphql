@@ -33,7 +33,8 @@ class NameCheckController::Index::ClientRequest::RunSearch::Query
             index,
             matched_name_id,
             matched_name_full_name,
-            matched_name_family_name
+            matched_name_family_name,
+            matched_name_family_name_id
           }
         }
       }

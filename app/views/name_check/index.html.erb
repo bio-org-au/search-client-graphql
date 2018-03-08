@@ -39,7 +39,11 @@
   <% if @client_request.list? %>
     <%= render partial: 'name_check/index/list_output' %>
   <% elsif @client_request.tabular? %>
-    <%= render partial: 'name_check/index/tabular_output' %>
+    <% if @client_request.links? %>
+      <%= render partial: 'name_check/index/tabular_output_with_links' %>
+    <% else %>
+      <%= render partial: 'name_check/index/tabular_output' %>
+    <% end %>
   <% end %>
 <% end %>
 

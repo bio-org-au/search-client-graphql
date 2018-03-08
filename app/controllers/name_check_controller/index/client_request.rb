@@ -71,4 +71,8 @@ class NameCheckController::Index::ClientRequest
     return [] if @params.size < 3
     ["No search", %(Please choose at least one of "Accepted Names", "Excluded Names", or "Cross References")]
   end
+
+  def links?
+    @params[:show_links].present? && @params[:show_links] == '1'
+  end
 end

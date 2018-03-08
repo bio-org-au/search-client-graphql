@@ -13,9 +13,12 @@
 <%= label_tag(:list_or_tabular_list, "List", title: 'List output - matching names only') %>
     <%= radio_button_tag(:list_or_tabular, "list", @client_request.list?, title: 'List of matching names') %>
 
-    <hr>
-    
-<b>Results limit:</b>
+<hr>
+<%= label_tag(:show_links, "Links", title: name_check_show_links_hover_text) %>
+<%= check_box_tag(:show_links, '1', @client_request.links?, title: name_check_show_links_hover_text) %>
+<br>
+
+Results limit:
 <br>
     <input type="number"
            name="limit"

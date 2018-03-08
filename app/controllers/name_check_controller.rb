@@ -10,6 +10,7 @@ class NameCheckController < ApplicationController
   private
 
   def search_params
-    params.permit(:utf8, :q, :controller, :action, :list_or_tabular, :limit)
+    params.permit(:utf8, :q, :controller, :action, :list_or_tabular, :limit,
+                  :show_links)
   end
 end

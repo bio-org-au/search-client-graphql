@@ -162,4 +162,8 @@ displayed in the search results.  This can slow down the results."
   def name_check_link_hover_text
     'Go to name check.'
   end
+
+  def name_check_show_links_hover_text
+    'When checked, names will be hyperlinked.'
+  end
 end
