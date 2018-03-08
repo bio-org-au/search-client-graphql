@@ -20,14 +20,12 @@ class ApplicationController < ActionController::Base
     @start_time = Time.now
   end
 
+  # Make name label and tree label available 
+  # in views - in tests too.
   def settings
     @setting = Setting.new
     @name_label = @setting.name_label
-  end
-
-  def tree_label
-    @setting = Setting.new
-    @setting.tree_label
+    @tree_label = @setting.tree_label
   end
 
   def ranks
