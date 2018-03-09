@@ -7,7 +7,13 @@
 <% @wrapped_search_results.results.each do |result| %>
   <tr>
     <td><%= result.search_term unless result.index.to_i > 1 %></td>
-    <td><%= result.matched_name_full_name %></td>
+    <td><%= result.matched_name_full_name %>
+        <% if result.matched_name_accepted_taxonomy_accepted? %>
+          <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+        <% elsif result.matched_name_accepted_taxonomy_excluded? %>
+          <span class='red' title='Excluded by APC'><i class="fa fa-ban"></i>APC</span>
+        <% end %>
+    </td>
     <td><%= result.matched_name_family_name %></td>
   </tr>
 <% end %>

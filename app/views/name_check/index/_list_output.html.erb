@@ -1,6 +1,12 @@
 <% @wrapped_search_results.results.each do |result| %>
   <% unless result.matched_name_full_name.blank? %>
-    <%= result.matched_name_full_name %><br>
+    <%= result.matched_name_full_name %>
+    <% if result.matched_name_accepted_taxonomy_accepted? %>
+      <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+    <% elsif result.matched_name_accepted_taxonomy_excluded? %>
+      <span class='red' title='Excluded by APC'><i class="fa fa-ban"></i>APC</span>
+    <% end %>
+    <br>
   <% end %>
 <% end %>
 

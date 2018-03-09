@@ -34,7 +34,9 @@ class NameCheckController::Index::ClientRequest::RunSearch::Query
             matched_name_id,
             matched_name_full_name,
             matched_name_family_name,
-            matched_name_family_name_id
+            matched_name_family_name_id,
+            matched_name_accepted_taxonomy_accepted,
+            matched_name_accepted_taxonomy_excluded
           }
         }
       }

@@ -8,7 +8,13 @@
   <tr>
     <td><%= result.search_term unless result.index.to_i > 1 %></td>
     <% if result.found? %>
-      <td><%= link_to(result.matched_name_full_name, show_name_path(id: result.matched_name_id, search_form: 'names'), title: 'Show name') %></td>
+      <td><%= link_to(result.matched_name_full_name, show_name_path(id: result.matched_name_id, search_form: 'names'), title: 'Show name') %>
+        <% if result.matched_name_accepted_taxonomy_accepted? %>
+          <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+        <% elsif result.matched_name_accepted_taxonomy_excluded? %>
+          <span class='red' title='Excluded by APC'><i class="fa fa-ban"></i>APC</span>
+        <% end %>
+      </td>
     <% else %>
       <td></td>
     <% end %>

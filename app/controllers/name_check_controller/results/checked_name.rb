@@ -33,4 +33,12 @@ class NameCheckController::Results::CheckedName
   def found?
     @checked_name.found == 't' || @checked_name.found
   end
+
+  def matched_name_accepted_taxonomy_accepted?
+    @checked_name.matched_name_accepted_taxonomy_accepted
+  end
+
+  def matched_name_accepted_taxonomy_excluded?
+    @checked_name.matched_name_accepted_taxonomy_excluded
+  end
 end
