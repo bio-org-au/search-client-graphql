@@ -1,6 +1,10 @@
 <% @wrapped_search_results.results.each do |result| %>
   <% unless result.matched_name_full_name.blank? %>
-    <%= result.matched_name_full_name %>
+    <% if @client_request.links? %>
+      <%= link_to(result.matched_name_full_name, show_name_path(id: result.matched_name_id, search_form: 'names'), title: 'Show name') %>
+    <% else %>
+      <%= result.matched_name_full_name %>
+    <% end %>
     <% if result.matched_name_accepted_taxonomy_accepted? %>
       <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
     <% elsif result.matched_name_accepted_taxonomy_excluded? %>

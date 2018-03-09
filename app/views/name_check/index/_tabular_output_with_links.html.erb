@@ -2,26 +2,31 @@
   <tr>
     <th class="left-align">Search Term</th>
     <th class="left-align">Matching Name</th>
+    <th class="left-align">Census</th>
     <th class="left-align">Matching Name Family</th>
   </tr>
 <% @wrapped_search_results.results.each do |result| %>
   <tr>
     <td><%= result.search_term unless result.index.to_i > 1 %></td>
     <% if result.found? %>
-      <td><%= link_to(result.matched_name_full_name, show_name_path(id: result.matched_name_id, search_form: 'names'), title: 'Show name') %>
+      <td><%= link_to(result.matched_name_full_name, show_name_path(id: result.matched_name_id, search_form: 'names'), title: 'Show name') %></td>
+      <td>
         <% if result.matched_name_accepted_taxonomy_accepted? %>
           <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
         <% elsif result.matched_name_accepted_taxonomy_excluded? %>
           <span class='red' title='Excluded by APC'><i class="fa fa-ban"></i>APC</span>
+        <% else %>
+          &nbsp;
         <% end %>
       </td>
     <% else %>
-      <td></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
     <% end %>
     <% if result.found? && result.matched_name_family_name.present? %>
       <td><%= link_to(result.matched_name_family_name, show_name_path(id: result.matched_name_family_name_id, search_form: 'names'), title: 'Show name') %></td>
     <% else %>
-      <td></td>
+      <td>&nbsp;</td>
     <% end %>
   </tr>
 <% end %>
