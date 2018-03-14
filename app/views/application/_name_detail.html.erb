@@ -11,7 +11,7 @@
       <% end %>
       <% if @client_request.links? %>
         <%= link_to name_string.html_safe, show_name_path(id: name.id, search_form: search_form) + '#name-' + name.id, title: "Show name details in a new page" %>
-        <%= link_to '| edit', 'http://localhost:2014/search', title: 'Edit' %>
+        <%#= link_to '| edit', 'http://localhost:2014/search/name/id/", title: 'Edit' %>
       <% else %>
         <%= name_string.html_safe %>
       <% end %>
