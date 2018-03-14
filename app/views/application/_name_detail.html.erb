@@ -11,6 +11,7 @@
       <% end %>
       <% if @client_request.links? %>
         <%= link_to name_string.html_safe, show_name_path(id: name.id, search_form: search_form) + '#name-' + name.id, title: "Show name details in a new page" %>
+        <%= link_to '| edit', 'http://localhost:2014/search', title: 'Edit' %>
       <% else %>
         <%= name_string.html_safe %>
       <% end %>
@@ -30,11 +31,9 @@
               <ul class="plain indent4">
             <% else %>
               <li><%= usage.full_citation_with_page %>
-              <%#= "<span class='red' title='Accepted by APC'>#{fa_icon('check')}APC</span>".html_safe if usage.accepted_in_tree? %>
               <% if usage.accepted_in_tree? %>
                 <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
               <% end %>
-              <%#= "<span class='red' title='Excluded from APC'>#{fa_icon('ban')}APC</span>".html_safe if usage.excluded_from_tree? %>
               <% if usage.excluded_from_tree? %>
                 <span class='red' title='Excluded by APC'><i class="fa fa-ban"></i>APC</span>
               <% end %>

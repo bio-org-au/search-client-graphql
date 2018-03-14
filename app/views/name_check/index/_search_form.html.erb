@@ -8,7 +8,7 @@
           required
           title="Text area for search terms"><%= params['q'] %></textarea>
 <br>
-<%= label_tag(:list_or_tabular_tabular, "Tabular", title: 'Tabular output - can show more information than list output') %>
+<%= label_tag(:list_or_tabular_tabular, "Table", title: 'Tabular output - can show more information than list output') %>
     <%= radio_button_tag(:list_or_tabular, "tabular", @client_request.tabular?, title: 'Tabular output of matching names') %>
 <%= label_tag(:list_or_tabular_list, "List", title: 'List output - matching names only') %>
     <%= radio_button_tag(:list_or_tabular, "list", @client_request.list?, title: 'List of matching names') %>
