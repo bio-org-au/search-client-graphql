@@ -1,0 +1,17 @@
+  <script>
+  $(document).ready(function() {
+    $('#footer-show-edit-links-area').hide();
+    //window.history.back();
+  });
+  </script>
+
+  
+  <% if session[:show_edit_links] %>
+    Search will display Editor link in search results for you in this browser.
+  <% else %>
+    Search will not display Editor link in search results for you in this browser.
+  <% end %>
+  <br>
+  <br>
+  <br>
+  <a href="javascript:history.back()" title="Go back to previous page">Go Back to the previous page.</a>
