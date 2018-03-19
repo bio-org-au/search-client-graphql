@@ -3,7 +3,7 @@
 <hr>
 <%= link_to('clear form', name_search_path,name: 'x', title: clear_form_link_hover_text) %> |
 <%= link_to('advanced', names_advanced_search_path, title: 'Go to advanced name search') %> |
-<%= link_to('taxonomy', taxonomy_search_path(link_params: params),title: taxonomy_link_hover_text) %>
+<%= link_to('taxonomy', taxonomy_search_path,title: taxonomy_link_hover_text) %>
 <hr>
 <div class='name-details-block'>
 <%= render partial: 'name_detail' %>
