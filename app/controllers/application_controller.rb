@@ -8,10 +8,19 @@ class ApplicationController < ActionController::Base
   before_action :start_timer, :settings, :ranks
 
   rescue_from StandardError do |exception|
-    logger.error("Rescued StandardError: #{exception}")
-    @error = exception
-    exception.backtrace.each { |b| logger.error(b) }
-    render :error
+    case exception
+    when Net::ReadTimeout
+      logger.error("Rescued StandardError: #{exception}")
+      @error = "The query took too long to run.  Go back and try again...."
+      #exception.backtrace.each { |b| logger.error(b) }
+      logger.error("Query took too long!")
+      render :timeout_error
+    else
+      logger.error("Rescued StandardError: #{exception}")
+      @error = exception
+      exception.backtrace.each { |b| logger.error(b) }
+      render :error
+    end
   end
 
   private
