@@ -14,5 +14,6 @@ class NamesController::Index::Utilities::CoreArgsFilter
       @raw_query_string.delete(' ')
                        .delete("\n")
                        .sub(/search_term_placeholder/, @client_request.search_term || '')
+                       .sub(/"order_by_name_placeholder"/, @client_request.order_by_name?.to_s || '')
   end
 end

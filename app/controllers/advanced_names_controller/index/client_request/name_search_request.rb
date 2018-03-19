@@ -209,4 +209,8 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
   def synonym?
     @search_request.synonym?
   end
+
+  def order_by_name?
+    !family?
+  end
 end

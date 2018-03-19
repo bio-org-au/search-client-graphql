@@ -48,4 +48,8 @@ class AdvancedNamesController::Index::ClientRequest::NoSearchRequest
   def just_count?
     @search_request.just_count?
   end
+
+  def order_by_name?
+    false
+  end
 end

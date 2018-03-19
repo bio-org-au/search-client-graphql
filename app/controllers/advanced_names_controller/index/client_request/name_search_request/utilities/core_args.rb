@@ -24,7 +24,8 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::Utilitie
       common_name: "common_name_placeholder",
       type_note_text: "type_note_text_placeholder",
       type_note_keys: "type_note_keys_placeholder",
-      fuzzy_or_exact: "fuzzy"
+      fuzzy_or_exact: "fuzzy",
+      order_by_name: "order_by_name_placeholder"
     HEREDOC1
   end
 end

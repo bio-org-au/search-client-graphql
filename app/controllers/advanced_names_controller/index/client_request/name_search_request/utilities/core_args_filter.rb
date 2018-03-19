@@ -33,5 +33,6 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::Utilitie
                        .sub(/"common_name_placeholder"/, @client_request.common_name || '')
                        .sub(/type_note_text_placeholder/, @client_request.type_note_text || '')
                        .sub(/"type_note_keys_placeholder"/, @client_request.type_note_keys || '')
+                       .sub(/"order_by_name_placeholder"/, @client_request.order_by_name?.to_s || '')
   end
 end
