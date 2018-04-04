@@ -11,7 +11,7 @@ class Application::Names::Results
   end
 
   def no_data?
-    @search.data.nil?
+    @search.data.nil? || @search.data.name.nil?
   end
 
   def error?

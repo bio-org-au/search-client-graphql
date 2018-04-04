@@ -30,7 +30,11 @@ class NamesController < ApplicationController
     @client_request = Show::ClientRequest.new(show_params)
     @raw_result = Show::GraphqlRequest.new(@client_request)
                                                        .result
-    render_show
+    if @raw_result["data"]["name"].nil?
+      render_no_such_record
+    else
+      render_show
+    end
   end
 
   private
@@ -51,6 +55,14 @@ class NamesController < ApplicationController
     respond_to do |format|
       format.html { render :show }
       format.json { render json: @raw_result.data.name }
+    end
+  end
+
+  def render_no_such_record
+    @results = nil
+    respond_to do |format|
+      format.html { render :show_error }
+      format.json { render json: nil }
     end
   end
 

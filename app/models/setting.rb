@@ -13,14 +13,18 @@ class Setting
   end
 
   def tree_label
-    ask_for_setting('tree label')
+    if Rails.configuration.try(:tree_label).blank?
+      Rails.configuration.tree_label = ask_for_setting('tree label')
+    else
+      Rails.configuration.try(:tree_label)
+    end
   end
 
   def taxonomy_label
-    if Rails.configuration.taxonomy_label.blank?
+    if Rails.configuration.try(:taxonomy_label).blank?
       Rails.configuration.taxonomy_label = ask_for_setting('tree label')
     else
-      Rails.configuration.taxonomy_label
+      Rails.configuration.try(:taxonomy_label)
     end
   end
 

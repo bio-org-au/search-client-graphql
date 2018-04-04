@@ -228,68 +228,76 @@ Type Note:
       Type note field help
     </td>
   </tr>
-  <tr> <td colspan="2"> <hr> </td> </tr>
-  <tr>
-    <td class="label">
-      <%= label_tag(:scientific_name, "Scientific:", title: scientific_name_hover_text) %>
-    </td>
-    <td>
-      <%= check_box_tag(:scientific_name, '1', scientific_name_field_value, title: scientific_name_hover_text) %>
-    </td>
-  </tr>
-  <tr>
-    <td class="label">
-      <%= label_tag(:scientific_autonym_name,
-                    "Autonym:",
-                    title: scientific_autonym_hover_text) %>
-    </td>
-    <td>
-      <%= check_box_tag(:scientific_autonym_name, '1', scientific_autonym_field_value, title: scientific_autonym_hover_text) %>
-    </td>
-  </tr>
-  <tr>
-    <td class="label">
-      <%= label_tag(:scientific_named_hybrid_name, "Named Hybrid:", title: scientific_named_hybrid_name_hover_text) %>
-    </td>
-    <td>
-      <%= check_box_tag(:scientific_named_hybrid_name, '1', scientific_named_hybrid_name_field_value, title: scientific_named_hybrid_name_hover_text) %>
-    </td>
-  </tr>
-  <tr>
-    <td class="label">
-      <%= label_tag(:scientific_hybrid_formula_name, "Hybrid Formula:", title: scientific_hybrid_formula_name_hover_text) %>
-    </td>
-    <td>
-      <%= check_box_tag(:scientific_hybrid_formula_name, '1', scientific_hybrid_formula_name_field_value, title: scientific_hybrid_formula_name_hover_text) %>
-    </td>
-  </tr>
-  <tr id="names-types-to-search-field-help" class="field-help hidden">
-    <td></td>
-    <td>
-      Names types to search field help
-    </td>
-  </tr>
-  <tr> <td colspan="2"> <hr> </td> </tr>
-  <tr>
-    <td class="label">
-      <%= label_tag(:cultivar_name,
-              "Cultivar:",
-              title: cultivar_name_hover_text) %>
-    </td>
-    <td>
-      <%= check_box_tag(:cultivar_name, '1', params['cultivar_name'], title: cultivar_name_hover_text) %>
-    </td>
-  </tr>
-  <tr>
-    <td class="label">
-      <%= label_tag(:common_name,
-              "Common:",
-              title: common_name_hover_text) %>
-    </td>
-    <td>
-      <%= check_box_tag(:common_name, '1', params['common_name'], title: common_name_hover_text) %>
-    </td>
-  </tr>
+  <% if Rails.configuration.try('show_name_type_form_fields') %>
+    <tr> <td colspan="2"> <hr> </td> </tr>
+    <tr>
+      <td class="label">
+        <%= label_tag(:scientific_name, "Scientific:", title: scientific_name_hover_text) %>
+      </td>
+      <td>
+        <%= check_box_tag(:scientific_name, '1', scientific_name_field_value, title: scientific_name_hover_text) %>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">
+        <%= label_tag(:scientific_autonym_name,
+                      "Autonym:",
+                      title: scientific_autonym_hover_text) %>
+      </td>
+      <td>
+        <%= check_box_tag(:scientific_autonym_name, '1', scientific_autonym_field_value, title: scientific_autonym_hover_text) %>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">
+        <%= label_tag(:scientific_named_hybrid_name, "Named Hybrid:", title: scientific_named_hybrid_name_hover_text) %>
+      </td>
+      <td>
+        <%= check_box_tag(:scientific_named_hybrid_name, '1', scientific_named_hybrid_name_field_value, title: scientific_named_hybrid_name_hover_text) %>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">
+        <%= label_tag(:scientific_hybrid_formula_name, "Hybrid Formula:", title: scientific_hybrid_formula_name_hover_text) %>
+      </td>
+      <td>
+        <%= check_box_tag(:scientific_hybrid_formula_name, '1', scientific_hybrid_formula_name_field_value, title: scientific_hybrid_formula_name_hover_text) %>
+      </td>
+    </tr>
+    <tr id="names-types-to-search-field-help" class="field-help hidden">
+      <td></td>
+      <td>
+        Names types to search field help
+      </td>
+    </tr>
+  <% end %>
+  <% if Rails.configuration.try('show_cultivar_name_form_field') || Rails.configuration.try('show_common_name_form_field') %>
+    <tr> <td colspan="2"> <hr> </td> </tr>
+  <% end %>
+  <% if Rails.configuration.try('show_cultivar_name_form_field') %>
+    <tr>
+      <td class="label">
+        <%= label_tag(:cultivar_name,
+                "Cultivar:",
+                title: cultivar_name_hover_text) %>
+      </td>
+      <td>
+        <%= check_box_tag(:cultivar_name, '1', params['cultivar_name'], title: cultivar_name_hover_text) %>
+      </td>
+    </tr>
+  <% end %>
+  <% if Rails.configuration.try('show_common_name_form_field') %>
+    <tr>
+      <td class="label">
+        <%= label_tag(:common_name,
+                "Common:",
+                title: common_name_hover_text) %>
+      </td>
+      <td>
+        <%= check_box_tag(:common_name, '1', params['common_name'], title: common_name_hover_text) %>
+      </td>
+    </tr>
+  <% end %>
   <tr id="cultivar-common-field-help" class="field-help hidden">
     <td></td>
     <td>
