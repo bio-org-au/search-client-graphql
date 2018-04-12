@@ -4,7 +4,7 @@
 
 
     <li>
-    <% taxon_name_string = taxon.full_name %>
+    <% taxon_name_string = taxon.full_name_html %>
     <% taxon_name_author_string =  taxon.full_name.slice(taxon.simple_name.length,1000) %>
     <% unless taxon.name_status_name.blank? %>
       <% taxon_name_string += %(, <i class="name-status" title="name status">#{taxon.name_status_name}</i>) %>
@@ -34,14 +34,16 @@
         <% else %>
           <% pp_string = '' %>
         <% end %>
+        <span class="cross-reference-name">
         <% if @client_request.links? %>
-          <i><%= link_to name_with_hybrid_symbol(taxon_name_string).html_safe + pp_string.html_safe,
+          <%= link_to name_with_hybrid_symbol(taxon_name_string).html_safe + pp_string.html_safe,
                          show_name_path(id: taxon.id,
                                         search_form: 'names') + "#name-#{taxon.id}",
-                         title: "Show name details" %></i>
+                         title: "Show name details" %>
         <% else %>
-          <i><%= name_with_hybrid_symbol(taxon_name_string).html_safe -%><%= pp_string %></i>
+          <%= name_with_hybrid_symbol(taxon_name_string).html_safe -%><%= pp_string %>
         <% end %>
+        </span>
       <% end %>
       <%= '?' if taxon.cross_reference_misapplication.doubtful? -%>=
         <% if @client_request.links? %>

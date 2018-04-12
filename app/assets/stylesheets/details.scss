@@ -1,3 +1,12 @@
 div.family-name {
   margin-bottom: 0.3em;
 }
+
+span.cross-reference-name {
+  font-style: italic;
+}
+span.cross-reference-name author,
+span.cross-reference-name rank {
+  font-style: normal;
+}
+
