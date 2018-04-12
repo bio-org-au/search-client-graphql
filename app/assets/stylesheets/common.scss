@@ -3,19 +3,15 @@ body {
   font-size: 14px;
   line-height: 120%;
   margin-left: 1em;
+  margin-right: 1em;
   color: darkslategray;
 }
 
-body.name.development {
-  background-color: #DBE4FF;
-}
-
-body.taxonomy.development {
-  background-color: #EDFFEE;
-}
-
-body.name_check.development {
-  background-color: #F6E5FF;
+h1 {
+  line-height: 200%;
+  margin-left: -0.5em;
+  margin-right: -0.5em;
+  padding-left: 0.5em;
 }
 
 h1, h2, h3, h4, h5, h6 {
