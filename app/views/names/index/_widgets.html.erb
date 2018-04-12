@@ -1,31 +1,26 @@
 <hr class="heavy">
-<b>Result options</b>
-<br/>
-<%= label_tag(:list_or_count_list, "List", title: 'List matching names') %>
     <%= radio_button_tag(:list_or_count, "list", !@client_request.just_count?, title: 'List matching names') %>
-<br/>
-<%= label_tag(:list_or_count_count, "Count", title: 'Count matching names') %>
+    <%= label_tag(:list_or_count_list, "List", title: 'List matching names') %>
+<br>
     <%= radio_button_tag(:list_or_count, "count", @client_request.just_count?, title: 'Count matching names') %>
+    <%= label_tag(:list_or_count_count, "Count", title: 'Count matching names') %>
 
-    <hr>
-    <b>Result list options</b>
-<br/>
-    Also show:
-<br/>
-    <%= label_tag(:show_family, "Family", title: show_family_hover_text) %>
+<hr>
+<b>For lists also show:</b>
+<br>
     <%= check_box_tag(:show_family, '1', @client_request.family?,
                       title: show_family_hover_text) %>
-<br/>
-    <%= label_tag(:show_links, "Links", title: show_links_hover_text) %>
+    <%= label_tag(:show_family, "Family", title: show_family_hover_text) %>
+<br>
     <%= check_box_tag(:show_links, '1', @client_request.links?, title: show_links_hover_text) %>
-<br/>
-    <%= label_tag(:show_details, "Details", title: show_details_hover_text) %>
+    <%= label_tag(:show_links, "Links", title: show_links_hover_text) %>
+<br>
     <%= check_box_tag(:show_details, '1', @client_request.details?,
                       title: show_details_hover_text) %>
+    <%= label_tag(:show_details, "Details", title: show_details_hover_text) %>
 <hr>
-<b>Names per page:</b>
-<br/>
-    Names only:
+<b>Page limits:</b>
+<br>
     <input type="number"
            name="limit_per_page_for_list"
            title="Number of records per page when details is not checked."
@@ -34,8 +29,8 @@
            step="1"
            value="<%= params[:limit_per_page_for_list] || 50 %>"
            class="form-field"> 
-<br/>
-    Names with details:
+    <%= label_tag(:limit_per_page_for_list, "Names", title: 'This limit will apply if you have not asked for details.') %>
+<br>
     <input type="number"
            name="limit_per_page_for_details"
            title="Number of records per page when details is checked."
@@ -45,4 +40,5 @@
            step="1"
            value="<%= params[:limit_per_page_for_details] || 10 %>"
            class="form-field"> 
+    <%= label_tag(:limit_per_page_for_list, "Names with details", title:'This limit will apply if you have asked for details.') %>
 <hr>
