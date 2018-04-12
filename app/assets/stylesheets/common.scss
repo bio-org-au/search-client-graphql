@@ -3,8 +3,19 @@ body {
   font-size: 14px;
   line-height: 120%;
   margin-left: 1em;
-  background-color: floralwhite;
   color: darkslategray;
+}
+
+body.name.development {
+  background-color: #DBE4FF;
+}
+
+body.taxonomy.development {
+  background-color: #EDFFEE;
+}
+
+body.name_check.development {
+  background-color: #F6E5FF;
 }
 
 h1, h2, h3, h4, h5, h6 {

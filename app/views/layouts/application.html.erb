@@ -54,7 +54,7 @@ span.xsynonym-page {
   <%= csrf_meta_tags %>
 
 </head>
-<body>
+<body class="<%= @body_class %> <%= Rails.configuration.try('environment') %>" >
 
 <%= yield %>
 

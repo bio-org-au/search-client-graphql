@@ -35,6 +35,17 @@ class ApplicationController < ActionController::Base
     @setting = Setting.new
     @name_label = @setting.name_label
     @tree_label = @setting.tree_label
+    @body_class = decide_body_class
+  end
+
+  def decide_body_class
+    case params[:controller]
+    when  'names' then 'name'
+    when  'advanced_names' then 'name'
+    when  'name_check' then 'name_check'
+    when  'taxonomy' then 'taxonomy'
+    else 'name'
+    end
   end
 
   def ranks

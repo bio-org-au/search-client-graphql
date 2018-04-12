@@ -1,0 +1,40 @@
+
+body {
+  color: darkslategray;
+}
+
+body.name.development {
+  background-color: #DBE4FF;
+}
+
+body.taxonomy.development {
+  background-color: #EDFFEE;
+}
+
+body.name_check.development {
+  background-color: #F6E5FF;
+}
+
+body.name.production {
+  background-color: #FFD9A0;
+}
+
+body.taxonomy.production {
+  background-color: #E6FFA6;
+}
+
+body.name_check.production {
+  background-color: #B1FFC7;
+}
+
+body.name.test {
+  background-color: #DBE4FF;
+}
+
+body.taxonomy.test {
+  background-color: #EDFFEE;
+}
+
+body.name_check.test {
+  background-color: #F6E5FF;
+}
