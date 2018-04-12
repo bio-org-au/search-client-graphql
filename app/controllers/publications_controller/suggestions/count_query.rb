@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Class extracted from name controller.
-class NamesController::Index::CountQuery
+class PublicationsController::Suggestions::CountQuery
   def initialize(client_request)
     @client_request = client_request
   end
