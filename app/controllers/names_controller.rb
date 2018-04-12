@@ -7,7 +7,6 @@
 # Trim trailing spaces from the search term
 # Form a request to the Graphql server
 # Modify the request based on form fields for:
-# - list/details (ToDo)
 # - auto wildcards/exact search (ToDo)
 # - output format (ToDo)
 # urlencode the search term

@@ -5,6 +5,8 @@ class NamesController::Index::ClientRequest
   DEFAULT_LIMIT = 50
   MAX_LIST_LIMIT = 500
   MAX_DETAILS_LIMIT = 100
+  AUTO_TRAILING_WILDCARD = true
+
   def initialize(params)
     @params = params
   end
@@ -14,7 +16,18 @@ class NamesController::Index::ClientRequest
   end
 
   def search_term
-    @params[:q].present? && @params[:q].gsub(/ *$/, '')
+    return nil unless @params[:q].present?
+    if AUTO_TRAILING_WILDCARD
+      add_trailing_wildcard(@params[:q].strip)
+    else
+      @params[:q].strip
+    end
+  end
+
+  def add_trailing_wildcard(string)
+    return string if string =~ /[*%]$/
+    return string.chop if string =~ /!$/ # user doesn't want wildcard
+    string.sub(/$/, '*')
   end
 
   def scientific_name
