@@ -3,28 +3,28 @@ body {
   color: darkslategray;
 }
 
-body.name.development {
+body.name.xdevelopment {
   background-color: #DBE4FF;
 }
 
-body.taxonomy.development {
+body.taxonomy.xdevelopment {
   background-color: #EDFFEE;
 }
 
-body.name_check.development {
+body.name_check.xdevelopment {
   background-color: #F6E5FF;
 }
 
-body.name.production {
-  background-color: #FFD9A0;
+body.name.development {
+  background-color: #C0B4FF;
 }
 
-body.taxonomy.production {
-  background-color: #E6FFA6;
-}
-
-body.name_check.production {
+body.taxonomy.development {
   background-color: #B1FFC7;
+}
+
+body.name_check.development {
+  background-color: #DFC5EF;
 }
 
 body.name.test {
