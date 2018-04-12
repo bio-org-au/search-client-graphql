@@ -1,43 +1,46 @@
 <hr>
-<%= label_tag(:list_or_count_list, "List", title: 'List matching names') %>
-    <%= radio_button_tag(:list_or_count, "list", !@client_request.just_count?, title: 'List matching names') %>
-<%= label_tag(:list_or_count_count, "Count", title: 'Count matching names') %>
-    <%= radio_button_tag(:list_or_count, "count", @client_request.just_count?, title: 'Count matching names') %>
-
-<hr>
-<b>If list, show:</b>
+<b>Include:</b>
 <br>
-    <%= label_tag(:accepted_names, "Accepted Names", title: accepted_name_cb_hover_text) %>
     <%= check_box_tag(:accepted_names, '1', @client_request.accepted_name? || params.size == 2,
                       title: accepted_name_cb_hover_text) %>
+    <%= label_tag(:accepted_names, "Accepted Names", title: accepted_name_cb_hover_text) %>
 <br>
-    <%= label_tag(:excluded_names, "Excluded Names", title: excluded_name_cb_hover_text) %>
     <%= check_box_tag(:excluded_names, '1', @client_request.excluded_name? || params.size == 2,
                       title: excluded_name_cb_hover_text) %>
+    <%= label_tag(:excluded_names, "Excluded Names", title: excluded_name_cb_hover_text) %>
 <br>
-    <%= label_tag(:cross_references, "Cross References", title: cross_references_cb_hover_text) %>
     <%= check_box_tag(:cross_references, '1', @client_request.cross_reference? || params.size == 2,
                       title: cross_references_cb_hover_text) %>
+    <%= label_tag(:cross_references, "Cross References", title: cross_references_cb_hover_text) %>
+<hr>
+    <%= radio_button_tag(:list_or_count, "list", !@client_request.just_count?, title: 'List matching names') %>
+    <%= label_tag(:list_or_count_list, "List", title: 'List matching names') %>
 <br>
-    <%= label_tag(:show_links, "Links", title: show_links_hover_text) %>
+    <%= radio_button_tag(:list_or_count, "count", @client_request.just_count?, title: 'Count matching names') %>
+    <%= label_tag(:list_or_count_count, "Count", title: 'Count matching names') %>
+
+<hr>
+<b>For lists also show:</b>
+<br>
     <%= check_box_tag(:show_links, '1', @client_request.links?, title: show_links_hover_text) %>
+    <%= label_tag(:show_links, "Links", title: show_links_hover_text) %>
 <br>
-    <%= label_tag(:show_synonyms, "Synonyms", title: show_synonyms_hover_text) %>
     <%= check_box_tag(:show_synonyms, '1', @client_request.synonyms?,
                       title: show_synonyms_hover_text) %>
+    <%= label_tag(:show_synonyms, "Synonyms", title: show_synonyms_hover_text) %>
 
 <% if Rails.configuration.try('show_accepted_tree_comments_field') %>
   <br>
-      <%= label_tag(:show_comments, "Comments", title: show_comments_hover_text) %>
       <%= check_box_tag(:show_comments, '1', @client_request.comments?,
                         title: show_comments_hover_text) %>
+      <%= label_tag(:show_comments, "Comments", title: show_comments_hover_text) %>
 <% end %>
 
 <% if Rails.configuration.try('show_accepted_tree_distribution_field') %>
 <br>
-    <%= label_tag(:show_distribution, "Distribution", title: show_distribution_hover_text) %>
     <%= check_box_tag(:show_distribution, '1', @client_request.distribution?,
                       title: show_distribution_hover_text) %>
+    <%= label_tag(:show_distribution, "Distribution", title: show_distribution_hover_text) %>
 <% end %>
 
 <hr>
