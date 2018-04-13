@@ -107,9 +107,29 @@ hr.heavy {
   line-size: 250%;
   background-color: lightgray;
   margin: 10px -1em 10px -1em;
-  padding: 10px 0 10px 1em;
+  padding: 10px 1em 10px 1em;
 }
+
 ul.help {
   padding: 0 0 0 1em;
 }
+
+*.inline-block {
+  display: inline-block;
+}
+
+*.text-align-right {
+  text-align: right;
+}
+
+div.hide-help-link-container {
+  margin: -1em 0 -0.5em 0;
+  padding: 0 0 0 0;
+}
+
+div.hide-this-help-link-container {
+  margin: -0.5em 0 -0.8em 0;
+  padding: 0 0 0 0;
+}
+
 

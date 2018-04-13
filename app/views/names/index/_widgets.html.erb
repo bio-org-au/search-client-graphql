@@ -5,6 +5,7 @@
     <%= radio_button_tag(:list_or_count, "count", @client_request.just_count?, title: 'Count matching names') %>
     <%= label_tag(:list_or_count_count, "Count", title: 'Count matching names') %>
     <div id="list-or-count-field-help" class="general-help field-help hidden">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="list-or-count-field-help" title="Hide this help." >x</a></div>
       <ul class="help">
         <li> You can <em>count</em> the matching names without <em>listing</em> them.
         <li> Counting is faster than listing, especially for large searches.
@@ -13,6 +14,7 @@
         <li> Lists are paginated.
         <li> Lists also give a total count of matches.
       </ul>
+      <div class="hide-help-link-container text-align-right"><a href="" class="general-help-link" title="Hide all help on this page." >hide help</a></div>
     </div>
 <hr>
 <b>For lists also show:</b>
@@ -21,36 +23,43 @@
                       title: show_family_hover_text) %>
     <%= label_tag(:show_family, "Family", title: show_family_hover_text) %>
 <div id="show-family-field-help" class="general-help field-help hidden">
+  <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="show-family-field-help" title="Hide this help." >x</a></div>
   <ul class="help">
     <li> When listing names, show which family they belong to
     <li> When showing family, the names are sorted by family and rank 
     <li> When not showing family, the names are sorted alphabetically
   </ul>
+  <div class="hide-help-link-container text-align-right"><a href="" class="general-help-link" title="Hide all help on this page." >hide help</a></div>
 </div>
 <br>
     <%= check_box_tag(:show_links, '1', @client_request.links?, title: show_links_hover_text) %>
     <%= label_tag(:show_links, "Links", title: show_links_hover_text) %>
 <div id="show-links-field-help" class="general-help field-help hidden">
+  <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="show-links-field-help" title="Hide this help." >x</a></div>
   <ul class="help">
     <li> Listed names can be plain text, or links
     <li> Name links, when followed, display a full page of details for the name
   </ul>
+  <div class="hide-help-link-container text-align-right"><a href="" class="general-help-link" title="Hide all help on this page." >hide help</a></div>
 </div>
 <br>
     <%= check_box_tag(:show_details, '1', @client_request.details?,
                       title: show_details_hover_text) %>
     <%= label_tag(:show_details, "Details", title: show_details_hover_text) %>
 <div id="show-details-field-help" class="general-help field-help hidden">
+  <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="show-details-field-help" title="Hide this help." >x</a></div>
   <ul class="help">
     <li> Listed names can be displayed one per line without extra details.
     <li> This is the fastest listing option
     <li> Listed names can also be displayed with extra details about synonyms.
     <li> Listing names with details can take much longer, especially for big searches.
   </ul>
+  <div class="hide-help-link-container text-align-right"><a href="" class="general-help-link" title="Hide all help on this page." >hide help</a></div>
 </div>
 <hr>
 <b>Page limits:</b>
 <div id="page-limits-help" class="general-help field-help hidden">
+  <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="page-limits-help" title="Hide this help." >x</a></div>
   <ul class="help">
     <li> Listed names are presented in pages
     <li> You can choose the page size in these fields
@@ -58,6 +67,7 @@
     <li> We use page limits to avoid long and resource-intensive search which might be accidental.
     <li> We have 2 limits because detail searches require more resources and take longer to produce than simple lists.
   </ul>
+  <div class="hide-help-link-container text-align-right"><a href="" class="general-help-link" title="Hide all help on this page." >hide help</a></div>
 </div>
 <br>
     <input type="number"
@@ -81,10 +91,12 @@
            class="form-field"> 
     <%= label_tag(:limit_per_page_for_list, "Names with details", title:'This limit will apply if you have asked for details.') %>
 <div id="page-limits-field-help" class="general-help field-help hidden">
+  <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="page-limits-field-help" title="Hide this help." >x</a></div>
   <ul class="help">
-    <li> Then <em>Names</em> limit is used for simple lists.
-    <li> Then <em>Names with details</em> limit applies for lists of names with details.
+    <li> The <em>Names</em> limit is used for simple lists.
+    <li> The <em>Names with details</em> limit applies for lists of names with details.  These searches require more resources and take longer per record.
   </ul>
+  <div class="hide-help-link-container text-align-right"><a href="" class="general-help-link" title="Hide all help on this page." >hide help</a></div>
 </div>
 
 <hr>
