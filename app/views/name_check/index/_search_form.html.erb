@@ -1,11 +1,12 @@
 <div id="form-div">
 <%= form_tag(name_check_search_path, method: :get) %>
 <br>
-<textarea rows="4"
+<textarea rows="15"
           cols="50"
           name='q'
           value="<%= params['q'] %>"
           required
+          placeholder="Enter names to check here."
           title="Text area for search terms"><%= params['q'] %></textarea>
 <br>
     <%= radio_button_tag(:list_or_tabular, "tabular", @client_request.tabular?, title: 'Tabular output of matching names') %>
@@ -16,11 +17,9 @@
 
 <hr>
     <%= check_box_tag(:show_links, '1', @client_request.links?, title: name_check_show_links_hover_text) %>
-    <%= label_tag(:show_links, "Links", title: name_check_show_links_hover_text) %>
+    <%= label_tag(:show_links, "Show with links", title: name_check_show_links_hover_text) %>
 <br>
 
-Results limit:
-<br>
     <input type="number"
            name="limit"
            title="Number of records per page when details is not checked."
@@ -29,6 +28,7 @@ Results limit:
            step="1"
            value="<%= params[:limit] || 50 %>"
            class="form-field"> 
+Results per page
 <br>
 
 <input type="submit"
