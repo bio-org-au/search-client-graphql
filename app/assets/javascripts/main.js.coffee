@@ -3,6 +3,7 @@ jQuery ->
   #$('body').on('click',"input.left-aligned-form-button", (event) -> submitClick(event,$(this)))
   $('body').on('submit','form', (event) -> submitForm(event,$(this)))
   $('body').on('click','#form-help-link', (event) -> showFormHelp(event,$(this)))
+  $('body').on('click','#general-help-link', (event) -> showGeneralHelp(event,$(this)))
   $(document).on('turbolinks:load',goToSearchResults())
 
 
@@ -14,6 +15,11 @@ submitForm = (event,$element) ->
 showFormHelp = (event,$element) ->
   toggleVisibility('.field-help')
   toggleHtml('#form-help-link', 'Help', 'Hide Help')
+  false
+
+showGeneralHelp = (event,$element) ->
+  toggleVisibility('.general-help')
+  toggleHtml('#general-help-link', 'help', 'hide help')
   false
 
 toggleVisibility = (selector) ->

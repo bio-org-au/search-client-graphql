@@ -1,10 +1,20 @@
 <div id="form-div">
 <%= form_tag(name_search_path, method: :get) %>
+<br>
 <input name='q'
        type="search"
        class="form-field width40pc min-width10em max-width30em"
        value="<%= params['q'] %>" required="" autofocus="true"
+       placeholder="Enter search term"
        title="Enter a search term - a name or part of a name.">
+<div id="search-field-help" class="general-help field-help hidden">
+  <ul class="help">
+    <li> Search terms are matched against taxon names.
+    <li> Upper and lower case is ignored.
+    <li> You can supply wildcards (*).
+    <li> A trailing wildcard is added automatically.
+  </ul>
+</div>
 <%= render partial: "names/index/widgets" %>
 
 <input type="submit"
