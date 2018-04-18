@@ -66,6 +66,7 @@ class NamesController < ApplicationController
   end
 
   def render_index_html
+    @page_title = "#{@name_label} Search"
     @results = Application::Names::Results.new(@search)
     render :index
   end

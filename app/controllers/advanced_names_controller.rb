@@ -49,6 +49,7 @@ class AdvancedNamesController < ApplicationController
   end
 
   def render_index_html
+    @page_title = "#{@name_label} Search"
     if @client_request.name_search?
       @results = Application::Names::Results.new(@search)
     elsif @client_request.publication_search?

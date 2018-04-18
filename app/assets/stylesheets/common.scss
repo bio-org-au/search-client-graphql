@@ -110,6 +110,16 @@ hr.heavy {
   padding: 10px 1em 10px 1em;
 }
 
+td.field-help {
+  line-size: 250%;
+  background-color: lightgray;
+  margin: 10px -1em 10px -1em;
+  padding: 10px 1em 10px 0.2em;
+}
+td.field-help.extra-padding {
+  padding: 10px 1em 10px 0.4em;
+}
+
 ul.help {
   padding: 0 0 0 1em;
 }

@@ -28,13 +28,34 @@ body.name_check.development h1 {
 }
 
 body.name.test h1 {
-  background-color: #DBE4FF;
+  background-color: #C0B4FF;
 }
 
 body.taxonomy.test h1 {
-  background-color: #EDFFEE;
+  background-color: #B1FFC7;
 }
 
 body.name_check.test h1 {
+  background-color: #DFC5EF;
+}
+
+
+body.name.xtest h1 {
+  background-color: #DBE4FF;
+}
+
+body.taxonomy.xtest h1 {
+  background-color: #EDFFEE;
+}
+
+body.name_check.xtest h1 {
   background-color: #F6E5FF;
+}
+
+div.help-bar span.env {
+  color: white;
+}
+
+body.development div.help-bar span.env {
+  color: Gray;
 }

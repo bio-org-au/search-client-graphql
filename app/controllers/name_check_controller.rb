@@ -3,6 +3,7 @@
 # Controller
 class NameCheckController < ApplicationController
   def index
+    @page_title = "Name Check"
     @client_request = Index::ClientRequest.new(search_params)
     @wrapped_search_results = Results.new(@client_request.search_results)
   end

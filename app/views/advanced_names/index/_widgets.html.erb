@@ -1,73 +1,106 @@
 <tr> <td colspan="2"> <hr class="heavy"> </td> </tr>
 
 <tr>
-  <td colspan="2">
-    <b>Result options</b>
+  <td class="label">
+    <b>Results</b>
   </td>
 </tr>
 <tr>
-  <td class="label">
-<%= label_tag(:list_or_count_list, "List", title: 'List matching names') %>
-  </td>
+  <td></td>
   <td>
     <%= radio_button_tag(:list_or_count, "list", !@client_request.just_count?, title: 'List matching names') %>
+    <%= label_tag(:list_or_count_list, "List", title: 'List matching names') %>
   </td>
 </tr>
 <tr>
-  <td class="label">
-<%= label_tag(:list_or_count_count, "Count", title: 'Count matching names') %>
-  </td>
+  <td></td>
   <td>
     <%= radio_button_tag(:list_or_count, "count", @client_request.just_count?, title: 'Count matching names') %>
+    <%= label_tag(:list_or_count_count, "Count", title: 'Count matching names') %>
+  </td>
+</tr>
+<tr id="list-or-count-field-help" class="general-help hidden">
+  <td></td>
+  <td class="field-help extra-padding">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="list-or-count-field-help" title="Hide this help." >x</a></div>
+      <ul class="help">
+        <li>You can choose to <em>count</em> the matching names or to be provided with a <em>list</em> of them.
+        <li>Counting is faster, especially for large searches, and may be useful for exploring the dataset.
+        <li>Lists are sorted, with the order depending on whether family name is included or omitted. (See below.)
+        <li>Lists may be paginated, depending on the total number of results and the limits selected. (See below.)
+        <li>Lists also give a total count of matches at the beginning of the list.
+      </ul>
   </td>
 </tr>
 
 <tr> <td colspan="2"> <hr> </td> </tr>
 <tr>
-  <td colspan="2">
-    <b>Result list options</b>
-  </td>
-</tr>
-<tr>
-  <td colspan="2">
-    Also show:
-  </td>
-</tr>
-<tr>
   <td class="label">
-    <%= label_tag(:show_family, "Family", title: show_family_hover_text) %>
+    <strong>Also show:</strong>
   </td>
+</tr>
+<tr>
+  <td></td>
   <td>
     <%= check_box_tag(:show_family, '1', @client_request.family?,
                       title: show_family_hover_text) %>
+    <%= label_tag(:show_family, "Family", title: show_family_hover_text) %>
+  </td>
+</tr>
+<tr id="show-family-field-help" class="general-help hidden">
+  <td></td>
+  <td class="field-help extra-padding">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="show-family-field-help" title="Hide this help." >x</a></div>
+      <ul class="help">
+        <li>When listing names, their family (as recorded in the <%= @name_label %> data) can be displayed.
+        <li>If family is displayed, search results are sorted first by family. Within family, taxa are sorted alphabetically and then by taxonomic rank.
+        <li>If family is not displayed, search results are sorted alphabetically and then by taxonomic rank.
+      </ul>
   </td>
 </tr>
 <tr>
-  <td class="label">
-    <%= label_tag(:show_links, "Links", title: show_links_hover_text) %>
-  </td>
+  <td></td>
   <td>
     <%= check_box_tag(:show_links, '1', @client_request.links?, title: show_links_hover_text) %>
+    <%= label_tag(:show_links, "Links", title: show_links_hover_text) %>
+  </td>
+</tr>
+<tr id="show-links-field-help" class="general-help hidden">
+  <td></td>
+  <td class="field-help extra-padding">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="show-links-field-help" title="Hide this help." >x</a></div>
+      <ul class="help">
+        <li>Listed names can be plain text, or hyperlinks.
+        <li>If links are displayed and followed they will lead to a full page of details for the selected name.
+      </ul>
   </td>
 </tr>
 <tr>
-  <td class="label">
-    <%= label_tag(:show_details, "Details", title: show_details_hover_text) %>
-  </td>
+  <td></td>
   <td>
     <%= check_box_tag(:show_details, '1', @client_request.details?,
                       title: show_details_hover_text) %>
+    <%= label_tag(:show_details, "Details", title: show_details_hover_text) %>
   </td>
 </tr>
-<tr>
-  <td colspan="2">
-    Names per page:
+<tr id="show-details-field-help" class="general-help hidden">
+  <td></td>
+  <td class="field-help extra-padding">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="show-details-field-help" title="Hide this help." >x</a></div>
+      <ul class="help">
+        <li>Listed names can be displayed one per line without biographic details, which is the fastest option.
+        <li>If the details option is chosen listed names will be displayed with a bibliographic listing and synonymy.
+        <li>Listing names with details can take much longer, especially for big searches.
+      </ul>
   </td>
 </tr>
 <tr>
   <td class="label">
-    Names only:
+    <strong>Names per page:</strong>
   </td>
+</tr>
+<tr>
+  <td></td>
   <td>
     <input type="number"
            name="limit_per_page_for_list"
@@ -77,12 +110,11 @@
            step="1"
            value="<%= params[:limit_per_page_for_list] || 50 %>"
            class="form-field"> 
+    Names only
   </td>
 </tr>
 <tr>
-  <td class="label">
-    Names with details:
-  </td>
+  <td></td>
   <td>
     <input type="number"
            name="limit_per_page_for_details"
@@ -93,6 +125,17 @@
            step="1"
            value="<%= params[:limit_per_page_for_details] || 10 %>"
            class="form-field"> 
+    With details
+  </td>
+</tr>
+<tr id="per-page-limits-field-help" class="general-help hidden">
+  <td></td>
+  <td class="field-help extra-padding">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="per-page-limits-field-help" title="Hide this help." >x</a></div>
+      <ul class="help">
+        <li> The <em>Names</em> limit is used for simple lists.
+        <li> The <em>Names with details</em> limit applies for lists of names with details.  These searches require more resources and take longer per record.
+      </ul>
   </td>
 </tr>
 <tr> <td colspan="2"> <hr class="heavy"> </td> </tr>

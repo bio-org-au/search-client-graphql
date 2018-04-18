@@ -7,14 +7,12 @@
     <div id="list-or-count-field-help" class="general-help field-help hidden">
       <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="list-or-count-field-help" title="Hide this help." >x</a></div>
       <ul class="help">
-        <li> You can <em>count</em> the matching names without <em>listing</em> them.
-        <li> Counting is faster than listing, especially for large searches.
-        <li> You will often want to get a list of names.
-        <li> Lists are sorted, and the order depends on whether you show the family name as well. (See below.)
-        <li> Lists are paginated.
-        <li> Lists also give a total count of matches.
+        <li>You can choose to <em>count</em> the matching names or to be provided with a <em>list</em> of them.
+        <li>Counting is faster, especially for large searches, and may be useful for exploring the dataset.
+        <li>Lists are sorted, with the order depending on whether family name is included or omitted. (See below.)
+        <li>Lists may be paginated, depending on the total number of results and the limits selected. (See below.)
+        <li>Lists also give a total count of matches at the beginning of the list.
       </ul>
-      <div class="hide-help-link-container text-align-right"><a href="" class="general-help-link" title="Hide all help on this page." >hide help</a></div>
     </div>
 <hr>
 <b>For lists also show:</b>
@@ -25,11 +23,10 @@
 <div id="show-family-field-help" class="general-help field-help hidden">
   <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="show-family-field-help" title="Hide this help." >x</a></div>
   <ul class="help">
-    <li> When listing names, show which family they belong to
-    <li> When showing family, the names are sorted by family and rank 
-    <li> When not showing family, the names are sorted alphabetically
+    <li>When listing names, their family (as recorded in the <%= @name_label %> data) can be displayed.
+    <li>If family is displayed, search results are sorted first by family. Within family, taxa are sorted alphabetically and then by taxonomic rank.
+    <li>If family is not displayed, search results are sorted alphabetically and then by taxonomic rank.
   </ul>
-  <div class="hide-help-link-container text-align-right"><a href="" class="general-help-link" title="Hide all help on this page." >hide help</a></div>
 </div>
 <br>
     <%= check_box_tag(:show_links, '1', @client_request.links?, title: show_links_hover_text) %>
@@ -37,10 +34,9 @@
 <div id="show-links-field-help" class="general-help field-help hidden">
   <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="show-links-field-help" title="Hide this help." >x</a></div>
   <ul class="help">
-    <li> Listed names can be plain text, or links
-    <li> Name links, when followed, display a full page of details for the name
+    <li>Listed names can be plain text, or hyperlinks.
+    <li>If links are displayed and followed they will lead to a full page of details for the selected name.
   </ul>
-  <div class="hide-help-link-container text-align-right"><a href="" class="general-help-link" title="Hide all help on this page." >hide help</a></div>
 </div>
 <br>
     <%= check_box_tag(:show_details, '1', @client_request.details?,
@@ -49,25 +45,21 @@
 <div id="show-details-field-help" class="general-help field-help hidden">
   <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="show-details-field-help" title="Hide this help." >x</a></div>
   <ul class="help">
-    <li> Listed names can be displayed one per line without extra details.
-    <li> This is the fastest listing option
-    <li> Listed names can also be displayed with extra details about synonyms.
-    <li> Listing names with details can take much longer, especially for big searches.
+    <li>Listed names can be displayed one per line without biographic details, which is the fastest option.
+    <li>If the details option is chosen listed names will be displayed with a bibliographic listing and synonymy.
+    <li>Listing names with details can take much longer, especially for big searches.
   </ul>
-  <div class="hide-help-link-container text-align-right"><a href="" class="general-help-link" title="Hide all help on this page." >hide help</a></div>
 </div>
 <hr>
 <b>Page limits:</b>
 <div id="page-limits-help" class="general-help field-help hidden">
   <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="page-limits-help" title="Hide this help." >x</a></div>
   <ul class="help">
-    <li> Listed names are presented in pages
-    <li> You can choose the page size in these fields
-    <li> There are two pages limits below - one for simple lists and one for lists with details.
-    <li> We use page limits to avoid long and resource-intensive search which might be accidental.
-    <li> We have 2 limits because detail searches require more resources and take longer to produce than simple lists.
+    <li>Listed names are presented using default page size limits, to avoid large resource-intensive searches (which may be accidental).
+    <li>There are two different page size limits below: one for simple lists and one for lists with details.
+    <li>You can change the page size in these fields by using the up and down arrows or by typing a number.
+    <li>We use page limits to avoid long and resource-intensive search which might be accidental. 
   </ul>
-  <div class="hide-help-link-container text-align-right"><a href="" class="general-help-link" title="Hide all help on this page." >hide help</a></div>
 </div>
 <br>
     <input type="number"
@@ -96,7 +88,6 @@
     <li> The <em>Names</em> limit is used for simple lists.
     <li> The <em>Names with details</em> limit applies for lists of names with details.  These searches require more resources and take longer per record.
   </ul>
-  <div class="hide-help-link-container text-align-right"><a href="" class="general-help-link" title="Hide all help on this page." >hide help</a></div>
 </div>
 
 <hr>

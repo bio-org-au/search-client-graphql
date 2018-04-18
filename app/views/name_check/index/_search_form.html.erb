@@ -6,19 +6,38 @@
           name='q'
           value="<%= params['q'] %>"
           required
-          placeholder="Enter names to check here."
+          placeholder="Names to check."
           title="Text area for search terms"><%= params['q'] %></textarea>
 <br>
+<div id="search-text-area-field-help" class="general-help field-help hidden">
+  <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="search-text-area-field-help" title="Hide this help." >x</a></div>
+  <ul class="help">
+  </ul>
+</div>
     <%= radio_button_tag(:list_or_tabular, "tabular", @client_request.tabular?, title: 'Tabular output of matching names') %>
     <%= label_tag(:list_or_tabular_tabular, "Table", title: 'Tabular output - can show more information than list output') %>
 <br>
     <%= radio_button_tag(:list_or_tabular, "list", @client_request.list?, title: 'List of matching names') %>
     <%= label_tag(:list_or_tabular_list, "List", title: 'List output - matching names only') %>
+<div id="list-or-tabular-field-help" class="general-help field-help hidden">
+  <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="list-or-tabular-field-help" title="Hide this help." >x</a></div>
+  <ul class="help">
+  </ul>
+</div>
 
 <hr>
     <%= check_box_tag(:show_links, '1', @client_request.links?, title: name_check_show_links_hover_text) %>
     <%= label_tag(:show_links, "Show with links", title: name_check_show_links_hover_text) %>
 <br>
+<div id="show-links-field-help" class="general-help field-help hidden">
+  <div class="hide-this-help-link-container text-align-right">
+    <a href="" class="hide-this-help-link" data-target-id="show-links-field-help" title="Hide this help." >x</a>
+  </div>
+  <ul class="help">
+    <li>Listed names can be plain text, or hyperlinks.
+    <li>If links are displayed and followed they will lead to a full page of details for the selected name.
+  </ul>
+</div>
 
     <input type="number"
            name="limit"
@@ -28,8 +47,14 @@
            step="1"
            value="<%= params[:limit] || 50 %>"
            class="form-field"> 
-Results per page
+Per page
 <br>
+<div id="page-limit-field-help" class="general-help field-help hidden">
+  <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="page-limit-field-help" title="Hide this help." >x</a></div>
+  <ul class="help">
+  </ul>
+</div>
+
 
 <input type="submit"
        value="Search"

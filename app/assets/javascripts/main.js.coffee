@@ -5,7 +5,7 @@ jQuery ->
   $('body').on('click','#form-help-link', (event) -> showFormHelp(event,$(this)))
   $('body').on('click','#general-help-link', (event) -> toggleGeneralHelp(event,$(this)))
   $('body').on('click','.general-help-link', (event) -> toggleGeneralHelp(event,$(this)))
-  $('body').on('click','.hide-this-help-link', (event) -> hideElement(event,$(this)))
+  $('body').on('click','.hide-this-help-link', (event) -> hideOneHelpElement(event,$(this)))
   $(document).on('turbolinks:load',goToSearchResults())
 
 
@@ -55,6 +55,13 @@ toggleHtml = (selector, textA, textB) ->
     $(selector).html(textB)
   else
     $(selector).html(textA)
+    
+hideOneHelpElement = (event,$element) ->
+  hideElement(event,$element)
+  if $('.general-help:visible').length == 0
+    $('#general-help-link').html('help')
+  false
+
 
 hideElement = (event,$element) ->
   hideTargets('#'+$element.data('target-id'))

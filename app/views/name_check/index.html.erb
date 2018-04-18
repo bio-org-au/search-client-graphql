@@ -1,3 +1,7 @@
+<div class='help-bar'>
+  <span class="env"><%= Rails.configuration.try('environment') %> </span>
+<a href="" id="general-help-link" title="Show helpful information about the page." >help</a>
+</div>
 <h1><%= @name_label %>/<%= @tree_label %> Name Check</h1>
 <%= render partial: 'name_check/index/search_form' %>
 <hr>

@@ -1,4 +1,3 @@
-<a href="" id="form-help-link" title="Show information about the fields in this search form." >Help</a>
 <div id="form-div">
 <%= form_tag(names_advanced_search_path, method: :get) %>
 <table class="for-search-form width80pc">
@@ -13,10 +12,11 @@
        title="Enter a search term to restrict the family. Wildcards are supported.">
     </td>
   </tr>
-  <tr id="family-field-help" class="field-help hidden">
+  <tr id="family-field-help" class="general-help xhidden">
     <td></td>
-    <td>
-      Family field help
+    <td class="field-help" colspan="2">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="family-field-help" title="Hide this help." >x</a></div>
+      A search on family returns any matching family names and all their subordinate taxa. Wildcards are not added automatically.
     </td>
   </tr>
   <tr>
@@ -30,10 +30,11 @@
        title="Enter a search term to restrict the genus. Wildcards are supported.">
     </td>
   </tr>
-  <tr id="genus-field-help" class="field-help hidden">
+  <tr id="genus-field-help" class="general-help xhidden">
     <td></td>
-    <td>
-      Genus field help
+    <td colspan="2" class="field-help">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="genus-field-help" title="Hide this help." >x</a></div>
+A search on genus returns any matching genus names and all their subordinate taxa. Wildcards are not added automatically.
     </td>
   </tr>
   <tr>
@@ -47,10 +48,11 @@
        title="Enter a search term to restrict the non-genus component of taxon names. Wildcards are supported.">
     </td>
   </tr>
-  <tr id="epithet-field-help" class="field-help hidden">
+  <tr id="epithet-field-help" class="general-help xhidden">
     <td></td>
-    <td>
-      Epithet field help
+    <td colspan="2" class="field-help">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="epithet-field-help" title="Hide this help." >x</a></div>
+A search on epithet returns any names below the rank of genus where the subgeneric, specific or infraspecific epithets match the search string. Wildcards are not added automatically.
     </td>
   </tr>
 
@@ -67,10 +69,11 @@
               title= "<%= advanced_search_name_hover_text%>">
     </td>
   </tr>
-  <tr id="complete-name-field-help" class="field-help hidden">
+  <tr id="complete-name-field-help" class="general-help xhidden">
     <td></td>
-    <td>
-      Complete name field help
+    <td colspan="2" class="field-help">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="complete-name-field-help" title="Hide this help." >x</a></div>
+A search on complete name (with or without author citation) returns exactly matching records only. Wildcards are not added automatically.
     </td>
   </tr>
 
@@ -87,10 +90,11 @@
        title="Enter a search term to restrict the taxon name authority. Covers basionym-author and ex-basionym-author.">
     </td>
   </tr>
-  <tr id="basionym-author-abbrev-field-help" class="field-help hidden">
+  <tr id="basionym-author-abbrev-field-help" class="general-help xhidden">
     <td></td>
-    <td>
-      Basionym author abbreviation field help
+    <td colspan="2" class="field-help">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="basionym-author-abbrev-field-help" title="Hide this help." >x</a></div>
+***See comments re: need to search constructed author string in NSL-2529*
     </td>
   </tr>
 
@@ -105,10 +109,11 @@
        title="Enter a search term to restrict the taxon name authority. Covers author and ex-author.">
     </td>
   </tr>
-  <tr id="taxon-name_author-abbrev-field-help" class="field-help hidden">
+  <tr id="taxon-name-author-abbrev-field-help" class="general-help xhidden">
     <td></td>
-    <td>
-      Taxon name author abbreviation field help
+    <td colspan="2" class="field-help">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="taxon-name-author-abbrev-field-help" title="Hide this help." >x</a></div>
+***See comments re: need to search constructed author string in NSL-2529*
     </td>
   </tr>
 
@@ -125,21 +130,21 @@
 
     </td>
   </tr>
-    <tr>
-    <td class="label">
-<%= label_tag(:include_ranks_below,
-              "Include&nbsp;ranks&nbsp;below:".html_safe,
-              title: include_ranks_below_hover_text) %>
-    </td>
+  <tr>
+    <td></td>
     <td>
       <%= check_box_tag(:include_ranks_below, '1', params['include_ranks_below'], 
                         title: include_ranks_below_hover_text) %>
+      <%= label_tag(:include_ranks_below,
+              "Include&nbsp;ranks&nbsp;below".html_safe,
+              title: include_ranks_below_hover_text) %>
     </td>
   </tr>
-  <tr id="rank-field-help" class="field-help hidden">
+  <tr id="rank-field-help" class="general-help xhidden">
     <td></td>
-    <td>
-      Rank field help
+    <td colspan="2" class="field-help">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="rank-field-help" title="Hide this help." >x</a></div>
+To limit your search to a particular taxonomic rank, select it from the dropdown list.
     </td>
   </tr>
 
@@ -156,6 +161,13 @@ Publication:
        autocomplete="off" >
     </td>
   </tr>
+  <tr id="publication-field-help" class="general-help xhidden">
+    <td></td>
+    <td colspan="2" class="field-help">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="publication-field-help" title="Hide this help." >x</a></div>
+A search on any part of a bibliographic citation (i.e. authorship, publication title, volume and year) will return names attached to any matching publications. Alternatively, specific publications can be selected from the typehead list.
+    </td>
+  </tr>
   <tr>
     <td class="label" title="Publication year">
 Year:
@@ -167,18 +179,26 @@ Year:
        title="Enter a publication year term to restrict the search. No wildcards.">
     </td>
   </tr>
-  <tr>
-    <td class="label">
-      <%= label_tag(:protologue, "Protologue:", title: protologue_hover_text) %>
-    </td>
-    <td>
-      <%= check_box_tag(:protologue, '1', params['protologue'], title: protologue_hover_text) %>
+  <tr id="publication-year-field-help" class="general-help xhidden">
+    <td></td>
+    <td colspan="2" class="field-help">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="publication-year-field-help" title="Hide this help." >x</a></div>
+Used in combination with the Publication field, this field can be used to limit results to works published in a specified year. Use arrow buttons or type a four-digit year.
     </td>
   </tr>
-  <tr id="publication-field-help" class="field-help hidden">
+  <tr>
     <td></td>
     <td>
-      Publication field help
+      <%= check_box_tag(:protologue, '1', params['protologue'], title: protologue_hover_text) %>
+      <%= label_tag(:protologue, "Protologue", title: protologue_hover_text) %>
+    </td>
+  </tr>
+  <tr id="publication-protolgue-field-help" class="general-help xhidden">
+    <td></td>
+    <td colspan="2" class="field-help">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="publication-protolgue-field-help" title="Hide this help." >x</a></div>
+Used in combination with the Publication field, this search will return names from matching publications only if they are the protologue for the name.
+
     </td>
   </tr>
   <tr> <td colspan="2"> <hr> </td> </tr>
@@ -195,79 +215,74 @@ Type Note:
     </td>
   </tr>
   <tr>
-    <td class="label">
-      <%= label_tag(:type_note_key_type,
-              "Type:",
-              title: type_note_key_type_hover_text) %>
-    </td>
-    <td>
-      <%= check_box_tag(:type_note_key_type, '1', type_note_key_type_field_value, title: type_note_key_type_hover_text) %>
-    </td>
-  </tr>
-  <tr>
-    <td class="label">
-      <%= label_tag(:type_note_key_neotype,
-              "Neotype:",
-              title: type_note_key_neotype_hover_text) %>
-    </td>
-    <td>
-      <%= check_box_tag(:type_note_key_neotype, '1', type_note_key_neotype_field_value, title: type_note_key_neotype_hover_text) %>
-    </td>
-  </tr>
-  <tr>
-    <td class="label">
-      <%= label_tag(:type_note_key_lectotype, "Lectotype:", title: type_note_key_lectotype_hover_text) %>
-    </td>
-    <td>
-      <%= check_box_tag(:type_note_key_lectotype, '1', type_note_key_lectotype_field_value, title: type_note_key_lectotype_hover_text) %>
-    </td>
-  </tr>
-  <tr id="type-note-field-help" class="field-help hidden">
     <td></td>
     <td>
+      <%= check_box_tag(:type_note_key_type, '1', type_note_key_type_field_value, title: type_note_key_type_hover_text) %>
+      <%= label_tag(:type_note_key_type,
+              "Type",
+              title: type_note_key_type_hover_text) %>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      <%= check_box_tag(:type_note_key_neotype, '1', type_note_key_neotype_field_value, title: type_note_key_neotype_hover_text) %>
+      <%= label_tag(:type_note_key_neotype,
+              "Neotype",
+              title: type_note_key_neotype_hover_text) %>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      <%= check_box_tag(:type_note_key_lectotype, '1', type_note_key_lectotype_field_value, title: type_note_key_lectotype_hover_text) %>
+      <%= label_tag(:type_note_key_lectotype, "Lectotype", title: type_note_key_lectotype_hover_text) %>
+    </td>
+  </tr>
+  <tr id="type-note-field-help" class="general-help xhidden">
+    <td></td>
+    <td colspan="2" class="field-help">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="type-note-field-help" title="Hide this help." >x</a></div>
       Type note field help
     </td>
   </tr>
   <% if Rails.configuration.try('show_name_type_form_fields') %>
     <tr> <td colspan="2"> <hr> </td> </tr>
     <tr>
-      <td class="label">
-        <%= label_tag(:scientific_name, "Scientific:", title: scientific_name_hover_text) %>
-      </td>
-      <td>
-        <%= check_box_tag(:scientific_name, '1', scientific_name_field_value, title: scientific_name_hover_text) %>
-      </td>
-    </tr>
-    <tr>
-      <td class="label">
-        <%= label_tag(:scientific_autonym_name,
-                      "Autonym:",
-                      title: scientific_autonym_hover_text) %>
-      </td>
-      <td>
-        <%= check_box_tag(:scientific_autonym_name, '1', scientific_autonym_field_value, title: scientific_autonym_hover_text) %>
-      </td>
-    </tr>
-    <tr>
-      <td class="label">
-        <%= label_tag(:scientific_named_hybrid_name, "Named Hybrid:", title: scientific_named_hybrid_name_hover_text) %>
-      </td>
-      <td>
-        <%= check_box_tag(:scientific_named_hybrid_name, '1', scientific_named_hybrid_name_field_value, title: scientific_named_hybrid_name_hover_text) %>
-      </td>
-    </tr>
-    <tr>
-      <td class="label">
-        <%= label_tag(:scientific_hybrid_formula_name, "Hybrid Formula:", title: scientific_hybrid_formula_name_hover_text) %>
-      </td>
-      <td>
-        <%= check_box_tag(:scientific_hybrid_formula_name, '1', scientific_hybrid_formula_name_field_value, title: scientific_hybrid_formula_name_hover_text) %>
-      </td>
-    </tr>
-    <tr id="names-types-to-search-field-help" class="field-help hidden">
       <td></td>
       <td>
-        Names types to search field help
+        <%= check_box_tag(:scientific_name, '1', scientific_name_field_value, title: scientific_name_hover_text) %>
+        <%= label_tag(:scientific_name, "Scientific", title: scientific_name_hover_text) %>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <%= check_box_tag(:scientific_autonym_name, '1', scientific_autonym_field_value, title: scientific_autonym_hover_text) %>
+        <%= label_tag(:scientific_autonym_name,
+                      "Autonym",
+                      title: scientific_autonym_hover_text) %>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <%= check_box_tag(:scientific_named_hybrid_name, '1', scientific_named_hybrid_name_field_value, title: scientific_named_hybrid_name_hover_text) %>
+        <%= label_tag(:scientific_named_hybrid_name, "Named Hybrid", title: scientific_named_hybrid_name_hover_text) %>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <%= check_box_tag(:scientific_hybrid_formula_name, '1', scientific_hybrid_formula_name_field_value, title: scientific_hybrid_formula_name_hover_text) %>
+        <%= label_tag(:scientific_hybrid_formula_name, "Hybrid Formula", title: scientific_hybrid_formula_name_hover_text) %>
+      </td>
+    </tr>
+    <tr id="name-types-to-search-field-help" class="general-help xhidden">
+      <td></td>
+      <td colspan="2" class="field-help">
+        <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="name-types-to-search-field-help" title="Hide this help." >x</a></div>
+        Name types to search field help
       </td>
     </tr>
   <% end %>
@@ -276,31 +291,30 @@ Type Note:
   <% end %>
   <% if Rails.configuration.try('show_cultivar_name_form_field') %>
     <tr>
-      <td class="label">
-        <%= label_tag(:cultivar_name,
-                "Cultivar:",
-                title: cultivar_name_hover_text) %>
-      </td>
+      <td></td>
       <td>
         <%= check_box_tag(:cultivar_name, '1', params['cultivar_name'], title: cultivar_name_hover_text) %>
+        <%= label_tag(:cultivar_name,
+                "Cultivar",
+                title: cultivar_name_hover_text) %>
       </td>
     </tr>
   <% end %>
   <% if Rails.configuration.try('show_common_name_form_field') %>
     <tr>
-      <td class="label">
-        <%= label_tag(:common_name,
-                "Common:",
-                title: common_name_hover_text) %>
-      </td>
+      <td></td>
       <td>
         <%= check_box_tag(:common_name, '1', params['common_name'], title: common_name_hover_text) %>
+        <%= label_tag(:common_name,
+                "Common",
+                title: common_name_hover_text) %>
       </td>
     </tr>
   <% end %>
-  <tr id="cultivar-common-field-help" class="field-help hidden">
+  <tr id="cultivar-common-field-help" class="general-help xhidden">
     <td></td>
-    <td>
+    <td colspan="2" class="field-help">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="cultivar-common-field-help" title="Hide this help." >x</a></div>
       Cultivar common field help
     </td>
   </tr>

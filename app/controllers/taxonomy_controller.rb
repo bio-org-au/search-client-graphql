@@ -35,6 +35,7 @@ class TaxonomyController < ApplicationController
   end
 
   def render_index_html
+    @page_title = "#{@tree_label} Search"
     @results = TaxonomyController::Results.new(@search)
     render :index
   end
