@@ -12,7 +12,7 @@
        title="Enter a search term to restrict the family. Wildcards are supported.">
     </td>
   </tr>
-  <tr id="family-field-help" class="general-help xhidden">
+  <tr id="family-field-help" class="general-help hidden">
     <td></td>
     <td class="field-help" colspan="2">
       <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="family-field-help" title="Hide this help." >x</a></div>
@@ -30,7 +30,7 @@
        title="Enter a search term to restrict the genus. Wildcards are supported.">
     </td>
   </tr>
-  <tr id="genus-field-help" class="general-help xhidden">
+  <tr id="genus-field-help" class="general-help hidden">
     <td></td>
     <td colspan="2" class="field-help">
       <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="genus-field-help" title="Hide this help." >x</a></div>
@@ -48,7 +48,7 @@ A search on genus returns any matching genus names and all their subordinate tax
        title="Enter a search term to restrict the non-genus component of taxon names. Wildcards are supported.">
     </td>
   </tr>
-  <tr id="epithet-field-help" class="general-help xhidden">
+  <tr id="epithet-field-help" class="general-help hidden">
     <td></td>
     <td colspan="2" class="field-help">
       <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="epithet-field-help" title="Hide this help." >x</a></div>
@@ -69,7 +69,7 @@ A search on epithet returns any names below the rank of genus where the subgener
               title= "<%= advanced_search_name_hover_text%>">
     </td>
   </tr>
-  <tr id="complete-name-field-help" class="general-help xhidden">
+  <tr id="complete-name-field-help" class="general-help hidden">
     <td></td>
     <td colspan="2" class="field-help">
       <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="complete-name-field-help" title="Hide this help." >x</a></div>
@@ -90,7 +90,7 @@ A search on complete name (with or without author citation) returns exactly matc
        title="Enter a search term to restrict the taxon name authority. Covers basionym-author and ex-basionym-author.">
     </td>
   </tr>
-  <tr id="basionym-author-abbrev-field-help" class="general-help xhidden">
+  <tr id="basionym-author-abbrev-field-help" class="general-help hidden">
     <td></td>
     <td colspan="2" class="field-help">
       <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="basionym-author-abbrev-field-help" title="Hide this help." >x</a></div>
@@ -109,7 +109,7 @@ A search on complete name (with or without author citation) returns exactly matc
        title="Enter a search term to restrict the taxon name authority. Covers author and ex-author.">
     </td>
   </tr>
-  <tr id="taxon-name-author-abbrev-field-help" class="general-help xhidden">
+  <tr id="taxon-name-author-abbrev-field-help" class="general-help hidden">
     <td></td>
     <td colspan="2" class="field-help">
       <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="taxon-name-author-abbrev-field-help" title="Hide this help." >x</a></div>
@@ -140,7 +140,7 @@ A search on complete name (with or without author citation) returns exactly matc
               title: include_ranks_below_hover_text) %>
     </td>
   </tr>
-  <tr id="rank-field-help" class="general-help xhidden">
+  <tr id="rank-field-help" class="general-help hidden">
     <td></td>
     <td colspan="2" class="field-help">
       <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="rank-field-help" title="Hide this help." >x</a></div>
@@ -161,7 +161,7 @@ Publication:
        autocomplete="off" >
     </td>
   </tr>
-  <tr id="publication-field-help" class="general-help xhidden">
+  <tr id="publication-field-help" class="general-help hidden">
     <td></td>
     <td colspan="2" class="field-help">
       <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="publication-field-help" title="Hide this help." >x</a></div>
@@ -179,7 +179,7 @@ Year:
        title="Enter a publication year term to restrict the search. No wildcards.">
     </td>
   </tr>
-  <tr id="publication-year-field-help" class="general-help xhidden">
+  <tr id="publication-year-field-help" class="general-help hidden">
     <td></td>
     <td colspan="2" class="field-help">
       <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="publication-year-field-help" title="Hide this help." >x</a></div>
@@ -193,7 +193,7 @@ Used in combination with the Publication field, this field can be used to limit 
       <%= label_tag(:protologue, "Protologue", title: protologue_hover_text) %>
     </td>
   </tr>
-  <tr id="publication-protolgue-field-help" class="general-help xhidden">
+  <tr id="publication-protolgue-field-help" class="general-help hidden">
     <td></td>
     <td colspan="2" class="field-help">
       <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="publication-protolgue-field-help" title="Hide this help." >x</a></div>
@@ -239,7 +239,7 @@ Type Note:
       <%= label_tag(:type_note_key_lectotype, "Lectotype", title: type_note_key_lectotype_hover_text) %>
     </td>
   </tr>
-  <tr id="type-note-field-help" class="general-help xhidden">
+  <tr id="type-note-field-help" class="general-help hidden">
     <td></td>
     <td colspan="2" class="field-help">
       <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="type-note-field-help" title="Hide this help." >x</a></div>
@@ -278,7 +278,7 @@ Type Note:
         <%= label_tag(:scientific_hybrid_formula_name, "Hybrid Formula", title: scientific_hybrid_formula_name_hover_text) %>
       </td>
     </tr>
-    <tr id="name-types-to-search-field-help" class="general-help xhidden">
+    <tr id="name-types-to-search-field-help" class="general-help hidden">
       <td></td>
       <td colspan="2" class="field-help">
         <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="name-types-to-search-field-help" title="Hide this help." >x</a></div>
@@ -311,7 +311,7 @@ Type Note:
       </td>
     </tr>
   <% end %>
-  <tr id="cultivar-common-field-help" class="general-help xhidden">
+  <tr id="cultivar-common-field-help" class="general-help hidden">
     <td></td>
     <td colspan="2" class="field-help">
       <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="cultivar-common-field-help" title="Hide this help." >x</a></div>
