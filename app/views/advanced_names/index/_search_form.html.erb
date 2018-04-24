@@ -16,7 +16,7 @@
     <td></td>
     <td class="field-help" colspan="2">
       <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="family-field-help" title="Hide this help." >x</a></div>
-      A search on family returns any matching family names and all their subordinate taxa. Wildcards are not added automatically.
+      A search on family (without author citation) returns any matching family names and all their subordinate taxa. Wildcards are not added automatically.
     </td>
   </tr>
   <tr>
@@ -34,7 +34,7 @@
     <td></td>
     <td colspan="2" class="field-help">
       <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="genus-field-help" title="Hide this help." >x</a></div>
-A search on genus returns any matching genus names and all their subordinate taxa. Wildcards are not added automatically.
+      A search on genus (without author citation) returns any matching genus names and all their subordinate taxa. Wildcards are not added automatically.
     </td>
   </tr>
   <tr>
@@ -60,7 +60,7 @@ A search on epithet returns any names below the rank of genus where the subgener
 
   <tr>
     <td class="label width10pc">
-    Complete Name:
+    Complete&nbsp;Name:
     </td>
     <td class="width80pc">
        <input name='q' type="search"
@@ -81,7 +81,7 @@ A search on complete name (with or without author citation) returns exactly matc
 
   <tr>
     <td class="label">
-    Basionym Author:
+    Basionym&nbsp;Author:
     </td>
     <td>
     <input name='basionym_author_abbrev' type="search"
@@ -172,7 +172,7 @@ Publication:
     <td></td>
     <td colspan="2" class="field-help">
       <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="publication-field-help" title="Hide this help." >x</a></div>
-A search on any part of a bibliographic citation (i.e. authorship, publication title, volume and year) will return names attached to any matching publications. Alternatively, specific publications can be selected from the typehead list.
+      A search on any part of a bibliographic citation (i.e. authorship, publication title, volume and year) entered in any order will return names attached to any matching publications. Alternatively, specific publications can be selected from the typehead list.
     </td>
   </tr>
   <tr>
@@ -190,7 +190,9 @@ Year:
     <td></td>
     <td colspan="2" class="field-help">
       <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="publication-year-field-help" title="Hide this help." >x</a></div>
-Used in combination with the Publication field, this field can be used to limit results to works published in a specified year. Use arrow buttons or type a four-digit year.
+
+Use arrow buttons or type a four-digit year. This field must be used in combination with the Publication field and/or the Protologue checkbox. If a year is specified, search results will be limited to names cited in works published in that year.
+
     </td>
   </tr>
   <tr>
@@ -204,21 +206,32 @@ Used in combination with the Publication field, this field can be used to limit 
     <td></td>
     <td colspan="2" class="field-help">
       <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="publication-protolgue-field-help" title="Hide this help." >x</a></div>
-Used in combination with the Publication field, this search will return names from matching publications only if they are the protologue for the name.
+
+      This field must be used in combination with the Publication field and/or the Year field. If selected, this option will limit the results to names published in matching works that are the protologue reference for those names.
+
 
     </td>
   </tr>
   <tr> <td colspan="2"> <hr> </td> </tr>
   <tr>
     <td class="label">
-Type Note:
+Type&nbsp;Citation:
     </td>
     <td>
-      <% type_note_text_hover_text = "Enter type note text for the search. Wildcards are supported." %>
+      <% type_note_text_hover_text = "Enter type citation text for the search. Wildcards are supported." %>
       <input id='type_note_text' name='type_note_text' type="search"
        class="form-field width40pc min-width10em max-width30em"
        value="<%= params['type_note_text'] %>"
        title= "<%= type_note_text_hover_text %>" >
+    </td>
+  </tr>
+  <tr id="type-note-field-help" class="general-help hidden">
+    <td></td>
+    <td colspan="2" class="field-help">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="type-note-field-help" title="Hide this help." >x</a></div>
+
+This search will return names where the type citation (whether in the protologue or secondary references) matches the string provided. A leading wildcard is added by default; use of further wildcards (*) is advised as the word order in type citations may vary.
+      
     </td>
   </tr>
   <tr>
@@ -230,6 +243,15 @@ Type Note:
               title: type_note_key_type_hover_text) %>
     </td>
   </tr>
+  <tr id="type-note-key-type-field-help" class="general-help hidden">
+    <td></td>
+    <td colspan="2" class="field-help">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="type-note-key-type-field-help" title="Hide this help." >x</a></div>
+
+      This option must be used in combination with the type citation field. It will return names where the search string matches type details provided in the protologue (if any), plus in any secondary references containing type information.
+      
+    </td>
+  </tr>
   <tr>
     <td></td>
     <td>
@@ -239,6 +261,15 @@ Type Note:
               title: type_note_key_neotype_hover_text) %>
     </td>
   </tr>
+  <tr id="type-note-key-neotype-field-help" class="general-help hidden">
+    <td></td>
+    <td colspan="2" class="field-help">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="type-note-key-neotype-field-help" title="Hide this help." >x</a></div>
+
+      This option must be used in combination with the type citation field. It will return names where the search string matches neotype details provided in the neotypifying reference.
+      
+    </td>
+  </tr>
   <tr>
     <td></td>
     <td>
@@ -246,11 +277,13 @@ Type Note:
       <%= label_tag(:type_note_key_lectotype, "Lectotype", title: type_note_key_lectotype_hover_text) %>
     </td>
   </tr>
-  <tr id="type-note-field-help" class="general-help hidden">
+  <tr id="type-note-key-lectotype-field-help" class="general-help hidden">
     <td></td>
     <td colspan="2" class="field-help">
-      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="type-note-field-help" title="Hide this help." >x</a></div>
-      Type note field help
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="type-note-key-lectotype-field-help" title="Hide this help." >x</a></div>
+
+      This option must be used in combination with the type citation field. It will return names where the search string matches lectotype details provided in the lectotypifying reference.
+      
     </td>
   </tr>
   <% if Rails.configuration.try('show_name_type_form_fields') %>
@@ -262,6 +295,13 @@ Type Note:
         <%= label_tag(:scientific_name, "Scientific", title: scientific_name_hover_text) %>
       </td>
     </tr>
+    <tr id="scientific-name-cbox-help" class="general-help hidden">
+      <td></td>
+      <td colspan="2" class="field-help">
+        <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="scientific-name-cbox-help" title="Hide this help." >x</a></div>
+        This option can be used to include or exclude scientific names.
+      </td>
+    </tr>
     <tr>
       <td></td>
       <td>
@@ -271,11 +311,27 @@ Type Note:
                       title: scientific_autonym_hover_text) %>
       </td>
     </tr>
+    <tr id="scientific-autonym-cbox-help" class="general-help hidden">
+      <td></td>
+      <td colspan="2" class="field-help">
+        <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="scientific-autonym-cbox-help" title="Hide this help." >x</a></div>
+        This option can be used to include or exclude autonyms.
+      </td>
+    </tr>
     <tr>
       <td></td>
       <td>
         <%= check_box_tag(:scientific_named_hybrid_name, '1', scientific_named_hybrid_name_field_value, title: scientific_named_hybrid_name_hover_text) %>
         <%= label_tag(:scientific_named_hybrid_name, "Named Hybrid", title: scientific_named_hybrid_name_hover_text) %>
+      </td>
+    </tr>
+    <tr id="scientific-named-hybrid-cbox-help" class="general-help hidden">
+      <td></td>
+      <td colspan="2" class="field-help">
+        <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="scientific-named-hybrid-cbox-help" title="Hide this help." >x</a></div>
+
+This option can be used to include or exclude hybrid taxa that have been formally named.
+        
       </td>
     </tr>
     <tr>
@@ -285,17 +341,23 @@ Type Note:
         <%= label_tag(:scientific_hybrid_formula_name, "Hybrid Formula", title: scientific_hybrid_formula_name_hover_text) %>
       </td>
     </tr>
-    <tr id="name-types-to-search-field-help" class="general-help hidden">
+    <tr id="scientific-hybrid-formula-cbox-help" class="general-help hidden">
       <td></td>
       <td colspan="2" class="field-help">
-        <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="name-types-to-search-field-help" title="Hide this help." >x</a></div>
-        Name types to search field help
+        <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="scientific-hybrid-formula-cbox-help" title="Hide this help." >x</a></div>
+
+This option can be used to include or exclude hybrid taxa that are designated by a formula.
+        
       </td>
     </tr>
   <% end %>
+
+
   <% if Rails.configuration.try('show_cultivar_name_form_field') || Rails.configuration.try('show_common_name_form_field') %>
     <tr> <td colspan="2"> <hr> </td> </tr>
   <% end %>
+
+
   <% if Rails.configuration.try('show_cultivar_name_form_field') %>
     <tr>
       <td></td>
@@ -306,7 +368,18 @@ Type Note:
                 title: cultivar_name_hover_text) %>
       </td>
     </tr>
+    <tr id="cultivar-name-field-help" class="general-help hidden">
+      <td></td>
+      <td colspan="2" class="field-help">
+        <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="cultivar-name-field-help" title="Hide this help." >x</a></div>
+
+        This option can be used to include or exclude the names of cultivars.
+        
+      </td>
+    </tr>
   <% end %>
+
+
   <% if Rails.configuration.try('show_common_name_form_field') %>
     <tr>
       <td></td>
@@ -317,15 +390,19 @@ Type Note:
                 title: common_name_hover_text) %>
       </td>
     </tr>
+    <tr id="common-name-field-help" class="general-help hidden">
+      <td></td>
+      <td colspan="2" class="field-help">
+        <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="common-name-field-help" title="Hide this help." >x</a></div>
+
+        This option can be used to include or exclude common names.
+        
+      </td>
+    </tr>
   <% end %>
-  <tr id="cultivar-common-field-help" class="general-help hidden">
-    <td></td>
-    <td colspan="2" class="field-help">
-      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="cultivar-common-field-help" title="Hide this help." >x</a></div>
-      Cultivar common field help
-    </td>
-  </tr>
+
   <%= render partial: "advanced_names/index/widgets" %>
+
 </table>
 <script> setUpPublicationTA(); </script>
 
