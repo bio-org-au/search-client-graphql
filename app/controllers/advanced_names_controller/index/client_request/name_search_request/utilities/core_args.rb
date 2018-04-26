@@ -5,8 +5,10 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::Utilitie
   def core_args
     <<~HEREDOC1
       search_term: "search_term_placeholder",
-      taxon_name_author_abbrev: "taxon_name_author_abbrev_placeholder",
-      basionym_author_abbrev: "basionym_author_abbrev_placeholder",
+      author_abbrev: "the_author_abbrev_placeholder",
+      ex_author_abbrev: "ex_author_abbrev_placeholder",
+      ex_base_author_abbrev: "ex_base_author_abbrev_placeholder",
+      base_author_abbrev: "the_base_author_abbrev_placeholder",
       family: "family_placeholder",
       genus: "genus_placeholder",
       species: "species_placeholder",

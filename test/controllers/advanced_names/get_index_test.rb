@@ -31,15 +31,17 @@ class AdvancedNamesGetIndexTest < ActionController::TestCase
     assert_response :success
     assert_select 'form', true, 'should find a form'
     assert_select("form[action='/names/advanced']") do
-      assert_select("input[name='genus']", true, 'Form needs genus field.')
-      assert_select("input[name='species']", true, 'Form needs species field.')
-      assert_select("input[name='taxon_name_author_abbrev']",
-                    true,
-                    'Form should have a taxon_name_author_abbrev field.')
-      assert_select("input[name='basionym_author_abbrev']",
-                    true,
-                    'Form should have a basionym_author_abbrev field.')
-      assert_select("input[type='submit']", true,
+    assert_select("input[name='genus']", true, 'Form needs genus field.')
+    assert_select("input[name='species']", true, 'Form needs species field.')
+    assert_select("input[name='author_abbrev']", true,
+                  'Form should have a author_abbrev field.')
+    assert_select("input[name='ex_author_abbrev']", true,
+                  'Form should have an ex_author_abbrev field.')
+    assert_select("input[name='base_author_abbrev']", true,
+                  'Form should have a base_author_abbrev field.')
+    assert_select("input[name='ex_base_author_abbrev']", true,
+                  'Form should have an ex_base_author_abbrev field.')
+    assert_select("input[type='submit']", true,
                     'Form should have a submit button.')
     end
   end
