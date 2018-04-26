@@ -10,11 +10,13 @@ class TaxonomyController::Index::ClientRequest::SearchRequest
     name_search? || publication_search?
   end
 
-  def name_search?
+  def xname_search?
     @params['q'].present? ||
       @params['family'].present? ||
-      @params['taxon_name_author_abbrev'].present? ||
-      @params['basionym_author_abbrev'].present? ||
+      @params['author_abbrev'].present? ||
+      @params['ex_author_abbrev'].present? ||
+      @params['base_author_abbrev'].present? ||
+      @params['ex_base_author_abbrev'].present? ||
       @params['genus'].present? ||
       @params['species'].present? ||
       @params['rank'].present? ||
@@ -23,7 +25,7 @@ class TaxonomyController::Index::ClientRequest::SearchRequest
       @params['type_note_text'].present?
   end
 
-  def publication_search?
+  def xpublication_search?
     !name_search? && @params['publication'].present?
   end
 

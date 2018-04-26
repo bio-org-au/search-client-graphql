@@ -66,90 +66,78 @@ class TaxonomyController::Index::ClientRequest::NameSearchRequest
     @params[:q].strip
   end
 
-  def taxon_name_author_abbrev
-    return '' if @params[:taxon_name_author_abbrev].blank?
-    return '' unless @params[:taxon_name_author_abbrev].class == String
-    @params[:taxon_name_author_abbrev].strip
-  end
-
-  def basionym_author_abbrev
-    return '' if @params[:basionym_author_abbrev].blank?
-    return '' unless @params[:basionym_author_abbrev].class == String
-    @params[:basionym_author_abbrev].strip
-  end
-
-  def family
+  def xfamily
     return '' if @params[:family].blank?
     return '' unless @params[:family].class == String
     @params[:family].strip
   end
 
-  def genus
+  def xgenus
     return '' if @params[:genus].blank?
     return '' unless @params[:genus].class == String
     @params[:genus].strip
   end
 
-  def species
+  def xspecies
     return '' if @params[:species].blank?
     return '' unless @params[:species].class == String
     @params[:species].strip
   end
 
-  def rank
+  def xrank
     return '' if @params[:rank].blank?
     return '' unless @params[:rank].class == String
     @params[:rank].strip
   end
 
-  def include_ranks_below
+  def xinclude_ranks_below
     return '' if @params[:include_ranks_below].blank?
     return '' unless @params[:include_ranks_below].class == String
     @params[:include_ranks_below] == '1' ? 'true' : ''
   end
 
-  def publication
+  def xpublication
     return '' if @params[:publication].blank?
     return '' unless @params[:publication].class == String
     @params[:publication].strip
   end
 
-  def publication_year
+  def xpublication_year
     return '' if @params[:publication_year].blank?
     return '' unless @params[:publication_year].class == String
     @params[:publication_year].strip
   end
 
-  def protologue
+  def xprotologue
     return '' if @params[:protologue].blank?
     @params[:protologue].strip
   end
 
-  def name_element
+  def xname_element
     return '' if @params[:name_element].blank?
     return '' unless @params[:name_element].class == String
     @params[:name_element].strip
   end
 
-  def type_note_text
+  def xtype_note_text
     return '' if @params[:type_note_text].blank?
     return '' unless @params[:type_note_text].class == String
     @params[:type_note_text].strip
   end
 
-  def type_note_keys
+  def xtype_note_keys
     %(["#{type_note_key_lectotype?}","#{type_note_key_type?}","#{type_note_key_neotype?}"])
   end
 
-  def type_note_key_type?
+  def xtype_note_key_type?
     @params[:type_note_key_type] == '1' ? 'type' : ''
   end
 
-  def type_note_key_lectotype?
+  def xtype_note_key_lectotype?
     @params[:type_note_key_lectotype] == '1' ? 'lectotype' : ''
   end
 
-  def type_note_key_neotype?
+  def xtype_note_key_neotype?
     @params[:type_note_key_neotype] == '1' ? 'neotype' : ''
   end
 
