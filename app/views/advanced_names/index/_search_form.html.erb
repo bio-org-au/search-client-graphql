@@ -10,6 +10,7 @@
        class="form-field width40pc min-width10em max-width30em"
        value="<%= params['family'] %>"
        title="Enter a search term to restrict the family. Wildcards are supported."
+       autofocus="true"
        placeholder="Family name without author citation" >
     </td>
   </tr>
@@ -85,45 +86,6 @@ A search on complete name (with or without author citation) returns exactly matc
 
   <tr>
     <td class="label">
-    Ex-Author:
-    </td>
-    <td>
-    <input name='ex_author_abbrev' type="search"
-       class="form-field width40pc min-width10em max-width30em"
-       value="<%= params['ex_author_abbrev'] %>"
-       title="Enter a search term for the name authority."
-       placeholder="Ex Author abbreviation" >
-    </td>
-  </tr>
-  <tr id="ex-author-abbrev-field-help" class="general-help hidden">
-    <td></td>
-    <td colspan="2" class="field-help">
-      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="ex-author-abbrev-field-help" title="Hide this help." >x</a></div>
-Matches on the ex-author abbreviation in the full name.  You can use wildcards but they are not added automatically.
-    </td>
-
-  <tr>
-    <td class="label">
-    Author:
-    </td>
-    <td>
-    <input name='author_abbrev' type="search"
-       class="form-field width40pc min-width10em max-width30em"
-       value="<%= params['author_abbrev'] %>"
-       title="Enter a search term for the name authority."
-       placeholder="Author abbreviation" >
-    </td>
-  </tr>
-  <tr id="author-abbrev-field-help" class="general-help hidden">
-    <td></td>
-    <td colspan="2" class="field-help">
-      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="author-abbrev-field-help" title="Hide this help." >x</a></div>
-Matches the author abbreviation in the full name.  You can use wildcards but they are not added automatically.
-    </td>
-  </tr>
-
-  <tr>
-    <td class="label">
     Ex-Base&nbsp;Author:
     </td>
     <td>
@@ -159,6 +121,45 @@ Matches on the ex-base author abbreviation in the full name.  You can use wildca
     <td colspan="2" class="field-help">
       <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="author-abbrev-field-help" title="Hide this help." >x</a></div>
 Matches on the base author abbreviation in the full name.  You can use wildcards but they are not added automatically.
+    </td>
+  </tr>
+
+  <tr>
+    <td class="label">
+    Ex-Author:
+    </td>
+    <td>
+    <input name='ex_author_abbrev' type="search"
+       class="form-field width40pc min-width10em max-width30em"
+       value="<%= params['ex_author_abbrev'] %>"
+       title="Enter a search term for the name authority."
+       placeholder="Ex Author abbreviation" >
+    </td>
+  </tr>
+  <tr id="ex-author-abbrev-field-help" class="general-help hidden">
+    <td></td>
+    <td colspan="2" class="field-help">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="ex-author-abbrev-field-help" title="Hide this help." >x</a></div>
+Matches on the ex-author abbreviation in the full name.  You can use wildcards but they are not added automatically.
+    </td>
+
+  <tr>
+    <td class="label">
+    Author:
+    </td>
+    <td>
+    <input name='author_abbrev' type="search"
+       class="form-field width40pc min-width10em max-width30em"
+       value="<%= params['author_abbrev'] %>"
+       title="Enter a search term for the name authority."
+       placeholder="Author abbreviation" >
+    </td>
+  </tr>
+  <tr id="author-abbrev-field-help" class="general-help hidden">
+    <td></td>
+    <td colspan="2" class="field-help">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="author-abbrev-field-help" title="Hide this help." >x</a></div>
+Matches the author abbreviation in the full name.  You can use wildcards but they are not added automatically.
     </td>
   </tr>
 
