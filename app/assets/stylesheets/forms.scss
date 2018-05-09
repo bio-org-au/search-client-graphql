@@ -41,15 +41,34 @@
 }
 
 .form-field {
-  height: 2em;
   padding: 0 0 0 0;
   margin: 3px 0 0 0;
   border: 1px solid slategray; /* For Safari dev. mode iPhone */
 }
-.xform-button {
-  height: 2em;
-  border: 1px solid slategray; /* For Safari dev. mode iPhone */
+
+input.form-field[type="text"],
+input.form-field[type="search"],
+select.form-field
+{
+    font-size: 13px;
+    height: 24px;
+    line-height: 1.0;
+    vertical-align: middle; /* This is optional but it makes legacy IEs look better */
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
+input.form-field[type="number"]
+{
+    font-size: 13px;
+    vertical-align: middle; /* This is optional but it makes legacy IEs look better */
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 4em;
+    padding-left: 0.5em;
+}
+
 .form-button {
   padding: 0.5em 1em 0.5em 1em;
   margin: 0.5em 1em 0.5em 1em;
@@ -59,11 +78,6 @@
   padding: 0.5em 1em 0.5em 1em;
   margin: 0.5em 1em 0.5em 0em;
   border: 1px solid slategray; /* For Safari dev. mode iPhone */
-}
-
-input[type="number"] {
-  width: 4em;
-  padding-left: 0.5em;
 }
 
 h4.form-heading {
