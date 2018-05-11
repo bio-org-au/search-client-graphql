@@ -1,0 +1,364 @@
+34c34
+< <meta name="csrf-token" content="mXkqQqNBfn/m+JVeIgV6YJFYbx6isttzl2cspG6jZv3Vwac8Ff4k7240vGWNqc1ffqo7k3j3vkojeolp2XhM0w==" />
+---
+> <meta name="csrf-token" content="NyvGruMIbZqqB8mo374n1RczeUtV3B5gfk8GjZb36CrTPNCtiicNJn1Nizpc45j77TGwC5481Q3KGkR918HEUQ==" />
+1351c1351,1353
+<                 Acacia triquetra Benth.
+---
+>                   <span class="misapplication">
+>                     Acacia triquetra Benth.
+>                   </span>
+1830c1832,1834
+<                 Acacia umbellata A.Cunn. ex Benth.
+---
+>                   <span class="misapplication">
+>                     Acacia umbellata A.Cunn. ex Benth.
+>                   </span>
+2466c2470
+<               <li>Maslin, B.R. in Orchard, A.E. &amp; Wilson, A.J.G. (ed.) (2001), Flora of Australia 11B [pro parte misapplied]
+---
+>               <li>Maslin, B.R. in Orchard, A.E. &amp; Wilson, A.J.G. (ed.) (2001), Flora of Australia 11B
+2469c2473,2475
+<                 Acacia lasiocalyx C.R.P.Andrews
+---
+>                   <span class="misapplication">
+>                     Acacia lasiocalyx C.R.P.Andrews
+>                   </span>
+2478c2484
+<               <li>Maslin, B.R. in Orchard, A.E. &amp; Wilson, A.J.G. (ed.) (2001), Flora of Australia 11B [pro parte misapplied]
+---
+>               <li>Maslin, B.R. in Orchard, A.E. &amp; Wilson, A.J.G. (ed.) (2001), Flora of Australia 11B
+2481c2487,2489
+<                 Acacia yorkrakinensis subsp. acrita R.S.Cowan &amp; Maslin
+---
+>                   <span class="misapplication">
+>                     Acacia yorkrakinensis subsp. acrita R.S.Cowan &amp; Maslin
+>                   </span>
+2536c2544,2546
+<                 Acacia lasiocalyx C.R.P.Andrews
+---
+>                   <span class="misapplication">
+>                     Acacia lasiocalyx C.R.P.Andrews
+>                   </span>
+2545c2555,2557
+<                 Acacia yorkrakinensis subsp. acrita R.S.Cowan &amp; Maslin
+---
+>                   <span class="misapplication">
+>                     Acacia yorkrakinensis subsp. acrita R.S.Cowan &amp; Maslin
+>                   </span>
+3602c3614
+< 10.82 seconds (~5 records/second) (index.html)
+---
+> 3.27 seconds (~15 records/second) (index.html)
+34c34
+< <meta name="csrf-token" content="/hLEoXYljev4C3YmlBRK6lULTc1MO0+3X752qudfuuqH7R8N7xFl7tTczi6VNbFtwqVqw2CW0Cx7WcDTGIV6Tw==" />
+---
+> <meta name="csrf-token" content="xnbwwnslIBT1At6Eu3UbxkCpEFhmmN+v/AUaAgy6J3jrSVRCPPnXRHAmPE64Lf0kCWGndGvDiEKv75/S4Zw7Ug==" />
+1328c1328
+<               <li>Jessup, L.W. (2002), Flora of South-eastern Queensland Volume 2 Changes to names or status of taxa [misapplied]
+---
+>               <li>Jessup, L.W. (2002), Flora of South-eastern Queensland Volume 2 Changes to names or status of taxa
+1331c1331,1333
+<                 Angophora leiocarpa (L.A.S.Johnson ex G.J.Leach) K.R.Thiele &amp; Ladiges
+---
+>                   <span class="misapplication">
+>                     Angophora leiocarpa (L.A.S.Johnson ex G.J.Leach) K.R.Thiele &amp; Ladiges
+>                   </span>
+5105c5107
+< 7.21 seconds (~6 records/second) (index.html)
+---
+> 3.59 seconds (~13 records/second) (index.html)
+34c34
+< <meta name="csrf-token" content="B2bqVF8ODvX4fAXBKLRHJGuxCdG9K1Ad5DxGR07amP6f7A4AWq4is7EI+9nuwkHVVk83NYIBBc8eCWYXQbk6+w==" />
+---
+> <meta name="csrf-token" content="DFLFEZEvP1yBqkS0TUbTIBUj/lep3SHgPmQAbjDi+KZ+i5eUH/+y5YL2JT2m8D7CTBlAkhCj4IRcSDeQftlKJg==" />
+1328c1328
+<               <li>George, A.S. (1981), The genus Banksia L.f. (Proteaceae). Nuytsia 3(3) [misapplied]
+---
+>               <li>George, A.S. (1981), The genus Banksia L.f. (Proteaceae). Nuytsia 3(3)
+1331c1331,1333
+<                 Banksia oblongifolia Cav.
+---
+>                   <span class="misapplication">
+>                     Banksia oblongifolia Cav.
+>                   </span>
+1367c1369
+<               <li>George, A.S. in Wilson, A.J.G. (ed.) (1999), Banksia. Flora of Australia 17B [misapplied]
+---
+>               <li>George, A.S. in Wilson, A.J.G. (ed.) (1999), Banksia. Flora of Australia 17B
+1370c1372,1374
+<                 Banksia oblongifolia Cav.
+---
+>                   <span class="misapplication">
+>                     Banksia oblongifolia Cav.
+>                   </span>
+1379c1383
+<               <li>CHAH (2005), Australian Plant Census [misapplied]
+---
+>               <li>CHAH (2005), Australian Plant Census
+1382c1386,1388
+<                 Banksia oblongifolia Cav.
+---
+>                   <span class="misapplication">
+>                     Banksia oblongifolia Cav.
+>                   </span>
+2767c2773
+< 7.78 seconds (~6 records/second) (index.html)
+---
+> 3.26 seconds (~15 records/second) (index.html)
+34c34
+< <meta name="csrf-token" content="F5SI7l7G7s+D1n8XpCH0PiKNKDwov8Jm74gV/AV8VdWkFvK2L+EhLX26lCHuDzVuhnp4vhcSRVqMr4nBmy1uzg==" />
+---
+> <meta name="csrf-token" content="0uV+H/GmQ205AVDDDYF/mvZnI2/Txk4oZBGVMvwSdZA/JvfgMSmw1UicXMyBdro252HIdGMIdZp0ro9NwQG3+Q==" />
+287c287,289
+<                 Livistona lorophylla Becc.
+---
+>                   <span class="misapplication">
+>                     Livistona lorophylla Becc.
+>                   </span>
+296c298,300
+<                 Livistona lorophylla Becc.
+---
+>                   <span class="misapplication">
+>                     Livistona lorophylla Becc.
+>                   </span>
+332c336,338
+<                 Livistona lorophylla Becc.
+---
+>                   <span class="misapplication">
+>                     Livistona lorophylla Becc.
+>                   </span>
+341c347,349
+<                 Livistona lorophylla Becc.
+---
+>                   <span class="misapplication">
+>                     Livistona lorophylla Becc.
+>                   </span>
+390c398,400
+<                 Livistona drudei F.Muell.
+---
+>                   <span class="misapplication">
+>                     Livistona drudei F.Muell.
+>                   </span>
+640c650,652
+<                 Livistona decora (W.Bull) Dowe
+---
+>                   <span class="misapplication">
+>                     Livistona decora (W.Bull) Dowe
+>                   </span>
+649c661,663
+<                 Livistona drudei F.Muell.
+---
+>                   <span class="misapplication">
+>                     Livistona drudei F.Muell.
+>                   </span>
+703c717,719
+<                 Livistona decora (W.Bull) Dowe
+---
+>                   <span class="misapplication">
+>                     Livistona decora (W.Bull) Dowe
+>                   </span>
+1464c1480,1482
+<                 Livistona concinna Dowe &amp; Barfod
+---
+>                   <span class="misapplication">
+>                     Livistona concinna Dowe &amp; Barfod
+>                   </span>
+2183c2201,2203
+<                 Livistona australis (R.Br.) Mart.
+---
+>                   <span class="misapplication">
+>                     Livistona australis (R.Br.) Mart.
+>                   </span>
+2195c2215,2217
+<                 Livistona drudei F.Muell.
+---
+>                   <span class="misapplication">
+>                     Livistona drudei F.Muell.
+>                   </span>
+2262c2284,2286
+<                 Livistona australis (R.Br.) Mart.
+---
+>                   <span class="misapplication">
+>                     Livistona australis (R.Br.) Mart.
+>                   </span>
+2271c2295,2297
+<                 Livistona decora (W.Bull) Dowe
+---
+>                   <span class="misapplication">
+>                     Livistona decora (W.Bull) Dowe
+>                   </span>
+2280c2306,2308
+<                 Livistona drudei F.Muell.
+---
+>                   <span class="misapplication">
+>                     Livistona drudei F.Muell.
+>                   </span>
+2304c2332,2334
+<                 Livistona australis (R.Br.) Mart.
+---
+>                   <span class="misapplication">
+>                     Livistona australis (R.Br.) Mart.
+>                   </span>
+2316c2346,2348
+<                 Livistona decora (W.Bull) Dowe
+---
+>                   <span class="misapplication">
+>                     Livistona decora (W.Bull) Dowe
+>                   </span>
+2805c2837,2839
+<                 Livistona lanuginosa Rodd
+---
+>                   <span class="misapplication">
+>                     Livistona lanuginosa Rodd
+>                   </span>
+2814c2848,2850
+<                 Livistona alfredii F.Muell.
+---
+>                   <span class="misapplication">
+>                     Livistona alfredii F.Muell.
+>                   </span>
+2856c2892,2894
+<                 Livistona lanuginosa Rodd
+---
+>                   <span class="misapplication">
+>                     Livistona lanuginosa Rodd
+>                   </span>
+2868c2906,2908
+<                 Livistona alfredii F.Muell.
+---
+>                   <span class="misapplication">
+>                     Livistona alfredii F.Muell.
+>                   </span>
+3826c3866
+< 3.1 seconds (~16 records/second) (index.html)
+---
+> 3.04 seconds (~16 records/second) (index.html)
+34c34
+< <meta name="csrf-token" content="kVgIoDD7CN5zT3B0FUGObS/SsgsHIkFFbVvz+d0GSwRmcnNDUG9m34J6ynaT+bUFR05k4SZPLUN17+wTthZbeQ==" />
+---
+> <meta name="csrf-token" content="CYF3qtBVuZfHcRPpG0TF+fBKNXQRNg2vcIjCgHBSBjLPdw/FEr9mUhZgdtzCQlWXDX3TOMT1pU5EEDVFzPf0Dg==" />
+291c291,293
+<                 Livistona lorophylla Becc.
+---
+>                   <span class="misapplication">
+>                     <a title="Show name details in a new page" href="/name/81549?search_form=names#name-81549">Livistona lorophylla Becc.</a>
+>                   </span>
+300c302,304
+<                 Livistona lorophylla Becc.
+---
+>                   <span class="misapplication">
+>                     <a title="Show name details in a new page" href="/name/81549?search_form=names#name-81549">Livistona lorophylla Becc.</a>
+>                   </span>
+340c344,346
+<                 Livistona lorophylla Becc.
+---
+>                   <span class="misapplication">
+>                     <a title="Show name details in a new page" href="/name/81549?search_form=names#name-81549">Livistona lorophylla Becc.</a>
+>                   </span>
+349c355,357
+<                 Livistona lorophylla Becc.
+---
+>                   <span class="misapplication">
+>                     <a title="Show name details in a new page" href="/name/81549?search_form=names#name-81549">Livistona lorophylla Becc.</a>
+>                   </span>
+402c410,412
+<                 Livistona drudei F.Muell.
+---
+>                   <span class="misapplication">
+>                     <a title="Show name details in a new page" href="/name/81356?search_form=names#name-81356">Livistona drudei F.Muell.</a>
+>                   </span>
+698c708,710
+<                 Livistona decora (W.Bull) Dowe
+---
+>                   <span class="misapplication">
+>                     <a title="Show name details in a new page" href="/name/192148?search_form=names#name-192148">Livistona decora (W.Bull) Dowe</a>
+>                   </span>
+707c719,721
+<                 Livistona drudei F.Muell.
+---
+>                   <span class="misapplication">
+>                     <a title="Show name details in a new page" href="/name/81356?search_form=names#name-81356">Livistona drudei F.Muell.</a>
+>                   </span>
+773c787,789
+<                 Livistona decora (W.Bull) Dowe
+---
+>                   <span class="misapplication">
+>                     <a title="Show name details in a new page" href="/name/192148?search_form=names#name-192148">Livistona decora (W.Bull) Dowe</a>
+>                   </span>
+1626c1642,1644
+<                 Livistona concinna Dowe &amp; Barfod
+---
+>                   <span class="misapplication">
+>                     <a title="Show name details in a new page" href="/name/180710?search_form=names#name-180710">Livistona concinna Dowe &amp; Barfod</a>
+>                   </span>
+2411c2429,2431
+<                 Livistona australis (R.Br.) Mart.
+---
+>                   <span class="misapplication">
+>                     <a title="Show name details in a new page" href="/name/81223?search_form=names#name-81223">Livistona australis (R.Br.) Mart.</a>
+>                   </span>
+2423c2443,2445
+<                 Livistona drudei F.Muell.
+---
+>                   <span class="misapplication">
+>                     <a title="Show name details in a new page" href="/name/81356?search_form=names#name-81356">Livistona drudei F.Muell.</a>
+>                   </span>
+2496c2518,2520
+<                 Livistona australis (R.Br.) Mart.
+---
+>                   <span class="misapplication">
+>                     <a title="Show name details in a new page" href="/name/81223?search_form=names#name-81223">Livistona australis (R.Br.) Mart.</a>
+>                   </span>
+2505c2529,2531
+<                 Livistona decora (W.Bull) Dowe
+---
+>                   <span class="misapplication">
+>                     <a title="Show name details in a new page" href="/name/192148?search_form=names#name-192148">Livistona decora (W.Bull) Dowe</a>
+>                   </span>
+2514c2540,2542
+<                 Livistona drudei F.Muell.
+---
+>                   <span class="misapplication">
+>                     <a title="Show name details in a new page" href="/name/81356?search_form=names#name-81356">Livistona drudei F.Muell.</a>
+>                   </span>
+2540c2568,2570
+<                 Livistona australis (R.Br.) Mart.
+---
+>                   <span class="misapplication">
+>                     <a title="Show name details in a new page" href="/name/81223?search_form=names#name-81223">Livistona australis (R.Br.) Mart.</a>
+>                   </span>
+2552c2582,2584
+<                 Livistona decora (W.Bull) Dowe
+---
+>                   <span class="misapplication">
+>                     <a title="Show name details in a new page" href="/name/192148?search_form=names#name-192148">Livistona decora (W.Bull) Dowe</a>
+>                   </span>
+3095c3127,3129
+<                 Livistona lanuginosa Rodd
+---
+>                   <span class="misapplication">
+>                     <a title="Show name details in a new page" href="/name/154647?search_form=names#name-154647">Livistona lanuginosa Rodd</a>
+>                   </span>
+3104c3138,3140
+<                 Livistona alfredii F.Muell.
+---
+>                   <span class="misapplication">
+>                     <a title="Show name details in a new page" href="/name/81213?search_form=names#name-81213">Livistona alfredii F.Muell.</a>
+>                   </span>
+3154c3190,3192
+<                 Livistona lanuginosa Rodd
+---
+>                   <span class="misapplication">
+>                     <a title="Show name details in a new page" href="/name/154647?search_form=names#name-154647">Livistona lanuginosa Rodd</a>
+>                   </span>
+3166c3204,3206
+<                 Livistona alfredii F.Muell.
+---
+>                   <span class="misapplication">
+>                     <a title="Show name details in a new page" href="/name/81213?search_form=names#name-81213">Livistona alfredii F.Muell.</a>
+>                   </span>
+4240c4280
+< 3.16 seconds (~16 records/second) (index.html)
+---
+> 3.15 seconds (~16 records/second) (index.html)

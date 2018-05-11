@@ -1,0 +1,13 @@
+Created to test changes to display formats.
+
+The idea is to record a large sample of current output via curls, then compare after-change outputs to those originals.
+
+
+Steps
+
+1. Make code changes
+2. cd test/curls
+2. bash ./curls
+3. bash ./diffs
+4. Review the diff output.  There will be spurious differences like time stamps and meta codes.
+

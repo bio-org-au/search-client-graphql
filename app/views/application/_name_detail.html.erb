@@ -62,7 +62,18 @@
             <% end %>
             <% if usage.misapplied? %>
               <li>misapplied to:
-                <%= usage.misapplied_to_name %>
+                <% if @client_request.links? %>
+                  <span class="misapplication">
+                    <%= link_to usage.misapplied_to_name,
+                      show_name_path(id: usage.misapplied_to_id,
+                                     search_form: search_form) + '#name-' + usage.misapplied_to_id,
+                                    title: "Show name details in a new page" %>
+                  </span>
+                <% else %>
+                  <span class="misapplication">
+                    <%= usage.misapplied_to_name %>
+                  </span>
+                <% end %>
                 by
                 <%= usage.misapplied_by_citation %>
                 :

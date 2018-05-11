@@ -27,6 +27,10 @@ class Application::Names::Results::Name::Usage
     @raw_usage.misapplied_to_name
   end
 
+  def misapplied_to_id
+    @raw_usage.misapplied_to_id
+  end
+
   def misapplied_by_id
     @raw_usage.misapplied_by_id
   end
