@@ -1,0 +1,2777 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>APNI Search</title>
+  <link rel="stylesheet" media="all" href="/assets/application-8720c6a44fb5516e950801c7a8295df2d6801fd8eb3e1f3ea4be998dfe9da4d0.css" data-turbolinks-track="true" />
+  <script>
+    window.relative_url_root = "";
+  </script>
+  <style media="print">
+     body {color:#000000;
+           background-color:#FFFFFF;} 
+     .no-print {display: none;}
+  </style>
+<style>
+a:not([title]),
+select:not([title]),
+textarea:not([title]),
+input:not([title]) {
+  background: red;
+}
+
+input[type="checkbox"]:not([title]),
+label:not([title]) {
+  background: purple;
+  color: red;
+  border: 2px solid black;
+  width: 16px;
+  height: 16px;
+}
+</style>
+
+  <script src="/assets/application-966a529f9fd7ffdba0d0572b35531f817210bf8ab03177e84e05edd9cd96be5e.js" data-turbolinks-track="true"></script>
+  <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="LFLey3XMMxLojbLl7n6mzItzkuevw40vOHxfN7775VO1azMDshxNZ3ps1jIK1lPgUPbj9PsTiAYUa474Jp64pA==" />
+
+</head>
+<body class="name development" >
+
+<div class='help-bar'>
+<a href="" id="general-help-link" title="Show helpful information about the page." >help</a>
+</div>
+<h1>APNI Search</h1>
+
+<div id="form-div">
+<form action="/names/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
+<input name='q'
+       type="search"
+       class="form-field width40pc min-width10em max-width30em"
+       value="banksia*   " required="" autofocus="true"
+       placeholder="Search Term"
+       title="Enter a search term - a name or part of a name.">
+<div id="search-field-help" class="general-help field-help hidden">
+  <div class="hide-this-help-link-container text-align-right">
+    <a href="" class="hide-this-help-link" data-target-id="search-field-help" title="Hide this help." >x</a>
+  </div>
+  <ul class="help">
+    <li>Search terms can be the beginning of any taxon name; a trailing wildcard is added automatically.
+    <li>For more control over searching you may supply additional wildcards (*).
+    <li>Upper and lower case are ignored.
+  </ul>
+</div>
+<hr class="heavy">
+    <input type="radio" name="list_or_count" id="list_or_count_list" value="list" title="List matching names" checked="checked" />
+    <label title="List matching names" for="list_or_count_list">List</label>
+<br>
+    <input type="radio" name="list_or_count" id="list_or_count_count" value="count" title="Count matching names" />
+    <label title="Count matching names" for="list_or_count_count">Count</label>
+    <div id="list-or-count-field-help" class="general-help field-help hidden">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="list-or-count-field-help" title="Hide this help." >x</a></div>
+      <ul class="help">
+        <li>You can choose to <em>count</em> the matching names or to be provided with a <em>list</em> of them.
+        <li>Counting is faster, especially for large searches, and may be useful for exploring the dataset.
+        <li>Lists are sorted, with the order depending on whether family name is included or omitted. (See below.)
+        <li>Lists may be paginated, depending on the total number of results and the limits selected. (See below.)
+        <li>Lists also give a total count of matches.
+      </ul>
+    </div>
+<hr>
+<b>For lists also show:</b>
+<br>
+    <input type="checkbox" name="show_family" id="show_family" value="1" title="When checked, each taxon&#39;s family name will be displayed in the results." />
+    <label title="When checked, each taxon&#39;s family name will be displayed in the results." for="show_family">Family</label>
+<div id="show-family-field-help" class="general-help field-help hidden">
+  <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="show-family-field-help" title="Hide this help." >x</a></div>
+  <ul class="help">
+    <li>When listing names, their family (as recorded in the APNI data) can be displayed.
+    <li>If family is displayed, search results are sorted first by family. Within family, taxa are sorted alphabetically and then by taxonomic rank.
+    <li>If family is not displayed, search results are sorted alphabetically and then by taxonomic rank.
+  </ul>
+</div>
+<br>
+    <input type="checkbox" name="show_links" id="show_links" value="1" title="When checked, taxon names will be hyperlinked." />
+    <label title="When checked, taxon names will be hyperlinked." for="show_links">Links</label>
+<div id="show-links-field-help" class="general-help field-help hidden">
+  <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="show-links-field-help" title="Hide this help." >x</a></div>
+  <ul class="help">
+    <li>Listed names can be plain text, or hyperlinks.
+    <li>If links are displayed and followed they will lead to a full page of details for the selected name.
+  </ul>
+</div>
+<br>
+    <input type="checkbox" name="show_details" id="show_details" value="1" title="When checked, biblographic and synonymy details for each taxon will be displayed in the search results.  This can slow down the results." checked="checked" />
+    <label title="When checked, biblographic and synonymy details for each taxon will be displayed in the search results.  This can slow down the results." for="show_details">Details</label>
+<div id="show-details-field-help" class="general-help field-help hidden">
+  <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="show-details-field-help" title="Hide this help." >x</a></div>
+  <ul class="help">
+    <li>If the details option is chosen matching names will be displayed with bibliographic information and synonymy.
+    <li>Listing names with details can take much longer, especially for big searches.
+  </ul>
+</div>
+<hr>
+<b>Page limits:</b>
+<div id="page-limits-help" class="general-help field-help hidden">
+  <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="page-limits-help" title="Hide this help." >x</a></div>
+  <ul class="help">
+    <li>Listed names are presented using default page size limits, to avoid large resource-intensive searches (which may be accidental).
+    <li>You can change the page size in these fields by using the up and down arrows or by typing a number.
+  </ul>
+</div>
+<br>
+    <input type="number"
+           name="limit_per_page_for_list"
+           title="Number of records per page when details is not checked."
+           min="1"
+           max="500"
+           step="1"
+           value="50"
+           class="form-field"> 
+    <label title="This limit will apply if you have not asked for details." for="limit_per_page_for_list">Names</label>
+<br>
+    <input type="number"
+           name="limit_per_page_for_details"
+           title="Number of records per page when details is checked."
+           placeholder="records"
+           min="1"
+           max="50"
+           step="1"
+           value="50"
+           class="form-field"> 
+    <label title="This limit will apply if you have asked for details." for="limit_per_page_for_list">Names with details</label>
+<div id="page-limits-field-help" class="general-help field-help hidden">
+  <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="page-limits-field-help" title="Hide this help." >x</a></div>
+  <ul class="help">
+    <li> The <em>Names</em> limit is used for simple lists.
+    <li> The <em>Names with details</em> limit applies for lists of names with details.  These searches require more resources and take longer per record.
+  </ul>
+</div>
+
+<hr>
+
+
+<input type="submit"
+       value="Search"
+       name="search"
+       class="left-aligned-form-button"
+       title="Search the data and retrieve matching records">
+
+</form>
+</div>
+
+<hr>
+<a name="x" title="Clear any search and start a new  search." href="/names/search">clear form</a> |
+<a title="Go to advanced name search" href="/names/advanced">advanced</a> |
+<a title="Go to taxonomy search." href="/taxonomy/search">taxonomy</a> |
+<a title="Go to name check." href="/name/check">name check</a>
+<hr>
+<div id="search-result-summary">
+    
+  <div>
+    <a id="search-results-summary" title="Search results">
+      552 matching records,
+        50 shown per page
+    </a>
+  <br>
+  </div>
+  <hr>
+
+
+      
+  
+  
+  1
+  <a title="Next page" href="/names/search?limit_per_page_for_details=50&amp;limit_per_page_for_list=50&amp;list_or_count=list&amp;offset=50&amp;q=banksia%2A+++&amp;search=Search&amp;show_details=1&amp;utf8=%E2%9C%93">Next</a>
+  <a title="First page" href="/names/search?limit_per_page_for_details=50&amp;limit_per_page_for_list=50&amp;list_or_count=list&amp;offset=550&amp;q=banksia%2A+++&amp;search=Search&amp;show_details=1&amp;utf8=%E2%9C%93">Last</a>
+  <hr>
+
+
+</div>
+
+<div id="search-results">
+    
+    <h3 class="name-heading ">
+        Banksia acanthopoda (A.S.George) A.R.Mast & K.R.Thiele
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Mast, A.R. &amp; Thiele, K.R. (2007), The transfer of Dryandra R.Br. to Banksia L.f. (Proteaceae). Australian Systematic Botany 20(1): 66     [comb. nov.]
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">basionym:</span>
+                  <span class="synonym italics"><scientific><name id='158342'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='acanthopoda'>acanthopoda</element> <authors><author id='1484' title='George, A.S.'>A.S.George</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>CHAH (2007), Australian Plant Census: -     
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='158342'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='acanthopoda'>acanthopoda</element> <authors><author id='1484' title='George, A.S.'>A.S.George</author></authors></name></scientific> </span>
+
+
+
+
+              <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
+                  <span class="synonym italics"><scientific><name id='197984'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='sp. 1 (A.S.George 16647)'>sp. 1 (A.S.George 16647)</element></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia acicularis (Sm. ex Vent.) J.L.Parm.
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Parmentier, J.L.J.H. (1818), Catalogue des Arbres et Plantes cultives dans les Jardins de Mr. Joseph Parmentier: 11     [comb. nov.]
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">basionym:</span>
+                  <span class="synonym italics"><scientific><name id='75306'><scientific><name id='75293'><element class='Conchium'>Conchium</element></name></scientific> <element class='aciculare'>aciculare</element> <authors><ex id='6895' title='Smith, J.E'>Sm.</ex> ex <author id='6891' title='Ventenat, E.P.'>Vent.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Barker, R.M., Haegi, L., &amp; Barker, W.R. in Wilson, A.J.G. (ed.) (1999), Hakea. Flora of Australia 17B: 61     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='99588'><scientific><name id='74468'><element class='Hakea'>Hakea</element></name></scientific> <element class='sericea'>sericea</element> <authors><author id='7401' title='Schrader, H.A. &amp; Wendland, J.C.'>Schrad. & J.C.Wendl.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>CHAH (2005), Australian Plant Census: -     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='99588'><scientific><name id='74468'><element class='Hakea'>Hakea</element></name></scientific> <element class='sericea'>sericea</element> <authors><author id='7401' title='Schrader, H.A. &amp; Wendland, J.C.'>Schrad. & J.C.Wendl.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia aculeata A.S.George
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>George, A.S. (1981), The genus Banksia L.f. (Proteaceae). Nuytsia 3(3): 386, Figs 68-70     [tax. nov.]
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>Type:</b>
+                "E of Cranbrook on Chester Pass road, Western Australia, 20 March 1972, A.S. George 11299. Holo: PERTH; iso: AD, BRI, CANB, K, MEL, NSW, PERTH."
+                <li>
+                <b>Comment:</b>
+                Given under BANKSIA L.f. (<i>nom. cons.</i>)
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Green, J.W. (1985), Census of the Vascular Plants of Western Australia Edn. 2: 58     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. in Wilson, A.J.G. (ed.) (1999), Banksia. Flora of Australia 17B: 223, 225, Fig. 33, Map 229     
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia acuminata A.R.Mast & K.R.Thiele
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Mast, A.R. &amp; Thiele, K.R. (2007), The transfer of Dryandra R.Br. to Banksia L.f. (Proteaceae). Australian Systematic Botany 20(1): 65     [nom. nov.]
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">replaced synonym:</span>
+                  <span class="synonym italics"><scientific><name id='101368'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='preissii'>preissii</element> <authors><author id='6841' title='Meisner, C.D.F.'>Meisn.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>CHAH (2007), Australian Plant Census: -     
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='101368'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='preissii'>preissii</element> <authors><author id='6841' title='Meisner, C.D.F.'>Meisn.</author></authors></name></scientific> </span>
+
+
+
+
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='87843'><scientific><name id='72473'><element class='Josephia'>Josephia</element></name></scientific> <element class='preissii'>preissii</element> <authors>(<base id='6841' title='Meisner, C.D.F.'>Meisn.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>APC Comment:</b>
+                A natural hybrid with Banksia rufa subsp. rufa (as Dryandra ferruginea subsp. ferruginea) is known.
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia aemula R.Br.
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Brown, R. (1810), On the natural order of plants called Proteaceae. Transactions of the Linnean Society of London 10(1): 209     [tax. nov.]
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>Type:</b>
+                "In Novae Hollandiae orâ orientali; prope Port Jackson: in campis arenosis ericetisque. "
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Mueller, F.J.H. von (1882), Systematic Census of Australian Plants: 72     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Mueller, F.J.H. von (1889), Systematic Census of Australian Plants Suppl. 4: 6     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='109045'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='serratifolia'>serratifolia</element> <authors><author id='10098' title='Salisbury, R.A.'>Salisb.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Bailey, F.M. (1913), Comprehensive Catalogue of Queensland Plants: 455     
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>Vernacular:</b>
+                Mintie
+                <li>
+                <b>Vernacular:</b>
+                Wallum
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Williams, K.A.W. (1980), Native Plants of Queensland Edn. 2, 1: 26     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">common name:</span>
+                  <span class="synonym "><common><name id='435770'><element class='Wallum Banksia'>Wallum Banksia</element></name></common> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. (1981), The genus Banksia L.f. (Proteaceae). Nuytsia 3(3): 323-325     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
+                  <span class="synonym italics"><scientific><name id='107115'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='elatior'>elatior</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>Lectotype:</b>
+                "BM, a sheet annotated by Brown "25 Banksia aemula prodr. 395 Banksia serrata Lin. fil. ubique circa Sydney and Parramatta June 1801". Iso: BM, E, K."
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Jacobs, S.W.L. &amp; Pickard, J. (1981), Plants of New South Wales: 178     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='109045'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='serratifolia'>serratifolia</element> <authors><author id='10098' title='Salisbury, R.A.'>Salisb.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Ross, E.M. in Stanley, T.D. &amp; Ross, E.M. (1986), Proteaceae. Flora of South-eastern Queensland 2: 5, Fig. 1C     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">common name:</span>
+                  <span class="synonym "><common><name id='435770'><element class='Wallum Banksia'>Wallum Banksia</element></name></common> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Harden, G.J. in Harden, G.J. (ed.) (1991), Banksia. Flora of New South Wales 2: 70     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
+                  <span class="synonym italics"><scientific><name id='109045'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='serratifolia'>serratifolia</element> <authors><author id='10098' title='Salisbury, R.A.'>Salisb.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Robson, Peter J. (1993), Checklist of Australian Trees: alphabetical listings of common and scientific names: -     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">common name:</span>
+                  <span class="synonym "><common><name id='435769'><element class='Banyalla'>Banyalla</element></name></common> </span>
+
+
+
+
+              <li class="indent"><span class="synonym-type">common name:</span>
+                  <span class="synonym "><common><name id='435770'><element class='Wallum Banksia'>Wallum Banksia</element></name></common> </span>
+
+
+
+
+              <li class="indent"><span class="synonym-type">common name:</span>
+                  <span class="synonym "><common><name id='435771'><element class='Wallum Bottlebrush'>Wallum Bottlebrush</element></name></common> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. in Wilson, A.J.G. (ed.) (1999), Banksia. Flora of Australia 17B: 199, Fig. 26, Map 194     
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
+                  <span class="synonym italics"><scientific><name id='107115'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='elatior'>elatior</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
+              <li class="indent"><span class="synonym-type">common name:</span>
+                  <span class="synonym "><common><name id='435770'><element class='Wallum Banksia'>Wallum Banksia</element></name></common> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>APC Dist.:</b>
+                Qld, NSW
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Harden, G.J. in Harden, G.J. (ed.) (2002), Flora of New South Wales Revised Edition 2: 85     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">common name:</span>
+                  <span class="synonym "><common><name id='435770'><element class='Wallum Banksia'>Wallum Banksia</element></name></common> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia aff. paludosa (Mallacoota)
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Ross, J.H. &amp; Walsh, N.G. (2003), A Census of the Vascular Plants of Victoria Edn. 7: 140     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>CHAH (2008), Australian Plant Census: -     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='207468'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='croajingolensis'>croajingolensis</element> <authors><author id='5216' title='Molyneux, W.M. &amp; Forrester, S.G.'>Molyneux & Forrester</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia alliacea A.R.Mast & K.R.Thiele
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Mast, A.R. &amp; Thiele, K.R. (2007), The transfer of Dryandra R.Br. to Banksia L.f. (Proteaceae). Australian Systematic Botany 20(1): 65     [nom. nov.]
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">replaced synonym:</span>
+                  <span class="synonym italics"><scientific><name id='101069'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='nervosa'>nervosa</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>CHAH (2007), Australian Plant Census: -     
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='101069'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='nervosa'>nervosa</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
+              <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
+                  <span class="synonym italics"><scientific><name id='101044'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='nervosa'>nervosa</element> <authors><author id='6965' title='Sweet, R.'>Sweet</author></authors></name></scientific> nom. inval., nom. nud.</span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia alpina (F.Muell. ex Meisn.) Kuntze
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Kuntze, C.E.O. (1891), Revisio Generum Plantarum 2: 583     [comb. nov.]
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">basionym:</span>
+                  <span class="synonym italics"><scientific><name id='66743'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='alpina'>alpina</element> <authors><ex id='6832' title='Mueller, F.J.H. von'>F.Muell.</ex> ex <author id='6841' title='Meisner, C.D.F.'>Meisn.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>Comment:</b>
+                Given under BANKSIA Forster & G.Forster (<i>nom. rej.</i>) non L.f.
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Threlfall, S. (1983), The Genus Pimelea (Thymelaeaceae) in Eastern Mainland Australia. Brunonia 5(2): 136     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='66743'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='alpina'>alpina</element> <authors><ex id='6832' title='Mueller, F.J.H. von'>F.Muell.</ex> ex <author id='6841' title='Meisner, C.D.F.'>Meisn.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Rye, B.L. in George, A.S. (ed.) (1990), Thymelaeaceae. Flora of Australia 18: 188     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='66743'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='alpina'>alpina</element> <authors><ex id='6832' title='Mueller, F.J.H. von'>F.Muell.</ex> ex <author id='6841' title='Meisner, C.D.F.'>Meisn.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia altior (F.Muell.) Kuntze
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Kuntze, C.E.O. (1891), Revisio Generum Plantarum 2: 583     [comb. nov.]
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">basionym:</span>
+                  <span class="synonym italics"><scientific><name id='66758'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='altior'>altior</element> <authors><author id='6832' title='Mueller, F.J.H. von'>F.Muell.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>Comment:</b>
+                Given under BANKSIA Forster & G.Forster (<i>nom. rej.</i>) non L.f.
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Threlfall, S. (1983), The Genus Pimelea (Thymelaeaceae) in Eastern Mainland Australia. Brunonia 5(2): 193     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='68858'><scientific><name id='68854'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='latifolia'>latifolia</element></name></scientific> <rank id='54410'>subsp.</rank> <element class='altior'>altior</element> <authors>(<base id='6832' title='Mueller, F.J.H. von'>F.Muell.</base>) <author id='7674' title='Threlfall, S.'>Threlfall</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Ross, E.M. in Stanley, T.D. &amp; Ross, E.M. (1986), Thymelaeaceae. Flora of South-eastern Queensland 2: 95     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='68860'><scientific><name id='68854'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='latifolia'>latifolia</element></name></scientific> <rank id='54412'>var.</rank> <element class='altior'>altior</element> <authors>(<base id='6832' title='Mueller, F.J.H. von'>F.Muell.</base>) <author id='7674' title='Threlfall, S.'>Threlfall</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Rye, B.L. in George, A.S. (ed.) (1990), Thymelaeaceae. Flora of Australia 18: 168     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='68858'><scientific><name id='68854'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='latifolia'>latifolia</element></name></scientific> <rank id='54410'>subsp.</rank> <element class='altior'>altior</element> <authors>(<base id='6832' title='Mueller, F.J.H. von'>F.Muell.</base>) <author id='7674' title='Threlfall, S.'>Threlfall</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>CHAH (2005), Australian Plant Census: -     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='68858'><scientific><name id='68854'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='latifolia'>latifolia</element></name></scientific> <rank id='54410'>subsp.</rank> <element class='altior'>altior</element> <authors>(<base id='6832' title='Mueller, F.J.H. von'>F.Muell.</base>) <author id='7674' title='Threlfall, S.'>Threlfall</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia ammocharis (F.Muell.) Kuntze
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Kuntze, C.E.O. (1891), Revisio Generum Plantarum 2: 583     [comb. nov.]
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">basionym:</span>
+                  <span class="synonym italics"><scientific><name id='66810'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='ammocharis'>ammocharis</element> <authors><author id='6832' title='Mueller, F.J.H. von'>F.Muell.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>Comment:</b>
+                Given under BANKSIA Forster & G.Forster (<i>nom. rej.</i>) non L.f.
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Rye, B.L. (1988), A revision of Western Australian Thymelaeaceae. Nuytsia 6(2): 175     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='66810'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='ammocharis'>ammocharis</element> <authors><author id='6832' title='Mueller, F.J.H. von'>F.Muell.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Rye, B.L. in George, A.S. (ed.) (1990), Thymelaeaceae. Flora of Australia 18: 174     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='66810'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='ammocharis'>ammocharis</element> <authors><author id='6832' title='Mueller, F.J.H. von'>F.Muell.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>CHAH (2005), Australian Plant Census: -     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='66810'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='ammocharis'>ammocharis</element> <authors><author id='6832' title='Mueller, F.J.H. von'>F.Muell.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia anatona (A.S.George) A.R.Mast & K.R.Thiele
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Mast, A.R. &amp; Thiele, K.R. (2007), The transfer of Dryandra R.Br. to Banksia L.f. (Proteaceae). Australian Systematic Botany 20(1): 66     [comb. nov.]
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">basionym:</span>
+                  <span class="synonym italics"><scientific><name id='154581'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='anatona'>anatona</element> <authors><author id='1484' title='George, A.S.'>A.S.George</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>CHAH (2007), Australian Plant Census: -     
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='154581'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='anatona'>anatona</element> <authors><author id='1484' title='George, A.S.'>A.S.George</author></authors></name></scientific> </span>
+
+
+
+
+              <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
+                  <span class="synonym italics"><scientific><name id='194371'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='sp. 48 (A.S.George 16886)'>sp. 48 (A.S.George 16886)</element></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>Synonym:</b>
+                On the basis of molecular and morphological data, Mast & Thiele (2007) do not recognise Dryandra as generically distinct from Banksia, and all Dryandra taxa are transferred into Banksia, including Dryandra anatona (as Banksia anatona).
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia angustifolia (R.Br.) Kuntze
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Kuntze, C.E.O. (1891), Revisio Generum Plantarum 2: 583     [comb. nov.]
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">basionym:</span>
+                  <span class="synonym italics"><scientific><name id='66826'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='angustifolia'>angustifolia</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>Comment:</b>
+                Given under BANKSIA Forster & G.Forster (<i>nom. rej.</i>) non L.f.
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Rye, B.L. in George, A.S. (ed.) (1990), Thymelaeaceae. Flora of Australia 18: 183     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='66826'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='angustifolia'>angustifolia</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>CHAH (2005), Australian Plant Census: -     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='66826'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='angustifolia'>angustifolia</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia aquifolium Lindl.
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Lindley, J. (1840), A Sketch of the Vegetation of the Swan River Colony: xxxiv.     [tax. nov.]
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>Type:</b>
+                (not cited).
+                <li>
+                <b>Comment:</b>
+                Given under BANKSIA L.f. (<i>nom. cons.</i>)
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. (1981), The genus Banksia L.f. (Proteaceae). Nuytsia 3(3): 455     
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>Lectotype:</b>
+                "a sheet at CGE collected at Swan River in 1839 by James Drummond and annotated by Lindley "Banksia (Isostylis) Aquifolium m." "
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+              <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='107525'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='ilicifolia'>ilicifolia</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. in Wilson, A.J.G. (ed.) (1999), Banksia. Flora of Australia 17B: 248     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='107525'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='ilicifolia'>ilicifolia</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>CHAH (2005), Australian Plant Census: -     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='107525'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='ilicifolia'>ilicifolia</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia aquilonia (A.S.George) A.S.George
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>George, A.S. (1996), Notes on Banksia L.f. (Proteaceae). Nuytsia 11(1): 22     [comb. et stat. nov.]
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">basionym:</span>
+                  <span class="synonym italics"><scientific><name id='107611'><scientific><name id='107602'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='integrifolia'>integrifolia</element></name></scientific> <rank id='54412'>var.</rank> <element class='aquilonia'>aquilonia</element> <authors><author id='1484' title='George, A.S.'>A.S.George</author></authors></name></scientific> </span>
+
+
+
+
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='141260'><scientific><name id='107602'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='integrifolia'>integrifolia</element></name></scientific> <rank id='54410'>subsp.</rank> <element class='aquilonia'>aquilonia</element> <authors>(<base id='1484' title='George, A.S.'>A.S.George</base>) <author id='1478' title='Thiele, K.R.'>K.R.Thiele</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>Type:</b>
+                Witts Lookout No. 1, Crystal Creek National Park, S of Ingham, QLD, 12 April 1975, A.S.George, 12973.
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. in Wilson, A.J.G. (ed.) (1999), Banksia. Flora of Australia 17B: 185-186, Map 176     
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='107611'><scientific><name id='107602'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='integrifolia'>integrifolia</element></name></scientific> <rank id='54412'>var.</rank> <element class='aquilonia'>aquilonia</element> <authors><author id='1484' title='George, A.S.'>A.S.George</author></authors></name></scientific> </span>
+
+
+
+
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='141260'><scientific><name id='107602'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='integrifolia'>integrifolia</element></name></scientific> <rank id='54410'>subsp.</rank> <element class='aquilonia'>aquilonia</element> <authors>(<base id='1484' title='George, A.S.'>A.S.George</base>) <author id='1478' title='Thiele, K.R.'>K.R.Thiele</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>APC Dist.:</b>
+                Qld
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia arborea (C.A.Gardner) A.R.Mast & K.R.Thiele
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Mast, A.R. &amp; Thiele, K.R. (2007), The transfer of Dryandra R.Br. to Banksia L.f. (Proteaceae). Australian Systematic Botany 20(1): 66     [comb. nov.]
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">basionym:</span>
+                  <span class="synonym italics"><scientific><name id='99863'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='arborea'>arborea</element> <authors><author id='6833' title='Gardner, C.A.'>C.A.Gardner</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia arctotidis (R.Br.) A.R.Mast & K.R.Thiele
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Mast, A.R. &amp; Thiele, K.R. (2007), The transfer of Dryandra R.Br. to Banksia L.f. (Proteaceae). Australian Systematic Botany 20(1): 66     [comb. nov.]
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">basionym:</span>
+                  <span class="synonym italics"><scientific><name id='99881'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='arctotidis'>arctotidis</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>CHAH (2007), Australian Plant Census: -     
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='99881'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='arctotidis'>arctotidis</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='99893'><scientific><name id='99881'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='arctotidis'>arctotidis</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> <rank id='54412'>var.</rank> <element class='arctotidis'>arctotidis</element></name></scientific> </span>
+
+
+
+
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='72493'><scientific><name id='72473'><element class='Josephia'>Josephia</element></name></scientific> <element class='arctotidis'>arctotidis</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='205667'><scientific><name id='72473'><element class='Josephia'>Josephia</element></name></scientific> <element class='arctotides'>arctotides</element> <authors><author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> orth. var.</span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia argentea (R.Br.) Kuntze
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Kuntze, C.E.O. (1891), Revisio Generum Plantarum 2: 583     [comb. nov.]
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">basionym:</span>
+                  <span class="synonym italics"><scientific><name id='66896'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='argentea'>argentea</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>Comment:</b>
+                Given under BANKSIA Forster & G.Forster (<i>nom. rej.</i>) non L.f.
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Rye, B.L. (1988), A revision of Western Australian Thymelaeaceae. Nuytsia 6(2): 169     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='66896'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='argentea'>argentea</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Rye, B.L. in George, A.S. (ed.) (1990), Thymelaeaceae. Flora of Australia 18: 164     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='66896'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='argentea'>argentea</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>CHAH (2005), Australian Plant Census: -     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='66896'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='argentea'>argentea</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia armata (R.Br.) A.R.Mast & K.R.Thiele
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Mast, A.R. &amp; Thiele, K.R. (2007), The transfer of Dryandra R.Br. to Banksia L.f. (Proteaceae). Australian Systematic Botany 20(1): 66     [comb. nov.]
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">basionym:</span>
+                  <span class="synonym italics"><scientific><name id='99928'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='armata'>armata</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>CHAH (2007), Australian Plant Census: -     
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='99928'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='armata'>armata</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='213697'><scientific><name id='72473'><element class='Josephia'>Josephia</element></name></scientific> <element class='armata'>armata</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='7060' title='Poiret, J.L.M.'>Poir.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia armata (R.Br.) A.R.Mast & K.R.Thiele var. armata
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Mast, A.R. &amp; Thiele, K.R. (2007), The transfer of Dryandra R.Br. to Banksia L.f. (Proteaceae). Australian Systematic Botany 20(1): 66     [autonym]
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>CHAH (2007), Australian Plant Census: -     
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='156470'><scientific><name id='99928'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='armata'>armata</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> <rank id='54412'>var.</rank> <element class='armata'>armata</element></name></scientific> </span>
+
+
+
+
+              <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
+                  <span class="synonym italics"><scientific><name id='100592'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='favosa'>favosa</element> <authors><author id='1554' title='Lindley, J.'>Lindl.</author></authors></name></scientific> </span>
+
+
+
+
+              <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
+                  <span class="synonym italics"><scientific><name id='100800'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='gilbertii'>gilbertii</element> <authors><author id='6930' title='Moore, S. le M.'>S.Moore</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia armata var. ignicida (A.S.George) A.R.Mast & K.R.Thiele
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Mast, A.R. &amp; Thiele, K.R. (2007), The transfer of Dryandra R.Br. to Banksia L.f. (Proteaceae). Australian Systematic Botany 20(1): 66     [comb. nov.]
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">basionym:</span>
+                  <span class="synonym italics"><scientific><name id='161315'><scientific><name id='99928'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='armata'>armata</element></name></scientific> <rank id='54412'>var.</rank> <element class='ignicida'>ignicida</element> <authors><author id='1484' title='George, A.S.'>A.S.George</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia ashbyi Baker f.
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Baker, E.G. (1934), Journal of Botany, British and Foreign: 281     [tax. nov.]
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>Type:</b>
+                "WEST AUSTRALIA: Yuma Sand Plain, about 40 miles inland from Geraldton, Edwin Ashby, Albert Morris Herb. no. 2537. ... (Herb. Mus. Brit.)"
+                <li>
+                <b>Comment:</b>
+                Given under BANKSIA L.f. (<i>nom. cons.</i>)
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. (1981), The genus Banksia L.f. (Proteaceae). Nuytsia 3(3): 355-357     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Green, J.W. (1985), Census of the Vascular Plants of Western Australia Edn. 2: 58     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Robson, Peter J. (1993), Checklist of Australian Trees: alphabetical listings of common and scientific names: -     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">common name:</span>
+                  <span class="synonym "><common><name id='435772'><element class='Ashbys Banksia'>Ashbys Banksia</element></name></common> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. in Wilson, A.J.G. (ed.) (1999), Banksia. Flora of Australia 17B: 217, Fig. 33, Map 218     
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. (2008), Further new taxa in Banksia (Proteaceae: Grevilleoideae). Nuytsia 18: 53     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia ashbyi Baker f. subsp. ashbyi
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>George, A.S. (2008), Further new taxa in Banksia (Proteaceae: Grevilleoideae). Nuytsia 18: 53-54     [autonym]
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia ashbyi subsp. boreoscaia A.S.George
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>George, A.S. (2008), Further new taxa in Banksia (Proteaceae: Grevilleoideae). Nuytsia 18: 54     [tax. nov.]
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>Type:</b>
+                Quobba Point, north of Carnarvon, Western Australia, 24° 29' S, 113° 25' E, 15 October 1975, K.F. Kenneally 4704 (holo: PERTH 01722433; iso: CANB, K).
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia aspleniifolia Salisb.
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Salisbury, R.A. (1796), Prodromus Stirpium in Horto ad Chapel Allerton Vigentium: 51     [tax. nov.]
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>Type:</b>
+                "Ex Port Jackson auct. Jac. Lee."
+                <li>
+                <b>Comment:</b>
+                Given under BANKSIA L.f. (<i>nom. cons.</i>)
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Beadle, N.C.W., Evans, O.D. &amp; Carolin, R.C. (1962), Handbook of the Vascular Plants of the Sydney District and Blue Mountains: 187     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Beadle, N.C.W., Evans, O.D. &amp; Carolin, R.C. (1972), Flora of the Sydney Region Edn. 2: 220     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. (1981), The genus Banksia L.f. (Proteaceae). Nuytsia 3(3)
+              <ul class="plain indent4">
+              <li>misapplied to:
+                Banksia oblongifolia Cav.
+                by
+                Salisbury, R.A. (1796), Prodromus Stirpium in Horto ad Chapel Allerton Vigentium
+                :
+                51
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Jacobs, S.W.L. &amp; Pickard, J. (1981), Plants of New South Wales: 178     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
+                  <span class="synonym italics"><scientific><name id='108905'><scientific><name id='108897'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='robur'>robur</element></name></scientific> <rank id='54412'>var.</rank> <element class='minor'>minor</element> <authors>(<base id='8649' title='Maiden, J.H. &amp; Camfield, J.H.'>Maiden & Camfield</base>) <author id='1510' title='Maiden, J.H. &amp; Betche, E.'>Maiden & Betche</author></authors></name></scientific> </span>
+
+
+
+
+              <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
+                  <span class="synonym italics"><scientific><name id='108319'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='oblongifolia'>oblongifolia</element> <authors><author id='6830' title='Cavanilles, A.J.'>Cav.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. in Wilson, A.J.G. (ed.) (1999), Banksia. Flora of Australia 17B: 249     
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>Text:</b>
+                "Insufficiently described; see discussion in A.S.George, <i>Nuytsia</i> 3: 302-304 (1981)."
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. in Wilson, A.J.G. (ed.) (1999), Banksia. Flora of Australia 17B
+              <ul class="plain indent4">
+              <li>misapplied to:
+                Banksia oblongifolia Cav.
+                by
+                Beadle, N.C.W., Evans, O.D. &amp; Carolin, R.C. (1972), Flora of the Sydney Region Edn. 2
+                :
+                220
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>CHAH (2005), Australian Plant Census
+              <ul class="plain indent4">
+              <li>misapplied to:
+                Banksia oblongifolia Cav.
+                by
+                Beadle, N.C.W., Evans, O.D. &amp; Carolin, R.C. (1972), Flora of the Sydney Region Edn. 2
+                :
+                220
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia attenuata R.Br.
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Brown, R. (1810), On the natural order of plants called Proteaceae. Transactions of the Linnean Society of London 10(1): 209     [tax. nov.]
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>Type:</b>
+                "In Novae Hollandiae ora australi; Lewins Land: prope littora (ubi v.v.)."
+                <li>
+                <b>Comment:</b>
+                Given under BANKSIA L.f. (<i>nom. cons.</i>).
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Mueller, F.J.H. von (1882), Systematic Census of Australian Plants: 72     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Kuntze, C.E.O. (1891), Revisio Generum Plantarum 2: -     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">basionym of:</span>
+                  <span class="synonym italics"><scientific><name id='77028'><scientific><name id='77008'><element class='Sirmuellera'>Sirmuellera</element></name></scientific> <element class='attenuata'>attenuata</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Diels, F.L.E. &amp; Pritzel, E.G. (1904), Fragmenta Phytographiae Australiae occidentalis. Beitrage zur Kenntnis der Pflanzen Westaustraliens, ihrer Verbreitung und ihrer Lebensverhaltnisse. Botanische Jahrbucher fur Systematik, Pflanzengeschichte und Pflanzengeographie 35(2-3): 169     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. (1981), The genus Banksia L.f. (Proteaceae). Nuytsia 3(3): 350-353     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='77028'><scientific><name id='77008'><element class='Sirmuellera'>Sirmuellera</element></name></scientific> <element class='attenuata'>attenuata</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
+              <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
+                  <span class="synonym italics"><scientific><name id='106995'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='cylindrostachya'>cylindrostachya</element> <authors><author id='1554' title='Lindley, J.'>Lindl.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Green, J.W. (1985), Census of the Vascular Plants of Western Australia Edn. 2: 58     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Rye, B.L. in Marchant, N.G., Wheeler, J.R., Rye, B.L., Bennett, E.M., Lander, N.S. &amp; Macfarlane, T.D. (1987), Proteaceae. Flora of the Perth Region 1: 314     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Robson, Peter J. (1993), Checklist of Australian Trees: alphabetical listings of common and scientific names: -     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">common name:</span>
+                  <span class="synonym "><common><name id='435773'><element class='Coast Banksia'>Coast Banksia</element></name></common> </span>
+
+
+
+
+              <li class="indent"><span class="synonym-type">common name:</span>
+                  <span class="synonym "><common><name id='435774'><element class='Slender Banksia'>Slender Banksia</element></name></common> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. in Wilson, A.J.G. (ed.) (1999), Banksia. Flora of Australia 17B: 216-217, Map 217     
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='77028'><scientific><name id='77008'><element class='Sirmuellera'>Sirmuellera</element></name></scientific> <element class='attenuata'>attenuata</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
+              <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
+                  <span class="synonym italics"><scientific><name id='106995'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='cylindrostachya'>cylindrostachya</element> <authors><author id='1554' title='Lindley, J.'>Lindl.</author></authors></name></scientific> </span>
+
+
+
+
+              <li class="indent"><span class="synonym-type">common name:</span>
+                  <span class="synonym "><common><name id='435774'><element class='Slender Banksia'>Slender Banksia</element></name></common> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Wheeler, J.R., Marchant, N.G. &amp; Lewington, M. (2002), Dicotyledons. Flora of the South West 2: 815-816     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">common name:</span>
+                  <span class="synonym "><common><name id='435774'><element class='Slender Banksia'>Slender Banksia</element></name></common> </span>
+
+
+
+
+              <li class="indent"><span class="synonym-type">common name:</span>
+                  <span class="synonym "><common><name id='450659'><element class='Candle Banksia'>Candle Banksia</element></name></common> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia audax C.A.Gardner
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Gardner, C.A. (1928), Contribution Florae Australiae Occidentalis VI. Journal of the Royal Society of Western Australia 13: 63, t. 24 G-J     [tax. nov.]
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>Type:</b>
+                "Hab. in Distr. Coolgardie, in arenosis aridis apertis prope Bronti, flor. m. Decem. (C.A. Gardner, Dec. 1926.)"
+                <li>
+                <b>Comment:</b>
+                Given under BANKSIA L.f. (<i>nom. cons.</i>).
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. (1981), The genus Banksia L.f. (Proteaceae). Nuytsia 3(3): 359-360     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Green, J.W. (1985), Census of the Vascular Plants of Western Australia Edn. 2: 58     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. in Wilson, A.J.G. (ed.) (1999), Banksia. Flora of Australia 17B: 218, Map 220     
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia aurantia (A.S.George) A.R.Mast & K.R.Thiele
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Mast, A.R. &amp; Thiele, K.R. (2007), The transfer of Dryandra R.Br. to Banksia L.f. (Proteaceae). Australian Systematic Botany 20(1): 66     [comb. nov.]
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">basionym:</span>
+                  <span class="synonym italics"><scientific><name id='158350'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='aurantia'>aurantia</element> <authors><author id='1484' title='George, A.S.'>A.S.George</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>Synonym:</b>
+                On the basis of molecular and morphological data, Mast & Thiele (2007) do not recognise Dryandra as generically distinct from Banksia, and all Dryandra taxa are transferred into Banksia, including Dryandra aurantia (as Banksia aurantia).
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia australis R.Br.
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Brown, R. (1810), On the natural order of plants called Proteaceae. Transactions of the Linnean Society of London 10(1): 205     [tax. nov.]
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>Type:</b>
+                "In Insulae Diemen, ubique in campis et prope littora, necnon in ora australi Novae Hollandiae prope Port Phillip. (ubi v.v.)."
+                <li>
+                <b>Comment:</b>
+                Given under BANKSIA L.f. (<i>nom. cons.</i>).
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Mueller, F.J.H. von (1853), First General Report of the Government Botanist on the Vegetation of the Colony. Victoria - Parliamentary Papers- Votes and Proceedings of the Legislative Assembly: 17     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Meisner, C.D.F. (1854), Plantae Muellerianae: Proteaceae. Linnaea: ein Journal für die Botanik in ihrem ganzen Umfange, oder Beiträge zur Pflanzenkunde 26: 353     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. (1981), The genus Banksia L.f. (Proteaceae). Nuytsia 3(3): 291     
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>Lectotype:</b>
+                "a sheet at BM labelled by Brown "12 Banksia marginata var. (sic) australis prodr. 393 Port Dalrymple Jan. 1804". A possible syntype at BM is labelled by Brown "Banksia australis prodr. Port Philip 1802?" with "Van Diemen's Island 1804" crossed out"
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+              <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='108035'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='marginata'>marginata</element> <authors><author id='6830' title='Cavanilles, A.J.'>Cav.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. in Wilson, A.J.G. (ed.) (1999), Banksia. Flora of Australia 17B: 193     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='108035'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='marginata'>marginata</element> <authors><author id='6830' title='Cavanilles, A.J.'>Cav.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>CHAH (2005), Australian Plant Census: -     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='108035'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='marginata'>marginata</element> <authors><author id='6830' title='Cavanilles, A.J.'>Cav.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>de Salas, M.F. &amp; Baker, M.L. (2016), A Census of the Vascular Plants of Tasmania, including Macquarie Island: 65     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='108035'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='marginata'>marginata</element> <authors><author id='6830' title='Cavanilles, A.J.'>Cav.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia australis R.Br. var. australis
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Hooker, J.D. (1855), The botany of the Antarctic voyage of H.M. Discovery ships Erebus and Terror. III. Flora Tasmaniae 1(1): 329     [autonym]
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>Comment:</b>
+                Given under BANKSIA L.f. (<i>nom. cons.</i>).
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. (1981), The genus Banksia L.f. (Proteaceae). Nuytsia 3(3): 291     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>CHAH (2005), Australian Plant Census: -     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='108035'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='marginata'>marginata</element> <authors><author id='6830' title='Cavanilles, A.J.'>Cav.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia australis var. depressa (R.Br.) Hook.f.
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Hooker, J.D. (1855), The botany of the Antarctic voyage of H.M. Discovery ships Erebus and Terror. III. Flora Tasmaniae 1(1): 329     [comb. nov.]
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">basionym:</span>
+                  <span class="synonym italics"><scientific><name id='107045'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='depressa'>depressa</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>Comment:</b>
+                Given under BANKSIA L.f. (<i>nom. cons.</i>).
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. (1981), The genus Banksia L.f. (Proteaceae). Nuytsia 3(3): 291     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. in Wilson, A.J.G. (ed.) (1999), Banksia. Flora of Australia 17B: 193     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='108035'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='marginata'>marginata</element> <authors><author id='6830' title='Cavanilles, A.J.'>Cav.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>CHAH (2005), Australian Plant Census: -     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='108035'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='marginata'>marginata</element> <authors><author id='6830' title='Cavanilles, A.J.'>Cav.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia axiflora (F.Muell. ex Meisn.) Kuntze
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Kuntze, C.E.O. (1891), Revisio Generum Plantarum 2: 583     [comb. nov.]
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">basionym:</span>
+                  <span class="synonym italics"><scientific><name id='66913'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='axiflora'>axiflora</element> <authors><ex id='6832' title='Mueller, F.J.H. von'>F.Muell.</ex> ex <author id='6841' title='Meisner, C.D.F.'>Meisn.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>Comment:</b>
+                Given under BANKSIA Forster & G.Forster (<i>nom. rej.</i>) non L.f.
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Threlfall, S. (1983), The Genus Pimelea (Thymelaeaceae) in Eastern Mainland Australia. Brunonia 5(2): 156     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Rye, B.L. in George, A.S. (ed.) (1990), Thymelaeaceae. Flora of Australia 18: 153     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='66913'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='axiflora'>axiflora</element> <authors><ex id='6832' title='Mueller, F.J.H. von'>F.Muell.</ex> ex <author id='6841' title='Meisner, C.D.F.'>Meisn.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia barbigera Meisn.
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Meisner, C.D.F. in Lehmann, J.G.C. (ed.) (1848), Proteaceae. Plantae Preissianae 2(2-3): 264     [tax. nov.]
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>Type:</b>
+                "Swan River, Drummond coll. III. no. 290."
+                <li>
+                <b>Comment:</b>
+                Given under BANKSIA L.f. (<i>nom. cons.</i>).
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. (1981), The genus Banksia L.f. (Proteaceae). Nuytsia 3(3): 368     
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>Lectotype:</b>
+                "Lecto: K; iso: FI, G, K, MEL, P, PERTH."
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+              <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='107366'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='goodii'>goodii</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. in Wilson, A.J.G. (ed.) (1999), Banksia. Flora of Australia 17B: 207     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='107366'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='goodii'>goodii</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia baueri R.Br.
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Brown, R. (1830), Proteaceas Novas. Supplementum primum prodromi florae Novae Hollandiae: 35     [tax. nov.]
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>Type:</b>
+                "Ora occid. – merid., regio mont. prope King George's Sound, 1829. D. Baxter."
+                <li>
+                <b>Comment:</b>
+                Given under BANKSIA L.f. (<i>nom. cons.</i>).
+                <li>
+                <b>Etymology:</b>
+                (not specified.)
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Mueller, F.J.H. von (1882), Systematic Census of Australian Plants: 72     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Kuntze, C.E.O. (1891), Revisio Generum Plantarum 2: -     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">basionym of:</span>
+                  <span class="synonym italics"><scientific><name id='77042'><scientific><name id='77008'><element class='Sirmuellera'>Sirmuellera</element></name></scientific> <element class='baueri'>baueri</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. (1981), The genus Banksia L.f. (Proteaceae). Nuytsia 3(3): 317-319     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='77042'><scientific><name id='77008'><element class='Sirmuellera'>Sirmuellera</element></name></scientific> <element class='baueri'>baueri</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>Lectotype:</b>
+                "BM, a sheet labelled by Brown "Banksia Baueri Prodr. Flor. Nov. Holl. Suppl. 1 p. 35. Mountains inland from King George's Sound 1829 Mr. Wm. Baxter". Iso: BM (including an infructescence), K."
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Green, J.W. (1985), Census of the Vascular Plants of Western Australia Edn. 2: 58     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. in Wilson, A.J.G. (ed.) (1999), Banksia. Flora of Australia 17B: 225, Fig. 34, Map 230     
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='77042'><scientific><name id='77008'><element class='Sirmuellera'>Sirmuellera</element></name></scientific> <element class='baueri'>baueri</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
+              <li class="indent"><span class="synonym-type">common name:</span>
+                  <span class="synonym "><common><name id='439257'><element class='Woolly Banksia'>Woolly Banksia</element></name></common> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia baxteri R.Br.
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Brown, R. (1830), Proteaceas Novas. Supplementum primum prodromi florae Novae Hollandiae: 36     [tax. nov.]
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>Type:</b>
+                "Ora occid.-merid., regio mont. prope King George's Sound, 1829. D. Baxter."
+                <li>
+                <b>Comment:</b>
+                Given under BANKSIA L.f. (<i>nom. cons.</i>).
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Mueller, F.J.H. von (1882), Systematic Census of Australian Plants: 72     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Kuntze, C.E.O. (1891), Revisio Generum Plantarum 2: -     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">basionym of:</span>
+                  <span class="synonym italics"><scientific><name id='77059'><scientific><name id='77008'><element class='Sirmuellera'>Sirmuellera</element></name></scientific> <element class='baxteri'>baxteri</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. (1981), The genus Banksia L.f. (Proteaceae). Nuytsia 3(3): 331-333     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='77059'><scientific><name id='77008'><element class='Sirmuellera'>Sirmuellera</element></name></scientific> <element class='baxteri'>baxteri</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>Lectotype:</b>
+                "BM, a sheet labelled by Brown "Banksia Prodr. supplt. 1 p. 36. King George's Sound Mountains inland 1829 Mr. Wm. Baxter." Iso: K, NSW."
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Green, J.W. (1985), Census of the Vascular Plants of Western Australia Edn. 2: 58     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. in Wilson, A.J.G. (ed.) (1999), Banksia. Flora of Australia 17B: 200, Fig. 26, Map 196     
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='77059'><scientific><name id='77008'><element class='Sirmuellera'>Sirmuellera</element></name></scientific> <element class='baxteri'>baxteri</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia bella A.R.Mast & K.R.Thiele
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Mast, A.R. &amp; Thiele, K.R. (2007), The transfer of Dryandra R.Br. to Banksia L.f. (Proteaceae). Australian Systematic Botany 20(1): 65     [nom. nov.]
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">replaced synonym:</span>
+                  <span class="synonym italics"><scientific><name id='101525'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='pulchella'>pulchella</element> <authors><author id='6841' title='Meisner, C.D.F.'>Meisn.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>CHAH (2007), Australian Plant Census: -     
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='101525'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='pulchella'>pulchella</element> <authors><author id='6841' title='Meisner, C.D.F.'>Meisn.</author></authors></name></scientific> </span>
+
+
+
+
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='87902'><scientific><name id='72473'><element class='Josephia'>Josephia</element></name></scientific> <element class='pulchella'>pulchella</element> <authors>(<base id='6841' title='Meisner, C.D.F.'>Meisn.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
+              <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
+                  <span class="synonym italics"><scientific><name id='198213'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='pulchella'>pulchella</element> <authors><author id='6841' title='Meisner, C.D.F.'>Meisn.</author></authors></name></scientific> nom. inval., nom. nud.</span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia benthamiana C.A.Gardner
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Gardner, C.A. (1964), Contributiones Florae Australiae Occidentalis XIII. Journal of the Royal Society of Western Australia 47(2): 57     [tax. nov.]
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>Type:</b>
+                "Wilroy Gardner 12075 (TYPUS)."
+                <li>
+                <b>Comment:</b>
+                Given under BANKSIA L.f. (<i>nom. cons.</i>).
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. (1981), The genus Banksia L.f. (Proteaceae). Nuytsia 3(3): 357     
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>Lectotype:</b>
+                "Dalwallinu, Jan. 1940, C.A. Gardner s.n. (PERTH) ... Isolecto: PERTH."
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Green, J.W. (1985), Census of the Vascular Plants of Western Australia Edn. 2: 58     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. in Wilson, A.J.G. (ed.) (1999), Banksia. Flora of Australia 17B: 217, Fig. 33, Map 219     
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Thiele, K.R. (2015), Typification of Banksia benthamiana (Proteaceae). Nuytsia 25: 155     
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>Type:</b>
+                "Dalwallinu [Western Australia], January 1940, C.A.Gardner s.n. (lecto: PERTH 01178210!, designated by A.S.George, Nuytsia 3(3): 357 (1981); isolecto: PERTH01178237!, PERTH01178229!)."
+
+
+                <li>
+                <b>Comment:</b>
+                "Note that specimens of Gardner 12097 ‘Rabbit Proof Fence, E. from Perenjori, 24 Nov. 1953’ (PERTH 01178245!, 01178253!, 08177562! and with duplicates at AD, CANB, K, MEL and NSW), regarded by
+George (1981) as syntypes presumably on the basis of their collecting number, are at best ambiguous
+paratypes, and I believe should be regarded as having no type status. These specimens were erroneously
+annotated paralectotype by A.J.G. Wilson."
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia bipinnatifida (R.Br.) A.R.Mast & K.R.Thiele
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Mast, A.R. &amp; Thiele, K.R. (2007), The transfer of Dryandra R.Br. to Banksia L.f. (Proteaceae). Australian Systematic Botany 20(1): 66     [comb. nov.]
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">basionym:</span>
+                  <span class="synonym italics"><scientific><name id='100015'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='bipinnatifida'>bipinnatifida</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>CHAH (2007), Australian Plant Census: -     
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='100015'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='bipinnatifida'>bipinnatifida</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='72540'><scientific><name id='72473'><element class='Josephia'>Josephia</element></name></scientific> <element class='bipinnatifida'>bipinnatifida</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia bipinnatifida (R.Br.) A.R.Mast & K.R.Thiele subsp. bipinnatifida
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Mast, A.R. &amp; Thiele, K.R. (2007), The transfer of Dryandra R.Br. to Banksia L.f. (Proteaceae). Australian Systematic Botany 20(1): 66     [autonym]
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>CHAH (2007), Australian Plant Census: -     
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='165001'><scientific><name id='100015'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='bipinnatifida'>bipinnatifida</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> <rank id='54410'>subsp.</rank> <element class='bipinnatifida'>bipinnatifida</element></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia bipinnatifida subsp. multifida (A.S.George) A.R.Mast & K.R.Thiele
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Mast, A.R. &amp; Thiele, K.R. (2007), The transfer of Dryandra R.Br. to Banksia L.f. (Proteaceae). Australian Systematic Botany 20(1): 66     [comb. nov.]
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">basionym:</span>
+                  <span class="synonym italics"><scientific><name id='141922'><scientific><name id='100015'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='bipinnatifida'>bipinnatifida</element></name></scientific> <rank id='54410'>subsp.</rank> <element class='multifida'>multifida</element> <authors><author id='1484' title='George, A.S.'>A.S.George</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia biterax A.R.Mast & K.R.Thiele
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Mast, A.R. &amp; Thiele, K.R. (2007), The transfer of Dryandra R.Br. to Banksia L.f. (Proteaceae). Australian Systematic Botany 20(1): 65     [nom. nov.]
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">replaced synonym:</span>
+                  <span class="synonym italics"><scientific><name id='99993'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='baxteri'>baxteri</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>CHAH (2007), Australian Plant Census: -     
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='99993'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='baxteri'>baxteri</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='72526'><scientific><name id='72473'><element class='Josephia'>Josephia</element></name></scientific> <element class='baxteri'>baxteri</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia blechnifolia F.Muell.
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Mueller, F.J.H. von (1864), Fragmenta Phytographiae Australiae 4(27): 108     [tax. nov.]
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>Type:</b>
+                "Haec a montibus Stirling's Range usque ad flumen Young's River reperienda est."
+                <li>
+                <b>Comment:</b>
+                Given under BANKSIA L.f. (<i>nom. cons.</i>).
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. (1981), The genus Banksia L.f. (Proteaceae). Nuytsia 3(3): 378-380     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
+                  <span class="synonym italics"><scientific><name id='108626'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='pinnatisecta'>pinnatisecta</element> <authors><author id='6832' title='Mueller, F.J.H. von'>F.Muell.</author></authors></name></scientific> nom. inval., nom. nud.</span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>Lectotype:</b>
+                "I have selected as lectotype a sheet (MEL 47981) labelled in Mueller's hand "S.W. Austr. Fol. immerso-nervosa. Maxwell 1861". It contains one specimen which agrees with Mueller's protologue; the sheet was seen by Bentham."
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Elliot, W.R. &amp; Jones, D.L. (1982), Encyclopaedia of Australian plants suitable for cultivation 2: 288     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><cultivar><name id='5822831'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='Lake King'>&lsquo;Lake King&rsquo;</element></name></cultivar> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Green, J.W. (1985), Census of the Vascular Plants of Western Australia Edn. 2: 58     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. in Wilson, A.J.G. (ed.) (1999), Banksia. Flora of Australia 17B: 211, Plate 40, Figs 30, 31, Map 210     
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
+                  <span class="synonym italics"><scientific><name id='108626'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='pinnatisecta'>pinnatisecta</element> <authors><author id='6832' title='Mueller, F.J.H. von'>F.Muell.</author></authors></name></scientific> nom. inval., nom. nud.</span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia borealis (A.S.George) A.R.Mast & K.R.Thiele
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Mast, A.R. &amp; Thiele, K.R. (2007), The transfer of Dryandra R.Br. to Banksia L.f. (Proteaceae). Australian Systematic Botany 20(1): 66     [comb. nov.]
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">basionym:</span>
+                  <span class="synonym italics"><scientific><name id='141930'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='borealis'>borealis</element> <authors><author id='1484' title='George, A.S.'>A.S.George</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia borealis (A.S.George) A.R.Mast & K.R.Thiele subsp. borealis
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Mast, A.R. &amp; Thiele, K.R. (2007), The transfer of Dryandra R.Br. to Banksia L.f. (Proteaceae). Australian Systematic Botany 20(1): 66     [autonym]
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>CHAH (2007), Australian Plant Census: -     
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='141931'><scientific><name id='141930'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='borealis'>borealis</element> <authors><author id='1484' title='George, A.S.'>A.S.George</author></authors></name></scientific> <rank id='54410'>subsp.</rank> <element class='borealis'>borealis</element></name></scientific> </span>
+
+
+
+
+              <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
+                  <span class="synonym italics"><scientific><name id='197985'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='sp.'>sp.</element></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia borealis subsp. elatior (A.S.George) A.R.Mast & K.R.Thiele
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Mast, A.R. &amp; Thiele, K.R. (2007), The transfer of Dryandra R.Br. to Banksia L.f. (Proteaceae). Australian Systematic Botany 20(1): 66     [comb. et stat. nov.]
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">basionym:</span>
+                  <span class="synonym italics"><scientific><name id='161181'><scientific><name id='141930'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='borealis'>borealis</element></name></scientific> <rank id='54410'>subsp.</rank> <element class='elatior'>elatior</element> <authors><author id='1484' title='George, A.S.'>A.S.George</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>CHAH (2007), Australian Plant Census: -     
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='161181'><scientific><name id='141930'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='borealis'>borealis</element></name></scientific> <rank id='54410'>subsp.</rank> <element class='elatior'>elatior</element> <authors><author id='1484' title='George, A.S.'>A.S.George</author></authors></name></scientific> </span>
+
+
+
+
+              <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
+                  <span class="synonym italics"><scientific><name id='197986'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='sp. 20 (A.S.George 16786)'>sp. 20 (A.S.George 16786)</element></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia bowmanii (Benth.) Kuntze
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Kuntze, C.E.O. (1891), Revisio Generum Plantarum 2: 583     [comb. nov.]
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">basionym:</span>
+                  <span class="synonym italics"><scientific><name id='66990'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='bowmanii'>bowmanii</element> <authors><ex id='6832' title='Mueller, F.J.H. von'>F.Muell.</ex> ex <author id='1531' title='Bentham, G.'>Benth.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>Comment:</b>
+                Given under BANKSIA Forster & G.Forster (<i>nom. rej.</i>) non L.f.
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Rye, B.L. in George, A.S. (ed.) (1990), Thymelaeaceae. Flora of Australia 18: 172     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='68957'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='leptospermoides'>leptospermoides</element> <authors><author id='6832' title='Mueller, F.J.H. von'>F.Muell.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia brachyphylla (Benth.) Kuntze, <i class="highlight name-status" title="name status">nom. illeg.</i>
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Kuntze, C.E.O. (1891), Revisio Generum Plantarum 2: 583     [comb. nov.]
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">basionym:</span>
+                  <span class="synonym italics"><scientific><name id='67006'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='brachyphylla'>brachyphylla</element> <authors><author id='1531' title='Bentham, G.'>Benth.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>Comment:</b>
+                Given under BANKSIA Forster & G.Forster (<i>nom. rej.</i>) non L.f.
+                <li>
+                <b>Comment:</b>
+                <i>nom. illeg.</i>, <i>non</i> Ettingsh. (1858) [<i>Sitzungsber. Kaiserl. Akad. Wiss. Wien, Math.-Naturwiss. Cl.</i>  28: 525 (a fossil taxon)]
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Rye, B.L. (1988), A revision of Western Australian Thymelaeaceae. Nuytsia 6(2): 259     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='67006'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='brachyphylla'>brachyphylla</element> <authors><author id='1531' title='Bentham, G.'>Benth.</author></authors></name></scientific> nom. illeg.</span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Rye, B.L. in George, A.S. (ed.) (1990), Thymelaeaceae. Flora of Australia 18: 208     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='67006'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='brachyphylla'>brachyphylla</element> <authors><author id='1531' title='Bentham, G.'>Benth.</author></authors></name></scientific> nom. illeg.</span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia brevidentata (A.S.George) K.R.Thiele
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Thiele, K. &amp; Ladiges, P.Y. (1996), A cladistic analysis of Banksia (Proteaceae). Australian Systematic Botany 9(5): 719     [comb. et stat. nov.]
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">basionym:</span>
+                  <span class="synonym italics"><scientific><name id='107309'><scientific><name id='107297'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='gardneri'>gardneri</element></name></scientific> <rank id='54412'>var.</rank> <element class='brevidentata'>brevidentata</element> <authors><author id='1484' title='George, A.S.'>A.S.George</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. in Wilson, A.J.G. (ed.) (1999), Banksia. Flora of Australia 17B: 209     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='107309'><scientific><name id='107297'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='gardneri'>gardneri</element></name></scientific> <rank id='54412'>var.</rank> <element class='brevidentata'>brevidentata</element> <authors><author id='1484' title='George, A.S.'>A.S.George</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia brevifolia (R.Br.) Kuntze
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Kuntze, C.E.O. (1891), Revisio Generum Plantarum 2: 583     [comb. nov.]
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">basionym:</span>
+                  <span class="synonym italics"><scientific><name id='67024'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='brevifolia'>brevifolia</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>Comment:</b>
+                Given under BANKSIA Forster & G.Forster (<i>nom. rej.</i>) non L.f.
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Rye, B.L. (1988), A revision of Western Australian Thymelaeaceae. Nuytsia 6(2): 255     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='67024'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='brevifolia'>brevifolia</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Rye, B.L. in George, A.S. (ed.) (1990), Thymelaeaceae. Flora of Australia 18: 207     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
+                  <span class="synonym italics"><scientific><name id='67024'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='brevifolia'>brevifolia</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia brownii Baxter ex R.Br.
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Brown, R. (1830), Proteaceas Novas. Supplementum primum prodromi florae Novae Hollandiae: 37     [tax. nov.]
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>Type:</b>
+                "Ora occid.-merid., regio mont. prope King George's Sound, 1829. D. Baxter."
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Mueller, F.J.H. von (1882), Systematic Census of Australian Plants: 72     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Kuntze, C.E.O. (1891), Revisio Generum Plantarum 2: -     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">basionym of:</span>
+                  <span class="synonym italics"><scientific><name id='77077'><scientific><name id='77008'><element class='Sirmuellera'>Sirmuellera</element></name></scientific> <element class='brownii'>brownii</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Diels, F.L.E. &amp; Pritzel, E.G. (1904), Fragmenta Phytographiae Australiae occidentalis. Beitrage zur Kenntnis der Pflanzen Westaustraliens, ihrer Verbreitung und ihrer Lebensverhaltnisse. Botanische Jahrbucher fur Systematik, Pflanzengeschichte und Pflanzengeographie 35(2-3): 169     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. (1981), The genus Banksia L.f. (Proteaceae). Nuytsia 3(3): 401-403     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='77077'><scientific><name id='77008'><element class='Sirmuellera'>Sirmuellera</element></name></scientific> <element class='brownii'>brownii</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>Lectotype:</b>
+                "BM, a sheet labelled by Brown "Banksia Brownii Prodr. Flor. Nov. Holl. suppl. 1. p... Inland from King George's Sound 1829 Mr. Wm. Baxter". Iso: BM (including fruit), K."
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Green, J.W. (1985), Census of the Vascular Plants of Western Australia Edn. 2: 58     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Hopper, S.D., van Leeuwen, S., Brown, A., &amp; Patrick, S. (1990), Western Australia&#39;s Endangered Flora: 16, 38, Fig. 36     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">common name:</span>
+                  <span class="synonym "><common><name id='442008'><element class='Feather-leaved Banksia'>Feather-leaved Banksia</element></name></common> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Robson, Peter J. (1993), Checklist of Australian Trees: alphabetical listings of common and scientific names: -     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">common name:</span>
+                  <span class="synonym "><common><name id='435775'><element class='Brown&#39;s Banksia'>Brown&#39;s Banksia</element></name></common> </span>
+
+
+
+
+              <li class="indent"><span class="synonym-type">common name:</span>
+                  <span class="synonym "><common><name id='435776'><element class='Feather leaved Banksia'>Feather leaved Banksia</element></name></common> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>Anonymous (1998), Errata. Schedules 1, 2 &amp; 3 (24 February 1998). Endangered Species Protection Act 1992: -     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>George, A.S. in Wilson, A.J.G. (ed.) (1999), Banksia. Flora of Australia 17B: 235, Map 244     
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='77077'><scientific><name id='77008'><element class='Sirmuellera'>Sirmuellera</element></name></scientific> <element class='brownii'>brownii</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>CHAH (2016), Australian Plant Census: -     
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='77077'><scientific><name id='77008'><element class='Sirmuellera'>Sirmuellera</element></name></scientific> <element class='brownii'>brownii</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='248612'><scientific><name id='77008'><element class='Sirmuellera'>Sirmuellera</element></name></scientific> <element class='brownei'>brownei</element> <authors><author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> orth. var.</span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+    <h3 class="name-heading ">
+        Banksia brunnea A.R.Mast & K.R.Thiele
+    </h3>
+
+      <ul class="name-details plain indent3">
+            
+              <li>Mast, A.R. &amp; Thiele, K.R. (2007), The transfer of Dryandra R.Br. to Banksia L.f. (Proteaceae). Australian Systematic Botany 20(1): 65     [nom. nov.]
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">replaced synonym:</span>
+                  <span class="synonym italics"><scientific><name id='100040'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='brownii'>brownii</element> <authors><author id='6841' title='Meisner, C.D.F.'>Meisn.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+            </ul>
+              <li>CHAH (2007), Australian Plant Census: -     
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+              <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                  <span class="synonym italics"><scientific><name id='100040'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='brownii'>brownii</element> <authors><author id='6841' title='Meisner, C.D.F.'>Meisn.</author></authors></name></scientific> </span>
+
+
+
+
+              <ul class="plain">
+                <li>
+                <b>APC Dist.:</b>
+                WA
+              </ul>
+            <div class="name-detail-entry-separator "></div>
+        </ul>
+      </ul>
+
+    <hr>
+    
+  
+  
+  1
+  <a title="Next page" href="/names/search?limit_per_page_for_details=50&amp;limit_per_page_for_list=50&amp;list_or_count=list&amp;offset=50&amp;q=banksia%2A+++&amp;search=Search&amp;show_details=1&amp;utf8=%E2%9C%93">Next</a>
+  <a title="First page" href="/names/search?limit_per_page_for_details=50&amp;limit_per_page_for_list=50&amp;list_or_count=list&amp;offset=550&amp;q=banksia%2A+++&amp;search=Search&amp;show_details=1&amp;utf8=%E2%9C%93">Last</a>
+  <hr>
+
+
+</div>
+
+
+<div id="timing-summary">
+    <span class="hidden">
+2.88 seconds (~17 records/second) (index.html)
+</span>
+
+</div>
+
+
+
+<span id="show-edit-links-area">
+</span>
+</body>
+</html>

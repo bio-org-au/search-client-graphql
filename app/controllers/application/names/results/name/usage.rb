@@ -15,7 +15,7 @@ class Application::Names::Results::Name::Usage
   end
 
   def citation_for_misapplied
-    "#{@raw_usage.citation} [#{@raw_usage.instance_type_name}]"
+    @raw_usage.citation
   end
 
   def full_citation_with_page

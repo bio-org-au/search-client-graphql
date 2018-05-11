@@ -1,0 +1,48 @@
+34c34
+< <meta name="csrf-token" content="mXkqQqNBfn/m+JVeIgV6YJFYbx6isttzl2cspG6jZv3Vwac8Ff4k7240vGWNqc1ffqo7k3j3vkojeolp2XhM0w==" />
+---
+> <meta name="csrf-token" content="7DaSfcH0uLzyn+Be/3kIIf6di4TInEe1am8wRVv+5IRheOxG9MVtMLWbzmJpervyxBLUXltjU8k5uAV05p+oNQ==" />
+2466c2466
+<               <li>Maslin, B.R. in Orchard, A.E. &amp; Wilson, A.J.G. (ed.) (2001), Flora of Australia 11B [pro parte misapplied]
+---
+>               <li>Maslin, B.R. in Orchard, A.E. &amp; Wilson, A.J.G. (ed.) (2001), Flora of Australia 11B
+2478c2478
+<               <li>Maslin, B.R. in Orchard, A.E. &amp; Wilson, A.J.G. (ed.) (2001), Flora of Australia 11B [pro parte misapplied]
+---
+>               <li>Maslin, B.R. in Orchard, A.E. &amp; Wilson, A.J.G. (ed.) (2001), Flora of Australia 11B
+3602c3602
+< 10.82 seconds (~5 records/second) (index.html)
+---
+> 3.89 seconds (~13 records/second) (index.html)
+34c34
+< <meta name="csrf-token" content="/hLEoXYljev4C3YmlBRK6lULTc1MO0+3X752qudfuuqH7R8N7xFl7tTczi6VNbFtwqVqw2CW0Cx7WcDTGIV6Tw==" />
+---
+> <meta name="csrf-token" content="kTNg+ssTzGvwmwpIt31uu7zVGqHVh3D9uqMoxIGxNoMn/J/hlBuCmGY9PtFhzgIFJlbHxI8ons/+q2q2L/J8Og==" />
+1328c1328
+<               <li>Jessup, L.W. (2002), Flora of South-eastern Queensland Volume 2 Changes to names or status of taxa [misapplied]
+---
+>               <li>Jessup, L.W. (2002), Flora of South-eastern Queensland Volume 2 Changes to names or status of taxa
+5105c5105
+< 7.21 seconds (~6 records/second) (index.html)
+---
+> 5.29 seconds (~9 records/second) (index.html)
+34c34
+< <meta name="csrf-token" content="B2bqVF8ODvX4fAXBKLRHJGuxCdG9K1Ad5DxGR07amP6f7A4AWq4is7EI+9nuwkHVVk83NYIBBc8eCWYXQbk6+w==" />
+---
+> <meta name="csrf-token" content="LFLey3XMMxLojbLl7n6mzItzkuevw40vOHxfN7775VO1azMDshxNZ3ps1jIK1lPgUPbj9PsTiAYUa474Jp64pA==" />
+1328c1328
+<               <li>George, A.S. (1981), The genus Banksia L.f. (Proteaceae). Nuytsia 3(3) [misapplied]
+---
+>               <li>George, A.S. (1981), The genus Banksia L.f. (Proteaceae). Nuytsia 3(3)
+1367c1367
+<               <li>George, A.S. in Wilson, A.J.G. (ed.) (1999), Banksia. Flora of Australia 17B [misapplied]
+---
+>               <li>George, A.S. in Wilson, A.J.G. (ed.) (1999), Banksia. Flora of Australia 17B
+1379c1379
+<               <li>CHAH (2005), Australian Plant Census [misapplied]
+---
+>               <li>CHAH (2005), Australian Plant Census
+2767c2767
+< 7.78 seconds (~6 records/second) (index.html)
+---
+> 2.88 seconds (~17 records/second) (index.html)
