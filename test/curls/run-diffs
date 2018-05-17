@@ -1,0 +1,1 @@
+bash ./diffs | sed -e '/ seconds (/d' -e '/meta name="csrf-token"/d'

@@ -31,7 +31,7 @@ label:not([title]) {
 
   <script src="/assets/application-966a529f9fd7ffdba0d0572b35531f817210bf8ab03177e84e05edd9cd96be5e.js" data-turbolinks-track="true"></script>
   <meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="dJL1ClLRlu5GKdtUUea0LEHnckMLjJMANGCwOd0uJBNS40Fs2PlR0n4ITtfkmmmkXb4rcMwnYVpwH13lWD0OOg==" />
+<meta name="csrf-token" content="B2bqVF8ODvX4fAXBKLRHJGuxCdG9K1Ad5DxGR07amP6f7A4AWq4is7EI+9nuwkHVVk83NYIBBc8eCWYXQbk6+w==" />
 
 </head>
 <body class="name development" >
@@ -199,6 +199,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">basionym:</span>
                   <span class="synonym italics"><scientific><name id='158342'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='acanthopoda'>acanthopoda</element> <authors><author id='1484' title='George, A.S.'>A.S.George</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -208,8 +212,16 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='158342'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='acanthopoda'>acanthopoda</element> <authors><author id='1484' title='George, A.S.'>A.S.George</author></authors></name></scientific> </span>
+
+
+
+
               <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
                   <span class="synonym italics"><scientific><name id='197984'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='sp. 1 (A.S.George 16647)'>sp. 1 (A.S.George 16647)</element></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>APC Dist.:</b>
@@ -228,6 +240,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">basionym:</span>
                   <span class="synonym italics"><scientific><name id='75306'><scientific><name id='75293'><element class='Conchium'>Conchium</element></name></scientific> <element class='aciculare'>aciculare</element> <authors><ex id='6895' title='Smith, J.E'>Sm.</ex> ex <author id='6891' title='Ventenat, E.P.'>Vent.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -236,6 +252,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
                   <span class="synonym italics"><scientific><name id='99588'><scientific><name id='74468'><element class='Hakea'>Hakea</element></name></scientific> <element class='sericea'>sericea</element> <authors><author id='7401' title='Schrader, H.A. &amp; Wendland, J.C.'>Schrad. & J.C.Wendl.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -244,6 +264,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
                   <span class="synonym italics"><scientific><name id='99588'><scientific><name id='74468'><element class='Hakea'>Hakea</element></name></scientific> <element class='sericea'>sericea</element> <authors><author id='7401' title='Schrader, H.A. &amp; Wendland, J.C.'>Schrad. & J.C.Wendl.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -294,6 +318,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">replaced synonym:</span>
                   <span class="synonym italics"><scientific><name id='101368'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='preissii'>preissii</element> <authors><author id='6841' title='Meisner, C.D.F.'>Meisn.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -303,8 +331,16 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='101368'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='preissii'>preissii</element> <authors><author id='6841' title='Meisner, C.D.F.'>Meisn.</author></authors></name></scientific> </span>
+
+
+
+
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='87843'><scientific><name id='72473'><element class='Josephia'>Josephia</element></name></scientific> <element class='preissii'>preissii</element> <authors>(<base id='6841' title='Meisner, C.D.F.'>Meisn.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>APC Comment:</b>
@@ -341,6 +377,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
                   <span class="synonym italics"><scientific><name id='109045'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='serratifolia'>serratifolia</element> <authors><author id='10098' title='Salisbury, R.A.'>Salisb.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -361,6 +401,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">common name:</span>
                   <span class="synonym "><common><name id='435770'><element class='Wallum Banksia'>Wallum Banksia</element></name></common> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -369,6 +413,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
                   <span class="synonym italics"><scientific><name id='107115'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='elatior'>elatior</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>Lectotype:</b>
@@ -380,6 +428,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
                   <span class="synonym italics"><scientific><name id='109045'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='serratifolia'>serratifolia</element> <authors><author id='10098' title='Salisbury, R.A.'>Salisb.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -388,6 +440,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">common name:</span>
                   <span class="synonym "><common><name id='435770'><element class='Wallum Banksia'>Wallum Banksia</element></name></common> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -396,6 +452,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
                   <span class="synonym italics"><scientific><name id='109045'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='serratifolia'>serratifolia</element> <authors><author id='10098' title='Salisbury, R.A.'>Salisb.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -404,10 +464,22 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">common name:</span>
                   <span class="synonym "><common><name id='435769'><element class='Banyalla'>Banyalla</element></name></common> </span>
+
+
+
+
               <li class="indent"><span class="synonym-type">common name:</span>
                   <span class="synonym "><common><name id='435770'><element class='Wallum Banksia'>Wallum Banksia</element></name></common> </span>
+
+
+
+
               <li class="indent"><span class="synonym-type">common name:</span>
                   <span class="synonym "><common><name id='435771'><element class='Wallum Bottlebrush'>Wallum Bottlebrush</element></name></common> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -417,10 +489,16 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
                   <span class="synonym italics"><scientific><name id='107115'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='elatior'>elatior</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
-              <li class="indent"><span class="synonym-type">misapplication:</span>
-                  <span class="synonym italics"><scientific><name id='109045'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='serratifolia'>serratifolia</element> <authors><author id='10098' title='Salisbury, R.A.'>Salisb.</author></authors></name></scientific> </span>
+
+
+
+
               <li class="indent"><span class="synonym-type">common name:</span>
                   <span class="synonym "><common><name id='435770'><element class='Wallum Banksia'>Wallum Banksia</element></name></common> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>APC Dist.:</b>
@@ -432,6 +510,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">common name:</span>
                   <span class="synonym "><common><name id='435770'><element class='Wallum Banksia'>Wallum Banksia</element></name></common> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -453,6 +535,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
                   <span class="synonym italics"><scientific><name id='207468'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='croajingolensis'>croajingolensis</element> <authors><author id='5216' title='Molyneux, W.M. &amp; Forrester, S.G.'>Molyneux & Forrester</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -468,6 +554,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">replaced synonym:</span>
                   <span class="synonym italics"><scientific><name id='101069'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='nervosa'>nervosa</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -477,10 +567,16 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='101069'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='nervosa'>nervosa</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
-              <li class="indent"><span class="synonym-type">pro parte misapplication:</span>
-                  <span class="synonym italics"><scientific><name id='101444'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='pteridifolia'>pteridifolia</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
               <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
                   <span class="synonym italics"><scientific><name id='101044'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='nervosa'>nervosa</element> <authors><author id='6965' title='Sweet, R.'>Sweet</author></authors></name></scientific> nom. inval., nom. nud.</span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>APC Dist.:</b>
@@ -499,6 +595,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">basionym:</span>
                   <span class="synonym italics"><scientific><name id='66743'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='alpina'>alpina</element> <authors><ex id='6832' title='Mueller, F.J.H. von'>F.Muell.</ex> ex <author id='6841' title='Meisner, C.D.F.'>Meisn.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>Comment:</b>
@@ -510,6 +610,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
                   <span class="synonym italics"><scientific><name id='66743'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='alpina'>alpina</element> <authors><ex id='6832' title='Mueller, F.J.H. von'>F.Muell.</ex> ex <author id='6841' title='Meisner, C.D.F.'>Meisn.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -518,6 +622,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
                   <span class="synonym italics"><scientific><name id='66743'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='alpina'>alpina</element> <authors><ex id='6832' title='Mueller, F.J.H. von'>F.Muell.</ex> ex <author id='6841' title='Meisner, C.D.F.'>Meisn.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -533,6 +641,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">basionym:</span>
                   <span class="synonym italics"><scientific><name id='66758'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='altior'>altior</element> <authors><author id='6832' title='Mueller, F.J.H. von'>F.Muell.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>Comment:</b>
@@ -544,6 +656,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
                   <span class="synonym italics"><scientific><name id='68858'><scientific><name id='68854'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='latifolia'>latifolia</element></name></scientific> <rank id='54410'>subsp.</rank> <element class='altior'>altior</element> <authors>(<base id='6832' title='Mueller, F.J.H. von'>F.Muell.</base>) <author id='7674' title='Threlfall, S.'>Threlfall</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -552,6 +668,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
                   <span class="synonym italics"><scientific><name id='68860'><scientific><name id='68854'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='latifolia'>latifolia</element></name></scientific> <rank id='54412'>var.</rank> <element class='altior'>altior</element> <authors>(<base id='6832' title='Mueller, F.J.H. von'>F.Muell.</base>) <author id='7674' title='Threlfall, S.'>Threlfall</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -560,6 +680,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
                   <span class="synonym italics"><scientific><name id='68858'><scientific><name id='68854'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='latifolia'>latifolia</element></name></scientific> <rank id='54410'>subsp.</rank> <element class='altior'>altior</element> <authors>(<base id='6832' title='Mueller, F.J.H. von'>F.Muell.</base>) <author id='7674' title='Threlfall, S.'>Threlfall</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -568,6 +692,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
                   <span class="synonym italics"><scientific><name id='68858'><scientific><name id='68854'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='latifolia'>latifolia</element></name></scientific> <rank id='54410'>subsp.</rank> <element class='altior'>altior</element> <authors>(<base id='6832' title='Mueller, F.J.H. von'>F.Muell.</base>) <author id='7674' title='Threlfall, S.'>Threlfall</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -583,6 +711,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">basionym:</span>
                   <span class="synonym italics"><scientific><name id='66810'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='ammocharis'>ammocharis</element> <authors><author id='6832' title='Mueller, F.J.H. von'>F.Muell.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>Comment:</b>
@@ -594,6 +726,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
                   <span class="synonym italics"><scientific><name id='66810'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='ammocharis'>ammocharis</element> <authors><author id='6832' title='Mueller, F.J.H. von'>F.Muell.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -602,6 +738,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
                   <span class="synonym italics"><scientific><name id='66810'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='ammocharis'>ammocharis</element> <authors><author id='6832' title='Mueller, F.J.H. von'>F.Muell.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -610,6 +750,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
                   <span class="synonym italics"><scientific><name id='66810'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='ammocharis'>ammocharis</element> <authors><author id='6832' title='Mueller, F.J.H. von'>F.Muell.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -625,6 +769,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">basionym:</span>
                   <span class="synonym italics"><scientific><name id='154581'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='anatona'>anatona</element> <authors><author id='1484' title='George, A.S.'>A.S.George</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -634,8 +782,16 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='154581'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='anatona'>anatona</element> <authors><author id='1484' title='George, A.S.'>A.S.George</author></authors></name></scientific> </span>
+
+
+
+
               <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
                   <span class="synonym italics"><scientific><name id='194371'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='sp. 48 (A.S.George 16886)'>sp. 48 (A.S.George 16886)</element></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>Synonym:</b>
@@ -657,6 +813,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">basionym:</span>
                   <span class="synonym italics"><scientific><name id='66826'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='angustifolia'>angustifolia</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>Comment:</b>
@@ -668,6 +828,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
                   <span class="synonym italics"><scientific><name id='66826'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='angustifolia'>angustifolia</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -676,6 +840,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
                   <span class="synonym italics"><scientific><name id='66826'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='angustifolia'>angustifolia</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -709,6 +877,10 @@ label:not([title]) {
             <div class="name-detail-entry-separator "></div>
               <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
                   <span class="synonym italics"><scientific><name id='107525'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='ilicifolia'>ilicifolia</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -717,6 +889,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
                   <span class="synonym italics"><scientific><name id='107525'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='ilicifolia'>ilicifolia</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -725,6 +901,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
                   <span class="synonym italics"><scientific><name id='107525'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='ilicifolia'>ilicifolia</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -740,8 +920,16 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">basionym:</span>
                   <span class="synonym italics"><scientific><name id='107611'><scientific><name id='107602'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='integrifolia'>integrifolia</element></name></scientific> <rank id='54412'>var.</rank> <element class='aquilonia'>aquilonia</element> <authors><author id='1484' title='George, A.S.'>A.S.George</author></authors></name></scientific> </span>
+
+
+
+
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='141260'><scientific><name id='107602'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='integrifolia'>integrifolia</element></name></scientific> <rank id='54410'>subsp.</rank> <element class='aquilonia'>aquilonia</element> <authors>(<base id='1484' title='George, A.S.'>A.S.George</base>) <author id='1478' title='Thiele, K.R.'>K.R.Thiele</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>Type:</b>
@@ -754,8 +942,16 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='107611'><scientific><name id='107602'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='integrifolia'>integrifolia</element></name></scientific> <rank id='54412'>var.</rank> <element class='aquilonia'>aquilonia</element> <authors><author id='1484' title='George, A.S.'>A.S.George</author></authors></name></scientific> </span>
+
+
+
+
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='141260'><scientific><name id='107602'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='integrifolia'>integrifolia</element></name></scientific> <rank id='54410'>subsp.</rank> <element class='aquilonia'>aquilonia</element> <authors>(<base id='1484' title='George, A.S.'>A.S.George</base>) <author id='1478' title='Thiele, K.R.'>K.R.Thiele</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>APC Dist.:</b>
@@ -775,6 +971,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">basionym:</span>
                   <span class="synonym italics"><scientific><name id='99863'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='arborea'>arborea</element> <authors><author id='6833' title='Gardner, C.A.'>C.A.Gardner</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>APC Dist.:</b>
@@ -793,6 +993,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">basionym:</span>
                   <span class="synonym italics"><scientific><name id='99881'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='arctotidis'>arctotidis</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -802,12 +1006,28 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='99881'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='arctotidis'>arctotidis</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='99893'><scientific><name id='99881'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='arctotidis'>arctotidis</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> <rank id='54412'>var.</rank> <element class='arctotidis'>arctotidis</element></name></scientific> </span>
+
+
+
+
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='72493'><scientific><name id='72473'><element class='Josephia'>Josephia</element></name></scientific> <element class='arctotidis'>arctotidis</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='205667'><scientific><name id='72473'><element class='Josephia'>Josephia</element></name></scientific> <element class='arctotides'>arctotides</element> <authors><author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> orth. var.</span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>APC Dist.:</b>
@@ -826,6 +1046,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">basionym:</span>
                   <span class="synonym italics"><scientific><name id='66896'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='argentea'>argentea</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>Comment:</b>
@@ -837,6 +1061,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
                   <span class="synonym italics"><scientific><name id='66896'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='argentea'>argentea</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -845,6 +1073,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
                   <span class="synonym italics"><scientific><name id='66896'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='argentea'>argentea</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -853,6 +1085,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
                   <span class="synonym italics"><scientific><name id='66896'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='argentea'>argentea</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -868,6 +1104,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">basionym:</span>
                   <span class="synonym italics"><scientific><name id='99928'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='armata'>armata</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -877,8 +1117,16 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='99928'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='armata'>armata</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='213697'><scientific><name id='72473'><element class='Josephia'>Josephia</element></name></scientific> <element class='armata'>armata</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='7060' title='Poiret, J.L.M.'>Poir.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>APC Dist.:</b>
@@ -904,10 +1152,22 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='156470'><scientific><name id='99928'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='armata'>armata</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> <rank id='54412'>var.</rank> <element class='armata'>armata</element></name></scientific> </span>
+
+
+
+
               <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
                   <span class="synonym italics"><scientific><name id='100592'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='favosa'>favosa</element> <authors><author id='1554' title='Lindley, J.'>Lindl.</author></authors></name></scientific> </span>
+
+
+
+
               <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
                   <span class="synonym italics"><scientific><name id='100800'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='gilbertii'>gilbertii</element> <authors><author id='6930' title='Moore, S. le M.'>S.Moore</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>APC Dist.:</b>
@@ -927,6 +1187,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">basionym:</span>
                   <span class="synonym italics"><scientific><name id='161315'><scientific><name id='99928'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='armata'>armata</element></name></scientific> <rank id='54412'>var.</rank> <element class='ignicida'>ignicida</element> <authors><author id='1484' title='George, A.S.'>A.S.George</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>APC Dist.:</b>
@@ -969,6 +1233,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">common name:</span>
                   <span class="synonym "><common><name id='435772'><element class='Ashbys Banksia'>Ashbys Banksia</element></name></common> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -1057,12 +1325,10 @@ label:not([title]) {
               </ul>
             <div class="name-detail-entry-separator "></div>
             </ul>
-              <li>George, A.S. (1981), The genus Banksia L.f. (Proteaceae). Nuytsia 3(3)
+              <li>George, A.S. (1981), The genus Banksia L.f. (Proteaceae). Nuytsia 3(3) [misapplied]
               <ul class="plain indent4">
-              <li>misapplication:
-                  <span class="misapplication">
-                    Banksia oblongifolia Cav.
-                  </span>
+              <li>misapplied to:
+                Banksia oblongifolia Cav.
                 by
                 Salisbury, R.A. (1796), Prodromus Stirpium in Horto ad Chapel Allerton Vigentium
                 :
@@ -1075,8 +1341,16 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
                   <span class="synonym italics"><scientific><name id='108905'><scientific><name id='108897'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='robur'>robur</element></name></scientific> <rank id='54412'>var.</rank> <element class='minor'>minor</element> <authors>(<base id='8649' title='Maiden, J.H. &amp; Camfield, J.H.'>Maiden & Camfield</base>) <author id='1510' title='Maiden, J.H. &amp; Betche, E.'>Maiden & Betche</author></authors></name></scientific> </span>
+
+
+
+
               <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
                   <span class="synonym italics"><scientific><name id='108319'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='oblongifolia'>oblongifolia</element> <authors><author id='6830' title='Cavanilles, A.J.'>Cav.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -1090,12 +1364,10 @@ label:not([title]) {
               </ul>
             <div class="name-detail-entry-separator "></div>
             </ul>
-              <li>George, A.S. in Wilson, A.J.G. (ed.) (1999), Banksia. Flora of Australia 17B
+              <li>George, A.S. in Wilson, A.J.G. (ed.) (1999), Banksia. Flora of Australia 17B [misapplied]
               <ul class="plain indent4">
-              <li>misapplication:
-                  <span class="misapplication">
-                    Banksia oblongifolia Cav.
-                  </span>
+              <li>misapplied to:
+                Banksia oblongifolia Cav.
                 by
                 Beadle, N.C.W., Evans, O.D. &amp; Carolin, R.C. (1972), Flora of the Sydney Region Edn. 2
                 :
@@ -1104,12 +1376,10 @@ label:not([title]) {
               </ul>
             <div class="name-detail-entry-separator "></div>
             </ul>
-              <li>CHAH (2005), Australian Plant Census
+              <li>CHAH (2005), Australian Plant Census [misapplied]
               <ul class="plain indent4">
-              <li>misapplication:
-                  <span class="misapplication">
-                    Banksia oblongifolia Cav.
-                  </span>
+              <li>misapplied to:
+                Banksia oblongifolia Cav.
                 by
                 Beadle, N.C.W., Evans, O.D. &amp; Carolin, R.C. (1972), Flora of the Sydney Region Edn. 2
                 :
@@ -1147,6 +1417,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">basionym of:</span>
                   <span class="synonym italics"><scientific><name id='77028'><scientific><name id='77008'><element class='Sirmuellera'>Sirmuellera</element></name></scientific> <element class='attenuata'>attenuata</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -1161,8 +1435,16 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='77028'><scientific><name id='77008'><element class='Sirmuellera'>Sirmuellera</element></name></scientific> <element class='attenuata'>attenuata</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
               <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
                   <span class="synonym italics"><scientific><name id='106995'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='cylindrostachya'>cylindrostachya</element> <authors><author id='1554' title='Lindley, J.'>Lindl.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -1183,8 +1465,16 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">common name:</span>
                   <span class="synonym "><common><name id='435773'><element class='Coast Banksia'>Coast Banksia</element></name></common> </span>
+
+
+
+
               <li class="indent"><span class="synonym-type">common name:</span>
                   <span class="synonym "><common><name id='435774'><element class='Slender Banksia'>Slender Banksia</element></name></common> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -1194,10 +1484,22 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='77028'><scientific><name id='77008'><element class='Sirmuellera'>Sirmuellera</element></name></scientific> <element class='attenuata'>attenuata</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
               <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
                   <span class="synonym italics"><scientific><name id='106995'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='cylindrostachya'>cylindrostachya</element> <authors><author id='1554' title='Lindley, J.'>Lindl.</author></authors></name></scientific> </span>
+
+
+
+
               <li class="indent"><span class="synonym-type">common name:</span>
                   <span class="synonym "><common><name id='435774'><element class='Slender Banksia'>Slender Banksia</element></name></common> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>APC Dist.:</b>
@@ -1209,8 +1511,16 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">common name:</span>
                   <span class="synonym "><common><name id='435774'><element class='Slender Banksia'>Slender Banksia</element></name></common> </span>
+
+
+
+
               <li class="indent"><span class="synonym-type">common name:</span>
                   <span class="synonym "><common><name id='450659'><element class='Candle Banksia'>Candle Banksia</element></name></common> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -1268,6 +1578,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">basionym:</span>
                   <span class="synonym italics"><scientific><name id='158350'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='aurantia'>aurantia</element> <authors><author id='1484' title='George, A.S.'>A.S.George</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>Synonym:</b>
@@ -1319,6 +1633,10 @@ label:not([title]) {
             <div class="name-detail-entry-separator "></div>
               <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
                   <span class="synonym italics"><scientific><name id='108035'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='marginata'>marginata</element> <authors><author id='6830' title='Cavanilles, A.J.'>Cav.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -1327,6 +1645,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
                   <span class="synonym italics"><scientific><name id='108035'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='marginata'>marginata</element> <authors><author id='6830' title='Cavanilles, A.J.'>Cav.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -1335,6 +1657,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
                   <span class="synonym italics"><scientific><name id='108035'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='marginata'>marginata</element> <authors><author id='6830' title='Cavanilles, A.J.'>Cav.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -1343,6 +1669,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
                   <span class="synonym italics"><scientific><name id='108035'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='marginata'>marginata</element> <authors><author id='6830' title='Cavanilles, A.J.'>Cav.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -1373,6 +1703,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
                   <span class="synonym italics"><scientific><name id='108035'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='marginata'>marginata</element> <authors><author id='6830' title='Cavanilles, A.J.'>Cav.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -1388,6 +1722,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">basionym:</span>
                   <span class="synonym italics"><scientific><name id='107045'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='depressa'>depressa</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>Comment:</b>
@@ -1405,6 +1743,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
                   <span class="synonym italics"><scientific><name id='108035'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='marginata'>marginata</element> <authors><author id='6830' title='Cavanilles, A.J.'>Cav.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -1413,6 +1755,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
                   <span class="synonym italics"><scientific><name id='108035'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='marginata'>marginata</element> <authors><author id='6830' title='Cavanilles, A.J.'>Cav.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -1428,6 +1774,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">basionym:</span>
                   <span class="synonym italics"><scientific><name id='66913'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='axiflora'>axiflora</element> <authors><ex id='6832' title='Mueller, F.J.H. von'>F.Muell.</ex> ex <author id='6841' title='Meisner, C.D.F.'>Meisn.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>Comment:</b>
@@ -1445,6 +1795,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
                   <span class="synonym italics"><scientific><name id='66913'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='axiflora'>axiflora</element> <authors><ex id='6832' title='Mueller, F.J.H. von'>F.Muell.</ex> ex <author id='6841' title='Meisner, C.D.F.'>Meisn.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -1478,6 +1832,10 @@ label:not([title]) {
             <div class="name-detail-entry-separator "></div>
               <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
                   <span class="synonym italics"><scientific><name id='107366'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='goodii'>goodii</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -1486,6 +1844,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
                   <span class="synonym italics"><scientific><name id='107366'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='goodii'>goodii</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -1522,6 +1884,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">basionym of:</span>
                   <span class="synonym italics"><scientific><name id='77042'><scientific><name id='77008'><element class='Sirmuellera'>Sirmuellera</element></name></scientific> <element class='baueri'>baueri</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -1530,6 +1896,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='77042'><scientific><name id='77008'><element class='Sirmuellera'>Sirmuellera</element></name></scientific> <element class='baueri'>baueri</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>Lectotype:</b>
@@ -1548,8 +1918,16 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='77042'><scientific><name id='77008'><element class='Sirmuellera'>Sirmuellera</element></name></scientific> <element class='baueri'>baueri</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
               <li class="indent"><span class="synonym-type">common name:</span>
                   <span class="synonym "><common><name id='439257'><element class='Woolly Banksia'>Woolly Banksia</element></name></common> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>APC Dist.:</b>
@@ -1586,6 +1964,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">basionym of:</span>
                   <span class="synonym italics"><scientific><name id='77059'><scientific><name id='77008'><element class='Sirmuellera'>Sirmuellera</element></name></scientific> <element class='baxteri'>baxteri</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -1594,6 +1976,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='77059'><scientific><name id='77008'><element class='Sirmuellera'>Sirmuellera</element></name></scientific> <element class='baxteri'>baxteri</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>Lectotype:</b>
@@ -1612,6 +1998,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='77059'><scientific><name id='77008'><element class='Sirmuellera'>Sirmuellera</element></name></scientific> <element class='baxteri'>baxteri</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>APC Dist.:</b>
@@ -1630,6 +2020,10 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">replaced synonym:</span>
                   <span class="synonym italics"><scientific><name id='101525'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='pulchella'>pulchella</element> <authors><author id='6841' title='Meisner, C.D.F.'>Meisn.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -1639,10 +2033,22 @@ label:not([title]) {
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='101525'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='pulchella'>pulchella</element> <authors><author id='6841' title='Meisner, C.D.F.'>Meisn.</author></authors></name></scientific> </span>
+
+
+
+
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='87902'><scientific><name id='72473'><element class='Josephia'>Josephia</element></name></scientific> <element class='pulchella'>pulchella</element> <authors>(<base id='6841' title='Meisner, C.D.F.'>Meisn.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
               <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
                   <span class="synonym italics"><scientific><name id='198213'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='pulchella'>pulchella</element> <authors><author id='6841' title='Meisner, C.D.F.'>Meisn.</author></authors></name></scientific> nom. inval., nom. nud.</span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>APC Dist.:</b>
@@ -1722,6 +2128,10 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">basionym:</span>
                   <span class="synonym italics"><scientific><name id='100015'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='bipinnatifida'>bipinnatifida</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -1731,8 +2141,16 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='100015'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='bipinnatifida'>bipinnatifida</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='72540'><scientific><name id='72473'><element class='Josephia'>Josephia</element></name></scientific> <element class='bipinnatifida'>bipinnatifida</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>APC Dist.:</b>
@@ -1758,6 +2176,10 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='165001'><scientific><name id='100015'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='bipinnatifida'>bipinnatifida</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> <rank id='54410'>subsp.</rank> <element class='bipinnatifida'>bipinnatifida</element></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>APC Dist.:</b>
@@ -1777,6 +2199,10 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">basionym:</span>
                   <span class="synonym italics"><scientific><name id='141922'><scientific><name id='100015'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='bipinnatifida'>bipinnatifida</element></name></scientific> <rank id='54410'>subsp.</rank> <element class='multifida'>multifida</element> <authors><author id='1484' title='George, A.S.'>A.S.George</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>APC Dist.:</b>
@@ -1795,6 +2221,10 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">replaced synonym:</span>
                   <span class="synonym italics"><scientific><name id='99993'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='baxteri'>baxteri</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -1804,8 +2234,16 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='99993'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='baxteri'>baxteri</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='72526'><scientific><name id='72473'><element class='Josephia'>Josephia</element></name></scientific> <element class='baxteri'>baxteri</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>APC Dist.:</b>
@@ -1836,6 +2274,10 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
                   <span class="synonym italics"><scientific><name id='108626'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='pinnatisecta'>pinnatisecta</element> <authors><author id='6832' title='Mueller, F.J.H. von'>F.Muell.</author></authors></name></scientific> nom. inval., nom. nud.</span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>Lectotype:</b>
@@ -1847,6 +2289,10 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><cultivar><name id='5822831'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='Lake King'>&lsquo;Lake King&rsquo;</element></name></cultivar> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -1862,6 +2308,10 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
                   <span class="synonym italics"><scientific><name id='108626'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='pinnatisecta'>pinnatisecta</element> <authors><author id='6832' title='Mueller, F.J.H. von'>F.Muell.</author></authors></name></scientific> nom. inval., nom. nud.</span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>APC Dist.:</b>
@@ -1881,6 +2331,10 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">basionym:</span>
                   <span class="synonym italics"><scientific><name id='141930'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='borealis'>borealis</element> <authors><author id='1484' title='George, A.S.'>A.S.George</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>APC Dist.:</b>
@@ -1906,8 +2360,16 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='141931'><scientific><name id='141930'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='borealis'>borealis</element> <authors><author id='1484' title='George, A.S.'>A.S.George</author></authors></name></scientific> <rank id='54410'>subsp.</rank> <element class='borealis'>borealis</element></name></scientific> </span>
+
+
+
+
               <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
                   <span class="synonym italics"><scientific><name id='197985'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='sp.'>sp.</element></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>APC Dist.:</b>
@@ -1926,6 +2388,10 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">basionym:</span>
                   <span class="synonym italics"><scientific><name id='161181'><scientific><name id='141930'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='borealis'>borealis</element></name></scientific> <rank id='54410'>subsp.</rank> <element class='elatior'>elatior</element> <authors><author id='1484' title='George, A.S.'>A.S.George</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -1935,8 +2401,16 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='161181'><scientific><name id='141930'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='borealis'>borealis</element></name></scientific> <rank id='54410'>subsp.</rank> <element class='elatior'>elatior</element> <authors><author id='1484' title='George, A.S.'>A.S.George</author></authors></name></scientific> </span>
+
+
+
+
               <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
                   <span class="synonym italics"><scientific><name id='197986'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='sp. 20 (A.S.George 16786)'>sp. 20 (A.S.George 16786)</element></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>APC Dist.:</b>
@@ -1955,6 +2429,10 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">basionym:</span>
                   <span class="synonym italics"><scientific><name id='66990'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='bowmanii'>bowmanii</element> <authors><ex id='6832' title='Mueller, F.J.H. von'>F.Muell.</ex> ex <author id='1531' title='Bentham, G.'>Benth.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>Comment:</b>
@@ -1966,6 +2444,10 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
                   <span class="synonym italics"><scientific><name id='68957'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='leptospermoides'>leptospermoides</element> <authors><author id='6832' title='Mueller, F.J.H. von'>F.Muell.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -1981,6 +2463,10 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">basionym:</span>
                   <span class="synonym italics"><scientific><name id='67006'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='brachyphylla'>brachyphylla</element> <authors><author id='1531' title='Bentham, G.'>Benth.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>Comment:</b>
@@ -1995,6 +2481,10 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
                   <span class="synonym italics"><scientific><name id='67006'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='brachyphylla'>brachyphylla</element> <authors><author id='1531' title='Bentham, G.'>Benth.</author></authors></name></scientific> nom. illeg.</span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -2003,6 +2493,10 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
                   <span class="synonym italics"><scientific><name id='67006'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='brachyphylla'>brachyphylla</element> <authors><author id='1531' title='Bentham, G.'>Benth.</author></authors></name></scientific> nom. illeg.</span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -2018,6 +2512,10 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">basionym:</span>
                   <span class="synonym italics"><scientific><name id='107309'><scientific><name id='107297'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='gardneri'>gardneri</element></name></scientific> <rank id='54412'>var.</rank> <element class='brevidentata'>brevidentata</element> <authors><author id='1484' title='George, A.S.'>A.S.George</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -2026,6 +2524,10 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
                   <span class="synonym italics"><scientific><name id='107309'><scientific><name id='107297'><scientific><name id='105919'><element class='Banksia'>Banksia</element></name></scientific> <element class='gardneri'>gardneri</element></name></scientific> <rank id='54412'>var.</rank> <element class='brevidentata'>brevidentata</element> <authors><author id='1484' title='George, A.S.'>A.S.George</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -2041,6 +2543,10 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">basionym:</span>
                   <span class="synonym italics"><scientific><name id='67024'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='brevifolia'>brevifolia</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>Comment:</b>
@@ -2052,6 +2558,10 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
                   <span class="synonym italics"><scientific><name id='67024'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='brevifolia'>brevifolia</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -2060,6 +2570,10 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
                   <span class="synonym italics"><scientific><name id='67024'><scientific><name id='66353'><element class='Pimelea'>Pimelea</element></name></scientific> <element class='brevifolia'>brevifolia</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -2090,6 +2604,10 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">basionym of:</span>
                   <span class="synonym italics"><scientific><name id='77077'><scientific><name id='77008'><element class='Sirmuellera'>Sirmuellera</element></name></scientific> <element class='brownii'>brownii</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -2104,6 +2622,10 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='77077'><scientific><name id='77008'><element class='Sirmuellera'>Sirmuellera</element></name></scientific> <element class='brownii'>brownii</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>Lectotype:</b>
@@ -2121,6 +2643,10 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">common name:</span>
                   <span class="synonym "><common><name id='442008'><element class='Feather-leaved Banksia'>Feather-leaved Banksia</element></name></common> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -2129,8 +2655,16 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">common name:</span>
                   <span class="synonym "><common><name id='435775'><element class='Brown&#39;s Banksia'>Brown&#39;s Banksia</element></name></common> </span>
+
+
+
+
               <li class="indent"><span class="synonym-type">common name:</span>
                   <span class="synonym "><common><name id='435776'><element class='Feather leaved Banksia'>Feather leaved Banksia</element></name></common> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -2145,6 +2679,10 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='77077'><scientific><name id='77008'><element class='Sirmuellera'>Sirmuellera</element></name></scientific> <element class='brownii'>brownii</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>APC Dist.:</b>
@@ -2157,8 +2695,16 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='77077'><scientific><name id='77008'><element class='Sirmuellera'>Sirmuellera</element></name></scientific> <element class='brownii'>brownii</element> <authors>(<base id='1441' title='Brown, R.'>R.Br.</base>) <author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> </span>
+
+
+
+
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='248612'><scientific><name id='77008'><element class='Sirmuellera'>Sirmuellera</element></name></scientific> <element class='brownei'>brownei</element> <authors><author id='6881' title='Kuntze, C.(K.)E.O.'>Kuntze</author></authors></name></scientific> orth. var.</span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>APC Dist.:</b>
@@ -2177,6 +2723,10 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">replaced synonym:</span>
                   <span class="synonym italics"><scientific><name id='100040'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='brownii'>brownii</element> <authors><author id='6841' title='Meisner, C.D.F.'>Meisn.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
               </ul>
             <div class="name-detail-entry-separator "></div>
@@ -2186,8 +2736,10 @@ annotated paralectotype by A.J.G. Wilson."
               <ul class="plain indent4">
               <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
                   <span class="synonym italics"><scientific><name id='100040'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='brownii'>brownii</element> <authors><author id='6841' title='Meisner, C.D.F.'>Meisn.</author></authors></name></scientific> </span>
-              <li class="indent"><span class="synonym-type">misapplication:</span>
-                  <span class="synonym italics"><scientific><name id='99881'><scientific><name id='77744'><element class='Dryandra'>Dryandra</element></name></scientific> <element class='arctotidis'>arctotidis</element> <authors><author id='1441' title='Brown, R.'>R.Br.</author></authors></name></scientific> </span>
+
+
+
+
               <ul class="plain">
                 <li>
                 <b>APC Dist.:</b>
@@ -2212,7 +2764,7 @@ annotated paralectotype by A.J.G. Wilson."
 
 <div id="timing-summary">
     <span class="hidden">
-2.64 seconds (~19 records/second) (index.html)
+7.78 seconds (~6 records/second) (index.html)
 </span>
 
 </div>

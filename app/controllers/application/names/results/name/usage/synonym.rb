@@ -44,4 +44,16 @@ class Application::Names::Results::Name::Usage::Synonym
   def full_name_html
     @raw_synonym.full_name_html
   end
+
+  def reference_citation
+    @raw_synonym.reference_citation
+  end
+
+  def reference_page
+    @raw_synonym.reference_page
+  end
+
+  def misapplied?
+    @raw_synonym.misapplied
+  end
 end

@@ -8,6 +8,10 @@ Steps
 1. Make code changes
 2. cd test/curls
 2. bash ./curls
-3. bash ./diffs
-4. Review the diff output.  There will be spurious differences like time stamps and meta codes.
+3. bash ./run-diffs | tee diffs.log
+4. Review the diff output.  The run-diffs script tries to remove spurious differences like time stamps and meta codes.
+
+
+
+Also, see the archive of old orig files.
 

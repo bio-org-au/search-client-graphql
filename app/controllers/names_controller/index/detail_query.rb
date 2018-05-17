@@ -50,6 +50,7 @@ class NamesController::Index::DetailQuery
                 misapplied_by_id,
                 misapplied_by_citation,
                 misapplied_on_page,
+                misapplication_label,
                 synonyms {
                   id,
                   name_id,
@@ -61,6 +62,9 @@ class NamesController::Index::DetailQuery
                   name_status_name,
                   has_type_synonym,
                   of_type_synonym,
+                  reference_citation,
+                  reference_page,
+                  misapplied,
                 }
                 notes {
                   id,

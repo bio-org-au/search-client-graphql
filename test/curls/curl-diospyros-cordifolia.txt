@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>APNI Search</title>
+  <link rel="stylesheet" media="all" href="/assets/application-8720c6a44fb5516e950801c7a8295df2d6801fd8eb3e1f3ea4be998dfe9da4d0.css" data-turbolinks-track="true" />
+  <script>
+    window.relative_url_root = "";
+  </script>
+  <style media="print">
+     body {color:#000000;
+           background-color:#FFFFFF;} 
+     .no-print {display: none;}
+  </style>
+<style>
+a:not([title]),
+select:not([title]),
+textarea:not([title]),
+input:not([title]) {
+  background: red;
+}
+
+input[type="checkbox"]:not([title]),
+label:not([title]) {
+  background: purple;
+  color: red;
+  border: 2px solid black;
+  width: 16px;
+  height: 16px;
+}
+</style>
+
+  <script src="/assets/application-966a529f9fd7ffdba0d0572b35531f817210bf8ab03177e84e05edd9cd96be5e.js" data-turbolinks-track="true"></script>
+  <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="fbNFS0tmk5czHaGf2ThoWeywThfR4Pjpa0XCh3wB0XhuQXQh4MluCfEVIcdNfC+s1tv9wvY3VmNJ7vE8O4p8CQ==" />
+
+</head>
+<body class="name development" >
+
+<div class='help-bar'>
+<a href="" id="general-help-link" title="Show helpful information about the page." >help</a>
+</div>
+<h1>APNI Search</h1>
+
+<div id="form-div">
+<form action="/names/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
+<input name='q'
+       type="search"
+       class="form-field width40pc min-width10em max-width30em"
+       value="Diospyros cordifolia" required="" autofocus="true"
+       placeholder="Search Term"
+       title="Enter a search term - a name or part of a name.">
+<div id="search-field-help" class="general-help field-help hidden">
+  <div class="hide-this-help-link-container text-align-right">
+    <a href="" class="hide-this-help-link" data-target-id="search-field-help" title="Hide this help." >x</a>
+  </div>
+  <ul class="help">
+    <li>Search terms can be the beginning of any taxon name; a trailing wildcard is added automatically.
+    <li>For more control over searching you may supply additional wildcards (*).
+    <li>Upper and lower case are ignored.
+  </ul>
+</div>
+<hr class="heavy">
+    <input type="radio" name="list_or_count" id="list_or_count_list" value="list" title="List matching names" checked="checked" />
+    <label title="List matching names" for="list_or_count_list">List</label>
+<br>
+    <input type="radio" name="list_or_count" id="list_or_count_count" value="count" title="Count matching names" />
+    <label title="Count matching names" for="list_or_count_count">Count</label>
+    <div id="list-or-count-field-help" class="general-help field-help hidden">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="list-or-count-field-help" title="Hide this help." >x</a></div>
+      <ul class="help">
+        <li>You can choose to <em>count</em> the matching names or to be provided with a <em>list</em> of them.
+        <li>Counting is faster, especially for large searches, and may be useful for exploring the dataset.
+        <li>Lists are sorted, with the order depending on whether family name is included or omitted. (See below.)
+        <li>Lists may be paginated, depending on the total number of results and the limits selected. (See below.)
+        <li>Lists also give a total count of matches.
+      </ul>
+    </div>
+<hr>
+<b>For lists also show:</b>
+<br>
+    <input type="checkbox" name="show_family" id="show_family" value="1" title="When checked, each taxon&#39;s family name will be displayed in the results." />
+    <label title="When checked, each taxon&#39;s family name will be displayed in the results." for="show_family">Family</label>
+<div id="show-family-field-help" class="general-help field-help hidden">
+  <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="show-family-field-help" title="Hide this help." >x</a></div>
+  <ul class="help">
+    <li>When listing names, their family (as recorded in the APNI data) can be displayed.
+    <li>If family is displayed, search results are sorted first by family. Within family, taxa are sorted alphabetically and then by taxonomic rank.
+    <li>If family is not displayed, search results are sorted alphabetically and then by taxonomic rank.
+  </ul>
+</div>
+<br>
+    <input type="checkbox" name="show_links" id="show_links" value="1" title="When checked, taxon names will be hyperlinked." />
+    <label title="When checked, taxon names will be hyperlinked." for="show_links">Links</label>
+<div id="show-links-field-help" class="general-help field-help hidden">
+  <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="show-links-field-help" title="Hide this help." >x</a></div>
+  <ul class="help">
+    <li>Listed names can be plain text, or hyperlinks.
+    <li>If links are displayed and followed they will lead to a full page of details for the selected name.
+  </ul>
+</div>
+<br>
+    <input type="checkbox" name="show_details" id="show_details" value="1" title="When checked, biblographic and synonymy details for each taxon will be displayed in the search results.  This can slow down the results." checked="checked" />
+    <label title="When checked, biblographic and synonymy details for each taxon will be displayed in the search results.  This can slow down the results." for="show_details">Details</label>
+<div id="show-details-field-help" class="general-help field-help hidden">
+  <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="show-details-field-help" title="Hide this help." >x</a></div>
+  <ul class="help">
+    <li>If the details option is chosen matching names will be displayed with bibliographic information and synonymy.
+    <li>Listing names with details can take much longer, especially for big searches.
+  </ul>
+</div>
+<hr>
+<b>Page limits:</b>
+<div id="page-limits-help" class="general-help field-help hidden">
+  <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="page-limits-help" title="Hide this help." >x</a></div>
+  <ul class="help">
+    <li>Listed names are presented using default page size limits, to avoid large resource-intensive searches (which may be accidental).
+    <li>You can change the page size in these fields by using the up and down arrows or by typing a number.
+  </ul>
+</div>
+<br>
+    <input type="number"
+           name="limit_per_page_for_list"
+           title="Number of records per page when details is not checked."
+           min="1"
+           max="500"
+           step="1"
+           value="50"
+           class="form-field"> 
+    <label title="This limit will apply if you have not asked for details." for="limit_per_page_for_list">Names</label>
+<br>
+    <input type="number"
+           name="limit_per_page_for_details"
+           title="Number of records per page when details is checked."
+           placeholder="records"
+           min="1"
+           max="50"
+           step="1"
+           value="50"
+           class="form-field"> 
+    <label title="This limit will apply if you have asked for details." for="limit_per_page_for_list">Names with details</label>
+<div id="page-limits-field-help" class="general-help field-help hidden">
+  <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="page-limits-field-help" title="Hide this help." >x</a></div>
+  <ul class="help">
+    <li> The <em>Names</em> limit is used for simple lists.
+    <li> The <em>Names with details</em> limit applies for lists of names with details.  These searches require more resources and take longer per record.
+  </ul>
+</div>
+
+<hr>
+
+
+<input type="submit"
+       value="Search"
+       name="search"
+       class="left-aligned-form-button"
+       title="Search the data and retrieve matching records">
+
+</form>
+</div>
+
+<hr>
+<a name="x" title="Clear any search and start a new  search." href="/names/search">clear form</a> |
+<a title="Go to advanced name search" href="/names/advanced">advanced</a> |
+<a title="Go to taxonomy search." href="/taxonomy/search">taxonomy</a> |
+<a title="Go to name check." href="/name/check">name check</a>
+<hr>
+<div id="search-result-summary">
+    
+  <div>
+    <a id="search-results-summary" title="Search results">
+      1 matching record
+    </a>
+  <br>
+  </div>
+  <hr>
+
+
+      
+
+
+</div>
+
+<div id="search-results">
+    
+    <h3 class="name-heading index">
+        Diospyros cordifolia Roxb.
+    </h3>
+
+      <ul class="name-details plain indent3">
+           <li>Roxburgh, W. (1795), Plants of the Coast of Coromandel 1(2): 38, t. 50     [tax. nov.]
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>Type:</b>
+                " ... among the mountains in the Circars;"
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>Bentham, G. (1833), Labiatarum Genera et Species 3: 286     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>Bentham, G. (1868), Flora Australiensis 4: 286     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>Hiern, W.P. (1873), A monograph of Ebenaceae. Transactions of the Cambridge Philosophical Society 12(1): 222     
+              <ul class="plain indent4">
+                <li class="indent"><span class="synonym-type">basionym of:</span>
+                    <span class="synonym italics"><scientific><name id='67132'><scientific><name id='67113'><scientific><name id='66374'><element class='Diospyros'>Diospyros</element></name></scientific> <element class='montana'>montana</element></name></scientific> <rank id='54414'>f.</rank> <element class='cordifolia'>cordifolia</element> <authors>(<base id='6892' title='Roxburgh, W.'>Roxb.</base>) <author id='7456' title='Hiern, W.P.'>Hiern</author></authors></name></scientific> </span>
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>Mueller, F.J.H. von (1882), Systematic Census of Australian Plants: 92     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>Dunlop, C.R. (1987), Checklist of the Vascular Plants of the Northern Territory: -     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>Cowie, I.D. &amp; Albrecht, D.A. in Cowie, I.D. &amp; Albrecht, D.A. (ed.) (2005), Checklist of Northern Territory Vascular Plant Species: 19     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>CHAH (2007), Australian Plant Census: -     
+              <ul class="plain indent4">
+              <li>misapplied to:
+                  <span class="misapplication">
+                    Diospyros rugosula R.Br.
+                  </span>
+                by
+                Bentham, G. (1868), Flora Australiensis 4
+                :
+                286
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>CHAH (2007), Australian Plant Census: -     
+              <ul class="plain indent4">
+              <li>misapplied to:
+                  <span class="misapplication">
+                    Diospyros rugosula R.Br.
+                  </span>
+                by
+                Dunlop, C.R. (1987), Checklist of the Vascular Plants of the Northern Territory
+                :
+                
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>CHAH (2007), Australian Plant Census: -     
+              <ul class="plain indent4">
+              <li>misapplied to:
+                  <span class="misapplication">
+                    Diospyros rugosula R.Br.
+                  </span>
+                by
+                Cowie, I.D. &amp; Albrecht, D.A. in Cowie, I.D. &amp; Albrecht, D.A. (ed.) (2005), Checklist of Northern Territory Vascular Plant Species
+                :
+                19
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>Jessup, L.W. (2014), A taxonomic revision of Diospyros L. (Ebenaceae) in Australia. Austrobaileya 9(2): 190     
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>Text:</b>
+                "Australian specimens referred to this name by Bentham (1868: 286) [i.e. G.Bentham, Flora Australiensis 4: 286 (1868)] are D. rugosula."
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>Jessup, L.W. (2014), A taxonomic revision of Diospyros L. (Ebenaceae) in Australia. Austrobaileya 9(2): 164     
+              <ul class="plain indent4">
+              <li>misapplied to:
+                  <span class="misapplication">
+                    Diospyros rugosula R.Br.
+                  </span>
+                by
+                Bentham, G. (1868), Flora Australiensis 4
+                :
+                286
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+      </ul>
+
+    <hr>
+    
+
+
+</div>
+
+
+<div id="timing-summary">
+    <span class="hidden">
+1.93 seconds (~1 records/second) (index.html)
+</span>
+
+</div>
+
+
+
+<span id="show-edit-links-area">
+</span>
+</body>
+</html>

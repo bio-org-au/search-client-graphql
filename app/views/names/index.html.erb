@@ -11,7 +11,7 @@
 <%= link_to('name check', name_check_path, title: name_check_link_hover_text) %>
 <hr>
 <div id="search-result-summary">
-  <% if @search.present? %>
+  <% if @search_result.present? %>
     <%= render partial: 'name_search_result_summary' %>
     <% if @results.present? %>
       <%= render partial: 'names/index/pagination' %>

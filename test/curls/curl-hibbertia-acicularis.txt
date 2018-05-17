@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>APNI Search</title>
+  <link rel="stylesheet" media="all" href="/assets/application-8720c6a44fb5516e950801c7a8295df2d6801fd8eb3e1f3ea4be998dfe9da4d0.css" data-turbolinks-track="true" />
+  <script>
+    window.relative_url_root = "";
+  </script>
+  <style media="print">
+     body {color:#000000;
+           background-color:#FFFFFF;} 
+     .no-print {display: none;}
+  </style>
+<style>
+a:not([title]),
+select:not([title]),
+textarea:not([title]),
+input:not([title]) {
+  background: red;
+}
+
+input[type="checkbox"]:not([title]),
+label:not([title]) {
+  background: purple;
+  color: red;
+  border: 2px solid black;
+  width: 16px;
+  height: 16px;
+}
+</style>
+
+  <script src="/assets/application-966a529f9fd7ffdba0d0572b35531f817210bf8ab03177e84e05edd9cd96be5e.js" data-turbolinks-track="true"></script>
+  <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="pdT/EtdFLZpOmHIsa2CwzmT9dA7zzbKfTrjydNq4hQpqqHh6Hm69l7sab5TRMz7RUdmmlvYxQ93RFDSUyiMasg==" />
+
+</head>
+<body class="name development" >
+
+<div class='help-bar'>
+<a href="" id="general-help-link" title="Show helpful information about the page." >help</a>
+</div>
+<h1>APNI Search</h1>
+
+<div id="form-div">
+<form action="/names/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
+<input name='q'
+       type="search"
+       class="form-field width40pc min-width10em max-width30em"
+       value="hibbertia acicularis" required="" autofocus="true"
+       placeholder="Search Term"
+       title="Enter a search term - a name or part of a name.">
+<div id="search-field-help" class="general-help field-help hidden">
+  <div class="hide-this-help-link-container text-align-right">
+    <a href="" class="hide-this-help-link" data-target-id="search-field-help" title="Hide this help." >x</a>
+  </div>
+  <ul class="help">
+    <li>Search terms can be the beginning of any taxon name; a trailing wildcard is added automatically.
+    <li>For more control over searching you may supply additional wildcards (*).
+    <li>Upper and lower case are ignored.
+  </ul>
+</div>
+<hr class="heavy">
+    <input type="radio" name="list_or_count" id="list_or_count_list" value="list" title="List matching names" checked="checked" />
+    <label title="List matching names" for="list_or_count_list">List</label>
+<br>
+    <input type="radio" name="list_or_count" id="list_or_count_count" value="count" title="Count matching names" />
+    <label title="Count matching names" for="list_or_count_count">Count</label>
+    <div id="list-or-count-field-help" class="general-help field-help hidden">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="list-or-count-field-help" title="Hide this help." >x</a></div>
+      <ul class="help">
+        <li>You can choose to <em>count</em> the matching names or to be provided with a <em>list</em> of them.
+        <li>Counting is faster, especially for large searches, and may be useful for exploring the dataset.
+        <li>Lists are sorted, with the order depending on whether family name is included or omitted. (See below.)
+        <li>Lists may be paginated, depending on the total number of results and the limits selected. (See below.)
+        <li>Lists also give a total count of matches.
+      </ul>
+    </div>
+<hr>
+<b>For lists also show:</b>
+<br>
+    <input type="checkbox" name="show_family" id="show_family" value="1" title="When checked, each taxon&#39;s family name will be displayed in the results." />
+    <label title="When checked, each taxon&#39;s family name will be displayed in the results." for="show_family">Family</label>
+<div id="show-family-field-help" class="general-help field-help hidden">
+  <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="show-family-field-help" title="Hide this help." >x</a></div>
+  <ul class="help">
+    <li>When listing names, their family (as recorded in the APNI data) can be displayed.
+    <li>If family is displayed, search results are sorted first by family. Within family, taxa are sorted alphabetically and then by taxonomic rank.
+    <li>If family is not displayed, search results are sorted alphabetically and then by taxonomic rank.
+  </ul>
+</div>
+<br>
+    <input type="checkbox" name="show_links" id="show_links" value="1" title="When checked, taxon names will be hyperlinked." />
+    <label title="When checked, taxon names will be hyperlinked." for="show_links">Links</label>
+<div id="show-links-field-help" class="general-help field-help hidden">
+  <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="show-links-field-help" title="Hide this help." >x</a></div>
+  <ul class="help">
+    <li>Listed names can be plain text, or hyperlinks.
+    <li>If links are displayed and followed they will lead to a full page of details for the selected name.
+  </ul>
+</div>
+<br>
+    <input type="checkbox" name="show_details" id="show_details" value="1" title="When checked, biblographic and synonymy details for each taxon will be displayed in the search results.  This can slow down the results." checked="checked" />
+    <label title="When checked, biblographic and synonymy details for each taxon will be displayed in the search results.  This can slow down the results." for="show_details">Details</label>
+<div id="show-details-field-help" class="general-help field-help hidden">
+  <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="show-details-field-help" title="Hide this help." >x</a></div>
+  <ul class="help">
+    <li>If the details option is chosen matching names will be displayed with bibliographic information and synonymy.
+    <li>Listing names with details can take much longer, especially for big searches.
+  </ul>
+</div>
+<hr>
+<b>Page limits:</b>
+<div id="page-limits-help" class="general-help field-help hidden">
+  <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="page-limits-help" title="Hide this help." >x</a></div>
+  <ul class="help">
+    <li>Listed names are presented using default page size limits, to avoid large resource-intensive searches (which may be accidental).
+    <li>You can change the page size in these fields by using the up and down arrows or by typing a number.
+  </ul>
+</div>
+<br>
+    <input type="number"
+           name="limit_per_page_for_list"
+           title="Number of records per page when details is not checked."
+           min="1"
+           max="500"
+           step="1"
+           value="50"
+           class="form-field"> 
+    <label title="This limit will apply if you have not asked for details." for="limit_per_page_for_list">Names</label>
+<br>
+    <input type="number"
+           name="limit_per_page_for_details"
+           title="Number of records per page when details is checked."
+           placeholder="records"
+           min="1"
+           max="50"
+           step="1"
+           value="50"
+           class="form-field"> 
+    <label title="This limit will apply if you have asked for details." for="limit_per_page_for_list">Names with details</label>
+<div id="page-limits-field-help" class="general-help field-help hidden">
+  <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="page-limits-field-help" title="Hide this help." >x</a></div>
+  <ul class="help">
+    <li> The <em>Names</em> limit is used for simple lists.
+    <li> The <em>Names with details</em> limit applies for lists of names with details.  These searches require more resources and take longer per record.
+  </ul>
+</div>
+
+<hr>
+
+
+<input type="submit"
+       value="Search"
+       name="search"
+       class="left-aligned-form-button"
+       title="Search the data and retrieve matching records">
+
+</form>
+</div>
+
+<hr>
+<a name="x" title="Clear any search and start a new  search." href="/names/search">clear form</a> |
+<a title="Go to advanced name search" href="/names/advanced">advanced</a> |
+<a title="Go to taxonomy search." href="/taxonomy/search">taxonomy</a> |
+<a title="Go to name check." href="/name/check">name check</a>
+<hr>
+<div id="search-result-summary">
+    
+  <div>
+    <a id="search-results-summary" title="Search results">
+      4 matching records,
+          all shown
+    </a>
+  <br>
+  </div>
+  <hr>
+
+
+      
+
+
+</div>
+
+<div id="search-results">
+    
+    <h3 class="name-heading index">
+        Hibbertia acicularis (Labill.) F.Muell.
+    </h3>
+
+      <ul class="name-details plain indent3">
+           <li>Mueller, F.J.H. von (1862), Thalamiflorae. The Plants Indigenous to the Colony of Victoria 1: 17     [comb. nov.]
+              <ul class="plain indent4">
+                <li class="indent"><span class="synonym-type">basionym:</span>
+                    <span class="synonym italics"><scientific><name id='84476'><scientific><name id='84365'><element class='Pleurandra'>Pleurandra</element></name></scientific> <element class='acicularis'>acicularis</element> <authors><author id='6858' title='Labillardiere, J.J.H. de'>Labill.</author></authors></name></scientific> </span>
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>Bentham, G. (1863), Flora Australiensis 1: 28-29     
+              <ul class="plain indent4">
+                <li class="indent"><span class="synonym-type">taxonomic synonym:</span>
+                    <span class="synonym italics"><scientific><name id='84476'><scientific><name id='84365'><element class='Pleurandra'>Pleurandra</element></name></scientific> <element class='acicularis'>acicularis</element> <authors><author id='6858' title='Labillardiere, J.J.H. de'>Labill.</author></authors></name></scientific> </span>
+                <li class="indent"><span class="synonym-type">doubtful taxonomic synonym:</span>
+                    <span class="synonym italics"><scientific><name id='85376'><scientific><name id='84365'><element class='Pleurandra'>Pleurandra</element></name></scientific> <element class='triandra'>triandra</element> <authors><author id='6844' title='Turczaninow, P.K.N.S.'>Turcz.</author></authors></name></scientific> </span>
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>Mueller, F.J.H. von (1875), Census of the plants of Tasmania, instituted in 1875. Monthly Notices of Papers and Proceedings of the Royal Society of Tasmania 1874: 73     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>Mueller, F.J.H. von (1882), Systematic Census of Australian Plants: 2     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>Tate, R. (1890), A Handbook of the Flora of Extratropical South Australia: 14, 205     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>Bailey, F.M. (1913), Comprehensive Catalogue of Queensland Plants: 21     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>Hamilton, A.A. (1916), Notes and Exhibits. Proceedings of the Linnean Society of New South Wales 40(4): 628     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>Curtis, W.M. (1956), The Student&#39;s Flora of Tasmania 1: 22     
+              <ul class="plain indent4">
+                <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                    <span class="synonym italics"><scientific><name id='84476'><scientific><name id='84365'><element class='Pleurandra'>Pleurandra</element></name></scientific> <element class='acicularis'>acicularis</element> <authors><author id='6858' title='Labillardiere, J.J.H. de'>Labill.</author></authors></name></scientific> </span>
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>Beadle, N.C.W., Evans, O.D. &amp; Carolin, R.C. (1962), Handbook of the Vascular Plants of the Sydney District and Blue Mountains: 196     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>Curtis, W.M. &amp; Morris, D.I. (1975), Angiospermae: Ranunculaceae to Myrtaceae. The Student&#39;s Flora of Tasmania Edn. 2, 1: 23     
+              <ul class="plain indent4">
+                <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                    <span class="synonym italics"><scientific><name id='84476'><scientific><name id='84365'><element class='Pleurandra'>Pleurandra</element></name></scientific> <element class='acicularis'>acicularis</element> <authors><author id='6858' title='Labillardiere, J.J.H. de'>Labill.</author></authors></name></scientific> </span>
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>Cunningham, G.M., Mulham, W.E., Milthorpe, P.L. &amp; Leigh, J.H. (1981), Plants of Western New South Wales: 495     
+              <ul class="plain indent4">
+                <li class="indent"><span class="synonym-type">common name:</span>
+                    <span class="synonym "><common><name id='444642'><element class='Prickly Guinea-flower'>Prickly Guinea-flower</element></name></common> </span>
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>Jacobs, S.W.L. &amp; Pickard, J. (1981), Plants of New South Wales: 109     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>Stanley, T.D. in Stanley, T.D. &amp; Ross, E.M. (1984), Dilleniaceae. Flora of South-eastern Queensland 1: 188-189, Fig. 27B     
+              <ul class="plain indent4">
+                <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                    <span class="synonym italics"><scientific><name id='84476'><scientific><name id='84365'><element class='Pleurandra'>Pleurandra</element></name></scientific> <element class='acicularis'>acicularis</element> <authors><author id='6858' title='Labillardiere, J.J.H. de'>Labill.</author></authors></name></scientific> </span>
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>Jessop, J.P. in Jessop, J.P. &amp; Toelken, H.R. (ed.) (1986), Flora of South Australia Edn. 4, 1: 354     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>Harden, G.J. &amp; Everett, J. in Harden, G.J. (ed.) (1990), Dilleniaceae. Flora of New South Wales 1: 301     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>Toelken, H.R. in Walsh, N.G. &amp; Entwisle, T.J. (ed.) (1996), Dilleniaceae. Flora of Victoria 3: 305, 307, Fig. 60r     
+              <ul class="plain indent4">
+                <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                    <span class="synonym italics"><scientific><name id='84476'><scientific><name id='84365'><element class='Pleurandra'>Pleurandra</element></name></scientific> <element class='acicularis'>acicularis</element> <authors><author id='6858' title='Labillardiere, J.J.H. de'>Labill.</author></authors></name></scientific> </span>
+                <li class="indent"><span class="synonym-type">common name:</span>
+                    <span class="synonym "><common><name id='444642'><element class='Prickly Guinea-flower'>Prickly Guinea-flower</element></name></common> </span>
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>Harden, G.J. &amp; Everett, J. in Harden, G.J. (ed.) (2000), Dilleniaceae. Flora of New South Wales Revised Edition 1: 301     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>CHAH (2011), Australian Plant Census: -     
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <ul class="plain indent4">
+                <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                    <span class="synonym italics"><scientific><name id='91324'><scientific><name id='91312'><scientific><name id='60163'><element class='Hibbertia'>Hibbertia</element></name></scientific> <element class='acicularis'>acicularis</element> <authors>(<base id='6858' title='Labillardiere, J.J.H. de'>Labill.</base>) <author id='6832' title='Mueller, F.J.H. von'>F.Muell.</author></authors></name></scientific> <rank id='54412'>var.</rank> <element class='acicularis'>acicularis</element></name></scientific> </span>
+                <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                    <span class="synonym italics"><scientific><name id='84476'><scientific><name id='84365'><element class='Pleurandra'>Pleurandra</element></name></scientific> <element class='acicularis'>acicularis</element> <authors><author id='6858' title='Labillardiere, J.J.H. de'>Labill.</author></authors></name></scientific> </span>
+              <ul class="plain">
+                <li>
+                <b>APC Dist.:</b>
+                Qld, NSW, Vic, Tas
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>CHAH (2011), Australian Plant Census: -     
+              <ul class="plain indent4">
+              <li>misapplied to:
+                  <span class="misapplication">
+                    Hibbertia exutiacies N.A.Wakef.
+                  </span>
+                by
+                Tate, R. (1890), A Handbook of the Flora of Extratropical South Australia
+                :
+                14, 205
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>CHAH (2011), Australian Plant Census: -     
+              <ul class="plain indent4">
+              <li>misapplied to:
+                  <span class="misapplication">
+                    Hibbertia obtusibracteata Toelken
+                  </span>
+                by
+                Jessop, J.P. in Jessop, J.P. &amp; Toelken, H.R. (ed.) (1986), Flora of South Australia Edn. 4, 1
+                :
+                354
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>Toelken, H.R. &amp; Miller, R.T. (2012), Notes on Hibbertia (Dilleniaceae) 8. Seven new species, a new combination and four new subspecies from subgen. Hemistemma, mainly from the central coast of New South Wales. Journal of the Adelaide Botanic Gardens 25(1): 72     
+              <ul class="plain indent4">
+              <li>misapplied to:
+                  <span class="misapplication">
+                    Hibbertia woronorana Toelken
+                  </span>
+                by
+                Hamilton, A.A. (1916), Notes and Exhibits. Proceedings of the Linnean Society of New South Wales 40(4)
+                :
+                628
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>de Salas, M.F. &amp; Baker, M.L. (2016), A Census of the Vascular Plants of Tasmania, including Macquarie Island: 35     
+              <ul class="plain indent4">
+                <li class="indent"><span class="synonym-type">nomenclatural synonym:</span>
+                    <span class="synonym italics"><scientific><name id='84476'><scientific><name id='84365'><element class='Pleurandra'>Pleurandra</element></name></scientific> <element class='acicularis'>acicularis</element> <authors><author id='6858' title='Labillardiere, J.J.H. de'>Labill.</author></authors></name></scientific> </span>
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+      </ul>
+    <h3 class="name-heading index">
+        Hibbertia acicularis (Labill.) F.Muell. var. acicularis
+    </h3>
+
+      <ul class="name-details plain indent3">
+           <li>Rodway, L. (1903), The Tasmanian Flora: 4     [autonym]
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>CHAH (2011), Australian Plant Census: -     
+              <ul class="plain indent4">
+                <li class="indent"><span class="synonym-type">nomenclatural synonym of:</span>
+                    <span class="synonym italics"><scientific><name id='91312'><scientific><name id='60163'><element class='Hibbertia'>Hibbertia</element></name></scientific> <element class='acicularis'>acicularis</element> <authors>(<base id='6858' title='Labillardiere, J.J.H. de'>Labill.</base>) <author id='6832' title='Mueller, F.J.H. von'>F.Muell.</author></authors></name></scientific> </span>
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+      </ul>
+    <h3 class="name-heading index">
+        Hibbertia acicularis var. sessiliflora J.M.Black
+    </h3>
+
+      <ul class="name-details plain indent3">
+           <li>Black, J.M. (1912), Transactions and proceedings of the Royal Society of South Australia 36: 21     [tax. nov.]
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>Type:</b>
+                "Frequent in the Mount Lofty Ranges ..."
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>Black, J.M. (1926), Meliaceae - Scrophulariaceae. Flora of South Australia 3: 387     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>Black, J.M. (1952), Flora of South Australia Edn. 2, 3: 576     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>Eichler, Hj. (1965), Supplement to J.M.Black&#39;s Flora of South Australia (Second Edition, 1943-1957): 227     
+              <ul class="plain indent4">
+                <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
+                    <span class="synonym italics"><scientific><name id='113026'><scientific><name id='60163'><element class='Hibbertia'>Hibbertia</element></name></scientific> <element class='exutiacies'>exutiacies</element> <authors><author id='1866' title='Wakefield, N.A.'>N.A.Wakef.</author></authors></name></scientific> </span>
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>CHAH (2011), Australian Plant Census: -     
+              <ul class="plain indent4">
+                <li class="indent"><span class="synonym-type">taxonomic synonym of:</span>
+                    <span class="synonym italics"><scientific><name id='113026'><scientific><name id='60163'><element class='Hibbertia'>Hibbertia</element></name></scientific> <element class='exutiacies'>exutiacies</element> <authors><author id='1866' title='Wakefield, N.A.'>N.A.Wakef.</author></authors></name></scientific> </span>
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+      </ul>
+    <h3 class="name-heading index">
+        Hibbertia acicularis var. triandra Rodway
+    </h3>
+
+      <ul class="name-details plain indent3">
+           <li>Rodway, L. (1903), The Tasmanian Flora: 4     [tax. nov.]
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>Type:</b>
+                "George's Bay."
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>Ewart, A.J. (1931), Flora of Victoria: 770     
+              <ul class="plain indent4">
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>Toelken, H.R. in Walsh, N.G. &amp; Entwisle, T.J. (ed.) (1996), Dilleniaceae. Flora of Victoria 3: 307     
+              <ul class="plain indent4">
+              <li>misapplied to:
+                  <span class="misapplication">
+                    Hibbertia rufa N.A.Wakef.
+                  </span>
+                by
+                Ewart, A.J. (1931), Flora of Victoria
+                :
+                770
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>CHAH (2011), Australian Plant Census: -     
+              <ul class="plain indent4">
+              <li>misapplied to:
+                  <span class="misapplication">
+                    Hibbertia rufa N.A.Wakef.
+                  </span>
+                by
+                Ewart, A.J. (1931), Flora of Victoria
+                :
+                770
+              <ul class="plain">
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+           <li>CHAH (2011), Australian Plant Census: -     
+                <span class='red' title='Excluded by APC'><i class="fa fa-ban"></i>APC</span>
+              <ul class="plain indent4">
+              <ul class="plain">
+                <li>
+                <b>APC Comment:</b>
+                A name of uncertain application.
+              </ul>
+            <div class="name-detail-entry-separator index"></div>
+              </ul>
+      </ul>
+
+    <hr>
+    
+
+
+</div>
+
+
+<div id="timing-summary">
+    <span class="hidden">
+2.04 seconds (~2 records/second) (index.html)
+</span>
+
+</div>
+
+
+
+<span id="show-edit-links-area">
+</span>
+</body>
+</html>

@@ -1,5 +1,7 @@
-diff curl-acacia.txt.orig curl-acacia.txt
-diff curl-angophora.txt.orig curl-angophora.txt
-diff curl-banksia.txt.orig curl-banksia.txt
-diff curl-livistona-with-no-links.txt.orig curl-livistona-with-no-links.txt
-diff curl-livistona-with-links.txt.orig curl-livistona-with-links.txt
+diff -wB curl-acacia.txt.orig curl-acacia.txt
+diff -wB curl-angophora.txt.orig curl-angophora.txt
+diff -wB curl-banksia.txt.orig curl-banksia.txt
+diff -wB curl-livistona-with-no-links.txt.orig curl-livistona-with-no-links.txt
+diff -wB curl-livistona-with-links.txt.orig curl-livistona-with-links.txt
+diff -wB curl-hibbertia.txt.orig curl-hibbertia.txt
+diff -wB curl-calytrix.txt.orig curl-calytrix.txt

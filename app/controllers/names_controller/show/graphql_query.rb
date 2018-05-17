@@ -45,6 +45,7 @@ class NamesController::Show::GraphqlQuery
                 misapplied_by_id,
                 misapplied_by_citation,
                 misapplied_on_page,
+                misapplication_label,
                 synonyms {
                   id,
                   name_id,

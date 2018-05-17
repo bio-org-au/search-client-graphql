@@ -20,7 +20,7 @@ class NamesController < ApplicationController
   def index
     @client_request = Index::ClientRequest.new(search_params)
     if @client_request.any_type_of_search?
-      @search = Index::GraphqlRequest.new(@client_request).result
+      @search_result = Index::GraphqlRequest.new(@client_request).result
     end
     render_index
   end
@@ -41,7 +41,7 @@ class NamesController < ApplicationController
   def render_index
     respond_to do |format|
       format.html { render_index_html }
-      format.json { render json: @search }
+      format.json { render json: @search_result }
       format.csv { render_csv }
     end
   end
@@ -67,12 +67,12 @@ class NamesController < ApplicationController
 
   def render_index_html
     @page_title = "#{@name_label} Search"
-    @results = Application::Names::Results.new(@search)
+    @results = Application::Names::Results.new(@search_result)
     render :index
   end
 
   def render_csv
-    @results = Application::Names::Results.new(@search)
+    @results = Application::Names::Results.new(@search_result)
     render 'csv.html', layout: nil
   end
 

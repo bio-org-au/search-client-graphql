@@ -75,6 +75,10 @@ class Application::Names::Results::Name::Usage
     @raw_usage.accepted_tree_status == TREE_EXCLUDED
   end
 
+  def misapplication_label
+    @raw_usage.misapplication_label
+  end
+
   def synonyms
     @raw_usage.synonyms.collect do |synonym|
       Application::Names::Results::Name::Usage::Synonym.new(synonym)

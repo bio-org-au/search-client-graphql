@@ -8,12 +8,12 @@ class NamesController::Index::GraphqlRequest
   end
 
   def result
-    json = HTTParty.post("#{DATA_SERVER}/v1",
+    response = HTTParty.post("#{DATA_SERVER}/v1",
                          body: body,
                          timeout: @client_request.timeout)
-    # Rails.logger.debug(json.to_s) unless json.to_s.match(/error/)
-    Rails.logger.error(json.to_s) if json.to_s =~ /error/
-    JSON.parse(json.to_s, object_class: OpenStruct)
+    Rails.logger.error(response.code) unless response.code == 200
+    Rails.logger.error(response.to_s) unless response.code == 200
+    JSON.parse(response.to_s, object_class: OpenStruct)
   end
 
   def body
