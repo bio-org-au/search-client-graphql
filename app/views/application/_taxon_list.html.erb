@@ -80,7 +80,13 @@
             <% if prev_misapp.blank? %>
               <br>
               <% prev_misapp = name_and_status(syn.simple_name, syn.name_status) %>
-              [<%= name_and_status(name_with_hybrid_symbol(syn.simple_name), syn.name_status).html_safe %>
+              <% if @client_request.links? %>
+                 [<%= link_to name_and_status(name_with_hybrid_symbol(syn.full_name), syn.name_status).html_safe,
+                          show_name_path(id: syn.name_id, search_form: 'names') + "#name-#{syn.name_id}",
+                          title: "Show name with details" %>
+              <% else %>
+                [<%= name_and_status(name_with_hybrid_symbol(syn.simple_name), syn.name_status).html_safe %>
+              <% end %>
             &nbsp;<i class="syntax-highlight synonym-auct-non">auct. non</i> <%= syn.misapplication.name_author_string %>:
             <% else %>
               <% if prev_misapp == name_and_status(syn.simple_name, syn.name_status) %>
@@ -89,7 +95,13 @@
               <% else %>
 ]
                 <br>
-                [<%= name_and_status(name_with_hybrid_symbol(syn.simple_name), syn.name_status).html_safe %>
+                <% if @client_request.links? %>
+                   [<%= link_to name_and_status(name_with_hybrid_symbol(syn.full_name), syn.name_status).html_safe,
+                            show_name_path(id: syn.name_id, search_form: 'names') + "#name-#{syn.name_id}",
+                            title: "Show name with details" %>
+                <% else %>
+                  [<%= name_and_status(name_with_hybrid_symbol(syn.simple_name), syn.name_status).html_safe %>
+                <% end %>
                 <% prev_misapp = name_and_status(syn.simple_name, syn.name_status) %>
               <% end %>
             <% end %>
