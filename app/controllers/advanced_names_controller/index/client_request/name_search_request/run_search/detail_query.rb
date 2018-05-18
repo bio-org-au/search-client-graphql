@@ -30,8 +30,6 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::RunSearc
             full_name_html,
             name_status_name,
             family_name,
-            name_history
-            {
               name_usages
               {
                 instance_id,
@@ -66,7 +64,6 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::RunSearc
                   value
                 }
               }
-            }
           }
         }
       }

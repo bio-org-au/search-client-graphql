@@ -4,12 +4,15 @@
 class Application::Show::GraphqlRequest
   DATA_SERVER = Rails.configuration.data_server
   def initialize(client_request)
+    throw('class Application::Show::GraphqlRequest')
     @client_request = client_request
   end
 
   def result
-    json = HTTParty.post("#{DATA_SERVER}/v1", query)
-    JSON.parse(json.to_s, object_class: OpenStruct)
+    throw 'result'
+    response = HTTParty.post("#{DATA_SERVER}/v1", query)
+    # Rails.logger.debug(response)
+    JSON.parse(response.to_s, object_class: OpenStruct)
   end
 
   def query

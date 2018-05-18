@@ -30,8 +30,6 @@ class NamesController::Index::DetailQuery
             full_name_html,
             name_status_name,
             family_name,
-            name_history
-            {
               name_usages
               {
                 instance_id,
@@ -72,7 +70,6 @@ class NamesController::Index::DetailQuery
                   value
                 }
               }
-            }
           }
         }
       }

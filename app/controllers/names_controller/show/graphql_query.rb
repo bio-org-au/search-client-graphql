@@ -25,8 +25,6 @@ class NamesController::Show::GraphqlQuery
             full_name_html,
             family_name,
             name_status_name,
-            name_history
-            {
               name_usages
               {
                 instance_id,
@@ -63,7 +61,6 @@ class NamesController::Show::GraphqlQuery
                   value
                 }
               }
-            }
           }
         }
     HEREDOC

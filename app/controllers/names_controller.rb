@@ -32,6 +32,7 @@ class NamesController < ApplicationController
     if @raw_result["data"]["name"].nil?
       render_no_such_record
     else
+      debug('render_show')
       render_show
     end
   end
@@ -77,7 +78,7 @@ class NamesController < ApplicationController
   end
 
   def show_params
-    params.permit(:id)
+    params.permit(:id, :search_form)
   end
 
   def search_params

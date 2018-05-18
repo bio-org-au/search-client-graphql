@@ -55,4 +55,8 @@ class ApplicationController < ActionController::Base
   def timeout
     84
   end
+
+  def debug(s)
+    Rails.logger.debug(s)
+  end
 end
