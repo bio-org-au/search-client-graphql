@@ -17,13 +17,13 @@ class Application::Names::Results::Name
     @raw_name.name_status_name
   end
 
-  def usages
+  def name_usages
     if @raw_name.name_usages.nil?
       Rails.logger.error('@raw_name.name_usages is nil')
       []
     else
-      @raw_name.name_usages.collect do |usage|
-        Application::Names::Results::Name::Usage.new(usage)
+      @raw_name.name_usages.collect do |raw_name_usage|
+        Application::Names::Results::Name::Usage.new(raw_name_usage)
       end
     end
   end

@@ -21,12 +21,12 @@
     </h3>
 
       <ul class="name-details plain indent3">
-        <% name.usages.each do |usage| %>
-           <li><%= usage.full_citation_with_page %>
-              <% if usage.accepted_in_tree? %>
+        <% name.name_usages.each do |usage| %>
+           <li><%= usage.reference_usage.full_citation_with_page %>
+              <% if usage.reference_usage.accepted_in_tree %>
                 <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
               <% end %>
-              <% if usage.excluded_from_tree? %>
+              <% if usage.reference_usage.excluded_from_tree %>
                 <span class='red' title='Excluded by APC'><i class="fa fa-ban"></i>APC</span>
               <% end %>
               <ul class="plain indent4">

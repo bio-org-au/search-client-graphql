@@ -8,14 +8,14 @@ class Application::Show::GraphqlRequest
     @client_request = client_request
   end
 
-  def result
+  def xresult
     throw 'result'
     response = HTTParty.post("#{DATA_SERVER}/v1", query)
     # Rails.logger.debug(response)
     JSON.parse(response.to_s, object_class: OpenStruct)
   end
 
-  def query
+  def xquery
     {
       body: {
         query: NamesController::Show::GraphqlQuery.new(@client_request)

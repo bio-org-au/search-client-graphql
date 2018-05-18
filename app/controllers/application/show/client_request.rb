@@ -7,7 +7,7 @@ class Application::Show::ClientRequest
     @params = show_params
   end
 
-  def id
+  def xid
     @params[:id]
   end
 end
