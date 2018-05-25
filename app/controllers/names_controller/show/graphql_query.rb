@@ -18,52 +18,7 @@ class NamesController::Show::GraphqlQuery
     <<~HEREDOC
       {
         name(id: id_placeholder)
-        {
-            id,
-            simple_name,
-            full_name,
-            full_name_html,
-            family_name,
-            name_status_name,
-              name_usages
-              {
-                reference_usage {
-                  instance_id,
-                  citation,
-                  page,
-                  page_qualifier,
-                  year,
-                  standalone,
-                  instance_type_name,
-                  primary_instance,
-                  reference_id,
-                  accepted_tree_status,
-                }, 
-                misapplied,
-                misapplied_to_name,
-                misapplied_to_id,
-                misapplied_by_id,
-                misapplied_by_citation,
-                misapplied_on_page,
-                misapplication_label,
-                synonyms {
-                  id,
-                  name_id,
-                  full_name,
-                  full_name_html,
-                  instance_type,
-                  label,
-                  page,
-                  name_status_name,
-                  of_type_synonym,
-                }
-                notes {
-                  id,
-                  key,
-                  value
-                }
-              }
-          }
+        #{Application::Names::DetailQueryReusableParts.name_fields_string}
         }
     HEREDOC
   end

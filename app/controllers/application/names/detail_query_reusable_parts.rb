@@ -1,0 +1,69 @@
+# frozen_string_literal: true
+
+# This is for reusable parts of name detail query requests
+# It provides the core structure for requesting name details which
+# is used in a couple of places.
+class Application::Names::DetailQueryReusableParts
+  def self.name_fields_string
+    <<~HEREDOC
+      {
+        id,
+        simple_name,
+        full_name,
+        full_name_html,
+        name_status_name,
+        family_name,
+          name_usages
+          {
+            standalone,
+            instance_id,
+            instance_type_name,
+            primary_instance,
+            accepted_tree_status,
+            reference_details {
+              id,
+              citation,
+              citation_html,
+              page,
+              page_qualifier,
+              year,
+              full_citation_with_page,
+            },
+            misapplication_details {
+              direction,
+              misapplied_to_full_name,
+              misapplied_to_name_id,
+              misapplied_in_reference_citation,
+              misapplied_in_reference_id,
+              misapplied_on_page,
+              misapplied_on_page_qualifier,
+              misapplication_type_label,
+            }
+            synonyms {
+              id,
+              name_id,
+              full_name,
+              full_name_html,
+              instance_type,
+              label,
+              page,
+              name_status_name,
+              misapplied,
+              misapplication_citation_details {
+                misapplied_in_reference_citation,
+                misapplied_in_reference_citation_html,
+                misapplied_in_reference_id,
+                misapplied_on_page,
+                misapplied_on_page_qualifier,
+              }
+            }
+            notes {
+              id,
+              key,
+              value
+            }
+          }
+        }
+      HEREDOC
+  end
+end

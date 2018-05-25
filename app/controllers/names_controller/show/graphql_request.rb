@@ -8,8 +8,9 @@ class NamesController::Show::GraphqlRequest
   end
 
   def result
-    json = HTTParty.post("#{DATA_SERVER}/v1", query)
-    JSON.parse(json.to_s, object_class: OpenStruct)
+    response = HTTParty.post("#{DATA_SERVER}/v1", query)
+    Rails.logger.error(response.to_s)  unless response.code == 200
+    JSON.parse(response.to_s, object_class: OpenStruct)
   end
 
   def query

@@ -22,11 +22,11 @@
 
       <ul class="name-details plain indent3">
         <% name.name_usages.each do |usage| %>
-           <li><%= usage.reference_usage.full_citation_with_page %>
-              <% if usage.reference_usage.accepted_in_tree %>
+           <li><%= usage.reference_details.full_citation_with_page_html.html_safe %>
+              <% if usage.accepted_in_tree %>
                 <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
               <% end %>
-              <% if usage.reference_usage.excluded_from_tree %>
+              <% if usage.reference_details.excluded_from_tree %>
                 <span class='red' title='Excluded by APC'><i class="fa fa-ban"></i>APC</span>
               <% end %>
               <ul class="plain indent4">
@@ -44,22 +44,22 @@
                   <% end %>
                   <% if synonym.misapplied? %>
                     by
-                  <%= synonym.reference_citation.html_safe %>:
-                  <%= synonym.reference_page || '-' %>
+                  <%= synonym.mcd.in_reference_citation_html.html_safe %>:
+                  <%= synonym.mcd.on_page || '-' %>
                   <% end %>
                 <% end %>
             <% if usage.misapplied? %>
-              <li><%= usage.misapplication_label %>:
+              <li><%= usage.misapplication_details.misapplication_type_label %>:
                 <% if @client_request.links? %>
                   <span class="misapplication">
-                    <%= link_to usage.misapplied_to_name,
-                      show_name_path(id: usage.misapplied_to_id,
-                                     search_form: search_form) + '#name-' + usage.misapplied_to_id,
+                    <%= link_to usage.misapplication_details.misapplied_to_full_name,
+                      show_name_path(id: usage.misapplication_details.misapplied_to_name_id,
+                                     search_form: search_form) + '#name-' + usage.misapplication_details.misapplied_to_name_id,
                                     title: "Show name details in a new page" %>
                   </span>
                 <% else %>
                   <span class="misapplication">
-                    <%= usage.misapplied_to_name %>
+                    <%= usage.misapplication_details.misapplied_to_full_name %>
                   </span>
                 <% end %>
                 by

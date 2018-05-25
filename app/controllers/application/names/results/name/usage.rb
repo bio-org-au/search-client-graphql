@@ -10,8 +10,20 @@ class Application::Names::Results::Name::Usage
     @raw_usage = raw_usage
   end
 
-  def reference_usage
+  def reference_details
     rec = OpenStruct.new
+    rec.id = @raw_usage.reference_details.id
+    rec.citation = @raw_usage.reference_details.citation
+    rec.page = @raw_usage.reference_details.page
+    rec.page_qualifier = @raw_usage.reference_details.page_qualifier
+    rec.year = @raw_usage.reference_details.year
+    rec.full_citation_with_page = "#{@raw_usage.reference_details.citation}: #{@raw_usage.reference_details.page || '-'} #{'[' + @raw_usage.instance_type_name + ']' if @raw_usage.primary_instance}"
+    rec.full_citation_with_page_html = "#{@raw_usage.reference_details.citation_html}: #{@raw_usage.reference_details.page || '-'} #{'[' + @raw_usage.instance_type_name + ']' if @raw_usage.primary_instance}"
+    rec
+  end
+
+
+  def old_rd
     rec.instance_id = @raw_usage.reference_usage.instance_id
     rec.citation = @raw_usage.reference_usage.citation
     rec.page = @raw_usage.reference_usage.page
@@ -20,22 +32,27 @@ class Application::Names::Results::Name::Usage
     rec.instance_type_name = @raw_usage.reference_usage.instance_type_name
     rec.primary_instance = @raw_usage.reference_usage.primary_instance
     rec.reference_id = @raw_usage.reference_usage.reference_id
-    rec.full_citation_with_page = "#{@raw_usage.reference_usage.citation}: #{@raw_usage.reference_usage.page || '-'} #{'[' + @raw_usage.reference_usage.instance_type_name + ']' if @raw_usage.primary_instance}"
     rec.accepted_tree_status = @raw_usage.reference_usage.accepted_tree_status
-    rec.accepted_in_tree = @raw_usage.reference_usage.accepted_tree_status == TREE_ACCEPTED
-    rec.excluded_from_tree = @raw_usage.reference_usage.accepted_tree_status == TREE_EXCLUDED
     rec
   end
 
-  def misapplied?
-    @raw_usage.misapplied
+  def accepted_in_tree
+    @raw_usage.accepted_tree_status == TREE_ACCEPTED
   end
 
-  def citation_for_misapplied
+  def excluded_from_tree
+    @raw_usage.accepted_tree_status == TREE_EXCLUDED
+  end
+
+  def misapplied?
+    !@raw_usage.misapplication_details.blank?
+  end
+
+  def xcitation_for_misapplied
     @raw_usage.citation
   end
 
-  def misapplied_to_name
+  def xmisapplied_to_name
     @raw_usage.misapplied_to_name
   end
 
@@ -61,6 +78,23 @@ class Application::Names::Results::Name::Usage
 
   def misapplication_label
     @raw_usage.misapplication_label
+  end
+
+  def xmisapplication_details
+    @raw_usage.misapplication_details
+  end
+
+  def misapplication_details
+    os = OpenStruct.new
+    os.direction = '' #@raw_usage.misapplication_details.direction
+    os.misapplied_to_full_name = @raw_usage.misapplication_details.first.misapplied_to_full_name
+    os.misapplied_to_name_id = @raw_usage.misapplication_details.first.misapplied_to_name_id
+    os.misapplied_in_reference_citation = @raw_usage.misapplication_details.first.misapplied_in_reference_citation
+    os.misapplied_in_reference_id = @raw_usage.misapplication_details.first.misapplied_in_reference_id
+    os.misapplied_on_page = @raw_usage.misapplication_details.first.misapplied_on_page
+    os.misapplied_on_page_qualifier = @raw_usage.misapplication_details.first.misapplied_on_page_qualifier
+    os.misapplication_type_label = @raw_usage.misapplication_details.first.misapplication_type_label
+    os
   end
 
   def synonyms
