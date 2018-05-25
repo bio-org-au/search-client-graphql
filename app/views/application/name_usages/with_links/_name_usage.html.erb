@@ -1,0 +1,33 @@
+           <li><%= usage.reference_details.full_citation_with_page_html.html_safe %>
+              <% if usage.accepted_in_tree %>
+                <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
+              <% end %>
+              <% if usage.reference_details.excluded_from_tree %>
+                <span class='red' title='Excluded by APC'><i class="fa fa-ban"></i>APC</span>
+              <% end %>
+              <ul class="plain indent4">
+              <%# Wrapped code to prevent " ;" instead of ";" %>
+              <% usage.synonyms.each do |synonym| -%><% if synonym.misapplied? -%><% if synonym.misapplication_citation_details.name_is_repeated -%><%= render(partial: 'application/name_usages/with_links/misapplied_repeated_synonym', locals: {search_form: search_form, usage: usage, synonym: synonym}) -%><% else -%><%= render(partial: 'application/name_usages/with_links/misapplied_synonym', locals: {search_form: search_form, usage: usage, synonym: synonym}) -%><% end -%><% else -%><%= render(partial: 'application/name_usages/with_links/applied_synonym', locals: {search_form: search_form, usage: usage, synonym: synonym}) -%><% end -%><% end -%>
+
+            <% if usage.misapplied? %>
+              <li><%= usage.misapplication_details.misapplication_type_label %>:
+                  <span class="misapplication">
+                    <%= link_to usage.misapplication_details.misapplied_to_full_name,
+                      show_name_path(id: usage.misapplication_details.misapplied_to_name_id,
+                                     search_form: search_form) + '#name-' + usage.misapplication_details.misapplied_to_name_id,
+                                    title: "Show name details in a new page" %>
+                  </span>:
+                <%= usage.misapplied_by_citation %>
+                :
+                <%= usage.misapplied_on_page %>
+            <% end %>
+            <% unless usage.notes.nil? %>
+              <ul class="plain">
+              <% usage.notes.each do |note| %>
+                <li>
+                <b><%= note.key %>:</b>
+                <%= note.value.html_safe %>
+              <% end %>
+              </ul>
+            <% end %>
+            </ul>

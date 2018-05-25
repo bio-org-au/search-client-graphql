@@ -64,6 +64,7 @@ class Application::Names::Results::Name::Usage::Synonym
     rec.in_reference_id = @raw_synonym.misapplication_citation_details.misapplied_in_reference_id
     rec.on_page = @raw_synonym.misapplication_citation_details.misapplied_on_page
     rec.on_page_qualifier = @raw_synonym.misapplication_citation_details.misapplied_on_page_qualifier
+    rec.name_is_repeated = @raw_synonym.misapplication_citation_details.name_is_repeated
     rec
   end
 

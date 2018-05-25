@@ -55,6 +55,7 @@ class Application::Names::DetailQueryReusableParts
                 misapplied_in_reference_id,
                 misapplied_on_page,
                 misapplied_on_page_qualifier,
+                name_is_repeated,
               }
             }
             notes {
