@@ -28,12 +28,13 @@
             <% if usage.misapplied? %>
               <li><%= usage.misapplication_details.misapplication_type_label %>:
                   <span class="misapplication">
-                    <%= usage.misapplication_details.misapplied_to_full_name %>
+                    <%= usage.misapplication_details.misapplied_to_full_name %> by
+                <% usage.misapplication_details.misapplied_in_references.each do |in_ref| %>
+                  <%= in_ref.citation -%>:<%= in_ref.page -%><%= in_ref.page_qualifier -%>;
+                <% end %>
                   </span>:
-                <%= usage.misapplied_by_citation %>
-                :
-                <%= usage.misapplied_on_page %>
             <% end %>
+
             <% unless usage.notes.nil? %>
               <ul class="plain">
               <% usage.notes.each do |note| %>

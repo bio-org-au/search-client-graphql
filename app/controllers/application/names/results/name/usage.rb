@@ -87,13 +87,23 @@ class Application::Names::Results::Name::Usage
   def misapplication_details
     os = OpenStruct.new
     os.direction = '' #@raw_usage.misapplication_details.direction
-    os.misapplied_to_full_name = @raw_usage.misapplication_details.first.misapplied_to_full_name
-    os.misapplied_to_name_id = @raw_usage.misapplication_details.first.misapplied_to_name_id
-    os.misapplied_in_reference_citation = @raw_usage.misapplication_details.first.misapplied_in_reference_citation
-    os.misapplied_in_reference_id = @raw_usage.misapplication_details.first.misapplied_in_reference_id
-    os.misapplied_on_page = @raw_usage.misapplication_details.first.misapplied_on_page
-    os.misapplied_on_page_qualifier = @raw_usage.misapplication_details.first.misapplied_on_page_qualifier
-    os.misapplication_type_label = @raw_usage.misapplication_details.first.misapplication_type_label
+    os.misapplied_to_full_name = @raw_usage.misapplication_details.misapplied_to_full_name
+    os.misapplied_to_name_id = @raw_usage.misapplication_details.misapplied_to_name_id
+    os.misapplied_in_reference_citation = @raw_usage.misapplication_details.misapplied_in_reference_citation
+    os.misapplied_in_reference_id = @raw_usage.misapplication_details.misapplied_in_reference_id
+    os.misapplied_on_page = @raw_usage.misapplication_details.misapplied_on_page
+    os.misapplied_on_page_qualifier = @raw_usage.misapplication_details.misapplied_on_page_qualifier
+    os.misapplication_type_label = @raw_usage.misapplication_details.misapplication_type_label
+    os.misapplied_in_references = []
+    @raw_usage.misapplication_details.misapplied_in_references.each do |in_ref|
+      iros = OpenStruct.new
+      iros.citation = in_ref.citation
+      iros.id = in_ref.id
+      iros.page = in_ref.page
+      iros.page_qualifier = in_ref.page_qualifier
+      iros.misapplication_type_label = in_ref.misapplication_type_label
+      os.misapplied_in_references.push(iros)
+    end
     os
   end
 

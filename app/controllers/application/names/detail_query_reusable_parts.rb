@@ -33,11 +33,14 @@ class Application::Names::DetailQueryReusableParts
               direction,
               misapplied_to_full_name,
               misapplied_to_name_id,
-              misapplied_in_reference_citation,
-              misapplied_in_reference_id,
-              misapplied_on_page,
-              misapplied_on_page_qualifier,
               misapplication_type_label,
+              misapplied_in_references {
+                citation,
+                id,
+                page,
+                page_qualifier,
+                display_entry
+              },
             }
             synonyms {
               id,
