@@ -1,0 +1,42 @@
+      <% if @client_request.links? %>
+        <%= link_to name_with_hybrid_symbol(taxon_name_string).html_safe, show_name_path(id: taxon.id, search_form: 'names') + "#name-#{taxon.id}", title: "Show name details" %>
+      <% else %>
+        <%= name_with_hybrid_symbol(taxon_name_string).html_safe %>
+      <% end %>
+
+      <% if taxon.excluded? %>
+        <span class='red' title='Excluded by APC'><i class="fa fa-ban"></i>APC</span>
+      <% end %>
+
+       sensu <%= taxon.reference_citation %>
+
+
+    <% if @client_request.synonyms? %>
+      <% syn_displayed = true %>
+      <%= render(partial: 'application/taxon_list/direct_reference_synonyms', locals: {taxon: taxon}) %>
+    <% end %>
+
+    <ul class="plain indent2">
+
+      <% if @client_request.comments? %>
+        <% comments_displayed = false %>
+        <% if taxon.accepted_taxon_comment? %>
+            <% comments_displayed = true %>
+            <li><%= taxon.accepted_taxon_comment.html_safe %>
+        <% end %>
+      <% end %>
+
+      <% if @client_request.distribution? %>
+        <% distribution_displayed = false %>
+        <% if taxon.accepted_taxon_distribution? %>
+            <% distribution_displayed = true %>
+            <li><%= taxon.accepted_taxon_distribution %>
+        <% end %>
+      <% end %>
+
+    </ul>
+    <% if syn_displayed ||
+          comments_displayed ||
+          distribution_displayed %>
+      <br>
+    <% end %>

@@ -11,7 +11,6 @@
 </span>
 <hr>
 
-
 <div id="search-result-summary">
   <% if @search.present? %>
     <%= render partial: 'taxonomy_search_result_summary' %>
@@ -23,7 +22,8 @@
 
 <div id="search-results">
   <% if @results.present? %>
-    <%= render partial: @client_request.content_partial, locals: { search_form: 'advanced_names' } %>
+    <%= render partial: "taxon_#{@client_request.details? ? 'detail' : 'list'}",
+               locals: { search_form: 'advanced_names' } %>
     <hr>
     <%= render partial: 'taxonomy/index/pagination' %>
   <% else %>
@@ -39,3 +39,4 @@
   <% end %>
 </div>
 
+    

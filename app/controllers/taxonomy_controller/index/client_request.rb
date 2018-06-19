@@ -89,10 +89,6 @@ class TaxonomyController::Index::ClientRequest
     TimeoutCalculator.new(self).timeout
   end
 
-  def content_partial
-    "taxon_#{details? ? 'detail' : 'list'}"
-  end
-
   def accepted_name?
     @params[:accepted_names].present? && @params[:accepted_names] == '1'
   end

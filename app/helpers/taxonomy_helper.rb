@@ -81,6 +81,7 @@ module TaxonomyHelper
   end
 
   def name_with_hybrid_symbol(name)
+    return '' if name.blank?
     name.gsub(/ x /,' × ')
   end
 end

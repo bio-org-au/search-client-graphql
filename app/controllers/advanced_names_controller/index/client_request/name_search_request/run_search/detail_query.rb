@@ -23,6 +23,21 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::RunSearc
         {
           count,
           names
+           #{Application::Names::DetailQueryReusableParts.name_fields_string}
+        }
+      }
+    HEREDOC
+  end
+
+  def xraw_query_string
+    <<~HEREDOC
+      {
+        name_search(#{AdvancedNamesController::Index::ClientRequest::NameSearchRequest::Utilities::CoreArgs.new.core_args},
+                    limit: "limit_placeholder",
+                    offset: "offset_placeholder")
+        {
+          count,
+          names
           {
             id,
             simple_name,

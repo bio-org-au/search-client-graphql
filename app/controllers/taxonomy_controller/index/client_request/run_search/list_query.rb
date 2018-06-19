@@ -30,9 +30,56 @@ class TaxonomyController::Index::ClientRequest::RunSearch::ListQuery
             taxa
             {
               id,
+              is_excluded,
+              simple_name,
+              full_name,
+              full_name_html,
+              name_status_name,
+              cross_referenced_full_name_id,
+              is_pro_parte,
+              reference_citation,
               accepted_taxon_comment,
               accepted_taxon_distribution,
-              record_type,
+              order_string,
+              source_object,
+              is_cross_reference,
+              cross_reference_to {
+                full_name,
+                full_name_html,
+                is_doubtful,
+                is_pro_parte,
+                is_misapplication,
+                as_misapplication {
+                  citing_instance_id,
+                  citing_reference_id,
+                  citing_reference_author_string_and_year,
+                  misapplying_author_string_and_year,
+                  name_author_string,
+                  cited_simple_name,
+                  cited_page,
+                  cited_reference_author_string,
+                }
+              }
+            }
+          }
+      }
+    HEREDOC
+  end
+
+  def old_base_raw_query_string
+    <<~HEREDOC
+      {
+        taxonomy_search(#{TaxonomyController::Index::ClientRequest::Utilities::CoreArgs.new.core_args},
+                    limit: "limit_placeholder",
+                    offset: "offset_placeholder")
+          {
+            count,
+            taxa
+            {
+              id,
+              is_excluded,
+              accepted_taxon_comment,
+              accepted_taxon_distribution,
               simple_name,
               full_name,
               full_name_html,

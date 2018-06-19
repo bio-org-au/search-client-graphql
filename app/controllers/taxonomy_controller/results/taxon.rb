@@ -44,15 +44,11 @@ class TaxonomyController::Results::Taxon
   end
 
   def record_type
-    @raw_taxon.record_type
+    'excluded-name' #@raw_taxon.record_type
   end
 
   def cross_reference?
-    record_type == 'cross-reference'
-  end
-
-  def cross_referenced_full_name
-    @raw_taxon.cross_referenced_full_name
+    @raw_taxon.is_cross_reference
   end
 
   def cross_referenced_full_name_id
@@ -60,7 +56,7 @@ class TaxonomyController::Results::Taxon
   end
 
   def excluded?
-    record_type == 'excluded-name'
+    @raw_taxon.is_excluded
   end
 
   def accepted_taxon_comment?
@@ -83,7 +79,7 @@ class TaxonomyController::Results::Taxon
     @raw_taxon.is_misapplication == true
   end
 
-  def pro_parte?
+  def xpro_parte?
     @raw_taxon.is_pro_parte == true
   end
 
@@ -91,8 +87,8 @@ class TaxonomyController::Results::Taxon
     TaxonomyController::Results::Taxon::Synonyms.new(@raw_taxon.synonyms)
   end
 
-  def cross_reference_misapplication
-    TaxonomyController::Results::Taxon::CrossReference::Misapplication.new(@raw_taxon.cross_reference_misapplication_details)
+  def cross_reference_to
+    TaxonomyController::Results::Taxon::CrossReferenceTo.new(@raw_taxon.cross_reference_to)
   end
 
   def order_string

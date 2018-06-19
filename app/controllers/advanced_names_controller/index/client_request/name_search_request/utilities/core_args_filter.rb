@@ -22,7 +22,7 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::Utilitie
                        .sub(/genus_placeholder/, @client_request.genus || '')
                        .sub(/species_placeholder/, @client_request.species || '')
                        .sub(/rank_placeholder/, @client_request.rank || '')
-                       .sub(/include_ranks_below_placeholder/, @client_request.include_ranks_below || '')
+                       .sub(/"include_ranks_below_placeholder"/, @client_request.include_ranks_below || 'false')
                        .sub(/publication_placeholder/, @client_request.publication || '')
                        .sub(/publication_year_placeholder/, @client_request.publication_year || '')
                        .sub(/protologue_placeholder/, @client_request.protologue || '')

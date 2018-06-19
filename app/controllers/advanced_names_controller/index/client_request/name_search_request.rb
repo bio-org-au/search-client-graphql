@@ -114,9 +114,9 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
   end
 
   def include_ranks_below
-    return '' if @params[:include_ranks_below].blank?
-    return '' unless @params[:include_ranks_below].class == String
-    @params[:include_ranks_below] == '1' ? 'true' : ''
+    return false if @params[:include_ranks_below].blank?
+    return false unless @params[:include_ranks_below].class == String
+    (@params[:include_ranks_below] == '1').to_s
   end
 
   def publication

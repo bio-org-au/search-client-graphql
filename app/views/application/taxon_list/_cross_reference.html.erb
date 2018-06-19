@@ -1,0 +1,50 @@
+      <% if taxon.cross_reference_to.misapplication? %>
+
+        <% if taxon.cross_reference_to.pro_parte? %>
+          <% pp_string = ', p.p.' %>
+        <% else %>
+          <% pp_string = '' %>
+        <% end %>
+
+        <% if @client_request.links? %>
+          <%= link_to name_with_hybrid_symbol(taxon_name_string).html_safe,
+                      show_name_path(id: taxon.id,
+                                     search_form: 'names') + "#name-#{taxon.id}",
+                      title: "Show name details" %>
+          <i class="syntax-highlight cross-reference-sensu">sensu</i>
+          <%= taxon.cross_reference_to.as_misapplication.misapplying_author_string_and_year -%><%= pp_string %>
+        <% else %>
+          <%= name_with_hybrid_symbol(taxon.full_name) %> <i class="syntax-highlight cross-reference-sensu">sensu</i>
+          <%= taxon.cross_reference_to.as_misapplication.misapplying_author_string_and_year -%><%= pp_string %>
+        <% end %>
+
+      <% else %>
+
+        <% if taxon.cross_reference_to.pro_parte? %>
+          <% pp_string = ' p.p.' %>
+        <% else %>
+          <% pp_string = '' %>
+        <% end %>
+
+        <span class="cross-reference-name">
+        <% if @client_request.links? %>
+          <%= link_to name_with_hybrid_symbol(taxon_name_string).html_safe + pp_string.html_safe,
+                         show_name_path(id: taxon.id,
+                                        search_form: 'names') + "#name-#{taxon.id}",
+                         title: "Show name details" %>
+        <% else %>
+          <%= name_with_hybrid_symbol(taxon_name_string).html_safe -%><%= pp_string %>
+        <% end %>
+        </span>
+
+      <% end %>
+
+      <%= '?' if taxon.cross_reference_to.doubtful? -%>=
+        <% if @client_request.links? %>
+          <b><%= link_to name_with_hybrid_symbol(taxon.cross_reference_to.full_name).html_safe,
+                         show_name_path(id: taxon.cross_referenced_full_name_id,
+                                        search_form: 'names') + "#name-#{taxon.cross_referenced_full_name_id}",
+                         title: "Show name details" %></b>
+        <% else %>
+          <b><%= name_with_hybrid_symbol(taxon.cross_reference_to.full_name).html_safe %></b>
+        <% end %>
