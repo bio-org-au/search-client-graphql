@@ -42,7 +42,7 @@
       <%= '?' if taxon.cross_reference_to.doubtful? -%>=
         <% if @client_request.links? %>
           <b><%= link_to name_with_hybrid_symbol(taxon.cross_reference_to.full_name).html_safe,
-                         show_name_path(id: taxon.cross_referenced_full_name_id,
+                         show_name_path(id: taxon.cross_reference_to.name_id,
                                         search_form: 'names') + "#name-#{taxon.cross_referenced_full_name_id}",
                          title: "Show name details" %></b>
         <% else %>

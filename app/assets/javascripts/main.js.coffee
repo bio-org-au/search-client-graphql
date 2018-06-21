@@ -6,6 +6,7 @@ jQuery ->
   $('body').on('click','#general-help-link', (event) -> toggleGeneralHelp(event,$(this)))
   $('body').on('click','.general-help-link', (event) -> toggleGeneralHelp(event,$(this)))
   $('body').on('click','.hide-this-help-link', (event) -> hideOneHelpElement(event,$(this)))
+  $('body').on('change','.search-samples', (event) -> runSampleSearch(event,$(this)))
   $(document).on('turbolinks:load',goToSearchResults())
 
 
@@ -62,6 +63,8 @@ hideOneHelpElement = (event,$element) ->
     $('#general-help-link').html('help')
   false
 
+runSampleSearch = (event,$element) ->
+  window.location.href = $element.val() if $element.val()
 
 hideElement = (event,$element) ->
   hideTargets('#'+$element.data('target-id'))

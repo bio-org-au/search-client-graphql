@@ -14,8 +14,8 @@ class TaxonomyController::Index::ClientRequest::RunSearch::ListQuery
 
   def raw_query_string
     s = base_raw_query_string
-    s = s.sub(/accepted_taxon_comment,/,'') unless @client_request.comments?
-    s = s.sub(/accepted_taxon_distribution,/,'') unless @client_request.distribution?
+    s = s.sub(/taxon_comment,/,'') unless @client_request.comments?
+    s = s.sub(/taxon_distribution,/,'') unless @client_request.distribution?
     s
   end
 
@@ -38,12 +38,13 @@ class TaxonomyController::Index::ClientRequest::RunSearch::ListQuery
               cross_referenced_full_name_id,
               is_pro_parte,
               reference_citation,
-              accepted_taxon_comment,
-              accepted_taxon_distribution,
+              taxon_comment,
+              taxon_distribution,
               order_string,
               source_object,
               is_cross_reference,
               cross_reference_to {
+                name_id,
                 full_name,
                 full_name_html,
                 is_doubtful,
@@ -60,58 +61,12 @@ class TaxonomyController::Index::ClientRequest::RunSearch::ListQuery
                   cited_reference_author_string,
                 }
               }
-            }
-          }
-      }
-    HEREDOC
-  end
-
-  def old_base_raw_query_string
-    <<~HEREDOC
-      {
-        taxonomy_search(#{TaxonomyController::Index::ClientRequest::Utilities::CoreArgs.new.core_args},
-                    limit: "limit_placeholder",
-                    offset: "offset_placeholder")
-          {
-            count,
-            taxa
-            {
-              id,
-              is_excluded,
-              accepted_taxon_comment,
-              accepted_taxon_distribution,
-              simple_name,
-              full_name,
-              full_name_html,
-              name_status_name,
-              cross_referenced_full_name,
-              cross_referenced_full_name_id,
-              is_misapplication,
-              is_pro_parte,
-              reference_citation,
-              accepted_taxon_comment,
-              accepted_taxon_distribution,
-              order_string,
-              source_object,
-              cross_reference_misapplication_details {
-                    citing_instance_id,
-                    citing_reference_id,
-                    citing_reference_author_string_and_year,
-                    misapplying_author_string_and_year,
-                    name_author_string,
-                    cites_simple_name,
-                    cites_page,
-                    cites_reference_author_string,
-                    pro_parte,
-                    is_doubtful
-              },
               synonyms {
                 id,
                 name_id,
                 simple_name,
-                name_status,
                 full_name,
-                full_name_html,
+                name_status,
                 is_doubtful,
                 is_misapplied,
                 is_pro_parte,
@@ -131,3 +86,4 @@ class TaxonomyController::Index::ClientRequest::RunSearch::ListQuery
     HEREDOC
   end
 end
+

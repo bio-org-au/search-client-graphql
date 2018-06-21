@@ -9,7 +9,7 @@ class NamesController::Show::GraphqlQuery
   def as_string
     raw_query_string.delete(' ')
                     .delete("\n")
-                    .sub(/id_placeholder/, @client_request.id)
+      .sub(/id_placeholder/, @client_request.id.to_i.to_s)
   end
 
   private

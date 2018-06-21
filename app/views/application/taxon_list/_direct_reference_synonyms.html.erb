@@ -1,67 +1,19 @@
 
       <ul class="plain indent2">
-        <% prev_misapp = '' %>
         <% syn_displayed = false %>
         <% taxon.synonyms.each do |syn| %>
           <% syn_displayed = true %>
-          <% if syn.misapplied? %>
-            <% if prev_misapp.blank? %>
-              <br>
-              <% prev_misapp = name_and_status(syn.simple_name, syn.name_status) %>
-              <% if @client_request.links? %>
-                 [<%= link_to name_and_status(name_with_hybrid_symbol(syn.full_name), syn.name_status).html_safe,
-                          show_name_path(id: syn.name_id, search_form: 'names') + "#name-#{syn.name_id}",
-                          title: "Show name with details" %>
-              <% else %>
-                [<%= name_and_status(name_with_hybrid_symbol(syn.simple_name), syn.name_status).html_safe %>
-              <% end %>
-            &nbsp;<i class="syntax-highlight synonym-auct-non">auct. non</i> <%= syn.misapplication.name_author_string %>:
-            <% else %>
-              <% if prev_misapp == name_and_status(syn.simple_name, syn.name_status) %>
-                <%# subsequent misapp %>
-;
-              <% else %>
-]
-                <br>
-                <% if @client_request.links? %>
-                   [<%= link_to name_and_status(name_with_hybrid_symbol(syn.full_name), syn.name_status).html_safe,
-                            show_name_path(id: syn.name_id, search_form: 'names') + "#name-#{syn.name_id}",
-                            title: "Show name with details" %>
-                <% else %>
-                  [<%= name_and_status(name_with_hybrid_symbol(syn.simple_name), syn.name_status).html_safe %>
-                <% end %>
-                <% prev_misapp = name_and_status(syn.simple_name, syn.name_status) %>
-              <% end %>
-            <% end %>
-            <%= syn.misapplication.cites_reference_citation_html.html_safe -%>: <span class="synonym-page"><%= syn.misapplication.page -%></span>
-          <% elsif syn.pro_parte? %>
-            <% unless prev_misapp.blank? %>
-              ']'
-              <% prev_misapp = '' %>
-            <% end %>
-            <br>
-            pro parte
-            <%= name_and_status(name_with_hybrid_symbol(syn.full_name), syn.name_status).html_safe %>
-          <% else %>
-            <% unless prev_misapp.blank? %>
-              ']'
-              <% prev_misapp = '' %>
-            <% end %>
-            <br>
-            <% if @client_request.links? %>
-              <%= link_to name_and_status(name_with_hybrid_symbol(syn.full_name), syn.name_status).html_safe,
-                          show_name_path(id: syn.name_id, search_form: 'names') + "#name-#{syn.name_id}",
-                          title: "Show name with details" %>
-            <% else %>
-              <%= name_and_status(name_with_hybrid_symbol(syn.full_name), syn.name_status).html_safe %>
-            <% end %>
-          <% end %>
-        <% end %>
-        <% unless prev_misapp.blank? %>
-          ]
-          <% prev_misapp = '' %>
+          <li>
+           <% if @client_request.links? %>
+             <%= link_to name_and_status_for_synonym(syn.full_name, syn.simple_name, syn.name_status).html_safe,
+                         show_name_path(id: syn.name_id, search_form: 'names') + "#name-#{syn.name_id}",
+                         title: "Show name with details" %>
+           <% else %>
+             <%= name_and_status_for_synonym(syn.full_name, syn.simple_name, syn.name_status).html_safe %>
+           <% end %>
         <% end %>
       </ul>
       <% if syn_displayed %>
         <br>
       <% end %>
+

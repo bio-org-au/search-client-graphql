@@ -1,0 +1,18 @@
+<hr>
+Sample searches 
+<select id="name-search-samples" class="search-samples" title="Choose a sample search">
+  <option value="">Select a search to run it immediately</option>
+  <option value="<%= simple_list_url('angophora+costata')%>">Angophora costata list</option>
+  <option value="<%= simple_list_in_family_order_url('angophora+costata')%>">Angophora costata list with family</option>
+  <option value="<%= simple_list_with_links_url('angophora+costata')%>">Angophora costata list showing links</option>
+  <option value="<%= simple_list_with_links_and_details_url('angophora+costata')%>">Angophora costata list showing links and details</option>
+  <option style="font-size: 1pt; background-color: #000000;" disabled>&nbsp;</option>
+  <option value="<%= simple_list_url('Diospyros rugosula')%>">Diospyros rugosula list</option>
+  <option value="<%= simple_list_in_family_order_url('Diospyros rugosula')%>">Diospyros rugosula list with family</option>
+  <option value="<%= simple_list_with_links_url('Diospyros rugosula')%>">Diospyros rugosula list showing links</option>
+  <option value="<%= simple_list_with_links_and_details_url('Diospyros rugosula')%>">Diospyros rugosula list with details</option>
+  <option style="font-size: 1pt; background-color: #000000;" disabled>&nbsp;</option>
+  <option value="<%= simple_list_with_links_and_details_url('Lomandra endlicheri')%>">Lomandra endlicheri list with links and details</option>
+  <option style="font-size: 1pt; background-color: #000000;" disabled>&nbsp;</option>
+  <option value="BadID">Bad ID</option>
+</select>

@@ -1,5 +1,6 @@
 <h1><%= @name_label %> Record Details</h1>
-<%= render partial: "#{params[:search_form]}/index/search_form" %>
+<%= render partial: "#{params[:search_form]}/index/search_form" unless params[:search_form].blank? %>
+<%= render partial: "names/index/search_form" if params[:search_form].blank? %>
 <hr>
 <%= link_to('clear form', name_search_path,name: 'x', title: clear_form_link_hover_text) %> |
 <%= link_to('advanced', names_advanced_search_path, title: 'Go to advanced name search') %> |

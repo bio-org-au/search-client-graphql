@@ -10,13 +10,14 @@ class TaxonomyController::Index::ClientRequest::RunSearch
 
   def result
     json = HTTParty.post("#{DATA_SERVER}/v1",
-                         body: body, timeout: @client_request.timeout)
+                         body: body_of_post,
+                         timeout: @client_request.timeout)
     Rails.logger.debug('TaxonomyController::Index::ClientRequest::Search')
     Rails.logger.error(json.to_s) if json.to_s =~ /error/
     JSON.parse(json.to_s, object_class: OpenStruct)
   end
 
-  def body
+  def body_of_post
     Rails.logger.debug(graphql_query_string)
     { query: graphql_query_string }
   end

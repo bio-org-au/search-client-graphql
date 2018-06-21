@@ -20,17 +20,17 @@
 
       <% if @client_request.comments? %>
         <% comments_displayed = false %>
-        <% if taxon.accepted_taxon_comment? %>
+        <% if taxon.taxon_comment? %>
             <% comments_displayed = true %>
-            <li><%= taxon.accepted_taxon_comment.html_safe %>
+            <li><%= taxon.taxon_comment.html_safe %>
         <% end %>
       <% end %>
 
       <% if @client_request.distribution? %>
         <% distribution_displayed = false %>
-        <% if taxon.accepted_taxon_distribution? %>
+        <% if taxon.taxon_distribution? %>
             <% distribution_displayed = true %>
-            <li><%= taxon.accepted_taxon_distribution %>
+            <li><%= taxon.taxon_distribution %>
         <% end %>
       <% end %>
 

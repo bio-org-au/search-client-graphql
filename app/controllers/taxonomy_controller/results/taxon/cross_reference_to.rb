@@ -6,6 +6,10 @@ class TaxonomyController::Results::Taxon::CrossReferenceTo
     @raw_cross_reference_to = raw_cross_reference_to
   end
 
+  def name_id
+    @raw_cross_reference_to.name_id
+  end
+
   def full_name
     @raw_cross_reference_to.full_name
   end

@@ -59,20 +59,20 @@ class TaxonomyController::Results::Taxon
     @raw_taxon.is_excluded
   end
 
-  def accepted_taxon_comment?
-    !accepted_taxon_comment.blank?
+  def taxon_comment?
+    !taxon_comment.blank?
   end
 
-  def accepted_taxon_comment
-    @raw_taxon.accepted_taxon_comment
+  def taxon_comment
+    @raw_taxon.taxon_comment
   end
 
-  def accepted_taxon_distribution?
-    !accepted_taxon_distribution.blank?
+  def taxon_distribution?
+    !taxon_distribution.blank?
   end
 
-  def accepted_taxon_distribution
-    @raw_taxon.accepted_taxon_distribution
+  def taxon_distribution
+    @raw_taxon.taxon_distribution
   end
 
   def misapplication?

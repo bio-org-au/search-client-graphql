@@ -4,7 +4,7 @@
 class TaxonomyController::Results::Taxon::Synonyms < Array
   def initialize(synonyms_open_struct)
     @synonyms = synonyms_open_struct
-    build
+    build unless @synonyms.nil?
   end
 
   def build

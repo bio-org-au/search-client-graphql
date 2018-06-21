@@ -23,6 +23,8 @@ class TaxonomyController < ApplicationController
     if @client_request.any_type_of_search?
       @search = @client_request.search
     end
+
+    Rails.logger.debug("Before render")
     render_index
   end
 
