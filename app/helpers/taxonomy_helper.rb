@@ -97,64 +97,68 @@ module TaxonomyHelper
     name.gsub(/ x /,' × ')
   end
 
+  def my_path
+    Rails.application.config.action_controller.relative_url_root
+  end
+
   def accepted_name_list_url(search_term)
-    "/taxonomy/search?utf8=✓&q=#{search_term}&accepted_names=1&list_or_count=list&limit_per_page_for_list=50"
+    "#{my_path}/taxonomy/search?utf8=✓&q=#{search_term}&accepted_names=1&list_or_count=list&limit_per_page_for_list=50"
   end
 
   def cross_reference_name_list_url(search_term)
-    "/taxonomy/search?utf8=✓&q=#{search_term}&cross_references=1&list_or_count=list&limit_per_page_for_list=50"
+    "#{my_path}/taxonomy/search?utf8=✓&q=#{search_term}&cross_references=1&list_or_count=list&limit_per_page_for_list=50"
   end
 
   def cross_reference_name_list_with_links_url(search_term)
-    "/taxonomy/search?utf8=✓&q=#{search_term}&cross_references=1&list_or_count=list&limit_per_page_for_list=50&show_links=1"
+    "#{my_path}/taxonomy/search?utf8=✓&q=#{search_term}&cross_references=1&list_or_count=list&limit_per_page_for_list=50&show_links=1"
   end
 
   def accepted_and_excluded_name_list_with_links_url(search_term)
-    "/taxonomy/search?utf8=✓&q=#{search_term}&accepted_names=1&excluded_names=1&list_or_count=list&show_links=1&limit_per_page_for_list=50"
+    "#{my_path}/taxonomy/search?utf8=✓&q=#{search_term}&accepted_names=1&excluded_names=1&list_or_count=list&show_links=1&limit_per_page_for_list=50"
   end
 
   def accepted_name_list_with_comments_url(search_term)
-    "/taxonomy/search?utf8=✓&q=#{search_term}&accepted_names=1&list_or_count=list&show_comments=1&limit_per_page_for_list=50"
+    "#{my_path}/taxonomy/search?utf8=✓&q=#{search_term}&accepted_names=1&list_or_count=list&show_comments=1&limit_per_page_for_list=50"
   end
 
   def accepted_name_list_with_distribution_url(search_term)
-    "/taxonomy/search?utf8=✓&q=#{search_term}&accepted_names=1&list_or_count=list&show_distribution=1&limit_per_page_for_list=50"
+    "#{my_path}/taxonomy/search?utf8=✓&q=#{search_term}&accepted_names=1&list_or_count=list&show_distribution=1&limit_per_page_for_list=50"
   end
 
   def accepted_name_list_with_comments_distribution_url(search_term)
-    "/taxonomy/search?utf8=✓&q=#{search_term}&accepted_names=1&list_or_count=list&show_distribution=1&show_comments=1&limit_per_page_for_list=50"
+    "#{my_path}/taxonomy/search?utf8=✓&q=#{search_term}&accepted_names=1&list_or_count=list&show_distribution=1&show_comments=1&limit_per_page_for_list=50"
   end
 
   def accepted_name_list_with_comments_url(search_term)
-    "/taxonomy/search?utf8=✓&q=#{search_term}&accepted_names=1&list_or_count=list&show_comments=1&limit_per_page_for_list=50"
+    "#{my_path}/taxonomy/search?utf8=✓&q=#{search_term}&accepted_names=1&list_or_count=list&show_comments=1&limit_per_page_for_list=50"
   end
 
   def accepted_name_list_with_synonyms_url(search_term)
-    "/taxonomy/search?utf8=✓&q=#{search_term}&accepted_names=1&list_or_count=list&limit_per_page_for_list=50&show_synonyms=1"
+    "#{my_path}/taxonomy/search?utf8=✓&q=#{search_term}&accepted_names=1&list_or_count=list&limit_per_page_for_list=50&show_synonyms=1"
   end
 
   def accepted_name_list_with_links_synonyms_url(search_term)
-    "/taxonomy/search?utf8=✓&q=#{search_term}&accepted_names=1&list_or_count=list&limit_per_page_for_list=50&show_links=1&show_synonyms=1"
+    "#{my_path}/taxonomy/search?utf8=✓&q=#{search_term}&accepted_names=1&list_or_count=list&limit_per_page_for_list=50&show_links=1&show_synonyms=1"
   end
 
   def accepted_name_list_with_links_synonyms_comments_url(search_term)
-    "/taxonomy/search?utf8=✓&q=#{search_term}&accepted_names=1&list_or_count=list&limit_per_page_for_list=50&show_comments=1&show_links=1&show_synonyms=1"
+    "#{my_path}/taxonomy/search?utf8=✓&q=#{search_term}&accepted_names=1&list_or_count=list&limit_per_page_for_list=50&show_comments=1&show_links=1&show_synonyms=1"
   end
 
   def accepted_name_list_with_links_synonyms_comments_distribution_url(search_term)
-    "/taxonomy/search?utf8=✓&q=#{search_term}&accepted_names=1&list_or_count=list&limit_per_page_for_list=50&show_distribution=1&show_comments=1&show_links=1&show_synonyms=1"
+    "#{my_path}/taxonomy/search?utf8=✓&q=#{search_term}&accepted_names=1&list_or_count=list&limit_per_page_for_list=50&show_distribution=1&show_comments=1&show_links=1&show_synonyms=1"
   end
 
   def accepted_excluded_name_list_with_comments_url(search_term)
-    "/taxonomy/search?utf8=✓&q=#{search_term}&accepted_names=1&excluded_names=1&list_or_count=list&show_comments=1&limit_per_page_for_list=50"
+    "#{my_path}/taxonomy/search?utf8=✓&q=#{search_term}&accepted_names=1&excluded_names=1&list_or_count=list&show_comments=1&limit_per_page_for_list=50"
   end
 
   def accepted_excluded_name_list_with_distribution_url(search_term)
-    "/taxonomy/search?utf8=✓&q=#{search_term}&accepted_names=1&excluded_names=1&list_or_count=list&show_distribution=1&limit_per_page_for_list=50"
+    "#{my_path}/taxonomy/search?utf8=✓&q=#{search_term}&accepted_names=1&excluded_names=1&list_or_count=list&show_distribution=1&limit_per_page_for_list=50"
   end
 
   def accepted_excluded_name_list_with_comments_distribution_url(search_term)
-    "/taxonomy/search?utf8=✓&q=#{search_term}&accepted_names=1&excluded_names=1&list_or_count=list&show_distribution=1&show_comments=1&limit_per_page_for_list=50"
+    "#{my_path}/taxonomy/search?utf8=✓&q=#{search_term}&accepted_names=1&excluded_names=1&list_or_count=list&show_distribution=1&show_comments=1&limit_per_page_for_list=50"
   end
 
 end
