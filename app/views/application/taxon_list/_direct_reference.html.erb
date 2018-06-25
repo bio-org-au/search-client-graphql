@@ -1,7 +1,7 @@
       <% if @client_request.links? %>
-        <%= link_to name_with_hybrid_symbol(taxon_name_string).html_safe, show_name_path(id: taxon.id, search_form: 'names') + "#name-#{taxon.id}", title: "Show name details" %>
+        <%= link_to name_and_status_for_display(taxon.full_name_html, taxon.name_status_name, taxon.name_status_display?).html_safe, show_name_path(id: taxon.id, search_form: 'names') + "#name-#{taxon.id}", title: "Show name details" %>
       <% else %>
-        <%= name_with_hybrid_symbol(taxon_name_string).html_safe %>
+        <%= name_and_status_for_display(taxon.full_name_html, taxon.name_status_name, taxon.name_status_display?).html_safe %>
       <% end %>
 
       <% if taxon.excluded? %>

@@ -2,16 +2,10 @@
 <ul class="plain">
   <% @results.taxa.each do |taxon| %>
     <li>
-    <% taxon_name_string = taxon.full_name_html %>
-    <% taxon_name_author_string =  taxon.full_name.slice(taxon.simple_name.length,1000) %>
-    <% unless taxon.name_status_name.blank? %>
-      <% taxon_name_string += %(, <i class="name-status" title="name status">#{taxon.name_status_name}</i>) %>
-    <% end %>
-
     <% if taxon.cross_reference? %>
-      <%= render(partial: 'application/taxon_list/cross_reference', locals: {taxon: taxon, taxon_name_string: taxon_name_string}) %>
+      <%= render(partial: 'application/taxon_list/cross_reference', locals: {taxon: taxon}) %>
     <% else %>
-      <%= render(partial: 'application/taxon_list/direct_reference', locals: {taxon: taxon, taxon_name_string: taxon_name_string}) %>
+      <%= render(partial: 'application/taxon_list/direct_reference', locals: {taxon: taxon}) %>
     <% end %>
   <% end %>
 </ul>

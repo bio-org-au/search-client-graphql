@@ -5,15 +5,16 @@
           <% syn_displayed = true %>
           <li>
            <% if @client_request.links? %>
-             <%= link_to name_and_status_for_synonym(syn.full_name, syn.simple_name, syn.name_status).html_safe,
-                         show_name_path(id: syn.name_id, search_form: 'names') + "#name-#{syn.name_id}",
-                         title: "Show name with details" %>
+               <span class='synonym'><%= link_to syn.full_name_html.html_safe,
+               show_name_path(id: syn.name_id, search_form: 'names') + "#name-#{syn.name_id}",
+               title: "Show name with details" %>
+               </span>
            <% else %>
-             <%= name_and_status_for_synonym(syn.full_name, syn.simple_name, syn.name_status).html_safe %>
+             <%#= name_and_status_for_synonym(syn.full_name, syn.simple_name, syn.name_status).html_safe %>
+               <span class="synonym"><%= name_and_status_for_display(syn.full_name_html, syn.name_status, syn.name_status_display?).html_safe %></span>
            <% end %>
         <% end %>
       </ul>
       <% if syn_displayed %>
         <br>
       <% end %>
-

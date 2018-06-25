@@ -3,8 +3,6 @@
 # Container for name usage synonyms in results
 class Application::Names::Results::Name::Usage::Synonym
   attr_reader :raw_synonym
-  LEFT_SQUARE_BRACKET = /^\[/
-  LEGITIMATE = 'legitimate'
   ORTH_VAR = 'orth. var.'
 
   def initialize(raw_synonym)
@@ -30,8 +28,7 @@ class Application::Names::Results::Name::Usage::Synonym
 
   # Return nil if not to be displayed.
   def name_status_name
-    return '' if @raw_synonym.name_status_name.match(LEFT_SQUARE_BRACKET)
-    return '' if @raw_synonym.name_status_name == LEGITIMATE
+    return '' if @raw_synonym.name_status_is_displayed == false
     return '' if @raw_synonym.name_status_name == ORTH_VAR &&
                  @raw_synonym.of_type_synonym
     @raw_synonym.name_status_name

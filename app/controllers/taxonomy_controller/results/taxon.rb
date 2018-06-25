@@ -20,9 +20,12 @@ class TaxonomyController::Results::Taxon
 
   def name_status_name
     return nil if @raw_taxon.name_status_name.nil? ||
-                  @raw_taxon.name_status_name == 'legitimate' ||
-                  @raw_taxon.name_status_name.match(/\[/)
+                  @raw_taxon.name_status_is_displayed == false
     @raw_taxon.name_status_name
+  end
+
+  def name_status_display?
+    @raw_taxon.name_status_is_displayed
   end
 
   def usages

@@ -9,11 +9,11 @@
               <br>
               <% prev_misapp = name_and_status(syn.simple_name, syn.name_status) %>
               <% if @client_request.links? %>
-                 [<%= link_to name_and_status(name_with_hybrid_symbol(syn.full_name), syn.name_status).html_safe,
+                 [<%= link_to name_and_status(string_with_hybrid_symbol(syn.full_name), syn.name_status).html_safe,
                           show_name_path(id: syn.name_id, search_form: 'names') + "#name-#{syn.name_id}",
                           title: "Show name with details" %>
               <% else %>
-                [<%= name_and_status(name_with_hybrid_symbol(syn.simple_name), syn.name_status).html_safe %>
+                [<%= name_and_status(string_with_hybrid_symbol(syn.simple_name), syn.name_status).html_safe %>
               <% end %>
             &nbsp;<i class="syntax-highlight synonym-auct-non">auct. non</i> <%= syn.misapplication.name_author_string %>:
             <% else %>
@@ -24,11 +24,11 @@
 ]
                 <br>
                 <% if @client_request.links? %>
-                   [<%= link_to name_and_status(name_with_hybrid_symbol(syn.full_name), syn.name_status).html_safe,
+                   [<%= link_to name_and_status(string_with_hybrid_symbol(syn.full_name), syn.name_status).html_safe,
                             show_name_path(id: syn.name_id, search_form: 'names') + "#name-#{syn.name_id}",
                             title: "Show name with details" %>
                 <% else %>
-                  [<%= name_and_status(name_with_hybrid_symbol(syn.simple_name), syn.name_status).html_safe %>
+                  [<%= name_and_status(string_with_hybrid_symbol(syn.simple_name), syn.name_status).html_safe %>
                 <% end %>
                 <% prev_misapp = name_and_status(syn.simple_name, syn.name_status) %>
               <% end %>
@@ -41,7 +41,7 @@
             <% end %>
             <br>
             pro parte
-            <%= name_and_status(name_with_hybrid_symbol(syn.full_name), syn.name_status).html_safe %>
+            <%= name_and_status(string_with_hybrid_symbol(syn.full_name), syn.name_status).html_safe %>
           <% else %>
             <% unless prev_misapp.blank? %>
               ']'
@@ -49,11 +49,11 @@
             <% end %>
             <br>
             <% if @client_request.links? %>
-              <%= link_to name_and_status(name_with_hybrid_symbol(syn.full_name), syn.name_status).html_safe,
+              <%= link_to name_and_status(string_with_hybrid_symbol(syn.full_name), syn.name_status).html_safe,
                           show_name_path(id: syn.name_id, search_form: 'names') + "#name-#{syn.name_id}",
                           title: "Show name with details" %>
             <% else %>
-              <%= name_and_status(name_with_hybrid_symbol(syn.full_name), syn.name_status).html_safe %>
+              <%= name_and_status(string_with_hybrid_symbol(syn.full_name), syn.name_status).html_safe %>
             <% end %>
           <% end %>
         <% end %>

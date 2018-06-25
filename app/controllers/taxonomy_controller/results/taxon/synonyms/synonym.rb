@@ -23,7 +23,11 @@ class TaxonomyController::Results::Taxon::Synonyms::Synonym
   end
 
   def full_name_html
-    @raw_synonym.full_name_html
+    if @raw_synonym.full_name_html.blank?
+      ''
+    else
+      @raw_synonym.full_name_html
+    end
   end
 
   def simple_name
@@ -32,6 +36,10 @@ class TaxonomyController::Results::Taxon::Synonyms::Synonym
 
   def name_status
     @raw_synonym.name_status
+  end
+
+  def name_status_display?
+    @raw_synonym.name_status_is_displayed
   end
 
   def doubtful?

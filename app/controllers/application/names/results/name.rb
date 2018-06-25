@@ -12,8 +12,7 @@ class Application::Names::Results::Name
 
   def name_status_name
     return nil if @raw_name.name_status_name.nil? ||
-                  @raw_name.name_status_name == 'legitimate' ||
-                  @raw_name.name_status_name.match(/\[/)
+                  @raw_name.name_status_is_displayed == false
     @raw_name.name_status_name
   end
 

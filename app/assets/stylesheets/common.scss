@@ -159,3 +159,15 @@ span.synonym.simple-name {
 span.synonym.authority {
 }
 
+span.synonym {
+  font-style: italic;
+}
+
+span.synonym authors {
+  font-style: normal;
+}
+
+body.colorize span.name-status {
+  color: purple;
+}
+

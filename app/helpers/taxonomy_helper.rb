@@ -70,31 +70,17 @@ module TaxonomyHelper
     "When checked, synonyms will be shown for taxa in the results of the next search."
   end
 
-  def name_and_status(name, name_status)
-    if name_status == 'legitimate'
-      name
-    elsif name_status =~ /\A\[/
-      name
+  def name_and_status_for_display(full_name_html, name_status, name_status_is_displayed)
+    if name_status_is_displayed
+      %(#{full_name_html}, <span class="name-status">#{name_status}</span>)
     else
-      %(<span class="synonym-name">#{name}</span>, <span class="name-status">#{name_status}</span>)
+      full_name_html
     end
   end
 
-  def name_and_status_for_synonym(full_name, simple_name, name_status)
-    authority = full_name[simple_name.length,full_name.length]
-    processed_simple_name = name_with_hybrid_symbol(simple_name)
-    if name_status == 'legitimate'
-      %(<span class="synonym simple-name">#{processed_simple_name}</span><span class="synonym authority">#{authority}</span>)
-    elsif name_status =~ /\A\[/
-      processed_simple_name
-    else
-      %(<span class="synonym simple-name">#{processed_simple_name}</span><span class="synonym authority">#{authority}</span>, <span class="name-status">#{name_status}</span>)
-    end
-  end
-
-  def name_with_hybrid_symbol(name)
-    return '' if name.blank?
-    name.gsub(/ x /,' × ')
+  def string_with_hybrid_symbol(str)
+    return '' if str.blank?
+    str.gsub(/ x /,' × ')
   end
 
   def my_path
