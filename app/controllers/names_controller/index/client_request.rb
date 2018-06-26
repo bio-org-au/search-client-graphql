@@ -95,6 +95,10 @@ class NamesController::Index::ClientRequest
     !family?
   end
 
+  def order_by_name_within_family?
+    family?
+  end
+
   def links?
     @params[:show_links].present? && @params[:show_links] == '1'
   end

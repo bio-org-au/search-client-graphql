@@ -3,7 +3,14 @@
 # Class extracted from name controller.
 class NamesController::Index::ListQuery
   def initialize(client_request)
+    debug('initialize')
     @client_request = client_request
+  end
+
+  def debug(s)
+    Rails.logger.debug('==============================================')
+    Rails.logger.debug("NamesController::Index:ListQuery: #{s}")
+    Rails.logger.debug('==============================================')
   end
 
   def query_string
@@ -25,6 +32,7 @@ class NamesController::Index::ListQuery
               id,
               full_name,
               name_status_name,
+              name_status_is_displayed,
               family_name
             }
           }

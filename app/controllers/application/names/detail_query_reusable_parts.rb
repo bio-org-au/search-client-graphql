@@ -12,6 +12,7 @@ class Application::Names::DetailQueryReusableParts
         full_name,
         full_name_html,
         name_status_name,
+        name_status_is_displayed,
         family_name,
           name_usages
           {

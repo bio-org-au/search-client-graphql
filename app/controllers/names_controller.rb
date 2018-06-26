@@ -28,8 +28,6 @@ class NamesController < ApplicationController
   def show
     @client_request = Show::ClientRequest.new(show_params)
     @raw_result = Show::GraphqlRequest.new(@client_request).result
-    Rails.logger.debug(@raw_result.class)
-    Rails.logger.debug(@raw_result["data"].class)
     if @raw_result["data"]["name"].nil?
       render_no_such_record
     else

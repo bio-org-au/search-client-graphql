@@ -3,7 +3,14 @@
 # Class extracted from name controller.
 class NamesController::Index::DetailQuery
   def initialize(client_request)
+    debug('initialize')
     @client_request = client_request
+  end
+
+  def debug(s)
+    Rails.logger.debug('==============================================')
+    Rails.logger.debug("NamesController::Index:DetailQuery: #{s}")
+    Rails.logger.debug('==============================================')
   end
 
   def query_string
