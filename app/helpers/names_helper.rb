@@ -50,19 +50,19 @@ module NamesHelper
     Rails.application.config.action_controller.relative_url_root
   end
 
-  def simple_list_url(search_term)
-    "#{my_path}/names/search?utf8=✓&q=#{search_term}&list_or_count=list&limit_per_page_for_list=50&limit_per_page_for_details=10&search=Search"
+  def simple_list_url(search_term, option_index = 0)
+    "#{my_path}/names/search?utf8=✓&q=#{search_term}&list_or_count=list&limit_per_page_for_list=50&limit_per_page_for_details=10&search=Search&sample_search_option_index=#{option_index}"
   end
 
-  def simple_list_in_family_order_url(search_term)
-    "#{my_path}/names/search?utf8=✓&q=#{search_term}&list_or_count=list&limit_per_page_for_list=50&limit_per_page_for_details=10&show_family=1&search=Search"
+  def simple_list_in_family_order_url(search_term, option_index = 0)
+    "#{my_path}/names/search?utf8=✓&q=#{search_term}&list_or_count=list&limit_per_page_for_list=50&limit_per_page_for_details=10&show_family=1&search=Search&sample_search_option_index=#{option_index}"
   end
 
-  def simple_list_with_links_url(search_term)
-    "#{my_path}/names/search?utf8=✓&q=#{search_term}&list_or_count=list&limit_per_page_for_list=50&limit_per_page_for_details=10&show_links=1&search=Search"
+  def simple_list_with_links_url(search_term, option_index = 0)
+    "#{my_path}/names/search?utf8=✓&q=#{search_term}&list_or_count=list&limit_per_page_for_list=50&limit_per_page_for_details=10&show_links=1&search=Search&sample_search_option_index=#{option_index}"
   end
 
-  def simple_list_with_links_and_details_url(search_term)
-    "#{my_path}/names/search?utf8=✓&q=#{search_term}&list_or_count=list&limit_per_page_for_list=50&limit_per_page_for_details=10&show_details=1&show_links=1&search=Search"
+  def simple_list_with_links_and_details_url(search_term, option_index = 0)
+    "#{my_path}/names/search?utf8=✓&q=#{search_term}&list_or_count=list&limit_per_page_for_list=50&limit_per_page_for_details=10&show_details=1&show_links=1&search=Search&sample_search_option_index=#{option_index}"
   end
 end

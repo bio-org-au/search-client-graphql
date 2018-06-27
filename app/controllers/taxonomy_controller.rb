@@ -53,6 +53,7 @@ class TaxonomyController < ApplicationController
                   :taxon_type, :limit, :offset, :list_or_count, :show_links,
                   :limit_per_page_for_list, :limit_per_page_for_details,
                   :accepted_names, :excluded_names, :cross_references,
-                  :show_synonyms, :show_distribution, :show_comments)
+                  :show_synonyms, :show_distribution, :show_comments,
+                  :sample_search_option_index)
   end
 end

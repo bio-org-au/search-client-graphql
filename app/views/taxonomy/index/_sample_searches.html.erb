@@ -1,44 +1,46 @@
 <hr>
+<% option_index = params[:sample_search_option_index].to_i %>
+
 Sample searches 
 <select id="name-search-samples" class="search-samples" title="Choose a sample search">
   <option value="">Select a search to run it immediately</option>
-  <option value="<%= accepted_name_list_url('Diospyros rugosula')%>">Accepted names matching Diospyros rugosula</option>
-  <option value="<%= cross_reference_name_list_url('Diospyros bundyana')%>">Cross references matching Diospyros bundyana</option>
-  <option value="<%= cross_reference_name_list_url('Angophora')%>">Cross references matching Angophora</option>
+  <option value="<%= accepted_name_list_url('Diospyros rugosula',1)%>" <%= 'selected' if option_index == 1 %> >Accepted names matching Diospyros rugosula</option>
+  <option value="<%= cross_reference_name_list_url('Diospyros bundyana',2)%>" <%= 'selected' if option_index == 2 %> >Cross references matching Diospyros bundyana</option>
+  <option value="<%= cross_reference_name_list_url('Angophora',3)%>" <%= 'selected' if option_index == 3 %> >Cross references matching Angophora</option>
 
   <option style="font-size: 1pt; background-color: #000000;" disabled>&nbsp;</option>
 
-  <option value="<%= accepted_name_list_url('Hibbertia aspera')%>">Accepted names matching Hibbertia aspera</option>
-  <option value="<%= cross_reference_name_list_url('Hibbertia aspera')%>">Cross references matching Hibbertia aspera</option>
-  <option value="<%= cross_reference_name_list_with_links_url('Hibbertia aspera')%>">Cross references matching Hibbertia aspera with links</option>
-  <option value="<%= accepted_and_excluded_name_list_with_links_url('Hibbertia a')%>">Accepted and Excluded names matching 'Hibbertia a' with links</option>
+  <option value="<%= accepted_name_list_url('Hibbertia aspera',5)%>" <%= 'selected' if option_index == 5 %> >Accepted names matching Hibbertia aspera</option>
+  <option value="<%= cross_reference_name_list_url('Hibbertia aspera',6)%>" <%= 'selected' if option_index == 6 %> >Cross references matching Hibbertia aspera</option>
+  <option value="<%= cross_reference_name_list_with_links_url('Hibbertia aspera',7)%>" <%= 'selected' if option_index == 7 %> >Cross references matching Hibbertia aspera with links</option>
+  <option value="<%= accepted_and_excluded_name_list_with_links_url('Hibbertia a',8)%>" <%= 'selected' if option_index == 8 %> >Accepted and Excluded names matching 'Hibbertia a' with links</option>
 
   <option style="font-size: 1pt; background-color: #000000;" disabled>&nbsp;</option>
 
-  <option value="<%= cross_reference_name_list_url('Diospyros cordifolia')%>">Cross references matching Diospyros cordifolia</option>
-  <option value="<%= cross_reference_name_list_url('Diospyros rugosula')%>">Cross references matching Diospyros rugosula</option>
-  <option value="<%= cross_reference_name_list_url('Cryptandra propinqua')%>">Cross references matching Cryptandra propinqua</option>
-  <option value="<%= cross_reference_name_list_url('livistona alfredii')%>">Cross references matching livistona alfredii</option>
-  <option value="<%= cross_reference_name_list_url('hibbertia acicularis')%>">Cross references matching hibbertia acicularis</option>
+  <option value="<%= cross_reference_name_list_url('Diospyros cordifolia',10)%>" <%= 'selected' if option_index == 10 %> >Cross references matching Diospyros cordifolia</option>
+  <option value="<%= cross_reference_name_list_url('Diospyros rugosula',11)%>" <%= 'selected' if option_index == 11 %> >Cross references matching Diospyros rugosula</option>
+  <option value="<%= cross_reference_name_list_url('Cryptandra propinqua',12)%>" <%= 'selected' if option_index == 12 %> >Cross references matching Cryptandra propinqua</option>
+  <option value="<%= cross_reference_name_list_url('livistona alfredii',13)%>" <%= 'selected' if option_index == 13 %> >Cross references matching livistona alfredii</option>
+  <option value="<%= cross_reference_name_list_url('hibbertia acicularis',14)%>" <%= 'selected' if option_index == 14 %> >Cross references matching hibbertia acicularis</option>
   <option style="font-size: 1pt; background-color: #000000;" disabled>&nbsp;</option>
-  <option value="<%= accepted_name_list_with_synonyms_url('Diospyros rugosula')%>">Accepted names matching Diospyros rugosula with synonyms</option>
-
-  <option style="font-size: 1pt; background-color: #000000;" disabled>&nbsp;</option>
-
-  <option value="<%= accepted_name_list_with_synonyms_url('Angophora costata')%>">Accepted names matching Angophora costata with synonyms</option>
-  <option value="<%= accepted_name_list_with_links_synonyms_url('Angophora costata')%>">Accepted names matching Angophora costata with links and synonyms</option>
-  <option value="<%= accepted_name_list_with_links_synonyms_comments_url('Angophora costata')%>">Accepted names matching Angophora costata with links, synonyms and comments</option>
-  <option value="<%= accepted_name_list_with_links_synonyms_comments_distribution_url('Angophora costata')%>">Accepted names matching Angophora costata with links, synonyms, comments and distribution</option>
+  <option value="<%= accepted_name_list_with_synonyms_url('Diospyros rugosula',15)%>" <%= 'selected' if option_index == 15 %> >Accepted names matching Diospyros rugosula with synonyms</option>
 
   <option style="font-size: 1pt; background-color: #000000;" disabled>&nbsp;</option>
 
-  <option value="<%= accepted_name_list_with_comments_url('Angophora costata subsp. costata')%>">Accepted names matching Angophora costata subsp. costata with comments</option>
-  <option value="<%= accepted_name_list_with_distribution_url('Angophora costata subsp. costata')%>">Accepted names matching Angophora costata subsp. costata with distribution</option>
-  <option value="<%= accepted_name_list_with_comments_distribution_url('Angophora costata subsp. costata')%>">Accepted names matching Angophora costata subsp. costata with comments and distribution</option>
+  <option value="<%= accepted_name_list_with_synonyms_url('Angophora costata',17)%>" <%= 'selected' if option_index == 17 %> >Accepted names matching Angophora costata with synonyms</option>
+  <option value="<%= accepted_name_list_with_links_synonyms_url('Angophora costata',18)%>" <%= 'selected' if option_index == 18 %> >Accepted names matching Angophora costata with links and synonyms</option>
+  <option value="<%= accepted_name_list_with_links_synonyms_comments_url('Angophora costata',19)%>" <%= 'selected' if option_index == 19 %> >Accepted names matching Angophora costata with links, synonyms and comments</option>
+  <option value="<%= accepted_name_list_with_links_synonyms_comments_distribution_url('Angophora costata',20)%>" <%= 'selected' if option_index == 20 %> >Accepted names matching Angophora costata with links, synonyms, comments and distribution</option>
 
   <option style="font-size: 1pt; background-color: #000000;" disabled>&nbsp;</option>
 
-  <option value="<%= accepted_excluded_name_list_with_comments_url('Angophora c')%>">Accepted and Excluded names matching 'Angophora c' subsp. costata with comments</option>
-  <option value="<%= accepted_excluded_name_list_with_distribution_url('Angophora c')%>">Accepted and Excluded names matching 'Angophora c' subsp. costata with distribution</option>
-  <option value="<%= accepted_excluded_name_list_with_comments_distribution_url('Angophora c')%>">Accepted and Excluded names matching 'Angophora c' subsp. costata with comments and distribution</option>
+  <option value="<%= accepted_name_list_with_comments_url('Angophora costata subsp. costata',22)%>" <%= 'selected' if option_index == 22 %> >Accepted names matching Angophora costata subsp. costata with comments</option>
+  <option value="<%= accepted_name_list_with_distribution_url('Angophora costata subsp. costata',23)%>" <%= 'selected' if option_index == 23 %> >Accepted names matching Angophora costata subsp. costata with distribution</option>
+  <option value="<%= accepted_name_list_with_comments_distribution_url('Angophora costata subsp. costata',24)%>" <%= 'selected' if option_index == 24 %> >Accepted names matching Angophora costata subsp. costata with comments and distribution</option>
+
+  <option style="font-size: 1pt; background-color: #000000;" disabled>&nbsp;</option>
+
+  <option value="<%= accepted_excluded_name_list_with_comments_url('Angophora c',26)%>" <%= 'selected' if option_index == 26 %> >Accepted and Excluded names matching 'Angophora c' subsp. costata with comments</option>
+  <option value="<%= accepted_excluded_name_list_with_distribution_url('Angophora c',27)%>" <%= 'selected' if option_index == 27 %> >Accepted and Excluded names matching 'Angophora c' subsp. costata with distribution</option>
+  <option value="<%= accepted_excluded_name_list_with_comments_distribution_url('Angophora c',28)%>" <%= 'selected' if option_index == 28 %> >Accepted and Excluded names matching 'Angophora c' subsp. costata with comments and distribution</option>
 </select>

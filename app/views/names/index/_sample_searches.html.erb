@@ -1,20 +1,22 @@
+
+<% option_index = params[:sample_search_option_index].to_i %>
+
 <hr>
 Sample searches 
-<select id="name-search-samples" class="search-samples" title="Choose a sample search">
+<select id="sample_searche" name="sample_search" class="search-samples" value="<%= params[:sample_search] %>" title="Choose a sample search">
   <option value="">Select a search to run it immediately</option>
-  <option value="<%= simple_list_url('angophora+costata')%>">Angophora costata list</option>
-  <option value="<%= simple_list_in_family_order_url('angophora+costata')%>">Angophora costata list with family</option>
-  <option value="<%= simple_list_with_links_url('angophora+costata')%>">Angophora costata list showing links</option>
-  <option value="<%= simple_list_with_links_and_details_url('angophora+costata')%>">Angophora costata list showing links and details</option>
+  <option value="<%= simple_list_url('angophora+costata',1)%>" <%= 'selected' if option_index == 1 %> >Angophora costata list</option>
+  <option value="<%= simple_list_in_family_order_url('angophora+costata',2)%>" <%= 'selected' if option_index == 2 %> >Angophora costata list with family</option>
+  <option value="<%= simple_list_with_links_url('angophora+costata',3)%>" <%= 'selected' if option_index == 3 %> >Angophora costata list showing links</option>
+  <option value="<%= simple_list_with_links_and_details_url('angophora+costata',4)%>" <%= 'selected' if option_index == 4 %> >Angophora costata list showing links and details</option>
   <option style="font-size: 1pt; background-color: #000000;" disabled>&nbsp;</option>
-  <option value="<%= simple_list_url('Diospyros rugosula')%>">Diospyros rugosula list</option>
-  <option value="<%= simple_list_in_family_order_url('Diospyros rugosula')%>">Diospyros rugosula list with family</option>
-  <option value="<%= simple_list_with_links_url('Diospyros rugosula')%>">Diospyros rugosula list showing links</option>
-  <option value="<%= simple_list_with_links_and_details_url('Diospyros rugosula')%>">Diospyros rugosula list with details</option>
+  <option value="<%= simple_list_url('Diospyros rugosula',6)%>" <%= 'selected' if option_index == 6 %> >Diospyros rugosula list</option>
+  <option value="<%= simple_list_in_family_order_url('Diospyros rugosula',7)%>" <%= 'selected' if option_index == 7 %> >Diospyros rugosula list with family</option>
+  <option value="<%= simple_list_with_links_url('Diospyros rugosula',8)%>" <%= 'selected' if option_index == 8 %> >Diospyros rugosula list showing links</option>
+  <option value="<%= simple_list_with_links_and_details_url('Diospyros rugosula',9)%>" <%= 'selected' if option_index == 9 %> >Diospyros rugosula list with details</option>
   <option style="font-size: 1pt; background-color: #000000;" disabled>&nbsp;</option>
-  <option value="<%= simple_list_with_links_and_details_url('Lomandra endlicheri')%>">Lomandra endlicheri list with links and details</option>
+  <option value="<%= simple_list_with_links_and_details_url('Lomandra endlicheri',11)%>" <%= 'selected' if option_index == 11 %> >Lomandra endlicheri list with links and details</option>
   <option style="font-size: 1pt; background-color: #000000;" disabled>&nbsp;</option>
   <option value="BadID">Bad ID</option>
 </select>
 <br>
-<%#= params.inspect %>

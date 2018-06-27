@@ -22,11 +22,17 @@
 
 <%= render partial: "taxonomy/index/widgets" %>
 
+<input name='sample_search_option_index'
+       id='sample_search_option_index'
+       type="hidden"
+       value="<%= params[:sample_search_option_index] %>" autofocus="true"
+       title="Sample search option index - should be hidden.">
+
 <input type="submit"
        value="Search"
        class="left-aligned-form-button"
        title="Search the data and retrieve matching records">
 
-</form>
 <%= render partial: "taxonomy/index/sample_searches" %>
+</form>
 </div>
