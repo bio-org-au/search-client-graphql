@@ -56,6 +56,7 @@ class Application::Names::Results::Name::Usage::Synonym
 
   def misapplication_citation_details
     rec = OpenStruct.new
+    return rec if @raw_synonym.misapplication_citation_details.blank?
     rec.in_reference_citation = @raw_synonym.misapplication_citation_details.misapplied_in_reference_citation
     rec.in_reference_citation_html = @raw_synonym.misapplication_citation_details.misapplied_in_reference_citation_html
     rec.in_reference_id = @raw_synonym.misapplication_citation_details.misapplied_in_reference_id

@@ -54,10 +54,6 @@ h3.show {
   margin-bottom: 15px;
 }
 
-span.synonym.italics element {
-  font-style: italic;
-}
-
 #timing-summary {
   margin-top: 1em;
   font-style: italics;
@@ -152,6 +148,10 @@ table.for-search-form {
   margin: 0 0 0 -1em;
 }
 
+span.synonym.italics element {
+  font-style: italic;
+}
+
 span.synonym.simple-name {
   font-style: italic;
 }
@@ -160,7 +160,7 @@ span.synonym.authority {
 }
 
 span.synonym {
-  font-style: italic;
+  font-style: normal;
 }
 
 span.synonym authors {

@@ -1,9 +1,9 @@
 
            <li><%= usage.reference_details.full_citation_with_page_html.html_safe %>
-              <% if usage.accepted_in_tree %>
+              <% if usage.accepted_in_accepted_tree? %>
                 <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
               <% end %>
-              <% if usage.reference_details.excluded_from_tree %>
+              <% if usage.reference_details.excluded_from_accepted_tree? %>
                 <span class='red' title='Excluded by APC'><i class="fa fa-ban"></i>APC</span>
               <% end %>
               <ul class="plain indent4">
@@ -33,6 +33,25 @@
                   <%= in_ref.citation -%>:<%= in_ref.page -%><%= in_ref.page_qualifier -%>;
                 <% end %>
                   </span>:
+            <% end %>
+
+            <% if usage.accepted_tree_details? %>
+              <% if usage.accepted_in_accepted_tree? || usage.excluded_from_accepted_tree? %>
+                <% if usage.accepted_tree_comment? %>
+                  <br>
+                  <b>
+                  <%= usage.accepted_tree_comment_label %>:
+                  </b>
+                  <%= usage.accepted_tree_comment %>
+                <% end %>
+                <% if usage.accepted_tree_distribution? %>
+                  <br>
+                  <b>
+                  <%= usage.accepted_tree_distribution_label %>:
+                  </b>
+                  <%= usage.accepted_tree_distribution %>
+                <% end %>
+              <% end %>
             <% end %>
 
             <% unless usage.notes.nil? %>

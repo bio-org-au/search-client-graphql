@@ -20,7 +20,6 @@ class Application::Names::DetailQueryReusableParts
             instance_id,
             instance_type_name,
             primary_instance,
-            accepted_tree_status,
             reference_details {
               id,
               citation,
@@ -62,8 +61,19 @@ class Application::Names::DetailQueryReusableParts
                 name_is_repeated,
               }
             }
+            accepted_tree_details {
+              is_accepted,
+              is_excluded,
+              comment {
+                key,
+                value
+              },
+              distribution {
+                key,
+                value
+              }
+            },
             notes {
-              id,
               key,
               value
             }

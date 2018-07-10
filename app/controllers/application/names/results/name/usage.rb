@@ -36,14 +36,6 @@ class Application::Names::Results::Name::Usage
     rec
   end
 
-  def accepted_in_tree
-    @raw_usage.accepted_tree_status == TREE_ACCEPTED
-  end
-
-  def excluded_from_tree
-    @raw_usage.accepted_tree_status == TREE_EXCLUDED
-  end
-
   def misapplied?
     !@raw_usage.misapplication_details.blank?
   end
@@ -113,7 +105,45 @@ class Application::Names::Results::Name::Usage
     end
   end
 
+  def accepted_tree_details?
+    !@raw_usage.accepted_tree_details.blank?
+  end
+
+  def accepted_in_accepted_tree?
+    !@raw_usage.accepted_tree_details.blank? && @raw_usage.accepted_tree_details.try('is_accepted')
+  end
+
+  def excluded_from_accepted_tree?
+    !@raw_usage.accepted_tree_details.blank? && @raw_usage.accepted_tree_details.is_excluded
+  end
+
+  def accepted_tree_comment_label
+    @raw_usage.accepted_tree_details.try('comment').try('key')
+  end
+
+  def accepted_tree_comment
+    @raw_usage.accepted_tree_details.try('comment').try('value')
+  end
+
+  def accepted_tree_comment?
+    !accepted_tree_comment.blank?
+  end
+
+  def accepted_tree_distribution_label
+    @raw_usage.accepted_tree_details.try('distribution').try('key')
+  end
+
+  def accepted_tree_distribution
+    @raw_usage.accepted_tree_details.try('distribution').try('value')
+  end
+
+  def accepted_tree_distribution?
+    !accepted_tree_distribution.blank?
+  end
+
   def notes
     @raw_usage.notes
   end
+
+  
 end

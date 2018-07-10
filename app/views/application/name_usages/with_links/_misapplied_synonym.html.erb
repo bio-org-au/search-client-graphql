@@ -8,5 +8,5 @@
                         show_name_path(id: synonym.name_id,
                                        search_form: search_form) + '#name-' + synonym.name_id,
                                       title: "Show name details in a new page" -%></span>:
-                    <%= synonym.mcd.in_reference_citation_html.html_safe %>:
+                    <%= synonym.mcd.in_reference_citation_html.try('html_safe') %>:
                     <%= synonym.mcd.on_page || '-' -%>
