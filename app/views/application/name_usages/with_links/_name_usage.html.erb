@@ -2,7 +2,7 @@
               <% if usage.accepted_in_accepted_tree? %>
                 <span class='red' title='Accepted by APC'><i class="fa fa-check"></i>APC</span>
               <% end %>
-              <% if usage.reference_details.excluded_from_accepted_tree? %>
+              <% if usage.excluded_from_accepted_tree? %>
                 <span class='red' title='Excluded by APC'><i class="fa fa-ban"></i>APC</span>
               <% end %>
               <ul class="plain indent4">
