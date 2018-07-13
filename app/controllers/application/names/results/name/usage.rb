@@ -145,5 +145,32 @@ class Application::Names::Results::Name::Usage
     @raw_usage.notes
   end
 
+  def non_current_accepted_tree_details?
+    !@raw_usage.non_current_accepted_tree_details.blank?
+  end
+
+  def non_current_accepted_tree_comment_label
+    @raw_usage.non_current_accepted_tree_details.try('comment').try('key')
+  end
+
+  def non_current_accepted_tree_comment
+    @raw_usage.non_current_accepted_tree_details.try('comment').try('value')
+  end
+
+  def non_current_accepted_tree_comment?
+    !non_current_accepted_tree_comment.blank?
+  end
+
+  def non_current_accepted_tree_distribution_label
+    @raw_usage.non_current_accepted_tree_details.try('distribution').try('key')
+  end
+
+  def non_current_accepted_tree_distribution
+    @raw_usage.non_current_accepted_tree_details.try('distribution').try('value')
+  end
+
+  def non_current_accepted_tree_distribution?
+    !non_current_accepted_tree_distribution.blank?
+  end
   
 end

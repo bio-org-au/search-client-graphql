@@ -73,6 +73,16 @@ class Application::Names::DetailQueryReusableParts
                 value
               }
             },
+            non_current_accepted_tree_details {
+              comment {
+                key,
+                value
+              },
+              distribution {
+                key,
+                value
+              }
+            },
             notes {
               key,
               value

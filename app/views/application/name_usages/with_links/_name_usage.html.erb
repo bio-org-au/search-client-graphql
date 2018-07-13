@@ -42,6 +42,24 @@
                 <% end %>
               <% end %>
             <% end %>
+
+            <% if usage.non_current_accepted_tree_details? %>
+                <% if usage.non_current_accepted_tree_comment? %>
+                  <br>
+                  <b>
+                  <%= usage.non_current_accepted_tree_comment_label %>:
+                  </b>
+                  <%= usage.non_current_accepted_tree_comment %>
+                <% end %>
+                <% if usage.non_current_accepted_tree_distribution? %>
+                  <br>
+                  <b>
+                  <%= usage.non_current_accepted_tree_distribution_label %>:
+                  </b>
+                  <%= usage.non_current_accepted_tree_distribution %>
+                <% end %>
+            <% end %>
+
             <% unless usage.notes.nil? %>
               <ul class="plain">
               <% usage.notes.each do |note| %>
