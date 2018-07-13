@@ -8,6 +8,13 @@
               <% end %>
               <ul class="plain indent4">
 
+              <% usage.type_notes.each do |note| %>
+                <li>
+                <b><%= note.key %>:</b>
+                <%= note.value.html_safe %>
+                </li>
+              <% end %>
+
               <% usage.synonyms.each do |synonym| %>
                 <% if synonym.misapplied? %>
                   <% if synonym.misapplication_citation_details.name_is_repeated %>
@@ -38,29 +45,28 @@
             <% if usage.accepted_tree_details? %>
               <% if usage.accepted_in_accepted_tree? || usage.excluded_from_accepted_tree? %>
                 <% if usage.accepted_tree_comment? %>
-                  <br>
+                  <li>
                   <b>
                   <%= usage.accepted_tree_comment_label %>:
                   </b>
                   <%= usage.accepted_tree_comment %>
+                  </li>
                 <% end %>
                 <% if usage.accepted_tree_distribution? %>
-                  <br>
+                  <li>
                   <b>
                   <%= usage.accepted_tree_distribution_label %>:
                   </b>
                   <%= usage.accepted_tree_distribution %>
+                  </li>
                 <% end %>
               <% end %>
             <% end %>
 
-            <% unless usage.notes.nil? %>
-              <ul class="plain">
-              <% usage.notes.each do |note| %>
+              <% usage.non_type_notes.each do |note| %>
                 <li>
                 <b><%= note.key %>:</b>
                 <%= note.value.html_safe %>
+                </li>
               <% end %>
-              </ul>
-            <% end %>
             </ul>

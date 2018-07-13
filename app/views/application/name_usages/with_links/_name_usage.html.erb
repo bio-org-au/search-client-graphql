@@ -6,11 +6,17 @@
                 <span class='red' title='Excluded by APC'><i class="fa fa-ban"></i>APC</span>
               <% end %>
               <ul class="plain indent4">
+
+              <% usage.type_notes.each do |note| %>
+                <li>
+                <b><%= note.key %>:</b>
+                <%= note.value.html_safe %>
+                </li>
+              <% end %>
+
               <%# Wrapped code to prevent " ;" instead of ";" %>
               <% usage.synonyms.each do |synonym| -%><% if synonym.misapplied? -%><% if synonym.misapplication_citation_details.name_is_repeated -%><%= render(partial: 'application/name_usages/with_links/misapplied_repeated_synonym', locals: {search_form: search_form, usage: usage, synonym: synonym}) -%><% else -%><%= render(partial: 'application/name_usages/with_links/misapplied_synonym', locals: {search_form: search_form, usage: usage, synonym: synonym}) -%><% end -%><% else -%><%= render(partial: 'application/name_usages/with_links/applied_synonym', locals: {search_form: search_form, usage: usage, synonym: synonym}) -%><% end -%><% end -%>
   
-              
-              
               <% if usage.misapplied? %>
               <li><%= usage.misapplication_details.misapplication_type_label %>:
                   <span class="misapplication">
@@ -27,46 +33,47 @@
             <% if usage.accepted_tree_details? %>
               <% if usage.accepted_in_accepted_tree? || usage.excluded_from_accepted_tree? %>
                 <% if usage.accepted_tree_comment? %>
-                  <br>
+                  <li>
                   <b>
                   <%= usage.accepted_tree_comment_label %>:
                   </b>
                   <%= usage.accepted_tree_comment %>
+                  </li>
                 <% end %>
                 <% if usage.accepted_tree_distribution? %>
-                  <br>
+                  <li>
                   <b>
                   <%= usage.accepted_tree_distribution_label %>:
                   </b>
                   <%= usage.accepted_tree_distribution %>
+                  </li>
                 <% end %>
               <% end %>
             <% end %>
 
             <% if usage.non_current_accepted_tree_details? %>
                 <% if usage.non_current_accepted_tree_comment? %>
-                  <br>
+                  <li>
                   <b>
                   <%= usage.non_current_accepted_tree_comment_label %>:
                   </b>
                   <%= usage.non_current_accepted_tree_comment %>
+                  </li>
                 <% end %>
                 <% if usage.non_current_accepted_tree_distribution? %>
-                  <br>
+                  <li>
                   <b>
                   <%= usage.non_current_accepted_tree_distribution_label %>:
                   </b>
                   <%= usage.non_current_accepted_tree_distribution %>
+                  </li>
                 <% end %>
             <% end %>
 
-            <% unless usage.notes.nil? %>
-              <ul class="plain">
-              <% usage.notes.each do |note| %>
+              <% usage.non_type_notes.each do |note| %>
                 <li>
                 <b><%= note.key %>:</b>
                 <%= note.value.html_safe %>
+                </li>
               <% end %>
-              </ul>
-            <% end %>
             </ul>
