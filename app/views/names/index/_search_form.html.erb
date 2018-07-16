@@ -16,6 +16,55 @@
     <li>Upper and lower case are ignored.
   </ul>
 </div>
+
+
+
+
+  <% if Rails.configuration.try('show_cultivar_name_form_field') || Rails.configuration.try('show_common_name_form_field') %>
+    <tr> <td colspan="2"> <hr> </td> </tr>
+  <% end %>
+
+
+    <%= check_box_tag(:scientific_name, '1', '1', disabled: "disabled", title: "Scientific names are always included in the search") %>
+    <%= label_tag(:scientific_name,
+                  "Scientific names",
+                  title: "Scientific names are always included in the result") %>
+  <br>
+  <% if Rails.configuration.try('show_cultivar_name_form_field') %>
+    <%= check_box_tag(:cultivar_name, '1', params['cultivar_name'], title: cultivar_name_hover_text) %>
+    <%= label_tag(:cultivar_name,
+                  "Cultivar names",
+                  title: cultivar_name_hover_text) %>
+    <div id="cultivar-name-field-help" class="general-help field-help hidden">
+      <div class="hide-this-help-link-container text-align-right">
+        <a href="" class="hide-this-help-link" data-target-id="search-field-help" title="Hide this help." >x</a>
+      </div>
+      <ul class="help">
+        <li>This option can be used to include or exclude the names of cultivars.
+      </ul>
+    </div>
+  <% end %>
+  <br>
+  <% if Rails.configuration.try('show_common_name_form_field') %>
+    <%= check_box_tag(:common_name, '1', params['common_name'], title: common_name_hover_text) %>
+    <%= label_tag(:common_name,
+                  "Common names",
+                  title: common_name_hover_text) %>
+    <div id="common-name-field-help" class="general-help field-help hidden">
+      <div class="hide-this-help-link-container text-align-right">
+        <a href="" class="hide-this-help-link" data-target-id="search-field-help" title="Hide this help." >x</a>
+      </div>
+      <ul class="help">
+        <li>This option can be used to include or exclude common names.
+      </ul>
+    </div>
+  <% end %>
+
+
+
+
+
+<%#= render partial: "cultivar_common_fields" %>
 <%= render partial: "names/index/widgets" %>
 
 <input name='sample_search_option_index'

@@ -127,11 +127,11 @@ be searched."
   end
 
   def cultivar_name_hover_text
-    'When checked, cultivar names will be included in the search.'
+    'When checked, cultivar names will also be included in the search.'
   end
 
   def common_name_hover_text
-    'When checked, common names will be included in the search.'
+    'When checked, common names will also be included in the search.'
   end
 
   def include_ranks_below_hover_text

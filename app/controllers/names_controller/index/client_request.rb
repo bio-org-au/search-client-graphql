@@ -99,6 +99,14 @@ class NamesController::Index::ClientRequest
     family?
   end
 
+  def cultivar_name
+    (@params[:cultivar_name] == '1').to_s
+  end
+
+  def common_name
+    (@params[:common_name] == '1').to_s
+  end
+
   def links?
     @params[:show_links].present? && @params[:show_links] == '1'
   end
