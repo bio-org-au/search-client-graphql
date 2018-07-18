@@ -68,6 +68,14 @@ class Application::Names::Results::Name::Usage
     @raw_usage.primary_instance
   end
 
+  def protologue?
+    !protologue_link.blank?
+  end
+
+  def protologue_link
+    @raw_usage.protologue_link
+  end
+
   def misapplication_label
     @raw_usage.misapplication_label
   end

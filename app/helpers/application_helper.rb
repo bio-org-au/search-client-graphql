@@ -143,7 +143,7 @@ be searched."
   end
 
   def show_links_hover_text
-    'When checked, taxon names will be hyperlinked.'
+    'When checked, taxon names will be hyperlinked.  Links to other resource will shown when available.'
   end
 
   def show_details_hover_text

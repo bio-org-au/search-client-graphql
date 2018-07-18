@@ -20,6 +20,7 @@ class Application::Names::DetailQueryReusableParts
             instance_id,
             instance_type_name,
             primary_instance,
+            protologue_link,
             reference_details {
               id,
               citation,

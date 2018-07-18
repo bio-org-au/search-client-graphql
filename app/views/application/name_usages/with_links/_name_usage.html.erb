@@ -5,6 +5,9 @@
               <% if usage.excluded_from_accepted_tree? %>
                 <span class='red' title='Excluded by APC'><i class="fa fa-ban"></i>APC</span>
               <% end %>
+              <% if usage.protologue? %>
+                <%= link_to '[protologue]', usage.protologue_link, title: "Link to the protologue for this name" %>
+              <% end %>
               <ul class="plain indent4">
 
               <% usage.type_notes.each do |note| %>
