@@ -7,7 +7,7 @@ class NamesController::Index::Utilities::CoreArgs
       search_term: "search_term_placeholder",
       order_by_name: "order_by_name_placeholder",
       order_by_name_within_family: "order_by_name_within_family_placeholder",
-      scientific_name: true,
+      scientific_name: "scientific_name_placeholder",
       cultivar_name: "cultivar_name_placeholder",
       common_name: "common_name_placeholder"
     HEREDOC1

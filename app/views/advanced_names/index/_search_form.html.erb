@@ -452,7 +452,13 @@ This option can be used to include or exclude hybrid taxa that are designated by
   <%= render partial: "advanced_names/index/widgets" %>
 
 </table>
-<script> setUpPublicationTA(); </script>
+
+
+<input name='sample_search_option_index'
+       id='sample_search_option_index'
+       type="hidden"
+       value="<%= params[:sample_search_option_index] %>" autofocus="true"
+       title="Sample search option index - should be hidden.">
 
 <input type="submit"
        value="Search"
@@ -460,6 +466,11 @@ This option can be used to include or exclude hybrid taxa that are designated by
        class="left-aligned-form-button"
        title="Search the data and retrieve matching records">
 </form>
+
+<hr>
+<%= render partial: "advanced_names/index/sample_searches" %>
+<hr>
+
 </div>
 <% if @results.present? %>
   <a id="top-of-search-results" title="Top of search results">

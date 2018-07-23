@@ -1,4 +1,17 @@
 
+
+<input name='sample_search_option_index'
+       id='sample_search_option_index'
+       type="hidden"
+       value="<%= params[:sample_search_option_index] %>" autofocus="true"
+       title="Sample search option index - should be hidden.">
+
+<input type="submit"
+       value="Search"
+       name="search"
+       class="left-aligned-form-button"
+       title="Search the data and retrieve matching records">
+
 <% option_index = params[:sample_search_option_index].to_i %>
 
 <hr>
@@ -48,6 +61,34 @@ Sample searches
   <option value="<%= simple_list_with_links_and_details_url('Hibbertia acuminata',31)%>" <%= 'selected' if option_index == 31 %> >Hibbertia acuminata with details and links</option>
   <option value="<%= simple_list_with_details_url('Hibbertia alopecota',32)%>" <%= 'selected' if option_index == 32 %> >Hibbertia alopecota with details</option>
   <option value="<%= simple_list_with_links_and_details_url('Hibbertia alopecota',33)%>" <%= 'selected' if option_index == 33 %> >Hibbertia alopecota with details and links</option>
+
+  <option style="font-size: 1pt; background-color: #000000;" disabled>&nbsp;</option>
+
+  <option value="<%= simple_list_common_name_url('blue gum',35)%>" <%= 'selected' if option_index == 35 %> >blue gum common name</option>
+  <option value="<%= simple_list_common_name_with_details_url('blue gum',36)%>" <%= 'selected' if option_index == 36 %> >blue gum common name with details</option>
+  <option value="<%= simple_list_common_name_with_links_url('blue gum',37)%>" <%= 'selected' if option_index == 37 %> >blue gum common name with links</option>
+  <option value="<%= simple_list_common_name_with_links_and_details_url('blue gum',38)%>" <%= 'selected' if option_index == 38 %> >blue gum common name with links and details</option>
+
+  <option style="font-size: 1pt; background-color: #000000;" disabled>&nbsp;</option>
+
+  <option value="<%= simple_list_cultivar_name_url('brachychiton',39)%>" <%= 'selected' if option_index == 39 %> >brachychiton cultivar name</option>
+  <option value="<%= simple_list_cultivar_name_with_details_url('brachychiton',40)%>" <%= 'selected' if option_index == 40 %> >brachychiton cultivar name with details</option>
+  <option value="<%= simple_list_cultivar_name_with_links_url('brachychiton',41)%>" <%= 'selected' if option_index == 41 %> >brachychiton cultivar name with links</option>
+  <option value="<%= simple_list_cultivar_name_with_links_and_details_url('brachychiton',42)%>" <%= 'selected' if option_index == 42 %> >brachychiton cultivar name with links and details</option>
+
+  <option style="font-size: 1pt; background-color: #000000;" disabled>&nbsp;</option>
+
+  <option value="<%= simple_list_common_cultivar_name_url('bank*om',44)%>" <%= 'selected' if option_index == 44 %> >bank*om common and cultivar name</option>
+  <option value="<%= simple_list_common_cultivar_name_with_details_url('bank*om',45)%>" <%= 'selected' if option_index == 45 %> >bank*om common and cultivar name with details</option>
+  <option value="<%= simple_list_common_cultivar_name_with_links_url('bank*om',46)%>" <%= 'selected' if option_index == 46 %> >bank*om common and cultivar name with links</option>
+  <option value="<%= simple_list_common_cultivar_name_with_links_and_details_url('bank*om',47)%>" <%= 'selected' if option_index == 47 %> >bank*om common and cultivar name with links and details</option>
+
+  <option style="font-size: 1pt; background-color: #000000;" disabled>&nbsp;</option>
+
+  <option value="<%= simple_list_common_cultivar_scientific_name_url('bank*om',48)%>" <%= 'selected' if option_index == 48 %> >bank*om common, cultivar and scientific name</option>
+  <option value="<%= simple_list_common_cultivar_scientific_name_with_details_url('bank*om',49)%>" <%= 'selected' if option_index == 49 %> >bank*om common, cultivar and scientific name with details</option>
+  <option value="<%= simple_list_common_cultivar_scientific_name_with_links_url('bank*om',50)%>" <%= 'selected' if option_index == 50 %> >bank*om common, cultivar and scientific name with links</option>
+  <option value="<%= simple_list_common_cultivar_scientific_name_with_links_and_details_url('bank*om',51)%>" <%= 'selected' if option_index == 51 %> >bank*om common, cultivar and scientific name with links and details</option>
 
   <option style="font-size: 1pt; background-color: #000000;" disabled>&nbsp;</option>
 

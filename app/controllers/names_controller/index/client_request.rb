@@ -30,10 +30,6 @@ class NamesController::Index::ClientRequest
     string.sub(/$/, '*')
   end
 
-  def scientific_name
-    scientific?.to_s
-  end
-
   def scientific_named_hybrid_name
     if @params[:scientific_named_hybrid_name] == '1'
       'true'
@@ -48,14 +44,6 @@ class NamesController::Index::ClientRequest
 
   def scientific?
     %w[scientific all scientific-or-cultivar].include?(@params[:name_type]).to_s
-  end
-
-  def cultivar_name
-    %w[cultivar all scientific-or-cultivar].include?(@params[:name_type]).to_s
-  end
-
-  def common_name
-    %w[common all].include?(@params[:name_type]).to_s
   end
 
   # We don't want limit of zero unless it is a count request.
@@ -105,6 +93,10 @@ class NamesController::Index::ClientRequest
 
   def common_name
     (@params[:common_name] == '1').to_s
+  end
+
+  def scientific_name
+    (@params[:scientific_name] == '1').to_s
   end
 
   def links?

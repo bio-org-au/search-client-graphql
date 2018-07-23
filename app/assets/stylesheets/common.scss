@@ -33,7 +33,11 @@ div.tiny-break {
 }
 
 h3.name-heading {
-  margin-bottom: 5px;
+  margin-bottom: 2px;
+}
+
+h3.show {
+  line-height: 100%;
 }
 
 ul.name-details {
@@ -47,11 +51,6 @@ div.name-detail-entry-separator.index {
 
 div.name-detail-entry-separator.show {
   margin: 4px 0 4px 0;
-}
-
-h3.show {
-  line-height: 100%;
-  margin-bottom: 15px;
 }
 
 #timing-summary {

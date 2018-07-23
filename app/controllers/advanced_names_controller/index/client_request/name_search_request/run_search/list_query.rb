@@ -25,6 +25,7 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::RunSearc
               id,
               full_name,
               name_status_name,
+              name_status_is_displayed,
               family_name
             }
           }

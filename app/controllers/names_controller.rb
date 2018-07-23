@@ -83,6 +83,7 @@ class NamesController < ApplicationController
     params.permit(:utf8, :q, :format, :show_details, :show_family, :show_links,
                   :name_type, :limit, :count, :search, :list_or_count, :offset,
                   :limit_per_page_for_list, :limit_per_page_for_details,
-                  :cultivar_name, :common_name, :sample_search_option_index)
+                  :cultivar_name, :common_name, :scientific_name,
+                  :sample_search_option_index)
   end
 end

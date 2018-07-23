@@ -15,7 +15,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bloodhound
 //= require typeahead.jquery
 //= require main.js
 //= require_tree .
