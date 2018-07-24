@@ -4,7 +4,17 @@
 # It provides the core structure for requesting name details which
 # is used in a couple of places.
 class Application::Names::DetailQueryReusableParts
-  def self.name_fields_string
+   
+  def initialize(client_request)
+    @client_request = client_request
+  end
+
+  def image_component
+    return '' unless @client_request.links?
+    'images { count, link },'
+  end
+
+  def name_fields_string
     <<~HEREDOC
       {
         id,
@@ -13,11 +23,7 @@ class Application::Names::DetailQueryReusableParts
         full_name_html,
         name_status_name,
         name_status_is_displayed,
-        family_name,
-        images {
-          count,
-          link
-        },
+        family_name, #{ self.image_component } 
         name_usages
           {
             standalone,

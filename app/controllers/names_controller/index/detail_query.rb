@@ -30,7 +30,7 @@ class NamesController::Index::DetailQuery
         {
           count,
           names
-           #{Application::Names::DetailQueryReusableParts.name_fields_string}
+          #{Application::Names::DetailQueryReusableParts.new(@client_request).name_fields_string}
         }
       }
     HEREDOC

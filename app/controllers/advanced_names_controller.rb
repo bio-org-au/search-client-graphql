@@ -76,6 +76,7 @@ class AdvancedNamesController < ApplicationController
                   :scientific_autonym_name, :scientific_named_hybrid_name,
                   :cultivar_name, :common_name, :include_ranks_below,
                   :scientific_hybrid_formula_name,
-                  :search, :count, :list_or_count)
+                  :search, :count, :list_or_count,
+                  :sample_search_option_index)
   end
 end

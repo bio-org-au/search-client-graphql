@@ -18,7 +18,7 @@ class NamesController::Show::GraphqlQuery
     <<~HEREDOC
       {
         name(id: id_placeholder)
-        #{Application::Names::DetailQueryReusableParts.name_fields_string}
+        #{Application::Names::DetailQueryReusableParts.new(@client_request).name_fields_string}
         }
     HEREDOC
   end

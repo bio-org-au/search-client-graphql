@@ -23,7 +23,7 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::RunSearc
         {
           count,
           names
-           #{Application::Names::DetailQueryReusableParts.name_fields_string}
+          #{Application::Names::DetailQueryReusableParts.new(@client_request).name_fields_string}
         }
       }
     HEREDOC
