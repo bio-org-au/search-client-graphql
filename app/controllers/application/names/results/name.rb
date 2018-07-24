@@ -31,7 +31,23 @@ class Application::Names::Results::Name
     @raw_name.family_name
   end
 
+  def simple_name
+    @raw_name.simple_name
+  end
+
   def id
     @raw_name.id
+  end
+
+  def images?
+    !@raw_name.images.blank?
+  end
+
+  def image_link
+    @raw_name.images.link
+  end
+
+  def image_count
+    @raw_name.images.count
   end
 end

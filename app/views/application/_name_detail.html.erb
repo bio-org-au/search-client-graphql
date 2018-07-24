@@ -29,4 +29,14 @@
           <% end %>
         <% end %>
       </ul>
+
+      <% if name.images? %>
+        <%= link_to('<i class="fa fa-camera"></i>'.html_safe,
+            name.image_link,
+            class: "camera-icon",
+            target: "new",
+            title: "Show #{pluralize(name.image_count, 'image')} of #{name.simple_name}. Opens in a new tab or window.") %>
+      <% end %>
   <% end %>
+
+  

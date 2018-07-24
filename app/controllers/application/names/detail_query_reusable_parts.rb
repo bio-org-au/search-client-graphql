@@ -14,7 +14,11 @@ class Application::Names::DetailQueryReusableParts
         name_status_name,
         name_status_is_displayed,
         family_name,
-          name_usages
+        images {
+          count,
+          link
+        },
+        name_usages
           {
             standalone,
             instance_id,
