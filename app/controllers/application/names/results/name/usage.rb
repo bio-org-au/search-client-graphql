@@ -154,11 +154,11 @@ class Application::Names::Results::Name::Usage
   end
 
   def type_notes
-    @raw_usage.notes.keep_if {|x| ['Type','Lectotype','Neotype'].include?(x.key)}
+    @raw_usage.notes.select {|x| ['Type','Lectotype','Neotype'].include?(x.key)}
   end
 
   def non_type_notes
-    @raw_usage.notes.delete_if {|x| ['Type','Lectotype','Neotype'].include?(x.key)}
+    @raw_usage.notes.select {|x| !['Type','Lectotype','Neotype'].include?(x.key)}
   end
 
   def non_current_accepted_tree_details?
