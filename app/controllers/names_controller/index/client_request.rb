@@ -66,8 +66,15 @@ class NamesController::Index::ClientRequest
     @params[:list_or_count] == 'count'
   end
 
-  def details?
-    @params[:show_details].present? && @params[:show_details] == '1'
+  # Intention: test that no search has been requested.
+  # Method: searches spawn lots of params, so make sure not many params
+  def no_search_requested?
+    @params.length < 4
+  end
+
+  def details?(session_editor = false)
+    (@params[:show_details].present? && @params[:show_details] == '1') ||
+    (session_editor && no_search_requested?)
   end
   alias show_details details?
 
@@ -75,8 +82,9 @@ class NamesController::Index::ClientRequest
     !details?
   end
 
-  def family?
-    @params[:show_family].present? && @params[:show_family] == '1'
+  def family?(session_editor = false)
+    (@params[:show_family].present? && @params[:show_family] == '1') ||
+    (session_editor && no_search_requested?)
   end
 
   def order_by_name?
@@ -99,8 +107,9 @@ class NamesController::Index::ClientRequest
     (@params[:scientific_name] == '1').to_s
   end
 
-  def links?
-    @params[:show_links].present? && @params[:show_links] == '1'
+  def links?(session_editor = false)
+    (@params[:show_links].present? && @params[:show_links] == '1') ||
+    (session_editor && no_search_requested?)
   end
 
   def timeout

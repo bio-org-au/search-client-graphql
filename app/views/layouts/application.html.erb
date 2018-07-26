@@ -39,14 +39,9 @@ label:not([title]) {
 
 <%= yield %>
 
-<span id="show-edit-links-area">
-<% if session[:show_edit_links] %>
-  <%= link_to('Edit Links off',
-              update_prefs_path(switch: 'edit-links', on_off: 'off'),
-              id: "link-to-turn-off-edit-links",
-              title: "Click to stop showing links to the NSL Editor.",
-              remote: true)  %>
-<% end %>
+<span id="editor-switch-container">
+  <%= render partial: 'editor_switch' %>
 </span>
+
 </body>
 </html>

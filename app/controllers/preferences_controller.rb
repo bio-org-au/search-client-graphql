@@ -1,21 +1,23 @@
 # frozen_string_literal: true
 
-# Controller
+# Controller for preferences, such as indicating you want to be
+# treated as an editor.
 class PreferencesController < ApplicationController
-  def update
-    if preferences_params[:on_off] =~ /on/i
-      session[:show_edit_links] = true
+  def editor_switch
+    if preferences_params[:value] =~ /on/i
+      session[:editor] = true
     else
-      session[:show_edit_links] = false
+      session[:editor] = false
     end
     respond_to do |format|
-      format.html
-      format.js {render js: "$('#link-to-turn-off-edit-links').hide(); $('#footer-show-edit-links-area').html('Links off next query.');"}
+      format.html {redirect_to controller: 'names', action: 'index'}
+      format.js {render 'editor_switch'}
     end
   end
 
   private
+
   def preferences_params
-    params.permit(:switch, :on_off)
+    params.permit(:switch, :value)
   end
 end

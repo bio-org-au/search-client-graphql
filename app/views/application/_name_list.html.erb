@@ -11,6 +11,10 @@
     <% end %>
     <% if @client_request.links? %>
       <%= link_to name_string.html_safe, show_name_path(id: name.id, search_form: search_form) + "#name-#{name.id}", title: "Show name details" %>
+      <% if session[:editor] %>
+        | <%= link_to 'edit', "#{Rails.configuration.instance_editor}/search?query_string=id%3A+#{name.id}+show-instances%3A&query_target=Name",
+                    title: 'Open this name record in the NSL editor. Requires login.' %>
+      <% end %>
     <% else %>
       <%= name_string.html_safe %>
     <% end %>

@@ -1,0 +1,14 @@
+<% if session[:editor] %>
+  <%= link_to('editor',
+              i_am_not_an_editor_path,
+              id: "editor_off_switch",
+              title: "You have Editor settings turned on. Select to turn off.",
+              remote: true)  %>
+<% else %>
+  <%= link_to('I am an editor',
+              i_am_an_editor_path,
+              id: "editor_on_switch",
+              class: "obscure",
+              title: "Editor use only.",
+              remote: true)  %>
+<% end %>
