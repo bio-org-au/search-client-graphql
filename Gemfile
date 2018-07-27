@@ -80,7 +80,6 @@ end
 gem 'activerecord-hierarchical_query',
     require: 'active_record/hierarchical_query'
 gem 'acts_as_tree'
-gem 'font-awesome-rails'
 gem 'nunes'
 gem 'rest-client'
 gem 'scenic', '~> 0.3.0'
