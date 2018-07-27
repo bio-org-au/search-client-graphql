@@ -4,6 +4,7 @@
 <h1><%= @name_label %> Advanced Search</h1>
 
 <%= render partial: 'advanced_names/index/search_form' %>
+<hr>
 <span class="no-print">
 <%= link_to('clear form', names_advanced_search_path,class: 'underline', title: clear_form_link_hover_text('advanced')) %> |
 <%= link_to('simple', name_search_path, class: 'underline', title: 'Go to simple name search') %> |

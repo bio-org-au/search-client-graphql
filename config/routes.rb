@@ -24,8 +24,18 @@ Rails.application.routes.draw do
   match '/publications/suggestions/:search_term', as: 'publication_suggestions', to: 'publications#suggestions', via: :get
   get '/settings', as: 'settings', to: 'settings#index'
   get '/settings/index', as: 'settings_index', to: 'settings#index'
-  match '/i-am-an-editor', as: 'i_am_an_editor', to: 'preferences#editor_switch', via: [:post], defaults: { switch: 'editor', value: 'on' }
-  match '/i-am-not-an-editor', as: 'i_am_not_an_editor', to: 'preferences#editor_switch', via: [:post], defaults: { switch: 'editor', value: 'off' }
+
+
+  # Editor Links Section
+  # Allow from browser, so 'get', for bookmarking.
+  match '/I-am-an-editor', as: 'I_am_an_editor', to: 'preferences#editor_switch', via: [:get], defaults: { switch: 'editor', value: 'on' }
+  match '/i-am-an-editor', as: 'i_am_an_editor', to: 'preferences#editor_switch', via: [:get], defaults: { switch: 'editor', value: 'on' }
+  # Use as hidden link, needs to be a post to avoid apparent auto getting.
+  match '/i-am-an-editor-post', as: 'i_am_an_editor_post', to: 'preferences#editor_switch', via: [:post], defaults: { switch: 'editor', value: 'on' }
+  # Use "post" and indicate this is a post for consistency.
+  match '/i-am-not-an-editor-post', as: 'i_am_not_an_editor_post', to: 'preferences#editor_switch', via: [:post], defaults: { switch: 'editor', value: 'off' }
+  # 
+
   root to: 'names#index'
   get '*path' => 'names#index'
 end
