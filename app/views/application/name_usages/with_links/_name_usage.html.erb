@@ -6,7 +6,9 @@
                 <span class='red' title='Excluded by APC'><i class="fa fa-ban"></i>APC</span>
               <% end %>
               <% if usage.protologue? %>
-                <%= link_to '[protologue]', usage.protologue_link, title: "Link to the protologue for this name" %>
+                <%= link_to('<i class="protologue-icon fas fa-file-pdf"></i>'.html_safe,
+                            usage.protologue_link,
+                            title: "View the protologue for this name") %>
               <% end %>
               <ul class="plain indent4">
 
