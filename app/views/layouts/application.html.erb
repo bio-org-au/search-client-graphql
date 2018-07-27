@@ -37,7 +37,7 @@ label:not([title]) {
 </head>
 <body class="xcolorize <%= @body_class %> <%= Rails.configuration.try('environment') %>" >
 
-<%= yield %>
+  <%= yield %>
 
 <span id="editor-switch-container">
   <%= render partial: 'editor_switch' %>

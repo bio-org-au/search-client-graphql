@@ -17,7 +17,7 @@
 <hr>
 <b>For lists also show:</b>
 <br>
-    <%= check_box_tag(:show_family, '1', @client_request.family?(session[:editor]),
+    <%= check_box_tag(:show_family, '1', @client_request.family?,
                       title: show_family_hover_text) %>
     <%= label_tag(:show_family, "Family", title: show_family_hover_text) %>
 <div id="show-family-field-help" class="general-help field-help hidden">
@@ -29,7 +29,7 @@
   </ul>
 </div>
 <br>
-    <%= check_box_tag(:show_links, '1', @client_request.links?(session[:editor]), title: show_links_hover_text) %>
+    <%= check_box_tag(:show_links, '1', @client_request.links?, title: show_links_hover_text) %>
     <%= label_tag(:show_links, "Links", title: show_links_hover_text) %>
 <div id="show-links-field-help" class="general-help field-help hidden">
   <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="show-links-field-help" title="Hide this help." >x</a></div>
@@ -39,7 +39,7 @@
   </ul>
 </div>
 <br>
-    <%= check_box_tag(:show_details, '1', @client_request.details?(session[:editor]),
+    <%= check_box_tag(:show_details, '1', @client_request.details?,
                       title: show_details_hover_text) %>
     <%= label_tag(:show_details, "Details", title: show_details_hover_text) %>
 <div id="show-details-field-help" class="general-help field-help hidden">

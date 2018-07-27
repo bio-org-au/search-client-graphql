@@ -7,8 +7,9 @@ class NamesController::Index::ClientRequest
   MAX_DETAILS_LIMIT = 100
   AUTO_TRAILING_WILDCARD = true
 
-  def initialize(params)
+  def initialize(params, session_editor)
     @params = params
+    @session_editor = session_editor
   end
 
   def any_type_of_search?
@@ -72,9 +73,9 @@ class NamesController::Index::ClientRequest
     @params.length < 4
   end
 
-  def details?(session_editor = false)
+  def details?
     (@params[:show_details].present? && @params[:show_details] == '1') ||
-    (session_editor && no_search_requested?)
+    (@session_editor && no_search_requested?)
   end
   alias show_details details?
 
@@ -82,9 +83,9 @@ class NamesController::Index::ClientRequest
     !details?
   end
 
-  def family?(session_editor = false)
+  def family?
     (@params[:show_family].present? && @params[:show_family] == '1') ||
-    (session_editor && no_search_requested?)
+    (@session_editor && no_search_requested?)
   end
 
   def order_by_name?
@@ -107,9 +108,9 @@ class NamesController::Index::ClientRequest
     (@params[:scientific_name] == '1').to_s
   end
 
-  def links?(session_editor = false)
+  def links?
     (@params[:show_links].present? && @params[:show_links] == '1') ||
-    (session_editor && no_search_requested?)
+    (@session_editor && no_search_requested?)
   end
 
   def timeout

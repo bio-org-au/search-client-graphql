@@ -19,7 +19,7 @@
 # - on page
 class AdvancedNamesController < ApplicationController
   def index
-    @client_request = Index::ClientRequest.new(search_params).build_request
+    @client_request = Index::ClientRequest.new(search_params, session[:editor] || false).build_request
     @search = @client_request.search
     render_index
   end

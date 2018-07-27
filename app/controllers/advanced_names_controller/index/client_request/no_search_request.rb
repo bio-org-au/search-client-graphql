@@ -2,9 +2,10 @@
 
 # Class extracted from name controller.
 class AdvancedNamesController::Index::ClientRequest::NoSearchRequest
-  def initialize(params, search_request)
+  def initialize(params, search_request, session_editor)
     @params = params
     @search_request = search_request
+    @session_editor = session_editor
   end
 
   def search; end
@@ -30,15 +31,15 @@ class AdvancedNamesController::Index::ClientRequest::NoSearchRequest
   end
 
   def details?
-    @search_request.details?
+    @search_request.details?  || @session_editor
   end
 
   def links?
-    @search_request.links?
+    @search_request.links?  || @session_editor
   end
 
   def family?
-    @search_request.family?
+    @search_request.family?  || @session_editor
   end
 
   def limit

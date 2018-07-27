@@ -3,8 +3,9 @@
 # Class extracted from name controller.
 # This is the client's request (interpreted).
 class AdvancedNamesController::Index::ClientRequest
-  def initialize(params)
+  def initialize(params, session_editor = false)
     @params = params
+    @session_editor = session_editor
     @search_request = SearchRequest.new(params)
   end
 
@@ -12,7 +13,7 @@ class AdvancedNamesController::Index::ClientRequest
     if @search_request.any_type_of_search?
       NameSearchRequest.new(@params, @search_request)
     else
-      NoSearchRequest.new(@params, @search_request)
+      NoSearchRequest.new(@params, @search_request, @session_editor)
     end
   end
 

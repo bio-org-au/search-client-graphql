@@ -24,8 +24,8 @@ Rails.application.routes.draw do
   match '/publications/suggestions/:search_term', as: 'publication_suggestions', to: 'publications#suggestions', via: :get
   get '/settings', as: 'settings', to: 'settings#index'
   get '/settings/index', as: 'settings_index', to: 'settings#index'
-  match '/i-am-an-editor', as: 'i_am_an_editor', to: 'preferences#editor_switch', via: [:get,:put], defaults: { switch: 'editor', value: 'on' }
-  match '/i-am-not-an-editor', as: 'i_am_not_an_editor', to: 'preferences#editor_switch', via: [:get,:put], defaults: { switch: 'editor', value: 'off' }
+  match '/i-am-an-editor', as: 'i_am_an_editor', to: 'preferences#editor_switch', via: [:post], defaults: { switch: 'editor', value: 'on' }
+  match '/i-am-not-an-editor', as: 'i_am_not_an_editor', to: 'preferences#editor_switch', via: [:post], defaults: { switch: 'editor', value: 'off' }
   root to: 'names#index'
   get '*path' => 'names#index'
 end
