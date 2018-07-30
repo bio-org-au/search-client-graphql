@@ -63,6 +63,7 @@ class Application::Names::DetailQueryReusableParts
               label,
               page,
               name_status_name,
+              year,
               misapplied,
               misapplication_citation_details {
                 misapplied_in_reference_citation,

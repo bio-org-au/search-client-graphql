@@ -69,4 +69,8 @@ class Application::Names::Results::Name::Usage::Synonym
   def mcd
     misapplication_citation_details
   end
+
+  def year
+    @raw_synonym.year
+  end
 end
