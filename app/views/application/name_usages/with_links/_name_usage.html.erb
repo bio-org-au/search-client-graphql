@@ -11,7 +11,7 @@
                             title: "View the protologue for this name") %>
               <% end %>
               <% if usage.reference_details.has_bhl_url %>
-                <%= link_to image_tag('BHL', height: 10), usage.reference_details.bhl_url, title: 'View the Biodiversity Heritage Library (BHL) entry' %>
+                <%= link_to image_tag('bhl.svg', height: 10), usage.reference_details.bhl_url, title: 'View the Biodiversity Heritage Library (BHL) entry' %>
               <% end %>
               <ul class="plain indent4">
 
