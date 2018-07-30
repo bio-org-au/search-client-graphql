@@ -17,6 +17,8 @@ class Application::Names::Results::Name::Usage
     rec.page = @raw_usage.reference_details.page
     rec.page_qualifier = @raw_usage.reference_details.page_qualifier
     rec.year = @raw_usage.reference_details.year
+    rec.has_bhl_url = !@raw_usage.reference_details.bhl_url.blank?
+    rec.bhl_url = @raw_usage.reference_details.bhl_url
     rec.full_citation_with_page = "#{@raw_usage.reference_details.citation}: #{@raw_usage.reference_details.page || '-'} #{'[' + @raw_usage.instance_type_name + ']' if @raw_usage.primary_instance}"
     rec.full_citation_with_page_html = "#{@raw_usage.reference_details.citation_html}: #{@raw_usage.reference_details.page || '-'} #{'[' + @raw_usage.instance_type_name + ']' if @raw_usage.primary_instance}"
     rec
@@ -188,5 +190,4 @@ class Application::Names::Results::Name::Usage
   def non_current_accepted_tree_distribution?
     !non_current_accepted_tree_distribution.blank?
   end
-  
 end

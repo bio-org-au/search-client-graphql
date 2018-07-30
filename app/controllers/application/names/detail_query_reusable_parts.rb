@@ -39,6 +39,7 @@ class Application::Names::DetailQueryReusableParts
               page_qualifier,
               year,
               full_citation_with_page,
+              bhl_url
             },
             misapplication_details {
               direction,
