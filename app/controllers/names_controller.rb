@@ -21,9 +21,6 @@ class NamesController < ApplicationController
     @client_request = Index::ClientRequest.new(search_params, session[:editor] || false)
     if @client_request.any_type_of_search?
       @search_result = Index::GraphqlRequest.new(@client_request).result
-      @show_editor_switch = false
-    else
-      @show_editor_switch = true
     end
     render_index
   end

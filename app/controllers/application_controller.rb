@@ -36,6 +36,7 @@ class ApplicationController < ActionController::Base
     @name_label = @setting.name_label
     @tree_label = @setting.tree_label
     @body_class = decide_body_class
+    @show_editor_switch = ['names', 'advanced_names'].include?(params[:controller])
   end
 
   def decide_body_class

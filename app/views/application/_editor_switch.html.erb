@@ -1,21 +1,18 @@
-<br>
-<br>
-<br>
-<% if session[:editor] %>
-  <%= link_to('editor',
-              i_am_not_an_editor_post_path,
-              id: "editor_off_switch",
-              title: "You have Editor settings turned on. Select to turn off.",
-              method: 'post',
-              remote: true)  %>
-<% else %>
-  <% if @show_editor_switch %>
-  <%= link_to('switch',
-              i_am_an_editor_post_path,
-              id: "editor_on_switch",
-              class: "obscure",
-              title: "Editor use only.",
-              method: 'post',
-              remote: true)  %>
+<% if @show_editor_switch %>
+  <% if session[:editor] %>
+    <%= link_to('editor',
+                i_am_not_an_editor_post_path,
+                id: "editor_off_switch",
+                title: "You have Editor settings turned on. Select to turn off.",
+                method: 'post',
+                remote: true)  %>
+  <% else %>
+    <%= link_to('switch on',
+                i_am_an_editor_post_path,
+                id: "editor_on_switch",
+                class: "obscure",
+                title: "Editor use only.  This simply shows links to the APNI editor.",
+                method: 'post',
+                remote: true)  %>
   <% end %>
 <% end %>
