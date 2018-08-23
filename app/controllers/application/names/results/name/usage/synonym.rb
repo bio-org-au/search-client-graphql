@@ -4,6 +4,7 @@
 class Application::Names::Results::Name::Usage::Synonym
   attr_reader :raw_synonym
   ORTH_VAR = 'orth. var.'
+  LEGITIMATE = 'legitimate'
 
   def initialize(raw_synonym)
     @raw_synonym = raw_synonym
@@ -28,10 +29,14 @@ class Application::Names::Results::Name::Usage::Synonym
 
   # Return nil if not to be displayed.
   def name_status_name
-    return '' if @raw_synonym.name_status_is_displayed == false
-    return '' if @raw_synonym.name_status_name == ORTH_VAR &&
-                 @raw_synonym.of_type_synonym
+    return unless display_name_status_name?
+    return if @raw_synonym.name_status_name == ORTH_VAR &&
+              @raw_synonym.of_type_synonym
     @raw_synonym.name_status_name
+  end
+
+  def display_name_status_name?
+    @raw_synonym.name_status_name != LEGITIMATE
   end
 
   def full_name
