@@ -6,7 +6,7 @@ class Setting
 
   def name_label
     if Rails.configuration.name_label.blank?
-      Rails.configuration.name_label = ask_for_setting('name label')
+      Rails.configuration.name_label = setting_for('name label')
     else
       Rails.configuration.name_label
     end
@@ -14,7 +14,7 @@ class Setting
 
   def tree_label
     if Rails.configuration.try(:tree_label).blank?
-      Rails.configuration.tree_label = ask_for_setting('tree label')
+      Rails.configuration.tree_label = setting_for('tree label')
     else
       Rails.configuration.try(:tree_label)
     end
@@ -22,7 +22,7 @@ class Setting
 
   def taxonomy_label
     if Rails.configuration.try(:taxonomy_label).blank?
-      Rails.configuration.taxonomy_label = ask_for_setting('tree label')
+      Rails.configuration.taxonomy_label = setting_for('tree label')
     else
       Rails.configuration.try(:taxonomy_label)
     end
@@ -30,16 +30,20 @@ class Setting
 
   private
 
-  def ask_for_setting(setting)
+  def setting_for(setting)
     options = {
       body: {
         query: %({setting(search_term: "#{setting}") })
       }
     }
-    Rails.logger.debug("ask_for_setting(#{setting})")
+    Rails.logger.debug("setting_for(#{setting})")
     Rails.logger.debug(options.inspect)
     json = HTTParty.post("#{DATA_SERVER}/v1", options)
     @search = JSON.parse(json.to_s, object_class: OpenStruct)
     @search.data.setting
+  rescue => e
+    Rails.logger.error("Error finding setting for: #{setting}")
+    Rails.logger.error(e.message)
+    'unknown'
   end
 end
