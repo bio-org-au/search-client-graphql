@@ -45,7 +45,7 @@ label:not([title]) {
 </span>
 
 <br>
-version: <%= Rails.configuration.version %>
+version: <%= Rails.configuration.version %>;<% rte = RuntimeEnvironment.new %>  database: <%= rte.database %>; env: <%= rte.rails_env %>;
 <br>
 </body>
 </html>
