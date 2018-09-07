@@ -45,7 +45,7 @@
                   <b>
                   <%= usage.accepted_tree_comment_label %>:
                   </b>
-                  <%= usage.accepted_tree_comment %>
+                  <%= usage.accepted_tree_comment.html_safe %>
                   </li>
                 <% end %>
                 <% if usage.accepted_tree_distribution? %>
@@ -65,7 +65,7 @@
                   <b>
                   <%= usage.non_current_accepted_tree_comment_label %>:
                   </b>
-                  <%= usage.non_current_accepted_tree_comment %>
+                  <%= usage.non_current_accepted_tree_comment.html_safe %>
                   </li>
                 <% end %>
                 <% if usage.non_current_accepted_tree_distribution? %>
