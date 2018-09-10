@@ -1,14 +1,15 @@
       <% if @client_request.links? %>
         <%= link_to name_and_status_for_display(taxon.full_name_html, taxon.name_status_name, taxon.name_status_display?).html_safe, show_name_path(id: taxon.id, search_form: 'names') + "#name-#{taxon.id}", title: "Show name details" %>
       <% else %>
-        <%= name_and_status_for_display(taxon.full_name_html, taxon.name_status_name, taxon.name_status_display?).html_safe %>
+        <%= name_and_status_for_display(taxon.full_name_html, taxon.name_status_name, taxon.name_status_display?).try('html_safe') %>
       <% end %>
 
       <% if taxon.excluded? %>
         <span class='red' title='Excluded by APC'><i class="fa fa-ban"></i>APC</span>
       <% end %>
 
-       sensu <%= taxon.reference_citation %>
+       <i class="syntax-highlight">sensu</i>
+       <%= taxon.reference_citation %>
 
 
     <% if @client_request.synonyms? %>

@@ -1,6 +1,8 @@
   <ul class="plain">
     <% @taxa.each do |taxon| %>
-      <li/><%= taxon.full_name %> sensu <%= taxon.reference_citation %>
+      <li/><%= taxon.full_name %> 
+           <i class="syntax-highlight">sensu</i>
+           <%= taxon.reference_citation %>
         <ul class="plain indent2">
           <% taxon.taxon_details.taxon_synonyms.each do |synonym| %>
             <li><%= synonym.full_name %>
