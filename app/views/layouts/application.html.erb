@@ -45,7 +45,9 @@ label:not([title]) {
 </span>
 
 <br>
-version: <%= Rails.configuration.version %>;<% rte = RuntimeEnvironment.new %>  database: <%= rte.database %>; env: <%= rte.rails_env %>;
+<% if Rails.configuration.try('verbose_footer') %>
+version: <%= Rails.configuration.try('version') %>;<% rte = RuntimeEnvironment.new %>  database: <%= rte.database %>; env: <%= rte.rails_env %>;
 <br>
+<% end %>
 </body>
 </html>

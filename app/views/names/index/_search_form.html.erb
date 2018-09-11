@@ -19,6 +19,24 @@
 
 <%= render partial: "names/index/common_cultivar" %>
 <%= render partial: "names/index/widgets" %>
+
+<% if Rails.configuration.try('sample_searches') %>
+<input name='sample_search_option_index'
+       id='sample_search_option_index'
+       type="hidden"
+       value="<%= params[:sample_search_option_index] %>" autofocus="true"
+       title="Sample search option index - should be hidden.">
+<% end %>
+
+<input type="submit"
+       value="Search"
+       name="search"
+       class="left-aligned-form-button"
+       title="Search the data and retrieve matching records">
+
+
+<% if Rails.configuration.try('sample_searches') %>
 <%= render partial: "names/index/sample_searches" %>
+<% end %>
 </form>
 </div>

@@ -454,11 +454,13 @@ This option can be used to include or exclude hybrid taxa that are designated by
 </table>
 
 
+<% if Rails.configuration.try('sample_searches') %>
 <input name='sample_search_option_index'
        id='sample_search_option_index'
        type="hidden"
        value="<%= params[:sample_search_option_index] %>" autofocus="true"
        title="Sample search option index - should be hidden.">
+<% end %>
 
 <input type="submit"
        value="Search"
@@ -467,9 +469,10 @@ This option can be used to include or exclude hybrid taxa that are designated by
        title="Search the data and retrieve matching records">
 </form>
 
+<% if Rails.configuration.try('sample_searches') %>
 <hr>
 <%= render partial: "advanced_names/index/sample_searches" %>
-
+<% end %>
 </div>
 <% if @results.present? %>
   <a id="top-of-search-results" title="Top of search results">
