@@ -4,14 +4,6 @@
 class RuntimeEnvironment
   DATA_SERVER = Rails.configuration.data_server
 
-  def results
-    json = HTTParty.post("#{DATA_SERVER}/v1",
-                         body: body,
-                         timeout: 10)
-    a = []
-    JSON.parse(json.to_s, object_class: Hash)['data']['runtime_environment']
-  end
-
   def database
     results['database']
   end
@@ -36,5 +28,18 @@ class RuntimeEnvironment
            rails_env}
         }
     HEREDOC
+  end
+
+private
+  def results
+    json = HTTParty.post("#{DATA_SERVER}/v1",
+                         body: body,
+                         timeout: 10)
+    a = []
+    JSON.parse(json.to_s, object_class: Hash)['data']['runtime_environment']
+  rescue => e
+    Rails.logger.error("Error finding setting")
+    Rails.logger.error(e.message)
+    {}
   end
 end

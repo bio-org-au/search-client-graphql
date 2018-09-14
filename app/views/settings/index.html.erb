@@ -1,31 +1,42 @@
+<h1>Settings</h1>
+
+<% rte = RuntimeEnvironment.new %>  
 <table>
-  <tr>
-    <td>Rails.configuration.environment</td>
-    <td><%= Rails.configuration.try('environment') %></td>
-  </tr>
-  <tr>
-    <td>Rails.configuration.data_server</td>
-    <td><%= Rails.configuration.try('data_server') %></td>
-  </tr>
-  <tr>
-    <td>Rails.configuration.database_yml_file_path</td>
-    <td><%= Rails.configuration.try('database_yml_file_path') %></td>
-  </tr>
-  <tr>
-    <td>Rails.configuration.instance_editor</td>
-    <td><%= Rails.configuration.try('instance_editor') %></td>
-  </tr>
-  <tr>
-    <td>Setting.new.name_label</td>
-    <td><%= Setting.new.try('name_label') %></td>
-  </tr>
-  <tr>
-    <td>Setting.new.tree_label</td>
-    <td><%= Setting.new.try('tree_label') %></td>
-  </tr>
-  <tr>
-    <td>Setting.new.taxonomy_label</td>
-    <td><%= Setting.new.try('taxonomy_label') %></td>
-  </tr>
+  <td colspan="2"><hr></td>
+  <% %w(version environment data_server database_yml_file_path
+      instance_editor)
+    .sort.each do |attribute| %>
+    <tr>
+      <td><%= attribute %></td>
+      <td><%= Rails.configuration.try(attribute) %></td>
+    </tr>
+  <% end %>
+  <td colspan="2"><hr></td>
+  <% %w(name_label tree_label taxonomy_label)
+    .sort.each do |attribute| %>
+    <tr>
+      <td><%= attribute %></td>
+      <td><%= Rails.configuration.try(attribute) %></td>
+    </tr>
+  <% end %>
+  <td colspan="2"><hr></td>
+  <% %w(show_common_name_form_field show_cultivar_name_form_field
+      show_name_type_form_fields show_accepted_tree_comments_field
+      show_accepted_tree_distribution_field sample_searches).sort.each do |attribute| %>
+    <tr>
+      <td><%= attribute %></td>
+      <td><%= Rails.configuration.try(attribute) %></td>
+    </tr>
+  <% end %>
+
+  <td colspan="2"><hr></td>
+  <% %w(database rails_env).sort.each do |attribute| %>
+    <tr>
+      <td><%= attribute %></td>
+      <td><%= rte.try(attribute) || 'unknown' %></td>
+    </tr>
+  <% end %>
 </table>
+<br>
+<br>
 

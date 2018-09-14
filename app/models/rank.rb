@@ -10,6 +10,10 @@ class Rank
     else
       Rails.configuration.rank_options
     end
+  rescue => e
+    Rails.logger.error("Error getting ranks")
+    Rails.logger.error(e.message)
+    []
   end
 
   private
