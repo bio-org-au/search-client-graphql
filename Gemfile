@@ -5,14 +5,12 @@ source 'http://rubygems.org'
 gem 'rails', '~> 4.2'
 gem 'unf', '0.1.4'
 platform :jruby do
-  gem 'activerecord-jdbcpostgresql-adapter'
   gem 'jruby-jars', '9.1.5.0'
   gem 'therubyrhino'
   gem 'warbler'
 end
 
 platform :mri do
-  gem 'pg', '~> 0.15'
   gem 'thin'
 end
 
@@ -77,12 +75,8 @@ end
 # gem 'rails-assets-tether', '~> 1.1.1'
 # end
 
-gem 'activerecord-hierarchical_query',
-    require: 'active_record/hierarchical_query'
-gem 'acts_as_tree'
 gem 'nunes'
 gem 'rest-client'
-gem 'scenic', '~> 0.3.0'
 gem 'statsd-ruby', require: 'statsd'
 
 platform :ruby do
