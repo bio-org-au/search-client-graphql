@@ -2,31 +2,22 @@
 
 <% rte = RuntimeEnvironment.new %>  
 <table>
+
+
   <td colspan="2"><hr></td>
   <% %w(version environment data_server database_yml_file_path
-      instance_editor)
-    .sort.each do |attribute| %>
-    <tr>
-      <td><%= attribute %></td>
-      <td><%= Rails.configuration.try(attribute) %></td>
-    </tr>
-  <% end %>
-  <td colspan="2"><hr></td>
-  <% %w(name_label tree_label taxonomy_label)
-    .sort.each do |attribute| %>
-    <tr>
-      <td><%= attribute %></td>
-      <td><%= Rails.configuration.try(attribute) %></td>
-    </tr>
-  <% end %>
-  <td colspan="2"><hr></td>
-  <% %w(show_common_name_form_field show_cultivar_name_form_field
+      instance_editor hr name_label tree_label taxonomy_label hr
+      show_common_name_form_field show_cultivar_name_form_field
       show_name_type_form_fields show_accepted_tree_comments_field
-      show_accepted_tree_distribution_field sample_searches).sort.each do |attribute| %>
-    <tr>
-      <td><%= attribute %></td>
-      <td><%= Rails.configuration.try(attribute) %></td>
-    </tr>
+      show_accepted_tree_distribution_field sample_searches).each do |attribute| %>
+    <% if attribute == 'hr' %>
+      <td colspan="2"><hr></td>
+    <% else %>
+      <tr>
+        <td><%= attribute %></td>
+        <td><%= Rails.configuration.try(attribute) %></td>
+      </tr>
+    <% end %>
   <% end %>
 
   <td colspan="2"><hr></td>
@@ -36,6 +27,17 @@
       <td><%= rte.try(attribute) || 'unknown' %></td>
     </tr>
   <% end %>
+
+  <td colspan="2"><hr></td>
+    <tr>
+      <td>Rails version</td>
+      <td><%= Rails::VERSION::STRING %></td>
+    </tr>
+    <tr>
+      <td>Ruby version</td>
+      <td><%= RUBY_VERSION %></td>
+    </tr>
+
 </table>
 <br>
 <br>
