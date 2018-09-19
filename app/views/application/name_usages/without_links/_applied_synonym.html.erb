@@ -1,6 +1,9 @@
                     <li class="indent">
                       <span class="synonym-type"><%= synonym.label %>:</span>
                       <span class="synonym <%= synonym.font_style %>">
-                        <%= synonym.full_name_html.html_safe %> <%= synonym.name_status_name %>
+                        <%= synonym.full_name_html.html_safe %><%=',' unless synonym.name_status_name.blank? -%>
+                        <% unless synonym.name_status_name.blank? %>
+                          <i class="highlight name-status" title="name status"><%= synonym.name_status_name %></i>
+                        <% end %>
                       </span>
                       <%#= synonym.year %>
