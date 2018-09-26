@@ -105,9 +105,9 @@
            name="limit_per_page_for_list"
            title="Number of records per page when details is not checked."
            min="1"
-           max="500"
+           max="<%= Rails.configuration.default_list_size_limit %>"
            step="1"
-           value="<%= params[:limit_per_page_for_list] || 50 %>"
+           value="<%= params[:limit_per_page_for_list] || Rails.configuration.default_list_size %>"
            class="form-field"> 
     Names only
   </td>
@@ -120,9 +120,9 @@
            title="Number of records per page when details is checked."
            placeholder="records"
            min="1"
-           max="50"
+           max="<%= Rails.configuration.default_details_size_limit %>"
            step="1"
-           value="<%= params[:limit_per_page_for_details] || 10 %>"
+           value="<%= params[:limit_per_page_for_details] || Rails.configuration.default_details_size %>"
            class="form-field"> 
     With details
   </td>

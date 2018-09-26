@@ -3,8 +3,8 @@
 # Class extracted from name controller.
 class NamesController::Index::ClientRequest
   DEFAULT_LIMIT = 50
-  MAX_LIST_LIMIT = 500
-  MAX_DETAILS_LIMIT = 100
+  MAX_LIST_LIMIT = Rails.configuration.default_list_size_limit
+  MAX_DETAILS_LIMIT = Rails.configuration.default_details_size_limit
   AUTO_TRAILING_WILDCARD = true
 
   def initialize(params, session_editor)

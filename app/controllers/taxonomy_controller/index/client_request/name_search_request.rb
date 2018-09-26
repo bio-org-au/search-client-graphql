@@ -2,9 +2,8 @@
 
 # Class extracted from name controller.
 class TaxonomyController::Index::ClientRequest::NameSearchRequest
-  DEFAULT_LIMIT = 50
-  MAX_LIST_LIMIT = 500
-  MAX_DETAILS_LIMIT = 100
+  MAX_LIST_LIMIT = Rails.configuration.default_list_size_limit
+  MAX_DETAILS_LIMIT = Rails.configuration.default_details_size_limit
   def initialize(params, search_request)
     Rails.logger.debug(self.class.name)
     @params = params

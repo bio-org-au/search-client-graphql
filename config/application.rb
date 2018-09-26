@@ -31,4 +31,8 @@ end
 Rails.configuration.name_label = ''
 Rails.configuration.taxonomy_label = ''
 Rails.configuration.rank_options = []
+Rails.configuration.default_list_size_limit = 1000
+Rails.configuration.default_details_size_limit = 100
+Rails.configuration.default_list_size = 100
+Rails.configuration.default_details_size = 10
 
