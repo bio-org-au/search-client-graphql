@@ -9,9 +9,12 @@
       instance_editor hr name_label tree_label taxonomy_label hr
       show_common_name_form_field show_cultivar_name_form_field
       show_name_type_form_fields show_accepted_tree_comments_field
-      show_accepted_tree_distribution_field sample_searches).each do |attribute| %>
+      show_accepted_tree_distribution_field sample_searches hr
+      name_label taxonomy_label hr rank_options hr 
+      default_list_size_limit default_details_size_limit
+      default_list_size default_details_size).each do |attribute| %>
     <% if attribute == 'hr' %>
-      <td colspan="2"><hr></td>
+      <tr><td colspan="2"><hr></td></tr>
     <% else %>
       <tr>
         <td><%= attribute %></td>
@@ -20,23 +23,29 @@
     <% end %>
   <% end %>
 
-  <td colspan="2"><hr></td>
-  <% %w(database rails_env).sort.each do |attribute| %>
+  <tr><td colspan="2"><hr></td></tr>
+  <tr>
+    <td>Rails version</td>
+    <td><%= Rails::VERSION::STRING %></td>
+  </tr>
+  <tr>
+    <td>Ruby version</td>
+    <td><%= RUBY_VERSION %></td>
+  </tr>
+
+  <tr><td colspan="2"><hr></td></tr>
+  <% %w(heading database ruby_version ruby_platform rails_version rails_env app_version).each do |attribute| %>
+    <% if attribute == 'heading' %>
+      <tr><td colspan="2">Server</td></tr>
+      <tr><td colspan="2"><hr></td></tr>
+    <% else %>
     <tr>
       <td><%= attribute %></td>
       <td><%= rte.try(attribute) || 'unknown' %></td>
     </tr>
+    <% end %>
   <% end %>
-
-  <td colspan="2"><hr></td>
-    <tr>
-      <td>Rails version</td>
-      <td><%= Rails::VERSION::STRING %></td>
-    </tr>
-    <tr>
-      <td>Ruby version</td>
-      <td><%= RUBY_VERSION %></td>
-    </tr>
+  <tr><td colspan="2"><hr></td></tr>
 
 </table>
 <br>
@@ -46,4 +55,11 @@
 <ul>
   <li>NSL-3009: Show correct nomenclatural status for cross refs. 25-Sep-2018</li>
 </ul>
+Rails.configuration.name_label = ''
+Rails.configuration.taxonomy_label = ''
+Rails.configuration.rank_options = []
+Rails.configuration.default_list_size_limit = 1000
+Rails.configuration.default_details_size_limit = 100
+Rails.configuration.default_list_size = 100
+Rails.configuration.default_details_size = 10
 

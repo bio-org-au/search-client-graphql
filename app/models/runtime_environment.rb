@@ -8,8 +8,24 @@ class RuntimeEnvironment
     results['database']
   end
 
+  def ruby_version
+    results['ruby_version']
+  end
+
+  def ruby_platform
+    results['ruby_platform']
+  end
+
+  def rails_version
+    results['rails_version']
+  end
+
   def rails_env
     results['rails_env']
+  end
+
+  def app_version
+    results['app_version']
   end
 
   private
@@ -25,7 +41,8 @@ class RuntimeEnvironment
            ruby_version,
            ruby_platform,
            rails_version,
-           rails_env}
+           rails_env,
+           app_version}
         }
     HEREDOC
   end
