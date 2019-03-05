@@ -19,7 +19,7 @@ class NamesController::Index::GraphqlRequest
                          timeout: @client_request.timeout)
     Rails.logger.error(response.code) unless response.code == 200
     Rails.logger.error(response.to_s)  unless response.code == 200
-    debug(response.to_s)
+    #debug(response.to_s)
     JSON.parse(response.to_s, object_class: OpenStruct)
   end
 
