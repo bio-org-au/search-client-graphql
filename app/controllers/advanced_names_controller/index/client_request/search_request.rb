@@ -21,7 +21,7 @@ class AdvancedNamesController::Index::ClientRequest::SearchRequest
       @params['species'].present? ||
       @params['rank'].present? ||
       @params['name_element'].present? ||
-      @params['publication_year'].present? ||
+      @params['iso_publication_date'].present? ||
       @params['type_note_text'].present?
   end
 

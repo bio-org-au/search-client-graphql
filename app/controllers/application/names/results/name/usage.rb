@@ -19,8 +19,8 @@ class Application::Names::Results::Name::Usage
     rec.year = @raw_usage.reference_details.year
     rec.has_bhl_url = !@raw_usage.reference_details.bhl_url.blank?
     rec.bhl_url = @raw_usage.reference_details.bhl_url
-    rec.full_citation_with_page = "#{@raw_usage.reference_details.citation}: #{@raw_usage.reference_details.page || '-'} #{'[' + @raw_usage.instance_type_name + ']' if @raw_usage.primary_instance}"
-    rec.full_citation_with_page_html = "#{@raw_usage.reference_details.citation_html}: #{@raw_usage.reference_details.page || '-'} #{'[' + @raw_usage.instance_type_name + ']' if @raw_usage.primary_instance}"
+    rec.full_citation_with_page = "#{@raw_usage.reference_details.citation}: #{CGI.escapeHTML(@raw_usage.reference_details.page || '-')} #{'[' + @raw_usage.instance_type_name + ']' if @raw_usage.primary_instance}"
+    rec.full_citation_with_page_html = "#{@raw_usage.reference_details.citation_html}: #{CGI.escapeHTML(@raw_usage.reference_details.page || '-')} #{'[' + @raw_usage.instance_type_name + ']' if @raw_usage.primary_instance}"
     rec
   end
 

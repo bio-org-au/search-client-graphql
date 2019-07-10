@@ -1,0 +1,19 @@
+echo "Name Search for banksia*, list without details, up to 50 per page."
+time curl -s "http://localhost:2006/names/search?utf8=✓&q=banksia*&list_or_count=list&limit_per_page_for_list=50&search=Search" | grep -i '[Bb]anksia' | wc -l
+echo "Name Search for banksia*, list without details, showing links, up to 50 per page."
+time curl -s "http://localhost:2006/names/search?utf8=✓&q=banksia*&list_or_count=list&limit_per_page_for_list=50&show_links=1&search=Search" | grep -i '[Bb]anksia' | wc -l
+echo "Name Search for banksia*, list without details, showing links, showing family, up to 50 per page."
+time curl -s "http://localhost:2006/names/search?utf8=✓&q=banksia*&list_or_count=list&limit_per_page_for_list=50&show_links=1&show_family=1&search=Search" | grep -i '[Bb]anksia' | wc -l
+echo "Name Search for banksia*, list with details, up to 5 per page."
+time curl -s "http://localhost:2006/names/search?utf8=✓&q=banksia*&list_or_count=list&show_details=1&limit_per_page_for_details=5&search=Search" | grep -i '[Bb]anksia' | wc -l
+echo "Name Search for banksia*, list with details, up to 10 per page."
+time curl -s "http://localhost:2006/names/search?utf8=✓&q=banksia*&list_or_count=list&show_details=1&limit_per_page_for_details=10&search=Search" | grep -i '[Bb]anksia' | wc -l
+echo "Name Search for banksia*, list with details, up to 15 per page."
+time curl -s "http://localhost:2006/names/search?utf8=✓&q=banksia*&list_or_count=list&show_details=1&limit_per_page_for_details=15&search=Search" | grep -i '[Bb]anksia' | wc -l
+echo "Name Search for banksia*, list with details, up to 20 per page."
+time curl -s "http://localhost:2006/names/search?utf8=✓&q=banksia*&list_or_count=list&show_details=1&limit_per_page_for_details=20&search=Search" | grep -i '[Bb]anksia' | wc -l
+echo "Name Search for banksia*, list with details, up to 50 per page."
+time curl -s "http://localhost:2006/names/search?utf8=✓&q=banksia*&list_or_count=list&show_details=1&limit_per_page_for_details=50&search=Search" | grep -i '[Bb]anksia' | wc -l
+echo "Name Search for eucalyptus*, list with details, up to 10 per page."
+time curl -s "http://localhost:2006/names/search?utf8=✓&q=eucalyptus*&list_or_count=list&show_details=1&limit_per_page_for_details=10&search=Search" | grep -i '[Bb]anksia' | wc -l
+

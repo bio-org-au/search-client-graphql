@@ -15,7 +15,7 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::Utilitie
       rank: "rank_placeholder",
       include_ranks_below: "include_ranks_below_placeholder",
       publication: "publication_placeholder",
-      publication_year: "publication_year_placeholder",
+      iso_publication_date: "iso_publication_date_placeholder",
       protologue: "protologue_placeholder",
       name_element: "name_element_placeholder",
       scientific_name: "scientific_name_placeholder",

@@ -1,4 +1,4 @@
-curl "http://localhost:2006/names/search?utf8=✓&q=banksia*+++&list_or_count=list&show_details=1&limit_per_page_for_list=50&limit_per_page_for_details=50&search=Search" > curl-banksia.txt
+curl "http://localhost:2006/names/search?utf8=✓&q=banksia*+++&list_or_count=list&show_details=1&limit_per_page_for_list=5&limit_per_page_for_details=50&search=Search" > curl-banksia.txt
 # curl "http://localhost:2006/names/search?utf8=✓&q=acacia*+++&list_or_count=list&show_details=1&limit_per_page_for_list=50&limit_per_page_for_details=50&search=Search" > curl-acacia.txt
 # curl "http://localhost:2006/names/search?utf8=✓&q=angophora*+++&list_or_count=list&show_details=1&limit_per_page_for_list=50&limit_per_page_for_details=50&search=Search" > curl-angophora.txt
 # curl "http://localhost:2006/names/search?utf8=✓&q=livistona*+++&list_or_count=list&show_details=1&limit_per_page_for_list=100&limit_per_page_for_details=50&search=Search" > curl-livistona-with-no-links.txt

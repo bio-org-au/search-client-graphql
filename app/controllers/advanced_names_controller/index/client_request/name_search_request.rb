@@ -125,10 +125,10 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
     @params[:publication].strip
   end
 
-  def publication_year
-    return '' if @params[:publication_year].blank?
-    return '' unless @params[:publication_year].class == String
-    @params[:publication_year].strip
+  def iso_publication_date
+    return '' if @params[:iso_publication_date].blank?
+    return '' unless @params[:iso_publication_date].class == String
+    @params[:iso_publication_date].strip
   end
 
   def protologue

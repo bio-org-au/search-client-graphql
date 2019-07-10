@@ -101,12 +101,6 @@ class TaxonomyController::Index::ClientRequest::NameSearchRequest
     @params[:publication].strip
   end
 
-  def xpublication_year
-    return '' if @params[:publication_year].blank?
-    return '' unless @params[:publication_year].class == String
-    @params[:publication_year].strip
-  end
-
   def xprotologue
     return '' if @params[:protologue].blank?
     @params[:protologue].strip

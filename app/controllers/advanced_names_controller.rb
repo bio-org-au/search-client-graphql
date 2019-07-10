@@ -70,7 +70,7 @@ class AdvancedNamesController < ApplicationController
                   :offset, :author_abbrev, :base_author_abbrev, 
                   :ex_author_abbrev, :ex_base_author_abbrev, 
                   :family, :genus, :rank, :species,
-                  :publication, :publication_year, :protologue, :name_element,
+                  :publication, :iso_publication_date, :protologue, :name_element,
                   :type_note_text, :type_note_key_type, :type_note_key_neotype,
                   :type_note_key_lectotype, :scientific_name,
                   :scientific_autonym_name, :scientific_named_hybrid_name,
