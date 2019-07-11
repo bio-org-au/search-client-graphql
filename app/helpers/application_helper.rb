@@ -178,7 +178,7 @@ displayed in the search results.  This can slow down the results."
     url.push("&scientific_named_hybrid_name=1") if args[:named_hybrid_name]
     url.push("&scientific_hybrid_formula_name=1") if args[:hybrid_formula_name]
     url.push("&genus=#{args[:genus]}") unless args[:genus].blank?
-    url.push("&name_element=#{args[:epithet]}") unless args[:epithet].blank?
+    url.push("&species=#{args[:species]}") unless args[:species].blank?
     url.push("&list_or_count=list")
     url.push("&limit_per_page_for_list=50")
     url.push("&limit_per_page_for_details=10")
