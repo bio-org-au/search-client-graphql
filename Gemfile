@@ -5,7 +5,7 @@ source 'http://rubygems.org'
 gem 'rails', '~> 4.2'
 gem 'unf', '0.1.4'
 platform :jruby do
-  gem 'jruby-jars', '9.1.5.0'
+  gem 'jruby-jars', '9.1.12.0'
   gem 'therubyrhino'
   gem 'warbler'
 end
