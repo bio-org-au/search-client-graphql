@@ -5,7 +5,7 @@ source 'http://rubygems.org'
 gem 'rails', '~> 4.2'
 gem 'unf', '0.1.4'
 platform :jruby do
-  gem 'jruby-jars', '9.1.12.0'
+  gem 'jruby-jars', '9.1.5.0'
   gem 'therubyrhino'
   gem 'warbler'
 end
@@ -15,7 +15,7 @@ platform :mri do
 end
 
 # Use SCSS for stylesheets
-gem 'sassc'
+gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'execjs'
 gem 'uglifier', '>= 1.3.0'
@@ -66,7 +66,7 @@ group :development do
   gem 'spring'
 end
 
-gem 'bootstrap', '~> 4.3.1'
+gem 'bootstrap', '~> 4.0.0.alpha6' # Use Bootstrap 4.
 source 'http://insecure.rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.1'
 end
