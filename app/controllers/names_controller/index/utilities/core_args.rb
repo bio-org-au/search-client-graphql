@@ -8,6 +8,9 @@ class NamesController::Index::Utilities::CoreArgs
       order_by_name: "order_by_name_placeholder",
       order_by_name_within_family: "order_by_name_within_family_placeholder",
       scientific_name: "scientific_name_placeholder",
+      scientific_autonym_name: "scientific_autonym_name_placeholder",
+      scientific_named_hybrid_name: "scientific_named_hybrid_name_placeholder",
+      scientific_hybrid_formula_name: "scientific_hybrid_formula_name_placeholder",
       cultivar_name: "cultivar_name_placeholder",
       common_name: "common_name_placeholder"
     HEREDOC1
