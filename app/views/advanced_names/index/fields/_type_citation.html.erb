@@ -1,0 +1,79 @@
+<% hide_me = params['rank'].blank? && !params['search'].blank? %>
+  <tr class="<%= 'hidden' if hide_me %>">
+    <td colspan="2"> <hr> </td>
+  </tr>
+  <tr class="<%= 'hidden' if hide_me %>">
+    <td class="label">
+      Type&nbsp;Citation:
+    </td>
+    <td>
+      <% type_note_text_hover_text = "Enter type citation text for the search. Wildcards are supported." %>
+      <input id='type_note_text' name='type_note_text' type="search"
+       class="form-field width40pc min-width10em max-width30em"
+       value="<%= params['type_note_text'] %>"
+       title= "<%= type_note_text_hover_text %>"
+       placeholder="Text within the type citation" >
+    </td>
+  </tr>
+  <tr id="type-note-field-help" class="general-help hidden">
+    <td></td>
+    <td colspan="2" class="field-help">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="type-note-field-help" title="Hide this help." >x</a></div>
+
+This search will return names where the type citation (whether in the protologue or secondary references) matches the string provided. A leading wildcard is added by default; use of further wildcards (*) is advised as the word order in type citations may vary.
+      
+    </td>
+  </tr>
+  <tr class="<%= 'hidden' if hide_me %>">
+    <td></td>
+    <td>
+      <%= check_box_tag(:type_note_key_type, '1', type_note_key_type_field_value, title: type_note_key_type_hover_text) %>
+      <%= label_tag(:type_note_key_type,
+              "Type",
+              title: type_note_key_type_hover_text) %>
+    </td>
+  </tr>
+  <tr id="type-note-key-type-field-help" class="general-help hidden">
+    <td></td>
+    <td colspan="2" class="field-help">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="type-note-key-type-field-help" title="Hide this help." >x</a></div>
+
+      This option must be used in combination with the type citation field. It will return names where the search string matches type details provided in the protologue (if any), plus in any secondary references containing type information.
+      
+    </td>
+  </tr>
+  <tr class="<%= 'hidden' if hide_me %>">
+    <td></td>
+    <td>
+      <%= check_box_tag(:type_note_key_neotype, '1', type_note_key_neotype_field_value, title: type_note_key_neotype_hover_text) %>
+      <%= label_tag(:type_note_key_neotype,
+              "Neotype",
+              title: type_note_key_neotype_hover_text) %>
+    </td>
+  </tr>
+  <tr id="type-note-key-neotype-field-help" class="general-help hidden">
+    <td></td>
+    <td colspan="2" class="field-help">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="type-note-key-neotype-field-help" title="Hide this help." >x</a></div>
+
+      This option must be used in combination with the type citation field. It will return names where the search string matches neotype details provided in the neotypifying reference.
+      
+    </td>
+  </tr>
+  <tr class="<%= 'hidden' if hide_me %>">
+    <td></td>
+    <td>
+      <%= check_box_tag(:type_note_key_lectotype, '1', type_note_key_lectotype_field_value, title: type_note_key_lectotype_hover_text) %>
+      <%= label_tag(:type_note_key_lectotype, "Lectotype", title: type_note_key_lectotype_hover_text) %>
+    </td>
+  </tr>
+  <tr id="type-note-key-lectotype-field-help" class="general-help hidden">
+    <td></td>
+    <td colspan="2" class="field-help">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="type-note-key-lectotype-field-help" title="Hide this help." >x</a></div>
+
+      This option must be used in combination with the type citation field. It will return names where the search string matches lectotype details provided in the lectotypifying reference.
+      
+    </td>
+  </tr>
+

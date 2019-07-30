@@ -1,12 +1,15 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 120%;
   margin-left: 1em;
   margin-right: 1em;
   color: darkslategray;
 }
 
+body.large-fonts {
+  font-size: 18px
+}
 h1 {
   line-height: 200%;
   margin-left: -0.5em;
@@ -24,6 +27,15 @@ h2, h3 {
   line-height: 90%;
 }
 
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark h4,
+body.dark h5,
+body.dark h6 {
+  color: white;
+}
+
 div.tiny-break {
   height: 0.4em;
 }
@@ -34,6 +46,7 @@ div.tiny-break {
 
 h3.name-heading {
   margin-bottom: 2px;
+  font-size: 16px;
 }
 
 h3.show {
@@ -66,6 +79,20 @@ a.underline {
   text-decoration: underline;
 }
 
+body.dark a.underline {
+  color: #39f;
+}
+
+body.dark a.underline:visited {
+  color: #9cf;
+  font-weight: bold;
+}
+
+body.dark a.obscure {
+  color: #666;
+  background: #666;
+}
+
 a.obscure {
   color: white;
   background: white;
@@ -73,6 +100,10 @@ a.obscure {
 
 *.red {
   color: red;
+}
+
+body.dark *.red {
+  color: orange;
 }
 
 tr.hidden,
@@ -170,9 +201,5 @@ span.synonym {
 
 span.synonym authors {
   font-style: normal;
-}
-
-body.colorize span.name-status {
-  color: purple;
 }
 

@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   # Use "post" and indicate this is a post for consistency.
   match '/i-am-not-an-editor-post', as: 'i_am_not_an_editor_post', to: 'preferences#editor_switch', via: [:post], defaults: { switch: 'editor', value: 'off' }
   # 
+  post '/background', to: 'settings#background'
 
   root to: 'names#index'
   get '*path' => 'names#index'

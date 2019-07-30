@@ -34,9 +34,20 @@ label:not([title]) {
     <% end %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-
 </head>
-<body class="xcolorize <%= @body_class %> <%= Rails.configuration.try('environment') %>" >
+<body class="<%= @background_class %> <%= @body_class %> <%= Rails.configuration.try('environment') %>" >
+
+<div class='help-bar'>
+
+  <span class="env"><%= Rails.configuration.try('environment') %> </span>
+
+  <select id="colour-scheme-picker" class="form-field" title="Choose a colour scheme">
+    <option value="light" <%= 'selected' if session[:background] == 'light' %>>Light Background</option>
+    <option value="dark" <%= 'selected' if session[:background] == 'dark' %>>Dark Background</option>
+  </select>
+
+  <a href="" id="general-help-link" title="Show helpful information about the page." >help</a>
+</div>
 
   <%= yield %>
 

@@ -1,0 +1,21 @@
+
+<% hide_me = params['ex_author_abbrev'].blank? && !params['search'].blank? %>
+  <tr class="<%= 'hidden' if hide_me %> label">
+    <td class="label">
+    Ex-Author:
+    </td>
+    <td>
+    <input name='ex_author_abbrev' type="search"
+       class="form-field width40pc min-width10em max-width30em"
+       value="<%= params['ex_author_abbrev'] %>"
+       title="Enter a search term for the name authority."
+       placeholder="Ex Author abbreviation" >
+    </td>
+  </tr>
+  <tr id="ex-author-abbrev-field-help" class="general-help hidden">
+    <td></td>
+    <td colspan="2" class="field-help">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="ex-author-abbrev-field-help" title="Hide this help." >x</a></div>
+Matches on the ex-author abbreviation in the full name.  You can use wildcards but they are not added automatically.
+    </td>
+  </tr>

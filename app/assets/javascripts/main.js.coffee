@@ -8,6 +8,7 @@ jQuery ->
   $('body').on('click','.hide-this-help-link', (event) -> hideOneHelpElement(event,$(this)))
   $('body').on('change','.search-samples', (event) -> runSampleSearch(event,$(this)))
   $(document).on('turbolinks:load',goToSearchResults())
+  $('body').on('change','#colour-scheme-picker', (event) -> changeBackground(event,$(this)))
 
 
 submitForm = (event,$element) ->
@@ -68,4 +69,11 @@ runSampleSearch = (event,$element) ->
 
 hideElement = (event,$element) ->
   hideTargets('#'+$element.data('target-id'))
+  false
+
+changeBackground = (event,$element) ->
+  $('body').removeClass('dark')
+  $('body').removeClass('light')
+  $('body').addClass($element.val())
+  $.post '/background?background=' + encodeURIComponent($element.val())
   false

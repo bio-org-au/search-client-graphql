@@ -1,0 +1,64 @@
+
+<% hide_me = params['publication'].blank? && !params['search'].blank? %>
+  <tr class="<%= 'hidden' if hide_me %>">
+    <td colspan="2"> <hr> </td>
+  </tr>
+  <tr>
+  <tr class="<%= 'hidden' if hide_me %>">
+    <td class="label">
+Publication:
+    </td>
+    <td>
+<input id='publication' name='publication' type="search"
+       class="typeahead form-field width40pc min-width10em max-width30em"
+       value="<%= params['publication'] %>"
+       title="Enter a publication keywords for the search. No wildcards."
+       placeholder="Any parts of a bibliographic citation"
+       autocomplete="off" >
+    </td>
+  </tr>
+  <tr id="publication-field-help" class="general-help hidden">
+    <td></td>
+    <td colspan="2" class="field-help">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="publication-field-help" title="Hide this help." >x</a></div>
+      A search on any whole word or words of a bibliographic citation (i.e. authorship, publication title, volume and year) entered in any order will return names attached to any matching publications.
+    </td>
+  </tr>
+  <tr class="<%= 'hidden' if hide_me %>">
+    <td class="label" title="Publication year">
+Year:
+    </td>
+    <td>
+<input name='iso_publication_date' type="number" min="1000" max="2050" step="1"
+       class="form-field"
+       value="<%= params['iso_publication_date'] %>"
+       title="Enter a publication year term to restrict the search. No wildcards.">
+    </td>
+  </tr>
+  <tr id="publication-year-field-help" class="general-help hidden">
+    <td></td>
+    <td colspan="2" class="field-help">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="publication-year-field-help" title="Hide this help." >x</a></div>
+
+Use arrow buttons or type a four-digit year. This field must be used in combination with the Publication field and/or the Protologue checkbox. If a year is specified, search results will be limited to names cited in works published in that year.
+
+    </td>
+  </tr>
+  <tr class="<%= 'hidden' if hide_me %>">
+    <td></td>
+    <td>
+      <%= check_box_tag(:protologue, '1', params['protologue'], title: protologue_hover_text) %>
+      <%= label_tag(:protologue, "Protologue", title: protologue_hover_text) %>
+    </td>
+  </tr>
+  <tr id="publication-protolgue-field-help" class="general-help hidden">
+    <td></td>
+    <td colspan="2" class="field-help">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="publication-protolgue-field-help" title="Hide this help." >x</a></div>
+
+      This field must be used in combination with the Publication field and/or the Year field. If selected, this option will limit the results to names published in matching works that are the protologue reference for those names.
+
+
+    </td>
+  </tr>
+

@@ -1,12 +1,9 @@
-<div class='help-bar'>
-<a href="" id="general-help-link" class="underline" title="Show information about the fields in this search form." >help</a>
-</div>
 <h1><%= @name_label %> Advanced Search</h1>
 
 <%= render partial: 'advanced_names/index/search_form' %>
 <hr>
 <span class="no-print">
-<%= link_to('clear form', names_advanced_search_path,class: 'underline', title: clear_form_link_hover_text('advanced')) %> |
+<%= link_to('clear form', names_advanced_search_path, class: 'underline', title: clear_form_link_hover_text('advanced')) %> |
 <%= link_to('simple', name_search_path, class: 'underline', title: 'Go to simple name search') %> |
 <%= link_to('taxonomy', taxonomy_search_path, class: 'underline', title: taxonomy_link_hover_text) %> |
 <%= link_to('name check', name_check_path, class: 'underline', title: name_check_link_hover_text) %>

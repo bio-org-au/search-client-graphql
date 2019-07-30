@@ -7,6 +7,8 @@ class Application::Names::Results::Name::Usage
   TREE_EXCLUDED = 'ApcExcluded'
 
   def initialize(raw_usage)
+    Rails.logger.debug("Init a usage with this raw usage:")
+    Rails.logger.debug(raw_usage)
     @raw_usage = raw_usage
   end
 

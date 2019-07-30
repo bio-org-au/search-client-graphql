@@ -37,6 +37,8 @@ class ApplicationController < ActionController::Base
     @tree_label = @setting.tree_label
     @body_class = decide_body_class
     @show_editor_switch = ['names', 'advanced_names'].include?(params[:controller])
+    session[:background] ||= 'light'
+    @background_class = decide_background_class
   end
 
   def decide_body_class
@@ -46,6 +48,13 @@ class ApplicationController < ActionController::Base
     when  'name_check' then 'name_check'
     when  'taxonomy' then 'taxonomy'
     else 'name'
+    end
+  end
+
+  def decide_background_class
+    case session[:background]
+    when  'dark' then 'dark'
+    else 'light'
     end
   end
 

@@ -3,6 +3,21 @@ body {
   color: darkslategray;
 }
 
+body.dark{
+  color: lightgray;
+  background-color: #666;
+}
+
+body.dark input[type="search"],
+body.dark input[type="text"] {
+  color: black;
+  background-color : #d1d1d1; /* Safari ignores this */
+}
+
+body.dark a {
+  color: lightblue;
+}
+
 body.name.development h1 {
   background-color: #C0B4FF;
 }
@@ -47,3 +62,4 @@ div.help-bar span.env {
 body.development div.help-bar span.env {
   color: Gray;
 }
+

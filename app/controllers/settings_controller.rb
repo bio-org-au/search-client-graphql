@@ -4,5 +4,9 @@
 class SettingsController < ApplicationController
   def index
   end
-end
 
+  def background
+    session[:background] = params[:background]
+    head :ok
+  end
+end

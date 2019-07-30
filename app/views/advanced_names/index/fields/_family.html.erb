@@ -1,0 +1,20 @@
+<% hide_me = params['family'].blank? && !params['search'].blank? %>
+   <tr class="<%= 'hidden' if hide_me %>">
+    <td class="label width10pc">
+    Family:
+    </td>
+    <td class="field width80pc">
+    <input name='family' type="search"
+       class="form-field width40pc min-width10em max-width30em"
+       value="<%= params['family'] %>"
+       title="Enter a search term to restrict the family. Wildcards are supported."
+       autofocus="true"
+       placeholder="Family name without author citation" >
+    </td>
+  <tr id="family-field-help" class="general-help hidden">
+    <td></td>
+    <td class="field-help" colspan="2">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="family-field-help" title="Hide this help." >x</a></div>
+      A search on family (without author citation) returns any matching family names and all their subordinate taxa. Wildcards are not added automatically.
+    </td>
+  </tr>

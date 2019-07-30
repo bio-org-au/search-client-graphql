@@ -1,0 +1,22 @@
+
+<% hide_me = params['author_abbrev'].blank? && !params['search'].blank? %>
+  <tr class="<%= 'hidden' if hide_me %> label">
+    <td class="label">
+    Author:
+    </td>
+    <td>
+    <input name='author_abbrev' type="search"
+       class="form-field width40pc min-width10em max-width30em"
+       value="<%= params['author_abbrev'] %>"
+       title="Enter a search term for the name authority."
+       placeholder="Author abbreviation" >
+    </td>
+  </tr>
+  <tr id="author-abbrev-field-help" class="general-help hidden">
+    <td></td>
+    <td colspan="2" class="field-help">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="author-abbrev-field-help" title="Hide this help." >x</a></div>
+Matches the author abbreviation in the full name.  You can use wildcards but they are not added automatically.
+    </td>
+  </tr>
+

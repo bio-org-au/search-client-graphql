@@ -1,0 +1,21 @@
+<% hide_me = params['genus'].blank? && !params['search'].blank? %>
+  <tr class="<%= 'hidden' if hide_me %>">
+    <td class="label width10pc">
+    Genus:
+    </td>
+    <td>
+    <input name='genus' type="search"
+       class="form-field width40pc min-width10em max-width30em"
+       value="<%= params['genus'] %>"
+       title="Enter a search term to restrict the genus. Wildcards are supported."
+       placeholder="Genus name without author citation" >
+    </td>
+  </tr>
+  <tr id="genus-field-help" class="general-help hidden">
+    <td></td>
+    <td colspan="2" class="field-help">
+      <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="genus-field-help" title="Hide this help." >x</a></div>
+      A search on genus (without author citation) returns any matching genus names and all their subordinate taxa. Wildcards are not added automatically.
+    </td>
+  </tr>
+

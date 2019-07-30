@@ -4,7 +4,7 @@
 # This is the client's request (interpreted).
 class NameCheckController::Index::ClientRequest
   attr_reader :params, :search_results
-  MAX_LIST_LIMIT = Rails.configuration.default_list_size_limit
+  MAX_LIMIT = Rails.configuration.default_list_size_limit
   MAX_DETAILS_LIMIT = Rails.configuration.default_details_size_limit
   def initialize(params)
     @params = params
