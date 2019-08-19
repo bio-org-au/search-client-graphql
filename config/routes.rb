@@ -4,6 +4,8 @@
 Rails.application.routes.draw do
   get 'publications/suggestions'
 
+  match '/hello', as: 'hello_page', to: 'hello#index', via: :get
+  match '/filtered/search', as: 'filtered_search', to: 'filtered_search#index', via: :get
   match '/names/search', as: 'name_search', to: 'names#index', via: :get
   match '/name/check', as: 'name_check', to: 'name_check#index', via: :get
   match '/name/check/search', as: 'name_check_search',

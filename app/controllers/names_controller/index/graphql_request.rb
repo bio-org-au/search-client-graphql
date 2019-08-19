@@ -7,19 +7,12 @@ class NamesController::Index::GraphqlRequest
     @client_request = client_request
   end
 
-  def debug(s)
-    Rails.logger.debug('==============================================')
-    Rails.logger.debug("NamesController::Index::GraphqlRequest: #{s}")
-    Rails.logger.debug('==============================================')
-  end
-
   def result
     response = HTTParty.post("#{DATA_SERVER}/v1",
                          body: body,
                          timeout: @client_request.timeout)
     Rails.logger.error(response.code) unless response.code == 200
     Rails.logger.error(response.to_s)  unless response.code == 200
-    #debug(response.to_s)
     JSON.parse(response.to_s, object_class: OpenStruct)
   end
 
@@ -38,5 +31,13 @@ class NamesController::Index::GraphqlRequest
       debug('List')
       NamesController::Index::ListQuery.new(@client_request).query_string
     end
+  end
+
+  private
+
+  def debug(s)
+    Rails.logger.debug('==============================================')
+    Rails.logger.debug("NamesController::Index::GraphqlRequest: #{s}")
+    Rails.logger.debug('==============================================')
   end
 end
