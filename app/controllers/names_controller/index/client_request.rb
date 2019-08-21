@@ -12,6 +12,15 @@ class NamesController::Index::ClientRequest
     @session_editor = session_editor
   end
 
+  def params
+    par = {}
+    par[:search_term] =  @params[:q]
+    par[:cultivar_name] = true if include_cultivar_names?
+    par[:common_name] = true if include_common_names?
+    par[:scientific_name] = true if include_scientific_names?
+    par
+  end
+
   def any_type_of_search?
     search_term.present?
   end
@@ -45,6 +54,10 @@ class NamesController::Index::ClientRequest
 
   def scientific?
     %w[scientific all scientific-or-cultivar].include?(@params[:name_type]).to_s
+  end
+
+  def include_scientific_names?
+    @params[:scientific_name] == '1'
   end
 
   # We don't want limit of zero unless it is a count request.
@@ -100,8 +113,16 @@ class NamesController::Index::ClientRequest
     (@params[:cultivar_name] == '1').to_s
   end
 
+  def include_cultivar_names?
+    @params[:cultivar_name] == '1'
+  end
+
   def common_name
     (@params[:common_name] == '1').to_s
+  end
+
+  def include_common_names?
+    @params[:common_name] == '1'
   end
 
   def scientific_name
