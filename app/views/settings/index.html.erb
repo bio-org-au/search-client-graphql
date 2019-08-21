@@ -1,20 +1,40 @@
 <h1>Settings</h1>
 
-<% rte = RuntimeEnvironment.new %>  
-<table>
+<h2>Rails Environment</h2>
+<table class="table table-condensed faint-horizontals">
+    <tr><td class="width-40-percent min-width-10em">Rails.env</td><td> <%= Rails.env %> </td></tr>
+    <tr><td>Ruby platform</td><td> <%= RUBY_PLATFORM %> </td></tr>
+  <% if defined?(ENV_JAVA) %>
+    <tr><td>Java version</td><td> <%= ENV_JAVA['java.version'] %> </td></tr>
+  <% end %>
+  <% if defined?(JRUBY_VERSION) %>
+    <tr> <td>JRuby&nbsp;version</td> <td><%= JRUBY_VERSION %></td> </tr>
+  <% end %>
+  <tr>
+    <td>Ruby version</td>
+    <td><%= RUBY_VERSION %></td>
+  </tr>
+  <tr>
+    <td>Rails version</td>
+    <td><%= Rails::VERSION::STRING %></td>
+  </tr>
 
+  <tr>
+    <td colspan="2">
+<h2>App Settings</h2>
+    </td>
+  </tr>
 
-  <td colspan="2"><hr></td>
   <% %w(version environment data_server database_yml_file_path
       instance_editor hr name_label tree_label taxonomy_label hr
       show_common_name_form_field show_cultivar_name_form_field
       show_name_type_form_fields show_accepted_tree_comments_field
       show_accepted_tree_distribution_field sample_searches hr
-      name_label taxonomy_label hr rank_options hr 
+      name_label taxonomy_label hr 
       default_list_size_limit default_details_size_limit
       default_list_size default_details_size).each do |attribute| %>
     <% if attribute == 'hr' %>
-      <tr><td colspan="2"><hr></td></tr>
+      <tr><td colspan="2">&nbsp;<br><br></td></tr>
     <% else %>
       <tr>
         <td><%= attribute %></td>
@@ -23,31 +43,30 @@
     <% end %>
   <% end %>
 
-  <tr><td colspan="2"><hr></td></tr>
+<% rte = RuntimeEnvironment.new %>  
   <tr>
-    <td>Rails version</td>
-    <td><%= Rails::VERSION::STRING %></td>
+    <td colspan="2">
+<h2>Config of the Server this App talks to <a href="<%= Rails.configuration.try('data_server') %>/settings" title='Server settings'>(more details)</a></h2>
+    </td>
   </tr>
-  <tr>
-    <td>Ruby version</td>
-    <td><%= RUBY_VERSION %></td>
-  </tr>
-
-  <tr><td colspan="2"><hr></td></tr>
-  <% %w(heading database ruby_version ruby_platform rails_version rails_env app_version).each do |attribute| %>
-    <% if attribute == 'heading' %>
-      <tr><td colspan="2">Server</td></tr>
-      <tr><td colspan="2"><hr></td></tr>
-    <% else %>
+  <% %w(database ruby_version ruby_platform rails_version rails_env app_version).each do |attribute| %>
     <tr>
       <td><%= attribute %></td>
       <td><%= rte.try(attribute) || 'unknown' %></td>
     </tr>
-    <% end %>
   <% end %>
-  <tr><td colspan="2"><hr></td></tr>
 
 </table>
+<% rank_options = Rails.configuration.try('rank_options') %></td>
+<% unless rank_options.nil? %>
+<br>
+<h2>Rank Options</h2>
+<ul>
+  <% rank_options.each do |rank_option| %>
+    <li><%= rank_option %>
+  <% end %>
+<% end %>
+</ul>
 <br>
 <br>
 
@@ -55,11 +74,3 @@
 <ul>
   <li>NSL-3009: Show correct nomenclatural status for cross refs. 25-Sep-2018</li>
 </ul>
-Rails.configuration.name_label = ''
-Rails.configuration.taxonomy_label = ''
-Rails.configuration.rank_options = []
-Rails.configuration.default_list_size_limit = 1000
-Rails.configuration.default_details_size_limit = 100
-Rails.configuration.default_list_size = 100
-Rails.configuration.default_details_size = 10
-

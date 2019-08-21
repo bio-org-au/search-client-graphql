@@ -1,11 +1,12 @@
 
 body {
   color: darkslategray;
+  background: lightgray;
 }
 
 body.dark{
-  color: lightgray;
-  background-color: #666;
+  color: #ddd;
+  background-color: #333;
 }
 
 body.dark input[type="search"],
@@ -20,6 +21,12 @@ body.dark a {
 
 body.name.development h1 {
   background-color: #C0B4FF;
+  color: black;
+}
+
+body.dark.name.development h1 {
+  background-color: #C0B4FF;
+  color: black;
 }
 
 body.taxonomy.development h1 {
