@@ -98,7 +98,6 @@ class FilteredSearchController < ApplicationController
     response = HTTParty.post("#{DATA_SERVER}/v1",
                              body: body,
                              timeout: 30)
-    Rails.logger.debug("FilteredSearch::result response.body: #{response.body}")
     error("#{response.code}: #{response}") unless response.code == 200
     JSON.parse(response.to_s, object_class: OpenStruct)
   rescue RuntimeError => e
