@@ -1,6 +1,6 @@
 
-<% hide_me = params['ex_base_author_abbrev'].blank? && !params['search'].blank? %>
-  <tr class="<%= 'hidden' if hide_me %> label">
+<% not_used_in_search = params['ex_base_author_abbrev'].blank? && !params['search'].blank? %>
+  <tr class="<%= 'not-used-in-search hidden' if not_used_in_search %> label">
     <td class="label">
     Ex-Base&nbsp;Author:
     </td>

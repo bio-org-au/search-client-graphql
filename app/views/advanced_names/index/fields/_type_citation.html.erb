@@ -1,8 +1,8 @@
-<% hide_me = params['rank'].blank? && !params['search'].blank? %>
-  <tr class="<%= 'hidden' if hide_me %>">
+<% not_used_in_search = params['rank'].blank? && !params['search'].blank? %>
+  <tr class="<%= 'not-used-in-search hidden' if not_used_in_search %>">
     <td colspan="2"> <hr> </td>
   </tr>
-  <tr class="<%= 'hidden' if hide_me %>">
+  <tr class="<%= 'not-used-in-search hidden' if not_used_in_search %>">
     <td class="label">
       Type&nbsp;Citation:
     </td>
@@ -24,7 +24,7 @@ This search will return names where the type citation (whether in the protologue
       
     </td>
   </tr>
-  <tr class="<%= 'hidden' if hide_me %>">
+  <tr class="<%= 'not-used-in-search hidden' if not_used_in_search %>">
     <td></td>
     <td>
       <%= check_box_tag(:type_note_key_type, '1', type_note_key_type_field_value, title: type_note_key_type_hover_text) %>
@@ -42,7 +42,7 @@ This search will return names where the type citation (whether in the protologue
       
     </td>
   </tr>
-  <tr class="<%= 'hidden' if hide_me %>">
+  <tr class="<%= 'not-used-in-search hidden' if not_used_in_search %>">
     <td></td>
     <td>
       <%= check_box_tag(:type_note_key_neotype, '1', type_note_key_neotype_field_value, title: type_note_key_neotype_hover_text) %>
@@ -60,7 +60,7 @@ This search will return names where the type citation (whether in the protologue
       
     </td>
   </tr>
-  <tr class="<%= 'hidden' if hide_me %>">
+  <tr class="<%= 'not-used-in-search hidden' if not_used_in_search %>">
     <td></td>
     <td>
       <%= check_box_tag(:type_note_key_lectotype, '1', type_note_key_lectotype_field_value, title: type_note_key_lectotype_hover_text) %>

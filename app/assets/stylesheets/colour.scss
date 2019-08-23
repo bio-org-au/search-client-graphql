@@ -1,13 +1,22 @@
 
-body {
-  color: darkslategray;
-  background: lightgray;
+@media print {
+  body {
+    color: black;
+    background: white;
+  }
 }
 
-body.dark{
-  color: #ddd;
-  background-color: #333;
-}
+@media screen {
+
+  body {
+    color: darkslategray;
+    background: lightgray;
+  }
+
+  body.dark{
+    color: #eee;
+    background-color: #444;
+  }
 
 body.dark input[type="search"],
 body.dark input[type="text"] {
@@ -70,3 +79,31 @@ body.development div.help-bar span.env {
   color: Gray;
 }
 
+body.dark a.underline {
+  color: #39f;
+}
+
+body.dark a.underline:visited {
+  color: #9cf;
+  font-weight: bold;
+}
+
+body.dark a.obscure {
+  color: #666;
+  background: #666;
+}
+
+a.obscure {
+  color: white;
+  background: white;
+}
+
+*.red {
+  color: red;
+}
+
+body.dark *.red {
+  color: orange;
+}
+
+}

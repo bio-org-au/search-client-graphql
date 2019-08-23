@@ -1,6 +1,5 @@
 <div id="form-div">
 <%= form_tag(names_advanced_search_path, method: :get) %>
-<% observe_fields = params['search'].present? %>
 <table class="for-search-form width80pc">
   <%= render partial: 'advanced_names/index/fields/family' %>
   <%= render partial: 'advanced_names/index/fields/genus' %>
@@ -8,12 +7,7 @@
 
   <%= render partial: 'advanced_names/index/fields/search_term' %>
 
-  <% unless observe_fields && (params['ex_base_author_abbrev'].blank? &&
-            params['base_author_abbrev'].blank? &&
-            params['ex_author_abbrev'].blank? &&
-            params['author_abbrev'].blank?) && observe_fields %>
-    <tr> <td colspan="2"> <hr> </td> </tr>
-  <% end %>
+  <%= render partial: 'advanced_names/index/fields/authors_hr' %>
 
   <%= render partial: 'advanced_names/index/fields/ex_base_author' %>
   <%= render partial: 'advanced_names/index/fields/base_author' %>

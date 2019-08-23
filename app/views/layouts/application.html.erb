@@ -41,7 +41,7 @@ label:not([title]) {
 
   <span class="env"><%= Rails.configuration.try('environment') %> </span>
 
-  <select id="colour-scheme-picker" class="form-field" title="Choose a colour scheme">
+  <select id="colour-scheme-picker" class="form-field no-print" title="Choose a colour scheme">
     <option value="light" <%= 'selected' if session[:background] == 'light' %>>Light Background</option>
     <option value="dark" <%= 'selected' if session[:background] == 'dark' %>>Dark Background</option>
   </select>
@@ -51,7 +51,7 @@ label:not([title]) {
 
   <%= yield %>
 
-<span id="editor-switch-container">
+<span id="editor-switch-container" class="no-print">
   <%= render partial: 'editor_switch' %>
 </span>
 

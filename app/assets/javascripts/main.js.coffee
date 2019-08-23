@@ -9,6 +9,8 @@ jQuery ->
   $('body').on('change','.search-samples', (event) -> runSampleSearch(event,$(this)))
   $(document).on('turbolinks:load',goToSearchResults())
   $('body').on('change','#colour-scheme-picker', (event) -> changeBackground(event,$(this)))
+  $('body').on('click','#show-unused-fields', (event) -> showUnusedFields(event,$(this)))
+  $('body').on('click','#hide-unused-fields', (event) -> hideUnusedFields(event,$(this)))
 
 
 submitForm = (event,$element) ->
@@ -76,4 +78,16 @@ changeBackground = (event,$element) ->
   $('body').removeClass('light')
   $('body').addClass($element.val())
   $.post '/background?background=' + encodeURIComponent($element.val())
+  false
+    
+showUnusedFields = (event,$element) ->
+  $('.not-used-in-search').removeClass('hidden')
+  $('#show-unused-fields-link-container').addClass('hidden')
+  $('#hide-unused-fields-link-container').removeClass('hidden')
+  false
+    
+hideUnusedFields = (event,$element) ->
+  $('.not-used-in-search').addClass('hidden')
+  $('#hide-unused-fields-link-container').addClass('hidden')
+  $('#show-unused-fields-link-container').removeClass('hidden')
   false

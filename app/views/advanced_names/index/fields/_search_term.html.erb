@@ -1,10 +1,10 @@
 
-<% hide_me = params['q'].blank? && !params['search'].blank? %>
-  <tr class="<%= 'hidden' if hide_me %>">
+<% not_used_in_search = params['q'].blank? && !params['search'].blank? %>
+  <tr class="<%= 'not-used-in-search hidden' if not_used_in_search %>">
     <td colspan="2"> <hr> </td>
   </tr>
 
-  <tr class="<%= 'hidden' if hide_me %>">
+  <tr class="<%= 'not-used-in-search hidden' if not_used_in_search %>">
     <td class="label width10pc">
     Complete&nbsp;Name:
     </td>

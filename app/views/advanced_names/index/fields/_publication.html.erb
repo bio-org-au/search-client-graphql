@@ -1,10 +1,10 @@
 
-<% hide_me = params['publication'].blank? && !params['search'].blank? %>
-  <tr class="<%= 'hidden' if hide_me %>">
+<% not_used_in_search = params['publication'].blank? && params['iso_publication_date'].blank? && !params['search'].blank? %>
+  <tr class="<%= 'not-used-in-search hidden' if not_used_in_search %>">
     <td colspan="2"> <hr> </td>
   </tr>
   <tr>
-  <tr class="<%= 'hidden' if hide_me %>">
+  <tr class="<%= 'not-used-in-search hidden' if not_used_in_search %>">
     <td class="label">
 Publication:
     </td>
@@ -12,8 +12,8 @@ Publication:
 <input id='publication' name='publication' type="search"
        class="typeahead form-field width40pc min-width10em max-width30em"
        value="<%= params['publication'] %>"
-       title="Enter a publication keywords for the search. No wildcards."
-       placeholder="Any parts of a bibliographic citation"
+       title="Enter text to match part of a bibliographic citation. This is a text token search so do not use wildcards."
+       placeholder="Text matching part of a bibliographic citation"
        autocomplete="off" >
     </td>
   </tr>
@@ -24,7 +24,7 @@ Publication:
       A search on any whole word or words of a bibliographic citation (i.e. authorship, publication title, volume and year) entered in any order will return names attached to any matching publications.
     </td>
   </tr>
-  <tr class="<%= 'hidden' if hide_me %>">
+  <tr class="<%= 'not-used-in-search hidden' if not_used_in_search %>">
     <td class="label" title="Publication year">
 Year:
     </td>
@@ -32,7 +32,7 @@ Year:
 <input name='iso_publication_date' type="number" min="1000" max="2050" step="1"
        class="form-field"
        value="<%= params['iso_publication_date'] %>"
-       title="Enter a publication year term to restrict the search. No wildcards.">
+       title="Enter a publication year to restrict the search.">
     </td>
   </tr>
   <tr id="publication-year-field-help" class="general-help hidden">
@@ -44,7 +44,7 @@ Use arrow buttons or type a four-digit year. This field must be used in combinat
 
     </td>
   </tr>
-  <tr class="<%= 'hidden' if hide_me %>">
+  <tr class="<%= 'not-used-in-search hidden' if not_used_in_search %>">
     <td></td>
     <td>
       <%= check_box_tag(:protologue, '1', params['protologue'], title: protologue_hover_text) %>

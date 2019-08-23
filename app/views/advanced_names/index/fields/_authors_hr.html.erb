@@ -1,0 +1,13 @@
+
+<%
+    not_used_in_search = !params['search'].blank? &&
+                         params['ex_base_author_abbrev'].blank? &&
+                         params['base_author_abbrev'].blank? &&
+                         params['ex_author_abbrev'].blank? &&
+                         params['author_abbrev'].blank? &&
+%>
+
+  <tr class="<%= 'not-used-in-search hidden' if not_used_in_search %>">
+    <td colspan="2"> <hr> </td>
+  </tr>
+

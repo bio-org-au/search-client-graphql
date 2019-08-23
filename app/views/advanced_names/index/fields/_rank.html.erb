@@ -1,9 +1,9 @@
-<% hide_me = params['rank'].blank? && !params['search'].blank? %>
-  <tr class="<%= 'hidden' if hide_me %>">
+<% not_used_in_search = params['rank'].blank? && !params['search'].blank? %>
+  <tr class="<%= 'not-used-in-search hidden' if not_used_in_search %>">
     <td colspan="2"> <hr> </td>
   </tr>
 
-  <tr class="<%= 'hidden' if hide_me %>">
+  <tr class="<%= 'not-used-in-search hidden' if not_used_in_search %>">
     <td class="label">
       Rank:
     </td>
@@ -22,7 +22,7 @@
 To limit your search to a particular taxonomic rank, select it from the dropdown list.
     </td>
   </tr>
-  <tr class="<%= 'hidden' if hide_me %>">
+  <tr class="<%= 'not-used-in-search hidden' if not_used_in_search %>">
     <td></td>
     <td>
       <%= check_box_tag(:include_ranks_below, '1', params['include_ranks_below'], 

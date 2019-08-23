@@ -1,5 +1,5 @@
-<% hide_me = params['genus'].blank? && !params['search'].blank? %>
-  <tr class="<%= 'hidden' if hide_me %>">
+<% not_used_in_search = params['genus'].blank? && !params['search'].blank? %>
+  <tr class="<%= 'not-used-in-search hidden' if not_used_in_search %>">
     <td class="label width10pc">
     Genus:
     </td>
