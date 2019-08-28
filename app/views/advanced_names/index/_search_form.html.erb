@@ -22,21 +22,21 @@
   <% if Rails.configuration.try('show_name_type_form_fields') %>
     <tr> <td colspan="2"> <hr> </td> </tr>
     <tr>
-      <td></td>
+      <td class="width10pc"></td>
       <td>
         <%= check_box_tag(:scientific_name, '1', scientific_name_field_value, title: scientific_name_hover_text) %>
         <%= label_tag(:scientific_name, "Scientific", title: scientific_name_hover_text) %>
       </td>
     </tr>
     <tr id="scientific-name-cbox-help" class="general-help hidden">
-      <td></td>
+      <td class="width10pc"></td>
       <td colspan="2" class="field-help">
         <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="scientific-name-cbox-help" title="Hide this help." >x</a></div>
         This option can be used to include or exclude scientific names.
       </td>
     </tr>
     <tr>
-      <td></td>
+      <td class="width10pc"></td>
       <td>
         <%= check_box_tag(:scientific_autonym_name, '1', scientific_autonym_field_value, title: scientific_autonym_hover_text) %>
         <%= label_tag(:scientific_autonym_name,
@@ -45,21 +45,21 @@
       </td>
     </tr>
     <tr id="scientific-autonym-cbox-help" class="general-help hidden">
-      <td></td>
+      <td class="width10pc"></td>
       <td colspan="2" class="field-help">
         <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="scientific-autonym-cbox-help" title="Hide this help." >x</a></div>
         This option can be used to include or exclude autonyms.
       </td>
     </tr>
     <tr>
-      <td></td>
+      <td class="width10pc"></td>
       <td>
         <%= check_box_tag(:scientific_named_hybrid_name, '1', scientific_named_hybrid_name_field_value, title: scientific_named_hybrid_name_hover_text) %>
         <%= label_tag(:scientific_named_hybrid_name, "Named Hybrid", title: scientific_named_hybrid_name_hover_text) %>
       </td>
     </tr>
     <tr id="scientific-named-hybrid-cbox-help" class="general-help hidden">
-      <td></td>
+      <td class="width10pc"></td>
       <td colspan="2" class="field-help">
         <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="scientific-named-hybrid-cbox-help" title="Hide this help." >x</a></div>
 
@@ -68,14 +68,14 @@ This option can be used to include or exclude hybrid taxa that have been formall
       </td>
     </tr>
     <tr>
-      <td></td>
+      <td class="width10pc"></td>
       <td>
         <%= check_box_tag(:scientific_hybrid_formula_name, '1', scientific_hybrid_formula_name_field_value, title: scientific_hybrid_formula_name_hover_text) %>
         <%= label_tag(:scientific_hybrid_formula_name, "Hybrid Formula", title: scientific_hybrid_formula_name_hover_text) %>
       </td>
     </tr>
     <tr id="scientific-hybrid-formula-cbox-help" class="general-help hidden">
-      <td></td>
+      <td class="width10pc"></td>
       <td colspan="2" class="field-help">
         <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="scientific-hybrid-formula-cbox-help" title="Hide this help." >x</a></div>
 
@@ -93,7 +93,7 @@ This option can be used to include or exclude hybrid taxa that are designated by
 
   <% if Rails.configuration.try('show_cultivar_name_form_field') %>
     <tr>
-      <td></td>
+      <td class="width10pc"></td>
       <td>
         <%= check_box_tag(:cultivar_name, '1', params['cultivar_name'], title: cultivar_name_hover_text) %>
         <%= label_tag(:cultivar_name,
@@ -102,7 +102,7 @@ This option can be used to include or exclude hybrid taxa that are designated by
       </td>
     </tr>
     <tr id="cultivar-name-field-help" class="general-help hidden">
-      <td></td>
+      <td class="width10pc"></td>
       <td colspan="2" class="field-help">
         <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="cultivar-name-field-help" title="Hide this help." >x</a></div>
 
@@ -115,7 +115,7 @@ This option can be used to include or exclude hybrid taxa that are designated by
 
   <% if Rails.configuration.try('show_common_name_form_field') %>
     <tr>
-      <td></td>
+      <td class="width10pc"></td>
       <td>
         <%= check_box_tag(:common_name, '1', params['common_name'], title: common_name_hover_text) %>
         <%= label_tag(:common_name,
@@ -124,7 +124,7 @@ This option can be used to include or exclude hybrid taxa that are designated by
       </td>
     </tr>
     <tr id="common-name-field-help" class="general-help hidden">
-      <td></td>
+      <td class="width10pc"></td>
       <td colspan="2" class="field-help">
         <div class="hide-this-help-link-container text-align-right"><a href="" class="hide-this-help-link" data-target-id="common-name-field-help" title="Hide this help." >x</a></div>
 

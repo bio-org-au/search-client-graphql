@@ -20,12 +20,14 @@
 class TaxonomyController < ApplicationController
   def index
     @client_request = Index::ClientRequest.new(search_params)
+                                               #session[:editor] || false)
     if @client_request.any_type_of_search?
-      @search = @client_request.search
+      #@search = @client_request.search
+      @search_result = Index::GraphqlRequest.new(@client_request).result
     end
-
-    Rails.logger.debug("Before render")
     render_index
+  #rescue => e
+    #render plain: "error"
   end
 
   private
@@ -38,7 +40,8 @@ class TaxonomyController < ApplicationController
 
   def render_index_html
     @page_title = "#{@tree_label} Search"
-    @results = TaxonomyController::Results.new(@search)
+    @results = TaxonomyController::Results.new(@search_result)
+    #@results = Application::Names::Results.new(@search_result)
     render :index
   end
 
@@ -54,6 +57,6 @@ class TaxonomyController < ApplicationController
                   :limit_per_page_for_list, :limit_per_page_for_details,
                   :accepted_names, :excluded_names, :cross_references,
                   :show_synonyms, :show_distribution, :show_comments,
-                  :sample_search_option_index)
+                  :sample_search_option_index, :page)
   end
 end

@@ -10,7 +10,7 @@
 <hr>
 
 <div id="search-result-summary">
-  <% if @search.present? %>
+  <% if @search_result.present? %>
     <%= render partial: 'taxonomy_search_result_summary' %>
     <%= render partial: 'taxonomy/index/pagination' if @results.present? %>
   <% else %>

@@ -21,6 +21,11 @@ class AdvancedNamesController < ApplicationController
   def index
     @client_request = Index::ClientRequest.new(search_params, session[:editor] || false).build_request
     @search = @client_request.search
+
+    #if @client_request.any_type_of_search?
+    #  @search_result = Index::GraphqlRequest.new(@client_request).result
+    #end
+
     render_index
   end
 

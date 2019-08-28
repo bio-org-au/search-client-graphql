@@ -16,7 +16,8 @@ class AdvancedNamesController::Index::ClientRequest::PublicationRequest::RunSear
   end
 
   def body
-    { query: graphql_query_string }
+    throw 'body'
+    Query.new.query_body
   end
 
   def graphql_query_string

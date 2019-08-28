@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Class extracted from name controller.
-class NamesController::Index::GraphqlRequest
+class TaxonomyController::Index::GraphqlRequest
   DATA_SERVER = Rails.configuration.data_server
   def initialize(client_request)
     @client_request = client_request
@@ -20,12 +20,12 @@ class NamesController::Index::GraphqlRequest
   end
 
   def body
-    NamesController::Index::Query.new(@client_request).query_body
+    TaxonomyController::Index::Query.new(@client_request).query_body
   end
 
   private
 
-  def debug(s)
-    Rails.logger.debug("NamesController::Index::GraphqlRequest: #{s}")
+  def debug(msg)
+    Rails.logger.debug("TaxonomyController::Index::GraphqlRequest: #{msg}")
   end
 end

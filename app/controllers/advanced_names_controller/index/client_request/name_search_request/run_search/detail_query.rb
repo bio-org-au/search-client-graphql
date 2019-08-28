@@ -3,6 +3,7 @@
 # Class extracted from name controller.
 class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::RunSearch::DetailQuery
   def initialize(client_request)
+    throw 'detail'
     @client_request = client_request
   end
 

@@ -15,10 +15,14 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::RunSearc
   end
 
   def body
-    { query: graphql_query_string }
+    Query.new(@client_request).query_body
   end
 
   def graphql_query_string
+    Query.new(@client_request).query_string
+  end
+
+  def xxxx
     if @client_request.just_count?
       CountQuery.new(@client_request).query_string
     elsif @client_request.details?

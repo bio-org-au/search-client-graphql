@@ -12,7 +12,9 @@ class TaxonomyController::Index::ClientRequest::RunSearch
     json = HTTParty.post("#{DATA_SERVER}/v1",
                          body: body_of_post,
                          timeout: @client_request.timeout)
-    Rails.logger.debug('TaxonomyController::Index::ClientRequest::Search')
+    debug('=============**********************************')
+    debug(response.to_s) 
+    debug('=============**********************************')
     Rails.logger.error(json.to_s) if json.to_s =~ /error/
     JSON.parse(json.to_s, object_class: OpenStruct)
   end
@@ -32,5 +34,11 @@ class TaxonomyController::Index::ClientRequest::RunSearch
       Rails.logger.debug(ListQuery.new(@client_request).query_string)
       ListQuery.new(@client_request).query_string
     end
+  end
+
+  private
+
+  def debug(msg)
+    Rails.logger.debug("TaxonomyController::Index::ClientRequest::RunSearch: #{msg}")
   end
 end

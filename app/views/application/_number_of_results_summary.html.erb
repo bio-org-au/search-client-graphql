@@ -1,13 +1,13 @@
-<% if @results.present? %>
+<% if @results.paginator_info.present? %>
   <div>
     <a id="search-results-summary" title="Search results">
-      <%= pluralize(@results.count,'matching record') %><%= "," if @results.count > 1 %>
-      <% if @results.count <= @client_request.limit %>
-        <% if @results.count > 1 %>
+      <%= pluralize(@results.paginator_info.total,'matching record') %><%= "," if @results.paginator_info.total > 1 %>
+      <% if @results.paginator_info.total <= @client_request.limit %>
+        <% if @results.paginator_info.count > 1 %>
           all shown
         <% end %>
       <% else %>
-        <%= "#{@client_request.limit} shown per page" %>
+        <%= "#{@client_request.per_page} shown per page" %>
       <% end %>
     </a>
   <br>

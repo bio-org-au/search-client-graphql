@@ -12,6 +12,15 @@ class TaxonomyController::Index::ClientRequest
     @params = params
   end
 
+  def params
+    par = {}
+    par[:search_term] =  @params[:q]
+    par[:accepted_name] = true if @params[:accepted_name] == '1'
+    par[:excluded_name] = true if @params[:excluded_name] == '1'
+    par[:cross_reference] = true if @params[:cross_reference] == '1'
+    par
+  end
+
   def any_type_of_search?
     search_term.present? && some_type_of_record_selected?
   end
@@ -22,7 +31,22 @@ class TaxonomyController::Index::ClientRequest
     @params["cross_references"] == '1'
   end
 
-  def search
+  def per_page
+    return 0 if just_count?
+    per_page = if list?
+                 @params[:limit_per_page_for_list].to_i
+               else
+                 @params[:limit_per_page_for_details].to_i
+               end
+    per_page = 1 if per_page < 1
+    [per_page, MAX_LIST_LIMIT].min
+  end
+
+  def page
+    [@params[:page].to_i || 1, 1].max
+  end
+
+  def xsearch
     TaxonomyController::Index::ClientRequest::RunSearch.new(self).result
   end
 
@@ -54,7 +78,7 @@ class TaxonomyController::Index::ClientRequest
   end
 
   def offset
-    [@params[:offset].to_i, 0].max
+    [@params[:page].to_i, 0].max
   end
 
   def just_count?

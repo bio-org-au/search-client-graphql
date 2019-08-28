@@ -7,35 +7,67 @@ module TaxonomyHelper
   end
 
   def page
-    (@client_request.offset / [@client_request.limit, 1].max) + 1
+    @results.paginator_info.current_page
   end
 
   def pages
-    (@results.count.to_f / clean_limit).ceil
+    @results.paginator_info.last_page
   end
 
-  def previous
+    def previous
+    return 'prev' if @results.paginator_info.current_page == 1
+
+    cparams = params.except!('action', 'controller')
+    cparams[:page] = @results.paginator_info.current_page - 1
+    link_to('prev', taxonomy_search_path(cparams), class: 'underline', title: 'Previous page')
+  end
+
+  def next_
+    cparams = params.except!('action', 'controller')
+    return 'next' unless @results.paginator_info.has_more_pages
+
+    cparams[:page] = @results.paginator_info.current_page + 1
+    link_to('next', taxonomy_search_path(cparams), class: 'underline', title: 'Next page')
+  end
+
+  def first_
+    return 'first' if @results.paginator_info.current_page == 1
+
+    cparams = params.except!('action', 'controller')
+    cparams[:page] = 1
+    link_to('first', taxonomy_search_path(cparams), class: 'underline', title: 'First page')
+  end
+
+  def last_
+    cparams = params.except!('action', 'controller')
+    return 'last' if @results.paginator_info.current_page == @results.paginator_info.last_page
+
+    cparams[:page] = @results.paginator_info.last_page
+    link_to('last', taxonomy_search_path(cparams), class: 'underline', title: 'Last page')
+  end
+
+  def xprevious
     return if @client_request.offset == 0
     cparams = params.except!('action', 'controller')
     cparams[:offset] = (@client_request.offset - @client_request.limit)
     link_to('Prev', taxonomy_search_path(cparams), title: 'Previous page')
   end
 
-  def next_
+  def xnext_
     cparams = params.except!('action', 'controller')
     cparams[:offset] = (@client_request.offset + @client_request.limit)
     return if cparams[:offset].to_i > @results.count
     link_to('Next', taxonomy_search_path(cparams), title: 'Next page')
   end
 
-  def first_
+  def xfirst_
     return if @client_request.offset == 0
     cparams = params.except!('action', 'controller')
     cparams[:offset] = 0
     link_to('First', taxonomy_search_path(cparams), title: 'First page')
   end
 
-  def last_
+  def xlast_
     cparams = params.except!('action', 'controller')
     cparams[:offset] = (@results.count / clean_limit) * @client_request.limit
     return if @client_request.offset == cparams[:offset]

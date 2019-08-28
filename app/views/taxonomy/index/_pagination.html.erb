@@ -1,5 +1,4 @@
-
-<% if @results.count.to_i > @client_request.limit.to_i %>
+<% if @results.paginator_info.current_page > 1 || @results.paginator_info.total > @client_request.limit.to_i %>
   <%= first_ %>
   <%= previous %>
   <%= page %>
@@ -7,4 +6,3 @@
   <%= last_ %>
   <hr>
 <% end %>
-

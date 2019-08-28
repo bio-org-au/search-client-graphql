@@ -3,6 +3,7 @@
 # Class extracted from name controller.
 class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::RunSearch::CountQuery
   def initialize(client_request)
+    throw 'count'
     @client_request = client_request
   end
 

@@ -8,13 +8,10 @@ class NamesController::Index::Utilities::Detail
   end
 
   def data_structure
-    <<~HEREDOC
-        {
-          count,
-          names
-          #{Application::Names::DetailQueryReusableParts.new(@client_request).name_fields_string}
-        }
-    HEREDOC
+    str = +'{ paginatorInfo { count currentPage hasMorePages firstItem lastItem lastPage perPage, total }, '
+    str << ' data '
+    str << Application::Names::DetailQueryReusableParts.new(@client_request).name_fields_string
+    str << '}'
+    str
   end
-
 end

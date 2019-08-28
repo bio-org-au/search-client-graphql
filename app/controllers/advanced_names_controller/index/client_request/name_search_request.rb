@@ -10,6 +10,81 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
     @search_request = search_request
   end
 
+  def params
+    par = {}
+    par[:searchTerm] =  @params[:q]
+    par
+  end
+
+  def xxx
+    par[:cultivar_name] = true if include_cultivar_names?
+    par[:common_name] = true if include_common_names?
+    par[:scientific_name] = true if include_scientific_names?
+    par[:scientific_autonym_name] = true if include_scientific_autonym_names?
+    par[:scientific_named_hybrid_name] = true if include_scientific_named_hybrid_names?
+    par[:scientific_hybrid_formula_name] = true if include_scientific_hybrid_formula_names?
+
+    par[:family] = @params[:family].strip if include_string_param?(:family)
+    par[:genus] = @params[:genus].strip if include_genus?
+    par[:species] = @params[:species].strip if include_string_param?(:species)
+    par[:ex_base_author_abbrev] = @params[:ex_base_author_abbrev].strip if include_string_param?(:ex_base_author_abbrev)
+    par[:base_author_abbrev] = @params[:base_author_abbrev].strip if include_string_param?(:base_author_abbrev)
+    par[:ex_author_abbrev] = @params[:ex_author_abbrev].strip if include_string_param?(:ex_author_abbrev)
+    par[:author_abbrev] = @params[:author_abbrev].strip if include_string_param?(:author_abbrev)
+    par[:rank] = @params[:rank].strip if include_string_param?(:rank)
+    par[:include_ranks_below] = true if include_boolean_param?(:include_ranks_below)
+    par[:publication] = @params[:publication].strip if include_string_param?(:publication)
+    par[:iso_publication_date] = @params[:iso_publication_date].strip if include_string_param?(:iso_publication_date)
+    par[:protologue] = @params[:protologue].strip if include_boolean_param?(:protologue)
+    par[:type_note_text] = @params[:type_note_text].strip if include_string_param?(:type_note_text)
+    par[:type_note_keys] = type_note_keys if include_string_param?(:type_note_text)
+
+    par
+  end
+
+  def include_cultivar_names?
+    @params[:cultivar_name] == '1'
+  end
+
+  def include_common_names?
+    @params[:common_name] == '1'
+  end
+
+  def per_page
+    return 0 if just_count?
+    per_page = if list?
+                 @params[:limit_per_page_for_list].to_i
+               else
+                 @params[:limit_per_page_for_details].to_i
+               end
+    per_page = 1 if per_page < 1
+    [per_page, MAX_LIST_LIMIT].min
+  end
+
+  def page
+    [@params[:page].to_i || 1, 1].max
+  end
+
+  def include_scientific_names?
+    @params[:scientific_name] == '1'
+  end
+
+  def include_scientific_autonym_names?
+    @params[:scientific_autonym_name] == '1'
+  end
+
+  def include_scientific_named_hybrid_names?
+    @params[:scientific_named_hybrid_name] == '1'
+  end
+
+  def include_scientific_hybrid_formula_names?
+    @params[:scientific_hybrid_formula_name] == '1'
+  end
+
+  def include_boolean_param?(key)
+    @params[key] == '1'
+  end
+
   def type_of_search?
     'name_search'
   end
@@ -65,52 +140,12 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
     @params[:q].strip
   end
 
-  def author_abbrev
-    return '' if @params[:author_abbrev].blank?
-    return '' unless @params[:author_abbrev].class == String
-    @params[:author_abbrev].strip
+  def include_string_param?(param_key)
+    !@params[param_key].blank?
   end
 
-  def ex_author_abbrev
-    return '' if @params[:ex_author_abbrev].blank?
-    return '' unless @params[:ex_author_abbrev].class == String
-    @params[:ex_author_abbrev].strip
-  end
-
-  def base_author_abbrev
-    return '' if @params[:base_author_abbrev].blank?
-    return '' unless @params[:base_author_abbrev].class == String
-    @params[:base_author_abbrev].strip
-  end
-
-  def ex_base_author_abbrev
-    return '' if @params[:ex_base_author_abbrev].blank?
-    return '' unless @params[:ex_base_author_abbrev].class == String
-    @params[:ex_base_author_abbrev].strip
-  end
-
-  def family
-    return '' if @params[:family].blank?
-    return '' unless @params[:family].class == String
-    @params[:family].strip
-  end
-
-  def genus
-    return '' if @params[:genus].blank?
-    return '' unless @params[:genus].class == String
-    @params[:genus].strip
-  end
-
-  def species
-    return '' if @params[:species].blank?
-    return '' unless @params[:species].class == String
-    @params[:species].strip
-  end
-
-  def rank
-    return '' if @params[:rank].blank?
-    return '' unless @params[:rank].class == String
-    @params[:rank].strip
+  def include_genus?
+    !@params[:genus].blank?
   end
 
   def include_ranks_below
@@ -149,21 +184,23 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
   end
 
   def type_note_keys
-    %(["#{type_note_key_lectotype?}",
-       "#{type_note_key_type?}",
-       "#{type_note_key_neotype?}"])
+    keys = []
+    keys.push 'type' if type_note_key_type?
+    keys.push 'lectotype' if type_note_key_lectotype?
+    keys.push 'neotype' if type_note_key_neotype?
+    keys
   end
 
   def type_note_key_type?
-    @params[:type_note_key_type] == '1' ? 'type' : ''
+    @params[:type_note_key_type] == '1'
   end
 
   def type_note_key_lectotype?
-    @params[:type_note_key_lectotype] == '1' ? 'lectotype' : ''
+    @params[:type_note_key_lectotype] == '1'
   end
 
   def type_note_key_neotype?
-    @params[:type_note_key_neotype] == '1' ? 'neotype' : ''
+    @params[:type_note_key_neotype] == '1'
   end
 
   def scientific_name

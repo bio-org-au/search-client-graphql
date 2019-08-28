@@ -29,15 +29,15 @@
 
 <div id="search-results">
   <% if @results.present? %>
-    <%= render partial: @client_request.content_partial, locals: { search_form: 'advanced_names' } %>
+    <%#= render partial: @client_request.content_partial, locals: { search_form: 'advanced_names' } %>
     <hr>
-    <%= render partial: 'advanced_names/index/pagination' %>
+    <%#= render partial: 'advanced_names/index/pagination' %>
   <% end %>
 </div>
 
 <div id="timing-summary">
-  <% if @results.present? %>
-    <%= render partial: 'result_timing_summary' %>
-  <% end %>
+  <%# if @results.present? %>
+    <%#= render partial: 'result_timing_summary' %>
+  <%# end %>
 </div>
 

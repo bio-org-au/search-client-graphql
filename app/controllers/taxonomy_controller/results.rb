@@ -2,68 +2,100 @@
 
 # Container for taxonomy results
 class TaxonomyController::Results
-  def initialize(search)
-    @search = search
+  def initialize(search_result)
+    @search_result = search_result
+    @data = search_result.try('data').try('filteredTaxonomy').try('data')
+    @paginator_info = build_paginator_info(search_result.try('data').try('filteredTaxonomy').try('paginatorInfo'))
+  end
+
+  def build_paginator_info(paginatorInfo)
+    pinfo = OpenStruct.new
+    return if paginatorInfo.nil?
+
+    pinfo.count = paginatorInfo.count
+    pinfo.current_page  = paginatorInfo.currentPage
+    pinfo.has_more_pages  = paginatorInfo.hasMorePages
+    pinfo.first_item = paginatorInfo.firstItem
+    pinfo.last_item = paginatorInfo.lastItem
+    pinfo.last_page = paginatorInfo.lastPage
+    pinfo.per_page = paginatorInfo.perPage
+    pinfo.total  = paginatorInfo.total
+    pinfo
+  end
+
+  def data
+    @data
+  end
+
+  def paginator_info
+    @paginator_info
   end
 
   def empty?
-    @search.nil?
+    throw 'empty?'
+    @search_result.nil?
   end
 
   def no_data?
-    @search.data.nil?
+    throw 'no_data?'
+    @search_result.data.nil?
   end
 
   def error?
-    @search.errors.present? || @search.data.error.present?
+    @search_result.errors.present? || @search_result.data.error.present?
   end
 
   def error
-    if @search.errors.present?
-      @search.errors.first.message
+    if @search_result.errors.present?
+      @search_result.errors.first.message
     else
-      @search.data.error
+      @search_result.data.error
     end
   end
 
   def no_search?
-    @search.data.taxonomy_search.nil?
+    throw 'no_search?'
+    @search_result.data.taxonomy_search.nil?
   end
 
   def no_names?
-    @search.data.taxonomy_search.taxa.blank?
+    throw 'no_names?'
+    @search_result.data.taxonomy_search.taxa.blank?
   end
 
   def present?
-    !(@search.nil? ||
-      @search.data.nil? ||
-      @search.data.taxonomy_search.nil? ||
-      @search.data.taxonomy_search.taxa.blank?)
+    !(@search_result.nil? ||
+      @search_result.data.nil? ||
+      @search_result.data.filteredTaxonomy.nil? ||
+      @search_result.data.filteredTaxonomy.data.blank?)
   end
 
   def blank?
-    @search.nil? ||
-      @search.data.nil? ||
-      @search.data.taxonomy_search.nil? ||
-      @search.data.taxonomy_search.taxa.blank?
+    throw 'blank?'
+    @search_result.nil? ||
+      @search_result.data.nil? ||
+      @search_result.data.taxonomy_search.nil? ||
+      @search_result.data.taxonomy_search.taxa.blank?
   end
 
   def size
+    @search_result.nil? ||
     if present?
-      @search.data.taxonomy_search.taxa.size
+      @search_result.data.filteredTaxonomy.data.size
     else
       0
     end
   end
 
   def count
-    @search.data.taxonomy_search.count
+    throw 'count'
+    @search_result.data.taxonomy_search.count
   rescue
     'Error'
   end
 
   def taxa
-    @search.data.taxonomy_search.taxa.collect do |taxon|
+    @search_result.data.filteredTaxonomy.data.collect do |taxon|
       TaxonomyController::Results::Taxon.new(taxon)
     end
   end

@@ -10,14 +10,14 @@
 <div id="search-result-summary">
   <% if @search_result.present? %>
     <%= render partial: 'name_search_result_summary' %>
-    <% if @results.present? %>
+    <% if @results.present? && @results.paginator_info.present? %>
       <%= render partial: 'names/index/pagination' %>
     <% end %>
   <% end %>
 </div>
 
 <div id="search-results">
-  <% if @results.present? %>
+  <% if @results.data.present? %>
     <%= render partial: @client_request.content_partial, locals: { search_form: 'names' } %>
     <hr>
     <%= render partial: 'names/index/pagination' %>
@@ -26,7 +26,7 @@
 
 
 <div id="timing-summary">
-  <% if @results.present? %>
+  <% if @results.data.present? %>
     <%= render partial: 'result_timing_summary' %>
   <% end %>
 </div>

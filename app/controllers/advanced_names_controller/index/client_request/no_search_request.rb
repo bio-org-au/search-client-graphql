@@ -8,6 +8,12 @@ class AdvancedNamesController::Index::ClientRequest::NoSearchRequest
     @session_editor = session_editor
   end
 
+  def params
+    par = {}
+    par[:search_term] =  @params[:q]
+    par
+  end
+
   def search; end
 
   def any_type_of_search?
