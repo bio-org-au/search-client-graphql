@@ -10,7 +10,7 @@
 <div id="search-result-summary">
   <% if @search_result.present? %>
     <%= render partial: 'name_search_result_summary' %>
-    <% if @results.present? && @results.paginator_info.present? %>
+    <% if @results.present? && @results.paginator_info.present? && @results.paginator_info.current_page.present? %>
       <%= render partial: 'names/index/pagination' %>
     <% end %>
   <% end %>

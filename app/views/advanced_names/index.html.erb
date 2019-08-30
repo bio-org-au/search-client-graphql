@@ -19,25 +19,28 @@
 <hr>
 
 <div id="search-result-summary">
-  <% if @search.present? %>
+  <% if @search_result.present? %>
     <%= render partial: 'name_search_result_summary' %>
-    <%= render partial: 'advanced_names/index/pagination' if @results.present? %>
+    <% if @results.present? && @results.paginator_info.present? && @results.paginator_info.current_page.present? %>
+      <%= render partial: 'advanced_names/index/pagination' %>
+    <% end %>
   <% else %>
     <%= no_search_done_message if params[:search].present? %>
   <% end %>
 </div>
 
-<div id="search-results">
-  <% if @results.present? %>
-    <%#= render partial: @client_request.content_partial, locals: { search_form: 'advanced_names' } %>
-    <hr>
-    <%#= render partial: 'advanced_names/index/pagination' %>
+<% unless @client_request.just_count? %>
+  <% unless @results.nil? || @results.error? %>
+
+    <div id="search-results">
+        <%= render partial: @client_request.content_partial, locals: { search_form: 'advanced_names' } %>
+        <hr>
+        <%= render partial: 'advanced_names/index/pagination' %>
+    </div>
+    
+    <div id="timing-summary">
+      <%= render partial: 'result_timing_summary' %>
+    </div>
+
   <% end %>
-</div>
-
-<div id="timing-summary">
-  <%# if @results.present? %>
-    <%#= render partial: 'result_timing_summary' %>
-  <%# end %>
-</div>
-
+<% end %>

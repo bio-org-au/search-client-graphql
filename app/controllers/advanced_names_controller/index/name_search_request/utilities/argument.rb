@@ -26,7 +26,7 @@ class AdvancedNamesController::Index::NameSearchRequest::Utilities::Argument
     hash[:cultivarName] = 'Boolean'
     hash[:commonName] = 'Boolean'
     hash[:typeNoteText] = 'String'
-    hash[:typeNoteKeys] = '[String]'
+    hash[:typeNoteKeys] = '[String!]'
     hash[:orderByName] = 'Boolean'
     hash
   end

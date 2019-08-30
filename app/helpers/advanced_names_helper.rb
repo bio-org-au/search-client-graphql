@@ -2,44 +2,44 @@
 
 # Advanced Names view helpers.
 module AdvancedNamesHelper
-  def pagination_debug
-    "Offset: #{@client_request.offset} , limit: #{@client_request.limit} , total: #{@results.count} "
-  end
-
-  def page
-    (@client_request.offset / clean_limit) + 1
+   def page
+    @results.paginator_info.current_page
   end
 
   def pages
-    (@results.count.to_f / clean_limit).ceil
+    @results.paginator_info.last_page
   end
 
   def previous
-    return if @client_request.offset == 0
+    return 'prev' if @results.paginator_info.current_page == 1
+
     cparams = params.except!('action', 'controller')
-    cparams[:offset] = (@client_request.offset - @client_request.limit)
+    cparams[:page] = @results.paginator_info.current_page - 1
     link_to('prev', names_advanced_search_path(cparams), class: 'underline', title: 'Previous page')
   end
 
   def next_
     cparams = params.except!('action', 'controller')
-    cparams[:offset] = (@client_request.offset + @client_request.limit)
-    return if cparams[:offset].to_i > @results.count
+    return 'next' unless @results.paginator_info.has_more_pages
+
+    cparams[:page] = @results.paginator_info.current_page + 1
     link_to('next', names_advanced_search_path(cparams), class: 'underline', title: 'Next page')
   end
 
   def first_
-    return if @client_request.offset == 0
+    return 'first' if @results.paginator_info.current_page == 1
+
     cparams = params.except!('action', 'controller')
-    cparams[:offset] = 0
+    cparams[:page] = 1
     link_to('first', names_advanced_search_path(cparams), class: 'underline', title: 'First page')
   end
 
   def last_
     cparams = params.except!('action', 'controller')
-    cparams[:offset] = (@results.count / clean_limit) * @client_request.limit
-    return if @client_request.offset == cparams[:offset]
-    link_to('last', names_advanced_search_path(cparams), class: 'underline', title: 'First page')
+    return 'last' if @results.paginator_info.current_page == @results.paginator_info.last_page
+
+    cparams[:page] = @results.paginator_info.last_page
+    link_to('last', names_advanced_search_path(cparams), class: 'underline', title: 'Last page')
   end
 
   def clean_limit

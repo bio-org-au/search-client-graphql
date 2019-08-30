@@ -186,5 +186,25 @@ displayed in the search results.  This can slow down the results."
     url.push("&sample_search_option_index=#{option_index}")
     url.join('')
   end
+  
+  def advanced_search_url(option_index = 0, list_or_count = 'list', args)
+    url = ["#{my_path}/names/advanced?utf8=✓"]
+    url.push("&q=#{args[:search_term]}") if args.has_key?(:search_term)
+    url.push("&q=#{args[:search_term]}")
+    url.push("&common_name=1") if args[:common_name]
+    url.push("&cultivar_name=1") if args[:cultivar_name]
+    url.push("&scientific_name=1") if args[:scientific_name]
+    url.push("&scientific_autonym_name=1") if args[:autonym_name]
+    url.push("&scientific_named_hybrid_name=1") if args[:named_hybrid_name]
+    url.push("&scientific_hybrid_formula_name=1") if args[:hybrid_formula_name]
+    url.push("&genus=#{args[:genus]}") unless args[:genus].blank?
+    url.push("&species=#{args[:species]}") unless args[:species].blank?
+    url.push("&list_or_count=#{list_or_count}")
+    url.push("&limit_per_page_for_list=50")
+    url.push("&limit_per_page_for_details=10")
+    url.push("&search=Search")
+    url.push("&sample_search_option_index=#{option_index}")
+    url.join('')
+  end
 
 end

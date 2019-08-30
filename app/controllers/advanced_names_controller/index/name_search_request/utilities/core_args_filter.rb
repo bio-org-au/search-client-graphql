@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Class extracted from name controller.
-class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::Utilities::CoreArgsFilter
+class AdvancedNamesController::Index::NameSearchRequest::Utilities::CoreArgsFilter
   attr_reader :raw_query_string
   def initialize(client_request, raw_query_string)
     @client_request = client_request

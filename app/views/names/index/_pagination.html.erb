@@ -1,9 +1,11 @@
-<% if @results.paginator_info.current_page > 1 || @results.paginator_info.total > @client_request.limit.to_i %>
-  page: <%= page %> |
-  <%= first_ %> |
-  <%= previous %> |
-  <%= next_ %> |
-  <%= last_ %>
-  <hr>
+<% unless @results.paginator_info.current_page.nil? %>
+  <% if @results.paginator_info.current_page > 1 || @results.paginator_info.total > @client_request.limit.to_i %>
+    page: <%= page %> |
+    <%= first_ %> |
+    <%= previous %> |
+    <%= next_ %> |
+    <%= last_ %>
+    <hr>
+  <% end %>
 <% end %>
 

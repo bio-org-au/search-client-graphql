@@ -13,10 +13,19 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
   def params
     par = {}
     par[:searchTerm] =  @params[:q]
-    par
-  end
+    par[:family] = @params[:family].strip if include_string_param?(:family)
+    par[:genus] = @params[:genus].strip if include_genus?
+    par[:ex_base_author_abbrev] = @params[:ex_base_author_abbrev].strip if include_string_param?(:ex_base_author_abbrev)
+    par[:base_author_abbrev] = @params[:base_author_abbrev].strip if include_string_param?(:base_author_abbrev)
+    par[:ex_author_abbrev] = @params[:ex_author_abbrev].strip if include_string_param?(:ex_author_abbrev)
+    par[:author_abbrev] = @params[:author_abbrev].strip if include_string_param?(:author_abbrev)
+    par[:rank] = @params[:rank].strip if include_string_param?(:rank)
+    par[:include_ranks_below] = true if include_boolean_param?(:include_ranks_below)
 
-  def xxx
+    par[:type_note_text] = @params[:type_note_text].strip if include_string_param?(:type_note_text)
+    par[:type_note_keys] = type_note_keys if include_string_param?(:type_note_text)
+    par[:species] = @params[:species].strip if include_string_param?(:species)
+
     par[:cultivar_name] = true if include_cultivar_names?
     par[:common_name] = true if include_common_names?
     par[:scientific_name] = true if include_scientific_names?
@@ -24,20 +33,9 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
     par[:scientific_named_hybrid_name] = true if include_scientific_named_hybrid_names?
     par[:scientific_hybrid_formula_name] = true if include_scientific_hybrid_formula_names?
 
-    par[:family] = @params[:family].strip if include_string_param?(:family)
-    par[:genus] = @params[:genus].strip if include_genus?
-    par[:species] = @params[:species].strip if include_string_param?(:species)
-    par[:ex_base_author_abbrev] = @params[:ex_base_author_abbrev].strip if include_string_param?(:ex_base_author_abbrev)
-    par[:base_author_abbrev] = @params[:base_author_abbrev].strip if include_string_param?(:base_author_abbrev)
-    par[:ex_author_abbrev] = @params[:ex_author_abbrev].strip if include_string_param?(:ex_author_abbrev)
-    par[:author_abbrev] = @params[:author_abbrev].strip if include_string_param?(:author_abbrev)
-    par[:rank] = @params[:rank].strip if include_string_param?(:rank)
-    par[:include_ranks_below] = true if include_boolean_param?(:include_ranks_below)
     par[:publication] = @params[:publication].strip if include_string_param?(:publication)
     par[:iso_publication_date] = @params[:iso_publication_date].strip if include_string_param?(:iso_publication_date)
-    par[:protologue] = @params[:protologue].strip if include_boolean_param?(:protologue)
-    par[:type_note_text] = @params[:type_note_text].strip if include_string_param?(:type_note_text)
-    par[:type_note_keys] = type_note_keys if include_string_param?(:type_note_text)
+    par[:protologue] = true if include_boolean_param?(:protologue)
 
     par
   end
@@ -82,6 +80,8 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
   end
 
   def include_boolean_param?(key)
+    debug 'include boolean param'
+    debug("key: #{key}")
     @params[key] == '1'
   end
 
@@ -90,7 +90,8 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
   end
 
   def search
-    RunSearch.new(self).result
+    throw 'old search'
+    AdvancedNamesController::Index::NameSearchRequest::RunSearch.new(self).result
   end
 
   def name_search?
@@ -239,7 +240,7 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
     [limit, MAX_LIST_LIMIT].min
   end
 
-  def offset
+  def xoffset
     [@params[:offset].to_i, 0].max
   end
 
@@ -261,5 +262,11 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest
 
   def order_by_name?
     !family?
+  end
+
+  private
+
+  def debug(msg)
+    Rails.logger.debug("AdvancedNamesController::Index::ClientRequest::NameSearchRequest: #{msg}")
   end
 end

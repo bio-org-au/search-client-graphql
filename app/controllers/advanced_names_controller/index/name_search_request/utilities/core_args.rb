@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Class extracted from name controller.
-class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::Utilities::CoreArgs
+class AdvancedNamesController::Index::NameSearchRequest::Utilities::CoreArgs
   def core_args
     <<~HEREDOC1
       search_term: "search_term_placeholder",

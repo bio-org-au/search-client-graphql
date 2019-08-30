@@ -86,8 +86,41 @@ Sample searches
   
   </optgroup>
 
-  <option style="font-size: 1pt; background-color: #000000;" disabled>&nbsp;</option>
+  <optgroup label="Counting names">
+  <% option_number += 1 %>
+  <option value="<%= advanced_search_url(option_number,
+                                         'count',
+                                         genus: 'Angophora')
+                                         %>"
+         <%= 'selected' if option_index == option_number %> >
+         Count names within genus 'Angophora'
+  </option>
+  <% option_number += 1 %>
+  <option value="<%= advanced_search_url(option_number,
+                                         'count',
+                                         genus: 'Eucalyptus')
+                                         %>"
+         <%= 'selected' if option_index == option_number %> >
+         Count names within genus 'Eucalyptus'
+  </option>
+  <% option_number += 1 %>
+  <option value="<%= advanced_search_url(option_number,
+                                         'count',
+                                         genus: 'Eucalyptus',
+                                         named_hybrid: true)
+                                         %>"
+         <%= 'selected' if option_index == option_number %> >
+         Count named hybrids within genus 'Eucalyptus'
+  </option>
+  <% option_number += 1 %>
+  <option value="<%= advanced_search_url(option_number,
+                                         'count',
+                                         species: 'costata')
+                                         %>"
+         <%= 'selected' if option_index == option_number %> >
+         Count names with an epithet of 'costata'
 
-  <option value="BadID">Bad ID</option>
+  </optgroup>
+  
 </select>
 <br>

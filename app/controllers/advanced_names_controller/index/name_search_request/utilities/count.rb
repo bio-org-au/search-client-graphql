@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 # Class extracted from name controller.
-class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::RunSearch::CountQuery
+class AdvancedNamesController::Index::NameSearchRequest::Utilties::Count
   def initialize(client_request)
     throw 'count'
     @client_request = client_request
   end
 
   def query_string
-    AdvancedNamesController::Index::ClientRequest::NameSearchRequest::Utilities::CoreArgsFilter.new(@client_request, raw_query_string).raw_query_string
+    AdvancedNamesController::Index::NameSearchRequest::Utilities::CoreArgsFilter.new(@client_request, raw_query_string).raw_query_string
   end
 
   def raw_query_string

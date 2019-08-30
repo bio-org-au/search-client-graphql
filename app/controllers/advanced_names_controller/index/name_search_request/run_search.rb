@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Class extracted from name controller.
-class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::RunSearch
+class AdvancedNamesController::Index::NameSearchRequest::RunSearch
   DATA_SERVER = Rails.configuration.data_server
   def initialize(client_request)
     @client_request = client_request
@@ -15,7 +15,7 @@ class AdvancedNamesController::Index::ClientRequest::NameSearchRequest::RunSearc
   end
 
   def body
-    Query.new(@client_request).query_body
+    AdvancedNamesController::Index::NameSearchRequest::Query.new(@client_request).query_body
   end
 
   def graphql_query_string

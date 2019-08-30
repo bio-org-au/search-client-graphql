@@ -4,6 +4,7 @@
 class AdvancedNamesController::Index::ClientRequest::PublicationRequest::RunSearch
   DATA_SERVER = Rails.configuration.data_server
   def initialize(client_request)
+    throw 'publication request'
     @client_request = client_request
   end
 

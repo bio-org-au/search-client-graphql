@@ -20,11 +20,9 @@
 class AdvancedNamesController < ApplicationController
   def index
     @client_request = Index::ClientRequest.new(search_params, session[:editor] || false).build_request
-    @search = @client_request.search
-
-    #if @client_request.any_type_of_search?
-    #  @search_result = Index::GraphqlRequest.new(@client_request).result
-    #end
+    if @client_request.any_type_of_search?
+      @search_result = Index::NameSearchRequest::GraphqlRequest.new(@client_request).result
+    end
 
     render_index
   end
@@ -41,7 +39,7 @@ class AdvancedNamesController < ApplicationController
     respond_to do |format|
       format.html { render_index_html }
       format.js { render_index_html }
-      format.json { render json: @search }
+      format.json { render json: @search_result }
       format.csv { render_csv }
     end
   end
@@ -56,15 +54,19 @@ class AdvancedNamesController < ApplicationController
   def render_index_html
     @page_title = "#{@name_label} Search"
     if @client_request.name_search?
-      @results = Application::Names::Results.new(@search)
+      #if @search_result.errors.present?
+        #@results = OpenStruct.new 
+      #else
+        @results = Application::Names::Results.new(@search_result)
+      #end
     elsif @client_request.publication_search?
-      @results = Application::Publications::Results.new(@search)
+      @results = Application::Publications::Results.new(@search_result)
     end
     render :index
   end
 
   def render_csv
-    @results = Application::Names::Results.new(@search)
+    @results = Application::Names::Results.new(@search_result)
     render 'csv.html', layout: nil
   end
 
@@ -72,7 +74,7 @@ class AdvancedNamesController < ApplicationController
     params.permit(:utf8, :list, :q, :requested_format, :show_name,
                   :show_details, :show_family, :show_links,
                   :limit_per_page_for_list, :limit_per_page_for_details,
-                  :offset, :author_abbrev, :base_author_abbrev, 
+                  :page, :author_abbrev, :base_author_abbrev, 
                   :ex_author_abbrev, :ex_base_author_abbrev, 
                   :family, :genus, :rank, :species,
                   :publication, :iso_publication_date, :protologue, :name_element,

@@ -98,6 +98,8 @@ class Application::Names::Results
   end
 
   def names
+    return nil if error?
+
     @data.collect do |name|
       Application::Names::Results::Name.new(name)
     end

@@ -4,6 +4,10 @@
     color: black;
     background: white;
   }
+  h1, h2, h3, h4, h5, h6 {
+  color: black;
+  font-weight: bold;
+  }
 }
 
 @media screen {
@@ -18,92 +22,107 @@
     background-color: #444;
   }
 
-body.dark input[type="search"],
-body.dark input[type="text"] {
-  color: black;
-  background-color : #d1d1d1; /* Safari ignores this */
-}
+  body.dark input[type="search"],
+  body.dark input[type="text"] {
+    color: black;
+    background-color : #d1d1d1; /* Safari ignores this */
+  }
 
-body.dark a {
-  color: lightblue;
-}
+  body.dark a {
+    color: lightblue;
+  }
 
-body.name.development h1 {
-  background-color: #C0B4FF;
-  color: black;
-}
+  body.name.development h1 {
+    background-color: #C0B4FF;
+    color: black;
+  }
 
-body.dark.name.development h1 {
-  background-color: #C0B4FF;
-  color: black;
-}
+  body.dark.name.development h1 {
+    background-color: #C0B4FF;
+    color: black;
+  }
 
-body.taxonomy.development h1 {
-  background-color: #B1FFC7;
-}
+  body.taxonomy.development h1 {
+    background-color: #B1FFC7;
+  }
 
-body.name_check.development h1 {
-  background-color: #DFC5EF;
-}
+  body.name_check.development h1 {
+    background-color: #DFC5EF;
+  }
 
-body.name.test h1 {
-  background-color: #C0B4FF;
-}
+  body.name.test h1 {
+    background-color: #C0B4FF;
+  }
 
-body.taxonomy.test h1 {
-  background-color: #B1FFC7;
-}
+  body.taxonomy.test h1 {
+    background-color: #B1FFC7;
+  }
 
-body.name_check.test h1 {
-  background-color: #DFC5EF;
-}
+  body.name_check.test h1 {
+    background-color: #DFC5EF;
+  }
 
 
-body.name.xtest h1 {
-  background-color: #DBE4FF;
-}
+  body.name.xtest h1 {
+    background-color: #DBE4FF;
+  }
 
-body.taxonomy.xtest h1 {
-  background-color: #EDFFEE;
-}
+  body.taxonomy.xtest h1 {
+    background-color: #EDFFEE;
+  }
 
-body.name_check.xtest h1 {
-  background-color: #F6E5FF;
-}
+  body.name_check.xtest h1 {
+    background-color: #F6E5FF;
+  }
 
-div.help-bar span.env {
-  color: white;
-}
+  div.help-bar span.env {
+    color: white;
+  }
 
-body.development div.help-bar span.env {
-  color: Gray;
-}
+  body.development div.help-bar span.env {
+    color: Gray;
+  }
 
-body.dark a.underline {
-  color: #39f;
-}
+  body.dark a.underline {
+    color: #39f;
+  }
 
-body.dark a.underline:visited {
-  color: #9cf;
-  font-weight: bold;
-}
+  body.dark a.underline:visited {
+    color: #9cf;
+    font-weight: bold;
+  }
 
-body.dark a.obscure {
-  color: #666;
-  background: #666;
-}
+  body.dark a.obscure {
+    color: #666;
+    background: #666;
+  }
 
-a.obscure {
-  color: white;
-  background: white;
-}
+  a.obscure {
+    color: white;
+    background: white;
+  }
 
-*.red {
-  color: red;
-}
+  *.red {
+    color: red;
+  }
 
-body.dark *.red {
-  color: orange;
-}
+  body.dark *.red {
+    color: orange;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: black;
+    font-weight: bold;
+  }
+
+  body.dark h1, 
+  body.dark h2,
+  body.dark h3,
+  body.dark h4,
+  body.dark h5,
+  body.dark h6 {
+    color: white;
+    font-weight: bold;
+  }
 
 }
