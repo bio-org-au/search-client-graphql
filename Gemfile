@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 gem 'rails', '~> 4.2'
 gem 'unf', '0.1.4'
@@ -88,3 +88,5 @@ gem 'simplecov', require: false, group: :test
 
 gem 'httparty'
 gem "rubyzip", ">= 1.3.0"
+gem "ffi", ">= 1.9.24"
+gem "nokogiri", ">= 1.10"
