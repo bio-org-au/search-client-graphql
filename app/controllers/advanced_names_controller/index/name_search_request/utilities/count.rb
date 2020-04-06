@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Class extracted from name controller.
-class AdvancedNamesController::Index::NameSearchRequest::Utilties::Count
+class AdvancedNamesController::Index::NameSearchRequest::Utilities::Count
   def initialize(client_request)
     throw 'count'
     @client_request = client_request
