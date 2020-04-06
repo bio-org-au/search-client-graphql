@@ -87,3 +87,4 @@ end
 gem 'simplecov', require: false, group: :test
 
 gem 'httparty'
+gem 'rubyzip', '>= 1.3.0'
