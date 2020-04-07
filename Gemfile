@@ -66,7 +66,6 @@ group :development do
   gem 'spring'
 end
 
-gem 'bootstrap', '~> 4.0.0.alpha6' # Use Bootstrap 4.
 source 'http://insecure.rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.1'
 end

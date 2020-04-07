@@ -10,13 +10,12 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require common
+ *= require colour
+ *= require details
+ *= require forms
+ *= require lists
+ *= require typeahead
+ *= require tables
+ *= require_self
  */
-
-
-@import "common.scss";
-@import "colour.scss";
-@import "details.scss";
-@import "forms.scss";
-@import "lists.scss";
-@import "typeahead.scss";
-@import "tables.scss";
