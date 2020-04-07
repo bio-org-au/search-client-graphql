@@ -77,7 +77,7 @@ changeBackground = (event,$element) ->
   $('body').removeClass('dark')
   $('body').removeClass('light')
   $('body').addClass($element.val())
-  $.post "<%= Rails.configuration.try(:relative_url_root) %>"  + '/background?background=' + encodeURIComponent($element.val())
+  $.post window.relative_url_root  + '/background?background=' + encodeURIComponent($element.val())
   false
     
 showUnusedFields = (event,$element) ->
