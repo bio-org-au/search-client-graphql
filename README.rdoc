@@ -1,5 +1,7 @@
 == README
 
+=== Archiving because no longer current (Feb 2023) GC
+
 
 This is the search app cloned to become a trial client for the graphql server.
 Things you may want to cover:
